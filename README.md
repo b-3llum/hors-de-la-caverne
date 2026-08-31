@@ -1,5 +1,7 @@
 # Hors de la Caverne
 
+https://b-3llum.github.io/hors-de-la-caverne/
+
 Un recueil de problèmes de mathématiques en HTML simple — **des problèmes, pas de
 réponses**.
 
