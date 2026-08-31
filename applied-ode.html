@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Équations différentielles ordinaires et systèmes dynamiques — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Équations différentielles ordinaires et systèmes dynamiques</h1>
+<p class="lede">Une équation différentielle dit comment une grandeur varie ; la résoudre, c'est
+reconstituer toute l'histoire et tout l'avenir de cette grandeur à partir de cette loi locale.
+Newton a fondé le sujet en même temps que le calcul différentiel — sa deuxième loi <i>est</i> une
+équation différentielle — et pendant deux siècles « résoudre » a voulu dire « trouver une
+formule ». Poincaré a changé la question dans les années 1880 : lorsque les formules font défaut
+(et pour la plupart des équations elles le doivent), on peut encore poser des questions
+qualitatives — le système se stabilise-t-il, tourne-t-il en cycle, ou erre-t-il indéfiniment ? —
+et y répondre par des démonstrations. Ce regard géométrique, aujourd'hui appelé systèmes
+dynamiques, a mené tout droit à la découverte du chaos : des lois déterministes au comportement
+imprévisible. Travailler ici, c'est être à la fois ingénieur et naturaliste : on calcule ce que
+l'on peut, et on démontre des théorèmes sur ce que l'on ne peut pas calculer.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/applied-ode.tex" download>source LaTeX</a> · <a href="tex/applied-ode.pdf" download>PDF compilé</a></p>
+<!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="ODE-01" data-level="Lycée">
+<h3>ODE-01 · La croissance exponentielle à partir des principes premiers <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> (a) Démontrer que les <i>seules</i> fonctions dérivables
+vérifiant \( y' = k y \) sur la droite réelle sont \( y(x) = C e^{kx} \) avec \( C \) constante.
+(On pourra utiliser les règles élémentaires de dérivation et le fait qu'une fonction de dérivée
+nulle sur un intervalle y est constante.)
+(b) En déduire la loi du temps de doublement : une solution positive avec \( k \gt 0 \) double en
+un même temps \( (\ln 2)/k \), quel que soit l'instant où l'on déclenche le chronomètre.
+(c) Datation au radiocarbone : le carbone 14 se désintègre avec une demi-vie de 5730 ans. Un
+parchemin conserve 70 % de son carbone 14 initial. Déterminer son âge, en le justifiant
+entièrement à partir de (a).</p>
+<p class="context">C'est la première équation différentielle jamais comprise — elle régit les
+intérêts composés (Jacques Bernoulli, années 1690), le refroidissement, la désintégration
+radioactive (Rutherford et Soddy, 1902) et la croissance des populations (Malthus, 1798). La
+démonstration d'unicité en (a) est la partie importante : c'est le cas le plus simple du fait
+qu'une équation différentielle assortie d'une condition initiale détermine complètement l'avenir,
+le thème de toute cette page. Willard Libby a reçu le prix Nobel de chimie 1960 pour avoir fait
+de (c) un instrument d'archéologie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Croissance_exponentielle">Croissance exponentielle — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 1–2</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/">MIT OCW 18.03SC Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-02" data-level="Lycée">
+<h3>ODE-02 · La loi de refroidissement de Newton, à partir de données <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La loi de refroidissement de Newton affirme que la température \( T \) d'un
+corps placé dans un milieu à température constante \( A \) obéit à \( T' = -k (T - A) \) pour une
+certaine constante \( k \gt 0 \).</p>
+<ol class="parts" type="a">
+<li>Résoudre l'équation (utiliser ODE-01 après la substitution \( u = T - A \)).</li>
+<li>Une tasse de café à 90&deg;C se trouve dans une pièce à 20&deg;C. Elle mesure 70&deg;C au
+bout de 5 minutes et environ 55,7&deg;C au bout de 10 minutes. Montrer que ces données sont
+compatibles avec le modèle, déterminer \( k \), puis prédire la température au bout de 20 minutes
+ainsi que l'instant où le café atteint 40&deg;C.</li>
+<li>Démontrer que, selon le modèle, le café n'atteint jamais réellement la température de la
+pièce en temps fini — et expliquer pourquoi le modèle est néanmoins utile.</li>
+</ol>
+</div>
+<p class="context">Newton a publié la loi de refroidissement anonymement en 1701, dans un article
+sur une échelle de chaleur allant jusqu'à la fusion du fer ; confronter un modèle d'équation
+différentielle à des données, comme en (b), est exactement ce qu'il faisait. Cette loi est le
+premier exemple canonique d'ajustement d'une équation différentielle à des mesures — les
+médecins légistes s'en servent encore pour estimer l'heure du décès — et la partie (c) apprend
+la bonne façon de lire une approche exponentielle de l'équilibre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Loi_de_refroidissement_de_Newton">Loi de refroidissement de Newton — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 1</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/">MIT OCW 18.03SC Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-03" data-level="Lycée">
+<h3>ODE-03 · La courbe logistique <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une population limitée par les ressources est modélisée par l'équation
+logistique \( P' = r P \left( 1 - \frac{P}{K} \right) \) avec des constantes
+\( r, K \gt 0 \).</p>
+<ol class="parts" type="a">
+<li>Sans résoudre, montrer que toute solution avec \( 0 \lt P(0) \lt K \) est croissante, et que
+toute solution avec \( P(0) \gt K \) est décroissante.</li>
+<li>Résoudre l'équation par séparation des variables et décomposition en éléments simples, puis
+vérifier que \( P(t) \to K \) quand \( t \to \infty \) pour toute valeur initiale
+positive.</li>
+<li>Démontrer qu'une solution partant en dessous de \( K/2 \) a sa croissance la plus forte
+exactement lorsque \( P = K/2 \), et que la courbe solution est symétrique par rapport à ce
+point. Esquisser la courbe en S.</li>
+</ol>
+</div>
+<p class="context">Le mathématicien belge Pierre-François Verhulst a proposé l'équation logistique
+en 1838 pour corriger Malthus : la croissance ne peut pas rester exponentielle. La même courbe en
+S modélise aujourd'hui les épidémies, l'adoption des technologies et l'autocatalyse chimique ;
+sa cousine à temps discret reviendra en ODE-16, chargée de chaos. Verhulst s'en est servi pour
+prédire un plafond à la population belge — un rappel que les paramètres du modèle, contrairement
+à ses mathématiques, sont des conjectures.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_logistique_(Verhulst)">Fonction logistique (Verhulst) — Wikipédia</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 2</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/">MIT OCW 18.03SC Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-22" data-level="Lycée" data-kind="court">
+<h3>ODE-22 · La vitesse limite <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un corps de masse \( m \) tombe sans vitesse initiale sous
+l'effet de la pesanteur, contre une résistance de l'air proportionnelle à la vitesse, de sorte
+que sa vitesse vérifie
+\[ m v' = mg - k v, \qquad v(0) = 0, \]
+avec des constantes \( m, g, k \gt 0 \). Résoudre en \( v(t) \) et démontrer que \( v \) croît
+strictement vers la vitesse limite \( mg/k \) sans jamais l'atteindre.</p>
+<p class="context">Le frottement linéaire est le modèle honnête d'une chute lente — une
+gouttelette de brume, une bille d'acier dans l'huile — et Stokes en a établi la loi en 1851. La
+moitié qualitative de ce problème est la plus précieuse : la limite \( mg/k \) se lit sur
+l'équation avant toute intégration, en demandant où \( v' = 0 \), ce qui est le premier geste de
+toute la théorie qualitative vers laquelle cette page tend.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Vitesse_terminale">Vitesse terminale — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-23" data-level="Lycée" data-kind="court">
+<h3>ODE-23 · Le réservoir qui se vide en temps fini <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> De l'eau s'écoule par un petit trou percé au fond d'un
+réservoir cylindrique ; la loi de Torricelli impose à la hauteur \( h(t) \) d'obéir à
+\[ h' = -c\sqrt{h}, \qquad h(0) = h_0 \gt 0, \]
+avec une constante \( c \gt 0 \) déterminée par le trou. Déterminer, avec démonstration, l'instant
+exact où le réservoir est vide, et démontrer que la hauteur est véritablement nulle à partir de
+cet instant, et non pas seulement tendant vers zéro.</p>
+<p class="context">Evangelista Torricelli — élève de Galilée et inventeur du baromètre — a publié
+la loi en 1644 : l'eau quitte le trou à la vitesse qu'elle atteindrait en tombant librement depuis
+la surface. Le temps de vidange fini est tout l'intérêt. Les solutions de \( y' = y \) mettent
+l'éternité à atteindre quoi que ce soit, mais \( \sqrt{h} \) n'est pas lipschitzienne en \( 0 \),
+et c'est ce défaut qui permet à une solution d'arriver à l'origine en temps fini — le même défaut
+qui détruit l'unicité en ODE-08.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Formule_de_Torricelli">Formule de Torricelli — Wikipédia</a></li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/">MIT OCW 18.03SC Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-24" data-level="Lycée">
+<h3>ODE-24 · Champs de tangentes et méthode d'Euler <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère le problème de Cauchy
+\[ y' = y - t, \qquad y(0) = \tfrac{1}{2}. \]</p>
+<ol class="parts" type="a">
+<li>Tracer le champ de tangentes sur le rectangle \( 0 \le t \le 2 \), \( -1 \le y \le 3 \).
+Vérifier que \( y = t + 1 \) est solution, et utiliser le signe de \( y - t \) au-dessus et
+en dessous de cette droite pour prédire l'allure de toutes les autres solutions.</li>
+<li>Vérifier que la solution du problème de Cauchy est
+\( y(t) = t + 1 - \tfrac{1}{2}e^{t} \), et confirmer qu'elle correspond à votre prédiction.</li>
+<li>Appliquer la méthode d'Euler \( y_{n+1} = y_n + h\,(y_n - t_n) \) avec les pas
+\( h = 0.5,\ 0.25,\ 0.125 \) pour estimer \( y(1) \). Dresser le tableau des trois erreurs
+et observer que chaque division par deux de \( h \) divise à peu près l'erreur par deux.</li>
+<li>Expliquer cette observation. Montrer par un développement de Taylor qu'un pas d'Euler à
+partir d'une valeur exacte commet une erreur au plus \( \tfrac{1}{2}h^2 \max|y''| \), et
+argumenter qu'en cumulant \( 1/h \) pas de ce type on obtient une erreur totale d'ordre \( h \) —
+la méthode d'Euler est donc du <i>premier ordre</i>.</li>
+</ol>
+</div>
+<p class="context">Leonhard Euler a publié cette méthode dans ses <i>Institutionum calculi
+integralis</i> (1768) comme moyen de calculer avec des équations que personne ne savait résoudre.
+Elle est l'ancêtre de tous les solveurs numériques utilisés aujourd'hui, et aussi un instrument
+théorique : Cauchy dans les années 1820, et Peano en 1886, ont démontré que les solutions
+<i>existent</i> en montrant que les approximations polygonales d'Euler convergent quand
+\( h \to 0 \) (comparer à la voie différente d'ODE-07). Le champ de tangentes de (a) est l'autre
+moitié de la leçon — une équation qu'on ne sait pas résoudre peut tout de même se lire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27Euler">Méthode d'Euler — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Slope_field">Champ de tangentes — Wikipédia (en anglais)</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 1–2</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/">MIT OCW 18.03SC Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-34" data-level="Lycée">
+<h3>ODE-34 · La chaîne suspendue <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une chaîne souple homogène de poids \( w \) par unité de longueur pend au
+repos entre deux supports. Soit \( y(x) \) sa forme ; on place le point le plus bas en
+\( x = 0 \), et l'on note \( H \) la traction horizontale en ce point.</p>
+<ol class="parts" type="a">
+<li>Écrire l'équilibre des forces sur le morceau de chaîne compris entre le point le plus bas
+et un point courant. Montrer que la composante horizontale de la tension vaut \( H \) en tout
+point, que la composante verticale vaut \( w\,s \) où \( s \) est l'abscisse curviligne mesurée
+depuis le point le plus bas, et donc que \( y'(x) = w\,s(x)/H \). Dériver, en utilisant
+\( \frac{ds}{dx} = \sqrt{1 + (y')^2} \), pour obtenir
+\[ y'' = \frac{w}{H}\,\sqrt{1 + (y')^2}\,. \]</li>
+<li>Résoudre l'équation : poser \( p = y' \), séparer les variables, et montrer que la chaîne
+telle que \( y'(0) = 0 \) et \( y(0) = H/w \) est
+\[ y(x) = \frac{H}{w}\,\cosh\!\left( \frac{w x}{H} \right). \]
+Confirmer par dérivation directe que cette fonction satisfait l'équation.</li>
+<li>Donner tort à Galilée : montrer qu'aucune parabole \( y = ax^2 + bx + c \) avec \( a \ne 0 \)
+ne peut satisfaire l'équation, en comparant les deux membres. Puis développer
+\( \cosh u = 1 + \frac{u^2}{2} + \frac{u^4}{24} + \cdots \) et expliquer pourquoi une chaîne peu
+tendue paraît néanmoins parabolique.</li>
+<li>Changer le chargement : suspendre un tablier au câble, de sorte que la charge soit \( w_0 \)
+par unité de longueur <i>horizontale</i>, le poids propre du câble étant négligeable. Refaire
+l'équilibre des forces, établir la nouvelle équation, et démontrer que ce câble est exactement
+une parabole. Laquelle de ces deux courbes suit le câble porteur d'un pont suspendu, et laquelle
+suit un collier ?</li>
+</ol>
+</div>
+<p class="context">Galilée affirmait dans les <i>Discours concernant deux sciences nouvelles</i>
+(1638) qu'une chaîne suspendue est une parabole ; Joachim Jungius a trouvé l'affirmation fausse,
+et en 1690 Jacques Bernoulli a publiquement mis les mathématiciens d'Europe au défi de produire
+la vraie courbe. Huygens, Leibniz et Jean Bernoulli ont chacun publié une solution dans les
+<i>Acta Eruditorum</i> en 1691 — Huygens a forgé le nom de <i>catenaria</i>, du latin
+<i>catena</i>, chaîne — et la réponse, qui exige le cosinus hyperbolique, fut une victoire
+précoce du calcul nouveau sur un problème que les Anciens ne pouvaient que deviner. Robert Hooke
+avait vu la conséquence pour l'ingénierie dès 1675 et l'avait publiée sous forme d'anagramme
+latine : comme pend un câble souple, ainsi, renversés, se tiennent les claveaux d'une arche. La
+partie (d) explique pourquoi les deux formes sont sans cesse confondues — c'est la charge, non la
+courbe, qui diffère.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cha%C3%AEnette">Chaînette — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_hyperbolique">Fonction hyperbolique — Wikipédia</a></li>
+<li>Lecture : G. F. Simmons, <i>Differential Equations with Applications and Historical Notes</i>, chap. 1</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/">MIT OCW 18.03SC Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-35" data-level="Lycée" data-kind="court">
+<h3>ODE-35 · La vitesse de libération <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un projectile est tiré verticalement depuis la surface
+d'une planète sans atmosphère, de masse \( M \) et de rayon \( R \), à la vitesse
+\( v_0 &gt; 0 \), puis se déplace sous la seule action de la gravitation :
+\[ \frac{d^2 r}{dt^2} = -\frac{GM}{r^2}, \qquad r(0) = R, \qquad r'(0) = v_0 . \]
+En posant \( v = dr/dt \) et en utilisant \( \frac{dv}{dt} = v\,\frac{dv}{dr} \), déterminer avec
+démonstration la plus petite valeur de \( v_0 \) pour laquelle \( r(t) \) croît sans borne, et
+démontrer que pour toute valeur plus petite de \( v_0 \) le projectile atteint une hauteur
+maximale puis retombe.</p>
+<p class="context">Newton a dessiné l'image dans son <i>Traité du système du monde</i> : un canon
+sur une très haute montagne, tirant de plus en plus fort, jusqu'à ce que le boulet ne retombe
+plus. La substitution demandée ici est toute l'astuce — elle transforme une équation du second
+ordre en une équation du premier ordre en la variable \( r \), et ce qu'elle produit est la
+conservation de l'énergie, la même intégrale première qui donne la période du pendule en ODE-12.
+Le nombre qu'elle fournit vaut environ 11,2 km/s pour la Terre et 2,4 km/s pour la Lune, ce qui
+explique en grande partie pourquoi la Lune n'a pas d'atmosphère à perdre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Vitesse_de_lib%C3%A9ration">Vitesse de libération — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Canon_de_Newton">Canon de Newton — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 1–2</li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="ODE-04" data-level="Licence">
+<h3>ODE-04 · Équations du premier ordre : la cuve de mélange <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une cuve contient 100 litres d'eau pure. De la saumure contenant 0,5 kg de
+sel par litre y entre à 3 litres par minute ; la cuve est parfaitement mélangée et se vide à
+3 litres par minute. Soit \( S(t) \) la masse de sel dans la cuve, en kilogrammes.</p>
+<ol class="parts" type="a">
+<li>Établir, en justifiant chaque terme à partir des principes premiers (débit entrant moins
+débit sortant), l'équation \( S' = 1.5 - \frac{3S}{100} \).</li>
+<li>La résoudre par facteur intégrant, et démontrer que \( S(t) \to 50 \) de façon
+monotone.</li>
+<li>Supposer maintenant que le débit sortant vaut 2 litres par minute, de sorte que le volume
+augmente. Établir la nouvelle équation, à coefficient dépendant du temps, et la résoudre sur
+l'intervalle précédant le débordement de la cuve.</li>
+<li>Expliquer pourquoi toute équation linéaire du premier ordre \( y' + p(t) y = q(t) \) se
+plie à la même méthode du facteur intégrant, et démontrer que cette méthode donne
+<i>toutes</i> les solutions.</li>
+</ol>
+</div>
+<p class="context">Les problèmes de mélange sont le terrain d'entraînement classique des équations
+linéaires du premier ordre — la même loi de bilan régit les polluants dans les lacs, les
+médicaments dans le sang et le CO₂ dans une pièce. Le facteur intégrant remonte à Leibniz et au
+traitement systématique des équations du premier ordre par Euler dans les années 1730–1740.
+L'intérêt de (a) est la discipline de modélisation : chaque terme de l'équation doit être un
+débit physique dûment justifié.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_diff%C3%A9rentielle_lin%C3%A9aire">Équation différentielle linéaire — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 2</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/">MIT OCW 18.03 Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-05" data-level="Licence">
+<h3>ODE-05 · L'oscillateur harmonique, entièrement résolu <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère \( m y'' + c y' + k y = 0 \) avec
+\( m, k \gt 0 \) et un amortissement \( c \ge 0 \).</p>
+<ol class="parts" type="a">
+<li>Montrer que la recherche de solutions \( e^{rt} \) conduit à l'équation caractéristique
+\( m r^2 + c r + k = 0 \), et écrire la solution générale dans les trois cas (racines réelles
+distinctes, racine double, racines complexes), en <i>établissant</i> la solution \( t e^{rt} \)
+dans le cas de la racine double plutôt qu'en la devinant.</li>
+<li>Démontrer que ce sont bien là <i>toutes</i> les solutions. (Utiliser le théorème d'existence
+et d'unicité pour les équations linéaires du second ordre, ou démontrer directement qu'une
+solution s'annulant en un point ainsi que sa dérivée est identiquement nulle.)
+(c) Démontrer : toute solution non nulle tend vers 0 quand \( t \to \infty \) si et seulement si
+\( c \gt 0 \). Interpréter physiquement les trois régimes d'amortissement, et expliquer pourquoi
+la suspension d'une voiture est conçue près de l'amortissement critique.</li>
+</ol>
+</div>
+<p class="context">L'oscillateur est la drosophile des équations différentielles : ressorts,
+pendules de petite amplitude, circuits RLC et vibrations moléculaires sont tous cette unique
+équation. Euler a relié l'exponentielle aux sinus et cosinus dans les années 1740, et la méthode
+de l'équation caractéristique est essentiellement la sienne. La partie (b) est l'endroit où le
+sujet devient honnête — une formule n'est pas un théorème tant qu'on ne sait pas qu'aucune
+solution ne manque.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Oscillateur_harmonique">Oscillateur harmonique — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 3</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/">MIT OCW 18.03 Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-06" data-level="Licence">
+<h3>ODE-06 · La résonance, rigoureusement <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On excite un oscillateur non amorti à la pulsation \( \omega \) :
+\( x'' + \omega_0^2 x = F \cos(\omega t) \), avec \( F \ne 0 \).</p>
+<ol class="parts" type="a">
+<li>Pour \( \omega \ne \omega_0 \), trouver la solution particulière
+\( \frac{F}{\omega_0^2 - \omega^2} \cos(\omega t) \) et démontrer que toute solution est bornée.
+En partant du repos, montrer que la solution est une superposition de deux cosinus et — lorsque
+\( \omega \) est proche de \( \omega_0 \) — la réécrire comme un produit faisant apparaître des
+<i>battements</i>.</li>
+<li>Pour \( \omega = \omega_0 \), démontrer que \( \frac{F}{2\omega_0}\, t \sin(\omega_0 t) \)
+est solution de l'équation et que <i>toute</i> solution est non bornée : la résonance n'est pas
+une possibilité mais un théorème.</li>
+<li>Ajouter l'amortissement : \( x'' + c x' + \omega_0^2 x = F \cos(\omega t) \) avec
+\( c \gt 0 \). Montrer que toutes les solutions convergent vers une unique réponse périodique
+d'amplitude \( F / \sqrt{ (\omega_0^2 - \omega^2)^2 + c^2 \omega^2 } \), et déterminer pour
+quelles valeurs de \( c \) cette amplitude admet un véritable maximum en \( \omega \) (le pic de
+résonance) et où il se situe.</li>
+</ol>
+</div>
+<p class="context">La résonance explique pourquoi les soldats rompent le pas sur les ponts et
+pourquoi un verre à vin peut être brisé par la voix. L'effondrement du pont de Tacoma Narrows en
+1940 en est l'illustration classique — bien que, comme Billah et Scanlan l'ont montré dans un
+article célèbre de 1991, le vrai coupable fût le flottement aéroélastique, une oscillation
+auto-entretenue, et non une simple résonance forcée ; apprendre ce sujet, c'est aussi apprendre à
+énoncer honnêtement les exemples. Les mathématiques de (b), le terme séculaire croissant comme
+\( t \), sont exactement ce que les théoriciens des perturbations en mécanique céleste ont
+combattu pendant deux siècles.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/R%C3%A9sonance">Résonance — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 3</li>
+<li>Article : K. Y. Billah &amp; R. H. Scanlan, « Resonance, Tacoma Narrows bridge failure, and undergraduate physics textbooks », <i>American Journal of Physics</i> 59 (1991), 118–124</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-07" data-level="Licence">
+<h3>ODE-07 · Cauchy–Lipschitz (Picard–Lindelöf) : existence et unicité <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère le problème de Cauchy \( y' = f(t, y) \),
+\( y(t_0) = y_0 \), où \( f \) est continue et lipschitzienne en \( y \) :
+\( |f(t, y_1) - f(t, y_2)| \le L |y_1 - y_2| \).</p>
+<ol class="parts" type="a">
+<li>Montrer que le problème équivaut à l'équation intégrale
+\( y(t) = y_0 + \int_{t_0}^{t} f(s, y(s))\, ds \).</li>
+<li>Démontrer que, sur un intervalle assez court, l'application qui envoie une fonction continue
+\( \phi \) sur \( t \mapsto y_0 + \int_{t_0}^{t} f(s, \phi(s))\, ds \) est contractante pour la
+norme de la convergence uniforme, et conclure du théorème du point fixe de Banach que le problème
+de Cauchy y admet exactement une solution.</li>
+<li>Faire tourner l'itération à la main : pour \( y' = y \), \( y(0) = 1 \), en partant de la
+fonction constante 1, calculer les itérées de Picard et identifier la limite.</li>
+</ol>
+</div>
+<p class="context">Qu'une équation différentielle assortie d'un état initial détermine une
+trajectoire unique est la forme mathématique du déterminisme, et c'est un théorème, non une
+évidence — démontré par Émile Picard (1890) et Ernst Lindelöf (1894) par l'itération que vous
+menez ici. L'argument fut l'un des premiers triomphes du point de vue du point fixe, cristallisé
+plus tard par Banach (1922), et la restriction à un intervalle court est bien réelle : les
+solutions d'équations aussi innocentes que \( y' = y^2 \) explosent en temps fini.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cauchy-Lipschitz">Théorème de Cauchy-Lipschitz — Wikipédia</a></li>
+<li>Lecture : M. W. Hirsch, S. Smale &amp; R. L. Devaney, <i>Differential Equations, Dynamical Systems, and an Introduction to Chaos</i>, chap. 17</li>
+<li>Lecture : V. I. Arnold, <i>Ordinary Differential Equations</i></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-08" data-level="Licence">
+<h3>ODE-08 · Là où l'unicité tombe en défaut <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère \( y' = y^{2/3} \) avec \( y(0) = 0 \).</p>
+<ol class="parts" type="a">
+<li>Exhiber deux solutions distinctes passant par l'origine.</li>
+<li>Bien pire : construire une famille infinie de solutions — des fonctions qui restent nulles
+jusqu'à un instant \( a \ge 0 \) choisi arbitrairement et ne décollent qu'ensuite — et vérifier
+soigneusement que chacune est dérivable partout et satisfait l'équation partout, y compris au
+point de raccordement.</li>
+<li>Identifier exactement quelle hypothèse du théorème de Cauchy–Lipschitz (ODE-07) est mise en
+défaut en \( y = 0 \), et démontrer que par toute valeur initiale \( y_0 \ne 0 \) la solution
+<i>est</i> localement unique.</li>
+<li>Énoncer le théorème d'existence de Peano et expliquer ce que la seule continuité de \( f \)
+vous achète et ce qu'elle ne vous achète pas.</li>
+</ol>
+</div>
+<p class="context">Cette équation d'apparence innocente est le témoin classique du fait que le
+déterminisme peut échouer lorsque le second membre est seulement continu : le seau percé qui
+pourrait s'être vidé à n'importe quel moment du passé, vu à rebours. Peano a démontré l'existence
+sans l'unicité en 1890 ; l'exemple montre que son théorème est optimal. Des modèles physiquement
+sensés à second membre non lipschitzien existent bel et bien, et savoir exactement où la garantie
+classique se rompt fait partie de la boîte à outils de l'analyste.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cauchy-Peano-Arzel%C3%A0">Théorème de Cauchy-Peano-Arzelà — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cauchy-Lipschitz">Théorème de Cauchy-Lipschitz — Wikipédia</a></li>
+<li>Lecture : V. I. Arnold, <i>Ordinary Differential Equations</i></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-09" data-level="Licence">
+<h3>ODE-09 · Le plan de phase : classification des systèmes linéaires <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère le système linéaire plan \( x' = A x \) pour une matrice réelle
+\( 2 \times 2 \) \( A \) avec \( \det A \ne 0 \).</p>
+<ol class="parts" type="a">
+<li>Résoudre le système dans chaque cas de valeurs propres (réelles distinctes, complexes
+conjuguées, double) et esquisser les portraits de phase : col, nœuds, foyers, centres.</li>
+<li>Démontrer la classification par trace et déterminant : l'origine est un col si et seulement
+si \( \det A \lt 0 \) ; elle est asymptotiquement stable si et seulement si
+\( \operatorname{tr} A \lt 0 \) et \( \det A \gt 0 \) ; les foyers apparaissent exactement quand
+\( (\operatorname{tr} A)^2 \lt 4 \det A \). Dessiner le plan trace–déterminant avec toutes les
+régions étiquetées.</li>
+<li>Expliquer pourquoi le cas du centre (valeurs propres imaginaires pures) est <i>fragile</i> :
+exhiber des matrices arbitrairement proches d'un centre dont les portraits sont des foyers
+attractifs et des foyers répulsifs.</li>
+</ol>
+</div>
+<p class="context">Le portrait de phase — les trajectoires tracées dans l'espace des états, le
+temps restant implicite — est la grande invention picturale de Poincaré (1881–1886), et la
+classification linéaire donnée ici est l'alphabet de la théorie qualitative : au voisinage d'un
+équilibre typique, un système non linéaire ressemble à l'une de ces images (ODE-10). La fragilité
+de (c) est le premier indice d'un thème profond, la stabilité structurelle : certains portraits
+de phase survivent aux perturbations, d'autres non.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Portrait_de_phase">Portrait de phase — Wikipédia</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 5</li>
+<li>Lecture : M. W. Hirsch, S. Smale &amp; R. L. Devaney, <i>Differential Equations, Dynamical Systems, and an Introduction to Chaos</i>, chap. 2–4</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-10" data-level="Licence">
+<h3>ODE-10 · La linéarisation et ses limites <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( x^* \) un point d'équilibre du système non linéaire
+\( x' = f(x) \) dans le plan, et soit \( J \) la matrice jacobienne de \( f \) en \( x^* \).</p>
+<ol class="parts" type="a">
+<li>Énoncer précisément le théorème de Hartman–Grobman (équilibre hyperbolique : aucune valeur
+propre de \( J \) sur l'axe imaginaire), et s'en servir pour classer tous les équilibres du
+pendule amorti \( \theta'' + b \theta' + \sin\theta = 0 \) pour \( b \gt 0 \) : montrer que les
+positions basses sont des foyers ou des nœuds stables et que les positions renversées sont des
+cols.</li>
+<li>Démontrer que la linéarisation peut mentir lorsque l'équilibre n'est pas hyperbolique : pour
+le système \( x' = -y + a x (x^2 + y^2) \), \( y' = x + a y (x^2 + y^2) \), montrer que la
+linéarisation à l'origine est un centre pour toute valeur de \( a \), mais qu'en calculant la
+dérivée de \( r^2 = x^2 + y^2 \) le long des solutions on démontre que l'origine est
+asymptotiquement stable pour \( a \lt 0 \) et instable pour \( a \gt 0 \).</li>
+</ol>
+</div>
+<p class="context">La linéarisation est le premier geste du scientifique en exercice devant tout
+équilibre, et Hartman–Grobman (démontré vers 1959–1960 par Philip Hartman et David Grobman
+indépendamment) en est la licence. La partie (b) est l'exemple d'avertissement classique, chez
+Strogatz et dans tout bon cours : sur le fil du rasoir des valeurs propres imaginaires, ce sont
+les termes non linéaires qui décident, et fixer \( J \) du regard ne vous l'apprendra jamais. Le
+problème centre-foyer de Poincaré — décider lequel des deux — est encore un sujet de recherche
+pour les systèmes polynomiaux (voir ODE-19).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Hartman-Grobman">Théorème de Hartman-Grobman — Wikipédia</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 6</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-385j-nonlinear-dynamics-and-chaos-fall-2014/">MIT OCW 18.385J Nonlinear Dynamics and Chaos</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-11" data-level="Licence">
+<h3>ODE-11 · Lotka–Volterra : les orbites sont fermées <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Le système proie–prédateur de Lotka et Volterra, pour des
+proies \( x \gt 0 \) et des prédateurs \( y \gt 0 \) avec des paramètres positifs :
+\[ x' = x (a - b y), \qquad y' = y (-c + d x) . \]
+(a) Trouver le point d'équilibre dans le quadrant ouvert et montrer que la linéarisation y est un
+centre — donc ODE-10 avertit que la linéarisation seule ne décide de rien.
+(b) Démontrer que \( H(x, y) = d x - c \ln x + b y - a \ln y \) est constante le long de toute
+solution.
+(c) Démontrer que chaque ligne de niveau de \( H \) dans le quadrant ouvert est une courbe fermée
+bornée entourant le point d'équilibre, et en conclure que toute orbite non stationnaire est
+périodique.
+(d) Loi de Volterra : démontrer que la moyenne de \( x \) sur une période vaut la valeur
+d'équilibre \( c/d \), indépendamment de l'orbite. (Intégrer \( (\ln y)' \) sur une
+période.)</p>
+<p class="context">Vito Volterra a construit ce modèle en 1926 pour répondre à son gendre, le
+biologiste Umberto D'Ancona, qui demandait pourquoi les poissons prédateurs avaient prospéré dans
+l'Adriatique quand la pêche s'était interrompue pendant la Première Guerre mondiale ; Alfred
+Lotka avait trouvé les mêmes équations en 1920 par la chimie. La partie (d) est la véritable
+réponse à D'Ancona — ce sont les moyennes, non les instantanés, que le modèle prédit — et les
+orbites fermées font de ce système le système conservatif canonique de la biologie
+mathématique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quations_de_pr%C3%A9dation_de_Lotka-Volterra">Équations de prédation de Lotka-Volterra — Wikipédia</a></li>
+<li>Lecture : M. W. Hirsch, S. Smale &amp; R. L. Devaney, <i>Differential Equations, Dynamical Systems, and an Introduction to Chaos</i>, chap. 11</li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-12" data-level="Licence">
+<h3>ODE-12 · La période du pendule <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le pendule non amorti : \( \theta'' + \frac{g}{L} \sin\theta = 0 \), lâché
+sans vitesse initiale à l'amplitude \( \theta_0 \in (0, \pi) \).</p>
+<ol class="parts" type="a">
+<li>Démontrer la conservation de l'énergie :
+\( E = \frac{1}{2} (\theta')^2 - \frac{g}{L} \cos\theta \) est constante le long des
+solutions.</li>
+<li>S'en servir pour établir la période exacte
+\[ T(\theta_0) = 4 \sqrt{\frac{L}{g}} \int_0^{\pi/2}
+\frac{d\phi}{\sqrt{1 - k^2 \sin^2\phi}}, \qquad k = \sin\frac{\theta_0}{2} , \]
+une intégrale elliptique complète de première espèce.</li>
+<li>Démontrer que \( T(\theta_0) \) est strictement croissante, que
+\( T \to 2\pi \sqrt{L/g} \) quand \( \theta_0 \to 0 \), et que \( T \to \infty \) quand
+\( \theta_0 \to \pi \). Interpréter cette dernière limite dans le portrait de phase (la
+séparatrice).</li>
+<li>Montrer que \( T(\theta_0) \approx 2\pi \sqrt{L/g} \left( 1 + \frac{\theta_0^2}{16} \right) \)
+aux petites amplitudes, ce qui quantifie l'erreur de l'isochronisme de Galilée.</li>
+</ol>
+</div>
+<p class="context">Galilée croyait la période du pendule indépendante de l'amplitude ; Huygens,
+qui construisait les premières horloges à pendule (1656), savait qu'il n'en était rien et a même
+inventé une suspension cycloïdale pour annuler le défaut. L'intégrale elliptique de (b) a résisté
+à toutes les tentatives d'évaluation élémentaire et a fini par créer une branche nouvelle des
+mathématiques — les fonctions elliptiques de Legendre, Abel et Jacobi. Ce problème est le pont
+entre l'oscillateur linéaire (ODE-05) et la dynamique véritablement non linéaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pendule_simple">Pendule simple — Wikipédia</a></li>
+<li>Lecture : V. I. Arnold, <i>Ordinary Differential Equations</i></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-25" data-level="Licence" data-kind="court">
+<h3>ODE-25 · L'identité d'Abel et le wronskien <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \( y_1, y_2 \) deux solutions de
+\( y'' + p(t)y' + q(t)y = 0 \) sur un intervalle \( I \), avec \( p, q \) continues, et posons
+\( W = y_1 y_2' - y_1' y_2 \). Démontrer l'identité d'Abel
+\[ W(t) = W(t_0)\exp\!\left( -\int_{t_0}^{t} p(s)\,ds \right), \]
+et en déduire que \( W \) est soit identiquement nul, soit partout non nul — donc que \( y_1 \) et
+\( y_2 \) sont linéairement dépendantes exactement lorsque leur wronskien s'annule en un seul
+point de \( I \).</p>
+<p class="context">Niels Henrik Abel a publié cette identité en 1827 ; le déterminant porte le nom
+de Józef Hoene-Wroński, dont Thomas Muir a ranimé la notation des décennies plus tard. C'est la
+dichotomie qui fait du wronskien un test utilisable, et elle est propre aux <i>solutions</i> d'une
+même équation linéaire : les fonctions \( t^2 \) et \( t|t| \) ont un wronskien identiquement nul
+sur ℝ et sont pourtant indépendantes, si bien que l'implication générale est fausse.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Wronskien">Wronskien — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Abel%27s_identity">Identité d'Abel — Wikipédia (en anglais)</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-26" data-level="Licence" data-kind="court">
+<h3>ODE-26 · Exactitude et facteur intégrant <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Sur un ouvert simplement connexe
+\( U \subseteq \mathbb{R}^2 \), démontrer que \( M(x,y)\,dx + N(x,y)\,dy = 0 \) avec
+\( M, N \in C^1(U) \) admet un potentiel \( F \) — une fonction telle que \( F_x = M \) et
+\( F_y = N \), de sorte que les courbes solutions sont les lignes de niveau \( F = c \) — si et
+seulement si \( M_y = N_x \) partout sur \( U \). Montrer ensuite que
+\[ (3xy + y^2)\,dx + (x^2 + xy)\,dy = 0 \]
+n'est pas exacte, que la multiplication par \( \mu(x) = x \) la rend exacte, et la résoudre.</p>
+<p class="context">Le critère \( M_y = N_x \) est le cas bidimensionnel de l'énoncé selon lequel
+une forme fermée sur un domaine simplement connexe est exacte — le lemme de Poincaré, rencontrant
+les équations différentielles un siècle et demi avant de porter ce nom. Euler et Clairaut ont mis
+au point le test et l'astuce du facteur intégrant dans les années 1730 et 1740. Toute équation du
+premier ordre admet localement un facteur intégrant ; la difficulté honnête, que cet exemple
+dissimule, est qu'en trouver un est d'ordinaire plus dur que l'équation elle-même.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Exact_differential_equation">Équation différentielle exacte — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Facteur_int%C3%A9grant">Facteur intégrant — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-27" data-level="Licence">
+<h3>ODE-27 · Transformation de Laplace : interrupteurs, coups de marteau et fonction de Green <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour \( f \) continue par morceaux sur \( [0,\infty) \) et d'ordre
+exponentiel, la transformée de Laplace est
+\[ F(s) = \mathcal{L}\{f\}(s) = \int_0^{\infty} e^{-st} f(t)\,dt . \]
+On note \( u_a(t) \) l'échelon unité valant \( 0 \) pour \( t \lt a \) et \( 1 \) pour
+\( t \ge a \).</p>
+<ol class="parts" type="a">
+<li>Énoncer des hypothèses sous lesquelles l'intégration par parties est légitime et démontrer
+\( \mathcal{L}\{f'\}(s) = sF(s) - f(0) \) ; en déduire la règle pour \( f'' \) et s'en servir pour
+résoudre \( y'' + 4y = 0 \), \( y(0) = 1 \), \( y'(0) = 0 \), par la seule transformation.</li>
+<li>Démontrer la règle de retard \( \mathcal{L}\{u_a(t)g(t-a)\}(s) = e^{-as}G(s) \) et résoudre
+\( y'' + y = u_{\pi}(t) \) avec \( y(0) = y'(0) = 0 \). Démontrer que la solution est continûment
+dérivable mais pas deux fois dérivable en \( t = \pi \), et expliquer pourquoi aucune équation à
+forçage discontinu ne peut faire mieux.</li>
+<li>Passons à l'impulsion : résoudre \( y'' + y = \delta(t - \pi) \) avec données initiales
+nulles, et dire précisément ce que « solution » signifie. Montrer que votre fonction est continue,
+que sa dérivée présente un saut de taille \( 1 \) en \( t = \pi \), et qu'elle est la limite
+quand \( \varepsilon \to 0^{+} \) des solutions forcées par \( \varepsilon^{-1} \) sur
+\( [\pi, \pi + \varepsilon] \) et \( 0 \) ailleurs.</li>
+<li>Démontrer le théorème de convolution \( \mathcal{L}\{f * g\} = FG \), où
+\( (f*g)(t) = \int_0^t f(t - \tau)g(\tau)\,d\tau \). En déduire que la solution de
+\( y'' + y = f(t) \) à données nulles est \( \int_0^t \sin(t - \tau) f(\tau)\,d\tau \), vérifier
+que la variation des constantes donne la même formule, et identifier \( \sin(t - \tau) \) comme la
+réponse impulsionnelle de l'oscillateur.</li>
+</ol>
+</div>
+<p class="context">Oliver Heaviside a inventé ce calcul dans les années 1880 pour analyser les
+lignes télégraphiques, en traitant \( d/dt \) comme un symbole algébrique ; les rapporteurs de la
+Royal Society objectèrent le manque de rigueur, et il répondit qu'il ne refuserait pas son dîner
+sous prétexte qu'il ne comprenait pas la digestion. Bromwich et Carson ont fourni la rigueur
+manquante à l'aide d'intégrales de contour dans les années 1910 et 1920, et les travaux de
+Laplace lui-même sur les fonctions génératrices, en 1785, avaient fourni la transformation. La
+partie (c) est un petit scandale rendu respectable : le delta de Dirac de 1927 fut une fiction
+jusqu'à la théorie des distributions de Laurent Schwartz (1945–1950), et la fonction que vous
+calculez est la fonction de Green que tout ingénieur appelle fonction de transfert.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Transformation_de_Laplace">Transformation de Laplace — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Distribution_de_Dirac">Distribution de Dirac — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 6</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/">MIT OCW 18.03SC Differential Equations</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-36" data-level="Licence">
+<h3>ODE-36 · Frobenius en un point singulier régulier <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère
+\[ x^2 y'' + x\,p(x)\,y' + q(x)\,y = 0 \]
+sur \( 0 &lt; x &lt; \rho \), où \( p \) et \( q \) sont données par des séries entières
+convergentes sur \( |x| &lt; \rho \) — le modèle d'un <i>point singulier régulier</i> en
+\( x = 0 \). L'équation indicielle associée est \( r(r-1) + p(0)\,r + q(0) = 0 \).</p>
+<ol class="parts" type="a">
+<li>S'échauffer avec l'équation d'Euler \( x^2 y'' + \alpha x y' + \beta y = 0 \) (constantes
+\( \alpha, \beta \)). Montrer que \( y = x^r \) en est solution exactement lorsque \( r \)
+vérifie l'équation indicielle, et établir — sans la deviner — la seconde solution
+\( x^r \ln x \) lorsque les racines indicielles coïncident.</li>
+<li>Supposer les racines indicielles \( r_1, r_2 \) réelles avec \( r_1 - r_2 \) non entier.
+Substituer \( y = x^{r}\sum_{n \ge 0} a_n x^n \) avec \( a_0 = 1 \), établir la récurrence sur
+les \( a_n \), et démontrer qu'elle les détermine de manière unique pour \( r = r_1 \) et pour
+\( r = r_2 \). Montrer que les deux solutions obtenues sont linéairement indépendantes, et
+énoncer (sans le démontrer) le théorème garantissant la convergence des séries pour
+\( |x| &lt; \rho \).</li>
+<li>Voici maintenant le cas qui a fait la célébrité de la méthode. Pour l'équation de Bessel
+d'ordre zéro,
+\[ x^2 y'' + x y' + x^2 y = 0, \]
+montrer que l'équation indicielle est \( r^2 = 0 \), calculer la solution de Frobenius
+\[ J_0(x) = \sum_{k \ge 0} \frac{(-1)^k}{(k!)^2}\left(\frac{x}{2}\right)^{2k}, \]
+et démontrer qu'il n'existe pas de seconde solution de la forme pure \( x^{r}\sum a_n x^n \).
+Montrer ensuite qu'une seconde solution doit contenir un terme \( J_0(x)\ln x \), en substituant
+\( y = J_0(x)\ln x + \sum_{n \ge 1} b_n x^n \) et en trouvant une récurrence pour les
+\( b_n \).</li>
+<li>Montrer que l'hypothèse compte. Vérifier que \( y' = y/x^2 \) admet les solutions
+\( y = C e^{-1/x} \) ; démontrer qu'aucune solution non nulle ne peut s'écrire comme \( x^r \)
+multiplié par une série entière convergente au voisinage de \( 0 \), et identifier le trait de
+l'équation qui la place hors de la théorie des parties (a)–(c).</li>
+</ol>
+</div>
+<p class="context">Lazarus Fuchs a identifié en 1866 les équations dont les singularités sont
+assez douces pour que les séries fonctionnent — les points singuliers réguliers — et Georg
+Frobenius, dans &laquo;&#160;Über die Integration der linearen Differentialgleichungen durch
+Reihen&#160;&raquo; (<i>Journal de Crelle</i> 76, 1873, 214–235), en a donné la construction
+systématique, logarithmes compris. Le bénéfice, c'est toute la troupe des fonctions spéciales du
+XIX<sup>e</sup> siècle : les fonctions de Bessel pour le tambour circulaire et le cylindre,
+celles de Legendre pour la sphère (ODE-37), et la série hypergéométrique de Gauss, chacune une
+série de Frobenius en un point singulier de son équation. La leçon de (d) est de savoir où la
+théorie s'arrête : en un point singulier irrégulier, les solutions peuvent avoir des singularités
+essentielles, et les développements naturels y sont des séries asymptotiques divergentes plutôt
+que convergentes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Frobenius">Méthode de Frobenius — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Point_singulier_r%C3%A9gulier">Point singulier régulier — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 5</li>
+<li>Lecture : E. L. Ince, <i>Ordinary Differential Equations</i> (Dover)</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-37" data-level="Licence" data-kind="court">
+<h3>ODE-37 · L'équation de Legendre <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour l'équation de Legendre
+\[ (1 - x^2)\,y'' - 2x\,y' + \lambda\,y = 0, \qquad -1 &lt; x &lt; 1, \]
+développer \( y \) en série entière autour de \( x = 0 \), établir la récurrence à deux termes sur
+les coefficients, et démontrer qu'une solution bornée sur tout \( (-1, 1) \) et de limites finies
+en \( x = \pm 1 \) existe exactement lorsque \( \lambda = n(n+1) \) pour un entier \( n \ge 0 \),
+la série se terminant alors en un polynôme \( P_n \) de degré \( n \). Écrire ensuite l'équation
+sous la forme auto-adjointe \( \big( (1-x^2)\,y' \big)' + \lambda\,y = 0 \) et s'en servir pour
+démontrer que \( \int_{-1}^{1} P_n(x) P_m(x)\,dx = 0 \) dès que \( n \ne m \).</p>
+<p class="context">Adrien-Marie Legendre a introduit ces polynômes dans les années 1780 en
+calculant l'attraction gravitationnelle des sphéroïdes : ce sont les coefficients du développement
+du potentiel newtonien \( 1/|x - y| \) en puissances du rapport des distances, si bien qu'ils sont
+inscrits dans tout développement multipolaire de la physique. Olinde Rodrigues a donné la formule
+close \( P_n = \frac{1}{2^n n!}\frac{d^n}{dx^n}(x^2-1)^n \) en 1816. Le schéma de ce problème — la
+bornitude aux extrémités singulières sélectionne un ensemble discret de \( \lambda \), et les
+fonctions propres obtenues sont orthogonales — est le prototype de la théorie de Sturm–Liouville,
+et c'est ce qui fait de ces polynômes la bonne base sur la sphère.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyn%C3%B4me_de_Legendre">Polynôme de Legendre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Formule_de_Rodrigues">Formule de Rodrigues — Wikipédia</a></li>
+<li>Lecture : W. E. Boyce &amp; R. C. DiPrima, <i>Elementary Differential Equations</i>, chap. 5</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-38" data-level="Licence">
+<h3>ODE-38 · La raideur, et pourquoi les méthodes implicites existent <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Appliquer des méthodes numériques à l'équation test de Dahlquist
+\( y' = \lambda y \) avec \( \operatorname{Re}\lambda &lt; 0 \) et un pas \( h &gt; 0 \), de sorte
+que la solution exacte décroisse vers \( 0 \).</p>
+<ol class="parts" type="a">
+<li>Euler explicite (progressif) donne \( y_{n+1} = (1 + h\lambda)\,y_n \). Démontrer que
+\( y_n \to 0 \) pour toute valeur initiale si et seulement si \( |1 + h\lambda| &lt; 1 \), et en
+déduire que pour \( \lambda &lt; 0 \) réel la méthode est inutilisable à moins que
+\( h &lt; 2/|\lambda| \) — une restriction imposée par la <i>stabilité</i>, non par la
+précision.</li>
+<li>Euler implicite (rétrograde) donne \( y_{n+1} = y_n/(1 - h\lambda) \). Démontrer que
+\( y_n \to 0 \) pour tout \( h &gt; 0 \) dès que \( \operatorname{Re}\lambda &lt; 0 \) : la
+méthode est <i>A-stable</i>. Dire précisément quel travail supplémentaire coûte désormais chaque
+pas pour un système non linéaire.</li>
+<li>Rendre la douleur concrète. Soit
+\[ A = \frac{1}{2}\begin{pmatrix} -1001 & 999 \\ 999 & -1001 \end{pmatrix}, \]
+et vérifier que \( A \) a pour valeurs propres \( -1 \) et \( -1000 \), de vecteurs propres
+\( (1,1) \) et \( (1,-1) \). Écrire la solution exacte de \( x' = Ax \), montrer qu'après
+\( t \approx 0.01 \) elle est indiscernable d'une courbe lisse variant sur l'échelle de temps
+\( 1 \), et démontrer qu'Euler explicite exige néanmoins \( h &lt; 0.002 \) pour toute
+l'intégration. Compter les pas nécessaires sur \( [0, 10] \) pour chacune des deux méthodes, et
+expliquer où passe le travail supplémentaire dans chaque cas.</li>
+<li>Définir le domaine de stabilité absolue d'une méthode à un pas comme l'ensemble des
+\( z = h\lambda \) complexes pour lesquels la solution numérique de l'équation test reste bornée,
+et dire la méthode A-stable si ce domaine contient tout le demi-plan gauche. Démontrer qu'aucune
+méthode de Runge–Kutta explicite n'est A-stable : montrer que sa fonction de stabilité
+\( R(z) \) est un polynôme en \( z \), de sorte que \( |R(z)| \to \infty \) quand
+\( |z| \to \infty \). Énoncer ensuite la seconde barrière de Dahlquist pour les méthodes
+linéaires à pas multiples (1963) et expliquer, en un paragraphe, pourquoi les méthodes implicites
+ne sont pas une inefficacité qu'on pourrait faire disparaître par l'ingénierie mais une nécessité
+mathématique.</li>
+</ol>
+</div>
+<p class="context">Charles Curtiss et Joseph Hirschfelder ont forgé le mot &laquo;&#160;stiff&#160;&raquo;
+(raide) en 1952, dans une note aux <i>Proceedings of the National Academy of Sciences</i>, après
+que des cinétiques chimiques aux constantes de vitesse follement séparées eurent mis en échec les
+intégrateurs standard de l'époque. Germund Dahlquist a rendu le phénomène exact en 1963 en
+définissant l'A-stabilité et en démontrant qu'elle se paie : une méthode linéaire à pas multiples
+A-stable est d'ordre au plus deux, la règle des trapèzes étant la meilleure d'entre elles. Tous
+les solveurs raides en usage — les formules de différentiation rétrograde de Gear, LSODE,
+l'<i>ode15s</i> de MATLAB — descendent de ce marché, et la morale mérite d'être énoncée clairement :
+un problème raide n'est pas un problème difficile, c'est un problème dont l'échelle de temps
+intéressante et l'échelle de temps limitant la stabilité diffèrent de plusieurs ordres de
+grandeur. La même structure à deux échelles, vue analytiquement plutôt que numériquement, est la
+couche limite d'ODE-41.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_diff%C3%A9rentielle_raide">Équation différentielle raide — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Backward_Euler_method">Méthode d'Euler implicite — Wikipédia (en anglais)</a></li>
+<li>Article : C. F. Curtiss &amp; J. O. Hirschfelder, « Integration of stiff equations », <i>Proceedings of the National Academy of Sciences</i> 38 (1952), 235–243</li>
+<li>Lecture : E. Hairer &amp; G. Wanner, <i>Solving Ordinary Differential Equations II: Stiff and Differential-Algebraic Problems</i></li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="ODE-13" data-level="Master">
+<h3>ODE-13 · Fonctions de Liapounov <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( x^* \) un point d'équilibre de \( x' = f(x) \) dans
+\( \mathbb{R}^n \), et soit \( V \) une fonction lisse telle que \( V(x^*) = 0 \) et
+\( V \gt 0 \) au voisinage (définie positive). On note \( \dot{V} \) la dérivée de \( V \) le
+long des solutions.</p>
+<ol class="parts" type="a">
+<li>Démontrer les théorèmes de Liapounov : si \( \dot{V} \le 0 \) près de \( x^* \), l'équilibre
+est stable ; si de plus \( \dot{V} \lt 0 \) sauf en \( x^* \), il est asymptotiquement
+stable.</li>
+<li>Appliquer au pendule amorti \( \theta'' + b\theta' + \sin\theta = 0 \) avec l'énergie
+\( V = \frac{1}{2}(\theta')^2 + 1 - \cos\theta \) : montrer que \( \dot{V} \le 0 \) mais
+<i>pas</i> strictement négative, si bien que (a) seule ne donne que la stabilité.</li>
+<li>Énoncer le principe d'invariance de LaSalle et s'en servir pour conclure malgré tout à la
+stabilité asymptotique de l'équilibre bas.</li>
+<li>Expliquer le marché : la méthode de Liapounov n'exige aucune formule de solution, mais il
+n'existe aucune recette générale pour trouver \( V \). Construire \( V \) pour le système
+gradient \( x' = -\nabla U(x) \) et démontrer que toute solution bornée converge vers l'ensemble
+des points critiques de \( U \).</li>
+</ol>
+</div>
+<p class="context">La thèse de doctorat d'Alexandre Liapounov, en 1892, « Le problème général de
+la stabilité du mouvement », a fait de la théorie de la stabilité une mathématique ; sa
+« seconde méthode » — démontrer la stabilité en exhibant une énergie généralisée qui ne peut
+croître — est aujourd'hui partout, de l'automatique (tout certificat de pilote automatique est une
+fonction de Liapounov) à la biologie mathématique. Le raffinement de LaSalle (1960) traite
+exactement la dégénérescence que vous rencontrez en (b).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_de_Liapounov">Fonction de Liapounov — Wikipédia</a></li>
+<li>Lecture : M. W. Hirsch, S. Smale &amp; R. L. Devaney, <i>Differential Equations, Dynamical Systems, and an Introduction to Chaos</i>, chap. 9</li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 7</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-14" data-level="Master">
+<h3>ODE-14 · Piéger un cycle limite : Poincaré–Bendixson <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Énoncer le théorème de Poincaré–Bendixson : une orbite positive d'un système plan de classe
+\( C^1 \) qui reste dans un compact sans point d'équilibre possède une orbite périodique dans son
+ensemble limite.</li>
+<li>L'appliquer à \( x' = x - y - x^3 \), \( y' = x + y - y^3 \) : démontrer que l'origine est le
+seul point d'équilibre et qu'il est répulsif ; montrer, en estimant la dérivée de
+\( r^2 = x^2 + y^2 \) le long des solutions, qu'un anneau convenable centré à l'origine est
+positivement invariant ; et conclure que le système possède au moins une orbite périodique.</li>
+<li>Démontrer le critère négatif de Bendixson : si la divergence du champ de vecteurs garde un
+signe strict sur une région simplement connexe, cette région ne contient aucune orbite
+périodique. (Théorème de Green.) S'en servir pour montrer que le pendule amorti (ODE-13b) n'a
+aucune orbite périodique dans toute bande où il s'applique.</li>
+<li>Expliquer pourquoi la méthode tout entière est bidimensionnelle : quel fait topologique
+concernant le plan la démonstration de (a) utilise-t-elle, et à quoi son échec dans
+\( \mathbb{R}^3 \) laisse-t-il la place ? (ODE-17 répond.)</li>
+</ol>
+</div>
+<p class="context">Poincaré a créé la théorie des cycles limites dans les années 1880 ; Ivar
+Bendixson en a fourni la démonstration topologique épurée en 1901. Le théorème est la dichotomie
+fondamentale de la dynamique plane — les orbites bornées se rangent vers des équilibres ou des
+cycles, rien de plus étrange — et son échec en dimension trois est précisément là où vit le chaos.
+Le théorème de Jordan qui travaille silencieusement en (d) est une leçon sur la façon dont la
+topologie contraint la dynamique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Poincar%C3%A9-Bendixson">Théorème de Poincaré-Bendixson — Wikipédia</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 7</li>
+<li>Lecture : M. W. Hirsch, S. Smale &amp; R. L. Devaney, <i>Differential Equations, Dynamical Systems, and an Introduction to Chaos</i>, chap. 10</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-15" data-level="Master">
+<h3>ODE-15 · L'oscillateur de Van der Pol <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> L'équation de Van der Pol, pour \( \mu \gt 0 \) :
+\[ x'' - \mu (1 - x^2)\, x' + x = 0 . \]
+(a) Interpréter la structure des signes : l'amortissement est négatif pour \( |x| \lt 1 \)
+(énergie injectée) et positif pour \( |x| \gt 1 \) (énergie retirée). Montrer que l'origine est
+l'unique point d'équilibre et qu'il est instable pour tout \( \mu \gt 0 \).
+(b) Énoncer le théorème de Liénard sur les équations \( x'' + f(x) x' + g(x) = 0 \), en vérifier
+les hypothèses pour Van der Pol, et conclure : l'équation possède exactement une orbite
+périodique, et toute autre trajectoire non stationnaire s'enroule vers elle — un cycle limite
+unique et globalement attractif.
+(c) Problème de compréhension : pour \( \mu \gg 1 \), le cycle devient une <i>oscillation de
+relaxation</i> — de longues reptations lentes ponctuées de sauts quasi instantanés. Analyser la
+structure lent–rapide dans le plan de Liénard et en déduire la période au premier ordre
+\( T \sim (3 - 2\ln 2)\, \mu \).</p>
+<p class="context">Balthasar van der Pol a trouvé cette équation dans les années 1920 dans les
+circuits à lampes chez Philips ; avec van der Mark il en a tiré un modèle électrique du battement
+cardiaque (1928), et leur note sur le « bruit irrégulier » entendu à certaines fréquences
+d'excitation est l'une des premières observations expérimentales du chaos jamais consignées.
+L'équation est l'oscillateur auto-entretenu prototype — le cœur mathématique des stimulateurs
+cardiaques, des cordes de violon et de la dynamique des lasers — et l'application standard du
+théorème d'unicité de Liénard (1928).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Oscillateur_de_Van_der_Pol">Oscillateur de Van der Pol — Wikipédia</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 7</li>
+<li>Article : B. van der Pol, « On relaxation-oscillations », <i>Philosophical Magazine</i> (7) 2 (1926), 978–992</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-16" data-level="Master">
+<h3>ODE-16 · La suite logistique et la route vers le chaos par doublement de période <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On itère \( x_{n+1} = r x_n (1 - x_n) \) sur
+\( [0, 1] \), \( 0 \le r \le 4 \).</p>
+<ol class="parts" type="a">
+<li>Trouver les points fixes et démontrer : \( x = 0 \) est attractif pour \( r \lt 1 \) ; le
+point fixe \( 1 - 1/r \) est attractif pour \( 1 \lt r \lt 3 \) (utiliser le critère de la
+dérivée, et démontrer ce critère).</li>
+<li>Démontrer qu'en \( r = 3 \) le point fixe perd sa stabilité et qu'une orbite de période 2
+naît : calculer explicitement les points de période 2 à partir d'une équation du second degré,
+et montrer qu'ils sont attractifs pour \( 3 \lt r \lt 1 + \sqrt{6} \).</li>
+<li>Problème de compréhension : décrire la cascade de doublements de période — les paramètres
+\( r_1 \lt r_2 \lt \cdots \to r_\infty \approx 3.5699 \) où apparaissent les orbites de période
+\( 2^k \) — et expliquer le sens de la constante de Feigenbaum
+\( \delta = \lim_k (r_k - r_{k-1})/(r_{k+1} - r_k) \approx 4.6692 \) : le même nombre apparaît
+pour toute une classe d'applications (universalité). Expliquer, au niveau des idées, comment la
+renormalisation en rend compte, et noter que les conjectures de Feigenbaum ont été démontrées par
+Lanford (1982) au moyen d'une démonstration assistée par ordinateur.</li>
+<li>Démontrer qu'en \( r = 4 \) l'application est semi-conjuguée au doublement
+\( \theta \mapsto 2\theta \bmod 2\pi \) via \( x = \sin^2(\theta/2) \), et en déduire la
+sensibilité aux conditions initiales.</li>
+</ol>
+</div>
+<p class="context">La revue de Robert May dans <i>Nature</i> en 1976 a rendu célèbre cette
+équation d'une seule ligne : le modèle le plus simple de l'écologie contient une cascade infinie
+de doublements de période, puis le chaos. Mitchell Feigenbaum a découvert la constante universelle
+4,6692… en 1975 avec une calculatrice de poche, et l'universalité — des systèmes radicalement
+différents partageant un comportement quantitatif exact — a été bientôt confirmée dans de vraies
+expériences de mécanique des fluides (Libchaber). La démonstration par Oscar Lanford, en 1982, des
+conjectures de Feigenbaum fut un jalon précoce de l'analyse rigoureuse assistée par ordinateur,
+préfigurant ODE-17.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Suite_logistique">Suite logistique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombres_de_Feigenbaum">Nombres de Feigenbaum — Wikipédia</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 10</li>
+<li>Article : R. M. May, « Simple mathematical models with very complicated dynamics », <i>Nature</i> 261 (1976), 459–467</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-17" data-level="Master">
+<h3>ODE-17 · Le système de Lorenz : ce que signifie « l'attracteur existe » <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> Le système de Lorenz, avec les paramètres classiques
+\( \sigma = 10 \), \( \rho = 28 \), \( \beta = 8/3 \) :
+\[ x' = \sigma (y - x), \qquad y' = x (\rho - z) - y, \qquad z' = x y - \beta z . \]
+(a) Démontrer que le flot contracte les volumes au taux exponentiel constant
+\( e^{-(\sigma + 1 + \beta) t} \) (calculer la divergence), de sorte que l'ensemble attracteur est
+de volume nul.
+(b) Démontrer qu'il existe une région piège : montrer que
+\( V = \rho x^2 + \sigma y^2 + \sigma (z - 2\rho)^2 \) vérifie \( \dot{V} \lt 0 \) en dehors d'un
+ellipsoïde borné, de sorte qu'une grande boule est atteinte par toute solution et jamais
+quittée.
+(c) Trouver les trois points d'équilibre pour ces paramètres et montrer qu'ils sont tous
+instables.
+(d) Problème de compréhension : les parties (a)–(c) disent que les orbites sont bornées sans rien
+de stable où se poser — mais elles ne démontrent <i>pas</i> l'existence d'un attracteur étrange.
+Expliquer ce que « l'attracteur de Lorenz existe » affirme de plus (un attracteur robuste portant
+une dynamique chaotique, l'hyperbolicité singulière, le modèle géométrique de Lorenz), pourquoi
+Smale en a fait son 14<sup>e</sup> problème pour le XXI<sup>e</sup> siècle, et comment la
+démonstration assistée par ordinateur de Warwick Tucker en 2002 — formes normales près de
+l'origine et intégration rigoureuse par arithmétique d'intervalles — a tranché la question.
+Qu'est-ce qui rend une telle démonstration rigoureuse là où une simulation en virgule flottante ne
+l'est pas ?</p>
+<p class="context">Edward Lorenz, météorologue au MIT, a découvert en 1963 qu'un modèle grossier
+de convection à trois modes refusait d'être prévisible : l'effet papillon. Pendant près de
+quarante ans, tout le monde pouvait <i>voir</i> l'attracteur à l'écran et personne ne pouvait
+démontrer qu'il était vraiment là — les simulations auraient pu, en principe, suivre l'ombre d'un
+très long cycle stable. La démonstration de Tucker a comblé cette lacune et fait figure de cas
+d'école de l'usage des ordinateurs en mathématiques rigoureuses. Le chaos déterministe, entrevu
+d'abord par Poincaré (ODE-18), devient ici un objet tridimensionnel concret.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Attracteur_de_Lorenz">Attracteur de Lorenz — Wikipédia</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 9</li>
+<li>Article : E. N. Lorenz, « Deterministic nonperiodic flow », <i>Journal of the Atmospheric Sciences</i> 20 (1963), 130–141</li>
+<li>Article : W. Tucker, « A rigorous ODE solver and Smale's 14th problem », <i>Foundations of Computational Mathematics</i> 2 (2002), 53–117</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-18" data-level="Master">
+<h3>ODE-18 · Le problème des trois corps <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Trois masses ponctuelles s'attirent mutuellement par la gravitation
+newtonienne.</p>
+<ol class="parts" type="a">
+<li>Un îlot soluble : démontrer la solution équilatérale de Lagrange pour des masses égales —
+trois masses égales aux sommets d'un triangle équilatéral, chacune parcourant un cercle autour du
+centre de masse commun, satisfont les équations du mouvement — et déterminer la vitesse angulaire
+\( \omega \) requise en fonction des masses et de la longueur du côté.</li>
+<li>Problème de compréhension : lire l'histoire du mémoire de Poincaré pour le prix du roi
+Oscar II (1889) — y compris l'erreur qu'il a trouvée après l'attribution du prix, et la découverte
+des enchevêtrements homoclines dans le mémoire corrigé — et expliquer avec vos propres mots ce que
+Poincaré a vu et pourquoi cela a tué l'espoir de résoudre la mécanique par des formules.</li>
+<li>Problème de compréhension : Karl Sundman (1912) a néanmoins produit une série entière
+convergente en \( t^{1/3} \) résolvant le problème des trois corps pour toutes les conditions
+initiales de moment cinétique non nul. Concilier (b) et (c) : en quel sens celle de Sundman est-elle
+une &laquo;&#160;solution complète&#160;&raquo;, et pourquoi est-elle inutilisable en pratique
+(convergence si lente qu'un usage astronomique exigerait un nombre inimaginable de termes) et
+muette sur les questions qualitatives ?</li>
+</ol>
+</div>
+<p class="context">Le problème des trois corps est là où le rêve d'une mécanique céleste exacte est
+mort et où les systèmes dynamiques sont nés. Le mémoire corrigé de Poincaré (1890) et ses
+<i>Méthodes nouvelles</i> en trois volumes (1892–1899) contiennent le premier chaos dont
+l'existence ait jamais été démontrée ; l'histoire de June Barrow-Green reconstitue l'épisode
+entier, erreur comprise. La série de Sundman, véritable triomphe mathématique, est l'exemple
+standard montrant qu'« il existe une solution en série convergente » et « nous comprenons la
+dynamique » sont deux affirmations différentes — la motivation même de la théorie qualitative que
+cette page enseigne.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Three-body_problem">Problème des trois corps — Wikipédia (en anglais)</a></li>
+<li>Lecture : J. Barrow-Green, <i>Poincaré and the Three Body Problem</i> (AMS/LMS, 1997)</li>
+<li>Lecture : V. I. Arnold, <i>Ordinary Differential Equations</i></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-28" data-level="Master" data-kind="court">
+<h3>ODE-28 · Un critère qui interdit les cycles : Bendixson–Dulac <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( D \subseteq \mathbb{R}^2 \) un ouvert simplement
+connexe et soient \( P, Q \in C^1(D) \). Démontrer le critère de Bendixson–Dulac : s'il existe
+\( \varphi \in C^1(D) \) avec \( \varphi \gt 0 \) telle que
+\[ \frac{\partial(\varphi P)}{\partial x} + \frac{\partial(\varphi Q)}{\partial y} \]
+garde un signe strict sur tout \( D \), alors \( x' = P(x,y) \), \( y' = Q(x,y) \) n'a aucune
+orbite périodique contenue dans \( D \) ; s'en servir ensuite, avec \( \varphi \equiv 1 \), pour
+démontrer que le pendule amorti \( x' = y \), \( y' = -\sin x - cy \) avec \( c \gt 0 \) n'a
+aucune orbite périodique.</p>
+<p class="context">Ivar Bendixson a démontré le cas \( \varphi \equiv 1 \) en 1901 et Henri Dulac
+a fourni la fonction de poids ; la démonstration est le théorème de Green appliqué à la région
+délimitée par un cycle hypothétique, ce qui explique très exactement pourquoi la simple connexité
+n'est pas un ornement. C'est le compagnon négatif du théorème de Poincaré–Bendixson d'ODE-14 :
+l'un piège les cycles, l'autre les interdit. Trouver une fonction de Dulac est un art sans
+algorithme, et la difficulté de compter les cycles en l'absence d'une telle fonction est la porte
+d'entrée d'ODE-19.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Bendixson%E2%80%93Dulac_theorem">Théorème de Bendixson–Dulac — Wikipédia (en anglais)</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 7</li>
+<li>Lecture : L. Perko, <i>Differential Equations and Dynamical Systems</i>, chap. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-29" data-level="Master" data-kind="court">
+<h3>ODE-29 · Comparaison de Sturm et zéros de la fonction d'Airy <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \( q_1 \le q_2 \) continues sur un intervalle
+\( I \), soit \( u \not\equiv 0 \) solution de \( u'' + q_1 u = 0 \) et soit
+\( v \not\equiv 0 \) solution de \( v'' + q_2 v = 0 \). Démontrer le théorème de comparaison de
+Sturm — entre deux zéros consécutifs de \( u \) se trouve un zéro de \( v \), sauf si
+\( q_1 \equiv q_2 \) là et si \( v \) est un multiple constant de \( u \) — et en déduire que
+toute solution non triviale de l'équation d'Airy \( y'' = xy \) possède une infinité de zéros sur
+\( x \lt 0 \) et au plus un zéro sur \( x \gt 0 \).</p>
+<p class="context">Le mémoire de 1836 de Charles-François Sturm sur les équations linéaires du
+second ordre est habituellement tenu pour la première théorie purement qualitative des équations
+différentielles : il a extrait l'oscillation des solutions du signe du coefficient sans rien
+résoudre. L'équation d'Airy, introduite par George Biddell Airy en 1838 pour expliquer
+l'intensité lumineuse près d'une caustique — les arcs surnuméraires de l'arc-en-ciel — est le
+modèle standard d'un <i>point de retournement</i>, où une solution passe de l'oscillation à la
+croissance, et le théorème de Sturm localise exactement ce basculement.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_comparaison_de_Sturm-Picone">Théorème de comparaison de Sturm-Picone — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_d%27Airy">Fonction d'Airy — Wikipédia</a></li>
+<li>Lecture : E. A. Coddington &amp; N. Levinson, <i>Theory of Ordinary Differential Equations</i></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-30" data-level="Master">
+<h3>ODE-30 · Systèmes hamiltoniens : ce que la conservation interdit <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un système hamiltonien sur \( \mathbb{R}^{2n} \) de hamiltonien lisse
+\( H(q,p) \) s'écrit
+\[ q_i' = \frac{\partial H}{\partial p_i}, \qquad p_i' = -\frac{\partial H}{\partial q_i},
+\qquad i = 1, \dots, n. \]</p>
+<ol class="parts" type="a">
+<li>Démontrer que \( H \) est constant le long de toute trajectoire, et démontrer le théorème de
+Liouville : le champ de vecteurs est de divergence nulle, et par conséquent le flot au temps
+\( t \) préserve la mesure de Lebesgue sur \( \mathbb{R}^{2n} \). (Dériver le déterminant
+jacobien du flot.)</li>
+<li>En déduire deux interdictions. Démontrer qu'un système hamiltonien n'a aucun point
+d'équilibre asymptotiquement stable ni aucune orbite périodique attractive — donc aucun cycle
+limite au sens d'ODE-14 — et conclure que le pendule amorti d'ODE-28 n'admet aucune formulation
+hamiltonienne dans ces coordonnées.</li>
+<li>Démontrer le théorème de récurrence de Poincaré dans ce cadre : si un ensemble mesurable
+\( A \) de mesure finie est invariant par le flot, alors presque tout point de \( A \) revient
+dans tout voisinage de lui-même à des temps arbitrairement grands. Dire exactement quelles
+hypothèses — préservation de la mesure, finitude — chaque étape consomme.</li>
+<li>Rendre cela concret avec le pendule non amorti \( H(q,p) = \tfrac{1}{2}p^2 - \cos q \).
+Esquisser les lignes de niveau, identifier la séparatrice passant par \( (q,p) = (\pi, 0) \), et
+montrer que les orbites périodiques se présentent en familles continues à un paramètre — aucune
+n'est donc isolée, en accord avec (b).</li>
+</ol>
+</div>
+<p class="context">William Rowan Hamilton a refondu la mécanique sous cette forme en 1834–1835 ;
+Liouville a démontré le théorème sur les volumes en 1838, et le théorème de récurrence de Poincaré
+est paru dans son mémoire primé de 1890 sur le problème des trois corps (ODE-18). La récurrence
+est aussitôt devenue célèbre : Zermelo l'a retournée contre Boltzmann en 1896, arguant qu'un gaz
+obéissant à la mécanique doit finir par revenir à son état initial et ne peut donc obéir à un
+théorème \( H \) irréversible — les temps de récurrence sont simplement absurdes, non infinis. La
+partie (b) explique pourquoi frottement et conservation sont mathématiquement incompatibles, et le
+théorème de Noether de 1918 complète le tableau en déduisant chaque grandeur conservée d'une
+symétrie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9canique_hamiltonienne">Mécanique hamiltonienne — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Liouville_(hamiltonien)">Théorème de Liouville (hamiltonien) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_r%C3%A9currence_de_Poincar%C3%A9">Théorème de récurrence de Poincaré — Wikipédia</a></li>
+<li>Lecture : V. I. Arnold, <i>Mathematical Methods of Classical Mechanics</i>, chap. 3 et 8</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-39" data-level="Master">
+<h3>ODE-39 · Théorie de Floquet et la balançoire qu'on pompe <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( A(t) \) continue et \( T \)-périodique, et soit \( \Phi(t) \) la
+matrice fondamentale de \( x' = A(t)x \) avec \( \Phi(0) = I \). La <i>matrice de monodromie</i>
+est \( M = \Phi(T) \), et ses valeurs propres sont les <i>multiplicateurs de Floquet</i>.</p>
+<ol class="parts" type="a">
+<li>Démontrer \( \Phi(t + T) = \Phi(t)\,M \) pour tout \( t \), en montrant que les deux membres
+résolvent le même problème de Cauchy matriciel. En déduire la représentation de Floquet
+\( \Phi(t) = P(t)\,e^{tB} \) avec \( P \) périodique et \( B \) constante (on admettra la
+\( 2T \)-périodicité si l'on tient à des matrices réelles), et démontrer que la solution nulle est
+asymptotiquement stable si tout multiplicateur est dans le disque unité ouvert, et instable si un
+multiplicateur est à l'extérieur.</li>
+<li>Démontrer la formule de Liouville
+\( \det \Phi(t) = \exp \int_0^t \operatorname{tr} A(s)\,ds \). L'appliquer à l'équation de Hill
+\( x'' + q(t)\,x = 0 \) avec \( q \) périodique, écrite comme système plan : montrer que
+\( \det M = 1 \), de sorte que les multiplicateurs sont \( \rho \) et \( 1/\rho \), et conclure que
+toutes les solutions ne sont bornées que si \( |\operatorname{tr} M| \le 2 \), tandis que
+\( |\operatorname{tr} M| &gt; 2 \) force l'existence de solutions à croissance
+exponentielle.</li>
+<li>Interpréter la balançoire. Dans l'équation de Mathieu
+\( x'' + (\delta + \varepsilon \cos t)\,x = 0 \), c'est la force de rappel qui est modulée
+périodiquement, et non une force appliquée directement. Expliquer pourquoi un enfant qui monte et
+descend son centre de masse deux fois par balancement module au double de la fréquence propre, et
+décrire les langues d'instabilité qui, pour \( \varepsilon \) petit, émanent de
+\( \delta = n^2/4 \), \( n = 1, 2, 3, \ldots \)</li>
+<li>Démontrer que la résonance paramétrique se produit réellement, dans le seul cas calculable à
+la main. Prendre l'équation à créneaux (Meissner) : \( q(t) = \omega^2(1 + \varepsilon) \) sur
+\( [0, T/2) \) et \( q(t) = \omega^2(1 - \varepsilon) \) sur \( [T/2, T) \), prolongée par
+périodicité. Écrire \( M \) comme le produit des deux matrices de transition à coefficients
+constants, calculer \( \operatorname{tr} M \) explicitement, et exhiber des paramètres
+\( (\omega, \varepsilon, T) \) pour lesquels \( |\operatorname{tr} M| &gt; 2 \) — une équation à
+coefficients bornés et purement oscillants dont toutes les solutions explosent.</li>
+</ol>
+</div>
+<p class="context">Gaston Floquet a publié le théorème de représentation en 1883 ; George Hill
+avait déjà, en 1877, rencontré le même problème dans le mouvement du périgée lunaire et inventé
+les déterminants infinis pour l'attaquer, et Émile Mathieu était arrivé à son équation en 1868 à
+partir des vibrations d'une membrane elliptique. La physique est plus ancienne qu'eux tous :
+Faraday a vu en 1831 qu'une surface liquide vibrée se ride à la moitié de la fréquence
+d'excitation, et Melde en 1859 a excité une corde par un diapason fixé le long de celle-ci et l'a
+vue osciller à la moitié de la fréquence du diapason. La résonance paramétrique est aujourd'hui
+un outil de travail — le pendule inversé de Kapitza, stabilisé la tête en bas par une vibration
+verticale (1951), l'amplificateur paramétrique, et le piège à ions de Paul, dont le diagramme de
+stabilité est exactement le jeu de langues de la partie (c).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Floquet">Théorie de Floquet — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_de_Mathieu">Équation de Mathieu — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pendule_simple_%C3%A0_r%C3%A9sonance_param%C3%A9trique">Oscillateur paramétrique — Wikipédia</a></li>
+<li>Lecture : V. I. Arnold, <i>Mathematical Methods of Classical Mechanics</i> (la section sur la résonance paramétrique)</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-40" data-level="Master" data-kind="court">
+<h3>ODE-40 · L'indice d'un champ de vecteurs plan <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( f \) un champ de vecteurs continu sur un ouvert de
+\( \mathbb{R}^2 \) et soit \( C \) une courbe fermée simple orientée positivement sur laquelle
+\( f \) ne s'annule pas ; on définit l'indice \( I_f(C) \) comme le nombre d'enroulements de
+\( f \) le long de \( C \), c'est-à-dire le nombre net de tours complets effectués par le vecteur
+\( f \) lorsque le point parcourt \( C \) une fois. Démontrer que \( I_f(C) \) est un entier
+inchangé par les déformations continues de \( C \) ne franchissant jamais un zéro de \( f \),
+qu'il est égal à la somme des indices des zéros isolés enfermés, qu'un col hyperbolique a pour
+indice \( -1 \) tandis qu'un nœud, un foyer ou un centre a pour indice \( +1 \), et enfin que
+toute orbite périodique d'un système plan de classe \( C^1 \) a pour indice \( +1 \) — si bien que
+toute orbite périodique doit enfermer des points d'équilibre dont les indices ont pour somme
+\( +1 \), et en particulier doit en enfermer au moins un.</p>
+<p class="context">Poincaré a introduit l'indice dans ses mémoires sur les courbes définies par
+des équations différentielles (1881–1886), et c'est l'instrument topologique le moins coûteux du
+domaine : une courbe fermée, un entier, et des familles entières de trajectoires sont écartées.
+C'est la moitié locale du théorème de Poincaré–Hopf, dont l'énoncé global — la somme des indices
+des zéros d'un champ de vecteurs sur une surface fermée vaut la caractéristique d'Euler — contient
+le théorème de la boule chevelue comme cas de la sphère. Employé avec les arguments de piégeage
+d'ODE-14 et le critère négatif d'ODE-28, il est souvent le moyen le plus rapide de décider si un
+cycle peut exister.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Poincar%C3%A9-Hopf">Théorème de Poincaré-Hopf — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Indice_(analyse_complexe)">Indice d'un lacet (nombre d'enroulements) — Wikipédia</a></li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 6</li>
+<li>Lecture : L. Perko, <i>Differential Equations and Dynamical Systems</i>, chap. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-41" data-level="Master">
+<h3>ODE-41 · Couches limites et développements asymptotiques raccordés <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour \( \varepsilon &gt; 0 \) petit, on considère le problème aux limites
+\[ \varepsilon y'' + (1 + \varepsilon)\,y' + y = 0, \qquad y(0) = 0, \quad y(1) = 1 . \]</p>
+<ol class="parts" type="a">
+<li>Le résoudre exactement : factoriser le polynôme caractéristique en
+\( (\varepsilon \lambda + 1)(\lambda + 1) \), obtenir
+\[ y_\varepsilon(x) = \frac{e^{-x} - e^{-x/\varepsilon}}{e^{-1} - e^{-1/\varepsilon}}, \]
+et démontrer que \( y_\varepsilon(x) \to e^{1-x} \) quand \( \varepsilon \to 0^{+} \) pour tout
+\( x \in (0,1] \) fixé, alors que \( y_\varepsilon(0) = 0 \) pour tout \( \varepsilon \). Montrer
+que la transition se produit sur un intervalle de largeur d'ordre \( \varepsilon \).</li>
+<li>Oublier maintenant la formule et faire ce qu'il faut bien faire pour les équations qui n'en
+ont pas. Poser \( \varepsilon = 0 \) donne l'équation <i>extérieure</i> du premier ordre
+\( y' + y = 0 \), qui ne peut satisfaire les deux conditions au bord ; la résoudre avec la
+condition en \( x = 1 \). Changer d'échelle par \( x = \varepsilon X \), établir l'équation
+<i>intérieure</i> au premier ordre \( Y'' + Y' = 0 \), la résoudre avec \( Y(0) = 0 \), et fixer la
+constante restante par raccordement : la limite de la solution intérieure quand
+\( X \to \infty \) doit égaler la limite de la solution extérieure quand \( x \to 0^{+} \).
+Assembler l'approximation composite \( y \approx e^{1-x} - e^{\,1 - x/\varepsilon} \) comme
+extérieure plus intérieure moins partie commune.</li>
+<li>Démontrer que l'approximation est uniformément bonne : en utilisant la solution exacte de
+(a), montrer que le supremum sur \( [0,1] \) de la différence entre \( y_\varepsilon \) et la
+composite est \( O(\varepsilon) \).</li>
+<li>Expliquer le placement. Démontrer que si l'on postule au contraire une couche en \( x = 1 \)
+le raccordement est impossible, et identifier le trait de l'équation — le signe du coefficient de
+\( y' \) — qui décide à quelle extrémité la couche doit se trouver. Puis dire ce que cela a à voir
+avec Prandtl : dans un écoulement de viscosité \( \varepsilon \), l'équation extérieure non
+visqueuse ne peut satisfaire la condition d'adhérence à la paroi, et la résolution a exactement la
+structure calculée ici.</li>
+</ol>
+</div>
+<p class="context">Ludwig Prandtl a annoncé la théorie des couches limites lors d'une conférence de
+dix minutes à Heidelberg en 1904 : si petite que soit la viscosité, elle ne peut être négligée
+dans une mince couche près de la paroi, parce que les équations non visqueuses sont d'ordre
+inférieur et ne peuvent imposer la condition d'adhérence. C'est toute la théorie des perturbations
+singulières en une phrase — le petit paramètre multiplie la dérivée d'ordre le plus élevé, si bien
+que le problème limite perd une condition au bord, et que la condition perdue réapparaît sous
+forme de couche. Friedrichs, Kaplun, Lagerstrom et Van Dyke ont systématisé le raccordement dans
+les années 1950 et 1960 ; la même structure gouverne l'approximation WKB près d'un point de
+retournement (comparer ODE-29), les variétés lentes de l'oscillation de relaxation (ODE-15), et
+l'approximation de l'état quasi stationnaire en cinétique enzymatique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9veloppements_asymptotiques_raccord%C3%A9s">Développements asymptotiques raccordés — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Perturbation_singuli%C3%A8re">Perturbation singulière — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Couche_limite">Couche limite — Wikipédia</a></li>
+<li>Lecture : C. M. Bender &amp; S. A. Orszag, <i>Advanced Mathematical Methods for Scientists and Engineers</i>, chap. 9</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="ODE-19" data-level="Recherche">
+<h3>ODE-19 · Le seizième problème de Hilbert, seconde partie <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Pour un système polynomial plan
+\( x' = P(x, y) \), \( y' = Q(x, y) \) de degré \( n \), soit \( H(n) \) le nombre maximal
+possible de cycles limites (orbites périodiques isolées). Hilbert a demandé en 1900 la valeur de
+\( H(n) \) et les positions possibles des cycles.
+(a) Échauffement réalisable dès aujourd'hui : démontrer que \( H(1) = 0 \) — un système linéaire
+plan n'a aucun cycle limite. (Toute orbite périodique d'un système linéaire appartient à un
+continuum d'orbites périodiques, donc aucune n'est isolée.)
+(b) Problème de compréhension : faire le point sur ce que l'on sait. L'affirmation de Dulac (1923)
+selon laquelle chaque système polynomial particulier n'a qu'un nombre fini de cycles limites s'est
+révélée lacunaire (Ilyashenko, 1981) et n'a été démontrée qu'ensuite, indépendamment, par Écalle et
+Ilyashenko vers 1991–1992. Pourtant aucune borne uniforme n'est connue : même \( H(2) \) est
+inconnu — sa finitude n'est pas démontrée — alors qu'il existe des systèmes quadratiques à 4 cycles
+limites (Shi Songling, 1980). Les minorations de \( H(n) \) croissent comme \( n^2 \ln n \)
+(Christopher–Lloyd, 1995).
+<i>Statut : ouvert, pour tout \( n \ge 2 \). C'est la seconde partie du seizième problème de
+Hilbert et il figure de nouveau sur la liste de Smale pour le XXI<sup>e</sup> siècle. Une
+prépublication de 2024 revendiquant une solution générale a été rapidement réfutée (note de
+Buzzi–Novaes, arXiv:2411.09594) — une leçon vivante sur la nécessité de vérifier un statut plutôt
+que de le supposer.</i></p>
+<p class="context">Des 23 problèmes de Hilbert de 1900, celui-ci est parmi les très rares sur
+lesquels un siècle de travail n'a produit aucune borne, pas même pour un seul degré. C'est un
+problème sur les objets d'ODE-14 — les cycles limites — posé uniformément sur tous les champs de
+vecteurs polynomiaux, et sa résistance explique pourquoi les résultats de finitude
+(Écalle–Ilyashenko) sont célébrés bien qu'ils ne donnent aucun nombre. La synthèse d'Ilyashenko
+« Centennial history of Hilbert's 16th problem » est la carte de référence du champ de bataille.
+Voir aussi la page <a href="open-problems.html">Problèmes ouverts</a> du site.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Seizi%C3%A8me_probl%C3%A8me_de_Hilbert">Seizième problème de Hilbert — Wikipédia</a></li>
+<li>Article : Yu. Ilyashenko, « Centennial history of Hilbert's 16th problem », <i>Bulletin of the AMS</i> 39 (2002), 301–354</li>
+<li>Lecture : S. H. Strogatz, <i>Nonlinear Dynamics and Chaos</i>, chap. 7 (cycles limites)</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-20" data-level="Recherche">
+<h3>ODE-20 · Des singularités sans collision : la conjecture de Painlevé <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une solution du problème newtonien à \( n \) corps présente une
+<i>singularité</i> à l'instant \( t^* \lt \infty \) si elle ne peut être prolongée au-delà de
+\( t^* \). Les collisions en sont la cause évidente. Painlevé a demandé (1895) : existe-t-il des
+singularités <i>sans</i> collision — des corps dont le mouvement devient indéfini en temps fini
+alors que deux d'entre eux ne se rencontrent jamais ?</p>
+<ol class="parts" type="a">
+<li>Un morceau concret que vous pouvez démontrer : pour deux corps lâchés sans vitesse initiale à
+la distance \( d \), établir l'équation de la chute libre radiale et calculer le temps exact
+jusqu'à la collision ; en conclure que des singularités de collision se produisent bien. Painlevé
+lui-même a démontré que pour \( n = 3 \) <i>toute</i> singularité est une collision — lire
+pourquoi l'argument s'arrête à trois corps.</li>
+<li>Problème de compréhension : étudier la résolution. Painlevé conjecturait l'existence de
+singularités sans collision pour \( n \ge 4 \). Un tel mouvement est nécessairement non borné :
+les corps doivent partir à l'infini en temps fini, en extrayant une énergie non bornée des
+quasi-rencontres de binaires qui se resserrent. Mather et McGehee ont construit un mouvement
+colinéaire à 4 corps atteignant l'infini en temps fini mais utilisant des collisions binaires
+(1975) ; Zhihong (Jeff) Xia a construit une véritable singularité sans collision pour le problème
+spatial à 5 corps (annoncée dans sa thèse de 1988 ; <i>Annals of Mathematics</i>, 1992) ; Jinxin
+Xue a réglé le dernier cas, le problème plan à 4 corps (annoncé en 2014 ; <i>Acta Mathematica</i>,
+2020). Expliquer le mécanisme de Xia — le corps oscillant faisant la navette entre deux binaires —
+et pourquoi \( n = 3 \) l'interdit.
+<i>Statut : la conjecture de Painlevé est résolue — des singularités sans collision existent pour
+tout \( n \ge 4 \) (Xia 1992 pour \( n \ge 5 \) ; Xue 2020 pour \( n = 4 \)). Les questions
+quantitatives (mesure de ces données initiales, que l'on croit nulle ; classification des
+singularités) restent ouvertes.</i></li>
+</ol>
+</div>
+<p class="context">Painlevé a posé la question dans ses leçons de Stockholm en 1895, et il a fallu
+presque un siècle pour y répondre. Les constructions sont des chefs-d'œuvre de la théorie
+qualitative vers laquelle cette page tend : aucune formule, mais un contrôle sans faille des
+orbites au travers d'une infinité de quasi-collisions. L'article de Xue de 2020 — 135 pages dans
+<i>Acta Mathematica</i> — qui clôt le cas \( n = 4 \) rappelle que la mécanique classique livre
+encore de durs théorèmes modernes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Painlev%C3%A9">Conjecture de Painlevé — Wikipédia</a></li>
+<li>Article : Z. Xia, « The existence of noncollision singularities in Newtonian systems », <i>Annals of Mathematics</i> 135 (1992), 411–468</li>
+<li>Article : J. Xue, « Non-collision singularities in a planar 4-body problem », <i>Acta Mathematica</i> 224 (2020), 253–388, <a href="https://arxiv.org/abs/1409.0048">arXiv:1409.0048</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-21" data-level="Recherche">
+<h3>ODE-21 · Le Système solaire est-il stable ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La plus ancienne question de la dynamique : les planètes restent-elles à peu
+près sur leurs orbites actuelles pour toujours, ou l'accumulation lente des perturbations
+gravitationnelles peut-elle éjecter une planète ou provoquer une collision ?</p>
+<ol class="parts" type="a">
+<li>Un noyau soluble : démontrer que le problème à deux corps (Kepler) est intégrable — établir
+la conservation de l'énergie et du moment cinétique, et montrer que le vecteur de
+Laplace–Runge–Lenz \( A = p \times L - \frac{G m_1 m_2\, m\, \hat{r}}{1} \) (convenablement
+normalisé) est une constante du mouvement ; en déduire que les orbites bornées sont des ellipses
+sans précession.</li>
+<li>Problème de compréhension : la théorie KAM. Énoncer informellement le théorème de
+Kolmogorov–Arnold–Moser (1954–1963) — sous une petite perturbation d'un système intégrable, la
+plupart des tores quasi périodiques survivent — et expliquer à la fois ce que dit l'application
+d'Arnold à propos d'un système planétaire aux masses planétaires suffisamment minuscules, et
+pourquoi les masses réelles de notre Système solaire se situent bien au-delà des hypothèses
+rigoureuses de petitesse.</li>
+<li>Problème de compréhension : le verdict numérique. Les intégrations à long terme de Laskar
+(à partir de 1989) montrent que le Système solaire interne est chaotique, avec un temps de
+Liapounov d'environ 5 millions d'années, et Laskar &amp; Gastineau (2009) ont trouvé une
+probabilité d'environ 1 % que l'orbite de Mercure se déstabilise pendant la durée de vie restante
+du Soleil. Expliquer ce que signifie un temps de Liapounov pour la question, et ce que de telles
+simulations peuvent et ne peuvent pas démontrer.
+<i>Statut : ouvert en tant que problème rigoureux. La stabilité de type KAM n'est démontrée que
+pour des masses irréalistement petites ; les données numériques indiquent un chaos marginal avec
+une probabilité faible mais non nulle de catastrophe. Un théorème couvrant le Système solaire réel
+n'existe pas.</i></li>
+</ol>
+</div>
+<p class="context">Newton pensait que Dieu pourrait devoir intervenir de temps à autre pour
+remettre les planètes en place ; Laplace et Lagrange ont démontré la stabilité au premier ordre en
+les masses, et le mémoire de Poincaré d'ODE-18 a brisé l'espoir que les ordres supérieurs se
+tiendraient bien. La théorie KAM — l'une des plus profondes réussites de l'analyse du
+XX<sup>e</sup> siècle — a rétabli la stabilité « pour la plupart des conditions initiales » des
+systèmes quasi intégrables, mais entre ses hypothèses et le Système solaire réel s'ouvre un
+fossé que personne n'a comblé. La question qui a fondé les systèmes dynamiques est toujours ouverte
+en son centre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Stability_of_the_Solar_System">Stabilité du Système solaire — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_KAM">Théorème KAM — Wikipédia</a></li>
+<li>Article : J. Laskar &amp; M. Gastineau, « Existence of collisional trajectories of Mercury, Mars and Venus with the Earth », <i>Nature</i> 459 (2009), 817–819</li>
+<li>Lecture : J. Moser, <i>Stable and Random Motions in Dynamical Systems</i> (1973)</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-31" data-level="Recherche" data-kind="court">
+<h3>ODE-31 · La conjecture de Markus–Yamabe <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Markus et Yamabe ont conjecturé en 1960 que si
+\( f : \mathbb{R}^n \to \mathbb{R}^n \) est de classe \( C^1 \) avec \( f(0) = 0 \) et que toute
+valeur propre de la jacobienne \( Df(x) \) est de partie réelle négative en <i>tout</i> \( x \),
+alors l'origine est globalement asymptotiquement stable pour \( x' = f(x) \). Démontrer vous-même
+le cas linéaire, puis rendre compte avec soin de la résolution — la conjecture est un théorème
+dans le plan (démontré indépendamment par Fessler, Gutiérrez et Glutsyuk vers 1993–1995) et
+fausse en toute dimension \( n \ge 3 \), où Cima, van den Essen, Gasull, Hubbers et Mañosas (1997)
+ont exhibé un contre-exemple polynomial à orbite fuyante.</p>
+<p class="context">La conjecture est l'espoir naturel qu'une hypothèse vérifiée en tout point
+doive coudre la stabilité locale en une stabilité globale, et cet espoir est exactement juste en
+dimension deux et exactement faux au-dessus. Le contre-exemple est issu de l'école de Nimègue
+travaillant sur la conjecture jacobienne, et son champ de vecteurs — aujourd'hui appelé système de
+Cima — est assez explicite pour être vérifié à la main. <i>Statut : réglé ; vrai pour \( n = 2 \),
+faux pour \( n \ge 3 \). Les variantes (non autonome, en dimension infinie, discrète) restent
+actives.</i></p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Markus%E2%80%93Yamabe_conjecture">Conjecture de Markus–Yamabe — Wikipédia (en anglais)</a></li>
+<li>Article : A. Cima, A. van den Essen, A. Gasull, E. Hubbers &amp; F. Mañosas, « A polynomial counterexample to the Markus–Yamabe conjecture », <i>Advances in Mathematics</i> 131 (1997), 453–457</li>
+<li>Lecture : L. Perko, <i>Differential Equations and Dynamical Systems</i>, chap. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-32" data-level="Recherche" data-kind="court">
+<h3>ODE-32 · Le sixième problème de Smale : compter les configurations centrales <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un <i>équilibre relatif</i> du problème newtonien à
+\( n \) corps est une configuration plane qui tourne rigidement autour de son centre de masse —
+de façon équivalente, une configuration où l'accélération de chaque corps est le même multiple
+négatif de son vecteur position. Le sixième problème de Smale pour le XXI<sup>e</sup> siècle
+demande si, pour tout \( n \) et tout choix de masses positives, le nombre de telles
+configurations est fini à rotation et homothétie près ; démontrer le cas \( n = 3 \), où les trois
+configurations colinéaires d'Euler (1767) et celle, équilatérale, de Lagrange (1772) sont les
+seules, puis rendre compte du statut moderne.</p>
+<p class="context">La question est un problème déguisé de géométrie algébrique réelle : les
+configurations sont les solutions réelles d'un système polynomial, et la finitude n'échoue que si
+toute une courbe de solutions apparaît. Hampton et Moeckel ont démontré la finitude pour
+\( n = 4 \) en 2006 par calcul symbolique exact, encadrant le compte entre 32 et 8472 ; Albouy et
+Kaloshin ont réglé \( n = 5 \) en 2012, sauf pour des masses appartenant à une sous-variété de
+codimension deux. <i>Statut : ouvert pour tout \( n \ge 6 \) (et pour les masses exceptionnelles à
+cinq corps). Voir la page <a href="open-problems.html">Problèmes ouverts</a> du site pour la liste
+de Smale.</i></p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Central_configuration">Configuration centrale — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8mes_de_Smale">Problèmes de Smale — Wikipédia</a></li>
+<li>Article : M. Hampton &amp; R. Moeckel, « Finiteness of relative equilibria of the four-body problem », <i>Inventiones Mathematicae</i> 163 (2006), 289–312</li>
+<li>Article : A. Albouy &amp; V. Kaloshin, « Finiteness of central configurations of five bodies in the plane », <i>Annals of Mathematics</i> 176 (2012), 535–588</li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-33" data-level="Recherche">
+<h3>ODE-33 · Diffusion d'Arnold : les actions peuvent-elles dériver ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On écrit un hamiltonien quasi intégrable en variables action–angle
+\[ H(I, \theta) = H_0(I) + \varepsilon H_1(I, \theta), \qquad I \in \mathbb{R}^n, \ \theta \in \mathbb{T}^n . \]
+La théorie KAM (ODE-21) affirme que la plupart des tores invariants survivent pour
+\( \varepsilon \) petit. Arnold a demandé en 1964 si les actions peuvent néanmoins errer sur une
+distance d'ordre un.</p>
+<ol class="parts" type="a">
+<li>Point d'entrée : démontrer que pour \( \varepsilon = 0 \) les actions sont exactement
+constantes, de sorte que toute dérive est un effet de perturbation. Démontrer ensuite que pour
+\( n = 2 \) une dérive d'ordre un est <i>impossible</i> à petit \( \varepsilon \) : les tores KAM
+survivants sont de dimension deux à l'intérieur d'un niveau d'énergie de dimension trois et le
+séparent donc, piégeant toute trajectoire entre deux tores voisins.</li>
+<li>Étudier l'exemple d'Arnold de 1964, le premier système où les actions bougent de façon
+démontrée. Décrire sa chaîne de tores partiellement hyperboliques (« à moustaches ») dont les
+variétés stables et instables se coupent transversalement, et expliquer comment un argument de
+pistage produit une orbite unique suivant toute la chaîne, changeant son action de
+\( O(1) \).</li>
+<li>Expliquer pourquoi la dérive doit être lente : énoncer le théorème de Nekhorochev (1977), qui
+borne la variation des actions par une petite puissance de \( \varepsilon \) sur des temps
+exponentiellement longs en une puissance de \( 1/\varepsilon \) pour \( H_0 \) escarpé, et le
+concilier avec (b).</li>
+<li>Problème de compréhension : rendre compte honnêtement de l'état de l'art. La diffusion est
+établie dans les cadres <i>a priori instables</i> (Chierchia–Gallavotti ;
+Delshams–de la Llave–Seara ; Treschev ; Cheng–Yan), et la monographie de Kaloshin et Zhang de 2020
+la démontre pour des perturbations typiques à deux degrés et demi de liberté, achevant un
+programme annoncé par John Mather en 2003. Dire précisément ce que « typique » signifie dans ces
+théorèmes et ce qu'exigerait une solution complète.
+<i>Statut : ouvert en général. La conjecture selon laquelle la diffusion d'Arnold est générique
+dans les systèmes quasi intégrables à \( n \ge 3 \) degrés de liberté n'est pas démontrée ; les
+résultats généraux annoncés sont encore en cours d'assimilation par la communauté.</i></li>
+</ol>
+</div>
+<p class="context">La note de trois pages d'Arnold en 1964 est l'un des courts articles les plus
+lourds de conséquences de la dynamique : elle a montré que les îlots de stabilité de KAM, si
+abondants soient-ils, n'enferment pas nécessairement une trajectoire dès qu'il y a plus de deux
+degrés de liberté, parce que les interstices entre tores communiquent. Le phénomène est
+physiquement réel et physiquement lent — on l'invoque pour le comportement à long terme des
+orbites d'astéroïdes et pour la perte de confinement des faisceaux dans les accélérateurs de
+particules — et l'estimation de Nekhorochev explique pourquoi le Système solaire d'ODE-21 peut
+être chaotique sans s'être disloqué. Le sujet est l'un des rares où un mécanisme a été décrit
+avant que quiconque puisse démontrer qu'il se produit génériquement, et le démontrer occupe les
+chercheurs depuis soixante ans.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Arnold_diffusion">Diffusion d'Arnold — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_KAM">Théorème KAM — Wikipédia</a></li>
+<li>Article : V. I. Arnold, « Instability of dynamical systems with several degrees of freedom », <i>Soviet Mathematics Doklady</i> 5 (1964), 581–585</li>
+<li>Lecture : V. Kaloshin &amp; K. Zhang, <i>Arnold Diffusion for Smooth Systems of Two and a Half Degrees of Freedom</i>, Annals of Mathematics Studies 208 (Princeton, 2020)</li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="ODE-42" data-level="Recherche">
+<h3>ODE-42 · La conjecture de Wright et la mémoire d'une équation à retard <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'équation de Wright est l'équation différentielle scalaire à retard
+\[ y'(t) = -\alpha\, y(t-1)\,\bigl[ 1 + y(t) \bigr], \qquad \alpha &gt; 0, \]
+dont la donnée initiale est une fonction continue sur \( [-1, 0] \) avec \( 1 + y &gt; 0 \).</p>
+<ol class="parts" type="a">
+<li>Montrer d'où elle vient : en partant de l'équation logistique retardée de Hutchinson
+\( N'(t) = r N(t)\bigl[ 1 - N(t-T)/K \bigr] \) pour une population qui ne réagit à
+l'encombrement qu'après un délai \( T \), substituer \( y = N/K - 1 \) et changer l'échelle de
+temps pour obtenir l'équation de Wright avec \( \alpha = rT \). Expliquer ce que signifie
+biologiquement la contrainte \( 1 + y &gt; 0 \).</li>
+<li>Linéariser en \( y \equiv 0 \) pour obtenir \( y' = -\alpha\,y(t-1) \), substituer
+\( y = e^{\lambda t} \), et étudier l'équation caractéristique \( \lambda = -\alpha e^{-\lambda} \).
+Démontrer qu'elle a une infinité de racines complexes — l'équation linéaire a donc une infinité de
+solutions exponentielles indépendantes, et aucun système fini d'équations différentielles
+ordinaires ne peut la reproduire — et démontrer que toute racine est de partie réelle négative
+exactement lorsque \( \alpha &lt; \pi/2 \), une paire conjuguée traversant l'axe imaginaire en
+\( \lambda = \pm i\pi/2 \) lorsque \( \alpha = \pi/2 \).</li>
+<li>Énoncer la conjecture de Wright : pour tout \( \alpha \in (0, \pi/2] \), l'origine attire
+toute solution. Expliquer soigneusement pourquoi (b) ne la démontre pas — la stabilité
+asymptotique locale ne dit rien des données éloignées de zéro — et lire l'argument de Wright
+lui-même de 1955, qui règle \( \alpha \le 3/2 \), pour voir ce qu'une démonstration globale doit
+contrôler.</li>
+<li>Rendre compte de la résolution. Jan Bouwe van den Berg et Jonathan Jaquette ont refermé la
+fenêtre restante jusqu'à \( \pi/2 \) en 2018 par une analyse minutieuse du voisinage de la
+bifurcation de Hopf en \( \alpha = \pi/2 \), complétant des travaux antérieurs qui couvraient les
+valeurs de paramètre plus éloignées de la bifurcation ; le même cercle d'idées, dans l'article de
+Jaquette de 2019, a démontré la conjecture de Jones de 1962, selon laquelle pour
+\( \alpha &gt; \pi/2 \) la solution périodique à oscillation lente est unique à translation
+temporelle près. Expliquer comment la plage de paramètres se partage entre l'analyse et les
+encadrements rigoureux assistés par ordinateur, et dire précisément quelle étape devrait être
+remplacée pour obtenir une démonstration à la main.
+<i>Statut : les deux conjectures sont des théorèmes — celle de Wright (van den Berg–Jaquette,
+2018) et celle de Jones (Jaquette, 2019, achevant des résultats partiels antérieurs). Les deux
+démonstrations sont assistées par ordinateur ; une démonstration purement analytique de l'une ou
+l'autre est un problème ouvert, et pour les équations scalaires à retard en général, décider de la
+stabilité globale reste hors de portée.</i></li>
+</ol>
+</div>
+<p class="context">Les équations à retard sont ce que l'on obtient chaque fois que la réponse
+suit la cause avec un délai : les modèles proie–prédateur héréditaires de Volterra en 1928,
+l'analyse par Minorsky des stabilisateurs de navires dans les années 1940, la logistique retardée
+de Hutchinson en 1948, le modèle de cellules sanguines de Mackey et Glass (1977) qui a fait d'une
+équation scalaire à retard un exemple standard de chaos, et toute boucle d'asservissement à
+capteur retardé. L'état d'une telle équation est une fonction entière sur un intervalle, si bien
+que l'espace des phases est de dimension infinie et que le flot n'est pas inversible — ce qui
+explique pourquoi une équation scalaire à retard peut faire ce qu'aucune équation différentielle
+ordinaire scalaire ne peut, et pourquoi l'équation d'apparence innocente de Wright a résisté
+soixante ans. Qu'elle soit finalement tombée sous un mélange d'analyse des bifurcations et de
+calcul numérique validé la place aux côtés du théorème de Tucker sur l'attracteur de Lorenz
+(ODE-17) comme cas d'étude de ce qu'est devenue la démonstration assistée par ordinateur.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_diff%C3%A9rentielle_%C3%A0_retard">Équation différentielle à retard — Wikipédia</a></li>
+<li>Article : E. M. Wright, « A non-linear difference-differential equation », <i>Journal für die reine und angewandte Mathematik</i> 194 (1955), 66–87</li>
+<li>Article : J. B. van den Berg &amp; J. Jaquette, « A proof of Wright's conjecture », <i>Journal of Differential Equations</i> 264 (2018), 7412–7462, <a href="https://arxiv.org/abs/1704.00029">arXiv:1704.00029</a></li>
+<li>Article : J. Jaquette, « A proof of Jones' conjecture », <i>Journal of Differential Equations</i> 266 (2019), 3818–3859, <a href="https://arxiv.org/abs/1801.09806">arXiv:1801.09806</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ODE-43" data-level="Recherche" data-kind="court">
+<h3>ODE-43 · La conjecture de stabilité <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un champ de vecteurs de classe \( C^1 \) sur une variété
+fermée est <i>structurellement stable</i> si tout champ suffisamment \( C^1 \)-proche lui est
+topologiquement équivalent — même portrait de phase à un homéomorphisme envoyant orbites sur
+orbites près — et Palis et Smale ont conjecturé vers 1970 que cela se produit exactement lorsque le
+champ satisfait l'axiome A et la condition de transversalité forte. Démontrer l'échauffement plan
+avec le critère d'Andronov–Pontriaguine — montrer qu'un champ sur le disque possédant un point
+d'équilibre non hyperbolique, ou une connexion de col à col, admet des perturbations
+arbitrairement petites modifiant son portrait de phase — puis rendre compte avec soin du cas
+général, en disant exactement ce qui a été démontré et dans quelle topologie.</p>
+<p class="context">Andronov et Pontriaguine ont introduit les &laquo;&#160;systèmes
+grossiers&#160;&raquo; en 1937 et les ont caractérisés dans le plan ; Peixoto a démontré vers 1962
+que sur une surface compacte orientable les champs structurellement stables sont ouverts et
+denses, si bien qu'en dimension deux le système typique est un système que l'on peut dessiner.
+Smale espérait qu'il en irait de même en dimension supérieure et l'a lui-même réfuté dans les
+années 1960 — les enchevêtrements homoclines sont indéracinables — après quoi la stabilité
+structurelle est devenue une propriété à caractériser plutôt qu'à espérer. La suffisance de
+l'axiome A et de la transversalité forte a été démontrée par Robbin (1971) et Robinson (1976) ; la
+réciproque en topologie \( C^1 \) fut le théorème célèbre de Ricardo Mañé pour les
+difféomorphismes (1987), étendu aux flots par Shuhei Hayashi (1997) grâce à son lemme de
+connexion. <i>Statut : réglé en topologie \( C^1 \) ; ouvert pour \( C^r \) avec \( r \ge 2 \), où
+les lemmes de perturbation qui portent toutes les démonstrations connues n'ont aucun
+substitut.</i></p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Structural_stability">Stabilité structurelle — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Andronov%E2%80%93Pontryagin_criterion">Critère d'Andronov–Pontriaguine — Wikipédia (en anglais)</a></li>
+<li>Article : R. Mañé, « A proof of the \( C^1 \) stability conjecture », <i>Publications Mathématiques de l'IHÉS</i> 66 (1987), 161–210</li>
+<li>Article : S. Hayashi, « Connecting invariant manifolds and the solution of the \( C^1 \) stability and Ω-stability conjectures for flows », <i>Annals of Mathematics</i> 145 (1997), 81–137 (rectificatif, <i>Annals of Mathematics</i> 150 (1999), 353–356)</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/">MIT OCW 18.03SC Differential Equations</a> (autonome, avec vidéos),
+<a href="https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/">MIT OCW 18.03 Differential Equations</a>,
+<a href="https://ocw.mit.edu/courses/18-385j-nonlinear-dynamics-and-chaos-fall-2014/">MIT OCW 18.385J Nonlinear Dynamics and Chaos</a>.</li>
+<li>Livres : Boyce &amp; DiPrima, <i>Elementary Differential Equations and Boundary Value Problems</i> (niveau d'entrée) ;
+Strogatz, <i>Nonlinear Dynamics and Chaos</i> (le cours qualitatif que tout le monde aime) ;
+Hirsch, Smale &amp; Devaney, <i>Differential Equations, Dynamical Systems, and an Introduction to Chaos</i> ;
+Arnold, <i>Ordinary Differential Equations</i> (géométrique, exigeant, inoubliable).</li>
+<li>Articles et essais : Lorenz, « Deterministic nonperiodic flow » (1963) ;
+May, « Simple mathematical models with very complicated dynamics » (1976) ;
+Tucker, « A rigorous ODE solver and Smale's 14th problem » (2002).</li>
+</ul>
+<p>Voir aussi : <a href="applied-statistics.html">Statistiques</a>, <a href="applied-calculus.html">Analyse</a>, <a href="applied-pde.html">Équations aux dérivées partielles</a>, <a href="open-problems.html">Problèmes ouverts</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

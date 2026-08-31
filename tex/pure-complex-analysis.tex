@@ -1,0 +1,1424 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Analyse complexe}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Lycée}
+
+\begin{problem}[{De Moivre et les racines de l'unité --- Lycée}]
+\textbf{CA-01.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez la formule de Moivre par récurrence : pour tout
+entier $ n \ge 1 $,
+$ (\cos\theta + i\sin\theta)^n = \cos n\theta + i\sin n\theta $.
+\item[(b)] Servez-vous-en pour trouver toutes les solutions complexes de $ z^n = 1 $, montrez que ce sont
+$ n $ points régulièrement espacés sur le cercle unité (les sommets d'un $ n $-gone régulier), et
+démontrez que pour $ n \ge 2 $ leur somme vaut 0.
+\item[(c)] Extrayez de la trigonométrie réelle à partir de l'arithmétique complexe : établissez
+la formule donnant $ \cos 3\theta $ comme polynôme en $ \cos\theta $, et calculez
+$ \cos 36^\circ $ exactement à l'aide des racines cinquièmes de l'unité.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Abraham de Moivre a utilisé la formule dès 1707 dans ses travaux sur les
+équations, et Roger Cotes (1714) est passé à un cheveu de la forme exponentielle qu'Euler a
+finalement écrite $ e^{i\theta} = \cos\theta + i\sin\theta $. Les racines de l'unité sont le point
+de rencontre de l'algèbre et de la géométrie : la construction du 17-gone régulier par Gauss en
+1796, à dix-neuf ans --- la découverte qui lui a fait choisir les mathématiques ---, c'est au fond la
+question (c) poussée jusqu'à $ n = 17 $.
+
+\begin{refs}
+\item Contexte : Formule de Moivre --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_de_Moivre})
+\item Contexte : Racine de l'unité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Racine_de_l'unit%C3%A9})
+\item Lecture : Needham, \textit{Visual Complex Analysis}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Multiplier, c'est faire tourner --- Lycée}]
+\textbf{CA-02.} \textbf{Problème.} Représentez $ z = a + bi $ par le point $ (a, b) $ du
+plan, de module $ |z| = \sqrt{a^2 + b^2} $ et d'argument l'angle avec le demi-axe réel
+positif.
+\begin{enumerate}
+\item[(a)] Démontrez que $ |zw| = |z|\,|w| $ et que les arguments s'ajoutent par multiplication,
+de sorte que multiplier par $ z $ fait tourner le plan de $ \arg z $ et le dilate de $ |z| $.
+\item[(b)] Montrez que l'identité $ |zw| = |z|\,|w| $, écrite en coordonnées, est exactement
+l'identité classique des deux carrés :
+$ (a^2 + b^2)(c^2 + d^2) = (ac - bd)^2 + (ad + bc)^2 $.
+\item[(c)] Démontrez l'inégalité triangulaire $ |z + w| \le |z| + |w| $ et déterminez exactement quand
+il y a égalité.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les nombres complexes sont entrés en mathématiques par la bande : Cardan et
+Bombelli (1545--1572) en avaient besoin pour résoudre les équations du troisième degré à trois
+racines réelles. Ils ne sont devenus respectables qu'avec le foyer géométrique que leur ont donné
+Wessel (1797), Argand (1806) et Gauss. La question (b) montre que la géométrie se cachait à la vue
+de tous depuis des siècles --- l'identité des deux carrés était connue de Diophante et de Brahmagupta
+mille ans avant que quiconque ne dessine un nombre complexe.
+
+\begin{refs}
+\item Contexte : Plan complexe --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Plan_complexe})
+\item Contexte : Identité de Brahmagupta--Fibonacci --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Identit%C3%A9_de_Brahmagupta})
+\item Lecture : Needham, \textit{Visual Complex Analysis}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La règle du parallélogramme --- Lycée, short}]
+\textbf{CA-20.} \textbf{Problème.} Démontrez que pour tous nombres complexes $ z $ et $ w $,
+\[ |z + w|^2 + |z - w|^2 = 2|z|^2 + 2|w|^2, \]
+et expliquez ce que cette identité dit des diagonales et des côtés d'un parallélogramme.
+\end{problem}
+
+\noindent La démonstration en une ligne --- développer $ |a|^2 = a\bar{a} $ et regarder les
+termes croisés s'annuler --- est une première démonstration que la conjugaison fait le travail que
+faisaient autrefois les coordonnées. L'identité est aussi l'empreinte algébrique exacte d'une norme
+issue d'un produit scalaire : une norme sur un espace vectoriel réel ou complexe vérifie la règle du
+parallélogramme si et seulement si elle est induite par un produit scalaire, ce qui est le théorème
+de Jordan--von Neumann de 1935.
+
+\begin{refs}
+\item Contexte : Règle du parallélogramme --- Wikipédia (\url{https://fr.wikipedia.org/wiki/R%C3%A8gle_du_parall%C3%A9logramme})
+\item Contexte : Nombre complexe --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Nombre_complexe})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Racines carrées sans trigonométrie --- Lycée, short}]
+\textbf{CA-21.} \textbf{Problème.} Trouvez les deux racines carrées complexes de $ 3 + 4i $ en
+résolvant $ (x + iy)^2 = 3 + 4i $ avec $ x, y $ réels, sans utiliser la trigonométrie. Démontrez
+ensuite que tout nombre complexe non nul possède exactement deux racines carrées, et donnez-en une
+formule en fonction de $ a $, $ b $ et $ \sqrt{a^2 + b^2} $ lorsque le nombre est
+$ a + bi $.
+\end{problem}
+
+\noindent Comparer parties réelles et parties imaginaires transforme le problème en deux
+équations réelles, et le module fournit la troisième relation qui les rend solubles --- petite
+illustration de la façon dont l'algèbre complexe tient sa propre comptabilité. Que tout nombre
+possède exactement $ n $ racines $ n $-ièmes est le premier indice du théorème fondamental de
+l'algèbre (CA-07), et la raison pour laquelle les mathématiciens ont cessé de s'excuser pour
+$ \sqrt{-1} $.
+
+\begin{refs}
+\item Contexte : Racine carrée --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Racine_carr%C3%A9e})
+\item Contexte : Nombre complexe --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Nombre_complexe})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les nombres complexes comme moteur de géométrie --- Lycée}]
+\textbf{CA-22.} \textbf{Problème.} Identifiez le plan à $ \mathbb{C} $, et notez $ \omega = e^{2\pi i/3} $
+une racine cubique primitive de l'unité.
+\begin{enumerate}
+\item[(a)] Démontrez que la rotation du plan d'angle $ \theta $ autour du point $ p $ est
+l'application $ z \mapsto p + e^{i\theta}(z - p) $, et que la composée de deux rotations est une
+rotation ou une translation --- déterminez exactement quand chaque cas se produit.
+\item[(b)] Démontrez que le triangle de sommets distincts $ a, b, c $ est équilatéral si et seulement si
+\[ a^2 + b^2 + c^2 = ab + bc + ca, \]
+et montrez que cela équivaut à $ a + \omega b + \omega^2 c = 0 $ ou
+$ a + \omega^2 b + \omega c = 0 $, selon l'orientation du triangle.
+\item[(c)] Démontrez le théorème de Napoléon : construisez vers l'extérieur des triangles équilatéraux sur
+les trois côtés d'un triangle quelconque ; alors les centres de ces trois triangles équilatéraux
+sont eux-mêmes les sommets d'un triangle équilatéral.
+\item[(d)] Démontrez que le triangle de Napoléon de (c) a le même centre de gravité que le triangle
+initial.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Dès lors qu'une rotation n'est plus qu'une multiplication par $ e^{i\theta} $,
+tout un genre de géométrie plane devient une algèbre qu'un élève patient peut mener sans dessin. Le
+théorème de Napoléon est attribué --- sans aucune bonne raison --- à l'empereur ; il apparaît pour la
+première fois par écrit en 1825, quatre ans après sa mort, et reste la meilleure publicité pour la
+méthode des nombres complexes. La question (b) mérite d'être retenue : une équation sans contenu
+géométrique apparent se révèle dire \og{} équilatéral \fg{}, et c'est ce qui donne à la méthode son air de
+machine.
+
+\begin{refs}
+\item Contexte : Théorème de Napoléon --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Napol%C3%A9on})
+\item Contexte : Racine de l'unité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Racine_de_l'unit%C3%A9})
+\item Lecture : Needham, \textit{Visual Complex Analysis}, ch. 1
+\item Lecture : Hahn, \textit{Complex Numbers and Geometry} (MAA, 1994)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Sommer des cosinus avec une série géométrique --- Lycée, short}]
+\textbf{CA-32.} \textbf{Problème.} Pour $ \theta $ non multiple de $ 2\pi $, sommez la série
+géométrique $ \sum_{k=0}^{n-1} e^{ik\theta} $ et prenez parties réelle et imaginaire pour obtenir
+des formules closes pour $ \sum_{k=0}^{n-1} \cos k\theta $ et $ \sum_{k=0}^{n-1} \sin k\theta $.
+Déduisez-en l'identité du noyau de Dirichlet
+\[ 1 + 2\sum_{k=1}^{n} \cos k\theta \;=\; \frac{\sin\!\left(\left(n + \tfrac{1}{2}\right)\theta\right)}{\sin(\theta/2)} . \]
+\end{problem}
+
+\noindent Des sommes trigonométriques d'apparence redoutable ne sont que des séries
+géométriques déguisées dès que l'on lit $ \cos k\theta $ comme la partie réelle de
+$ (e^{i\theta})^k $ ; la formule d'Euler transforme une page de chasse aux angles en une ligne
+d'algèbre. Les identités étaient connues de Lagrange au dix-huitième siècle, et le noyau de la
+seconde formule est celui que Dirichlet a placé au centre de sa démonstration de 1829 de la
+convergence de la série de Fourier d'une fonction convenable --- il réapparaît, avec le même visage,
+dans l'analyse fonctionnelle de ce site.
+
+\begin{refs}
+\item Contexte : Formule d'Euler --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_d'Euler})
+\item Contexte : Série géométrique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9rie_g%C3%A9om%C3%A9trique}), Noyau de Dirichlet --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Noyau_de_Dirichlet})
+\item Lecture : Needham, \textit{Visual Complex Analysis}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Ptolémée en une identité --- Lycée}]
+\textbf{CA-33.} \textbf{Problème.} Soient $ a, b, c, d $ quatre nombres complexes quelconques, vus comme les
+points $ A, B, C, D $ du plan.
+\begin{enumerate}
+\item[(a)] Vérifiez en développant les deux membres l'identité
+\[ (a - b)(c - d) + (a - d)(b - c) \;=\; (a - c)(b - d) . \]
+\item[(b)] Déduisez-en l'inégalité de Ptolémée : pour quatre points quelconques du plan,
+$ AC \cdot BD \le AB \cdot CD + AD \cdot BC $, où $ XY $ désigne la distance entre
+$ X $ et $ Y $.
+\item[(c)] Placez maintenant les quatre points sur le cercle unité, $ a = e^{i\alpha} $, $ b = e^{i\beta} $,
+$ c = e^{i\gamma} $, $ d = e^{i\delta} $ avec $ 0 \le \alpha < \beta < \gamma < \delta < 2\pi $.
+Démontrez la formule de la corde $ |e^{i\theta} - e^{i\varphi}| = 2\left|\sin\frac{\theta - \varphi}{2}\right| $,
+et montrez que (b) devient alors une \textit{égalité} --- le théorème de Ptolémée pour un quadrilatère
+inscriptible --- en vérifiant l'identité obtenue entre produits de sinus à l'aide des formules de
+transformation de produits en sommes.
+\item[(d)] Appliquez (c) à quatre sommets d'un pentagone régulier pour démontrer que le rapport d'une
+diagonale à un côté est le nombre d'or $ \varphi = \frac{1 + \sqrt{5}}{2} $. (CA-01(c) atteint la
+même constante par une autre route, via les racines cinquièmes de l'unité.)
+\end{enumerate}
+
+\end{problem}
+
+\noindent Claude Ptolémée a démontré le théorème dans l'\textit{Almageste} vers 150 de notre
+ère, et ce n'était pas un ornement : l'égalité de (c) est précisément la règle d'addition et de
+soustraction des cordes, la récurrence avec laquelle il a calculé la table des cordes qui a porté
+l'astronomie grecque et islamique pendant quatorze siècles --- de la trigonométrie avant l'existence
+des fonctions trigonométriques. La démonstration par les nombres complexes comprime tout cela dans
+l'identité scolaire de la question (a), qui ne demande ni dessin ni discussion de cas, alors que la
+démonstration synthétique classique exige une construction auxiliaire qu'il faut deviner. La
+question (b) montre que l'inégalité vaut pour \textit{quatre points quelconques}, en toute
+configuration ; le cercle est exactement le cas d'égalité.
+
+\begin{refs}
+\item Contexte : Théorème de Ptolémée --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ptol%C3%A9m%C3%A9e})
+\item Contexte : Inégalité de Ptolémée --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Ptol%C3%A9m%C3%A9e}), Table des cordes de Ptolémée --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Ptolemy%27s_table_of_chords})
+\item Lecture : Needham, \textit{Visual Complex Analysis}, ch. 1
+\item Lecture : Hahn, \textit{Complex Numbers and Geometry} (MAA, 1994)
+\end{refs}
+
+\bigskip
+
+
+\section*{Licence}
+
+\begin{problem}[{Les équations de Cauchy--Riemann --- Licence}]
+\textbf{CA-03.} \textbf{Problème.} Écrivez $ f(x + iy) = u(x, y) + i\,v(x, y) $.
+\begin{enumerate}
+\item[(a)] Démontrez que si $ f $ est dérivable au sens complexe en un point, alors les dérivées
+partielles y vérifient les équations de Cauchy--Riemann :
+$ \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} $ et
+$ \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} $.
+\item[(b)] Démontrez la réciproque sous l'hypothèse que les dérivées partielles existent et sont continues
+au voisinage du point.
+\item[(c)] Montrez que $ f(z) = \bar{z} $ (la conjugaison complexe) ne vérifie ni l'une ni l'autre,
+bien qu'elle soit aussi lisse qu'une application du plan puisse l'être --- et expliquez
+géométriquement ce que la dérivabilité complexe exige de plus que la simple régularité (qu'advient-il
+des angles ?).
+\item[(d)] Démontrez que si $ f $ est holomorphe et si $ u $ est constante, alors $ f $ est constante
+sur un domaine connexe.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les équations apparaissent dans les travaux de d'Alembert de 1752 sur
+l'écoulement des fluides ainsi que chez Euler, mais ce sont Cauchy (à partir de 1814) et Riemann
+(thèse de 1851) qui en ont fait la définition de la discipline. Elles encodent l'âme géométrique de
+l'analyse complexe : une application holomorphe est, à l'échelle infinitésimale, une rotation
+composée d'une dilatation --- conservant les angles partout où la dérivée est non nulle ---, ce qui
+explique pourquoi une équation en une variable complexe fait le travail de deux EDP réelles.
+
+\begin{refs}
+\item Contexte : Équations de Cauchy--Riemann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quations_de_Cauchy-Riemann})
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 2
+\item Cours : MIT OCW 18.112 Functions of a Complex Variable (\url{https://ocw.mit.edu/courses/18-112-functions-of-a-complex-variable-fall-2008/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La dérivabilité complexe n'est pas la dérivabilité réelle --- Licence}]
+\textbf{CA-04.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez que $ f(z) = |z|^2 $ est dérivable au sens
+complexe en exactement un point de $ \mathbb{C} $, et holomorphe nulle part.
+\item[(b)] Montrez que $ f(x + iy) = \sqrt{|xy|} $ vérifie les équations de Cauchy--Riemann à
+l'origine sans y être dérivable au sens complexe --- les équations ponctuelles seules ne suffisent
+donc pas.
+\item[(c)] Une fonction réelle d'une variable réelle peut être dérivable exactement une fois, ou
+exactement sept fois. Démontrez qu'une fonction dérivable au sens complexe sur un ouvert y possède
+des dérivées de tout ordre. (Vous pouvez utiliser la formule intégrale de Cauchy de CA-06 ; l'enjeu
+est de mesurer la force du contraste.)
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cet ensemble d'exemples marque la frontière entre deux mondes. La dérivabilité
+réelle est une condition ponctuelle et fragile ; la dérivabilité complexe sur un ouvert est une
+condition rigide et globale. Savoir combien peu il faut ajouter aux équations de Cauchy--Riemann pour
+forcer l'holomorphie est une question réellement délicate, à laquelle répond le théorème de
+Looman--Menchoff (1923--1936) : la continuité jointe aux équations en tout point suffit --- un résultat
+dont la démonstration est bien plus ardue que tout ce qu'on trouve dans un premier cours.
+
+\begin{refs}
+\item Contexte : Fonction holomorphe --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_holomorphe})
+\item Contexte : Théorème de Looman--Menchoff --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Looman%E2%80%93Menchoff_theorem})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis} (Princeton Lectures in Analysis II), ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Premières intégrales de contour --- Licence}]
+\textbf{CA-05.} \textbf{Problème.} Pour une courbe $ \gamma $ et une fonction continue $ f $, l'intégrale
+de contour $ \int_\gamma f(z)\,dz $ est définie par paramétrage.
+\begin{enumerate}
+\item[(a)] Calculez $ \int z^n\,dz $ sur le cercle unité parcouru une fois dans le sens direct, pour tout
+entier $ n $ (positif, négatif et nul), et observez que le résultat est 0 sauf pour l'unique
+valeur $ n = -1 $, où il vaut $ 2\pi i $.
+\item[(b)] Démontrez l'inégalité ML :
+$ \left| \int_\gamma f\,dz \right| \le \max_\gamma |f| \cdot \operatorname{length}(\gamma) $.
+\item[(c)] Montrez que $ \int dz/z $ le long d'un chemin allant de 1 à $ -1 $ dépend du fait que le
+chemin passe au-dessus ou au-dessous de l'origine, et expliquez ce que cela dit de la possibilité
+d'un logarithme continu sur $ \mathbb{C} \setminus \{0\} $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cette unique valeur survivante $ 2\pi i $ de la question (a) est sans doute le
+calcul le plus lourd de conséquences de toute l'analyse : toute la théorie de Cauchy --- et donc les
+résidus, les indices, et la moitié de cette page --- en découle. La question (c) est la découverte qui
+a tourmenté la correspondance d'Euler et de d'Alembert sur les logarithmes des nombres négatifs dans
+les années 1740 : le logarithme complexe est inévitablement multiforme, première ombre de la
+topologie portée sur l'analyse.
+
+\begin{refs}
+\item Contexte : Intégrale de contour --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thodes_de_calcul_d'int%C3%A9grales_de_contour})
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 4
+\item Cours : MIT OCW 18.112 Functions of a Complex Variable (\url{https://ocw.mit.edu/courses/18-112-functions-of-a-complex-variable-fall-2008/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Cauchy et la formule intégrale --- Licence}]
+\textbf{CA-06.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez le théorème intégral de Cauchy pour un triangle
+(argument de Goursat, par quadrisections répétées) : si $ f $ est holomorphe sur un ouvert
+contenant un triangle plein, l'intégrale de $ f $ le long de son bord est nulle. Étendez aux
+domaines convexes.
+\item[(b)] Déduisez-en la formule intégrale de Cauchy : pour $ f $ holomorphe dans un disque et
+$ z $ intérieur à un cercle $ C $ contenu dans ce disque,
+\[ f(z) = \frac{1}{2\pi i} \int_C \frac{f(w)}{w - z}\,dw. \]
+(c) Récoltez les conséquences : $ f $ possède des dérivées de tout ordre, obtenues en dérivant
+sous l'intégrale ; $ f $ est localement égale à sa série de Taylor ; et les estimations de Cauchy
+$ |f^{(n)}(0)| \le n! \, \max_C |f| \, / \, r^n $ valent sur un cercle de rayon $ r $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cauchy a annoncé le théorème en 1825 et la formule en 1831 ; la démonstration de
+Goursat de 1900 a supprimé l'hypothèse de continuité de $ f' $, révélant qu'une unique dérivée
+complexe entraîne avec elle l'analyticité. La formule est le mécanisme de la rigidité : les valeurs
+de $ f $ à l'intérieur d'un cercle sont une moyenne pondérée de ses valeurs sur le cercle. Tout le
+reste de cette page --- Liouville, le principe du maximum, les résidus, Picard --- n'est que cette
+formule, itérée avec une ambition croissante.
+
+\begin{refs}
+\item Contexte : Théorème intégral de Cauchy --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_int%C3%A9gral_de_Cauchy})
+\item Contexte : Formule intégrale de Cauchy --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_int%C3%A9grale_de_Cauchy})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Liouville et le théorème fondamental de l'algèbre --- Licence}]
+\textbf{CA-07.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Liouville à partir des estimations de Cauchy :
+une fonction holomorphe et bornée sur $ \mathbb{C} $ tout entier est constante.
+\item[(b)] Déduisez-en le
+théorème fondamental de l'algèbre : tout polynôme non constant à coefficients complexes admet une
+racine dans $ \mathbb{C} $ (considérez $ 1/p(z) $).
+\item[(c)] Renforcez Liouville : une fonction entière
+vérifiant $ |f(z)| \le C(1 + |z|)^k $ est un polynôme de degré au plus $ k $.
+\item[(d)] Concluez
+de (b), par récurrence, que tout polynôme de degré $ n $ se factorise en exactement $ n $
+facteurs linéaires sur $ \mathbb{C} $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent D'Alembert a tenté le théorème fondamental en 1746 ; Gauss en a fait le sujet de
+sa thèse de doctorat de 1799 et y est revenu trois fois encore, jamais pleinement satisfait. La
+démonstration par l'analyse complexe --- le théorème de Liouville a été publié pour la première fois
+par Cauchy en 1844, l'année même où Liouville en faisait cours --- est la plus courte jamais trouvée,
+et elle mérite qu'on la médite : le théorème porte sur l'algèbre, mais toute démonstration connue
+doit y faire entrer en fraude de l'analyse ou de la topologie. Demandez-vous où celle-ci le
+fait.
+
+\begin{refs}
+\item Contexte : Théorème de Liouville (variable complexe) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Liouville_(variable_complexe)})
+\item Contexte : Théorème fondamental de l'algèbre --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_fondamental_de_l'alg%C3%A8bre})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Principe du maximum et lemme de Schwarz --- Licence}]
+\textbf{CA-08.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez le principe du maximum : si $ f $ est
+holomorphe et non constante sur un ouvert connexe, alors $ |f| $ n'a aucun maximum local
+intérieur ; par conséquent, sur un domaine borné, si $ f $ est continue jusqu'au bord, le maximum
+de $ |f| $ est atteint sur le bord.
+\item[(b)] Déduisez-en le lemme de Schwarz : si $ f $ envoie le disque
+unité dans lui-même de façon holomorphe avec $ f(0) = 0 $, alors $ |f(z)| \le |z| $ pour tout
+$ z $ et $ |f'(0)| \le 1 $, l'égalité en un point quelconque (ou dans la dérivée) forçant
+$ f $ à être une rotation.
+\item[(c)] Utilisez le lemme de Schwarz pour déterminer toutes les bijections holomorphes du disque unité
+sur lui-même.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le principe du maximum exprime la moyenne contenue dans la formule de Cauchy :
+une moyenne de valeurs ne peut pas dépasser toutes ces valeurs. Le lemme de Schwarz --- issu des cours
+berlinois de Hermann Amandus Schwarz vers 1869, distillé sous sa forme et son nom modernes par
+Carathéodory --- a l'air d'une estimation d'écolier et il est en fait le germe de la géométrie
+hyperbolique en théorie des fonctions : la question (c) calcule le groupe des isométries du plan
+hyperbolique sans jamais le nommer. La réinterprétation de Pick en 1916 a rendu cela exact.
+
+\begin{refs}
+\item Contexte : Principe du maximum --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_du_maximum})
+\item Contexte : Lemme de Schwarz --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Schwarz})
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 4
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Intégrales réelles par les résidus --- Licence}]
+\textbf{CA-09.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Énoncez et démontrez le théorème des résidus pour une fonction
+ayant un nombre fini de pôles à l'intérieur d'un lacet simple. Calculez ensuite trois intégrales
+réelles classiques par les méthodes de contour, en justifiant chaque passage à la limite :
+\item[(b)] $ \int_{-\infty}^{\infty} \frac{dx}{1 + x^2} = \pi $, à l'aide d'un contour semi-circulaire
+(vérifiez le résultat avec l'arctangente) ;
+\item[(c)] $ \int_0^\infty \frac{\sin x}{x}\,dx = \frac{\pi}{2} $, à l'aide de $ e^{iz}/z $ et d'un
+contour échancré autour de l'origine --- notez que cette intégrale ne converge que
+conditionnellement, de sorte que les estimations méritent du soin ;
+\item[(d)] $ \int_0^{2\pi} \frac{d\theta}{2 + \cos\theta} $, en substituant
+$ z = e^{i\theta} $ pour la convertir en une intégrale de contour sur le cercle unité.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cauchy a créé le calcul des résidus dans les années 1820 et l'a utilisé
+exactement de cette manière --- pour évaluer des intégrales réelles qui résistent aux méthodes
+réelles. La question (c) est l'intégrale de Dirichlet, calculée par Euler en 1781 et centrale dans
+la théorie de la convergence des séries de Fourier de Dirichlet en 1829 ; c'est aussi l'exemple
+standard d'une intégrale qui existe comme intégrale de Riemann impropre mais non comme intégrale de
+Lebesgue (voir la page d'analyse réelle). Les résidus ont transformé une astuce en industrie : les
+tables d'intégrales sont, pour une large part, des arguments de contour congelés.
+
+\begin{refs}
+\item Contexte : Théorème des résidus --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_r%C3%A9sidus})
+\item Contexte : Intégrale de Dirichlet --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Int%C3%A9grale_de_Dirichlet})
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 4
+\item Cours : MIT OCW 18.112 Functions of a Complex Variable (\url{https://ocw.mit.edu/courses/18-112-functions-of-a-complex-variable-fall-2008/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Compter les zéros avec Rouché --- Licence}]
+\textbf{CA-10.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez le principe de l'argument : pour $ f $ méromorphe
+à l'intérieur et sur un lacet simple $ \gamma $ sans zéro ni pôle sur $ \gamma $,
+$ \frac{1}{2\pi i} \int_\gamma \frac{f'}{f}\,dz $ vaut le nombre de zéros moins le
+nombre de pôles à l'intérieur, comptés avec multiplicité.
+\item[(b)] Déduisez-en le théorème de Rouché : si
+$ |g| < |f| $ sur $ \gamma $, alors $ f $ et $ f + g $ ont le même nombre de zéros
+à l'intérieur de $ \gamma $.
+\item[(c)] Mettez-le au travail : déterminez combien de zéros
+$ p(z) = z^4 + 6z + 3 $ possède dans le disque $ |z| < 1 $, et combien dans la couronne
+$ 1 < |z| < 2 $.
+\item[(d)] Donnez une seconde démonstration du théorème fondamental de l'algèbre, longue
+d'une ligne, en comparant un polynôme à son terme dominant sur un grand cercle.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Eugène Rouché a publié le théorème en 1862 ; il convertit le comptage des
+zéros --- une question d'existence --- en une vérification d'inégalité sur un bord, l'un des plus purs
+exemples de la philosophie du principe de l'argument selon laquelle les fonctions analytiques sont
+contrôlées par leur comportement au bord. Le théorème reste un outil quotidien : les numériciens
+s'en servent pour certifier la localisation des racines, et la théorie de la stabilité en ingénierie
+est bâtie sur des arguments exactement de cette forme.
+
+\begin{refs}
+\item Contexte : Théorème de Rouché --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Rouch%C3%A9})
+\item Contexte : Principe de l'argument --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_de_l'argument})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Applications conformes des domaines standard --- Licence}]
+\textbf{CA-11.} \textbf{Problème.} Une application conforme est une bijection holomorphe entre
+domaines.
+\begin{enumerate}
+\item[(a)] Vérifiez que la transformation de Cayley $ w = \frac{z - i}{z + i} $ envoie conformément le
+demi-plan supérieur sur le disque unité, et trouvez sa réciproque.
+\item[(b)] Montrez que $ w = e^z $
+envoie la bande horizontale $ 0 < \operatorname{Im} z < \pi $ sur le demi-plan supérieur,
+et trouvez une application conforme de la bande sur le disque.
+\item[(c)] Envoyez le quart de plan
+$ \{ \operatorname{Re} z > 0,\ \operatorname{Im} z > 0 \} $ sur le disque, et le
+demi-disque supérieur sur le demi-plan supérieur.
+\item[(d)] Démontrez que les transformations de Möbius
+$ z \mapsto \frac{az + b}{cz + d} $ envoient cercles-et-droites sur cercles-et-droites, et servez-vous
+de la transformation de Cayley pour résoudre un problème de Dirichlet : trouvez la fonction
+harmonique bornée sur le disque valant 1 au bord sur le demi-cercle supérieur et 0 sur
+l'inférieur.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La thèse de Riemann de 1851 a refondu l'analyse complexe en géométrie : ce qui
+compte dans un domaine, c'est sa forme à équivalence conforme près. Les applications standard de ce
+problème constituent le manuel de conversation de l'analyste au travail, et la question (d) montre
+pourquoi les ingénieurs les ont apprises --- les applications conformes transportent les fonctions
+harmoniques, si bien que l'électrostatique, l'écoulement de la chaleur et la conception de profils
+d'aile dans des régions biscornues se ramènent au disque. Schwarz et Christoffel (1867--1869) ont
+étendu le dictionnaire à tous les polygones.
+
+\begin{refs}
+\item Contexte : Transformation conforme --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Transformation_conforme})
+\item Contexte : Transformation de Möbius --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Transformation_de_M%C3%B6bius})
+\item Lecture : Needham, \textit{Visual Complex Analysis}
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 6
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les zéros sont isolés : le théorème d'identité --- Licence}]
+\textbf{CA-12.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez que si $ f $ est holomorphe et non
+identiquement nulle sur un ouvert connexe, alors chaque zéro de $ f $ est isolé et d'ordre fini :
+au voisinage d'un zéro $ a $, $ f(z) = (z - a)^m g(z) $ avec $ g(a) \ne 0 $.
+\item[(b)] Déduisez-en le
+théorème d'identité : deux fonctions holomorphes sur un ouvert connexe qui coïncident sur un
+ensemble ayant un point d'accumulation dans cet ouvert coïncident partout.
+\item[(c)] Concluez que les identités familières persistent
+automatiquement : $ \sin^2 z + \cos^2 z = 1 $ pour tout $ z $ complexe, parce que cela vaut sur
+$ \mathbb{R} $.
+\item[(d)] Montrez par un exemple que (b) échoue de façon spectaculaire pour les fonctions réelles
+indéfiniment dérivables (trouvez une fonction lisse non nulle s'annulant sur toute une
+demi-droite).
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est le point de vue de Weierstrass par les séries entières qui paie : les
+fonctions holomorphes se comportent comme des polynômes de degré infini, et la question (d) donne le
+sens précis dans lequel la régularité réelle est molle là où l'analyticité complexe est rigide. Le
+théorème d'identité est aussi le permis d'exercer du prolongement analytique (CA-14) : une fonction
+holomorphe admet au plus un prolongement à un domaine connexe plus grand, si bien que les
+prolongements, quand ils existent, sont des découvertes et non des choix.
+
+\begin{refs}
+\item Contexte : Théorème d'identité (principe des zéros isolés) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Identity_theorem})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Trouver une conjuguée harmonique --- Licence, short}]
+\textbf{CA-23.} \textbf{Problème.} Vérifiez que $ u(x, y) = x^3 - 3xy^2 $ est harmonique sur
+$ \mathbb{R}^2 $, et trouvez toutes les conjuguées harmoniques $ v $ --- c'est-à-dire toutes les
+$ v $ pour lesquelles $ f = u + iv $ est holomorphe sur $ \mathbb{C} $. Identifiez la fonction
+$ f $ obtenue comme fonction élémentaire de $ z $.
+\end{problem}
+
+\noindent La recette consiste à intégrer les équations de Cauchy--Riemann (CA-03) l'une
+après l'autre, et l'indétermination sur $ v $ est exactement une constante réelle additive sur un
+domaine connexe. L'exercice est le visage concret d'un fait structurel : sur un domaine simplement
+connexe, toute fonction harmonique réelle est la partie réelle d'une fonction holomorphe, ce qui
+explique pourquoi la théorie du potentiel en dimension deux et l'analyse complexe sont une seule et
+même discipline.
+
+\begin{refs}
+\item Contexte : Conjuguée harmonique --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Harmonic_conjugate})
+\item Contexte : Fonction harmonique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_harmonique})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une fonction, deux séries de Laurent --- Licence, short}]
+\textbf{CA-24.} \textbf{Problème.} Développez
+\[ f(z) = \frac{1}{z(z-1)} \]
+en série de Laurent dans chacune des deux couronnes $ 0 < |z| < 1 $ et $ |z| > 1 $.
+Déterminez lequel des deux coefficients de $ z^{-1} $ est le résidu de $ f $ en $ 0 $, et
+expliquez soigneusement pourquoi l'autre ne l'est pas.
+\end{problem}
+
+\noindent Les deux développements sont tous deux corrects et ils diffèrent précisément dans
+le coefficient qui compte, ce qui est le plus limpide des avertissements : une série de Laurent
+appartient à une couronne, non à une fonction. Le résidu est par définition le coefficient de
+$ z^{-1} $ du développement dans un disque épointé autour du point, celui dont la série a le droit
+de calculer l'intégrale de contour --- distinction qui ruine silencieusement les calculs de résidus
+lorsqu'on l'oublie.
+
+\begin{refs}
+\item Contexte : Série de Laurent --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9rie_de_Laurent})
+\item Contexte : Théorème des résidus --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_r%C3%A9sidus})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Birapport et sphère de Riemann --- Licence}]
+\textbf{CA-25.} \textbf{Problème.} Soit $ \hat{\mathbb{C}} = \mathbb{C} \cup \{\infty\} $ la sphère de Riemann,
+et soit une transformation de Möbius une application $ T(z) = \frac{az + b}{cz + d} $ avec
+$ ad - bc \ne 0 $, prolongée à $ \hat{\mathbb{C}} $ de la manière habituelle.
+\begin{enumerate}
+\item[(a)] Démontrez que les transformations de Möbius forment un groupe agissant de façon strictement
+3-transitive sur $ \hat{\mathbb{C}} $ : étant donnés $ z_1, z_2, z_3 $ distincts, il existe
+exactement une $ T $ avec $ T(z_1) = 0 $, $ T(z_2) = 1 $, $ T(z_3) = \infty $. Écrivez-la ;
+la valeur $ (z, z_1, z_2, z_3) = T(z) $ est le \textit{birapport}.
+\item[(b)] Déduisez-en que le birapport est invariant par toute transformation de Möbius, et démontrez que
+quatre points distincts de $ \hat{\mathbb{C}} $ sont sur un même cercle ou une même droite si et
+seulement si leur birapport est réel. Retrouvez ainsi la conservation des cercles démontrée à la
+main en CA-11(d).
+\item[(c)] Démontrez que le groupe des transformations de Möbius est isomorphe à
+$ \mathrm{PGL}_2(\mathbb{C}) $, et que par projection stéréographique ces applications sont
+exactement les bijections holomorphes de la sphère.
+\item[(d)] Classifiez les transformations de Möbius autres que l'identité : montrez que chacune a un ou
+deux points fixes sur $ \hat{\mathbb{C}} $, et qu'après normalisation $ ad - bc = 1 $ la classe
+de conjugaison est déterminée par $ \mathrm{tr}^2 = (a + d)^2 $ --- parabolique lorsque cela vaut
+$ 4 $, elliptique lorsque c'est réel dans $ [0, 4) $, hyperbolique lorsque c'est réel et
+supérieur à $ 4 $, loxodromique sinon.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le birapport est plus ancien que l'analyse complexe : c'est l'invariant de la
+géométrie projective, connu de Pappus dans l'Antiquité et central dans les travaux de Möbius (1827)
+et de Chasles. Le lire du point de vue de l'analyse complexe fond deux disciplines --- le groupe de
+Möbius est à la fois le groupe des automorphismes de la sphère, la droite projective sur
+$ \mathbb{C} $, et (sous les traits de $ \mathrm{PSL}_2(\mathbb{C}) $) le groupe des isométries
+de l'espace hyperbolique de dimension 3 et le groupe de Lorentz agissant sur la sphère céleste de la
+relativité restreinte. La classification par la trace de la question (d) est ce qui rend possibles
+les images de la théorie des groupes discrets de Klein et de Poincaré.
+
+\begin{refs}
+\item Contexte : Transformation de Möbius --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Transformation_de_M%C3%B6bius})
+\item Contexte : Birapport --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Birapport})
+\item Contexte : Sphère de Riemann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Sph%C3%A8re_de_Riemann})
+\item Lecture : Needham, \textit{Visual Complex Analysis}, ch. 3
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de l'image ouverte --- Licence, short}]
+\textbf{CA-34.} \textbf{Problème.} Démontrez le théorème de l'image ouverte : une fonction
+holomorphe non constante sur un ouvert connexe de $ \mathbb{C} $ envoie les ouverts sur des
+ouverts. Déduisez-en ensuite en deux lignes le principe du maximum de CA-08(a), et expliquez
+pourquoi le théorème est faux pour les applications réelles différentiables du plan et même pour les
+fonctions réelles analytiques non constantes d'une variable réelle.
+\end{problem}
+
+\noindent La démonstration usuelle passe par le théorème d'application locale : au
+voisinage d'un point où $ f - f(z_0) $ a un zéro d'ordre $ m $, la fonction est $ m $-à-un sur
+un petit disque, ce que l'on établit avec le théorème de Rouché (CA-10) ou le principe de
+l'argument. L'ouverture est le visage géométrique de la rigidité qui traverse cette page --- une image
+holomorphe ne peut avoir aucun point de bord provenant de l'intérieur, donc $ |f| $ ne peut avoir
+aucun maximum intérieur --- et c'est l'analogue exact, dans un monde complètement différent, du
+théorème de l'application ouverte de Banach pour les opérateurs entre espaces de Banach.
+
+\begin{refs}
+\item Contexte : Théorème de l'image ouverte (analyse complexe) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_l'image_ouverte})
+\item Contexte : Principe du maximum --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_du_maximum})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 8
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Produits de Blaschke --- Licence}]
+\textbf{CA-35.} \textbf{Problème.} Pour $ a $ dans le disque unité $ \mathbb{D} $, posez
+\[ \varphi_a(z) \;=\; \frac{z - a}{1 - \bar{a}z} . \]
+\begin{enumerate}
+\item[(a)] Démontrez l'identité
+\[ 1 - |\varphi_a(z)|^2 \;=\; \frac{(1 - |a|^2)(1 - |z|^2)}{|1 - \bar{a}z|^2} , \]
+et déduisez-en que $ \varphi_a $ envoie $ \mathbb{D} $ sur $ \mathbb{D} $ et le cercle unité
+sur le cercle unité, avec $ \varphi_a^{-1} = \varphi_{-a} $.
+\item[(b)] Appelez $ B(z) = e^{i\theta} \prod_{j=1}^{n} \varphi_{a_j}(z) $ un \textit{produit de Blaschke fini}
+de degré $ n $. Démontrez que $ |B| = 1 $ sur le cercle unité et que $ B $ prend toute valeur
+$ w \in \mathbb{D} $ exactement $ n $ fois dans $ \mathbb{D} $, comptées avec
+multiplicité.
+\item[(c)] Démontrez la réciproque : si $ f $ est holomorphe sur $ \mathbb{D} $, continue sur le disque
+fermé, et $ |f(z)| = 1 $ pour tout $ |z| = 1 $, alors $ f $ est un produit de Blaschke fini.
+Concluez que les produits de Blaschke de degré un sont exactement les automorphismes trouvés en
+CA-08(c).
+\item[(d)] Produits infinis : soit $ (a_n) $ une suite de $ \mathbb{D} \setminus \{0\} $ avec
+$ \sum_n (1 - |a_n|) < \infty $. Démontrez que
+\[ B(z) \;=\; \prod_{n} \frac{|a_n|}{a_n}\, \varphi_{a_n}(z) \]
+converge uniformément sur tout compact de $ \mathbb{D} $ vers une fonction holomorphe bornée par 1
+dont les zéros sont exactement les $ a_n $. Démontrez ensuite la réciproque à l'aide de la formule
+de Jensen (CA-26) : si une fonction holomorphe bornée sur $ \mathbb{D} $, non identiquement nulle,
+a pour zéros les $ (a_n) $, alors ces zéros doivent vérifier
+$ \sum_n (1 - |a_n|) < \infty $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Wilhelm Blaschke a introduit ces produits et la condition de convergence en 1915,
+et la question (d) est la réponse fine à une question que le théorème de factorisation de
+Weierstrass (CA-16) laisse ouverte : quelles suites peuvent être l'ensemble des zéros d'une fonction
+holomorphe \textit{bornée} sur le disque --- la réponse est une condition sur la vitesse à laquelle les
+zéros peuvent approcher le bord. Les produits de Blaschke finis sont les polynômes propres au
+disque : ce sont exactement les auto-applications holomorphes propres, et par (c) ils sont
+déterminés par leur seul comportement au bord. Les produits infinis sont les premiers exemples de
+fonctions \textit{intérieures}, et par le théorème de Beurling (CA-19(a)) les fonctions intérieures
+indexent les sous-espaces invariants du décalage --- c'est ainsi que cet innocent facteur de Möbius
+finit au centre de la théorie des opérateurs.
+
+\begin{refs}
+\item Contexte : Produit de Blaschke --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Blaschke_product})
+\item Contexte : Espace de Hardy (fonctions intérieures et extérieures) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Hardy})
+\item Lecture : Garnett, \textit{Bounded Analytic Functions}, ch. II
+\item Lecture : Conway, \textit{Functions of One Complex Variable I}, ch. VII
+\item Cours : MIT OCW 18.112 Functions of a Complex Variable (\url{https://ocw.mit.edu/courses/18-112-functions-of-a-complex-variable-fall-2008/})
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{Le théorème de l'application conforme de Riemann --- Master}]
+\textbf{CA-13.} \textbf{Problème.} (Problème de compréhension, avec une démonstration à l'intérieur.) Le théorème
+de l'application conforme de Riemann : tout ouvert simplement connexe de $ \mathbb{C} $ autre que
+$ \mathbb{C} $ lui-même est conformément équivalent au disque unité.
+\begin{enumerate}
+\item[(a)] Démontrez vous-même la moitié \og{} unicité \fg{} :
+l'existence étant admise, montrez que l'application est unique dès qu'on impose
+$ f(z_0) = 0 $ et $ f'(z_0) > 0 $ (utilisez le lemme de Schwarz de CA-08).
+\item[(b)] Démontrez que
+$ \mathbb{C} $ lui-même doit être exclu, et que le théorème est faux pour le disque épointé --- où
+la simple connexité intervient-elle ?
+\item[(c)] Lisez la démonstration moderne et rendez compte de son
+moteur : qu'est-ce qu'une famille normale, que dit le théorème de Montel, et comment le fait de
+maximiser $ |f'(z_0)| $ sur les applications injectives à valeurs dans le disque fait-il surgir la
+surjection à partir de rien ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Riemann a énoncé le théorème dans sa thèse de 1851 avec une démonstration
+s'appuyant sur le principe de Dirichlet --- dont Weierstrass a ensuite montré qu'il n'était pas
+démontré. Il a fallu un demi-siècle pour combler la lacune (Osgood a donné la première démonstration
+complète en 1900 ; l'argument par familles normales aujourd'hui standard est venu de Fejér, Riesz et
+Carathéodory dans les années 1910--1920), et la combler a construit une grande partie de l'analyse
+moderne, y compris le sauvetage du principe de Dirichlet par Hilbert. Le théorème reste stupéfiant :
+l'intérieur d'un flocon fractal déchiqueté et un demi-plan sont le même domaine pour un analyste
+complexe.
+
+\begin{refs}
+\item Contexte : Théorème de l'application conforme --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_l'application_conforme})
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 6
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 8
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Prolongement analytique et fonction zêta --- Master}]
+\textbf{CA-14.} \textbf{Problème.} Pour $ \operatorname{Re} s > 1 $, définissez
+$ \zeta(s) = \sum_{n \ge 1} n^{-s} $.
+\begin{enumerate}
+\item[(a)] Démontrez le produit eulérien :
+\[ \zeta(s) = \prod_{p \text{ premier}} \left(1 - p^{-s}\right)^{-1}, \]
+et expliquez précisément comment la factorisation unique est utilisée ; déduisez-en la démonstration
+par Euler de l'infinité des nombres premiers (que se passe-t-il lorsque $ s \to 1^+ $ ?).
+\item[(b)] Démontrez que
+$ \zeta(s) - \frac{1}{s - 1} $ se prolonge holomorphiquement à $ \operatorname{Re} s > 0 $,
+par exemple via la série alternée $ \eta(s) = \sum (-1)^{n-1} n^{-s} $ ou en comparant la somme à
+l'intégrale de $ x^{-s} $.
+\item[(c)] Problème de lecture : étudiez le mémoire de Riemann de 1859
+(neuf pages) et énoncez soigneusement l'équation fonctionnelle reliant $ \zeta(s) $ à
+$ \zeta(1 - s) $, la forme symétrique $ \xi(s) = \xi(1 - s) $, et les rôles exacts de la fonction
+Gamma et de la fonction thêta dans la démonstration.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler a découvert la formule du produit en 1737, faisant des nombres premiers un
+objet d'analyse ; l'article de Riemann de 1859 --- son unique travail de théorie des nombres --- a
+prolongé $\zeta$ au plan tout entier et lié le terme d'erreur dans la répartition des nombres premiers à la
+localisation de ses zéros. Ce problème est la porte d'entrée de l'hypothèse de Riemann (CA-17) : les
+questions (a) et (b) sont d'honnêtes exercices, et la question (c) compte parmi les lectures les
+plus rentables des mathématiques, neuf pages qui ont créé la théorie analytique des nombres.
+
+\begin{refs}
+\item Contexte : Fonction zêta de Riemann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_z%C3%AAta_de_Riemann})
+\item Contexte : Produit eulérien --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Produit_eul%C3%A9rien})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 6
+\item Lecture : Titchmarsh, \textit{The Theory of the Riemann Zeta-function}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les théorèmes de Picard --- Master}]
+\textbf{CA-15.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Casorati--Weierstrass : au voisinage
+d'une singularité essentielle, une fonction holomorphe s'approche arbitrairement près de toute
+valeur complexe.
+\item[(b)] Vérifiez Picard sur l'exemple standard : montrez que $ e^z $ omet exactement la valeur 0, et
+que $ e^{1/z} $ prend toute valeur non nulle une infinité de fois dans tout voisinage épointé de
+0.
+\item[(c)] Problème de compréhension : le petit théorème de Picard dit qu'une fonction entière non
+constante omet au plus une valeur complexe ; le grand théorème dit qu'au voisinage d'une singularité
+essentielle toute valeur, à au plus une exception près, est prise une infinité de fois. Lisez une
+démonstration moderne du petit théorème et expliquez le mécanisme qui interdit d'omettre deux
+valeurs --- où la géométrie hyperbolique (ou la fonction modulaire, ou le théorème de Bloch, selon
+votre source) intervient-elle, et pourquoi une valeur omise est-elle inoffensive alors que deux sont
+fatales ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Émile Picard a démontré les deux théorèmes en 1879, et ils ont stupéfié ses
+contemporains : Casorati--Weierstrass dit que l'image au voisinage d'une singularité essentielle est
+dense, Picard dit qu'elle est tout, sauf un point. Un siècle de redémonstrations --- l'argument
+élémentaire de Borel, les familles normales de Montel, la constante de Bloch, la renormalisation de
+Zalcman --- a chaque fois ouvert un nouveau chapitre de la théorie des fonctions, et la recherche de
+la \og{} bonne \fg{} démonstration est encore une tradition vivante. Les deux valeurs omises 0 et 1 de la
+configuration clé sont les mêmes 0 et 1 qui sous-tendent la fonction modulaire $\lambda$.
+
+\begin{refs}
+\item Contexte : Théorèmes de Picard --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8mes_de_Picard})
+\item Contexte : Théorème de Casorati--Weierstrass --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Weierstrass-Casorati})
+\item Lecture : Ahlfors, \textit{Complex Analysis}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La factorisation de Weierstrass --- Master}]
+\textbf{CA-16.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez qu'un produit infini $ \prod (1 + a_n) $
+avec $ \sum |a_n| < \infty $ converge vers une limite non nulle, et développez les facteurs
+élémentaires $ E_k(z) = (1 - z)\exp\!\left(z + \frac{z^2}{2} + \cdots + \frac{z^k}{k}\right) $.
+\item[(b)] Démontrez le théorème de factorisation de Weierstrass : toute fonction entière se factorise en
+$ z^m e^{g(z)} \prod_n E_{k_n}(z/a_n) $ sur ses zéros $ a_n $ ; réciproquement, toute suite
+vérifiant $ |a_n| \to \infty $ est l'ensemble des zéros d'une certaine fonction entière.
+\item[(c)] Établissez la pièce classique de
+démonstration :
+\[ \sin \pi z = \pi z \prod_{n=1}^{\infty} \left( 1 - \frac{z^2}{n^2} \right), \]
+et expliquez comment l'identification des coefficients dans cette identité donne l'évaluation
+d'Euler $ \sum 1/n^2 = \pi^2/6 $ --- le problème de Bâle, dont l'histoire est racontée dans
+L'art de la démonstration (\url{proofs.html}).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler a factorisé le sinus comme s'il s'agissait d'un polynôme en 1734 et en a
+tiré la somme de Bâle, à l'admiration et au malaise de ses contemporains ; Weierstrass (1876) a
+fourni la théorie manquante, en montrant exactement quelles prescriptions de zéros sont possibles et
+à quel coût exponentiel, et Hadamard (1893) a affiné la factorisation pour les fonctions d'ordre
+fini --- la forme utilisée dans l'étude de $\zeta$. C'est le problème où les produits infinis cessent d'être
+une magie formelle pour devenir des instruments.
+
+\begin{refs}
+\item Contexte : Théorème de factorisation de Weierstrass --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_factorisation_de_Weierstrass})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 5
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La formule de Jensen --- Master, short}]
+\textbf{CA-26.} \textbf{Problème.} Soit $ f $ holomorphe sur un voisinage du disque fermé
+$ |z| \le R $, avec $ f(0) \ne 0 $, sans zéro sur le cercle $ |z| = R $, et de zéros
+$ a_1, \dots, a_N $ dans $ |z| < R $ énumérés avec multiplicité. Démontrez la formule de
+Jensen :
+\[ \log|f(0)| \;=\; \frac{1}{2\pi} \int_0^{2\pi} \log\big|f(Re^{i\theta})\big| \, d\theta \;-\;
+\sum_{k=1}^{N} \log \frac{R}{|a_k|}. \]
+\end{problem}
+
+\noindent Jensen a publié la formule en 1899, et elle est la charnière entre la taille
+d'une fonction holomorphe et le nombre de ses zéros : la moyenne au bord de $ \log|f| $ paie,
+terme après terme, pour chaque zéro intérieur. Compter les zéros de cette façon est le fondement de
+la théorie de la distribution des valeurs de Nevanlinna et des estimations classiques du nombre de
+zéros de la fonction zêta dans un rectangle (CA-14), où elle s'applique presque mot pour mot.
+
+\begin{refs}
+\item Contexte : Formule de Jensen --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_de_Jensen})
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les trois droites de Hadamard --- Master, short}]
+\textbf{CA-27.} \textbf{Problème.} Soit $ f $ holomorphe et bornée sur la bande
+$ a < \operatorname{Re} z < b $ et continue sur son adhérence, et posez
+$ M(x) = \sup_{y \in \mathbb{R}} |f(x + iy)| $. Démontrez que $ \log M(x) $ est une fonction
+convexe de $ x $ sur $ [a, b] $.
+\end{problem}
+
+\noindent La démonstration est le principe du maximum (CA-08) appliqué à la fonction
+auxiliaire $ f(z) \lambda^{z} $ avec $ \lambda $ choisi pour égaliser les deux bords --- un
+argument qui vaut d'être appris comme technique, puisque la même astuce démontre les théorèmes de
+Phragmén--Lindelöf. L'observation de Hadamard est devenue, entre les mains de Marcel Riesz (1926) et
+de Thorin (1938), le théorème d'interpolation complexe qui gouverne la continuité des opérateurs sur
+les espaces $ L^p $ ; la convexité dans une bande est l'un des endroits où l'analyse complexe fait
+tourner discrètement l'analyse harmonique moderne.
+
+\begin{refs}
+\item Contexte : Théorème des trois droites de Hadamard --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_trois_droites_de_Hadamard})
+\item Contexte : Principe du maximum --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_du_maximum})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Fonctions harmoniques, noyau de Poisson et réflexion --- Master}]
+\textbf{CA-28.} \textbf{Problème.} Une fonction réelle $ u $ sur un ouvert du plan est \textit{harmonique} si elle
+est deux fois continûment dérivable et $ u_{xx} + u_{yy} = 0 $. Pour $ 0 \le r < 1 $, soit
+\[ P_r(\theta) \;=\; \frac{1 - r^2}{1 - 2r\cos\theta + r^2} \]
+le noyau de Poisson du disque unité.
+\begin{enumerate}
+\item[(a)] Démontrez qu'une fonction harmonique possède la propriété de la moyenne sur tout cercle dont le
+disque fermé est contenu dans le domaine, et déduisez-en le principe du maximum : une fonction
+harmonique sur un domaine borné, continue jusqu'au bord, atteint ses extrema sur le bord et est
+déterminée par ses valeurs au bord.
+\item[(b)] Démontrez que pour $ g $ continue sur le cercle unité l'intégrale de Poisson
+\[ u(re^{i\theta}) \;=\; \frac{1}{2\pi} \int_0^{2\pi} P_r(\theta - t)\, g(e^{it})\, dt \]
+est harmonique dans le disque et tend vers $ g(e^{i\theta_0}) $ lorsque
+$ re^{i\theta} \to e^{i\theta_0} $ --- le problème de Dirichlet sur le disque est donc résolu par
+une formule explicite. Montrez réciproquement que toute fonction harmonique dans le disque et
+continue sur son adhérence est sa propre intégrale de Poisson.
+\item[(c)] Démontrez que sur un domaine simplement connexe toute fonction harmonique est la partie réelle
+d'une fonction holomorphe, et montrez que $ \log|z| $ sur $ \mathbb{C} \setminus \{0\} $ n'a pas
+de conjuguée harmonique uniforme. Identifiez l'obstruction, et reliez-la à l'inexistence d'un
+logarithme continu en CA-05(c).
+\item[(d)] Démontrez le principe de réflexion de Schwarz : si $ u $ est harmonique sur la moitié
+supérieure d'un disque centré sur l'axe réel, continue jusqu'au diamètre et nulle sur celui-ci,
+alors poser $ u(x, -y) = -u(x, y) $ prolonge $ u $ harmoniquement au disque tout entier.
+Déduisez-en le principe de réflexion pour les fonctions holomorphes qui sont réelles sur un segment
+de l'axe réel.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Poisson a écrit son intégrale dans les années 1820 ; le problème de Dirichlet
+qu'elle résout --- trouver une fonction harmonique de valeurs au bord prescrites --- a porté toute la
+théorie du potentiel du dix-neuvième siècle, de l'électrostatique à la démonstration du théorème de
+l'application conforme par Riemann (CA-13). Lorsque Weierstrass a démoli le principe de Dirichlet,
+le cas du disque de la question (b) fut l'un des rares morceaux à survivre intacts, et il est devenu
+la matière première des réparations ultérieures : la méthode alternée de Schwarz, le balayage de
+Poincaré, la méthode sous-harmonique de Perron en 1923. La question (d) est la contribution propre
+de Schwarz et le procédé standard pour prolonger une application conforme à travers un arc de
+bord.
+
+\begin{refs}
+\item Contexte : Fonction harmonique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_harmonique})
+\item Contexte : Noyau de Poisson --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Noyau_de_Poisson})
+\item Contexte : Problème de Dirichlet --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Dirichlet})
+\item Contexte : Principe de réflexion de Schwarz --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Schwarz_reflection_principle})
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 4 \S{}6
+\item Lecture : Conway, \textit{Functions of One Complex Variable I}, ch. X
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Phragmén--Lindelöf dans un secteur --- Master, short}]
+\textbf{CA-36.} \textbf{Problème.} Soit $ \alpha \ge 1/2 $, soit
+$ S = \{\, z \ne 0 : |\arg z| < \pi/(2\alpha) \,\} $ le secteur ouvert d'ouverture
+$ \pi/\alpha $, et soit $ f $ holomorphe sur $ S $ et continue sur son adhérence, avec
+$ |f| \le M $ sur les deux demi-droites du bord et $ |f(z)| \le C e^{|z|^{\beta}} $ partout dans
+$ S $ pour certaines constantes $ C $ et $ \beta < \alpha $. Démontrez que $ |f| \le M $
+partout sur $ S $, et montrez en exhibant $ e^{z} $ sur le demi-plan droit que la conclusion est
+fausse lorsque $ \beta = \alpha $.
+\end{problem}
+
+\noindent Edvard Phragmén et Ernst Lindelöf ont publié cette famille de théorèmes dans
+\textit{Acta Mathematica} en 1908 : le principe du maximum survit sur les domaines non bornés, mais
+seulement si l'on interdit à la fonction de croître plus vite que la géométrie du domaine ne le
+permet, et la frontière est optimale. La démonstration est l'astuce déjà rencontrée en CA-27 ---
+multiplier par $ e^{-\varepsilon z^{\gamma}} $ avec $ \beta < \gamma < \alpha $, appliquer
+le principe du maximum ordinaire, puis faire tendre $ \varepsilon \to 0 $. Le principe est le
+permis d'exercer standard pour les déplacements de contour de la théorie analytique des nombres et
+pour les théorèmes d'interpolation de l'analyse harmonique, où il faut savoir qu'une fonction bornée
+sur deux droites est bornée entre elles.
+
+\begin{refs}
+\item Contexte : Principe de Phragmén--Lindelöf --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_de_Phragm%C3%A9n%E2%80%93Lindel%C3%B6f})
+\item Contexte : Théorème des trois droites de Hadamard --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_trois_droites_de_Hadamard})
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 4
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Familles normales : Montel et Hurwitz --- Master}]
+\textbf{CA-37.} \textbf{Problème.} Dites qu'une famille $ \mathcal{F} $ de fonctions holomorphes sur un ouvert
+$ \Omega \subset \mathbb{C} $ est \textit{normale} si toute suite de $ \mathcal{F} $ admet une
+sous-suite convergeant uniformément sur tout compact de $ \Omega $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de convergence de Weierstrass : une limite uniforme locale de fonctions
+holomorphes est holomorphe, et les dérivées convergent uniformément localement vers la dérivée de la
+limite. (Morera et les estimations de Cauchy font tout le travail.)
+\item[(b)] Démontrez le théorème de Montel : une famille uniformément bornée sur chaque compact de
+$ \Omega $ est normale. (Utilisez les estimations de Cauchy pour obtenir l'équicontinuité, puis
+Arzelà--Ascoli et un argument diagonal sur une exhaustion de $ \Omega $ par des compacts.)
+\item[(c)] Démontrez le théorème de Hurwitz : si $ f_n \to f $ uniformément localement sur un
+$ \Omega $ connexe et si aucune $ f_n $ n'a de zéro, alors ou bien $ f $ est identiquement
+nulle, ou bien $ f $ n'a pas de zéro. (Appliquez le principe de l'argument sur un petit cercle et
+faites tendre $ n \to \infty $.)
+\item[(d)] Déduisez-en qu'une limite uniforme locale de fonctions holomorphes injectives sur un ouvert
+connexe est injective ou constante, et servez-vous-en pour combler la lacune de CA-13(c) : la
+fonction extrémale obtenue en maximisant $ |f'(z_0)| $ sur les applications injectives de
+$ \Omega $ dans le disque est elle-même injective.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Paul Montel a introduit les familles normales dans sa thèse de 1907 et a passé
+une carrière à montrer que la compacité dans les espaces de fonctions est le moteur caché de la
+théorie classique des fonctions : le théorème de l'application conforme (CA-13), les théorèmes de
+Picard (CA-15) et les démonstrations modernes du théorème de Bloch (CA-29) deviennent tous des
+arguments d'extraction dès que l'on sait quelles familles sont normales. Le théorème de Hurwitz
+(1889) est le fait compagnon selon lequel les zéros ne peuvent apparaître ni disparaître à la limite
+sans prévenir ; c'est lui qui fait survivre l'univalence --- la propriété qu'a une fonction schlicht
+(CA-18) --- au passage à la limite, et donc lui qui rend possible tout ce style de démonstration par
+problème extrémal. Le théorème plus profond de Montel, selon lequel une famille omettant deux
+valeurs complexes fixées est automatiquement normale, est l'énoncé dont les théorèmes de Picard
+découlent en une page.
+
+\begin{refs}
+\item Contexte : Théorème de Montel --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Montel})
+\item Contexte : Famille normale --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Famille_normale}), Théorème de Hurwitz (analyse complexe) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Hurwitz_sur_les_suites_de_fonctions_holomorphes})
+\item Lecture : Conway, \textit{Functions of One Complex Variable I}, ch. VII
+\item Lecture : Schiff, \textit{Normal Families} (Springer Universitext, 1993)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La fonction Gamma --- Master}]
+\textbf{CA-38.} \textbf{Problème.} Pour $ \operatorname{Re} s > 0 $, définissez l'intégrale d'Euler
+\[ \Gamma(s) \;=\; \int_0^{\infty} t^{s-1} e^{-t}\, dt . \]
+\begin{enumerate}
+\item[(a)] Démontrez que l'intégrale converge et définit une fonction holomorphe sur le demi-plan
+$ \operatorname{Re} s > 0 $, que $ \Gamma(s + 1) = s\,\Gamma(s) $, et que
+$ \Gamma(n + 1) = n! $ pour tout entier $ n \ge 0 $.
+\item[(b)] Utilisez l'équation fonctionnelle pour prolonger $ \Gamma $ méromorphiquement à
+$ \mathbb{C} $ tout entier, et démontrez que le prolongement a des pôles simples exactement en
+$ s = 0, -1, -2, \dots $, de résidu $ (-1)^n/n! $ en $ s = -n $.
+\item[(c)] Démontrez la formule des compléments d'Euler
+\[ \Gamma(s)\,\Gamma(1 - s) \;=\; \frac{\pi}{\sin \pi s} , \]
+par exemple en combinant le produit de Weierstrass
+$ 1/\Gamma(s) = s e^{\gamma s} \prod_{n \ge 1} (1 + s/n)e^{-s/n} $ avec le produit pour
+$ \sin \pi z $ démontré en CA-16(c). Déduisez-en $ \Gamma(1/2) = \sqrt{\pi} $ et que
+$ \Gamma $ n'a pas de zéro.
+\item[(d)] Démontrez le théorème de Bohr--Mollerup : une fonction $ f : (0, \infty) \to (0, \infty) $ avec
+$ f(1) = 1 $, $ f(x+1) = x f(x) $, et $ \log f $ convexe est nécessairement $ \Gamma $
+restreinte à $ (0, \infty) $. Expliquez pourquoi une telle condition supplémentaire est
+inévitable --- c'est-à-dire pourquoi l'équation fonctionnelle seule ne détermine pas la fonction.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler a trouvé l'interpolation de la factorielle en 1729, dans sa correspondance
+avec Goldbach et Daniel Bernoulli, et Legendre a plus tard imposé la notation décalée $ \Gamma $
+dont tout analyste ronchonne depuis. La fonction est la fonction spéciale la plus tenace des
+mathématiques --- elle gouverne l'équation fonctionnelle de $ \zeta $ (CA-14), le volume de la boule
+de dimension $ n $, l'intégrale bêta et la moitié des constantes de la théorie des probabilités ---
+et elle est réellement transcendante en un sens fort : Hölder a démontré en 1887 que $ \Gamma $ ne
+vérifie aucune équation différentielle algébrique. Le théorème de Bohr--Mollerup (1922) est la
+réponse à la plainte naturelle selon laquelle l'intégrale d'Euler a l'air arbitraire : la
+log-convexité jointe à la récurrence détermine complètement la fonction, ce qui a permis à Artin de
+bâtir tout son élégant petit livre sur le sujet à partir de cette seule caractérisation.
+
+\begin{refs}
+\item Contexte : Fonction gamma --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_gamma})
+\item Contexte : Théorème de Bohr--Mollerup --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bohr-Mollerup})
+\item Lecture : Artin, \textit{The Gamma Function} (1931 ; traduction anglaise, Dover)
+\item Lecture : Stein \& Shakarchi, \textit{Complex Analysis}, ch. 6
+\item Lecture : Whittaker \& Watson, \textit{A Course of Modern Analysis}, ch. XII
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Fonctions elliptiques et double périodicité --- Master}]
+\textbf{CA-39.} \textbf{Problème.} Fixez $ \omega_1, \omega_2 \in \mathbb{C} $ avec $ \omega_2/\omega_1 $ non
+réel, et soit $ \Lambda = \mathbb{Z}\omega_1 + \mathbb{Z}\omega_2 $ le réseau qu'ils engendrent.
+Une fonction méromorphe $ f $ sur $ \mathbb{C} $ est \textit{elliptique} pour $ \Lambda $ si
+$ f(z + \omega) = f(z) $ pour tout $ \omega \in \Lambda $.
+\begin{enumerate}
+\item[(a)] Démontrez les trois théorèmes de Liouville sur les fonctions elliptiques : une fonction
+elliptique sans pôle est constante ; la somme des résidus dans un parallélogramme fondamental est
+nulle ; et une fonction elliptique prend toute valeur de $ \hat{\mathbb{C}} $ le même nombre de
+fois dans un parallélogramme fondamental, comptées avec multiplicité. Déduisez-en qu'une fonction
+elliptique non constante est d'ordre au moins 2 --- il n'existe pas de fonction elliptique ayant un
+unique pôle simple par période.
+\item[(b)] Démontrez que la fonction de Weierstrass
+\[ \wp(z) \;=\; \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \{0\}}
+\left( \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2} \right) \]
+converge uniformément sur tout compact de $ \mathbb{C} \setminus \Lambda $, que $ \wp $ est
+paire et elliptique avec un pôle double en chaque point du réseau, et que $ \wp' $ est elliptique
+d'ordre 3. (La convergence repose sur $ \sum_{\omega \ne 0} |\omega|^{-3} < \infty $ ; la
+périodicité est plus facile à démontrer d'abord pour $ \wp' $.)
+\item[(c)] Démontrez l'équation différentielle
+\[ (\wp')^2 \;=\; 4\wp^3 - g_2 \wp - g_3, \qquad
+g_2 = 60 \sum_{\omega \ne 0} \omega^{-4}, \quad g_3 = 140 \sum_{\omega \ne 0} \omega^{-6} , \]
+en comparant les développements de Laurent à l'origine et en appliquant (a) à la différence.
+\item[(d)] Démontrez que toute fonction elliptique pour $ \Lambda $ est une fraction rationnelle en
+$ \wp $ et $ \wp' $ --- d'abord les fonctions paires, comme fractions rationnelles en $ \wp $
+seule, puis le cas général en séparant parties paire et impaire. Concluez que
+$ z \mapsto (\wp(z), \wp'(z)) $ identifie le tore $ \mathbb{C}/\Lambda $ à la cubique projective
+$ y^2 = 4x^3 - g_2 x - g_3 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les fonctions elliptiques sont nées à l'envers : les analystes du dix-huitième
+siècle étudiaient les \textit{intégrales} elliptiques --- la longueur d'arc d'une ellipse et de la
+lemniscate ---, et le geste décisif, accompli par Abel en 1827 et Jacobi en 1829 (Gauss l'avait fait
+en privé trente ans plus tôt sans rien publier), fut de les inverser : l'encombrante intégrale
+multiforme devenait alors une fonction à deux périodes indépendantes, dotée d'une théorie parfaite.
+Liouville a fait cours sur la théorie générale en 1844, et le $ \wp $ de Weierstrass l'a réduite à
+une unique fonction canonique ; la question (d) énonce que le corps des fonctions elliptiques est
+engendré par $ \wp $ et $ \wp' $ avec l'unique relation de (c). Cette relation est le pont vers
+la théorie des nombres : la cubique $ y^2 = 4x^3 - g_2x - g_3 $ est une courbe elliptique, la loi
+de groupe qu'elle porte est le théorème d'addition pour $ \wp $, et ce dictionnaire entre tores et
+cubiques est ce qui porte la modularité et le dernier théorème de Fermat.
+
+\begin{refs}
+\item Contexte : Fonction elliptique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_elliptique})
+\item Contexte : Fonction elliptique de Weierstrass --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_elliptique_de_Weierstrass}), Couple fondamental de périodes --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Fundamental_pair_of_periods})
+\item Lecture : Ahlfors, \textit{Complex Analysis}, ch. 7
+\item Lecture : Whittaker \& Watson, \textit{A Course of Modern Analysis}, ch. XX
+\item Lecture : Silverman, \textit{The Arithmetic of Elliptic Curves}, ch. VI
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{L'hypothèse de Riemann --- Recherche}]
+\textbf{CA-17.} \textbf{Problème.} L'hypothèse de Riemann : tout zéro non trivial de
+$ \zeta(s) $ a pour partie réelle $ 1/2 $. Avant de consulter quoi que ce soit, faites
+honnêtement le travail préparatoire à partir de CA-14 : montrez à partir du produit eulérien que
+$ \zeta(s) \ne 0 $ pour $ \operatorname{Re} s > 1 $, et à partir de l'équation fonctionnelle
+que les seuls zéros avec $ \operatorname{Re} s < 0 $ sont les zéros triviaux en
+$ -2, -4, -6, \dots $, de sorte que tout le mystère habite la bande critique
+$ 0 \le \operatorname{Re} s \le 1 $. Démontrez ensuite l'hypothèse.
+\end{problem}
+
+\noindent \textbf{Statut : ouvert} depuis 1859 --- huitième problème de Hilbert (1900),
+problème du prix du millénaire (2000), et de l'avis commun la question non résolue la plus profonde
+des mathématiques. Hardy a démontré en 1914 qu'une infinité de zéros se trouvent sur la droite
+critique, et plus de $ 10^{13} $ zéros ont été vérifiés numériquement ; une démonstration ou une
+réfutation réorganiserait la théorie des nombres. Elle figure ici parce qu'elle est, au fond, une
+question en forme de théorème sur une seule fonction holomorphe. L'histoire complète ---
+reformulations, résultats partiels, conséquences --- se trouve dans
+Problèmes ouverts (\url{open-problems.html}).
+
+\begin{refs}
+\item Contexte : Hypothèse de Riemann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Hypoth%C3%A8se_de_Riemann})
+\item Contexte : Le mémoire de Riemann de 1859 --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Sur_le_nombre_de_nombres_premiers_inf%C3%A9rieurs_%C3%A0_une_taille_donn%C3%A9e})
+\item Lecture : Titchmarsh, \textit{The Theory of the Riemann Zeta-function}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de Bieberbach : un géant tombé --- Recherche}]
+\textbf{CA-18.} \textbf{Problème.} Dites que $ f $ est \textit{schlicht} si
+$ f(z) = z + a_2 z^2 + a_3 z^3 + \cdots $ est holomorphe et injective sur le disque unité.
+Conjecture de Bieberbach (1916) : $ |a_n| \le n $ pour tout $ n $, avec égalité seulement pour
+les rotations de la fonction de Koebe
+$ k(z) = \frac{z}{(1 - z)^2} = z + 2z^2 + 3z^3 + \cdots $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de l'aire pour les fonctions univalentes sur l'extérieur du disque, et
+déduisez-en le résultat propre à Bieberbach $ |a_2| \le 2 $.
+\item[(b)] Utilisez $ |a_2| \le 2 $ pour démontrer le théorème du quart
+de Koebe : l'image du disque par une fonction schlicht contient le disque de rayon
+$ 1/4 $.
+\item[(c)] Problème de compréhension : lisez l'histoire et la structure de la démonstration
+de de Branges --- l'équation d'évolution de Loewner (1923, utilisée pour $ |a_3| \le 3 $), la
+réduction à la conjecture de Milin, et l'inégalité d'Askey--Gasper sur les polynômes de Jacobi qui a
+clos l'argument --- et rendez compte des raisons pour lesquelles le problème des coefficients a
+résisté soixante-neuf ans.
+\end{enumerate}
+
+\end{problem}
+
+\noindent \textbf{Statut : résolu.} Ludwig Bieberbach l'a conjecturée dans une note de bas
+de page de 1916 ; les progrès sont venus coefficient par coefficient (Loewner $ |a_3| $, 1923 ;
+Garabedian--Schiffer $ |a_4| $, 1955) jusqu'à ce que Louis de Branges démontre la conjecture
+entière en 1984, publiée dans \textit{Acta Mathematica} en 1985 après que les mathématiciens du
+séminaire de Leningrad eurent vérifié et simplifié l'argument. C'est le modèle du problème
+\og{} récemment tombé \fg{} : la longue démonstration d'un outsider, l'incrédulité initiale, la vérification
+collective minutieuse, et une technique --- l'équation de Loewner --- revenue en gloire deux décennies
+plus tard au sein du SLE de Schramm et de deux médailles Fields.
+
+\begin{refs}
+\item Contexte : Conjecture de Bieberbach (théorème de de Branges) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Conjecture_de_Bieberbach})
+\item Lecture : Duren, \textit{Univalent Functions}
+\item Article : de Branges, \og{} A proof of the Bieberbach conjecture \fg{}, \textit{Acta Mathematica} 154 (1985)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La théorie des fonctions à la frontière : sous-espaces invariants et compagnie --- Recherche}]
+\textbf{CA-19.} \textbf{Problème.} Le problème du sous-espace invariant demande : tout opérateur
+linéaire borné sur un espace de Hilbert complexe séparable de dimension infinie possède-t-il un
+sous-espace fermé invariant autre que $ \{0\} $ et l'espace tout entier ? L'essentiel de ce que
+l'on sait est de l'analyse complexe à une variable déguisée.
+\begin{enumerate}
+\item[(a)] Échauffement résolu : démontrez le théorème de Beurling
+(1949) --- les sous-espaces invariants du décalage $ f(z) \mapsto z f(z) $ sur l'espace de Hardy
+$ H^2 $ du disque sont exactement les ensembles $ \varphi H^2 $ pour les fonctions intérieures
+$ \varphi $.
+\item[(b)] Lisez en quoi la question correspondante pour le décalage de \textit{Bergman} est plus sauvage :
+ses sous-espaces invariants peuvent avoir n'importe quel indice, et une description de type
+Beurling (Aleman--Richter--Sundberg, 1996) existe mais le treillis est loin d'être compris ---
+affinez une partie quelconque de cette description.
+\item[(c)] Attaquez une question ouverte voisine d'une variable complexe :
+démontrez ou réfutez la conjecture de Brennan (1978), selon laquelle pour toute application conforme
+$ \varphi $ d'un domaine simplement connexe $ \Omega $ sur le disque unité, la dérivée vérifie
+$ \iint_\Omega |\varphi'|^p \,dA < \infty $ pour tout $ 4/3 < p < 4 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent \textbf{Statut : ouvert.} Pour les espaces de Banach, des contre-exemples existent
+--- Enflo (construit dans les années 1970, publié en 1987) et Read (1984), qui a plus tard construit
+un opérateur sur $ \ell^1 $ sans aucun sous-espace invariant ---, mais pour l'espace de Hilbert le
+problème reste ouvert en 2026 ; une prépublication d'Enflo de 2023 revendiquant une solution
+positive n'a pas, à l'heure où ces lignes sont écrites, été acceptée par les pairs, et l'honnêteté
+oblige donc à la dire non résolue. Le contraste Hardy/Bergman de (a)--(b) est l'endroit où la théorie
+des opérateurs rencontre la théorie classique des fonctions de cette page, et la conjecture de
+Brennan en (c) est un problème ouvert purement d'une variable --- élémentaire à énoncer, relié au
+spectre universel des moyennes intégrales des applications conformes, et non résolu.
+
+\begin{refs}
+\item Contexte : Problème du sous-espace invariant --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Invariant_subspace_problem})
+\item Contexte : Espace de Hardy --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Hardy})
+\item Lecture : Pommerenke, \textit{Boundary Behaviour of Conformal Maps}
+\item Article : Enflo, \og{} On the invariant subspace problem in Hilbert spaces \fg{} (2023, prépublication non expertisée), arXiv:2305.15442 (\url{https://arxiv.org/abs/2305.15442})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La valeur de la constante de Bloch --- Recherche, short}]
+\textbf{CA-29.} \textbf{Problème.} Pour $ f $ holomorphe sur le disque unité avec
+$ f'(0) = 1 $, soit $ \beta(f) $ la borne supérieure des rayons $ r $ tels qu'une sous-région
+du disque soit envoyée par $ f $ bijectivement sur un disque de rayon $ r $ ; le théorème de
+Bloch affirme que $ B = \inf_f \beta(f) $ est strictement positif. Déterminez la valeur exacte de
+$ B $.
+\end{problem}
+
+\noindent \textbf{Statut : ouvert.} Les bornes connues sont
+$ 0.4332 < B \le 0.4719 $, l'inférieure due à Chen et Gauthier améliorant
+$ \sqrt{3}/4 $, la supérieure une expression explicite en valeurs de la fonction Gamma trouvée par
+Ahlfors et Grunsky en 1937 --- qui ont conjecturé que leur borne est la valeur exacte, conjecture
+toujours indécise. La constante de Landau, sa compagne, est dans le même état. André Bloch a
+démontré le théorème en 1925 alors qu'il était interné dans un hôpital psychiatrique, où il a fait
+toutes ses mathématiques et correspondu avec Hadamard et Pólya ; la constante qui porte son nom
+résiste à l'évaluation exacte depuis un siècle.
+
+\begin{refs}
+\item Contexte : Théorème de Bloch (analyse complexe) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Bloch%27s_theorem_(complex_analysis)})
+\item Lecture : Conway, \textit{Functions of One Complex Variable I}, ch. XII
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de la valeur moyenne de Smale --- Recherche, short}]
+\textbf{CA-30.} \textbf{Problème.} Soit $ p $ un polynôme complexe de degré $ d \ge 2 $
+avec $ p'(0) \ne 0 $. Démontrez ou réfutez qu'un certain point critique $ \zeta $ de $ p $
+vérifie
+\[ \left| \frac{p(\zeta) - p(0)}{\zeta \, p'(0)} \right| \;\le\; \frac{d - 1}{d}. \]
+\end{problem}
+
+\noindent \textbf{Statut : ouvert depuis 1981.} Smale a soulevé la question en analysant la
+méthode de Newton dans ses travaux sur la complexité de la résolution des équations polynomiales, et
+a démontré l'inégalité avec la constante $ 4 $ à la place de $ (d-1)/d $ ; les améliorations
+depuis sont marginales, et la constante conjecturée ne peut pas être abaissée, puisque
+$ p(z) = z^d - \lambda z $ l'atteint exactement. Le problème se tient aux côtés de celui de Sendov
+(CA-31) dans la petite famille des questions sur les cachettes possibles des points critiques d'un
+polynôme --- élémentaires à énoncer, et obstinées hors de toute proportion.
+
+\begin{refs}
+\item Contexte : Problème de la valeur moyenne --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Mean_value_problem})
+\item Contexte : Théorème de Gauss--Lucas --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Gauss-Lucas})
+\item Article : S. Smale, \og{} The fundamental theorem of algebra and complexity theory \fg{} (1981), Bull. Amer. Math. Soc. 4
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de Sendov --- Recherche}]
+\textbf{CA-31.} \textbf{Problème.} Soit $ p(z) = (z - r_1)(z - r_2)\cdots(z - r_n) $ avec $ n \ge 2 $ et toutes
+les racines dans le disque unité fermé. La conjecture de Sendov affirme qu'à distance au plus
+$ 1 $ de chaque racine $ r_k $ se trouve un point critique de $ p $ --- un zéro de
+$ p' $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Gauss--Lucas : tout zéro de $ p' $ est dans l'enveloppe convexe des
+zéros de $ p $. Déduisez-en que sous l'hypothèse ci-dessus tous les points critiques sont dans le
+disque unité fermé, et donc que la conjecture est vraie sans réserve pour toute racine située à
+l'origine.
+\item[(b)] Démontrez la conjecture pour $ n = 2 $ par calcul direct, et examinez $ p(z) = z^n - 1 $,
+dont tous les points critiques sont à l'origine, à distance exactement $ 1 $ de chaque racine --- de
+sorte qu'aucun rayon plus petit que $ 1 $ ne conviendrait, et que la conjecture, si elle est vraie,
+est optimale.
+\item[(c)] Démontrez la conjecture pour $ n = 3 $ --- un calcul, mais un calcul réellement pénible --- puis
+lisez le traitement des grands degrés par Tao en 2020 et son exposé de 2026 de la démonstration
+complète, et rendez compte de la difficulté : pourquoi les configurations quasi extrémales rendent
+l'uniformité en $ n $ si difficile à obtenir, et comment une démonstration n'utilisant guère plus
+que le théorème fondamental de l'algèbre a pu rester cachée soixante ans.
+\end{enumerate}
+\textit{Statut : très récemment résolue, et le dossier n'est pas encore refermé. Blagovest Sendov a
+proposé la conjecture vers 1958 (elle a circulé des années durant sous le nom de conjecture
+d'Ilieff) ; elle a été vérifiée pour les degrés inférieurs à 9 par Brown et Xiang, et Tao l'a
+démontrée en 2020 pour tous les degrés suffisamment grands, par un argument de compacité et de
+prolongement analytique qui ne donnait aucun seuil explicite. En août 2026, Lech Mazur a annoncé une
+démonstration assistée par ordinateur du cas général, obtenue avec un système d'IA et vérifiée dans
+l'assistant de preuve Lean ; Tao l'a ensuite digérée, reformalisée et simplifiée, et a utilisé le
+même argument pour régler la conjecture plus forte de Phelps--Rodriguez. À l'heure où ces lignes sont
+écrites, le résultat n'est pas passé par l'expertise conventionnelle d'une revue --- c'est la
+formalisation vérifiée par machine qui en tient lieu de garantie.}
+\end{problem}
+
+\noindent La conjecture est une question sur les cachettes possibles des points critiques
+d'un polynôme, et c'est l'illustration la plus tranchante de l'écart entre ce qui est facile à
+énoncer et ce qui est facile à démontrer : les exemples extrémaux sont des quasi-égalités partout,
+si bien qu'aucun argument souple ne survit. Sa résolution en 2026 est aussi un jalon d'un autre
+ordre. La première démonstration a été produite par un système d'IA et comptait 90 000 lignes de
+Lean ; un mathématicien humain l'a ensuite lue, réorganisée en un argument n'utilisant que le
+théorème fondamental de l'algèbre et l'inégalité de Maclaurin, et l'a étendue. Quoi qu'on pense de
+la méthode, l'épistémologie de cette page --- les références, les démonstrations et le crayon du
+lecteur --- doit désormais peser un nouveau genre de source.
+
+\begin{refs}
+\item Contexte : Conjecture d'Iliev--Sendov --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Conjecture_d'Iliev-Sendov})
+\item Contexte : Théorème de Gauss--Lucas --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Gauss-Lucas})
+\item Article : T. Tao, \og{} Sendov's conjecture for sufficiently high degree polynomials \fg{} (2020), arXiv:2012.04125 (\url{https://arxiv.org/abs/2012.04125})
+\item Lecture : T. Tao, \og{} A digestion of the proof of Sendov's conjecture \fg{} (billet de blog, 12 août 2026), terrytao.wordpress.com (\url{https://terrytao.wordpress.com/2026/08/12/a-digestion-of-the-proof-of-sendovs-conjecture/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'ensemble de Mandelbrot est-il localement connexe ? --- Recherche, short}]
+\textbf{CA-40.} \textbf{Problème.} Soit $ M $ l'ensemble de Mandelbrot, l'ensemble des
+paramètres $ c \in \mathbb{C} $ pour lesquels l'orbite de $ 0 $ sous $ z \mapsto z^2 + c $
+reste bornée ; il est compact, et Douady et Hubbard ont démontré qu'il est connexe. Déterminez si
+$ M $ est \textit{localement connexe} --- si tout point de $ M $ possède des voisinages relatifs
+connexes arbitrairement petits.
+\end{problem}
+
+\noindent \textbf{Statut : ouvert.} Connue sous le nom de MLC, la conjecture est le problème
+ouvert central de la dynamique complexe en dimension un. Douady et Hubbard ont démontré la connexité
+au début des années 1980 en construisant un isomorphisme conforme explicite entre le complémentaire
+de $ M $ et le complémentaire du disque unité fermé --- de l'application conforme pure, dans
+l'esprit de CA-11 et CA-13 --- et ils ont montré que la connexité locale fournirait un modèle
+combinatoire complet de $ M $ en \og{} disque pincé \fg{}, et avec lui la conjecture d'hyperbolicité,
+selon laquelle les paramètres hyperboliques sont denses dans la famille quadratique. Yoccoz a
+démontré MLC en tout paramètre finiment renormalisable, travail récompensé par une médaille Fields
+en 1994, et Lyubich et d'autres ont progressé dans le domaine infiniment renormalisable ; le cas
+général reste ouvert à l'heure où ces lignes sont écrites.
+
+\begin{refs}
+\item Contexte : Ensemble de Mandelbrot --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ensemble_de_Mandelbrot})
+\item Contexte : Conjecture de Fatou (densité de l'hyperbolicité) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Fatou_conjecture}), Ensemble de Julia --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ensemble_de_Julia})
+\item Lecture : Milnor, \textit{Dynamics in One Complex Variable}
+\item Lecture : Carleson \& Gamelin, \textit{Complex Dynamics} (Springer, 1993)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème de la couronne --- Recherche}]
+\textbf{CA-41.} \textbf{Problème.} Soit $ H^{\infty} $ l'algèbre des fonctions holomorphes bornées sur le disque
+unité $ \mathbb{D} $, munie de la norme sup. Le théorème de la couronne de Carleson (1962) dit :
+si $ f_1, \dots, f_n \in H^{\infty} $ et s'il existe un $ \delta > 0 $ tel que
+$ |f_1(z)| + \cdots + |f_n(z)| \ge \delta $ pour tout $ z \in \mathbb{D} $, alors il existe
+$ g_1, \dots, g_n \in H^{\infty} $ tels que
+\[ f_1 g_1 + \cdots + f_n g_n = 1 . \]
+\begin{enumerate}
+\item[(a)] Démontrez la moitié facile : si l'équation de Bézout a une solution dans $ H^{\infty} $, alors
+la minoration $ \sum_j |f_j| \ge \delta $ doit valoir pour un certain $ \delta > 0 $. Réglez
+complètement le cas $ n = 1 $.
+\item[(b)] Démontrez que le théorème équivaut à l'énoncé selon lequel $ \mathbb{D} $ est dense dans
+l'espace des idéaux maximaux de $ H^{\infty} $ --- l'énoncé qu'il n'y a pas de \og{} couronne \fg{} d'idéaux
+supplémentaires autour du disque. (Identifiez les points de $ \mathbb{D} $ aux caractères
+d'évaluation, et utilisez la correspondance entre idéaux maximaux et caractères d'une algèbre de
+Banach commutative.)
+\item[(c)] Construisez des exemples instructifs : montrez qu'une suite d'interpolation et son produit de
+Blaschke (CA-35) fournissent des fonctions de petite minoration conjointe, et vérifiez à la main ce
+qu'affirme le théorème pour $ f_1(z) = z $ et $ f_2 = $ un produit de Blaschke ne s'annulant
+qu'en $ 0 $.
+\item[(d)] Lisez la démonstration : l'argument original de Carleson via le théorème d'interpolation et les
+mesures de Carleson, ou l'argument $ \bar\partial $ ultérieur de Wolff, et rendez compte de
+l'endroit où la géométrie du disque intervient. Affrontez ensuite le problème ouvert : existe-t-il
+un théorème de la couronne pour le polydisque ou pour la boule de $ \mathbb{C}^n $ avec
+$ n \ge 2 $, ou pour un domaine plan quelconque ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent \textbf{Statut : résolu pour le disque ; ouvert en général.} Kakutani a demandé en
+1941 si le disque pouvait avoir une couronne, et la question a résisté vingt ans d'efforts jusqu'à
+ce que Lennart Carleson la règle en 1962 avec la machinerie --- suites d'interpolation, mesures de
+Carleson --- qui a réorganisé toute la théorie des espaces de Hardy ; Thomas Wolff a trouvé une
+démonstration bien plus courte en 1979 par des techniques $ \bar\partial $. Ce qui se passe au-delà
+du disque est réellement inconnu : Cole a construit une surface de Riemann possédant une couronne,
+donc le théorème n'est pas formel, et les cas du polydisque, de la boule en plusieurs variables et
+d'un domaine plan général restent ouverts. C'est un problème ouvert inhabituel en ceci que son cas
+résolu est l'une des grandes prouesses techniques de l'analyse du vingtième siècle, et que personne
+ne sait si l'obstruction en dimension supérieure est une idée manquante ou un véritable
+contre-exemple.
+
+\begin{refs}
+\item Contexte : Théorème de la couronne --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Corona_theorem})
+\item Contexte : Espace de Hardy --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Hardy}), Mesure de Carleson --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mesure_de_Carleson})
+\item Lecture : Garnett, \textit{Bounded Analytic Functions}, ch. VIII
+\item Article : L. Carleson, \og{} Interpolations by bounded analytic functions and the corona problem \fg{} (1962), \textit{Annals of Mathematics} 76
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}

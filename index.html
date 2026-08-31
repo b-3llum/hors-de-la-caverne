@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hors de la Caverne — des problèmes de mathématiques, pas de réponses</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="manifest.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Hors de la Caverne</h1>
+
+<blockquote>
+<p><i>« Représente-toi des hommes dans une demeure souterraine, en forme de caverne… »</i><br>
+— Socrate, dans <i>La République</i> de Platon, livre VII</p>
+</blockquote>
+
+<p>Ce site est un hommage à Socrate. Dans l'allégorie de la caverne qu'il raconte,
+les prisonniers prennent des ombres projetées sur un mur pour le monde lui-même ;
+et la sortie ne consiste pas à se faire dire ce qu'est le monde, mais à se retourner
+et à marcher vers la lumière sur ses propres jambes. Socrate enseignait en
+questionnant, jamais en affirmant. Dans cet esprit, ce site ne contient que
+<b>des problèmes et aucune réponse</b>. Chaque problème est accompagné de son
+histoire — qui l'a posé, pourquoi, et ce qu'il a changé — et de références : articles
+de Wikipédia, cours, livres et publications qui contiennent le savoir nécessaire pour
+l'attaquer. Les références vous disent où se trouve la lumière. La sortie, c'est à
+vous de la marcher.</p>
+
+<p>Platon tenait les mathématiques pour la discipline qui détourne l'âme des ombres
+et la tourne vers ce qui est réel — au fronton de son Académie, dit la tradition,
+était inscrit <i>« que nul n'entre ici s'il n'est géomètre »</i>. L'accent est donc
+mis ici sur la <b>démonstration</b> : non pas calculer une réponse, mais comprendre
+ce que l'on fait, pourquoi c'est vrai, et comment l'idée est née.</p>
+
+<h2>Comment utiliser ce site</h2>
+<ul>
+<li>Les problèmes vont du <b>[Lycée]</b> à la <b>[Licence]</b>, au <b>[Master]</b>
+puis à la <b>[Recherche]</b> — y compris de véritables problèmes ouverts. Choisissez
+un domaine ci-dessous et trouvez votre niveau ; chaque page parcourt toute l'échelle
+lorsque cela a un sens. Chaque page dispose d'une barre de filtres pour n'afficher
+que votre niveau, et d'un champ de recherche.</li>
+<li>Aucune solution n'est donnée, jamais. Chaque problème possède un paragraphe de
+contexte et des références vers tout ce qu'il faut apprendre.</li>
+<li>Les mathématiques sont composées correctement (KaTeX, embarqué localement — le
+site fonctionne hors ligne), et chaque page propose sa feuille de problèmes en
+<b>source LaTeX</b> téléchargeable et compilable ainsi qu'en <b>PDF</b> compilé —
+voir en haut de chaque page.</li>
+<li>Vous ne voulez pas une page entière ? <a href="worksheet.html"><b>Composez une
+feuille d'exercices</b></a> : cochez les problèmes qui vous plaisent au fil de votre
+lecture, ou demandez un certain nombre de problèmes tirés au hasard à un niveau et
+dans un domaine donnés, puis enregistrez-les seuls en PDF ou téléchargez-les en
+LaTeX.</li>
+<li>Le bouton ☀ / ☾ dans le coin bascule entre le thème clair et le thème sombre.</li>
+<li>Vous ne savez pas par où commencer ? Commencez par
+<a href="proofs.html">L'art de la démonstration</a>, puis par le
+<a href="applied-calculus.html">calcul différentiel et intégral</a> ou les
+<a href="applied-discrete-cs.html">mathématiques discrètes</a>, et allez voir la page
+des <a href="open-problems.html">problèmes ouverts</a> pour découvrir où la route
+s'arrête — pour l'instant.</li>
+</ul>
+
+<h2>La salle des lycéens</h2>
+<p>Tous les problèmes du site marqués <b>[Lycée]</b> sont rassemblés en un seul
+endroit : <a href="highschool.html"><b>la salle des lycéens</b></a>. Choisissez les
+domaines qui vous appellent — théorie des nombres, géométrie, probabilités,
+techniques de démonstration — et mettez-vous en marche. Aucune connaissance en
+analyse n'y est supposée, mais des démonstrations complètes le sont.</p>
+
+<p><button class="bigbutton"
+onclick="if(window.PROBLEMS&amp;&amp;PROBLEMS.length){var p=PROBLEMS[Math.floor(Math.random()*PROBLEMS.length)];location.href=p.page+'#'+p.id;}">
+⚄ Donnez-moi un problème au hasard</button></p>
+
+<hr>
+<h2 id="pure">Mathématiques pures</h2>
+<p>Les mathématiques poursuivies pour la structure elle-même.</p>
+<ul>
+<li><a href="pure-foundations.html">Logique, théorie des ensembles et fondements</a> — ce qu'est un énoncé mathématique, ce qu'est l'infini, et ce que la démonstration elle-même peut ou ne peut pas faire.</li>
+<li><a href="pure-algebra.html">Algèbre abstraite</a> — groupes, anneaux, corps et théorie de Galois : les mathématiques de la symétrie et de la structure.</li>
+<li><a href="pure-linear-algebra.html">Algèbre linéaire</a> — espaces vectoriels, valeurs propres et théorème spectral : les mathématiques les plus utilisées au monde.</li>
+<li><a href="pure-number-theory.html">Théorie des nombres</a> — nombres premiers, congruences et équations diophantiennes ; la reine des mathématiques, avec un accent particulier sur la primalité.</li>
+<li><a href="pure-real-analysis.html">Analyse réelle et théorie de la mesure</a> — limites, continuité et intégration rendues rigoureuses ; là où l'analyse devient adulte.</li>
+<li><a href="pure-complex-analysis.html">Analyse complexe</a> — la rigidité miraculeuse des fonctions holomorphes, des intégrales de contour à la fonction zêta.</li>
+<li><a href="pure-functional-analysis.html">Analyse fonctionnelle</a> — espaces de dimension infinie, opérateurs, et les mathématiques sous la mécanique quantique.</li>
+<li><a href="pure-topology.html">Topologie</a> — la géométrie de la continuité : surfaces, groupes fondamentaux, points fixes et nœuds.</li>
+<li><a href="pure-geometry.html">Géométrie</a> — des cercles d'Euclide à la courbure puis aux courbes algébriques ; la plus ancienne conversation des mathématiques.</li>
+<li><a href="pure-combinatorics.html">Combinatoire et théorie des graphes</a> — compter, colorier, relier ; l'art du fini.</li>
+<li><a href="pure-category-theory.html">Théorie des catégories</a> — les mathématiques des mathématiques : objets, flèches et propriétés universelles.</li>
+</ul>
+
+<h2 id="applied">Mathématiques appliquées</h2>
+<p>Les mathématiques poursuivies parce que le monde n'arrête pas de poser des questions.</p>
+<ul>
+<li><a href="applied-calculus.html">Calcul différentiel et intégral</a> — la porte d'entrée du site : limites, dérivées, intégrales et séries, démontrées dès le départ.</li>
+<li><a href="applied-probability.html">Probabilités</a> — les mathématiques de l'incertain, des dés aux marches aléatoires et aux martingales.</li>
+<li><a href="applied-statistics.html">Statistique</a> — l'inférence sous incertitude : estimation, tests, et ce qu'un intervalle de confiance dit vraiment.</li>
+<li><a href="applied-ode.html">Équations différentielles et systèmes dynamiques</a> — le mouvement, la stabilité et la découverte du chaos.</li>
+<li><a href="applied-pde.html">Équations aux dérivées partielles</a> — la chaleur, les ondes et les fluides ; les équations dans lesquelles le monde physique est écrit.</li>
+<li><a href="applied-numerical.html">Analyse numérique</a> — calculer avec démonstration : erreur, stabilité, et pourquoi la virgule flottante vous ment.</li>
+<li><a href="applied-optimization.html">Optimisation et théorie des jeux</a> — le meilleur choix possible, seul ou face à un adversaire.</li>
+<li><a href="applied-discrete-cs.html">Mathématiques discrètes et informatique</a> — les mathématiques du calcul : algorithmes, complexité et indécidabilité.</li>
+<li><a href="applied-crypto.html">Cryptographie et théorie de l'information</a> — secrets et signaux : secret parfait, RSA, entropie et capacité d'un canal.</li>
+<li><a href="applied-physics.html">Physique mathématique</a> — moindre action, mécanique quantique et relativité, démontrées plutôt qu'affirmées.</li>
+</ul>
+
+<h2>Collections spéciales</h2>
+<ul>
+<li><a href="puzzles.html"><b>Casse-tête</b></a> — neuf boules et une balance, cent
+prisonniers et cent boîtes, des chapeaux, des mèches et des traversées de rivière.
+Un casse-tête est un théorème déguisé ; chacun est ici accompagné des mathématiques
+qui s'y cachent.</li>
+<li><a href="open-problems.html"><b>Problèmes ouverts et frontières de la recherche</b></a> —
+les problèmes du prix du millénaire avec des variantes réellement abordables, une
+section approfondie sur la conjecture de Collatz, les grands problèmes ouverts
+classiques, et les murs qui sont récemment tombés.</li>
+<li><a href="proofs.html"><b>L'art de la démonstration</b></a> — le métier lui-même :
+les techniques, le canon (le problème de Bâle, l'infinité des nombres premiers, la
+diagonale de Cantor), et comment écrire des mathématiques que d'autres peuvent
+lire.</li>
+<li><a href="resources.html"><b>Ressources</b></a> — la liste maîtresse des cours,
+livres, essais et archives de problèmes cités à travers le site.</li>
+</ul>
+
+<hr>
+<h2>Les niveaux</h2>
+<table>
+<tr><th>Étiquette</th><th>Signification</th></tr>
+<tr><td>[Lycée]</td><td>Aucune connaissance au-delà des mathématiques du lycée n'est supposée ; des démonstrations complètes restent attendues.</td></tr>
+<tr><td>[Licence]</td><td>Mathématiques universitaires standard : analyse, algèbre, mathématiques discrètes.</td></tr>
+<tr><td>[Master]</td><td>Suppose un premier cours de niveau master dans le domaine ; peut exiger la lecture d'un article.</td></tr>
+<tr><td>[Recherche]</td><td>Ouvert, ou résolu tout récemment, à la frontière. Personne ne vous attend pour vous noter — c'est précisément le but.</td></tr>
+</table>
+
+<p><i>« La connaissance que vise la géométrie est celle de ce qui est éternel. »</i>
+— Platon, <i>La République</i>, livre VII.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses. Construit simplement,
+et volontairement : du HTML, une petite feuille de style, et un interrupteur.</p>
+</footer>
+</body>
+</html>

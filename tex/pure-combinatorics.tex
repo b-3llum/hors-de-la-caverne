@@ -1,0 +1,1102 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Combinatoire et théorie des graphes}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Lycée}
+
+\begin{problem}[{Classiques du principe des tiroirs --- Lycée}]
+\textbf{CMB-01.} \textbf{Problème.} Le principe des tiroirs dit : si l'on range plus de $ n $ objets dans
+$ n $ tiroirs, un tiroir en contient au moins deux. Servez-vous-en pour démontrer :
+\begin{enumerate}
+\item[(a)] parmi $ n+1 $ entiers quelconques choisis dans $ \{1, 2, \dots, 2n\} $, deux sont
+consécutifs, donc deux sont premiers entre eux ;
+\item[(b)] parmi $ n+1 $ entiers quelconques choisis dans $ \{1, 2, \dots, 2n\} $, l'un divise un
+autre ;
+\item[(c)] parmi $ n+1 $ points quelconques d'un triangle équilatéral de côté 2, deux sont à distance
+au plus $ 2/\sqrt{n} $\dots{} en fait, démontrez le cas propre : parmi 5 points quelconques d'un
+triangle équilatéral de côté 2, deux sont à distance au plus 1 l'un de l'autre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Dirichlet a utilisé ce principe dans les années 1830--1840 (il l'appelait
+\textit{Schubfachprinzip}, \og{} principe des tiroirs \fg{}) pour démontrer des faits profonds sur
+l'approximation des irrationnels par des fractions. Les questions (a) et (b) étaient des
+favorites de Paul Erdős, qui aimait tester les enfants prodiges avec (b) --- le jeune Lajos Pósa
+l'aurait résolue pendant le dîner. Le principe a l'air d'une trivialité ; apprendre tout ce qu'on
+peut lui faire porter est une première leçon de levier mathématique.
+
+\begin{refs}
+\item Contexte : Principe des tiroirs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_des_tiroirs})
+\item Lecture : M. Aigner et G. M. Ziegler, \textit{Proofs from THE BOOK}, ch. \og{} Pigeon-hole and double counting \fg{}
+\item Lecture : M. Bóna, \textit{A Walk Through Combinatorics}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Dénombrer les sous-ensembles, avec démonstration --- Lycée}]
+\textbf{CMB-02.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez qu'un ensemble à $ n $ éléments a exactement $ 2^n $ sous-ensembles --- donnez
+deux démonstrations véritablement différentes, l'une par construction d'une bijection avec les
+mots binaires, l'autre par récurrence.
+\item[(b)] Démontrez que $ \binom{n}{0} + \binom{n}{1} + \cdots + \binom{n}{n} = 2^n $ en expliquant
+ce que dénombrent les deux membres.
+\item[(c)] Démontrez que pour $ n \ge 1 $ exactement la moitié des sous-ensembles sont de cardinal
+pair, autrement dit $ \binom{n}{0} - \binom{n}{1} + \binom{n}{2} - \cdots \pm \binom{n}{n} = 0 $,
+en exhibant une bijection entre les sous-ensembles de cardinal pair et ceux de cardinal
+impair.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les coefficients binomiaux sont anciens --- la prosodie indienne de Pingala
+(vers 200 av. J.-C.), le triangle \og{} de Pascal \fg{} connu en Chine (Yang Hui, XIIIe siècle)
+et en Perse (al-Karaji, vers l'an mille) bien avant le traité de Pascal de 1654. Le vrai contenu
+de ce problème est méthodologique : une identité combinatoire se démontre au mieux en faisant
+compter la même chose aux deux membres, et un énoncé de parité par un appariement. Ces deux
+gestes --- le double comptage et la bijection --- sont le pain quotidien du domaine.
+
+\begin{refs}
+\item Contexte : Coefficient binomial --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Coefficient_binomial})
+\item Lecture : M. Bóna, \textit{A Walk Through Combinatorics}, ch. 3--4
+\item Cours : MIT OCW 6.042J Mathematics for Computer Science (\url{https://ocw.mit.edu/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le lemme des poignées de main --- Lycée}]
+\textbf{CMB-03.} \textbf{Problème.} Un graphe est un ensemble de sommets dont certaines paires sont jointes par
+des arêtes ; le degré d'un sommet est le nombre d'arêtes qui y aboutissent.
+\begin{enumerate}
+\item[(a)] Démontrez le lemme des poignées de main : la somme de tous les degrés vaut le double du
+nombre d'arêtes, de sorte que dans toute soirée le nombre de personnes ayant serré un nombre
+impair de mains est pair.
+\item[(b)] Démontrez que dans toute soirée de $ n \ge 2 $ personnes, deux invités ont serré le même
+nombre de mains au sein de la soirée.
+\item[(c)] Montrez par un exemple que (b) peut tomber en défaut si l'on exige le \og{} même nombre \fg{} pour
+\textit{trois} invités.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le lemme des poignées de main est implicite dans l'article de 1736 d'Euler sur
+Königsberg --- le premier théorème de la théorie des graphes, démontré avant que le mot \og{} graphe \fg{}
+n'existe (le nom vient de Sylvester, en 1878). La question (b) est un exercice classique
+d'application du principe des tiroirs aux graphes, avec une petite subtilité qui vous force à
+regarder de près les degrés extrêmes 0 et $ n-1 $. Compter un ensemble de choses de deux
+manières, comme en (a), ne cesse jamais d'être utile.
+
+\begin{refs}
+\item Contexte : Lemme des poignées de main --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_des_poign%C3%A9es_de_main})
+\item Lecture : D. West, \textit{Introduction to Graph Theory}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'échiquier mutilé --- Lycée}]
+\textbf{CMB-04.} \textbf{Problème.} Retirez deux cases d'angle diagonalement opposées d'un
+échiquier ordinaire $ 8 \times 8 $. Démontrez que les 62 cases restantes ne peuvent pas être
+pavées par 31 dominos couvrant chacun deux cases adjacentes. Démontrez ensuite le théorème plus
+fin de Gomory : si vous retirez à la place une case noire quelconque et une case blanche
+quelconque, les 62 cases restantes \textit{peuvent} toujours être pavées.
+\end{problem}
+
+\noindent Popularisé par Max Black (1946) puis par les chroniques de Martin Gardner,
+l'échiquier mutilé est l'exemple canonique d'argument par invariant : une seule quantité bien
+choisie, inchangée par chaque coup légal, tue d'un coup une infinité de pavages candidats. C'est
+aussi une pierre de touche en intelligence artificielle et en théorie de la démonstration --- John
+McCarthy l'a proposé comme défi aux démonstrateurs automatiques précisément parce que la
+démonstration humaine tient en une phrase et que la recherche exhaustive est astronomique.
+
+\begin{refs}
+\item Contexte : Problème de l'échiquier mutilé --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_l%27%C3%A9chiquier_mutil%C3%A9})
+\item Lecture : M. Aigner et G. M. Ziegler, \textit{Proofs from THE BOOK}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Pavages par triominos --- Lycée}]
+\textbf{CMB-05.} \textbf{Problème.} Un triomino en L est la forme faite de trois carrés unités
+disposés en L. Démontrez que pour tout $ n \ge 1 $, un plateau $ 2^n \times 2^n $ privé d'une
+case quelconque peut être pavé par des triominos en L. Décidez ensuite, avec démonstration : pour
+quelles positions de la case retirée un plateau $ 5 \times 5 $ privé d'une case peut-il être
+pavé par des triominos en L ?
+\end{problem}
+
+\noindent Le résultat sur les plateaux $ 2^n \times 2^n $ est dû à Solomon Golomb
+(1954), qui a forgé le mot \og{} polyomino \fg{} et lancé une petite industrie de mathématiques du pavage
+que Martin Gardner a portée jusqu'à des millions de lecteurs. La démonstration attendue est un
+bijou de manuel sur la récurrence --- le pas inductif contient une idée véritablement créative, et
+la trouver est tout l'enjeu. La partie $ 5 \times 5 $ montre qu'à côté des constructions
+astucieuses il faut des arguments de coloration (CMB-04) pour démontrer une impossibilité.
+
+\begin{refs}
+\item Contexte : Triomino --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Triomino})
+\item Contexte : Polyomino --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Polyomino})
+\item Lecture : M. Bóna, \textit{A Walk Through Combinatorics}, ch. 2 (récurrence)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Chemins dans un réseau, étoiles et barres --- Lycée}]
+\textbf{CMB-06.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez que le nombre de plus courts chemins de $ (0,0) $ à $ (m,n) $ par pas unités
+vers la droite ou vers le haut vaut $ \binom{m+n}{n} $, au moyen d'une bijection explicite avec
+des mots.
+\item[(b)] Démontrez le théorème des \og{} étoiles et barres \fg{} : le nombre de façons d'écrire $ n $ comme
+somme ordonnée de $ k $ entiers positifs ou nuls vaut $ \binom{n+k-1}{k-1} $.
+\item[(c)] Utilisez (a) pour démontrer l'identité $ \binom{m+n}{n} = \sum_i \binom{m}{i}\binom{n}{i} $\dots{}
+non --- démontrez plutôt la relation de Pascal, plus simple,
+$ \binom{m+n}{n} = \binom{m+n-1}{n} + \binom{m+n-1}{n-1} $, en partageant les chemins selon leur
+dernier pas.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le dénombrement de chemins est la porte la plus accueillante vers
+l'énumération sérieuse : la même figure démontre la relation de Pascal, l'identité de Vandermonde
+(CMB-07) et --- après une astuce de réflexion --- le théorème du scrutin et les nombres de Catalan
+(CMB-09). La méthode des étoiles et des barres fut popularisée par le classique de probabilités
+de William Feller (1950) ; c'est le calcul d'occupation qui sous-tend une bonne part de la
+mécanique statistique.
+
+\begin{refs}
+\item Contexte : Chemin dans un réseau --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chemin_dans_un_r%C3%A9seau})
+\item Contexte : Méthode des étoiles et des barres --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_des_%C3%A9toiles_et_des_barres})
+\item Lecture : M. Bóna, \textit{A Walk Through Combinatorics}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Deux personnes ayant le même nombre d'amis --- Lycée, short}]
+\textbf{CMB-27.} \textbf{Problème.} Démontrez que dans tout groupe de $ n \geq 2 $ personnes, au moins deux d'entre elles ont le même nombre d'amis au sein du groupe (l'amitié étant réciproque).
+\end{problem}
+
+\noindent Le principe des tiroirs marche presque immédiatement --- il y a $ n $ personnes et $ n $ nombres d'amis possibles, de $ 0 $ à $ n-1 $ --- et tout le problème consiste à remarquer que $ 0 $ et $ n-1 $ ne peuvent pas coexister. Cette observation, et non le principe des tiroirs lui-même, est le contenu mathématique.
+
+\begin{refs}
+\item Contexte : Principe des tiroirs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_des_tiroirs})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une poignée de main qui doit être paire --- Lycée, short}]
+\textbf{CMB-28.} \textbf{Problème.} Démontrez que dans tout graphe fini le nombre de sommets de degré impair est pair. Servez-vous-en ensuite pour montrer qu'il est impossible qu'exactement neuf personnes à une soirée serrent chacune la main d'exactement trois autres.
+\end{problem}
+
+\noindent Le lemme des poignées de main est le premier théorème de la théorie des graphes et découle du décompte des extrémités d'arêtes de deux façons, technique --- le double comptage --- qui continuera de rapporter des années durant. L'application illustre l'habitude utile : une démonstration d'impossibilité obtenue en trouvant un invariant que la configuration souhaitée devrait violer.
+
+\begin{refs}
+\item Contexte : Lemme des poignées de main --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_des_poign%C3%A9es_de_main})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Des poignées de main qui ne se croisent jamais --- Lycée, short}]
+\textbf{CMB-35.} \textbf{Problème.} Placez $ 2n $ personnes en des points distincts d'un cercle et appariez-les, chacune serrant la main d'exactement une autre ; tracez chaque poignée de main comme une corde rectiligne. Démontrez que le nombre de tels appariements où deux cordes ne se croisent jamais est le nombre de Catalan $ C_n = \frac{1}{n+1}\binom{2n}{n} $.
+\end{problem}
+
+\noindent Les diagrammes de cordes non croisées sont un membre de plus de l'énorme famille dénombrée par les nombres de Catalan --- le livre que Richard Stanley leur a consacré recense 214 interprétations combinatoires, et celle-ci ne figure pas parmi les trois de CMB-09, si bien qu'il vous faut la relier aux autres par un argument que vous trouverez vous-même. Les deux voies fonctionnent : construire une bijection avec les parenthésages équilibrés, ou découvrir la récurrence en se demandant ce que la corde d'une personne donnée fait au reste du cercle. Les structures non croisées ne sont pas une curiosité : le treillis des partitions non croisées, dégagé par Germain Kreweras en 1972, s'est révélé des décennies plus tard être l'ossature combinatoire des probabilités libres.
+
+\begin{refs}
+\item Contexte : Nombre de Catalan --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Nombre_de_Catalan})
+\item Contexte : Partition non croisée --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Partition_non_crois%C3%A9e})
+\item Lecture : R. P. Stanley, \textit{Catalan Numbers} (2015)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Dénombrer les colorations : chemins, cycles, arbres --- Lycée}]
+\textbf{CMB-36.} \textbf{Problème.} Pour un graphe fini $ G $ à $ n $ sommets et un entier strictement positif $ k $, soit $ P_G(k) $ le nombre de façons de donner à chaque sommet l'une de $ k $ couleurs de sorte que deux sommets adjacents reçoivent toujours des couleurs différentes.
+\begin{enumerate}
+\item[(a)] Démontrez que $ P_T(k) = k(k-1)^{n-1} $ pour tout arbre $ T $ à $ n $ sommets.
+\item[(b)] Démontrez que pour le cycle $ C_n $ avec $ n \ge 3 $,
+\[ P_{C_n}(k) = (k-1)^n + (-1)^n (k-1). \]
+\item[(c)] Démontrez la règle de suppression--contraction : pour toute arête $ e $ de $ G $,
+\[ P_G(k) = P_{G-e}(k) - P_{G/e}(k), \]
+où $ G-e $ est $ G $ privé de $ e $ et $ G/e $ est $ G $ dont les deux extrémités de $ e $ ont été fusionnées en un seul sommet.
+\item[(d)] Déduisez de (c), par récurrence sur le nombre d'arêtes, que $ P_G(k) $ coïncide avec un polynôme en $ k $ de degré $ n $, de coefficient dominant 1, dont les coefficients alternent en signe, et confrontez-y votre formule de (b).
+\end{enumerate}
+
+\end{problem}
+
+\noindent George Birkhoff introduisit cette fonction de dénombrement en 1912 avec un espoir précis : si l'on parvenait à montrer que $ P_G(4) > 0 $ pour tout $ G $ planaire, le théorème des quatre couleurs (CMB-17) découlerait de l'algèbre plutôt que d'une analyse de cas. L'espoir a échoué, mais le polynôme chromatique a survécu et prospéré --- Hassler Whitney a dégagé le sens de ses coefficients en 1932, et en 1968 Ronald Read a conjecturé qu'ils croissent toujours puis décroissent sans creux. Cette conjecture d'apparence innocente a tenu quarante-quatre ans, jusqu'à ce que June Huh démontre en 2012 la log-concavité qui la sous-tend au moyen de la géométrie algébrique, travaux qui ont contribué à sa médaille Fields de 2022. Tout ce problème se traite au crayon ; l'objet qu'il produit a été trois fois une frontière de la recherche.
+
+\begin{refs}
+\item Contexte : Polynôme chromatique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Polyn%C3%B4me_chromatique})
+\item Contexte : Formule de suppression--contraction --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Deletion%E2%80%93contraction_formula})
+\item Lecture : D. West, \textit{Introduction to Graph Theory}, ch. 5
+\end{refs}
+
+\bigskip
+
+
+\section*{Licence}
+
+\begin{problem}[{Des identités par double comptage --- Licence}]
+\textbf{CMB-07.} \textbf{Problème.} Démontrez chaque identité en expliquant ce que dénombrent les deux membres ---
+aucune algèbre autorisée.
+\begin{enumerate}
+\item[(a)] L'identité du comité et de son président : $ k\binom{n}{k} = n\binom{n-1}{k-1} $.
+\item[(b)] L'identité de Vandermonde :
+$ \binom{m+n}{k} = \sum_{j=0}^{k} \binom{m}{j}\binom{n}{k-j} $.
+\item[(c)] L'identité de la crosse de hockey :
+$ \sum_{j=r}^{n} \binom{j}{r} = \binom{n+1}{r+1} $.
+\item[(d)] Déduisez de (b) que $ \sum_{j=0}^{n} \binom{n}{j}^2 = \binom{2n}{n} $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Vandermonde publia son identité en 1772 (elle était connue en Chine de Zhu Shijie
+dès 1303). Le contenu profond est philosophique : une démonstration bijective ou par double
+comptage explique \textit{pourquoi} une identité est vraie, là où une vérification algébrique se
+contente de la certifier. L'étalon moderne de ce style est le livre \textit{Proofs that Really Count}
+de Benjamin et Quinn ; les combinatoriciens tiennent, à demi sérieusement, une identité pour
+inachevée tant qu'elle n'a pas de démonstration par dénombrement.
+
+\begin{refs}
+\item Contexte : Identité de Vandermonde --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Identit%C3%A9_de_Vandermonde})
+\item Contexte : Preuve par double dénombrement --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Preuve_par_double_d%C3%A9nombrement})
+\item Lecture : M. Aigner et G. M. Ziegler, \textit{Proofs from THE BOOK}, ch. \og{} Pigeon-hole and double counting \fg{}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Inclusion--exclusion et le problème des chapeaux --- Licence}]
+\textbf{CMB-08.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez le principe d'inclusion-exclusion pour $ n $ ensembles finis.
+\item[(b)] Un dérangement est une permutation sans point fixe. Démontrez que le nombre $ D_n $ de
+dérangements de $ n $ objets vaut
+\[ D_n = n! \sum_{k=0}^{n} \frac{(-1)^k}{k!}, \]
+et déduisez-en que $ D_n $ est l'entier le plus proche de $ n!/e $ pour $ n \ge 1 $.
+\item[(c)] Concluez la limite célèbre : si l'on rend au hasard leurs chapeaux à $ n $ invités, la
+probabilité que personne ne récupère le sien tend vers $ 1/e $ --- et notez la rapidité de la
+convergence.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Pierre Rémond de Montmort posa le problème des rencontres en 1708 dans son
+analyse du jeu de cartes du \textit{treize}, et le résolut avec Nicolas Bernoulli ; on l'appelle
+souvent le premier problème de probabilités combinatoires. Que la réponse se stabilise près de
+$ 1/e $ dès $ n = 7 $ surprend les joueurs de cartes depuis trois siècles.
+L'inclusion-exclusion elle-même, sous l'habit arithmétique de la fonction de Möbius, est une bête
+de somme dans toutes les mathématiques.
+
+\begin{refs}
+\item Contexte : Principe d'inclusion-exclusion --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_d%27inclusion-exclusion})
+\item Contexte : Problème des rencontres (dérangements) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_des_rencontres})
+\item Lecture : J. H. van Lint et R. M. Wilson, \textit{A Course in Combinatorics}, ch. 10
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les nombres de Catalan de trois façons --- Licence}]
+\textbf{CMB-09.} \textbf{Problème.} Posez $ C_n = \frac{1}{n+1}\binom{2n}{n} $. Démontrez que chacune des
+familles suivantes est dénombrée par $ C_n $, en montrant que toutes trois satisfont la même
+récurrence $ C_{n+1} = \sum_{k=0}^{n} C_k C_{n-k} $ avec $ C_0 = 1 $, ou mieux, au moyen de
+bijections explicites entre elles :
+\begin{enumerate}
+\item[(a)] les mots équilibrés de $ n $ parenthèses ouvrantes et $ n $ parenthèses fermantes dont
+aucun préfixe ne contient plus de fermantes que d'ouvrantes ;
+\item[(b)] les triangulations par diagonales d'un $ (n+2) $-gone convexe ;
+\item[(c)] les arbres binaires à $ n $ nœuds internes. Démontrez ensuite directement la forme close
+$ C_n = \frac{1}{n+1}\binom{2n}{n} $ par la méthode de réflexion ou par un argument de décalage
+cyclique.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler dénombra les triangulations dans les années 1750, dans sa correspondance
+avec Segner ; Eugène Catalan y attacha son nom en 1838 avec la formulation par parenthèses ;
+l'élégant argument de réflexion est dû à Désiré André (1887). L'\textit{Enumerative Combinatorics} de
+Richard Stanley recense fameusement plus de 200 familles dénombrées par $ C_n $ --- les nombres de
+Catalan sont le rêve récurrent du domaine. La vraie leçon est structurelle : pour démontrer que
+deux familles sont équipotentes, trouvez soit une récurrence commune, soit une bijection, et la
+bijection vous apprend toujours davantage.
+
+\begin{refs}
+\item Contexte : Nombre de Catalan --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Nombre_de_Catalan})
+\item Lecture : M. Bóna, \textit{A Walk Through Combinatorics}, ch. 8
+\item Cours : MIT OCW 18.212 Algebraic Combinatorics (\url{https://ocw.mit.edu/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Séries génératrices : Fibonacci et partitions --- Licence}]
+\textbf{CMB-10.} \textbf{Problème.} (a) Soient $ F_0 = 0, F_1 = 1, F_{n+1} = F_n + F_{n-1} $.
+Montrez que la série génératrice $ \sum_{n\ge 0} F_n x^n $ vaut $ x/(1 - x - x^2) $, et
+obtenez-en la formule de Binet
+\[ F_n = \frac{\varphi^n - \psi^n}{\sqrt{5}}, \qquad \varphi = \frac{1+\sqrt{5}}{2},
+\ \psi = \frac{1-\sqrt{5}}{2}. \]
+(b) Démontrez l'identité des partitions d'Euler : le nombre de façons d'écrire $ n $ comme somme
+d'entiers strictement positifs distincts est égal au nombre de façons de l'écrire comme somme
+d'entiers impairs strictement positifs, en manipulant les séries génératrices sous forme de
+produits $ \prod_k (1+x^k) $ et $ \prod_k (1-x^{2k-1})^{-1} $ --- puis trouvez-en aussi une
+démonstration bijective.
+\end{problem}
+
+\noindent Les séries génératrices --- \og{} une corde à linge où l'on suspend une suite de
+nombres pour la donner à voir \fg{}, selon la formule de Herbert Wilf --- ont été forgées par Euler, dont
+l'\textit{Introductio} de 1748 utilisait exactement les produits de (b) pour fonder la théorie des
+partitions. De Moivre s'en était servi encore plus tôt (1730) pour les récurrences de type
+Fibonacci. La technique convertit la combinatoire en algèbre et en analyse ; poussée plus loin,
+elle devient la théorie de la combinatoire analytique de Flajolet et Sedgewick, qui lit les
+asymptotiques sur les singularités de ces séries.
+
+\begin{refs}
+\item Contexte : Série génératrice --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9rie_g%C3%A9n%C3%A9ratrice})
+\item Contexte : Partition d'un entier --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Partition_d%27un_entier})
+\item Lecture : P. Flajolet et R. Sedgewick, \textit{Analytic Combinatorics}, librement accessible en ligne (\url{https://ac.cs.princeton.edu/home/}), partie A
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Ramsey : R(3,3) = 6 --- Licence}]
+\textbf{CMB-11.} \textbf{Problème.} Coloriez en rouge ou en bleu chaque arête du graphe complet à $ n $
+sommets.
+\begin{enumerate}
+\item[(a)] Démontrez que pour $ n = 6 $ il existe toujours un triangle monochrome.
+\item[(b)] Exhibez une coloration de $ K_5 $ sans triangle monochrome, de sorte que
+$ R(3,3) = 6 $.
+\item[(c)] Démontrez le théorème de Ramsey général à deux couleurs : pour tous $ s, t $ il existe un
+$ R(s,t) $ fini, avec $ R(s,t) \le R(s-1,t) + R(s,t-1) $, et déduisez-en
+$ R(s,s) \le \binom{2s-2}{s-1} \le 4^s $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Frank Ramsey démontra son théorème en 1930, dans un article de logique
+formelle, et mourut la même année à 26 ans ; Erdős et Szekeres le redécouvrirent en 1935 et en
+firent une discipline. La question (a) est le \og{} problème de la soirée \fg{} : parmi six personnes
+quelconques, trois se connaissent mutuellement ou trois sont mutuellement étrangères. Le slogan du
+théorème, dû à Motzkin, est que le désordre complet est impossible --- et savoir à quel point
+\og{} assez grand \fg{} doit être grand est la grande question ouverte de CMB-22.
+
+\begin{refs}
+\item Contexte : Théorème de Ramsey --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ramsey})
+\item Contexte : Théorème des amis et des étrangers --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_amis_et_des_%C3%A9trangers})
+\item Lecture : J. H. van Lint et R. M. Wilson, \textit{A Course in Combinatorics}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Erdős--Szekeres --- Licence}]
+\textbf{CMB-12.} \textbf{Problème.} (a) Démontrez le théorème d'Erdős--Szekeres : toute suite de
+$ mn + 1 $ réels distincts contient une sous-suite croissante de longueur $ m + 1 $ ou une
+sous-suite décroissante de longueur $ n + 1 $. (Deux démonstrations valent d'être connues :
+l'une par le principe des tiroirs appliqué à des étiquettes bien choisies, l'autre par des
+décompositions en chaînes à la Dilworth.) (b) Montrez que la borne est optimale : exhibez une
+suite de $ mn $ nombres distincts sans sous-suite croissante de longueur $ m+1 $ ni
+sous-suite décroissante de longueur $ n+1 $.
+\end{problem}
+
+\noindent Ce résultat figure dans l'article d'Erdős et Szekeres de 1935 qui redécouvrait
+le théorème de Ramsey, motivé par le \og{} happy ending problem \fg{} d'Esther Klein sur les points en
+position convexe (ainsi nommé parce que Klein et Szekeres se sont mariés). La démonstration en une
+ligne par le principe des tiroirs, trouvée plus tard par Seidenberg (1959), est une sérieuse
+candidate au titre d'argument le plus élégant de la combinatoire. L'énoncé est aussi un poteau
+indicateur vers l'asymptotique de la plus longue sous-suite croissante, l'une des histoires les
+plus profondes des probabilités modernes.
+
+\begin{refs}
+\item Contexte : Théorème d'Erdős-Szekeres --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Erd%C5%91s-Szekeres})
+\item Contexte : Happy Ending problem --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Happy_Ending_problem})
+\item Lecture : M. Bóna, \textit{A Walk Through Combinatorics}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème des mariages de Hall --- Licence}]
+\textbf{CMB-13.} \textbf{Problème.} Soit $ G $ un graphe biparti de parties $ X $ et $ Y $. Pour
+$ S \subseteq X $, notez $ N(S) $ l'ensemble des sommets de $ Y $ adjacents à un sommet de
+$ S $. Démontrez le théorème de Hall : $ G $ admet un couplage couvrant tout $ X $ si et
+seulement si $ |N(S)| \ge |S| $ pour tout $ S \subseteq X $. Déduisez-en :
+\begin{enumerate}
+\item[(a)] tout graphe biparti $ k $-régulier ($ k \ge 1 $) admet un couplage parfait, et ses arêtes
+se partagent en $ k $ couplages parfaits disjoints ;
+\item[(b)] étant donné un jeu standard de 52 cartes distribué en 13 tas de 4, on peut toujours choisir
+une carte dans chaque tas de façon à obtenir exactement une carte de chaque valeur.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Philip Hall démontra le théorème en 1935, dans le langage des \og{} systèmes de
+représentants distincts \fg{} ; la métaphore matrimoniale (chaque femme peut-elle épouser un homme
+qu'elle connaît ?) est de Hermann Weyl. C'est la source de la théorie des couplages, et le
+théorème est équivalent, par de courts arguments, au théorème de Kőnig (CMB-21), au théorème de
+Dilworth et au théorème de Menger --- une toile d'équivalences que tout combinatoricien finit par
+cartographier. L'application (b) était un tour de société favori du domaine bien avant que les
+marchés d'appariement en ligne ne rendent le théorème industriellement pertinent.
+
+\begin{refs}
+\item Contexte : Théorème de Hall --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Hall})
+\item Lecture : D. West, \textit{Introduction to Graph Theory}, ch. 3
+\item Lecture : J. H. van Lint et R. M. Wilson, \textit{A Course in Combinatorics}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Circuits eulériens et les ponts de Königsberg --- Licence}]
+\textbf{CMB-14.} \textbf{Problème.} Un circuit eulérien dans un graphe est une marche fermée empruntant chaque
+arête exactement une fois.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème d'Euler : un graphe connexe (boucles et arêtes multiples autorisées)
+admet un circuit eulérien si et seulement si tout sommet est de degré pair, et admet un chemin
+eulérien entre deux sommets distincts si et seulement si ce sont exactement ces deux sommets qui
+sont de degré impair.
+\item[(b)] Appliquez-le au plan de Königsberg de 1736 --- quatre masses de terre, sept ponts --- et à la
+question : pour quels $ n $ un crayon peut-il tracer le graphe complet $ K_n $ sans se lever
+ni repasser sur un trait ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'article d'Euler de 1736, \textit{Solutio problematis ad geometriam situs
+pertinentis}, est l'acte de naissance de la théorie des graphes --- il y démontra le sens
+nécessaire et affirma la suffisance, que Hierholzer démontra rigoureusement en 1873. La
+\og{} géométrie de position \fg{} qu'Euler entrevoyait est devenue à la fois la topologie et la
+combinatoire. Notez le contraste net avec le problème du circuit hamiltonien, superficiellement
+semblable (passer une fois par chaque \textit{sommet}), pour lequel aucune caractérisation efficace
+n'est connue --- ce contraste est une porte d'entrée vers la complexité algorithmique.
+
+\begin{refs}
+\item Contexte : Graphe eulérien (chemin eulérien) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Graphe_eul%C3%A9rien})
+\item Contexte : Problème des sept ponts de Königsberg --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_des_sept_ponts_de_K%C3%B6nigsberg})
+\item Lecture : D. West, \textit{Introduction to Graph Theory}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La formule de Cayley --- Licence}]
+\textbf{CMB-15.} \textbf{Problème.} Démontrez la formule de Cayley : le nombre d'arbres
+étiquetés à $ n $ sommets vaut $ n^{\,n-2} $. Donnez au moins une démonstration complète --- la
+bijection de Prüfer entre les arbres et les suites de $ \{1,\dots,n\}^{n-2} $ est la voie
+classique --- puis lisez (ou reconstituez) une seconde démonstration véritablement différente,
+comme le double comptage des forêts enracinées dû à Pitman. Vérifiez la formule à la main pour
+$ n = 3, 4 $.
+\end{problem}
+
+\noindent Cayley énonça la formule en 1889, motivé par le dénombrement des isomères
+chimiques ; Borchardt l'avait pour l'essentiel démontrée en 1860, et la limpide démonstration
+bijective est celle de Prüfer (1918). C'est le premier exemple standard de la puissance de
+l'énumération bijective, et \textit{Proofs from THE BOOK} lui consacre un chapitre de quatre
+démonstrations différentes --- les lire côte à côte est une leçon magistrale de style mathématique.
+Via le théorème matrice-arbre de Kirchhoff, la formule relie aussi les arbres à l'algèbre linéaire
+et aux réseaux électriques.
+
+\begin{refs}
+\item Contexte : Formule de Cayley --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_de_Cayley})
+\item Contexte : Codage de Prüfer --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Codage_de_Pr%C3%BCfer})
+\item Lecture : M. Aigner et G. M. Ziegler, \textit{Proofs from THE BOOK}, ch. \og{} Cayley's formula for the number of trees \fg{}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Planarité : la formule d'Euler à l'œuvre --- Licence}]
+\textbf{CMB-16.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez la formule d'Euler : un graphe plan connexe à $ V $ sommets, $ E $ arêtes et
+$ F $ faces vérifie $ V - E + F = 2 $.
+\item[(b)] Déduisez-en qu'un graphe planaire simple à $ n \ge 3 $ sommets a au plus $ 3n - 6 $
+arêtes, et au plus $ 2n - 4 $ s'il ne contient aucun triangle.
+\item[(c)] Concluez que $ K_5 $ et $ K_{3,3} $ ne sont pas planaires, et que tout graphe planaire a
+un sommet de degré au plus 5.
+\item[(d)] Énoncez le théorème de Kuratowski --- un graphe est planaire si et seulement s'il ne contient
+aucune subdivision de $ K_5 $ ni de $ K_{3,3} $ --- et expliquez soigneusement pourquoi (c) n'en
+démontre que le sens facile.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler annonça la formule des polyèdres en 1750 (\og{} il m'étonne que personne
+d'autre ne l'ait remarquée \fg{}) ; sa forme en théorie des graphes est l'outil le plus utile des
+arguments de planarité. $ K_{3,3} $ est le vieux casse-tête des \og{} trois maisons, trois
+services \fg{}. Le théorème de Kuratowski (1930) fut un jalon précoce de la vision structurelle des
+graphes qui a culminé dans le projet des mineurs de graphes de Robertson et Seymour --- et la
+question (d) enseigne l'habitude cruciale de repérer quel sens d'une équivalence on a réellement
+démontré.
+
+\begin{refs}
+\item Contexte : Graphe planaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Graphe_planaire})
+\item Contexte : Théorème de Kuratowski --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Kuratowski})
+\item Lecture : D. West, \textit{Introduction to Graph Theory}, ch. 6
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Dénombrer les arbres sur des sommets étiquetés --- Licence, short}]
+\textbf{CMB-29.} \textbf{Problème.} Démontrez la formule de Cayley : il y a exactement $ n^{n-2} $ arbres étiquetés à $ n $ sommets. Utilisez la correspondance de Prüfer, et vérifiez que votre bijection est réellement inversible en reconstruisant l'arbre à partir d'une suite de Prüfer de votre choix pour $ n = 6 $.
+\end{problem}
+
+\noindent La formule de Cayley a de nombreuses démonstrations, et celle de Prüfer est la plus satisfaisante parce qu'elle ne se contente pas de dénombrer les arbres --- elle les nomme, en codant chacun par une suite de $ n-2 $ symboles. Vérifier l'inversibilité sur un exemple concret, c'est ce qui sépare croire qu'une bijection existe de la posséder.
+
+\begin{refs}
+\item Contexte : Formule de Cayley --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_de_Cayley})
+\item Contexte : Codage de Prüfer --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Codage_de_Pr%C3%BCfer})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une chaîne ou une antichaîne --- Licence, short}]
+\textbf{CMB-30.} \textbf{Problème.} Démontrez le théorème de Dilworth pour les ensembles ordonnés finis : le nombre minimal de chaînes nécessaires pour recouvrir l'ensemble ordonné est égal au cardinal maximal d'une antichaîne. Déduisez-en le résultat d'Erdős--Szekeres selon lequel toute suite de $ mn+1 $ réels distincts contient une sous-suite croissante de longueur $ m+1 $ ou une sous-suite décroissante de longueur $ n+1 $.
+\end{problem}
+
+\noindent Le théorème de Dilworth est une dualité min-max exactement du genre de celles qui reviennent dans toute la combinatoire et l'optimisation --- le théorème de Kőnig et le théorème flot-max/coupe-min en sont des cousins. La déduction d'Erdős--Szekeres est le moment où un énoncé abstrait de théorie des ordres produit un fait concret sur les suites.
+
+\begin{refs}
+\item Contexte : Théorème de Dilworth --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Dilworth})
+\item Voir aussi : Optimisation (\url{applied-optimization.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La méthode de la matrice de transfert --- Licence}]
+\textbf{CMB-37.} \textbf{Problème.} Soit $ D $ un graphe orienté fini sur l'ensemble de sommets $ \{1,\dots,r\} $ et soit $ A $ sa matrice d'adjacence, de sorte que $ A_{uv} $ est le nombre d'arêtes de $ u $ vers $ v $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ (A^{\ell})_{uv} $ est exactement le nombre de marches orientées de longueur $ \ell $ de $ u $ vers $ v $.
+\item[(b)] Construisez un graphe orienté sur trois sommets dont les marches de longueur $ n $ correspondent exactement aux mots binaires de longueur $ n $ ne contenant pas trois 1 consécutifs, et utilisez (a) pour démontrer que le nombre $ c_n $ de tels mots vérifie $ c_n = c_{n-1} + c_{n-2} + c_{n-3} $.
+\item[(c)] Soit $ t_n $ le nombre de pavages par dominos d'un rectangle $ 2 \times n $ et $ s_n $ le nombre de pavages d'un rectangle $ 3 \times n $. Construisez une matrice de transfert pour chacun (les états étant les profils d'une coupe verticale), et démontrez que $ t_n = t_{n-1} + t_{n-2} $ et que $ s_n = 4 s_{n-2} - s_{n-4} $ pour $ n \ge 4 $, avec $ s_n = 0 $ pour $ n $ impair.
+\item[(d)] Démontrez le principe général derrière (a)--(c) : pour tout tel $ D $, la série génératrice $ \sum_{\ell \ge 0} (A^{\ell})_{uv}\, x^{\ell} $ est une fraction rationnelle en $ x $ dont le dénominateur divise $ \det(I - xA) $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La matrice de transfert est la jumelle combinatoire d'une technique de mécanique statistique : Kramers et Wannier s'en servirent en 1941 pour organiser le modèle d'Ising bidimensionnel, et la célèbre solution exacte d'Onsager de 1944 est, au fond, un calcul de valeurs propres très difficile pour une matrice de transfert. Richard Stanley en a fait un chapitre standard de la combinatoire énumérative, où la morale de (d) est celle qu'il faut emporter : toute famille de mots qu'un automate fini reconnaît a une série génératrice rationnelle, donc sa suite de dénombrement obéit à une récurrence linéaire à coefficients constants. Cette seule phrase explique pourquoi tant de dénombrements de pavages et d'évitement de motifs se révèlent de type Fibonacci, et elle convertit une question combinatoire en un calcul d'algèbre linéaire qu'une machine peut mener à terme.
+
+\begin{refs}
+\item Contexte : Matrice d'adjacence --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Matrice_d%27adjacence})
+\item Contexte : Méthode de la matrice de transfert (mécanique statistique) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Transfer-matrix_method_(statistical_mechanics)})
+\item Contexte : Pavage par dominos --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Domino_tiling})
+\item Lecture : R. P. Stanley, \textit{Enumerative Combinatorics}, vol. 1, \S{}4.7 (la méthode de la matrice de transfert)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Sperner sur les antichaînes --- Licence, short}]
+\textbf{CMB-38.} \textbf{Problème.} Une antichaîne dans l'ensemble des parties de $ \{1,\dots,n\} $ est une famille $ \mathcal{F} $ de sous-ensembles dont aucun ne contient un autre. Démontrez l'inégalité LYM $ \sum_{A \in \mathcal{F}} \binom{n}{|A|}^{-1} \le 1 $ pour toute antichaîne, et déduisez-en le théorème de Sperner : toute antichaîne a au plus $ \binom{n}{\lfloor n/2 \rfloor} $ membres, borne atteinte par la couche médiane.
+\end{problem}
+
+\noindent Emanuel Sperner démontra cela en 1928, et c'est le théorème fondateur de la théorie extrémale des ensembles --- l'étude de la taille maximale d'une famille d'ensembles sous une contrainte de configuration interdite, ligne qui se poursuit par Erdős--Ko--Rado et le problème du tournesol de CMB-26. La démonstration en une ligne, par dénombrement des chaînes maximales passant par chaque ensemble, fut trouvée indépendamment par Yamamoto, Mechalkine, Lubell et Bollobás entre 1954 et 1966, ce qui explique que l'inégalité porte trois ou quatre initiales selon les manuels. Notez qu'il s'agit d'un théorème différent du \textit{lemme} de Sperner de CMB-20 : même mathématicien, résultats sans rapport, source durable de confusion.
+
+\begin{refs}
+\item Contexte : Théorème de Sperner (famille de Sperner) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Famille_de_Sperner})
+\item Contexte : Antichaîne --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Anticha%C3%AEne})
+\item Lecture : J. H. van Lint et R. M. Wilson, \textit{A Course in Combinatorics}, ch. 6 (théorème de Dilworth et théorie extrémale des ensembles)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Carrés latins et théorème des mariages --- Licence}]
+\textbf{CMB-39.} \textbf{Problème.} Un carré latin d'ordre $ n $ est un tableau $ n \times n $ rempli avec les symboles $ 1, \dots, n $ de sorte qu'aucun symbole ne se répète dans une ligne ni dans une colonne ; un rectangle latin $ k \times n $ est un tableau de $ k \le n $ lignes vérifiant la même condition.
+\begin{enumerate}
+\item[(a)] Démontrez que tout rectangle latin $ k \times n $ avec $ k < n $ peut être prolongé d'une ligne supplémentaire --- construisez un graphe biparti joignant les colonnes aux symboles qui y restent disponibles et vérifiez la condition de Hall (CMB-13) --- et déduisez-en le théorème de Marshall Hall selon lequel tout rectangle latin se prolonge en un carré latin.
+\item[(b)] Démontrez que le nombre de façons d'ajouter la $ (k+1) $-ième ligne est au moins $ (n-k)! $.
+\item[(c)] Deux carrés latins $ L $ et $ M $ d'ordre $ n $ sont \textit{orthogonaux} si les $ n^2 $ couples ordonnés $ (L_{ij}, M_{ij}) $ sont tous distincts. Démontrez que pour un nombre premier $ p $ les carrés $ L^{(a)}_{ij} = a i + j \bmod p $, pour $ a = 1, \dots, p-1 $, sont latins et deux à deux orthogonaux, de sorte qu'il existe $ p-1 $ carrés latins mutuellement orthogonaux d'ordre $ p $.
+\item[(d)] Démontrez qu'aucun ordre $ n \ge 2 $ n'admet plus de $ n-1 $ carrés latins mutuellement orthogonaux, si bien que la construction de (c) est optimale.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler demanda en 1782 si trente-six officiers de six grades et de six régiments pouvaient défiler en carré $ 6 \times 6 $ avec chaque grade et chaque régiment apparaissant une fois par ligne et par colonne --- soit un couple de carrés latins orthogonaux d'ordre 6. Gaston Tarry démontra par recherche exhaustive en 1900 que c'est impossible, et Euler avait conjecturé qu'aucun tel couple n'existe pour un ordre congru à 2 modulo 4. En 1959--1960, Bose, Shrikhande et Parker démolirent la conjecture pour tout ordre sauf 2 et 6, résultat qui atteignit la une du New York Times et valut aux trois le surnom de \og{} fossoyeurs d'Euler \fg{}. Le théorème de prolongement de Marshall Hall de 1945, que reconstruit la question (a), est la discrète bête de somme sous tout cela ; dénombrer les carrés latins, en revanche, reste brutal --- le nombre de ceux d'ordre 11 n'a été déterminé qu'en 2005, et celui d'ordre 12 est inconnu.
+
+\begin{refs}
+\item Contexte : Carré latin --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Carr%C3%A9_latin})
+\item Contexte : Rectangle latin --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Latin_rectangle})
+\item Article : M. Hall, \og{} An existence theorem for Latin squares \fg{}, Bulletin of the AMS 51 (1945)
+\item Lecture : J. H. van Lint et R. M. Wilson, \textit{A Course in Combinatorics}, chapitres sur les carrés latins et les tableaux orthogonaux
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{Cinq couleurs à la main, quatre à la machine --- Master}]
+\textbf{CMB-17.} \textbf{Problème.} (a) Démontrez le théorème des cinq couleurs : tout graphe
+planaire admet une coloration propre de ses sommets avec 5 couleurs. (Utilisez la formule d'Euler
+pour trouver un sommet de degré minimal, puis l'argument des chaînes alternées de Kempe.)
+(b) Problème de compréhension : étudiez l'histoire et la structure du théorème des quatre couleurs
+--- la \og{} démonstration \fg{} de Kempe en 1879, sa réfutation par Heawood en 1890 (qui en sauva les cinq
+couleurs), la démonstration assistée par ordinateur d'Appel et Haken en 1976 vérifiant près de
+2000 configurations, la démonstration plus propre de Robertson, Sanders, Seymour et Thomas en
+1997, et la vérification formelle complète de Gonthier dans l'assistant de preuve Coq (2005).
+Rédigez une prise de position de deux pages : en quel sens \textit{savons}-nous le théorème des
+quatre couleurs, et ce sens diffère-t-il de celui dans lequel nous savons le théorème des cinq
+couleurs ?
+\end{problem}
+
+\noindent La question des quatre couleurs fut posée par Francis Guthrie en 1852 alors
+qu'il coloriait une carte des comtés anglais. Sa résolution en 1976 fut le premier théorème
+majeur dont aucun humain n'a lu la démonstration en entier, allumant un débat philosophique
+(fameusement analysé par Tymoczko) que la vérification formelle n'a réglé qu'en partie. Le
+théorème des cinq couleurs est l'honnête version de salle de classe : toutes les idées y sont de
+Kempe, et il récompense une démonstration soignée à la main --- y compris le fait de voir
+exactement où l'argument casse quand on essaie de passer de 5 à 4.
+
+\begin{refs}
+\item Contexte : Théorème des cinq couleurs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_cinq_couleurs})
+\item Contexte : Théorème des quatre couleurs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_quatre_couleurs})
+\item Lecture : M. Aigner et G. M. Ziegler, \textit{Proofs from THE BOOK}, ch. \og{} Five-coloring plane graphs \fg{}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Turán --- Master}]
+\textbf{CMB-18.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Mantel : un graphe sans triangle à $ n $ sommets a au plus
+$ \lfloor n^2/4 \rfloor $ arêtes, le graphe biparti complet équilibré étant l'unique exemple
+extrémal.
+\item[(b)] Démontrez le théorème de Turán : un graphe à $ n $ sommets ne contenant aucun sous-graphe
+complet $ K_{r+1} $ a au plus autant d'arêtes que le graphe de Turán $ T(n,r) $ (le graphe
+$ r $-parti complet aux parties aussi égales que possible), soit environ
+$ \left(1 - \frac{1}{r}\right)\frac{n^2}{2} $, et caractérisez les graphes extrémaux. Donnez
+deux démonstrations parmi : la récurrence par suppression d'une clique maximale, la symétrisation
+de Zykov, ou l'argument pondéré/probabiliste de Motzkin--Straus.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le résultat de Mantel date de 1907 ; Pál Turán démontra le théorème général en
+1941, dans la Hongrie en guerre, fondant la théorie extrémale des graphes --- l'étude systématique
+de la taille qu'une structure peut atteindre avant qu'un motif ne s'impose. Le théorème a au moins
+cinq démonstrations classiques, chacune ouvrant une porte différente (symétrisation, probabilités,
+analyse), et \textit{Proofs from THE BOOK} en rassemble plusieurs. Sa descendance à large portée ---
+le théorème d'Erdős--Stone et la méthode de régularité --- organise une grande part de la
+combinatoire moderne.
+
+\begin{refs}
+\item Contexte : Théorème de Turán --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Tur%C3%A1n})
+\item Lecture : M. Aigner et G. M. Ziegler, \textit{Proofs from THE BOOK}
+\item Cours : MIT OCW 18.217 Graph Theory and Additive Combinatorics (\url{https://ocw.mit.edu/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La méthode probabiliste : la borne de Ramsey d'Erdős --- Master}]
+\textbf{CMB-19.} \textbf{Problème.} Démontrez le théorème d'Erdős de 1947 : si
+$ \binom{n}{k} \, 2^{\,1 - \binom{k}{2}} < 1 $, alors $ R(k,k) > n $ ; déduisez-en que
+$ R(k,k) > 2^{k/2} $ pour $ k \ge 3 $. Autrement dit : coloriez au hasard les arêtes de
+$ K_n $ et montrez qu'avec probabilité strictement positive aucun $ K_k $ monochrome
+n'apparaît --- donc une certaine coloration, que nul n'a jamais exhibée explicitement, les évite
+toutes. Réfléchissez ensuite par écrit à ce que cette démonstration vous donne et ne vous donne
+pas : comparez-la aux bornes inférieures constructives que vous pouvez bâtir à la main (par
+exemple à partir de CMB-11(b)) et expliquez pourquoi trouver des colorations explicites atteignant
+la borne aléatoire reste aujourd'hui un défi célèbre.
+\end{problem}
+
+\noindent Cet article de trois pages d'Erdős est l'acte de naissance officiel de la
+méthode probabiliste : démontrer qu'un objet existe en montrant qu'un objet aléatoire convient
+avec probabilité strictement positive. La méthode imprègne aujourd'hui la combinatoire, la théorie
+des nombres et l'informatique (Shannon eut la même idée pour les codes en 1948, indépendamment).
+La gênante persistance de l'écart entre constructions aléatoires et explicites --- \og{} trouver du foin
+dans une meule de foin \fg{}, selon la formule d'Avi Wigderson --- est l'une des énigmes les plus
+profondes que la méthode ait laissées derrière elle.
+
+\begin{refs}
+\item Contexte : Méthode probabiliste --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_probabiliste})
+\item Lecture : M. Aigner et G. M. Ziegler, \textit{Proofs from THE BOOK}, ch. \og{} Probability makes counting (sometimes) easy \fg{}
+\item Article : P. Erdős, \og{} Some remarks on the theory of graphs \fg{} (1947), Bulletin of the AMS 53, 292--294
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le lemme de Sperner et le théorème de Brouwer --- Master}]
+\textbf{CMB-20.} \textbf{Problème.} Triangulez un triangle $ T = ABC $ et étiquetez chaque
+sommet de la triangulation par 1, 2 ou 3 de sorte que $ A, B, C $ reçoivent des étiquettes
+distinctes et que tout sommet situé sur un côté de $ T $ n'utilise que les deux étiquettes des
+extrémités de ce côté. (a) Démontrez le lemme de Sperner : un petit triangle porte les trois
+étiquettes --- en fait, un nombre impair d'entre eux le fait. (Comptez les portes : les arêtes
+étiquetées 1--2.) (b) Utilisez (a), plus un passage à la limite, pour démontrer le théorème du
+point fixe de Brouwer en dimension 2 : toute application continue d'un disque fermé dans lui-même
+admet un point fixe. (c) Énoncez les versions en dimension $ n $ des deux résultats.
+\end{problem}
+
+\noindent Emanuel Sperner démontra son lemme en 1928 comme voie combinatoire vers
+l'invariance du domaine ; qu'un décompte de parité purement fini donne le théorème de Brouwer ---
+pierre angulaire de la topologie et du théorème d'équilibre de Nash en théorie des jeux --- est
+l'une des grandes surprises des mathématiques. La démonstration par comptage de portes est un
+joyau du genre \og{} parité plus parcours de graphe \fg{}, et les arguments de type Sperner sous-tendent
+aujourd'hui les algorithmes de partage équitable (l'harmonie locative de Su) et la classe de
+complexité PPAD.
+
+\begin{refs}
+\item Contexte : Lemme de Sperner --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Sperner})
+\item Contexte : Théorème du point fixe de Brouwer --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_point_fixe_de_Brouwer})
+\item Lecture : J. H. van Lint et R. M. Wilson, \textit{A Course in Combinatorics}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Kőnig --- Master}]
+\textbf{CMB-21.} \textbf{Problème.} Dans un graphe biparti, un couplage est un ensemble d'arêtes disjointes et
+une couverture par sommets est un ensemble de sommets touchant toute arête.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Kőnig : le cardinal maximal d'un couplage est égal au cardinal
+minimal d'une couverture par sommets.
+\item[(b)] Déduisez le théorème de Hall (CMB-13) de celui de Kőnig, et réciproquement.
+\item[(c)] Montrez que l'égalité tombe en défaut pour les graphes non bipartis (un triangle suffit), et
+expliquez --- dans le langage de la dualité en programmation linéaire, si vous le connaissez ---
+pourquoi la bipartition est l'hypothèse magique.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Dénes Kőnig démontra ce résultat en 1931 ; Jenő Egerváry le généralisa aux
+poids la même année, ce qui explique que l'algorithme hongrois d'affectation optimale (Kuhn, 1955)
+porte le nom de la nation. C'est le théorème min-max archétypal : un certificat d'optimalité des
+deux côtés, un siècle avant que cette idée ne soit formalisée en dualité de la programmation
+linéaire et en totale unimodularité. Le livre de Kőnig de 1936 fut aussi la toute première
+monographie consacrée à la théorie des graphes.
+
+\begin{refs}
+\item Contexte : Théorème de Kőnig (théorie des graphes) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_K%C5%91nig_(th%C3%A9orie_des_graphes)})
+\item Lecture : D. West, \textit{Introduction to Graph Theory}, ch. 3
+\item Lecture : J. H. van Lint et R. M. Wilson, \textit{A Course in Combinatorics}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Des colliers par Burnside --- Master, short}]
+\textbf{CMB-31.} \textbf{Problème.} À l'aide du lemme de Burnside, dénombrez les colliers distincts de $ 12 $ perles en $ 3 $ couleurs, deux colliers étant identifiés si l'un s'obtient de l'autre par rotation. Refaites ensuite le décompte en autorisant aussi les réflexions.
+\end{problem}
+
+\noindent Le lemme de Burnside --- faire la moyenne des points fixes sur le groupe --- convertit un difficile problème d'identification en une somme de routine sur les éléments du groupe, et le faire deux fois montre à quel point la réponse est sensible aux symétries que l'on déclare. C'est le cœur calculatoire du dénombrement de Pólya, qui compte les isomères chimiques exactement par cette méthode.
+
+\begin{refs}
+\item Contexte : Lemme de Burnside --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Burnside})
+\item Contexte : Théorème de dénombrement de Pólya --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_d%C3%A9nombrement_de_P%C3%B3lya})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les valeurs propres d'un graphe --- Master, short}]
+\textbf{CMB-32.} \textbf{Problème.} Calculez les valeurs propres de la matrice d'adjacence du graphe complet $ K_n $ et du cycle $ C_n $, et démontrez qu'un graphe est biparti si et seulement si son spectre d'adjacence est symétrique par rapport à zéro.
+\end{problem}
+
+\noindent La théorie spectrale des graphes étudie des objets combinatoires par l'algèbre linéaire, et ces deux calculs sont les premiers exemples standard parce que les réponses y sont exactes et interprétables. Le critère de bipartition est le premier signe que le spectre connaît de véritables faits structurels --- thème qui culmine dans les graphes expanseurs et l'inégalité de Cheeger.
+
+\begin{refs}
+\item Contexte : Théorie spectrale des graphes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9orie_spectrale_des_graphes})
+\item Voir aussi : Algèbre linéaire (\url{pure-linear-algebra.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Lindström--Gessel--Viennot : les chemins comme déterminants --- Master}]
+\textbf{CMB-40.} \textbf{Problème.} Soit $ D $ un graphe orienté acyclique fini, soient $ u_1,\dots,u_n $ et $ v_1,\dots,v_n $ des sommets de $ D $, et notez $ e(u,v) $ le nombre de chemins orientés de $ u $ à $ v $. Un \textit{système de chemins} est un uplet $ (P_1,\dots,P_n) $ accompagné d'une permutation $ \sigma $, où $ P_i $ va de $ u_i $ à $ v_{\sigma(i)} $ ; il est \textit{à sommets disjoints} si deux de ses chemins ne partagent jamais un sommet.
+\begin{enumerate}
+\item[(a)] Démontrez le lemme de Lindström--Gessel--Viennot :
+\[ \det\big( e(u_i, v_j) \big)_{i,j=1}^{n} \;=\; \sum_{\text{systèmes à sommets disjoints}} \operatorname{sgn}(\sigma). \]
+Tout le contenu tient dans une involution qui apparie les systèmes de chemins qui se coupent et en renverse les signes ; la construire soigneusement, en vérifiant notamment qu'elle est bien définie et sans point fixe, est l'exercice.
+\item[(b)] Dites que les extrémités sont \textit{non permutables} si tout système à sommets disjoints a $ \sigma = \mathrm{id} $. Montrez qu'alors le déterminant dénombre simplement les systèmes à sommets disjoints, et donnez une condition géométrique simple sur des points d'un réseau qui le garantit.
+\item[(c)] Prenez les chemins d'un réseau à pas unités vers la droite et vers le haut, et utilisez (b) pour démontrer l'évaluation du déterminant de Hankel
+\[ \det\big( C_{i+j} \big)_{0 \le i,j \le n-1} = 1 \]
+pour les nombres de Catalan $ C_k $ de CMB-09.
+\item[(d)] Déduisez-en la formule de Cauchy--Binet $ \det(BC) = \sum_{S} \det(B_{\cdot S}) \det(C_{S \cdot}) $, la somme portant sur les ensembles $ S $ de $ n $ colonnes, en appliquant le lemme à un graphe à trois couches dont les multiplicités d'arêtes sont les coefficients de $ B $ et de $ C $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Bernt Lindström démontra le lemme en 1973 au détour d'un article sur les représentations de matroïdes, et presque personne ne le remarqua ; Ira Gessel et Gérard Viennot le redécouvrirent en 1985 et montrèrent à quoi il servait, en tirant des formules d'équerres et des dénombrements de partitions planes, tandis que la version probabiliste --- des marches aléatoires sans collision --- avait été trouvée par Karlin et McGregor en 1959. C'est aujourd'hui le dictionnaire standard entre déterminants et familles de chemins non croisés, et il est derrière les formules déterminantales pour les partitions planes, les matrices à signes alternants et le diamant aztèque. Aigner et Ziegler lui consacrent un chapitre de \textit{Proofs from THE BOOK}, ce qui est le bon verdict : une involution renversant les signes qui transforme l'algèbre linéaire en images.
+
+\begin{refs}
+\item Contexte : Lemme de Lindström-Gessel-Viennot --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Lindstr%C3%B6m-Gessel-Viennot})
+\item Lecture : M. Aigner et G. M. Ziegler, \textit{Proofs from THE BOOK}, ch. \og{} Lattice paths and determinants \fg{}
+\item Article : I. Gessel et G. Viennot, \og{} Binomial determinants, paths, and hook length formulae \fg{}, Advances in Mathematics 58 (1985)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Inversion de Möbius sur un ensemble ordonné --- Master, short}]
+\textbf{CMB-41.} \textbf{Problème.} Pour un ensemble fini partiellement ordonné $ P $, définissez la fonction de Möbius par $ \mu(x,x) = 1 $ et $ \mu(x,y) = -\sum_{x \le z < y} \mu(x,z) $ dès que $ x < y $. Démontrez la formule d'inversion de Möbius --- si $ g(y) = \sum_{x \le y} f(x) $ pour tout $ y $, alors $ f(y) = \sum_{x \le y} \mu(x,y)\, g(x) $ --- et retrouvez-en à la fois le principe d'inclusion-exclusion de CMB-08, en prenant pour $ P $ les parties d'un ensemble fini, et l'inversion de Möbius classique en théorie des nombres, en prenant pour $ P $ les diviseurs de $ n $ ordonnés par divisibilité.
+\end{problem}
+
+\noindent L'article de Gian-Carlo Rota de 1964, \og{} On the foundations of combinatorial theory I \fg{}, est l'un des plus lourds de conséquences de la combinatoire moderne précisément à cause de ce que montre ce problème : l'inclusion-exclusion, l'inversion de Möbius en théorie des nombres et la caractéristique d'Euler d'un complexe simplicial sont un seul et même théorème lu sur trois ensembles ordonnés différents. Louis Weisner et Philip Hall avaient la définition générale au milieu des années 1930 ; Rota lui a donné une théorie, a placé l'algèbre d'incidence au centre, et a appris à toute une génération à chercher l'ensemble ordonné caché derrière un argument de dénombrement. Le polynôme chromatique de CMB-36 est l'un de ces déguisements --- c'est une évaluation de fonction de Möbius sur le treillis des partitions de l'ensemble des sommets.
+
+\begin{refs}
+\item Contexte : Formule d'inversion de Möbius --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_d%27inversion_de_M%C3%B6bius})
+\item Contexte : Algèbre d'incidence --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Incidence_algebra})
+\item Article : G.-C. Rota, \og{} On the foundations of combinatorial theory I. Theory of Möbius functions \fg{}, Zeitschrift für Wahrscheinlichkeitstheorie und Verwandte Gebiete 2 (1964)
+\item Lecture : R. P. Stanley, \textit{Enumerative Combinatorics}, vol. 1, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le lemme local de Lovász --- Master}]
+\textbf{CMB-42.} \textbf{Problème.} Soient $ A_1, \dots, A_n $ des événements d'un espace probabilisé, chacun de probabilité au plus $ p $, et supposez que chaque $ A_i $ est mutuellement indépendant de tous les autres sauf au plus $ d $ d'entre eux.
+\begin{enumerate}
+\item[(a)] Démontrez le lemme local de Lovász symétrique : si $ e\,p\,(d+1) \le 1 $, où $ e = 2{,}718\ldots $, alors
+\[ \Pr\Big[\, \bigcap_{i=1}^{n} \overline{A_i} \,\Big] > 0. \]
+Démontrez d'abord la forme asymétrique générale, par récurrence sur la taille de l'ensemble de conditionnement, puis spécialisez.
+\item[(b)] Déduisez-en qu'une formule $ k $-CNF dont chaque clause partage une variable avec au plus $ 2^{k}/e - 1 $ autres clauses est satisfaisable.
+\item[(c)] Déduisez-en qu'un hypergraphe $ k $-uniforme dont chaque arête en rencontre au plus $ 2^{k-1}/e - 1 $ autres peut être 2-colorié sans arête monochrome.
+\item[(d)] Améliorez la borne inférieure de Ramsey de CMB-19 d'un facteur linéaire en $ k $ : démontrez
+\[ R(k,k) \;>\; (1+o(1))\,\frac{\sqrt{2}}{e}\, k\, 2^{k/2}. \]
+\end{enumerate}
+
+\end{problem}
+
+\noindent Erdős et Lovász introduisirent le lemme en 1975 dans un article sur les hypergraphes 3-chromatiques, et c'est ce dont la méthode probabiliste avait besoin pour échapper à sa première limitation : la moyenne ordinaire exige que les événements fâcheux soient rares, tandis que le lemme local exige seulement que chacun soit rare et localement enchevêtré, et il certifiera volontiers une probabilité strictement positive aussi petite que $ 2^{-n} $. Pendant plus de trente ans le certificat fut purement existentiel --- le lemme démontrait qu'un objet était là mais ne donnait aucun moyen de mettre la main dessus. Puis en 2009 Robin Moser, et peu après Moser et Tardos en toute généralité, montrèrent que l'algorithme le plus grossier qu'on puisse imaginer fonctionne : rééchantillonner tout événement violé, et recommencer. Leur analyse par \og{} compression d'entropie \fg{} tient en deux pages et stupéfie ; elle a valu le prix Gödel 2020. Shearer avait déterminé le seuil exact du cas symétrique dès 1985.
+
+\begin{refs}
+\item Contexte : Lemme local de Lovász --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_local_de_Lov%C3%A1sz})
+\item Lecture : N. Alon et J. H. Spencer, \textit{The Probabilistic Method}, ch. 5
+\item Article : P. Erdős et L. Lovász, \og{} Problems and results on 3-chromatic hypergraphs and some related questions \fg{} (1975)
+\item Article : R. A. Moser et G. Tardos, \og{} A constructive proof of the general Lovász local lemma \fg{}, Journal of the ACM 57 (2010)
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{R(5,5) : les limites de la connaissance --- Recherche}]
+\textbf{CMB-22.} \textbf{Problème.} Le nombre de Ramsey $ R(5,5) $ --- le plus petit $ n $ tel que toute
+coloration rouge/bleu de $ K_n $ contienne un $ K_5 $ monochrome --- est inconnu.
+\begin{enumerate}
+\item[(a)] À la main : servez-vous de $ R(s,t) \le R(s-1,t) + R(s,t-1) $ et des petites valeurs
+connues pour obtenir votre propre borne supérieure sur $ R(5,5) $, et voyez à quelle hauteur
+elle se situe au-dessus de la vérité.
+\item[(b)] Problème de compréhension : lisez comment les bornes actuelles $ 43 \le R(5,5) \le 46 $ ont
+été obtenues --- la borne inférieure par une coloration explicite (Exoo, 1989), la borne supérieure
+par Angeltveit et McKay via la programmation linéaire jointe à une énorme analyse de cas par
+ordinateur. Expliquez, en termes de dénombrement, pourquoi même $ R(5,5) $ résiste à la
+recherche exhaustive.
+\end{enumerate}
+
+\end{problem}
+
+\noindent État des lieux, honnêtement : ouvert. Les bornes $ 43 \le R(5,5) \le 46 $ sont
+celles de 2026 --- la borne supérieure est passée de 48 à 46 grâce à Angeltveit et McKay (mise en
+ligne en 2024, publiée dans le Journal of Graph Theory en 2026), et 43 est largement conjecturé
+être la réponse. La fameuse parabole d'Erdős : si des extraterrestres exigent $ R(5,5) $ sous
+peine de détruire la Terre, mobilisez tous les ordinateurs et tous les mathématiciens ; s'ils
+exigent $ R(6,6) $, attaquez les premiers. Asymptotiquement, une percée de 2023 due à Campos,
+Griffiths, Morris et Sahasrabudhe a donné la première amélioration exponentielle de la borne
+supérieure diagonale depuis près de quatre-vingt-dix ans, $ R(k,k) \le 3.993^k $ --- face à la
+borne inférieure $ 2^{k/2} $ d'Erdős de CMB-19, ce qui laisse encore un no man's land
+exponentiel.
+
+\begin{refs}
+\item Contexte : Théorème de Ramsey --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ramsey})
+\item Article : V. Angeltveit et B. D. McKay, \og{} R(5,5) $\le$ 46 \fg{} (2024), arXiv:2409.15709 (\url{https://arxiv.org/abs/2409.15709})
+\item Article : M. Campos, S. Griffiths, R. Morris, J. Sahasrabudhe, \og{} An exponential improvement for diagonal Ramsey \fg{} (2023), arXiv:2303.09521 (\url{https://arxiv.org/abs/2303.09521})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de Hadwiger --- Recherche}]
+\textbf{CMB-23.} \textbf{Problème.} La conjecture de Hadwiger (1943) : tout graphe sans mineur
+$ K_t $ admet une coloration propre en $ t - 1 $ couleurs. (Un graphe a un mineur $ K_t $ si
+l'on peut obtenir $ K_t $ à partir de lui en supprimant et en contractant des arêtes.) (a) À la
+main : démontrez les cas $ t \le 4 $. (b) Problème de compréhension : expliquez pourquoi le cas
+$ t = 5 $ équivaut au théorème des quatre couleurs (Wagner, 1937), et lisez comment
+$ t = 6 $ y a été ramené par Robertson, Seymour et Thomas (1993). (c) Lisez et résumez la
+meilleure borne générale connue : tout graphe sans mineur $ K_t $ est
+$ O(t \log\log t) $-coloriable (Delcourt--Postle).
+\end{problem}
+
+\noindent État des lieux, honnêtement : ouvert pour tout $ t \ge 7 $, et couramment
+qualifié de plus célèbre problème ouvert de la théorie des graphes --- il propose que le théorème
+des quatre couleurs soit une instance d'une loi valable pour tous les graphes, et non une
+particularité de la planarité. Pendant des décennies, la borne record fut
+$ O(t\sqrt{\log t}) $ (Kostochka, Thomason, années 1980) ; une série de percées de Norin, Postle
+et Song, puis de Delcourt et Postle (2021), l'a amenée à $ O(t \log\log t) $. Même
+l'affaiblissement dit \og{} Hadwiger linéaire \fg{} --- $ O(t) $ couleurs --- reste ouvert.
+
+\begin{refs}
+\item Contexte : Conjecture de Hadwiger --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Conjecture_de_Hadwiger})
+\item Article : M. Delcourt et L. Postle, \og{} Reducing linear Hadwiger's conjecture to coloring small graphs \fg{} (2021), arXiv:2108.01633 (\url{https://arxiv.org/abs/2108.01633})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture des familles stables par union --- Recherche}]
+\textbf{CMB-24.} \textbf{Problème.} Une famille finie $ \mathcal{F} $ d'ensembles est stable par union si
+$ A, B \in \mathcal{F} $ entraîne $ A \cup B \in \mathcal{F} $. La conjecture des familles
+stables par union (Frankl, 1979) : toute famille stable par union autre que
+$ \{\varnothing\} $ possède un élément appartenant à au moins la moitié des ensembles.
+\begin{enumerate}
+\item[(a)] À la main : démontrez la conjecture lorsque $ \mathcal{F} $ contient un singleton ou une
+paire, et pour les familles d'au plus quelques ensembles.
+\item[(b)] Problème de compréhension : lisez l'argument de théorie de l'information de Gilmer montrant
+qu'un élément se trouve toujours dans une fraction d'au moins $ 0{,}01 $ des ensembles, et
+esquissez pourquoi la méthode a rapidement été poussée jusqu'à la constante
+$ \frac{3 - \sqrt{5}}{2} \approx 0{,}381966 $ --- et pourquoi cette constante est une véritable
+barrière pour la version approchée du problème.
+\end{enumerate}
+
+\end{problem}
+
+\noindent État des lieux, honnêtement : ouvert. Péter Frankl l'a posée vers 1979, et
+pendant quatre décennies il n'existait pour ainsi dire aucune borne constante --- le folklore à la
+Erdős voulait qu'elle \og{} ait l'air d'un exercice de devoir et dévore des carrières \fg{}. En novembre
+2022, Justin Gilmer, chercheur chez Google travaillant hors du monde académique, a démontré la
+première fraction constante (0,01) par un court argument d'entropie ; en quelques semaines
+plusieurs groupes (Alweiss--Huang--Sellke, Chase--Lovett, Sawin, Pebody) l'ont indépendamment affinée
+à $ (3-\sqrt{5})/2 $, et Chase et Lovett ont montré que cette constante est optimale pour la
+variante approchée que traite la méthode de Gilmer. La moitié reste hors de portée ; il faut des
+idées nouvelles pour l'ultime étape.
+
+\begin{refs}
+\item Contexte : Conjecture des familles stables par unions --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Conjecture_des_familles_stables_par_unions})
+\item Article : J. Gilmer, \og{} A constant lower bound for the union-closed sets conjecture \fg{} (2022), arXiv:2211.09055 (\url{https://arxiv.org/abs/2211.09055})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le nombre chromatique du plan --- Recherche}]
+\textbf{CMB-25.} \textbf{Problème.} Coloriez chaque point du plan de sorte que deux points à distance exactement
+1 ne reçoivent jamais la même couleur. Le problème de Hadwiger--Nelson demande le nombre minimal
+de couleurs, $ \chi(\mathbb{R}^2) $.
+\begin{enumerate}
+\item[(a)] À la main : démontrez $ \chi \ge 4 $ à l'aide du fuseau de Moser (un graphe de distance
+unité à 7 sommets bien précis --- construisez-le), et démontrez $ \chi \le 7 $ en exhibant une
+7-coloration fondée sur un pavage hexagonal.
+\item[(b)] Problème de compréhension : lisez comment la construction par Aubrey de Grey, en 2018, d'un
+graphe de distance unité à 1581 sommets et de nombre chromatique 5 a porté la borne inférieure à
+$ \chi \ge 5 $, et comment le projet Polymath16 a vérifié et réduit de tels graphes. Expliquez
+le rôle du théorème de compacité de de Bruijn--Erdős dans la réduction du problème aux graphes
+finis.
+\end{enumerate}
+
+\end{problem}
+
+\noindent État des lieux, honnêtement : ouvert ; la réponse est 5, 6 ou 7. La question
+fut soulevée par Edward Nelson en 1950 (alors étudiant), diffusée par Hadwiger puis par Martin
+Gardner, et resta bloquée à $ 4 \le \chi \le 7 $ pendant 68 ans, jusqu'à ce que de Grey --- un
+biogérontologue plus connu pour ses recherches sur le vieillissement --- déplace la borne inférieure
+en 2018, l'une des percées amateurs les plus réjouissantes de l'époque. Subtilité curieuse : la
+réponse pourrait dépendre de l'axiome du choix si l'on autorise des colorations non mesurables,
+lieu rare où les fondements de la théorie des ensembles touchent à un problème de dessin.
+
+\begin{refs}
+\item Contexte : Problème de Hadwiger-Nelson --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Hadwiger-Nelson})
+\item Article : A. D. N. J. de Grey, \og{} The chromatic number of the plane is at least 5 \fg{} (2018), arXiv:1804.02385 (\url{https://arxiv.org/abs/1804.02385})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture du tournesol --- Recherche}]
+\textbf{CMB-26.} \textbf{Problème.} Un tournesol à $ p $ pétales est une famille de $ p $ ensembles dont
+toutes les intersections deux à deux sont égales (au \og{} cœur \fg{} commun, éventuellement vide).
+\begin{enumerate}
+\item[(a)] À la main : démontrez le lemme du tournesol d'Erdős--Rado : toute famille de plus de
+$ w!\,(p-1)^w $ ensembles, chacun de cardinal au plus $ w $, contient un tournesol à
+$ p $ pétales.
+\item[(b)] La conjecture du tournesol (Erdős--Rado, 1960) affirme que le $ w! $ peut être remplacé par
+$ C_p^{\,w} $ pour une constante ne dépendant que de $ p $. Problème de compréhension : lisez
+la percée de 2019 d'Alweiss, Lovett, Wu et Zhang, qui a amélioré la borne jusqu'à environ
+$ (C p \log w)^w $, et exposez l'idée d'\og{} étalement \fg{} / de restriction aléatoire qui la
+porte.
+\end{enumerate}
+
+\end{problem}
+
+\noindent État des lieux, honnêtement : ouvert ; l'écart entre les bornes de type
+$ (\log w)^w $ et le $ C^w $ conjecturé subsiste. Erdős offrait 1000 dollars pour la
+conjecture et la rangeait parmi ses problèmes préférés sur les systèmes d'ensembles. L'avancée
+d'Alweiss, Lovett, Wu et Zhang de 2019 (publiée dans les Annals of Mathematics en 2021) fut le
+premier mouvement sur le terme principal en six décennies, et son lemme d'\og{} étalement \fg{} est
+devenu de façon inattendue un ingrédient clé de la démonstration par Park et Pham, en 2022, de la
+conjecture de seuil de Kahn--Kalai --- bel exemple de la façon dont un progrès sur un pur problème de
+dénombrement peut faire détonation ailleurs.
+
+\begin{refs}
+\item Contexte : Tournesol (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Tournesol_(math%C3%A9matiques)})
+\item Article : R. Alweiss, S. Lovett, K. Wu, J. Zhang, \og{} Improved bounds for the sunflower lemma \fg{} (2019), arXiv:1908.08483 (\url{https://arxiv.org/abs/1908.08483})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Encadrez vous-même un nombre de Ramsey --- Recherche, short}]
+\textbf{CMB-33.} \textbf{Problème.} Démontrez les bornes classiques $ R(k,k) \leq 4^{k} $ par la récurrence d'Erdős--Szekeres, et $ R(k,k) > 2^{k/2} $ par l'argument probabiliste d'Erdős. Énoncez ensuite le record actuel : Campos, Griffiths, Morris et Sahasrabudhe ont obtenu en 2023 la première amélioration exponentielle de la borne supérieure, après quatre-vingt-huit ans.
+\end{problem}
+
+\noindent Ces deux bornes ont été démontrées en 1935 et 1947 et, chose stupéfiante, la base de l'exponentielle n'a pas été améliorée pendant près d'un siècle. Les obtenir toutes deux vous-même en un après-midi, puis apprendre depuis combien de temps l'écart tient, est la plus claire des leçons sur la difficulté des améliorations \og{} évidentes \fg{}.
+
+\begin{refs}
+\item Contexte : Théorème de Ramsey --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ramsey})
+\item Article : Campos, Griffiths, Morris et Sahasrabudhe, \og{} An exponential improvement for diagonal Ramsey \fg{} (2023), arXiv:2303.09521 (\url{https://arxiv.org/abs/2303.09521})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Énoncez la conjecture de Hadwiger --- Recherche, short}]
+\textbf{CMB-34.} \textbf{Problème.} Énoncez la conjecture de Hadwiger --- tout graphe sans mineur $ K_{t} $ est $ (t-1) $-coloriable --- et vérifiez-la à la main pour $ t = 3 $ et $ t = 4 $. Notez l'état des lieux : $ t \leq 6 $ est connu, les cas $ t = 5 $ et $ t = 6 $ étant tous deux équivalents au théorème des quatre couleurs ou dépendants de lui, et $ t \geq 7 $ est ouvert.
+\end{problem}
+
+\noindent Hadwiger a proposé cela en 1943 comme une vaste généralisation du théorème des quatre couleurs, et Bollobás l'a qualifiée de \og{} l'un des problèmes non résolus les plus profonds de la théorie des graphes \fg{}. Les petits cas sont réellement traitables à la main, ce qui fait de celui-ci un rare problème ouvert dont vous pouvez vérifier personnellement les premières instances en une soirée.
+
+\begin{refs}
+\item Contexte : Conjecture de Hadwiger --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Conjecture_de_Hadwiger})
+\item Voir aussi : Problèmes ouverts (\url{open-problems.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Expanseurs, borne d'Alon--Boppana et graphes de Ramanujan --- Recherche}]
+\textbf{CMB-43.} \textbf{Problème.} Soit $ G $ un graphe connexe $ d $-régulier à $ n $ sommets dont les valeurs propres d'adjacence sont $ d = \lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_n $, et posez $ \lambda(G) = \max(|\lambda_2|, |\lambda_n|) $. Dites que $ G $ est \textit{de Ramanujan} si $ \lambda(G) \le 2\sqrt{d-1} $.
+\begin{enumerate}
+\item[(a)] Démontrez le lemme de mélange des expanseurs : pour tous ensembles de sommets $ S, T $,
+\[ \left| e(S,T) - \frac{d\,|S|\,|T|}{n} \right| \;\le\; \lambda(G)\, \sqrt{|S|\,|T|}, \]
+où $ e(S,T) $ dénombre les arêtes ayant une extrémité dans $ S $ et une dans $ T $. Concluez qu'un $ \lambda $ petit force toute grande paire d'ensembles à être jointe à peu près aussi souvent que dans un graphe aléatoire.
+\item[(b)] Démontrez la borne d'Alon--Boppana par dénombrement des marches fermées : à $ d $ fixé et pour $ n \to \infty $, tout graphe $ d $-régulier vérifie $ \lambda_2 \ge 2\sqrt{d-1} - o(1) $. Les graphes de Ramanujan sont donc des expanseurs optimaux, et la définition n'est pas arbitraire.
+\item[(c)] Problème de compréhension : lisez les constructions explicites de Lubotzky--Phillips--Sarnak et de Margulis (1988), qui donnent des graphes de Ramanujan $ (p+1) $-réguliers pour les nombres premiers $ p \equiv 1 \pmod 4 $ et reposent sur la conjecture de Ramanujan--Petersson démontrée par Deligne. Expliquez ce que la théorie des nombres apporte ici, et pourquoi rien d'aussi explicite n'est connu pour un degré général.
+\item[(d)] Rendez compte de l'histoire de l'existence en en énonçant honnêtement l'état, depuis la démonstration par Friedman de la conjecture d'Alon, en passant par l'argument des familles entrelacées de Marcus--Spielman--Srivastava, jusqu'à la résolution du cas non biparti en 2024.
+\end{enumerate}
+
+\end{problem}
+
+\noindent État des lieux, honnêtement : l'existence est réglée, l'explicitation ne l'est pas. Les expanseurs --- des graphes creux qu'il est pourtant difficile de déconnecter --- ont été introduits dans les années 1970 par Pinsker, Margulis et d'autres pour des réseaux tolérants aux pannes, et ils sous-tendent aujourd'hui les codes correcteurs d'erreurs, la dérandomisation, le théorème SL = L de Reingold et le test de propriétés. Savoir s'il existe une infinité de graphes de Ramanujan $ d $-réguliers pour tout $ d \ge 3 $ est resté ouvert des décennies : Friedman a démontré en 2008 qu'un graphe $ d $-régulier aléatoire est \textit{presque} de Ramanujan, Marcus, Spielman et Srivastava ont réglé le cas biparti pour tout degré par leur méthode des familles entrelacées (2013--2015), et en décembre 2024 Huang, McKenzie et Yau ont démontré qu'un graphe $ d $-régulier aléatoire est exactement de Ramanujan avec une probabilité tendant vers environ 69 pour cent, ce qui règle la question non bipartie. Ce qui reste ouvert, c'est la construction : aucune famille explicite de graphes de Ramanujan n'est connue pour un degré général, et les analogues en dimension supérieure et irréguliers sont grands ouverts. Vérifiez s'il existe une version publiée avant de citer le résultat de 2024.
+
+\begin{refs}
+\item Contexte : Graphe expanseur (taux d'expansion) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Taux_d%27expansion_(th%C3%A9orie_des_graphes)})
+\item Contexte : Graphe de Ramanujan --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Graphe_de_Ramanujan})
+\item Lecture : S. Hoory, N. Linial et A. Wigderson, \og{} Expander graphs and their applications \fg{}, Bulletin of the AMS 43 (2006)
+\item Article : J. Huang, T. McKenzie et H.-T. Yau, \og{} Ramanujan property and edge universality of random regular graphs \fg{} (2024), arXiv:2412.20263 (\url{https://arxiv.org/abs/2412.20263})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Graphes parfaits et conjecture de Berge --- Recherche, short}]
+\textbf{CMB-44.} \textbf{Problème.} Dites qu'un graphe est \textit{parfait} si, pour tout sous-graphe induit, le nombre chromatique est égal au cardinal de la plus grande clique. Démontrez qu'aucun cycle de longueur impaire au moins 5 n'est parfait, ni le complémentaire d'un tel cycle, puis énoncez le théorème fort des graphes parfaits --- ce sont là les seules obstructions --- et rendez compte exactement de son état.
+\end{problem}
+
+\noindent Claude Berge a conjecturé cela en 1961, en même temps que l'assertion plus faible selon laquelle le complémentaire d'un graphe parfait est parfait ; Lovász a démontré la version faible en 1972, et la conjecture forte a ensuite tenu quarante ans, jusqu'à ce que Chudnovsky, Robertson, Seymour et Thomas en annoncent une démonstration en 2002 et la publient dans les Annals of Mathematics en 2006 --- un argument structurel de quelque 150 pages qui a valu le prix Fulkerson 2009 et un prix de 10 000 dollars offert par Gérard Cornuéjols. La perfection n'est pas seulement décorative : sur les graphes parfaits, le nombre de clique, le nombre chromatique et le stable maximum sont tous calculables en temps polynomial par la méthode semi-définie de Grötschel, Lovász et Schrijver, alors que les trois sont NP-difficiles en général. La frontière de recherche vivante est le programme voisin de la $\chi$-bornitude --- les conjectures de Gyárfás sur les classes où le nombre chromatique est borné par une fonction du nombre de clique --- où des cas majeurs ne sont tombés que dans la dernière décennie et où beaucoup reste ouvert.
+
+\begin{refs}
+\item Contexte : Graphe parfait --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Graphe_parfait})
+\item Contexte : Théorème des graphes parfaits --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_graphes_parfaits})
+\item Article : M. Chudnovsky, N. Robertson, P. Seymour et R. Thomas, \og{} The strong perfect graph theorem \fg{}, Annals of Mathematics 164 (2006)
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}

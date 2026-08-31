@@ -1,0 +1,1494 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Analyse réelle et théorie de la mesure}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Lycée}
+
+\begin{problem}[{Bornes supérieures --- Lycée}]
+\textbf{RA-01.} \textbf{Problème.} Pour un ensemble $ S $ de nombres réels, un \textit{majorant}
+est un nombre $ b $ tel que $ x \le b $ pour tout $ x \in S $ ; la \textit{borne supérieure}
+$ \sup S $ est le plus petit des majorants, et la \textit{borne inférieure} $ \inf S $ le plus
+grand des minorants. Déterminez, avec démonstration, la borne supérieure et la borne inférieure de
+chacun des ensembles suivants, et décidez dans chaque cas si elles appartiennent à l'ensemble :
+\begin{enumerate}
+\item[(a)] $ \{ 1/n : n = 1, 2, 3, \dots \} $ ;
+\item[(b)] $ \{ n/(n+1) : n = 1, 2, 3, \dots \} $ ;
+\item[(c)] $ \{ x \in \mathbb{Q} : x > 0 \text{ et } x^2 < 2 \} $.
+Pour (c), expliquez pourquoi la borne supérieure existe dans $ \mathbb{R} $ alors que l'ensemble
+n'a pas de borne supérieure à l'intérieur de $ \mathbb{Q} $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'\textit{axiome de la borne supérieure} --- toute partie non vide et majorée de $\mathbb{R}$
+admet un plus petit majorant --- est l'unique propriété qui sépare $\mathbb{R}$ de $\mathbb{Q}$, et toute l'analyse repose
+sur elle. Richard Dedekind l'a isolée en 1858 en préparant un cours de calcul différentiel à
+Zurich, mécontent du flou géométrique entretenu autour de la droite numérique, et il a publié en
+1872 sa construction de $\mathbb{R}$ par \og{} coupures \fg{}. La question (c) est exactement le trou de $\mathbb{Q}$ que
+$ \sqrt{2} $ vient combler.
+
+\begin{refs}
+\item Contexte : Borne supérieure et borne inférieure --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Borne_sup%C3%A9rieure_et_borne_inf%C3%A9rieure})
+\item Contexte : Complétude des nombres réels --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Completeness_of_the_real_numbers})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Pourquoi 0,999\dots{} = 1 --- Lycée}]
+\textbf{RA-02.} \textbf{Problème.} Le symbole $ 0.999\ldots $ désigne, par définition, la
+limite de la suite $ 0.9,\ 0.99,\ 0.999,\ \dots $ --- autrement dit la somme de la série
+$ \frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \cdots $. Démontrez que
+$ 0.999\ldots = 1 $. Donnez deux démonstrations : l'une en sommant la série géométrique, l'autre
+directement à partir de la définition d'une limite (montrez que pour tout $ \varepsilon > 0 $,
+les termes de la suite finissent par se trouver à une distance inférieure à $ \varepsilon $ de 1).
+Expliquez ensuite précisément ce qui cloche dans l'objection \og{} $ 0.999\ldots $ est plus petit que
+1 parce qu'il n'atteint jamais 1 \fg{}.
+\end{problem}
+
+\noindent C'est l'égalité la plus discutée d'internet, et la discussion porte toujours sur
+les définitions : un développement décimal illimité \textit{est} une limite, et une fois cela admis
+la démonstration est courte. La question est réellement instructive --- elle force la prise de
+conscience, rendue précise pour la première fois par Cauchy dans son \textit{Cours d'analyse} (1821),
+que les processus infinis ne prennent sens qu'à travers la notion de limite. C'est aussi une
+première rencontre avec le fait qu'un nombre réel peut avoir deux écritures décimales.
+
+\begin{refs}
+\item Contexte : 0,999\dots{} --- Wikipédia (\url{https://fr.wikipedia.org/wiki/0,999%E2%80%A6})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La série harmonique diverge --- Lycée}]
+\textbf{RA-03.} \textbf{Problème.} Démontrez que la série harmonique
+$ 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \cdots $ diverge : les sommes partielles
+$ H_n = 1 + \frac{1}{2} + \cdots + \frac{1}{n} $ dépassent tout majorant. Montrez ensuite
+quantitativement que $ H_{2^k} \ge 1 + k/2 $, et servez-vous-en pour estimer combien de termes
+sont nécessaires avant que les sommes partielles ne dépassent 10 pour la première fois.
+\end{problem}
+
+\noindent Nicole Oresme a trouvé l'argument classique de regroupement vers 1350 --- une
+démonstration médiévale que l'on ne peut toujours pas améliorer en élégance ---, après quoi elle fut
+oubliée puis redémontrée par Pietro Mengoli (1650) et Jakob Bernoulli (1689). Le résultat est un
+avertissement permanent : les termes d'une série peuvent tendre vers zéro pendant que la somme
+croît sans limite. La question compagne, la valeur exacte de $ \sum 1/n^2 $, est le problème de
+Bâle, traité dans L'art de la démonstration (\url{proofs.html}).
+
+\begin{refs}
+\item Contexte : Série harmonique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9rie_harmonique})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 2
+\item Cours : MIT OCW 18.100A Real Analysis (\url{https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les deux limites qu'une suite possède toujours --- Lycée, short}]
+\textbf{RA-24.} \textbf{Problème.} Pour la suite $ a_n = (-1)^n \left( 1 + \frac{1}{n}
+\right) $, déterminez $ \limsup_{n \to \infty} a_n $ et $ \liminf_{n \to \infty} a_n $, avec
+démonstration. Démontrez ensuite qu'une suite bornée de nombres réels converge si et seulement si sa
+limite supérieure et sa limite inférieure coïncident.
+\end{problem}
+
+\noindent Une suite bornée n'a aucune raison de converger, mais elle possède toujours une
+plus grande et une plus petite \og{} valeur finale \fg{} --- et, contrairement à la limite, ces deux-là
+existent toujours. Cauchy travaillait déjà avec la plus grande valeur d'adhérence d'une suite ; en
+faire une définition plutôt qu'une façon de parler est ce qui permet à l'analyse d'énoncer des
+théorèmes (la règle de Cauchy, le lemme de Fatou) valables sans aucune hypothèse de convergence.
+
+\begin{refs}
+\item Contexte : Limite supérieure et limite inférieure --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Limite_sup%C3%A9rieure_et_limite_inf%C3%A9rieure})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{D'où vient e --- Lycée, short}]
+\textbf{RA-25.} \textbf{Problème.} Démontrez que la suite
+$ a_n = \left( 1 + \frac{1}{n} \right)^{n} $ est strictement croissante et majorée par
+$ 3 $, de sorte qu'elle converge ; sa limite est par définition le nombre $ e $. Déduisez-en
+que $ 2 < e < 3 $.
+\end{problem}
+
+\noindent Jacob Bernoulli a rencontré cette suite en 1683 en se demandant ce qu'il advient
+des intérêts composés lorsqu'on les compose de plus en plus souvent ; les intérêts croissent, mais
+pas sans limite, et le plafond est $ e $. Euler a donné à la constante sa lettre vers 1731 et l'a
+calculée avec dix-huit décimales. La démonstration est une pure application du principe selon lequel
+une suite croissante et majorée converge --- le premier endroit où un nombre réel est \textit{créé} par
+une limite au lieu d'être écrit.
+
+\begin{refs}
+\item Contexte : e (nombre) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/E_(nombre)})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Segments emboîtés, et comment Cantor a dénombré la droite --- Lycée}]
+\textbf{RA-26.} \textbf{Problème.} Ne supposez de $ \mathbb{R} $ rien d'autre que d'être un corps totalement
+ordonné dans lequel toute partie non vide majorée admet un plus petit majorant (RA-01).
+\begin{enumerate}
+\item[(a)] Démontrez le théorème des segments emboîtés : si $ I_1 \supseteq I_2 \supseteq I_3 \supseteq \cdots $
+sont des intervalles fermés bornés $ I_n = [a_n, b_n] $, alors $ \bigcap_{n=1}^{\infty} I_n $ n'est
+pas vide. Montrez par un exemple que la conclusion peut tomber en défaut si les intervalles sont
+ouverts, ou s'ils ne sont pas bornés.
+\item[(b)] Déduisez-en le théorème de Bolzano--Weierstrass : toute suite bornée de nombres réels admet une
+sous-suite convergente.
+\item[(c)] Démontrez que $ \mathbb{R} $ n'est pas dénombrable, en utilisant (a) plutôt que les
+développements décimaux : étant donné une suite quelconque $ x_1, x_2, x_3, \dots $ de nombres
+réels, construisez des intervalles fermés emboîtés $ I_1 \supseteq I_2 \supseteq \cdots $ avec
+$ x_n \notin I_n $, et concluez qu'aucune suite ne peut énumérer tous les nombres réels.
+\item[(d)] Démontrez que les nombres algébriques --- les racines des polynômes non nuls à coefficients
+entiers --- forment un ensemble dénombrable. Combinez avec (c) pour en déduire que les nombres
+transcendants existent. Remarquez bien que cet argument n'en nomme aucun.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'article de Georg Cantor de 1874, \og{} Sur une propriété de la collection de tous
+les nombres algébriques réels \fg{}, contenait exactement l'argument des questions (c) et (d) --- le
+célèbre argument diagonal n'est venu que dix-sept ans plus tard, en 1891. Trente ans auparavant,
+Liouville avait construit explicitement un nombre transcendant, à la main, au prix d'un effort
+énorme ; Cantor a montré en deux pages que presque tout nombre est transcendant sans en exhiber un
+seul. Kronecker trouvait ce raisonnement répugnant et tenta d'en bloquer la publication. La question
+(a) est l'humble outil qui fait tout fonctionner, et c'est aussi la forme la plus limpide de la
+complétude : c'est elle qui distingue $ \mathbb{R} $ de $ \mathbb{Q} $.
+
+\begin{refs}
+\item Contexte : Théorème des fermés emboîtés --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_ferm%C3%A9s_embo%C3%AEt%C3%A9s})
+\item Contexte : Argument de la diagonale de Cantor --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Argument_de_la_diagonale_de_Cantor})
+\item Contexte : Nombre transcendant --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Nombre_transcendant})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La propriété d'Archimède, et comment $\mathbb{Q}$ remplit $\mathbb{R}$ --- Lycée}]
+\textbf{RA-36.} \textbf{Problème.} Ne supposez de $ \mathbb{R} $ rien d'autre que d'être un corps totalement
+ordonné dans lequel toute partie non vide majorée admet un plus petit majorant.
+\begin{enumerate}
+\item[(a)] Démontrez la propriété d'Archimède : $ \mathbb{N} $ n'est pas majoré dans $ \mathbb{R} $,
+donc pour tout réel $ x $ il existe un entier positif $ n > x $. (Supposez $ \mathbb{N} $
+majoré et examinez $ \sup \mathbb{N} - 1 $.) Déduisez-en que pour tout
+$ \varepsilon > 0 $ il existe un $ n $ tel que $ 1/n < \varepsilon $.
+\item[(b)] Démontrez que les rationnels sont denses : dès que $ a < b $ il existe un rationnel $ q $
+tel que $ a < q < b $. (Choisissez $ n $ tel que $ 1/n < b-a $ et prenez le plus petit
+entier $ m $ tel que $ m/n > a $ ; expliquez pourquoi un tel plus petit entier existe.)
+\item[(c)] Démontrez que $ \sqrt{2} $ est irrationnel, et déduisez-en que les irrationnels sont denses
+eux aussi.
+\item[(d)] Démontrez que tout réel $ x > 0 $ possède exactement une racine $ n $-ième positive, en
+montrant que $ y = \sup\{ t > 0 : t^n < x \} $ vérifie $ y^n = x $ --- éliminez tour à tour
+$ y^n < x $ et $ y^n > x $. Signalez chaque endroit où (a) est utilisé.
+\item[(e)] Montrez que (a) ne découle pas des seuls axiomes de corps totalement ordonné : ordonnez le corps
+des fractions rationnelles $ \mathbb{R}(t) $ en déclarant $ p/q > 0 $ lorsque les coefficients
+dominants de $ p $ et de $ q $ sont de même signe, vérifiez que cela en fait un corps totalement
+ordonné, et constatez que $ t $ y est plus grand que tout entier.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La propriété de (a) est plus ancienne que son nom : Archimède l'énonce comme un
+postulat dans \textit{De la sphère et du cylindre} et en attribue l'idée à Eudoxe, qui s'en servit pour
+rendre rigoureuse la méthode d'exhaustion au quatrième siècle avant notre ère. La question (e) est la
+raison pour laquelle il s'agit d'un véritable théorème sur $ \mathbb{R} $ et non d'une trivialité ---
+il existe de parfaits corps totalement ordonnés contenant des éléments infiniment grands, et c'est la
+complétude qui les exclut ici. Tout ce qui, en analyse, commence par \og{} choisissons $ n $ assez
+grand \fg{} est une application de (a), et (d) est l'endroit où le nombre $ \sqrt{2} $ que RA-01 avait
+localisé comme borne supérieure devient enfin un nombre.
+
+\begin{refs}
+\item Contexte : Archimédien (propriété d'Archimède) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Archim%C3%A9dien})
+\item Contexte : Partie dense --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Partie_dense})
+\item Contexte : Racine d'un nombre --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Racine_d'un_nombre})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 1
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une récurrence qui monte vers une limite --- Lycée, short}]
+\textbf{RA-37.} \textbf{Problème.} Soient $ a_1 = \sqrt{2} $ et $ a_{n+1} = \sqrt{2 + a_n} $
+pour $ n \ge 1 $. Démontrez que la suite est strictement croissante et majorée par $ 2 $, donc
+convergente, et déterminez sa limite --- en justifiant soigneusement pourquoi la limite doit vérifier
+l'équation que vous écrivez, et pourquoi cette équation n'a qu'une seule racine admissible.
+\end{problem}
+
+\noindent La démonstration, c'est le théorème de convergence monotone et rien d'autre, mais
+c'est dans la dernière clause que se trouve la réflexion : passer à la limite à l'intérieur de
+$ \sqrt{2+\cdot} $ utilise la continuité, et écarter la seconde racine de l'équation du second
+degré obtenue utilise l'encadrement que vous avez démontré. Ces radicaux imbriqués sont aussi le
+mécanisme de la formule de Viète pour $\pi$ (1593), le premier produit infini jamais écrit, où les mêmes
+expressions apparaissent comme cosinus d'angles divisés en deux encore et encore.
+
+\begin{refs}
+\item Contexte : Théorème de convergence monotone --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_convergence_monotone})
+\item Contexte : Radical imbriqué --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Radical_imbriqu%C3%A9})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 2
+\end{refs}
+
+\bigskip
+
+
+\section*{Licence}
+
+\begin{problem}[{$\varepsilon$--$\delta$, en pratique --- Licence}]
+\textbf{RA-04.} \textbf{Problème.} Une fonction $ f $ est continue en un point $ c $ si
+pour tout $ \varepsilon > 0 $ il existe un $ \delta > 0 $ tel que
+$ |x - c| < \delta $ entraîne $ |f(x) - f(c)| < \varepsilon $.
+\begin{enumerate}
+\item[(a)] Démontrez directement à partir de cette définition que $ f(x) = x^2 $ est continue en tout
+$ c \in \mathbb{R} $.
+\item[(b)] Démontrez que $ g(x) = 1/x $ est continue en tout point de
+$ (0, \infty) $, mais qu'elle n'y est \textit{pas uniformément} continue --- c'est-à-dire qu'aucun
+$ \delta $ unique ne peut convenir à tous les points à la fois pour un $ \varepsilon $ donné.
+\item[(c)] Démontrez que
+$ g $ \textit{est} uniformément continue sur $ [1, \infty) $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Bolzano (1817) et Cauchy (1821) ont formulé la continuité au moyen d'inégalités,
+et les cours berlinois de Weierstrass des années 1860 ont fixé le rituel $\varepsilon$--$\delta$ que tout analyste
+exécute aujourd'hui. La distinction faite en (b) et (c) --- continuité en chaque point contre
+continuité uniforme sur un ensemble --- a mis des décennies à être vue clairement, et la confusion
+entre les deux a invalidé plusieurs \og{} théorèmes \fg{} publiés au début du dix-neuvième siècle.
+
+\begin{refs}
+\item Contexte : Fonction continue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_continue})
+\item Contexte : Continuité uniforme --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Continuit%C3%A9_uniforme})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 4
+\item Cours : MIT OCW 18.100A Real Analysis (\url{https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Deux fonctions monstrueuses --- Licence}]
+\textbf{RA-05.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Soit $ D(x) = 1 $ si $ x $ est rationnel et
+$ D(x) = 0 $ si $ x $ est irrationnel (la fonction de Dirichlet). Démontrez que $ D $ n'est
+continue en aucun point de $ \mathbb{R} $.
+\item[(b)] Soit $ T(x) = 1/q $ lorsque $ x = p/q $ est
+rationnel écrit sous forme irréductible avec $ q > 0 $, et $ T(x) = 0 $ lorsque $ x $ est
+irrationnel (la fonction de Thomae). Démontrez que $ T $ est continue en tout point irrationnel et
+discontinue en tout point rationnel.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Dirichlet a produit $ D $ en 1829, dans son article sur les séries de Fourier,
+comme premier exemple d'une fonction défiant toute intuition fondée sur les formules ; la variante de
+Thomae est apparue en 1875. Ensemble, elles marquent le moment où \og{} fonction \fg{} s'est mise à
+signifier une règle arbitraire plutôt qu'une expression analytique. Savoir si l'image miroir de (b)
+peut exister --- une fonction continue exactement sur les rationnels --- trouve sa réponse dans le
+théorème de Baire, en RA-13.
+
+\begin{refs}
+\item Contexte : Fonction de Dirichlet --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_de_Dirichlet})
+\item Contexte : Fonction de Thomae --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_de_Thomae})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 4
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Suites de Cauchy et complétude --- Licence}]
+\textbf{RA-06.} \textbf{Problème.} Une suite $ (a_n) $ est \textit{de Cauchy} si pour tout
+$ \varepsilon > 0 $ il existe un $ N $ tel que $ |a_m - a_n| < \varepsilon $ pour
+tous $ m, n \ge N $.
+\begin{enumerate}
+\item[(a)] Démontrez que toute suite convergente est de Cauchy.
+\item[(b)] En utilisant la propriété de la
+borne supérieure (via le théorème de Bolzano--Weierstrass, que vous démontrerez également : toute
+suite bornée admet une sous-suite convergente), démontrez la réciproque : toute suite de Cauchy de
+nombres réels converge.
+\item[(c)] Exhibez une suite de Cauchy de nombres rationnels sans limite
+rationnelle, et concluez que $ \mathbb{Q} $ n'est pas complet.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cauchy a énoncé le critère en 1821 mais n'a pas pu démontrer qu'il est suffisant ---
+il n'existait encore aucune construction de $\mathbb{R}$ à partir de laquelle le démontrer. Elle est venue en
+1872, quand Cantor (à la suite de Méray, 1869) a construit les nombres réels \textit{comme} classes
+d'équivalence de suites de Cauchy de rationnels, tandis que Dedekind les construisait à partir de
+coupures. Ce problème parcourt le cercle historique : la complétude est exactement ce qu'il faut
+ajouter à $\mathbb{Q}$ pour que le critère fonctionne.
+
+\begin{refs}
+\item Contexte : Suite de Cauchy --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Suite_de_Cauchy})
+\item Contexte : Théorème de Bolzano--Weierstrass --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bolzano-Weierstrass})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Réarranger l'infini : le théorème de réarrangement de Riemann --- Licence}]
+\textbf{RA-07.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez que la série harmonique alternée
+$ 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots $ converge, mais pas absolument.
+\item[(b)] Démontrez le théorème de réarrangement de Riemann : si une série de nombres réels converge
+conditionnellement (elle converge, mais pas absolument), alors pour tout nombre réel $ L $ il
+existe un réarrangement de ses termes qui converge vers $ L $, et il existe des réarrangements
+divergeant vers $ +\infty $ et vers $ -\infty $.
+\item[(c)] Démontrez au contraire que tout réarrangement d'une série absolument convergente converge vers
+la même somme.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Dirichlet a remarqué en 1837 que réarranger la série harmonique alternée peut en
+changer la somme ; Riemann, dans son mémoire d'habilitation de 1854 sur les séries trigonométriques
+(publié en 1867), a transformé l'observation en théorème définitif. C'est l'avertissement le plus
+tranchant qui soit sur le fait que l'addition infinie n'est pas commutative, et la raison pour
+laquelle la \og{} convergence absolue \fg{} mérite sa place centrale en analyse.
+
+\begin{refs}
+\item Contexte : Théorème de réarrangement de Riemann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_r%C3%A9arrangement_de_Riemann})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 3
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème des valeurs intermédiaires --- Licence}]
+\textbf{RA-08.} \textbf{Problème.} Démontrez le théorème des valeurs intermédiaires : si $ f $ est
+continue sur $ [a, b] $ et si $ y $ est compris entre $ f(a) $ et $ f(b) $, alors
+$ f(c) = y $ pour un certain $ c \in [a, b] $. Donnez une démonstration utilisant la borne
+supérieure de $ \{ x : f(x) \le y \} $, et signalez où la complétude de $ \mathbb{R} $ est
+utilisée. Déduisez-en ensuite :
+\begin{enumerate}
+\item[(a)] tout polynôme de degré impair à coefficients réels admet une racine réelle ;
+\item[(b)] toute
+fonction continue $ f : [0, 1] \to [0, 1] $ admet un point fixe ;
+\item[(c)] à tout instant, il existe
+deux points antipodaux de l'équateur terrestre où la température est la même (modélisez la
+température par une fonction continue sur un cercle).
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'opuscule de Bolzano de 1817 --- \og{} une démonstration purement analytique du
+théorème selon lequel entre deux valeurs donnant des résultats de signes opposés se trouve au moins
+une racine réelle \fg{} --- est l'acte de naissance de l'analyse rigoureuse : il tenait à ce qu'un énoncé
+sur les fonctions continues méritât une démonstration exempte de tout recours géométrique. Le
+théorème est faux sur $\mathbb{Q}$, donc toute démonstration correcte doit invoquer la complétude ; observer
+l'endroit où elle intervient est tout l'intérêt de l'exercice.
+
+\begin{refs}
+\item Contexte : Théorème des valeurs intermédiaires --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_valeurs_interm%C3%A9diaires})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 4
+\item Cours : MIT OCW 18.100A Real Analysis (\url{https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème des bornes atteintes --- Licence}]
+\textbf{RA-09.} \textbf{Problème.} Démontrez le théorème des bornes atteintes : une fonction
+continue $ f $ sur un intervalle fermé borné $ [a, b] $ est bornée et atteint son maximum et son
+minimum. (Démontrez d'abord qu'elle est bornée, par l'absurde avec Bolzano--Weierstrass ; puis qu'elle
+atteint ses bornes.) Montrez par des exemples que chaque hypothèse est nécessaire : exhibez des
+fonctions continues non bornées sur $ (0, 1) $ et sur $ [0, \infty) $, ainsi qu'une fonction
+continue bornée sur $ (0, 1) $ n'atteignant ni maximum ni minimum.
+\end{problem}
+
+\noindent Weierstrass a démontré le théorème dans ses cours berlinois des années 1860, et
+c'est la raison pour laquelle \og{} fermé et borné \fg{} --- la compacité, comme dirait le vingtième siècle ---
+est devenu un concept porteur. L'existence de maxima avait été supposée en silence pendant deux
+siècles, notamment dans des démonstrations fautives du principe de Dirichlet ; l'insistance de
+Weierstrass à exiger ici une démonstration a remodelé le calcul des variations.
+
+\begin{refs}
+\item Contexte : Théorème des valeurs extrêmes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_valeurs_extr%C3%AAmes})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 4
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La convergence simple n'est pas la convergence uniforme --- Licence}]
+\textbf{RA-10.} \textbf{Problème.} Une suite de fonctions $ f_n $ converge
+\textit{simplement} vers $ f $ si $ f_n(x) \to f(x) $ pour chaque $ x $ fixé, et
+\textit{uniformément} si $ \sup_x |f_n(x) - f(x)| \to 0 $.
+\begin{enumerate}
+\item[(a)] Démontrez qu'une limite uniforme de fonctions continues est continue.
+\item[(b)] Trouvez une suite de fonctions continues sur
+$ [0, 1] $ convergeant simplement vers une fonction discontinue --- il existe un exemple classique
+en une ligne ; démontrez que votre convergence n'est pas uniforme.
+\item[(c)] Trouvez des fonctions continues $ f_n $ sur
+$ [0, 1] $ telles que $ f_n(x) \to 0 $ pour tout $ x $ alors que $ \int_0^1 f_n = 1 $ pour
+tout $ n $ : la convergence simple ne commute pas avec l'intégration.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cauchy affirmait en 1821 qu'une série convergente de fonctions continues a une
+somme continue --- faux tel quel, comme Abel le fit remarquer en 1826 avec une série de Fourier. La
+réparation, la notion de convergence uniforme, a été distillée par Seidel, Stokes et surtout
+Weierstrass dans les années 1840--1850. Les contre-exemples demandés ici sont ceux que tout analyste
+transporte avec lui ; l'exemple (c) est la \og{} bosse qui s'échappe \fg{}, qui motivera plus tard le
+théorème de convergence dominée (RA-16).
+
+\begin{refs}
+\item Contexte : Convergence uniforme --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Convergence_uniforme})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 6
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le monstre de Weierstrass --- Licence}]
+\textbf{RA-11.} \textbf{Problème.} (Problème de compréhension.) La fonction de Weierstrass est
+\[ W(x) = \sum_{n=0}^{\infty} a^n \cos(b^n \pi x), \]
+où $ 0 < a < 1 $ et où $ b $ est un entier impair vérifiant $ ab > 1 + 3\pi/2 $. Elle
+est continue partout et dérivable nulle part.
+\begin{enumerate}
+\item[(a)] Démontrez vous-même la moitié facile : $ W $ est
+continue sur $ \mathbb{R} $ (démontrez et utilisez le test M de Weierstrass).
+\item[(b)] Lisez une démonstration de la non-dérivabilité partout et rédigez-en un compte rendu dans vos
+propres mots : quel rôle joue la condition $ ab > 1 $, pourquoi les fréquences $ b^n $
+doivent-elles croître si vite (lacunarité), et où l'argument produit-il deux points voisins dont les
+taux d'accroissement divergent violemment ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Weierstrass a présenté l'exemple à l'Académie de Berlin en 1872 (publié par du
+Bois-Reymond en 1875), démolissant la croyance universelle selon laquelle une fonction continue doit
+être dérivable sauf en des points isolés. Hermite écrivait qu'il se détournait \og{} avec effroi et
+horreur de cette plaie lamentable des fonctions sans dérivées \fg{}. Le théorème de Baire (RA-13) a
+livré plus tard l'ironie finale : de telles fonctions ne sont pas des monstres mais le cas
+typique.
+
+\begin{refs}
+\item Contexte : Fonction de Weierstrass --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_de_Weierstrass})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 6
+\item Lecture : Stein \& Shakarchi, \textit{Real Analysis} (Princeton Lectures in Analysis III)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'ensemble de Cantor --- Licence}]
+\textbf{RA-12.} \textbf{Problème.} Soit $ C $ l'ensemble triadique de Cantor : de
+$ [0, 1] $ on retire le tiers médian ouvert $ (1/3, 2/3) $, puis le tiers médian de chaque
+intervalle restant, et ainsi de suite ; $ C $ est ce qui subsiste après toutes les étapes.
+Démontrez :
+\begin{enumerate}
+\item[(a)] $ C $ est fermé, ne contient aucun intervalle, et sa \og{} longueur \fg{} est nulle (la longueur
+totale retirée vaut 1) ;
+\item[(b)] $ C $ n'est pas dénombrable --- en fait $ C $ est exactement l'ensemble des nombres de
+$ [0, 1] $ admettant un développement en base 3 n'utilisant que les chiffres 0 et 2, ce qui donne
+une correspondance de type bijection avec toutes les suites binaires infinies ;
+\item[(c)] tout point de $ C $
+est limite d'autres points de $ C $ ($ C $ est parfait). Concluez qu'un ensemble peut être
+négligeable en longueur tout en étant aussi grand que $ \mathbb{R} $ en cardinal.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La construction a été publiée par Henry J. S. Smith en 1874 et, avec bien plus
+d'influence, par Cantor en 1883, au cours de ses recherches sur les ensembles exceptionnels des
+séries trigonométriques. C'est la drosophile de l'analyse réelle : la source standard des
+contre-exemples, la première fractale (de dimension $ \log 2 / \log 3 $) et --- via la fonction de
+Cantor, l'\og{} escalier du diable \fg{} qui lui est associé --- une fonction continue qui monte de 0 à 1
+pendant que sa dérivée s'annule presque partout.
+
+\begin{refs}
+\item Contexte : Ensemble de Cantor --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ensemble_de_Cantor})
+\item Contexte : Escalier de Cantor --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Escalier_de_Cantor})
+\item Lecture : Abbott, \textit{Understanding Analysis}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Catégorie de Baire --- Licence}]
+\textbf{RA-13.} \textbf{Problème.} Un ensemble est \textit{d'intérieur vide} (rare) si son adhérence ne contient
+aucun intervalle ouvert ; un ensemble est \textit{maigre} (de première catégorie) s'il est réunion
+dénombrable d'ensembles rares.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Baire pour $ \mathbb{R} $ : la droite réelle n'est pas
+maigre --- de façon équivalente, une intersection dénombrable d'ouverts denses de $ \mathbb{R} $ est
+dense.
+\item[(b)] Déduisez-en que $ \mathbb{R} $ n'est pas dénombrable.
+\item[(c)] Déduisez-en qu'il n'existe aucune fonction
+$ f : \mathbb{R} \to \mathbb{R} $ continue en tout point rationnel et discontinue en tout point
+irrationnel (utilisez le fait que l'ensemble des points de continuité d'une fonction quelconque est
+une intersection dénombrable d'ouverts).
+\end{enumerate}
+
+\end{problem}
+
+\noindent René-Louis Baire a démontré le théorème dans sa thèse de doctorat de 1899,
+créant une notion de \og{} petitesse \fg{} pour les ensembles qui est topologique et non métrique --- et
+exaspérément indépendante de la mesure : $\mathbb{R}$ se scinde en un ensemble maigre et un ensemble
+négligeable. Les arguments de catégorie sont devenus l'un des grands moteurs non constructifs de
+l'analyse, prouvant l'existence d'objets (comme les fonctions nulle part dérivables, qui forment un
+ensemble co-maigre de $ C[0,1] $) sans jamais en exhiber un seul.
+
+\begin{refs}
+\item Contexte : Théorème de Baire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Baire})
+\item Contexte : Ensemble maigre --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ensemble_maigre})
+\item Lecture : Oxtoby, \textit{Measure and Category}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Dini --- Licence, short}]
+\textbf{RA-27.} \textbf{Problème.} Soit $ K $ un espace métrique compact et soient
+$ f_n : K \to \mathbb{R} $ continues avec $ f_n(x) \le f_{n+1}(x) $ pour tout $ n $ et tout
+$ x $, convergeant simplement vers une fonction continue $ f $. Démontrez que la convergence est
+en fait uniforme, et montrez par un contre-exemple que la conclusion tombe en défaut si l'on
+supprime soit la compacité de $ K $, soit la continuité de la limite.
+\end{problem}
+
+\noindent RA-10 montre que la convergence simple est bien plus faible que la convergence
+uniforme ; le théorème de Dini identifie une paire d'hypothèses supplémentaires peu coûteuses ---
+monotonie et compacité --- qui comble l'écart, et la démonstration est une unique et élégante
+application du sous-recouvrement fini. Ulisse Dini l'a publié dans ses \textit{Fondamenti per la teorica
+delle funzioni di variabili reali} de 1878, l'un des premiers livres entièrement écrits dans le
+nouveau style rigoureux, et c'est encore la manière standard de renforcer une convergence dans les
+arguments d'approximation.
+
+\begin{refs}
+\item Contexte : Théorèmes de Dini --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8mes_de_Dini})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La convexité impose la continuité --- Licence, short}]
+\textbf{RA-28.} \textbf{Problème.} Dites que $ f : (a,b) \to \mathbb{R} $ est \textit{convexe} si
+$ f(t x + (1-t) y) \le t f(x) + (1-t) f(y) $ pour tous $ x, y \in (a,b) $ et tout
+$ t \in [0,1] $. Démontrez qu'une fonction convexe sur un intervalle ouvert est continue --- et même
+lipschitzienne sur tout sous-intervalle fermé --- et montrez par un exemple qu'une fonction convexe
+sur un intervalle fermé $ [a,b] $ peut être discontinue en une extrémité.
+\end{problem}
+
+\noindent C'est l'un des rares endroits de l'analyse où une inégalité purement algébrique
+impose une conclusion topologique, sans qu'aucune continuité ne soit supposée nulle part. Tout
+découle de l'inégalité des trois cordes --- les pentes des cordes croissent quand on se déplace vers
+la droite ---, qui donne aussi des dérivées à droite et à gauche en tout point et la dérivabilité en
+dehors d'un ensemble dénombrable. Johan Jensen a fait de la convexité un sujet à part entière en
+1906 ; l'échec aux extrémités est précisément la raison pour laquelle l'analyse convexe moderne
+travaille sur des domaines ouverts, ou avec des fonctions semi-continues inférieurement à valeurs
+dans la droite réelle achevée.
+
+\begin{refs}
+\item Contexte : Fonction convexe --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_convexe})
+\item Lecture : Rudin, \textit{Real and Complex Analysis}, ch. 3
+\item Lecture : R. T. Rockafellar, \textit{Convex Analysis}, partie I
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Variation bornée et décomposition de Jordan --- Licence}]
+\textbf{RA-29.} \textbf{Problème.} Pour $ f : [a,b] \to \mathbb{R} $, la \textit{variation totale} est
+\[ V_a^b(f) \;=\; \sup \sum_{i=1}^{n} \left| f(x_i) - f(x_{i-1}) \right|, \]
+la borne supérieure étant prise sur toutes les subdivisions $ a = x_0 < x_1 < \cdots < x_n = b $.
+Dites que $ f $ est \textit{à variation bornée} si $ V_a^b(f) < \infty $.
+\begin{enumerate}
+\item[(a)] Démontrez que les fonctions à variation bornée sur $ [a,b] $ forment un espace vectoriel, que
+$ V_a^b(f) = V_a^c(f) + V_c^b(f) $ dès que $ a < c < b $, et que toute fonction monotone
+et toute fonction lipschitzienne est à variation bornée.
+\item[(b)] Démontrez le théorème de décomposition de Jordan : $ f $ est à variation bornée si et
+seulement si $ f = g - h $ pour deux fonctions croissantes au sens large $ g, h $ sur
+$ [a,b] $.
+\item[(c)] Déduisez-en qu'une fonction à variation bornée admet une limite à gauche et une limite à droite
+en tout point, et n'a qu'un nombre au plus dénombrable de discontinuités.
+\item[(d)] Montrez que $ f(x) = x \sin(1/x) $ pour $ x \in (0,1] $ avec $ f(0) = 0 $ est continue
+mais pas à variation bornée, tandis que $ g(x) = x^2 \sin(1/x) $ avec $ g(0) = 0 $ est à
+variation bornée. Expliquez ce que ce contraste dit sur les courbes continues qui ont une longueur
+finie.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Camille Jordan a introduit la variation bornée en 1881 dans un but concret :
+élargir la classe des fonctions dont on sait que la série de Fourier converge, en prolongeant le
+théorème de Dirichlet au-delà des fonctions monotones par morceaux. La question (b) révèle ce que la
+définition dit vraiment --- une fonction à variation bornée est une fonction monotone moins une autre,
+si bien que toute la théorie de la dérivabilité des fonctions monotones lui est transférée d'un
+coup. La variation totale est littéralement la distance verticale parcourue par un point mobile,
+raison pour laquelle elle définit la longueur d'une courbe rectifiable ; et sa descendante en
+théorie de la mesure --- les fonctions dont la dérivée est une mesure --- est aujourd'hui le cadre
+standard du débruitage d'images et des ondes de choc des lois de conservation.
+
+\begin{refs}
+\item Contexte : Fonction à variation bornée --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_%C3%A0_variation_born%C3%A9e})
+\item Contexte : Variation totale d'une fonction --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Variation_totale_d'une_fonction})
+\item Lecture : Royden \& Fitzpatrick, \textit{Real Analysis}, 4e éd., ch. 6
+\item Lecture : Wheeden \& Zygmund, \textit{Measure and Integral}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'escalier du diable --- Licence}]
+\textbf{RA-38.} \textbf{Problème.} Soit $ C \subset [0,1] $ l'ensemble triadique de Cantor de RA-12. Définissez
+la fonction de Cantor $ F : [0,1] \to [0,1] $ comme suit : si $ x \in C $ a pour développement
+triadique $ x = \sum_{n\ge1} 2c_n 3^{-n} $ avec tous les $ c_n \in \{0,1\} $, posez
+$ F(x) = \sum_{n\ge1} c_n 2^{-n} $ ; sur chaque intervalle ouvert retiré lors de la construction
+de $ C $, posez $ F $ constante, égale à sa valeur aux extrémités.
+\begin{enumerate}
+\item[(a)] Démontrez que $ F $ est bien définie (les deux développements triadiques d'une extrémité
+donnent la même valeur), croissante au sens large et surjective sur $ [0,1] $ ; déduisez-en que
+$ F $ est continue, et même uniformément continue, en utilisant seulement le fait qu'une
+surjection croissante sur un intervalle ne peut avoir aucun saut.
+\item[(b)] Démontrez que $ F'(x) = 0 $ en tout $ x $ hors de $ C $, donc que $ F' = 0 $ presque
+partout, alors que $ F(1)-F(0) = 1 $. Concluez que $ F $ est continue, monotone et dérivable
+presque partout, sans pour autant être l'intégrale de sa dérivée : le théorème fondamental de
+l'analyse est mis en défaut pour elle de la façon la plus radicale possible.
+\item[(c)] Démontrez que $ F $ n'est pas lipschitzienne, et trouvez son exposant de Hölder exact :
+montrez que $ |F(x)-F(y)| \le c\,|x-y|^{\alpha} $ vaut avec $ \alpha = \log 2/\log 3 $ et une
+certaine constante $ c $, et qu'elle échoue pour tout exposant plus grand.
+\item[(d)] Posez $ G(x) = \frac{x + F(x)}{2} $. Démontrez que $ G $ est un homéomorphisme strictement
+croissant de $ [0,1] $ sur lui-même avec $ m\big(G(C)\big) = \tfrac12 $. En prenant une partie
+non mesurable $ A \subseteq G(C) $ du type construit en RA-18, démontrez que $ G^{-1}(A) $ est
+un ensemble Lebesgue-mesurable (et même négligeable) dont l'image par l'homéomorphisme $ G $ n'est
+pas mesurable --- et déduisez-en que $ G^{-1}(A) $ est Lebesgue-mesurable mais non borélien.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cantor a introduit cette fonction en 1884, dans le même cercle de travaux que
+l'ensemble de RA-12 ; Scheeffer puis Lebesgue l'ont étudiée, et les physiciens l'ont rebaptisée
+escalier du diable après avoir rencontré la même forme dans le verrouillage de fréquences
+d'oscillateurs couplés. C'est le contre-exemple qui impose toute la théorie de la continuité absolue
+(RA-40) : une fonction peut s'élever de 0 à 1 tout en restant immobile presque partout, si bien que
+\og{} l'intégrale de la dérivée redonne la fonction \fg{} requiert une hypothèse à laquelle personne n'avait
+songé. La question (d) est la démonstration standard du fait que la tribu de Lebesgue est
+strictement plus grande que la tribu borélienne, et elle montre que la mesurabilité n'est pas
+préservée par un changement de variable continu.
+
+\begin{refs}
+\item Contexte : Escalier de Cantor --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Escalier_de_Cantor})
+\item Contexte : Fonction singulière --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_singuli%C3%A8re})
+\item Lecture : Stein \& Shakarchi, \textit{Real Analysis}, ch. 3
+\item Lecture : Gelbaum \& Olmsted, \textit{Counterexamples in Analysis}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une dérivée ne peut pas sauter --- Licence, short}]
+\textbf{RA-39.} \textbf{Problème.} Démontrez le théorème de Darboux : si $ f $ est dérivable
+en tout point de $ [a,b] $, alors $ f' $ prend toute valeur comprise entre $ f'(a) $ et
+$ f'(b) $ --- bien que $ f' $ n'ait aucune raison d'être continue. Exhibez ensuite une fonction
+dérivable dont la dérivée est discontinue en un point, et déduisez-en qu'une fonction présentant une
+discontinuité de saut n'est jamais la dérivée de quoi que ce soit.
+\end{problem}
+
+\noindent Gaston Darboux a démontré cela dans son mémoire de 1875 sur les fonctions
+discontinues, et c'est le premier signe que la classe des dérivées est une classe étrange : une
+dérivée n'a pas à être continue, mais elle ne peut pas non plus être arbitraire. La question
+naturelle qui suit --- quelles fonctions \textit{sont} des dérivées ? --- se révèle n'avoir aucune réponse
+connue, et c'est le problème ouvert de RA-45.
+
+\begin{refs}
+\item Contexte : Théorème de Darboux (analyse) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Darboux_(analyse)})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 5
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{Riemann contre Lebesgue --- Master}]
+\textbf{RA-14.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez que la fonction de Dirichlet de RA-05 n'est pas
+Riemann-intégrable sur $ [0, 1] $, tandis que la fonction de Thomae l'est, d'intégrale nulle.
+\item[(b)] Démontrez
+le critère de Lebesgue : une fonction bornée sur $ [a, b] $ est Riemann-intégrable si et seulement
+si son ensemble de discontinuités est de mesure de Lebesgue nulle.
+\item[(c)] Expliquez, en une page, le changement de
+point de vue de l'intégrale de Lebesgue --- subdiviser l'image plutôt que le domaine --- et
+vérifiez que la fonction de Dirichlet est Lebesgue-intégrable, d'intégrale nulle.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Riemann a défini son intégrale dans le mémoire de 1854 déjà rencontré en RA-07 et
+s'est demandé au juste à quel point une fonction intégrable peut être discontinue ; la thèse de
+Lebesgue de 1902, \og{} Intégrale, longueur, aire \fg{}, y a répondu et a remplacé l'intégrale purement et
+simplement. L'image de Lebesgue lui-même pour (c) : un commerçant peut compter la recette du jour
+pièce par pièce dans l'ordre où elles sont arrivées (Riemann), ou bien trier d'abord les pièces par
+valeur faciale (Lebesgue) --- et la seconde méthode survit à des passages à la limite qui détruisent
+la première.
+
+\begin{refs}
+\item Contexte : Intégrale de Riemann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Int%C3%A9grale_de_Riemann})
+\item Contexte : Intégrale de Lebesgue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Int%C3%A9grale_de_Lebesgue})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 11
+\item Lecture : Bressoud, \textit{A Radical Approach to Lebesgue's Theory of Integration}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Construire la mesure de Lebesgue --- Master}]
+\textbf{RA-15.} \textbf{Problème.} Définissez la mesure extérieure de $ E \subset \mathbb{R} $ par
+$ m^*(E) = \inf \sum |I_k| $, la borne inférieure des longueurs totales sur tous les
+recouvrements dénombrables de $ E $ par des intervalles ouverts $ I_k $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ m^* $ est monotone, dénombrablement
+sous-additive, invariante par translation, et qu'elle attribue à chaque intervalle sa longueur.
+\item[(b)] Dites que $ E $ est
+mesurable (au sens de Carathéodory) si $ m^*(A) = m^*(A \cap E) + m^*(A \setminus E) $ pour tout
+ensemble $ A $. Démontrez que les ensembles mesurables forment une tribu contenant tous les
+intervalles, et que $ m^* $ restreinte à cette tribu est dénombrablement additive.
+\item[(c)] Démontrez que l'ensemble de Cantor est mesurable
+et de mesure nulle, et construisez un \og{} ensemble de Cantor gras \fg{} --- fermé, d'intérieur vide, mais de
+mesure strictement positive.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Borel (1898) et Lebesgue (1902) ont construit la mesure sur la droite ; la
+condition de découpage de Carathéodory (1914) a distillé la construction sous la forme aujourd'hui
+standard, qui fonctionne mot pour mot dans $ \mathbb{R}^n $ et bien au-delà. L'ensemble de Cantor
+gras de la question (c), dû à Smith (1875) et à Volterra, alimente un contre-exemple célèbre : une
+fonction dérivable dont la dérivée est bornée mais n'est pas Riemann-intégrable, l'un des irritants
+qui ont rendu la théorie de Lebesgue nécessaire.
+
+\begin{refs}
+\item Contexte : Mesure de Lebesgue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mesure_de_Lebesgue})
+\item Contexte : Critère de Carathéodory --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Carath%C3%A9odory%27s_criterion})
+\item Lecture : Stein \& Shakarchi, \textit{Real Analysis}, ch. 1
+\item Cours : MIT OCW 18.125 Measure and Integration (\url{https://ocw.mit.edu/courses/18-125-measure-and-integration-fall-2003/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les théorèmes de convergence à l'œuvre --- Master}]
+\textbf{RA-16.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de convergence monotone : si
+$ 0 \le f_1 \le f_2 \le \cdots $ sont mesurables et si $ f_n \to f $ simplement, alors
+$ \int f_n \to \int f $.
+\item[(b)] Déduisez-en le lemme de Fatou et le théorème de convergence dominée : si
+$ f_n \to f $ simplement et $ |f_n| \le g $ pour une fonction intégrable fixée $ g $, alors
+$ \int f_n \to \int f $.
+\item[(c)] Montrez que l'hypothèse de domination ne peut pas être supprimée, à l'aide de la
+bosse qui s'échappe de RA-10(c).
+\item[(d)] Application : justifiez soigneusement la limite classique
+\[ \int_0^n \left(1 - \frac{x}{n}\right)^n x^{s-1}\,dx \;\longrightarrow\;
+\int_0^\infty e^{-x} x^{s-1}\,dx = \Gamma(s) \qquad (s > 0). \]
+\end{enumerate}
+
+\end{problem}
+
+\noindent Ces théorèmes --- Beppo Levi (1906), Fatou (1906), Lebesgue (1904--1910) ---
+constituent la récompense de toute la construction : l'intégrale de Lebesgue passe à la limite sous
+des hypothèses réellement vérifiables, là où l'intégrale de Riemann exige la convergence uniforme.
+Le point (d) est le genre d'interversion qu'Euler pratiquait sans crainte en 1729 lorsqu'il a
+découvert la fonction Gamma ; la théorie de la mesure est la façon dont nous en payons désormais
+honnêtement le prix.
+
+\begin{refs}
+\item Contexte : Théorème de convergence dominée --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_convergence_domin%C3%A9e})
+\item Contexte : Théorème de convergence monotone --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_convergence_monotone})
+\item Lecture : Stein \& Shakarchi, \textit{Real Analysis}, ch. 2
+\item Lecture : Folland, \textit{Real Analysis: Modern Techniques and Their Applications}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Quand Fubini échoue --- Master}]
+\textbf{RA-17.} \textbf{Problème.} Soit
+$ f(x, y) = \dfrac{x^2 - y^2}{(x^2 + y^2)^2} $ sur le carré $ (0, 1] \times (0, 1] $.
+\begin{enumerate}
+\item[(a)] Calculez exactement les deux intégrales itérées
+$ \int_0^1 \!\! \int_0^1 f \,dx\,dy $ et $ \int_0^1 \!\! \int_0^1 f \,dy\,dx $,
+et montrez qu'elles valent $ \pi/4 $ et $ -\pi/4 $ dans un certain ordre : l'ordre
+d'intégration compte.
+\item[(b)] Énoncez précisément les théorèmes de Fubini et de Tonelli et identifiez l'hypothèse que
+$ f $ viole (montrez que $ \iint |f| = \infty $).
+\item[(c)] Construisez un second échec sans aucune
+astuce de compensation : une fonction sur $ [0,1]^2 $ dont les deux intégrales itérées existent
+mais diffèrent, construite à partir de masses placées sur une grille diagonale.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cauchy connaissait déjà de tels exemples en 1827. Fubini (1907) et Tonelli (1909)
+ont tracé la bonne frontière : l'intégration itérée est sûre pour les fonctions intégrables, et sans
+condition pour les fonctions positives. L'exemple de (a) est la mise en garde classique enseignée à
+chaque génération, car dans le travail appliqué l'interversion des intégrales se pratique
+quotidiennement et la vérification de l'intégrabilité absolue est la seule chose qui vous sépare de
+$ -\pi/4 $ au lieu de $ \pi/4 $.
+
+\begin{refs}
+\item Contexte : Théorème de Fubini --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Fubini})
+\item Lecture : Folland, \textit{Real Analysis}, ch. 2
+\item Lecture : Stein \& Shakarchi, \textit{Real Analysis}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Un ensemble qu'on ne peut pas mesurer --- Master}]
+\textbf{RA-18.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Construisez un ensemble de Vitali : en utilisant l'axiome du choix,
+choisissez un représentant dans chaque classe d'équivalence de $ \mathbb{R} $ pour la relation
+$ x \sim y $ si et seulement si $ x - y \in \mathbb{Q} $, tous les représentants étant pris dans
+$ [0, 1] $. Démontrez que l'ensemble $ V $ obtenu n'est pas Lebesgue-mesurable, en montrant
+qu'une infinité dénombrable de translatés rationnels de $ V $ pavent un ensemble coincé entre
+$ [0, 1] $ et $ [-1, 2] $, et en tirant une contradiction de l'additivité dénombrable et de
+l'invariance par translation, que l'on ait $ m(V) = 0 $ ou $ m(V) > 0 $.
+\item[(b)] Concluez à la morale plus forte :
+il n'existe \textit{aucune} mesure définie sur \textit{toutes} les parties de $ \mathbb{R} $ qui soit
+dénombrablement additive, invariante par translation et donne à $ [0, 1] $ la mesure 1.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Giuseppe Vitali a publié la construction en 1905, moins de trois ans après la
+thèse de Lebesgue : la nouvelle mesure ne pourrait jamais couvrir tous les ensembles. La
+démonstration utilise l'axiome du choix de manière essentielle --- Solovay a montré en 1970 que dans
+un modèle convenable de la théorie des ensembles sans choix intégral, toute partie de $\mathbb{R}$ est
+mesurable. Les ensembles non mesurables ne sont donc pas des objets que l'on puisse exhiber, mais
+seulement faire exister par démonstration ; savoir si cela compte comme une existence est une
+question avec laquelle les mathématiques ont appris à vivre.
+
+\begin{refs}
+\item Contexte : Ensemble de Vitali --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ensemble_de_Vitali})
+\item Contexte : Ensemble non mesurable --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Non-measurable_set})
+\item Lecture : Royden \& Fitzpatrick, \textit{Real Analysis}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Banach--Tarski, compris --- Master}]
+\textbf{RA-19.} \textbf{Problème.} (Problème de compréhension.) Le paradoxe de Banach--Tarski : une
+boule pleine de $ \mathbb{R}^3 $ peut être partagée en un nombre fini de morceaux qui peuvent être
+réassemblés, à l'aide de rotations et de translations seulement, en deux boules chacune congruente à
+la boule d'origine. Lisez un traitement complet et rédigez un compte rendu répondant à :
+\begin{enumerate}
+\item[(a)] Pourquoi cela est-il compatible
+avec RA-18 --- quels morceaux doivent nécessairement être non mesurables, et pourquoi le
+\og{} dédoublement \fg{} ne viole-t-il pas la conservation du volume ?
+\item[(b)] Où le groupe libre à deux générateurs se cache-t-il à l'intérieur du
+groupe des rotations $ SO(3) $, et comment sa décomposition paradoxale fait-elle marcher la
+construction ?
+\item[(c)] Pourquoi n'y a-t-il pas de tel paradoxe dans $ \mathbb{R} $ ni dans $ \mathbb{R}^2 $ ---
+qu'est-ce qu'un groupe moyennable, et qu'a démontré Banach sur les mesures finiment additives en
+petite dimension ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Hausdorff en a trouvé le germe en 1914 ; Banach et Tarski ont publié le paradoxe
+complet en 1924. On le raconte souvent comme du mysticisme, mais son contenu réel est un théorème
+sur les groupes : les rotations en dimension trois contiennent assez de liberté pour être
+paradoxales, tandis que les isométries de la droite et du plan n'en contiennent pas --- observation à
+partir de laquelle von Neumann a créé la moyennabilité (1929). C'est la réponse définitive à qui
+voudrait que tous les ensembles aient un volume.
+
+\begin{refs}
+\item Contexte : Paradoxe de Banach--Tarski --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Paradoxe_de_Banach-Tarski})
+\item Lecture : Wagon, \textit{The Banach--Tarski Paradox}
+\item Lecture : Tao, \textit{An Introduction to Measure Theory}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de différentiation de Lebesgue --- Master}]
+\textbf{RA-20.} \textbf{Problème.} Démontrez le théorème de différentiation de Lebesgue : si $ f $ est
+intégrable sur $ \mathbb{R}^n $, alors pour presque tout $ x $ les moyennes de $ f $ sur des
+boules $ B $ se contractant vers $ x $ convergent vers $ f(x) $ --- en symboles,
+$ \frac{1}{|B|} \int_B f \to f(x) $. Suivez la route standard et démontrez chaque ingrédient :
+\begin{enumerate}
+\item[(a)] le lemme de recouvrement de Vitali ;
+\item[(b)] l'inégalité maximale de Hardy--Littlewood --- la fonction
+maximale $ Mf(x) = \sup_{B \ni x} \frac{1}{|B|} \int_B |f| $ vérifie la majoration de type faible
+$ |\{ Mf > \lambda \}| \le C \, \|f\|_1 / \lambda $ ;
+\item[(c)] le passage de l'inégalité maximale et de la
+densité des fonctions continues à l'énoncé \og{} presque partout \fg{}. Déduisez-en le théorème fondamental
+de l'analyse à une variable pour les intégrales de Lebesgue : l'intégrale indéfinie d'une fonction
+intégrable est dérivable presque partout, de dérivée $ f $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Lebesgue avait démontré le théorème en dimension un dès 1910 ; Hardy et
+Littlewood ont introduit la fonction maximale en 1930, dans un article au parfum de cricket sur les
+moyennes de batteurs, et leur inégalité est devenue le modèle de centaines de résultats \og{} presque
+partout \fg{}. Ce théorème est le théorème fondamental de l'analyse version théorie de la mesure, et son
+schéma de démonstration --- lemme de recouvrement, inégalité maximale, sous-classe dense --- est la
+porte d'entrée de l'analyse harmonique et des problèmes de recherche ci-dessous.
+
+\begin{refs}
+\item Contexte : Théorème de différentiation de Lebesgue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_diff%C3%A9rentiation_de_Lebesgue})
+\item Contexte : Fonction maximale de Hardy--Littlewood --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_maximale_de_Hardy-Littlewood})
+\item Lecture : Stein \& Shakarchi, \textit{Real Analysis}, ch. 3
+\item Cours : MIT OCW 18.125 Measure and Integration (\url{https://ocw.mit.edu/courses/18-125-measure-and-integration-fall-2003/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Stone--Weierstrass --- Master, short}]
+\textbf{RA-30.} \textbf{Problème.} Soit $ K $ un espace compact séparé et soit
+$ \mathcal{A} \subseteq C(K, \mathbb{R}) $ une sous-algèbre contenant les fonctions constantes et
+séparant les points (pour $ x \ne y $ il existe $ g \in \mathcal{A} $ avec
+$ g(x) \ne g(y) $). Démontrez que $ \mathcal{A} $ est dense dans $ C(K, \mathbb{R}) $ pour la
+norme uniforme, et déduisez-en le théorème de Weierstrass selon lequel toute fonction continue sur
+$ [0,1] $ est limite uniforme de polynômes.
+\end{problem}
+
+\noindent Weierstrass a démontré le cas polynomial en 1885, à soixante-dix ans, comme une
+sorte de contrepoids au monstre de RA-11 : les fonctions continues peuvent être pathologiques, et
+pourtant chacune d'elles est approchable par les fonctions les plus dociles qui soient. La
+généralisation de Marshall Stone, en 1937, a dépouillé la démonstration jusqu'à ses os algébriques ---
+une algèbre de fonctions, stable par produit, capable de distinguer les points est déjà tout ce
+qu'il faut. La démonstration de Bernstein du cas classique (1912), qui utilise la loi des grands
+nombres, mérite d'être lue en parallèle ; et la version complexe est fausse sans stabilité par
+conjugaison, puisque les limites uniformes de polynômes en $ z $ sont holomorphes.
+
+\begin{refs}
+\item Contexte : Théorème de Stone--Weierstrass --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Stone-Weierstrass})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 7
+\item Lecture : Folland, \textit{Real Analysis}, 2e éd., ch. 4
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème d'Egorov --- Master, short}]
+\textbf{RA-31.} \textbf{Problème.} Soit $ (X, \mathcal{M}, \mu) $ un espace mesuré avec
+$ \mu(X) < \infty $, et soient des fonctions mesurables $ f_n $ convergeant simplement presque
+partout vers $ f $, toutes finies presque partout. Démontrez le théorème d'Egorov : pour tout
+$ \varepsilon > 0 $ il existe un ensemble mesurable $ E \subseteq X $ avec
+$ \mu(X \setminus E) < \varepsilon $ sur lequel $ f_n \to f $ uniformément ; montrez ensuite
+par un exemple sur $ \mathbb{R} $ que l'hypothèse $ \mu(X) < \infty $ ne peut pas être
+supprimée.
+\end{problem}
+
+\noindent C'est le deuxième des trois principes de Littlewood --- toute suite convergente de
+fonctions mesurables est presque uniformément convergente ---, et il rend parfaitement précise
+l'intuition vague selon laquelle la théorie de la mesure est \og{} de l'analyse à un petit ensemble
+près \fg{}. Dmitri Egorov l'a publié en 1911 ; Carlo Severini l'avait démontré indépendamment en 1910,
+dans une revue italienne, et fut ignoré pendant des décennies. Le théorème est le pont standard des
+hypothèses \og{} presque partout \fg{} vers les estimations uniformes, et son échec sur les espaces de
+mesure infinie est la raison pour laquelle tant d'énoncés portent une hypothèse de finitude.
+
+\begin{refs}
+\item Contexte : Théorème d'Egoroff --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d'Egoroff})
+\item Lecture : Stein \& Shakarchi, \textit{Real Analysis}, ch. 1
+\item Lecture : Folland, \textit{Real Analysis}, 2e éd., ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Arzelà--Ascoli : la compacité pour les fonctions --- Master}]
+\textbf{RA-32.} \textbf{Problème.} Soit $ K $ un espace métrique compact. Une famille $ \mathcal{F} $ de
+fonctions $ K \to \mathbb{R} $ est \textit{équicontinue} si pour tout
+$ \varepsilon > 0 $ il existe un $ \delta > 0 $, le même pour tout
+$ f \in \mathcal{F} $, tel que $ d(x,y) < \delta $ entraîne
+$ |f(x) - f(y)| < \varepsilon $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème d'Arzelà--Ascoli : une partie de $ C(K) $ est d'adhérence compacte pour
+la norme uniforme si et seulement si elle est bornée et équicontinue. (Les deux sens ; le sens
+substantiel est l'extraction diagonale d'une sous-suite.)
+\item[(b)] Montrez qu'aucune des deux hypothèses ne peut être supprimée : exhibez une suite bornée de
+$ C[0,1] $ sans sous-suite uniformément convergente, et une suite équicontinue qui n'en a pas non
+plus.
+\item[(c)] Déduisez-en qu'une suite de fonctions partageant une même constante de Lipschitz et une même
+borne uniforme admet une sous-suite uniformément convergente, et servez-vous-en pour démontrer le
+théorème d'existence de Peano : si $ F $ est continue au voisinage de $ (t_0, y_0) $, alors
+$ y' = F(t, y) $, $ y(t_0) = y_0 $ admet une solution sur un intervalle autour de $ t_0 $ ---
+sans aucune condition de Lipschitz. (Construisez des solutions approchées par lignes polygonales
+d'Euler et extrayez une limite.) Montrez par un exemple que l'unicité est réellement mise en
+défaut.
+\item[(d)] Expliquez où le théorème tombe en défaut pour $ C(\mathbb{R}) $ muni de la norme uniforme, et
+comment l'énoncé se répare en passant à la convergence uniforme locale.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Giulio Ascoli (1883--1884) et Cesare Arzelà (1889, 1895) cherchaient à rendre
+rigoureux le genre d'argument que Riemann avait employé sans précaution dans le principe de
+Dirichlet : prendre une famille minimisante de courbes et passer à la limite. Leur théorème est le
+premier théorème de compacité en dimension infinie, et tous ceux qui ont suivi --- Rellich--Kondrachov
+pour les espaces de Sobolev, Montel pour les familles holomorphes, Prokhorov pour les mesures de
+probabilité --- reposent sur la même intuition : un module de continuité uniforme se substitue à la
+dimension finie. Le théorème d'existence de Peano (1890) en est la retombée la plus célèbre :
+abandonner l'hypothèse de Lipschitz achète l'existence au prix de l'unicité, ce qui est l'état
+honnête des choses pour un très grand nombre d'équations différentielles.
+
+\begin{refs}
+\item Contexte : Théorème d'Ascoli --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d'Ascoli})
+\item Contexte : Équicontinuité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quicontinuit%C3%A9})
+\item Contexte : Théorème de Cauchy--Peano--Arzelà --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cauchy-Peano-Arzel%C3%A0})
+\item Lecture : Rudin, \textit{Principles of Mathematical Analysis}, ch. 7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Continuité absolue, et le vrai théorème fondamental --- Master}]
+\textbf{RA-40.} \textbf{Problème.} Dites que $ f : [a,b] \to \mathbb{R} $ est \textit{absolument continue} si pour
+tout $ \varepsilon > 0 $ il existe un $ \delta > 0 $ tel que pour toute famille finie
+d'intervalles deux à deux disjoints $ (a_k,b_k) \subseteq [a,b] $ avec
+$ \sum_k (b_k - a_k) < \delta $ on ait $ \sum_k |f(b_k)-f(a_k)| < \varepsilon $.
+\begin{enumerate}
+\item[(a)] Démontrez la chaîne d'implications : lipschitzienne $ \Rightarrow $ absolument continue
+$ \Rightarrow $ uniformément continue et à variation bornée (RA-29). Montrez que chaque
+implication est stricte --- $ \sqrt{x} $ sur $ [0,1] $ est absolument continue sans être
+lipschitzienne, la fonction de Cantor de RA-38 est continue et à variation bornée sans être
+absolument continue, et $ x\sin(1/x) $ est uniformément continue sans être à variation
+bornée.
+\item[(b)] Démontrez le théorème fondamental de l'analyse pour l'intégrale de Lebesgue : $ f $ est
+absolument continue sur $ [a,b] $ si et seulement si $ f $ est dérivable presque partout,
+$ f' $ est intégrable, et
+\[ f(x) - f(a) = \int_a^x f'(t)\,dt \quad \text{pour tout } x \in [a,b]. \]
+(Un sens est le théorème de différentiation de Lebesgue de RA-20 ; l'autre demande un argument de
+recouvrement de Vitali.)
+\item[(c)] Démontrez que $ f $ est lipschitzienne de constante $ M $ si et seulement si elle est
+absolument continue avec $ |f'| \le M $ presque partout.
+\item[(d)] Démontrez que les fonctions absolument continues ont la propriété (N) de Lusin : elles envoient
+les ensembles négligeables sur des ensembles négligeables. Montrez que la fonction de Cantor ne l'a
+pas, puis démontrez le théorème de Banach--Zarecki : $ f $ est absolument continue si et
+seulement si elle est continue, à variation bornée, et possède la propriété (N).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Giuseppe Vitali a isolé la continuité absolue en 1905 dans un seul but : décrire
+exactement quelles fonctions sont des intégrales de Lebesgue indéfinies. C'est la réponse définitive
+à la question qu'ouvre CAL-09(iii) et qu'affine RA-38 --- \textit{quelles} fonctions sont récupérées en
+intégrant leur dérivée --- et la réponse n'est ni \og{} les fonctions dérivables \fg{}, ni \og{} les fonctions
+continues monotones \fg{}, mais précisément cette classe-là. Lebesgue avait démontré en 1904 qu'une
+fonction monotone est dérivable presque partout ; la question (b) est ce à quoi ce théorème sert, et
+la question (d), due à Banach et Zarecki vers 1925--1930, décompose la condition en trois
+morceaux vérifiables indépendamment.
+
+\begin{refs}
+\item Contexte : Absolue continuité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Absolue_continuit%C3%A9})
+\item Contexte : Application lipschitzienne --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Application_lipschitzienne})
+\item Lecture : Royden \& Fitzpatrick, \textit{Real Analysis}, 4e éd., ch. 6
+\item Lecture : Wheeden \& Zygmund, \textit{Measure and Integral} (le chapitre sur la différentiation)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Lusin --- Master, short}]
+\textbf{RA-41.} \textbf{Problème.} Démontrez le théorème de Lusin : si $ f $ est mesurable et
+finie presque partout sur un ensemble $ E \subseteq \mathbb{R} $ de mesure finie, alors pour tout
+$ \varepsilon > 0 $ il existe un fermé $ K \subseteq E $ avec
+$ m(E \setminus K) < \varepsilon $ tel que la restriction $ f|_K $ soit continue. Montrez
+ensuite le peu que cela dit sur $ f $ elle-même : appliquez-le explicitement à la fonction de
+Dirichlet de RA-05, qui n'est continue en absolument aucun point de $ \mathbb{R} $.
+\end{problem}
+
+\noindent C'est le troisième des trois principes de Littlewood --- toute fonction mesurable
+est presque continue --- et la distinction que la seconde tâche impose, entre \og{} $ f $ restreinte à
+$ K $ est continue \fg{} et \og{} $ f $ est continue aux points de $ K $ \fg{}, est exactement le piège
+que le théorème tend. Nikolaï Luzin l'a démontré en 1912, une version se trouvant déjà chez Vitali
+(1905) ; joint au théorème d'Egorov (RA-31) et à l'approximation des ensembles mesurables par des
+réunions finies d'intervalles (RA-15), il rend précise l'idée que la théorie de la mesure est de
+l'analyse ordinaire pratiquée à un ensemble exceptionnel arbitrairement petit près.
+
+\begin{refs}
+\item Contexte : Théorème de Lusin --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Lusin})
+\item Contexte : Les trois principes de Littlewood en analyse réelle --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Littlewood%27s_three_principles_of_real_analysis})
+\item Lecture : Stein \& Shakarchi, \textit{Real Analysis}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ce qu'est vraiment une forme linéaire sur C[0,1] --- Master}]
+\textbf{RA-42.} \textbf{Problème.} Munissez $ C[0,1] $ de la norme de la borne supérieure et soit $ L $ une
+forme linéaire continue sur cet espace, c'est-à-dire une application linéaire
+$ L : C[0,1] \to \mathbb{R} $ telle que $ |L(f)| \le M \|f\|_{\infty} $ pour une certaine
+constante $ M $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de F. Riesz de 1909 : il existe une fonction $ g $ à variation bornée
+sur $ [0,1] $ telle que
+\[ L(f) = \int_0^1 f \, dg \qquad \text{pour tout } f \in C[0,1], \]
+l'intégrale étant une intégrale de Riemann--Stieltjes, et $ \|L\| = V_0^1(g) $ lorsque
+$ g $ est normalisée (disons $ g(0)=0 $ et $ g $ continue à droite sur $ (0,1) $). Montrez
+par un exemple que sans normalisation $ g $ n'est pas unique.
+\item[(b)] Démontrez le cas positif sous forme mesurée : si $ L(f) \ge 0 $ dès que $ f \ge 0 $, alors
+il existe une mesure borélienne finie $ \mu $ sur $ [0,1] $ telle que $ L(f) = \int f \, d\mu $
+pour toute $ f $ continue, et $ \mu $ est unique.
+\item[(c)] Déduisez-en le théorème de sélection de Helly, et avec lui la compacité faible-* de l'ensemble
+des mesures boréliennes de probabilité sur $ [0,1] $ : toute suite de telles mesures admet une
+sous-suite $ \mu_{n_k} $ et une limite $ \mu $ avec $ \int f d\mu_{n_k} \to \int f d\mu $ pour
+toute $ f $ continue. Expliquez le rapport avec le théorème de Banach--Alaoglu, et montrez
+que l'énoncé correspondant pour la topologie de la norme est faux.
+\item[(d)] Montrez les dents du théorème : démontrez qu'aucune fonction intégrable $ h \in L^1[0,1] $ ne
+vérifie $ f(0) = \int_0^1 f h $ pour toute $ f $ continue. La forme linéaire d'évaluation est
+donc une mesure et non une fonction --- c'est le point où la distribution de Dirac cesse d'être un
+abus de notation et devient un objet.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Frigyes Riesz a annoncé ce résultat dans une note de quatre pages aux
+\textit{Comptes rendus} en 1909, et c'est sans doute là que commence l'analyse fonctionnelle : pour la
+première fois un dual était identifié concrètement, et la réponse n'était pas un espace de fonctions
+mais un espace de mesures. Markov et Kakutani l'ont étendu aux espaces compacts séparés vers
+1938--1941, et l'énoncé moderne porte les trois noms. La question (d) est le germe historique de
+la théorie des distributions : la construction de Schwartz dans les années 1940 est la réponse
+systématique à la découverte que les objets contre lesquels les analystes veulent intégrer sont plus
+généraux que les fonctions dont ils étaient partis.
+
+\begin{refs}
+\item Contexte : Théorème de représentation de Riesz (Fréchet--Riesz) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_repr%C3%A9sentation_de_Riesz_(Fr%C3%A9chet-Riesz)})
+\item Contexte : Théorème de représentation de Riesz--Markov--Kakutani --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_repr%C3%A9sentation_de_Riesz_(Riesz-Markov)})
+\item Contexte : Intégrale de Riemann--Stieltjes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Int%C3%A9grale_de_Stieltjes})
+\item Lecture : Rudin, \textit{Real and Complex Analysis}, ch. 2
+\item Lecture : Folland, \textit{Real Analysis}, 2e éd., ch. 7 (mesures de Radon)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Steinhaus : une mesure strictement positive fait de la place --- Master}]
+\textbf{RA-43.} \textbf{Problème.} Soit $ E \subseteq \mathbb{R} $ Lebesgue-mesurable avec
+$ m(E) > 0 $, et soit $ E - E = \{ x - y : x, y \in E \} $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Steinhaus : $ E - E $ contient un intervalle ouvert autour de
+$ 0 $. Donnez deux démonstrations --- l'une à partir du théorème de densité de Lebesgue, en prenant
+un point où $ E $ occupe au moins 99 \% d'un petit intervalle ; l'autre en démontrant que
+$ \varphi(t) = m\big( E \cap (E+t) \big) $ est continue en $ t $ et strictement positive en
+$ t = 0 $.
+\item[(b)] Déduisez-en qu'un sous-groupe mesurable de $ (\mathbb{R},+) $ de mesure strictement positive
+est $ \mathbb{R} $ tout entier, et qu'un sous-groupe mesurable de mesure nulle est un sous-groupe
+strict d'intérieur vide --- les sous-groupes mesurables sont donc exactement de deux sortes.
+\item[(c)] Démontrez que toute solution Lebesgue-mesurable de l'équation fonctionnelle de Cauchy
+$ f(x+y) = f(x)+f(y) $ est linéaire, $ f(x) = cx $. Expliquez ensuite, en vous référant à
+RA-18, pourquoi les solutions non linéaires construites à partir d'une base de Hamel de
+$ \mathbb{R} $ sur $ \mathbb{Q} $ ne peuvent jamais être exhibées : leurs graphes sont denses
+dans le plan, et aucune d'elles n'est mesurable.
+\item[(d)] Montrez que ni l'hypothèse ni la conclusion ne peuvent être renversées : l'ensemble de Cantor
+gras de RA-15(c) est de mesure strictement positive et ne contient aucun intervalle, donc (a) porte
+bien sur l'ensemble des différences ; et l'ensemble triadique de Cantor $ C $ est de mesure nulle
+alors que $ C - C = [-1,1] $, donc la réciproque de (a) est fausse.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Hugo Steinhaus a publié cela en 1920, dans le tout premier volume de
+\textit{Fundamenta Mathematicae}, la revue que l'école polonaise venait de fonder. Le théorème est le
+pont standard de la mesure vers l'algèbre, et la raison pour laquelle tant d'énoncés de rigidité
+commencent par \og{} supposons l'application mesurable \fg{} : la mesurabilité est une hypothèse d'apparence
+anodine qui interdit secrètement toute pathologie, comme le montre (c) pour les fonctions additives
+que Cauchy avait étudiées en 1821. André Weil a démontré l'analogue dans les groupes localement
+compacts --- pour un ensemble de mesure de Haar strictement positive, $ EE^{-1} $ est un voisinage
+de l'élément neutre ---, et c'est le moteur derrière la continuité automatique des homomorphismes
+mesurables.
+
+\begin{refs}
+\item Contexte : Théorème de Steinhaus --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Steinhaus})
+\item Contexte : Équation fonctionnelle de Cauchy --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_fonctionnelle_de_Cauchy})
+\item Contexte : Théorème de densité de Lebesgue --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Lebesgue%27s_density_theorem})
+\item Article : K. Stromberg, \og{} An elementary proof of Steinhaus's theorem \fg{}, \textit{Proc. Amer. Math. Soc.} 36 (1972), 308
+\item Lecture : Oxtoby, \textit{Measure and Category}
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{Le problème de Kakeya --- Recherche}]
+\textbf{RA-21.} \textbf{Problème.} Un \textit{ensemble de Kakeya} (ensemble de Besicovitch) dans
+$ \mathbb{R}^n $ est un compact contenant un segment de longueur 1 dans chaque direction.
+\begin{enumerate}
+\item[(a)] Échauffement, résolu depuis longtemps : lisez la construction de Besicovitch montrant qu'un
+ensemble de Kakeya du plan peut être de mesure de Lebesgue nulle.
+\item[(b)] Démontrez la conjecture de Kakeya en dimension deux
+(Davies, 1971) : tout ensemble de Kakeya de $ \mathbb{R}^2 $ est de dimension de Hausdorff 2.
+\item[(c)] La
+conjecture des ensembles de Kakeya affirme que tout ensemble de Kakeya de $ \mathbb{R}^n $ est de
+dimension de Hausdorff et de dimension de Minkowski $ n $. Étudiez la démonstration de Wang--Zahl
+pour $ n = 3 $ à travers l'introduction expositive de Guth, et rendez compte des notions clés de
+configurations de tubes granuleuses (\textit{grainy}) et collantes (\textit{sticky}). Le cas
+$ n \ge 4 $ est ouvert : démontrez la conjecture en une dimension $ \ge 4 $ quelconque.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Kakeya a demandé en 1917 quelle est la plus petite aire dans laquelle on peut
+retourner une aiguille de longueur 1 ; la réponse de Besicovitch (1919, 1928) --- une aire
+arbitrairement petite --- a créé la question de la dimension, devenue un pilier de l'analyse
+harmonique, relié à la restriction (RA-22), aux EDP et à la combinatoire. \textbf{Statut :} les
+dimensions 1 et 2 sont classiques ; en février 2025, Hong Wang et Joshua Zahl ont annoncé une
+démonstration de la conjecture des ensembles de Kakeya en dimension trois dans une prépublication
+longue et complexe. En 2026, la démonstration a été étudiée de près et est acceptée par les
+spécialistes du domaine --- il existe des exposés de Guth et de Tao --- et Wang a reçu la médaille
+Fields 2026 (annoncée au CIM de Philadelphie en juillet 2026) en grande partie pour ce travail,
+devenant la troisième femme à l'obtenir. La conjecture reste ouverte en toute dimension
+$ n \ge 4 $.
+
+\begin{refs}
+\item Contexte : Ensemble de Besicovitch (ensemble de Kakeya) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ensemble_de_Besicovitch})
+\item Article : Wang \& Zahl, \og{} Volume estimates for unions of convex sets, and the Kakeya set conjecture in three dimensions \fg{} (2025), arXiv:2502.17655 (\url{https://arxiv.org/abs/2502.17655})
+\item Article : Guth, \og{} Introduction to the proof of the Kakeya conjecture \fg{} (2025), arXiv:2505.07695 (\url{https://arxiv.org/abs/2505.07695})
+\item Lecture : Tao, \og{} The three-dimensional Kakeya conjecture, after Wang and Zahl \fg{} (blog, 2025) (\url{https://terrytao.wordpress.com/2025/02/25/the-three-dimensional-kakeya-conjecture-after-wang-and-zahl/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de restriction --- Recherche}]
+\textbf{RA-22.} \textbf{Problème.} La transformée de Fourier d'une fonction $ L^1 $ est
+continue, on peut donc la restreindre à une sphère ; pour $ L^2 $ elle n'est définie que presque
+partout, et une sphère est de mesure nulle. La conjecture de restriction de Stein situe la
+frontière : pour la sphère unité $ S^{n-1} \subset \mathbb{R}^n $, la restriction à la sphère de
+la transformée de Fourier de $ f $ devrait vérifier
+\[ \| \hat{f} \|_{L^q(S^{n-1})} \le C \, \| f \|_{L^p(\mathbb{R}^n)}
+\qquad \text{pour tout } p < \tfrac{2n}{n+1} \]
+(avec $ q $ déterminé par l'homogénéité) --- c'est la courbure de la sphère qui rend possible une
+telle estimation.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Tomas--Stein, le résultat partiel fondamental,
+dans le domaine qu'il couvre.
+\item[(b)] Lisez comment une estimation de restriction complète impliquerait la conjecture de Kakeya de
+RA-21.
+\item[(c)] Démontrez la conjecture en une dimension $ n \ge 3 $ quelconque.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Stein a observé à la fin des années 1960 que la courbure permet de restreindre
+la transformée de Fourier à des surfaces, lançant l'analyse harmonique euclidienne moderne ; le
+théorème du multiplicateur de la boule de Fefferman (1971) a révélé le lien profond avec les
+ensembles de Kakeya. \textbf{Statut :} le cas de la dimension deux a été réglé dans les années 1970
+(Fefferman, Zygmund) ; pour tout $ n \ge 3 $ la conjecture est ouverte en 2026 --- le théorème de
+Wang--Zahl de RA-21 démontre une conséquence géométrique nécessaire dans $ \mathbb{R}^3 $, et non
+l'estimation de restriction elle-même, et Wang a donné des exposés sur les stratégies d'attaque de
+la restriction au-delà de Kakeya. Les méthodes de découplage de Bourgain, Demeter et Guth ont porté
+les meilleurs exposants récents.
+
+\begin{refs}
+\item Contexte : Conjecture de restriction --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Restriction_conjecture})
+\item Article : Tao, \og{} Recent progress on the restriction conjecture \fg{} (2003), arXiv:math/0311181 (\url{https://arxiv.org/abs/math/0311181})
+\item Lecture : Stein \& Shakarchi, \textit{Functional Analysis} (Princeton Lectures in Analysis IV)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème des distances de Falconer --- Recherche}]
+\textbf{RA-23.} \textbf{Problème.} Pour un ensemble $ E \subset \mathbb{R}^n $, son ensemble
+des distances est $ \Delta(E) = \{ |x - y| : x, y \in E \} $. Conjecture de Falconer : si $ E $
+est compact de dimension de Hausdorff strictement supérieure à $ n/2 $, alors $ \Delta(E) $ est
+de mesure de Lebesgue strictement positive. Démontrez-la --- dans le plan, premier cas ouvert, il faut
+montrer qu'une dimension $ > 1 $ force un ensemble des distances de mesure strictement
+positive. En guise de porte d'entrée, démontrez la cousine discrète accessible avec des outils
+élémentaires : pour $ N $ points du plan, obtenez une minoration non triviale du nombre de
+distances deux à deux distinctes (problème d'Erdős de 1946, essentiellement résolu par Guth et Katz
+en 2015).
+\end{problem}
+
+\noindent Kenneth Falconer a posé la conjecture en 1985 comme analogue continu du problème
+des distances distinctes d'Erdős. \textbf{Statut : ouvert en toute dimension.} Le meilleur seuil connu
+dans le plan est $ 5/4 $ : Guth, Iosevich, Ou et Wang ont démontré en 2020 que les ensembles plans
+de dimension strictement supérieure à $ 5/4 $ ont un ensemble des distances de mesure strictement
+positive, en utilisant le même cercle d'idées --- découplage, récurrence sur les échelles --- que RA-21
+et RA-22, avec depuis d'autres avancées en dimension supérieure. C'est un problème test permanent
+pour mesurer notre compréhension de l'interaction entre mesure, dimension et courbure.
+
+\begin{refs}
+\item Contexte : Conjecture de Falconer --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Falconer%27s_conjecture})
+\item Article : Guth, Iosevich, Ou \& Wang, \og{} On Falconer's distance set problem in the plane \fg{}, \textit{Inventiones Mathematicae} 219 (2020)
+\item Lecture : Falconer, \textit{The Geometry of Fractal Sets}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture des ensembles spectraux de Fuglede --- Recherche, short}]
+\textbf{RA-33.} \textbf{Problème.} Dites qu'un ensemble mesurable borné
+$ \Omega \subset \mathbb{R}^d $ de mesure strictement positive est \textit{spectral} si
+$ L^2(\Omega) $ admet une base orthogonale d'exponentielles
+$ e^{2\pi i \langle \lambda, x \rangle} $ ; Fuglede a conjecturé en 1974 que $ \Omega $ est
+spectral si et seulement si des translatés de $ \Omega $ pavent $ \mathbb{R}^d $. Réglez la
+conjecture pour $ d = 1 $ et $ d = 2 $ --- \textbf{statut : ouvert dans ces dimensions}, alors
+qu'elle est fausse en toute dimension $ d \ge 3 $ et vraie pour tous les corps convexes en toute
+dimension.
+\end{problem}
+
+\noindent Bent Fuglede est arrivé à la question par la théorie des opérateurs : il se
+demandait quand les dérivées partielles sur un domaine admettent des extensions autoadjointes qui
+commutent, et a trouvé que la réponse est exactement cette condition géométrique. La conjecture a
+tenu trente ans, jusqu'à ce que Terence Tao en réfute un sens en dimension 5 en 2004, à l'aide d'une
+construction sur un corps fini transplantée dans $ \mathbb{R}^d $ ; Kolountzakis et Matolcsi ont
+ensuite fait descendre les contre-exemples jusqu'à la dimension 3 et tué la réciproque également. La
+dimension 1 équivaut à un énoncé purement combinatoire sur les pavages de $ \mathbb{Z} $ --- les
+conditions de Coven--Meyerowitz --- et c'est là qu'elle se trouve aujourd'hui, obstinément. Le résultat
+positif pour les corps convexes, dû à Lev et Matolcsi en 2022, montre que la conjecture avait raison
+exactement pour les ensembles que Fuglede avait en tête.
+
+\begin{refs}
+\item Contexte : Conjecture de Fuglede --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Fuglede%27s_conjecture})
+\item Article : T. Tao, \og{} Fuglede's conjecture is false in 5 and higher dimensions \fg{} (2004), Math. Res. Lett. 11, arXiv:math/0306134 (\url{https://arxiv.org/abs/math/0306134})
+\item Article : N. Lev \& M. Matolcsi, \og{} The Fuglede conjecture for convex domains is true in all dimensions \fg{} (2022), Acta Mathematica 228, 385--420, arXiv:1904.12262 (\url{https://arxiv.org/abs/1904.12262})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de Bochner--Riesz --- Recherche, short}]
+\textbf{RA-34.} \textbf{Problème.} Pour $ \delta > 0 $, l'opérateur de Bochner--Riesz sur
+$ \mathbb{R}^n $ est défini du côté de Fourier par
+\[ \widehat{S^{\delta} f}(\xi) \;=\; \left( 1 - |\xi|^2 \right)_{+}^{\delta} \, \hat{f}(\xi), \]
+et la conjecture de Bochner--Riesz affirme que $ S^{\delta} $ est borné sur
+$ L^p(\mathbb{R}^n) $ exactement lorsque
+$ \delta > \max \left\{ n \left| \tfrac{1}{p} - \tfrac{1}{2} \right| - \tfrac{1}{2},\, 0
+\right\} $. Démontrez-la en une dimension $ n \ge 3 $ --- \textbf{statut : ouvert pour tout
+$ n \ge 3 $}, et réglé dans le plan par Carleson et Sjölin en 1972.
+\end{problem}
+
+\noindent Bochner a introduit ces troncatures adoucies dans les années 1930 pour sommer des
+intégrales de Fourier qui divergent si l'on coupe simplement au bord d'une sphère. Que la coupure
+naïve $ \delta = 0 $ soit réellement sans espoir fut le spectaculaire théorème de Charles Fefferman
+de 1971 : le multiplicateur de la boule n'est borné sur $ L^p $ pour aucun $ p \ne 2 $,
+démontré en construisant une configuration de tubes fins de type Kakeya. Cet argument a soudé ce
+problème à RA-21 et RA-22 --- un théorème de Bochner--Riesz complet impliquerait la conjecture de
+restriction, qui impliquerait la conjecture de Kakeya --- et les meilleurs domaines connus en
+dimension supérieure proviennent de la machinerie de découplage et de la méthode polynomiale de
+Bourgain--Guth et de Guth--Hickman--Iliopoulou.
+
+\begin{refs}
+\item Contexte : Moyenne de Bochner--Riesz --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Bochner%E2%80%93Riesz_mean})
+\item Article : C. Fefferman, \og{} The multiplier problem for the ball \fg{} (1971), Annals of Mathematics 94, 330--336
+\item Article : L. Carleson \& P. Sjölin, \og{} Oscillatory integrals and a multiplier problem for the disc \fg{} (1972), Studia Mathematica 44, 287--299
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème de similarité d'Erdős --- Recherche}]
+\textbf{RA-35.} \textbf{Problème.} Dites qu'un ensemble $ A \subseteq \mathbb{R} $ est \textit{universel} si tout
+ensemble mesurable $ E \subseteq \mathbb{R} $ de mesure de Lebesgue strictement positive contient
+une copie affine $ x + tA $ de $ A $, pour un certain $ x \in \mathbb{R} $ et un certain
+$ t \ne 0 $. Erdős a demandé vers 1974 si un ensemble infini quelconque peut être universel, et a
+conjecturé qu'aucun ne peut l'être.
+\begin{enumerate}
+\item[(a)] Démontrez que tout ensemble fini est universel. (Le théorème de densité de Lebesgue fait tout le
+travail.)
+\item[(b)] Démontrez qu'un ensemble non borné n'est jamais universel, de sorte que la question porte sur
+les ensembles infinis bornés ; déduisez-en qu'après changement d'échelle il suffit de trancher le
+cas d'une suite strictement décroissante $ a_n \to 0 $.
+\item[(c)] Lisez et rédigez le théorème de Falconer de 1984 : si $ a_n \downarrow 0 $ lentement, au sens
+où $ a_{n+1} / a_n \to 1 $, alors $ \{ a_n \} $ n'est pas universel. Repérez précisément où
+l'hypothèse de décroissance lente est utilisée.
+\item[(d)] Décidez si la suite géométrique $ \{ 2^{-n} : n \ge 1 \} $ est universelle.
+\textbf{Statut : ouvert.} C'est le cas à décroissance rapide le plus simple, et c'est exactement là que
+cinquante ans d'efforts se sont enlisés ; la conjecture reste ouverte pour toutes les suites
+rapidement décroissantes et pour les ensembles de type Cantor de dimension de Hausdorff nulle.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le problème est un spécimen parfait du goût d'Erdős : un étudiant de première
+année comprend l'énoncé, la question (a) tient en trois lignes, et la question (d) a mis tout le
+monde en échec pendant un demi-siècle. L'intuition --- un ensemble clairsemé devrait pouvoir être
+évité par un ensemble gras --- n'a jamais pu être mise au travail dès que la suite décroît vite, parce
+que les constructions naturelles d'ensembles évitants perdent toute leur marge. Les progrès sont
+venus surtout en changeant la question : Falconer et Eigen ont réglé les suites à décroissance lente
+au milieu des années 1980, Kolountzakis a produit des ensembles de mesure pleine évitant certains
+ensembles de Cantor, et des travaux récents étudient des variantes bilipschitziennes et
+topologiques, passées en revue dans l'article du cinquantenaire ci-dessous.
+
+\begin{refs}
+\item Contexte : Théorème de densité de Lebesgue --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Lebesgue%27s_density_theorem})
+\item Article : K. J. Falconer, \og{} On a problem of Erdős on sequences and measurable sets \fg{} (1984), Proc. Amer. Math. Soc. 90, 77--78
+\item Article : Y. Jung, C.-K. Lai \& Y. Mooroogen, \og{} Fifty years of the Erdős similarity conjecture \fg{} (2024), arXiv:2412.11062 (\url{https://arxiv.org/abs/2412.11062})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème des ensembles de Furstenberg --- Recherche}]
+\textbf{RA-44.} \textbf{Problème.} Fixez $ 0 < s \le 1 $ et $ 0 < t \le 2 $. Un ensemble
+$ F \subseteq \mathbb{R}^2 $ est un \textit{ensemble de Furstenberg $ (s,t) $} s'il existe une
+famille $ \mathcal{L} $ de droites avec $ \dim_H \mathcal{L} \ge t $, pour la métrique naturelle
+sur l'espace des droites, telle que $ \dim_H (F \cap \ell) \ge s $ pour toute
+$ \ell \in \mathcal{L} $. La question est de savoir à quel point $ \dim_H F $ peut être
+petite.
+\begin{enumerate}
+\item[(a)] Montrez que le problème contient Kakeya : démontrez qu'un ensemble de Besicovitch du plan
+(RA-21) est un ensemble de Furstenberg $ (1,1) $, et vérifiez que la borne conjecturée ci-dessous
+redonne alors le théorème de Kakeya plan.
+\item[(b)] Démontrez les bornes faciles $ \dim_H F \ge s $ et $ \dim_H F \ge t/2 $ par un argument de
+recouvrement, puis lisez et rédigez les deux estimations classiques de Wolff pour les ensembles de
+Furstenberg $ (s,1) $, $ \dim_H F \ge 2s $ et $ \dim_H F \ge s + \tfrac12 $, en identifiant
+les deux mécanismes différents (un buisson de droites passant par un même point, et un décompte
+d'incidences entre tubes) qui les produisent.
+\item[(c)] Étudiez le théorème de Ren et Wang (2023), qui règle complètement le cas du plan :
+\[ \dim_H F \;\ge\; \min\Big( s+t, \ \frac{3s+t}{2}, \ s+1 \Big), \]
+et c'est optimal. Rendez compte de la raison pour laquelle il y a trois termes en concurrence, en
+construisant, pour chacun d'eux, un exemple qui le rend contraignant.
+\item[(d)] Montez maintenant d'une dimension. Formulez le problème de Furstenberg $ (s,t) $ pour les
+$ k $-plans de $ \mathbb{R}^n $, et démontrez une borne optimale dans un cas non couvert par le
+théorème plan. \textbf{Statut : ouvert} --- les estimations optimales en dimension supérieure ne sont
+pas connues.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le nom vient des travaux de Furstenberg de 1970 sur les intersections
+d'ensembles de Cantor et la transversalité ; Katz et Tao ont donné au problème sa forme moderne vers
+2001 en montrant qu'il équivaut essentiellement à une conjecture d'anneau discrétisée et qu'il est
+étroitement lié au problème de Falconer (RA-23) et à Kakeya (RA-21). Wolff l'avait promu dans les
+années 1990 comme cas test propre pour les raisonnements de type Kakeya, et pendant vingt-cinq ans
+ses deux bornes ont constitué l'état de l'art. \textbf{Statut en 2026 :} Kevin Ren et Hong Wang ont
+entièrement résolu la conjecture plane dans une prépublication de 2023, obtenant au passage une
+borne somme-produit de type Elekes et la réponse à une question de projection d'Oberlin ; ce travail
+fait partie du cercle d'idées pour lequel Wang a reçu la médaille Fields 2026. Dans
+$ \mathbb{R}^n $ pour $ n \ge 3 $, le problème --- sous chacune de ses diverses formulations
+naturelles --- reste ouvert.
+
+\begin{refs}
+\item Contexte : Ensemble de Besicovitch (ensemble de Kakeya) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ensemble_de_Besicovitch})
+\item Contexte : Dimension de Hausdorff --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Dimension_de_Hausdorff})
+\item Article : K. Ren \& H. Wang, \og{} Furstenberg sets estimate in the plane \fg{} (2023), arXiv:2308.08819 (\url{https://arxiv.org/abs/2308.08819})
+\item Lecture : P. Mattila, \textit{Fourier Analysis and Hausdorff Dimension} (Cambridge, 2015)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Quelles fonctions sont des dérivées ? --- Recherche, short}]
+\textbf{RA-45.} \textbf{Problème.} Si $ F : [0,1] \to \mathbb{R} $ est dérivable en tout
+point, alors $ f = F' $ est de classe de Baire 1 (limite simple de fonctions continues) et possède
+la propriété de Darboux de RA-39 --- mais ces deux conditions réunies ne sont \textbf{pas} suffisantes,
+et aucune caractérisation descriptive de la classe des dérivées n'est connue. Construisez une
+fonction de classe de Baire 1 vérifiant la propriété de Darboux qui ne soit pas une dérivée, puis
+attaquez le problème ouvert lui-même : donnez une liste de conditions intrinsèques sur $ f $, ne
+faisant référence à aucun $ F $, qui vaille exactement pour les dérivées.
+\end{problem}
+
+\noindent C'est l'une des plus anciennes questions non résolues de la théorie des fonctions
+réelles --- Bruckner et Leonard la traitaient déjà comme le problème ouvert central du sujet dans leur
+synthèse de 1966, et elle est toujours ouverte soixante ans plus tard. On sait beaucoup de choses sur
+ce que les dérivées doivent vérifier : outre la classe de Baire 1 et la propriété de Darboux, il y a
+la propriété de Denjoy--Clarkson, selon laquelle $ \{ x : a < f(x) < b \} $ est vide ou
+de mesure strictement positive. Mais toute liste proposée de conditions nécessaires s'est jusqu'ici
+révélée insuffisante, et la difficulté est instructive : la dérivation est définie par une limite en
+chaque point séparément, et personne n'a trouvé l'empreinte globale que ce processus local laisse
+derrière lui.
+
+\begin{refs}
+\item Contexte : Théorème de Darboux (analyse) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Darboux_(analyse)})
+\item Contexte : Fonction de Baire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_de_Baire})
+\item Article : A. M. Bruckner \& J. L. Leonard, \og{} Derivatives \fg{}, \textit{Amer. Math. Monthly} 73 (1966), no 4, partie II, 24--56
+\item Lecture : A. M. Bruckner, \textit{Differentiation of Real Functions}
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}

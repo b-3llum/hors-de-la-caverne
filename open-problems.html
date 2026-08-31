@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problèmes ouverts et frontières de la recherche — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Problèmes ouverts et frontières de la recherche</h1>
+<p class="lede">Ici s'arrête la carte. Tout ce qui suit est soit véritablement non résolu,
+soit ne l'était plus que depuis très peu de temps — et dans ce second cas, l'histoire de
+la façon dont le mur est tombé mérite à elle seule d'être étudiée. Personne ne connaît
+les réponses ici, ce qui veut dire que personne ne peut vous noter, et c'est précisément
+le but : pour la première fois, vous êtes dans la même position que tous les
+mathématiciens professionnels vivants. La règle de cette page, c'est l'honnêteté sur le
+statut. Là où une question est ouverte, il est écrit qu'elle est ouverte. Là où une
+démonstration existe sans avoir été pleinement acceptée, cela est dit. Là où un problème
+est tombé, on nomme qui l'a fait tomber, et quand. À côté de chaque problème célèbre,
+vous trouverez des <b>variantes réellement abordables</b> — de vrais théorèmes, de niveau
+licence et master, qui construisent la compréhension qu'exige le grand problème. Servez-vous
+du filtre pour n'afficher que celles-là.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/open-problems.tex" download>source LaTeX</a> · <a href="tex/open-problems.pdf" download>PDF compilé</a></p>
+<!-- site.js insère automatiquement ici la barre de filtre par niveau / de recherche. NE PAS en construire une. -->
+<hr>
+
+<h2>Les problèmes du prix du millénaire</h2>
+<p>En mai 2000, le Clay Mathematics Institute a désigné sept problèmes et attaché un
+million de dollars à chacun. Ils n'ont pas été choisis comme les sept problèmes les plus
+difficiles des mathématiques, mais comme sept endroits où un progrès remodèlerait des
+domaines entiers. Un seul a été résolu. Les descriptions officielles, rédigées par des
+spécialistes de premier plan, sont les meilleurs énoncés qui existent, et un lien y
+renvoie dans chacune des entrées ci-dessous.</p>
+
+<section class="problem" id="OPEN-01" data-level="Recherche">
+<h3>OPEN-01 · L'hypothèse de Riemann <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> La fonction zêta de Riemann est définie pour
+\( \operatorname{Re}(s) > 1 \) par
+\[ \zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s} \]
+puis prolongée au plan complexe tout entier (privé d'un pôle en \( s = 1 \)) par
+prolongement analytique. Elle s'annule aux entiers pairs négatifs \( -2, -4, -6, \dots \) ;
+ce sont les zéros triviaux. <b>Démontrez que tout autre zéro de \( \zeta \) vérifie
+\( \operatorname{Re}(s) = \tfrac{1}{2} \).</b> Statut : ouvert depuis 1859.</p>
+<p class="context">Riemann a introduit cette question dans un mémoire de huit pages daté
+de 1859, le seul article qu'il ait jamais écrit sur la théorie des nombres, en expliquant
+comment compter les nombres premiers. Sa formule explicite exprime l'erreur dans la
+fonction de comptage des nombres premiers comme une somme sur les zéros de \( \zeta \) —
+si bien que la position des zéros contrôle littéralement le degré d'irrégularité de la
+répartition des nombres premiers. L'hypothèse affirme que les nombres premiers sont aussi
+réguliers qu'ils pourraient l'être. Hilbert en a fait le huitième de ses problèmes de 1900
+et aurait déclaré que, s'il se réveillait après cinq cents ans, sa première question serait
+de savoir si elle avait été démontrée. Plus de \( 10^{13} \) zéros ont été vérifiés et tous
+se trouvent sur la droite critique ; c'est un indice, pas une démonstration, et les
+mathématiques se sont déjà laissé tromper par des indices numériques plus massifs encore
+(voir le nombre de Skewes). Des centaines de théorèmes publiés commencent par « supposons
+l'hypothèse de Riemann ».</p>
+<ul class="refs">
+<li>Énoncé officiel : <a href="https://www.claymath.org/millennium/riemann-hypothesis/">Clay Mathematics Institute — Riemann Hypothesis</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Hypoth%C3%A8se_de_Riemann">Hypothèse de Riemann — Wikipédia</a></li>
+<li>Lecture : John Derbyshire, <i>Prime Obsession</i> (2003) — l'histoire, pour un lecteur non spécialiste</li>
+<li>Lecture : H. M. Edwards, <i>Riemann's Zeta Function</i> — contient une traduction du mémoire de 1859</li>
+<li>Lecture : Marcus du Sautoy, <i>The Music of the Primes</i> (2003)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-02" data-level="Recherche">
+<h3>OPEN-02 · P contre NP <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> \( \mathrm{P} \) est la classe des problèmes de
+décision que résout une machine de Turing déterministe en un temps polynomial en la
+longueur de l'entrée. \( \mathrm{NP} \) est la classe dont les instances « oui »
+possèdent des certificats vérifiables en temps polynomial. <b>Décidez si
+\( \mathrm{P} = \mathrm{NP} \).</b> Statut : ouvert. On croit très largement que
+\( \mathrm{P} \neq \mathrm{NP} \), et aucune démonstration n'est connue dans l'une ou
+l'autre direction.</p>
+<p class="context">La question a été posée sous une forme essentiellement moderne par
+Stephen Cook en 1971 et, indépendamment, par Leonid Levin ; une lettre de 1956 de Kurt
+Gödel à John von Neumann l'avait déjà formulée dans un autre langage. C'est la question
+de savoir si trouver une solution est fondamentalement plus difficile que la reconnaître
+— si la créativité peut être automatisée. Des milliers de problèmes naturels
+(l'ordonnancement, les modèles de repliement des protéines, la conception de circuits, le
+sudoku sur des grilles \( n \times n \)) sont NP-complets, ce qui signifie qu'un
+algorithme polynomial pour l'un quelconque d'entre eux ferait s'effondrer la classe tout
+entière. Deux barrières expliquent pourquoi les progrès sont si difficiles : la
+relativisation (Baker–Gill–Solovay, 1975) montre que toute démonstration traitant le
+calcul comme une boîte noire est vouée à l'échec, et les démonstrations naturelles
+(Razborov–Rudich, 1994) montrent qu'une vaste classe de techniques combinatoires ne peut
+pas fonctionner, sauf à rendre la cryptographie impossible.</p>
+<ul class="refs">
+<li>Énoncé officiel : <a href="https://www.claymath.org/millennium/p-vs-np/">Clay Mathematics Institute — P vs NP</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_P_%E2%89%9F_NP">Problème P ≟ NP — Wikipédia</a></li>
+<li>Lecture : Lance Fortnow, <i>The Golden Ticket: P, NP, and the Search for the Impossible</i> (2013)</li>
+<li>Lecture : Sanjeev Arora &amp; Boaz Barak, <i>Computational Complexity: A Modern Approach</i></li>
+<li>Voir aussi : <a href="applied-discrete-cs.html">Mathématiques discrètes et informatique</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-03" data-level="Recherche">
+<h3>OPEN-03 · Existence et régularité pour Navier–Stokes <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Pour un écoulement incompressible dans
+\( \mathbb{R}^3 \), de champ de vitesse \( u \) et de pression \( p \), les équations de
+Navier–Stokes s'écrivent
+\[ \partial_t u + (u \cdot \nabla) u = -\nabla p + \nu \Delta u, \qquad \nabla \cdot u = 0 . \]
+<b>Démontrez que, pour tout champ de vitesse initial lisse et à décroissance rapide, il
+existe une solution lisse définie pour tout temps \( t > 0 \)</b> — ou exhibez une donnée
+initiale dont la solution explose en temps fini. Statut : ouvert en dimension trois.</p>
+<p class="context">Les équations ont été écrites par Claude-Louis Navier en 1822 et
+solidement établies par George Gabriel Stokes en 1845 ; on s'en sert tous les jours pour
+concevoir des avions et prévoir le temps. Personne ne sait si elles admettent toujours des
+solutions. Jean Leray a démontré en 1934 que des solutions faibles existent toujours, mais
+il n'a pu montrer ni leur unicité ni leur régularité ; cet écart n'a jamais été comblé.
+L'enjeu physique est la description mathématique de la turbulence. Notez l'asymétrie, dite
+honnêtement : en dimension deux, la régularité globale est un <i>théorème</i>, démontré par
+Ladyjenskaïa ; c'est précisément la troisième dimension, où les lignes de tourbillon
+peuvent s'étirer, qui résiste.</p>
+<ul class="refs">
+<li>Énoncé officiel : <a href="https://www.claymath.org/millennium/navier-stokes-equation/">Clay Mathematics Institute — Navier–Stokes Equation</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Solutions_des_%C3%A9quations_de_Navier-Stokes">Solutions des équations de Navier-Stokes — Wikipédia</a></li>
+<li>Lecture : Terence Tao, « Finite time blowup for an averaged three-dimensional Navier-Stokes equation » (2016), <a href="https://arxiv.org/abs/1402.0290">arXiv:1402.0290</a> — pourquoi le problème est véritablement délicat</li>
+<li>Voir aussi : <a href="applied-pde.html">Équations aux dérivées partielles</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-04" data-level="Recherche">
+<h3>OPEN-04 · Existence de Yang–Mills et déficit de masse <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> <b>Démontrez que, pour tout groupe de jauge simple
+compact \( G \), une théorie quantique de Yang–Mills non triviale existe sur
+\( \mathbb{R}^4 \) et satisfait les axiomes de Wightman, et qu'elle possède un déficit de
+masse \( \Delta > 0 \)</b> — c'est-à-dire que tout état autre que le vide a une énergie au
+moins égale à \( \Delta \). Statut : ouvert. Cela suppose d'abord de construire la théorie
+de façon rigoureuse, ce qui est déjà non résolu.</p>
+<p class="context">La théorie de Yang–Mills, écrite par Chen Ning Yang et Robert Mills en
+1954, est l'ossature mathématique du modèle standard de la physique des particules. Les
+physiciens calculent avec elle tous les jours et ses prédictions s'accordent avec
+l'expérience avec une précision extraordinaire ; l'embarras, c'est que personne n'a
+construit la théorie comme objet mathématique en dimension quatre. Le déficit de masse
+explique pourquoi l'interaction nucléaire forte a une portée finie et pourquoi les gluons,
+bien que sans masse dans la théorie classique, ne produisent que des états liés massifs —
+les simulations sur réseau montrent clairement le déficit, mais une démonstration exige la
+limite continue que personne ne sait contrôler. Ce problème demande aux mathématiques de
+rattraper la physique.</p>
+<ul class="refs">
+<li>Énoncé officiel : <a href="https://www.claymath.org/millennium/yang-mills-the-maths-gap/">Clay Mathematics Institute — Yang–Mills and the Mass Gap</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Yang%E2%80%93Mills_existence_and_mass_gap">Existence de Yang–Mills et déficit de masse — Wikipédia (en anglais)</a></li>
+<li>Lecture : Gerald Folland, <i>Quantum Field Theory: A Tourist Guide for Mathematicians</i></li>
+<li>Voir aussi : <a href="applied-physics.html">Physique mathématique</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-05" data-level="Recherche">
+<h3>OPEN-05 · La conjecture de Hodge <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( X \) une variété projective complexe non
+singulière. <b>Démontrez que toute classe de Hodge sur \( X \) — toute classe de
+cohomologie rationnelle de type \( (p,p) \) — est une combinaison linéaire rationnelle de
+classes de cohomologie de sous-variétés algébriques complexes de \( X \).</b> Statut :
+ouvert. (La pleine précision demande la théorie de Hodge ; l'énoncé ci-dessus est
+l'énoncé standard, et la description du Clay Institute développe la machinerie nécessaire
+pour le lire.)</p>
+<p class="context">William Hodge a proposé cette conjecture au Congrès international de
+1950. Elle demande si une condition purement topologico-analytique force l'existence de
+géométrie algébrique : étant donné une classe de cohomologie qui <i>ressemble</i>
+seulement à ce qui pourrait provenir d'une sous-variété, faut-il qu'une sous-variété soit
+effectivement là ? La conjecture est connue en degré un, où elle est le théorème de
+Lefschetz sur les classes \( (1,1) \), démontré en 1924. Au-delà, on ne sait
+essentiellement rien de général, et c'est le moins accessible des sept problèmes — même
+comprendre l'énoncé demande une véritable formation de niveau master, ce qui explique que
+les variantes ci-dessous commencent par le théorème de Lefschetz.</p>
+<ul class="refs">
+<li>Énoncé officiel : <a href="https://www.claymath.org/millennium/hodge-conjecture/">Clay Mathematics Institute — Hodge Conjecture</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Hodge">Conjecture de Hodge — Wikipédia</a></li>
+<li>Lecture : Claire Voisin, <i>Théorie de Hodge et géométrie algébrique complexe</i> (2 vol.)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-06" data-level="Recherche">
+<h3>OPEN-06 · La conjecture de Birch et Swinnerton-Dyer <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( E \) une courbe elliptique sur
+\( \mathbb{Q} \), de fonction \( L \) notée \( L(E,s) \). <b>Démontrez que le rang du
+groupe abélien de type fini \( E(\mathbb{Q}) \) est égal à l'ordre d'annulation de
+\( L(E,s) \) en \( s = 1 \).</b> Statut : ouvert. Connu lorsque l'ordre d'annulation vaut
+\( 0 \) ou \( 1 \), grâce aux travaux de Gross–Zagier et de Kolyvagin.</p>
+<p class="context">Au début des années 1960, Bryan Birch et Peter Swinnerton-Dyer ont
+lancé des calculs sur l'ordinateur EDSAC à Cambridge, comptant les points de courbes
+elliptiques modulo de nombreux nombres premiers, et ont remarqué un motif : les courbes
+ayant beaucoup de solutions rationnelles semblaient avoir en moyenne beaucoup de points
+modulo \( p \). La conjecture rend cette observation exacte, en reliant l'arithmétique
+d'une courbe au comportement analytique d'une fonction construite à partir d'elle. C'est
+l'instance connue la plus profonde d'une philosophie générale — les fonctions \( L \)
+encodent l'arithmétique — et elle a un visage concret : elle réglerait l'antique problème
+des nombres congruents, qui demande quels entiers sont l'aire d'un triangle rectangle à
+côtés rationnels.</p>
+<ul class="refs">
+<li>Énoncé officiel : <a href="https://www.claymath.org/millennium/birch-and-swinnerton-dyer-conjecture/">Clay Mathematics Institute — Birch and Swinnerton-Dyer Conjecture</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Birch_et_Swinnerton-Dyer">Conjecture de Birch et Swinnerton-Dyer — Wikipédia</a></li>
+<li>Lecture : Joseph Silverman &amp; John Tate, <i>Rational Points on Elliptic Curves</i></li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-07" data-level="Recherche">
+<h3>OPEN-07 · La conjecture de Poincaré — <i>résolue</i> <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème (résolu).</b> <b>Démontrez que toute variété close et simplement connexe de
+dimension \( 3 \) est homéomorphe à la sphère \( S^3 \) de dimension \( 3 \).</b> Statut :
+<b>démontré</b> par Grigori Perelman dans des prépublications déposées en 2002–2003,
+vérifiées par la communauté au cours des trois années suivantes.</p>
+<ol class="parts" type="a">
+<li>Lisez la démonstration, et comprenez pourquoi le flot de Ricci avec chirurgie était le
+bon outil.</li>
+<li>Attaquez ensuite le cas ouvert : la conjecture de Poincaré lisse en dimension \( 4 \)
+(voir <a href="pure-topology.html">Topologie</a>).</li>
+</ol>
+</div>
+<p class="context">Henri Poincaré a posé la question en 1904, à la naissance même de la
+discipline qu'il était en train d'inventer. Les analogues en dimension supérieure sont
+tombés les premiers — Stephen Smale pour la dimension \( \geq 5 \) en 1961, Michael
+Freedman pour la dimension 4 (topologiquement) en 1982 —, laissant le cas original, en
+dimension trois, comme le dernier et le plus difficile. Richard Hamilton a proposé le flot
+de Ricci, qui lisse la géométrie d'une variété comme l'équation de la chaleur lisse la
+température, mais le flot peut former des singularités ; l'idée de Perelman fut de les
+contrôler par chirurgie, en découpant et en recollant la variété au fil de son évolution.
+Il a ensuite refusé à la fois la médaille Fields (2006) et le million de dollars (2010),
+au motif que la récompense était injuste envers Hamilton, dont il jugeait la contribution
+non moindre que la sienne. C'est à ce jour le seul problème du millénaire résolu.</p>
+<ul class="refs">
+<li>Énoncé officiel : <a href="https://www.claymath.org/millennium/poincare-conjecture/">Clay Mathematics Institute — Poincaré Conjecture</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Poincar%C3%A9">Conjecture de Poincaré — Wikipédia</a></li>
+<li>Article : Grigori Perelman, « The entropy formula for the Ricci flow and its geometric applications » (2002), <a href="https://arxiv.org/abs/math/0211159">arXiv:math/0211159</a></li>
+<li>Lecture : Donal O'Shea, <i>The Poincaré Conjecture</i> (2007)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-43" data-level="Lycée" data-kind="court">
+<h3>OPEN-43 · Les trois premiers zéros, à partir d'une table <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans une table publiée des zéros de la fonction zêta
+de Riemann (Andrew Odlyzko tient en ligne les tables de référence), relevez les parties
+imaginaires des trois premiers zéros non triviaux — vous devriez trouver environ
+\( 14{,}1347 \), \( 21{,}0220 \) et \( 25{,}0109 \) — et vérifiez que la table donne
+chaque zéro avec une partie réelle exactement égale à \( \tfrac{1}{2} \). Expliquez
+ensuite en une phrase pourquoi \( 10^{13} \) confirmations de ce genre ne démontreraient
+toujours pas l'hypothèse de Riemann.</p>
+<p class="context">Savoir où vivent les données est une vraie compétence. L'étude
+numérique des zéros de zêta va des calculs à la main de Riemann lui-même à Alan Turing,
+qui a calculé des zéros sur le Manchester Mark 1 en 1950, jusqu'aux immenses tables
+modernes d'Odlyzko. Manipuler trois nombres réels rend OPEN-01 concret comme aucun résumé
+ne saurait le faire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Hypoth%C3%A8se_de_Riemann">Hypothèse de Riemann — Wikipédia</a></li>
+<li>Tables : <a href="https://www-users.cse.umn.edu/~odlyzko/zeta_tables/index.html">Andrew Odlyzko — Tables of zeros of the Riemann zeta function</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-44" data-level="Licence" data-kind="court">
+<h3>OPEN-44 · P, NP et co-NP en trois phrases <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Énoncez la différence entre \( \mathrm{P} \),
+\( \mathrm{NP} \) et co-NP en trois phrases — une par classe, formulées en termes de
+certificats « oui » et de certificats « non ». Nommez ensuite un problème de décision
+naturel qui appartient à \( \mathrm{NP} \cap \text{co-}\mathrm{NP} \) sans qu'on sache
+s'il appartient à \( \mathrm{P} \).</p>
+<p class="context">Savoir énoncer proprement ces définitions est le droit d'entrée pour
+OPEN-02. L'exemple standard est la factorisation, posée comme problème de décision :
+exhiber un facteur pour « oui », exhiber la décomposition complète en facteurs premiers
+pour « non » — la primalité elle-même est dans \( \mathrm{P} \) depuis
+Agrawal–Kayal–Saxena (2002). Savoir si \( \mathrm{NP} = \text{co-}\mathrm{NP} \) est
+lui-même ouvert, et une démonstration que ces classes diffèrent donnerait déjà
+\( \mathrm{P} \neq \mathrm{NP} \).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Co-NP">co-NP — Wikipédia</a></li>
+<li>Lecture : Michael Sipser, <i>Introduction to the Theory of Computation</i>, chap. 7</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-45" data-level="Master" data-kind="court">
+<h3>OPEN-45 · Le changement d'échelle qui rend Navier–Stokes difficile <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Montrez que si le couple \( (u, p) \) est solution
+des équations de Navier–Stokes tridimensionnelles d'OPEN-03, alors, pour tout
+\( \lambda > 0 \), il en va de même du couple redimensionné
+\[ u_{\lambda}(x,t) = \lambda\, u(\lambda x, \lambda^{2} t), \qquad
+p_{\lambda}(x,t) = \lambda^{2} p(\lambda x, \lambda^{2} t) . \]
+Déterminez ensuite l'exposant \( s \) pour lequel la norme de la donnée initiale
+\( \| u(\cdot,0) \|_{\dot{H}^{s}(\mathbb{R}^{3})} \) est invariante par ce changement
+d'échelle, et expliquez en une phrase pourquoi la norme d'énergie \( L^{2} \), qui est
+conservée, est de ce fait dite <i>surcritique</i> en dimension trois.</p>
+<p class="context">Ce calcul d'une demi-page explique toute la forme du problème du
+millénaire. La seule quantité dont on sache qu'elle est contrôlée pour tout temps est
+l'énergie, et le changement d'échelle ci-dessus montre que la norme d'énergie se situe du
+mauvais côté de l'exposant critique en dimension trois — si bien que rétrécir une solution
+la fait paraître, du point de vue de l'énergie, de plus en plus petite tandis que ses
+gradients explosent sans entrave. En dimension deux, le même calcul place l'énergie
+exactement au niveau critique, ce qui explique que le théorème de Ladyjenskaïa existe et
+que son analogue tridimensionnel n'existe pas. La construction d'explosion moyennée de
+Terence Tao est l'énoncé le plus net de la difficulté : toute démonstration de régularité
+globale devra faire appel à autre chose que l'énergie et le changement d'échelle.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Solutions_des_%C3%A9quations_de_Navier-Stokes">Solutions des équations de Navier-Stokes — Wikipédia</a></li>
+<li>Lecture : Terence Tao, « Finite time blowup for an averaged three-dimensional Navier-Stokes equation », <i>Journal of the AMS</i> 29 (2016), <a href="https://arxiv.org/abs/1402.0290">arXiv:1402.0290</a></li>
+<li>Voir aussi : <a href="applied-pde.html">Équations aux dérivées partielles</a></li>
+</ul>
+</section>
+
+<hr>
+<h2>Des variantes réellement abordables</h2>
+<p>Personne ne commence au sommet. Chacun des problèmes ci-dessous est un véritable
+théorème ou un véritable calcul qu'un étudiant déterminé peut mener à bien, choisi parce
+qu'il construit la compréhension précise qu'exige l'un des grands problèmes. Ce sont les
+contreforts, et ils valent la peine d'être gravis pour eux-mêmes.</p>
+
+<section class="problem" id="OPEN-08" data-level="Licence">
+<h3>OPEN-08 · Le produit d'Euler, ou pourquoi \( \zeta \) connaît les nombres premiers <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( s > 1 \) un réel.</p>
+<ol class="parts" type="a">
+<li>Démontrez la formule du produit d'Euler :
+\[ \sum_{n=1}^{\infty} \frac{1}{n^s} = \prod_{p \text{ premier}} \frac{1}{1 - p^{-s}} . \]</li>
+<li>Déduisez-en, en faisant tendre \( s \to 1^{+} \), que \( \sum_{p} 1/p \) diverge.</li>
+<li>Expliquez pourquoi cela fournit une seconde démonstration de l'infinité des nombres
+premiers — plus forte que celle d'Euclide, puisqu'elle dit que les nombres premiers ne
+sont pas trop rares.</li>
+</ol>
+</div>
+<p class="context">Euler a trouvé cette formule en 1737, et c'est la seule formule dont
+naisse toute la théorie analytique des nombres : le membre de gauche est de l'analyse,
+celui de droite de l'arithmétique, et l'égalité est le théorème fondamental de
+l'arithmétique déguisé. Tout ce qui concerne l'hypothèse de Riemann commence ici.
+Comprendre exactement pourquoi l'unicité de la factorisation produit un produit sur les
+nombres premiers est le prérequis pour comprendre ce qu'un zéro de \( \zeta \) peut bien
+avoir à faire avec la répartition des nombres premiers.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_eul%C3%A9rien">Produit eulérien — Wikipédia</a></li>
+<li>Lecture : Tom Apostol, <i>Introduction to Analytic Number Theory</i>, chap. 11</li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a>, <a href="proofs.html">L'art de la démonstration</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-09" data-level="Master">
+<h3>OPEN-09 · Aucun zéro sur la droite \( \operatorname{Re}(s) = 1 \) <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Travaillez et reconstituez la démonstration du fait que \( \zeta(1 + it) \neq 0 \)
+pour tout réel \( t \neq 0 \), en utilisant l'inégalité
+\[ 3 + 4\cos\theta + \cos 2\theta \geq 0 . \]</li>
+<li>Expliquez précisément comment cette non-annulation donne le théorème des nombres
+premiers, \( \pi(x) \sim x / \log x \).</li>
+<li>Énoncez ce qu'améliorerait l'hypothèse de Riemann : donnez le terme d'erreur qu'elle
+implique pour \( \pi(x) \).</li>
+</ol>
+</div>
+<p class="context">C'est le théorème de Hadamard–de la Vallée Poussin de 1896, le résultat
+qui a fait de la théorie analytique des nombres une discipline. L'astuce
+trigonométrique ressemble à un lapin sorti d'un chapeau ; il vaut la peine de rester avec
+elle jusqu'à ce qu'elle cesse d'y ressembler. Faire cet exercice enseigne la véritable
+leçon de l'hypothèse de Riemann : le théorème que vous savez démontrer écarte les zéros
+d'une droite, la conjecture que vous ne savez pas démontrer les place tous sur une autre,
+et la distance entre ces deux énoncés est la distance entre savoir que les nombres
+premiers sont réguliers et savoir exactement à quel point.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_nombres_premiers">Théorème des nombres premiers — Wikipédia</a></li>
+<li>Lecture : Tom Apostol, <i>Introduction to Analytic Number Theory</i>, chap. 13</li>
+<li>Lecture : Harold Davenport, <i>Multiplicative Number Theory</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-10" data-level="Licence">
+<h3>OPEN-10 · 2-SAT est facile, 3-SAT ne l'est pas <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Rappelons qu'une formule sous forme normale conjonctive est une
+conjonction de clauses, chacune étant une disjonction de littéraux.</p>
+<ol class="parts" type="a">
+<li>Démontrez que \( \mathrm{P} \subseteq \mathrm{NP} \).</li>
+<li>Donnez un algorithme en temps polynomial qui décide la satisfiabilité d'une formule
+booléenne sous forme normale conjonctive comportant exactement deux littéraux par clause,
+et démontrez qu'il est correct — la méthode du graphe d'implications, où une formule est
+insatisfiable exactement lorsqu'une variable \( x \) et sa négation appartiennent à la
+même composante fortement connexe.</li>
+<li>Énoncez le théorème de Cook–Levin et expliquez, sans le démontrer intégralement,
+pourquoi le passage de 3-SAT dans \( \mathrm{P} \) ferait s'effondrer tout
+\( \mathrm{NP} \).</li>
+</ol>
+</div>
+<p class="context">L'écart entre deux littéraux et trois, c'est tout le mystère de
+\( \mathrm{P} \) contre \( \mathrm{NP} \) en miniature : l'un se résout en temps linéaire,
+l'autre est le problème difficile canonique, et rien dans leurs énoncés n'explique la
+différence. Cook a démontré en 1971 que SAT est NP-complet ; l'article de Karp de 1972 a
+aussitôt produit vingt et un autres problèmes NP-complets et déclenché le déluge. Sentir
+exactement où la difficulté s'introduit quand on ajoute le troisième littéral, c'est le
+commencement de l'intuition en complexité.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_2-SAT">Problème 2-SAT — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cook">Théorème de Cook — Wikipédia</a></li>
+<li>Lecture : Michael Sipser, <i>Introduction to the Theory of Computation</i>, chap. 7</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/6-045j-automata-computability-and-complexity-spring-2011/">MIT OCW 6.045J Automata, Computability, and Complexity</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-11" data-level="Master">
+<h3>OPEN-11 · La barrière de la relativisation <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une machine à oracle peut interroger l'appartenance à un ensemble fixé
+pour un coût unitaire ; \( \mathrm{P}^{A} \) et \( \mathrm{NP}^{A} \) désignent les
+classes relativisées à l'oracle \( A \).</p>
+<ol class="parts" type="a">
+<li>Reconstituez le théorème de Baker–Gill–Solovay : construisez des oracles \( A \) et
+\( B \) tels que \( \mathrm{P}^{A} = \mathrm{NP}^{A} \) et
+\( \mathrm{P}^{B} \neq \mathrm{NP}^{B} \).</li>
+<li>Expliquez la conséquence : pourquoi toute technique de démonstration qui « relativise »
+— qui reste valable lorsqu'on remet le même oracle aux deux machines — est incapable de
+trancher \( \mathrm{P} \) contre \( \mathrm{NP} \), et pourquoi la diagonalisation seule
+ne peut donc pas régler la question.</li>
+</ol>
+</div>
+<p class="context">Ce résultat de 1975 explique pourquoi la théorie de la complexité est
+difficile d'une manière qui est elle-même démontrable. Il ne dit pas que le problème est
+insoluble ; il dit qu'une famille naturelle entière d'attaques est morte, et il a tué
+l'optimisme selon lequel les arguments de simulation et de diagonalisation, qui avaient si
+bien fonctionné pour le problème de l'arrêt et pour le théorème de hiérarchie en temps,
+règleraient tout. Razborov et Rudich ont plus tard ajouté une deuxième barrière (les
+démonstrations naturelles, 1994), et Aaronson et Wigderson une troisième
+(l'algébrisation, 2008). Savoir ce qui ne peut pas marcher constitue l'essentiel du savoir
+d'un chercheur.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Oracle_%28machine_de_Turing%29">Oracle (machine de Turing) — Wikipédia</a></li>
+<li>Lecture : Arora &amp; Barak, <i>Computational Complexity: A Modern Approach</i>, chap. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-12" data-level="Master">
+<h3>OPEN-12 · La dimension deux se porte bien : les solutions faibles de Leray <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez les équations de Navier–Stokes d'OPEN-03.</p>
+<ol class="parts" type="a">
+<li>Définissez une solution faible de Leray–Hopf des équations de Navier–Stokes et
+démontrez l'inégalité d'énergie qu'elle vérifie.</li>
+<li>Lisez et reconstituez la démonstration du fait qu'en dimension <i>deux</i> les
+solutions faibles sont uniques et régulières pour tout temps.</li>
+<li>Identifiez, précisément et en un paragraphe, l'étape de cet argument qui échoue en
+dimension trois — le terme d'étirement de tourbillon \( (\omega \cdot \nabla) u \), qui
+est identiquement nul en dimension 2.</li>
+</ol>
+</div>
+<p class="context">Jean Leray a construit les solutions faibles en 1934, en inventant pour
+cela une bonne part de la théorie moderne des EDP, et le fait que le problème
+bidimensionnel soit complètement compris tandis que le tridimensionnel reste un mystère à
+un million de dollars est ce qu'il y a de plus instructif dans tout le sujet. La question (c)
+est le véritable exercice : localiser la phrase exacte où une démonstration cesse de
+fonctionner apprend davantage que n'importe quel nombre de démonstrations réussies. Toute
+attaque sérieuse du problème du millénaire est une tentative de contrôler ce terme unique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes">Équations de Navier-Stokes — Wikipédia</a></li>
+<li>Lecture : Lawrence C. Evans, <i>Partial Differential Equations</i>, chap. 7</li>
+<li>Voir aussi : <a href="applied-pde.html">Équations aux dérivées partielles</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-13" data-level="Licence">
+<h3>OPEN-13 · Des chocs en dimension un : l'équation de Burgers <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez l'équation de Burgers sans viscosité
+\[ \partial_t u + u \, \partial_x u = 0, \qquad u(x,0) = u_0(x). \]</p>
+<ol class="parts" type="a">
+<li>Utilisez la méthode des caractéristiques pour montrer que si \( u_0 \) est lisse et
+strictement décroissante quelque part, la solution développe une discontinuité en temps
+fini, et calculez exactement cet instant en fonction de \( \min u_0' \).</li>
+<li>Expliquez pourquoi cela ne règle <i>pas</i> la question de Navier–Stokes — que fait
+le terme visqueux \( \nu \Delta u \) qui change la donne ?</li>
+</ol>
+</div>
+<p class="context">C'est la rencontre honnête la moins coûteuse avec l'explosion en temps
+fini : une onde parfaitement lisse qui se redresse jusqu'à déferler, exactement comme les
+vagues de l'océan. Cela montre que le transport non linéaire à lui seul détruit la
+régularité, et cela rend vivante la vraie question du problème du millénaire — la
+viscosité gagne-t-elle toujours la course contre la non-linéarité en dimension trois ?
+Mener ce calcul à la main, c'est toute la différence entre connaître l'expression
+« explosion en temps fini » et la comprendre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_de_Burgers">Équation de Burgers — Wikipédia</a></li>
+<li>Lecture : Walter Strauss, <i>Partial Differential Equations: An Introduction</i>, chap. 14</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-14" data-level="Master">
+<h3>OPEN-14 · Théorie de jauge sur réseau : la version finie de Yang–Mills <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Définissez la théorie de jauge sur réseau de Wilson pour un groupe
+compact \( G \) sur un réseau périodique fini : le champ est une attribution d'éléments du
+groupe aux arêtes, et l'action est une somme sur les plaquettes.</p>
+<ol class="parts" type="a">
+<li>Démontrez que la mesure obtenue est bien définie (c'est une intégrale en dimension
+finie — aucune difficulté analytique).</li>
+<li>Démontrez le confinement dans la limite de couplage fort : montrez que l'espérance de
+la boucle de Wilson décroît comme l'exponentielle de l'aire enclose.</li>
+<li>Énoncez précisément ce qu'exigerait la limite continue, et pourquoi personne ne sait
+la prendre.</li>
+</ol>
+</div>
+<p class="context">Kenneth Wilson a introduit le réseau en 1974, et c'est ainsi que
+l'interaction forte est effectivement calculée aujourd'hui, sur des superordinateurs. Le
+fait pédagogique frappant est que la théorie sur réseau est <i>facile</i> — un objet fini,
+honnête et rigoureux, qu'un étudiant de licence peut définir — et que tout le problème du
+millénaire tient dans l'unique étape consistant à faire tendre le pas du réseau vers zéro
+en gardant la physique fixe. Ce problème vous montre exactement où se cache le million de
+dollars.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_jauge_sur_r%C3%A9seau">Théorie de jauge sur réseau — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Boucle_de_Wilson">Boucle de Wilson — Wikipédia</a></li>
+<li>Lecture : Barry Simon, <i>The Statistical Mechanics of Lattice Gases</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-15" data-level="Master">
+<h3>OPEN-15 · Le théorème de Lefschetz \( (1,1) \) : Hodge en degré un <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( X \) une variété kählérienne compacte.</p>
+<ol class="parts" type="a">
+<li>Lisez et reconstituez la démonstration du théorème de Lefschetz \( (1,1) \) : une
+classe de \( H^2(X, \mathbb{Z}) \) est la première classe de Chern d'un fibré en droites
+holomorphe si et seulement si son image dans \( H^2(X, \mathbb{C}) \) est de type
+\( (1,1) \).</li>
+<li>Énoncez la conjecture de Hodge et vérifiez que ce théorème en est exactement le cas
+de degré un.</li>
+</ol>
+</div>
+<p class="context">Démontré par Solomon Lefschetz en 1924, trois décennies avant que Hodge
+ne pose sa conjecture, c'est l'unique cas où le motif est confirmé — et sa démonstration,
+via la suite exponentielle de faisceaux, est un morceau de mathématiques beau et complet
+qui enseigne en outre le langage dans lequel la conjecture générale est écrite. Si vous
+voulez comprendre ce que la conjecture de Hodge affirme seulement, voici la porte.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Lefschetz_theorem_on_(1,1)-classes">Théorème de Lefschetz sur les classes (1,1) — Wikipédia (en anglais)</a></li>
+<li>Lecture : Phillip Griffiths &amp; Joseph Harris, <i>Principles of Algebraic Geometry</i>, chap. 1</li>
+<li>Lecture : Claire Voisin, <i>Théorie de Hodge et géométrie algébrique complexe I</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-16" data-level="Licence">
+<h3>OPEN-16 · Les nombres congruents : le visage concret de BSD <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un entier strictement positif \( n \) est dit <i>congruent</i> s'il
+est l'aire d'un triangle rectangle à côtés rationnels.</p>
+<ol class="parts" type="a">
+<li>Montrez que \( 6 \) est congruent, et montrez que \( 5 \) l'est en exhibant un
+triangle explicite.</li>
+<li>Démontrez que \( n \) est congruent si et seulement si la courbe elliptique
+\( y^2 = x^3 - n^2 x \) possède un point rationnel d'ordre infini.</li>
+<li>Utilisez le théorème de Tunnell (1983) pour tester si \( n = 157 \) est congruent, en
+comptant les solutions de deux formes quadratiques ternaires — un calcul fini. Notez
+honnêtement ce que vous avez fait : le critère de Tunnell est démontré inconditionnellement
+dans un sens, et sa réciproque dépend de la conjecture de Birch et Swinnerton-Dyer.</li>
+</ol>
+</div>
+<p class="context">Ce problème a mille ans — il apparaît dans un manuscrit arabe des
+environs de l'an 900 et Fibonacci en a discuté en 1225 — et il n'est toujours pas
+entièrement résolu, parce que sa solution complète équivaut à un cas d'un problème du
+millénaire. La question (b) est le moment où l'abstraction paie : une question antique sur
+des triangles devient une question sur les points rationnels d'une courbe, et voilà que
+toute la machinerie de la géométrie arithmétique s'applique. Le calcul de Don Zagier
+montrant que le plus simple triangle rectangle d'aire \( 157 \) a une hypoténuse dont le
+numérateur compte 45 chiffres est la démonstration classique que « il n'y a qu'à
+chercher » n'avait aucune chance de marcher.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_congruent">Nombre congruent — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Tunnell%27s_theorem">Théorème de Tunnell — Wikipédia (en anglais)</a></li>
+<li>Lecture : Neal Koblitz, <i>Introduction to Elliptic Curves and Modular Forms</i>, chap. 1</li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-46" data-level="Licence" data-kind="court">
+<h3>OPEN-46 · Un nombre composé qui passe le test de Fermat <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Vérifiez à la main que
+\[ 2^{340} \equiv 1 \pmod{341}, \qquad 341 = 11 \times 31 , \]
+le chemin le plus rapide étant de remarquer que \( 2^{10} = 1024 = 3 \cdot 341 + 1 \).
+Énoncez ensuite précisément ce que cet unique exemple démontre au sujet de la réciproque
+du petit théorème de Fermat, et vérifiez que la base \( 3 \) ne se laisse pas tromper en
+calculant \( 3^{340} \bmod 341 \).</p>
+<p class="context">Le petit théorème de Fermat dit que \( a^{p-1} \equiv 1 \pmod p \) pour
+\( p \) premier ne divisant pas \( a \) ; la réciproque tentante est fausse, et \( 341 \)
+— trouvé par Pierre Frédéric Sarrus en 1819 — en est le plus petit témoin pour la base
+\( 2 \). Pire, les nombres de Carmichael comme \( 561 = 3 \cdot 11 \cdot 17 \) passent le
+test pour toute base première avec eux, raison pour laquelle les vrais tests de primalité
+utilisent le raffinement de Miller–Rabin. C'est dans ce raffinement que se rencontrent les
+deux plus grands problèmes de cette page : Miller a montré en 1976 qu'une version
+déterministe en temps polynomial découle de l'hypothèse de Riemann généralisée (OPEN-01),
+et il a fallu attendre Agrawal–Kayal–Saxena en 2002 pour obtenir un test inconditionnel en
+temps polynomial (OPEN-02).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_pseudo-premier">Nombre pseudo-premier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_de_Miller-Rabin">Test de primalité de Miller-Rabin — Wikipédia</a></li>
+<li>Lecture : Richard Crandall &amp; Carl Pomerance, <i>Prime Numbers: A Computational Perspective</i>, chap. 3</li>
+<li>Voir aussi : <a href="applied-crypto.html">Cryptographie</a></li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="OPEN-57" data-level="Licence">
+<h3>OPEN-57 · La constante de Legendre, ou ce qu'un ajustement de courbe ne peut pas voir <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> En 1808, Adrien-Marie Legendre, ajustant une formule à des tables de
+nombres premiers, a proposé l'approximation
+\[ \pi(x) \;\approx\; \frac{x}{\log x - B}, \qquad B = 1.08366 . \]
+Le nombre B s'appelle la constante de Legendre.</p>
+<ol class="parts" type="a">
+<li>Comparez les deux candidates \( x/(\log x - 1.08366) \) et \( x/(\log x - 1) \) aux
+valeurs exactes de \( \pi(x) \) en \( x = 10^3, 10^4, 10^5, 10^6 \) (elles sont tabulées
+partout), et dites laquelle s'ajuste le mieux sur cet intervalle.</li>
+<li>Démontrez l'observation de Tchebychev, en 1849 : si la limite
+\[ B \;=\; \lim_{x \to \infty} \left( \log x - \frac{x}{\pi(x)} \right) \]
+existe, alors elle vaut 1. Montrez ensuite que le théorème des nombres premiers, sous la
+forme fine \( \pi(x) \sim \operatorname{li}(x) \), force cette limite à exister.</li>
+<li>Expliquez pourquoi Legendre n'a pas seulement manqué de chance. Montrez que les deux
+formules candidates diffèrent d'une quantité négligeable devant \( \pi(x) \) quand
+\( x \to \infty \), et pourtant grande en valeur absolue sur tout l'intervalle où Legendre
+pouvait calculer, puis tirez-en la conclusion méthodologique sur ce qu'un ajustement
+numérique peut et ne peut pas déterminer.</li>
+<li>Comparez avec la conjecture de Gauss. Démontrez que
+\[ \operatorname{li}(x) \;=\; \frac{x}{\log x} + \frac{x}{(\log x)^2} + O\!\left( \frac{x}{(\log x)^3} \right), \]
+et expliquez pourquoi le logarithme intégral, qui ne comporte aucun paramètre ajustable,
+bat la formule de Legendre, qui en comporte un.</li>
+</ol>
+</div>
+<p class="context">Legendre a publié son approximation dans l'<i>Essai sur la théorie des
+nombres</i> et a affiné la constante à 1,08366 dans l'édition de 1808 ; Gauss avait deviné
+en privé le logarithme intégral, adolescent, vers 1792, et n'avait rien publié — de sorte
+que les deux meilleures conjectures du dix-huitième siècle ont été formées indépendamment
+et qu'une seule fut défendue par écrit. Tchebychev a démontré en 1849 qu'aucune constante
+autre que 1 n'était possible, et de la Vallée Poussin a réglé la question en 1899, comme
+sous-produit de son terme d'erreur dans le théorème des nombres premiers. La valeur
+1,08366 est un fossile de surajustement : c'est le nombre qui colle le mieux aux données
+dont Legendre disposait, et il se trompe sur l'univers. C'est exactement pour cela que la
+théorie analytique des nombres énonce ses résultats de façon asymptotique et se méfie des
+tables — une discipline dont dépend tout le reste de cette page, et qu'il vaut la peine de
+garder en mémoire à côté de la démonstration par Littlewood en 1914 que
+\( \operatorname{li}(x) - \pi(x) \) change de signe une infinité de fois, alors qu'il est
+positif pour tous les x que quiconque a jamais calculés.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Constante_de_Legendre">Constante de Legendre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_nombres_premiers">Théorème des nombres premiers — Wikipédia</a></li>
+<li>Lecture : Tom Apostol, <i>Introduction to Analytic Number Theory</i>, chap. 4</li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-58" data-level="Master">
+<h3>OPEN-58 · Une hypothèse de Riemann qui est un théorème <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit C une courbe projective lisse de genre g sur le corps fini
+\( \mathbb{F}_q \), et définissons sa fonction zêta par
+\[ Z_C(T) \;=\; \exp\left( \sum_{n \ge 1} \frac{\# C(\mathbb{F}_{q^n})}{n} T^n \right). \]
+Dans ce cadre, l'analogue d'OPEN-01 n'est pas une conjecture. C'est un théorème, et
+l'objet de ce problème est de découvrir pourquoi.</p>
+<ol class="parts" type="a">
+<li>Calculez explicitement \( Z_C(T) \) pour la droite projective
+\( C = \mathbb{P}^1 \), et vérifiez à la main que c'est une fraction rationnelle en T
+satisfaisant l'équation fonctionnelle attendue reliant T et \( 1/(qT) \).</li>
+<li>Énoncez les conjectures de Weil pour les courbes — rationalité, équation fonctionnelle
+et l'« hypothèse de Riemann » selon laquelle tout zéro de \( Z_C \) a pour module
+\( q^{-1/2} \) — et démontrez que la dernière équivaut à la borne de Hasse–Weil
+\[ \bigl| \# C(\mathbb{F}_q) - (q+1) \bigr| \;\le\; 2g\sqrt{q}. \]</li>
+<li>Démontrez le cas du genre un, qui est le théorème de Hasse de 1933 : pour une courbe
+elliptique E sur \( \mathbb{F}_q \),
+\( |\# E(\mathbb{F}_q) - (q+1)| \le 2\sqrt{q} \). (Chemin : l'endomorphisme de Frobenius
+vérifie une équation du second degré, et l'application degré sur les endomorphismes est
+une forme quadratique définie positive ; appliquez ensuite l'inégalité de
+Cauchy–Schwarz.)</li>
+<li>Dites maintenant ce qui manque sur ℚ. Nommez l'objet qui joue le rôle du Frobenius
+dans le tableau des corps de fonctions, identifiez l'objet géométrique sur lequel il agit,
+et expliquez en un paragraphe pourquoi ni l'un ni l'autre n'a de contrepartie connue pour
+la fonction zêta de Riemann ordinaire. Voilà la réponse honnête à « pourquoi OPEN-01
+est-il toujours ouvert ».</li>
+</ol>
+</div>
+<p class="context">Voici la chose la plus utile à savoir sur l'hypothèse de Riemann : dans
+un univers parallèle, c'est un théorème, et la démonstration est comprise. Emil Artin a
+remarqué l'analogie dans sa thèse de 1921 en attachant des fonctions zêta aux corps de
+fonctions ; Hasse a démontré le cas du genre un dans les années 1930 ; André Weil a
+annoncé le cas général pour les courbes en 1940 — depuis une cellule de prison à Rouen, où
+il était détenu pour ne pas s'être présenté au service militaire — et a publié des
+démonstrations complètes en 1948, inventant au passage une grande partie de la géométrie
+algébrique moderne. Grothendieck a ensuite refondé la discipline entière pour attaquer les
+conjectures en dimension supérieure, et Deligne les a achevées en 1974. Corps de nombres
+et corps de fonctions se ressemblent presque partout ; la différence décisive est qu'une
+courbe sur \( \mathbb{F}_q \) vient avec une application de Frobenius et un espace où la
+faire agir, tandis que ℚ ne vient ni avec l'une ni avec l'autre. La longue quête d'un
+« corps à un élément » et d'une cohomologie à la Weil sur ℤ est un programme de recherche
+sérieux bâti précisément sur cet écart.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjectures_de_Weil">Conjectures de Weil — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Hasse_sur_les_courbes_elliptiques">Théorème de Hasse sur les courbes elliptiques — Wikipédia</a></li>
+<li>Lecture : Joseph H. Silverman, <i>The Arithmetic of Elliptic Curves</i>, chap. V</li>
+<li>Lecture : Kenneth Ireland &amp; Michael Rosen, <i>A Classical Introduction to Modern Number Theory</i>, chap. 11</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-59" data-level="Licence">
+<h3>OPEN-59 · Robin et Lagarias : l'hypothèse de Riemann en habits élémentaires <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( \sigma(n) = \sum_{d \mid n} d \) la somme des diviseurs et
+soit \( H_n = 1 + \tfrac12 + \cdots + \tfrac1n \). Chacun des deux énoncés élémentaires
+suivants est <i>équivalent</i> à l'hypothèse de Riemann d'OPEN-01. Robin (1984) :
+l'inégalité \( \sigma(n) < e^{\gamma} n \log \log n \) vaut pour tout \( n > 5040 \).
+Lagarias (2002) : l'inégalité \( \sigma(n) \le H_n + e^{H_n} \log H_n \) vaut pour tout
+\( n \ge 1 \), avec égalité seulement en \( n = 1 \).</p>
+<ol class="parts" type="a">
+<li>Mettez les mains dans le cambouis. Testez l'inégalité de Robin sur les nombres riches
+en diviseurs \( n = 12, 60, 120, 360, 2520, 5040 \) et sur quelques nombres premiers, puis
+trouvez tous les \( n \le 5040 \) qui la violent — l'ensemble exceptionnel est court et
+célèbre.</li>
+<li>Démontrez le théorème de Gronwall (1913), ou reconstituez-le à partir des références :
+\[ \limsup_{n \to \infty} \frac{\sigma(n)}{n \log \log n} \;=\; e^{\gamma}. \]
+Concluez que l'inégalité de Robin affirme exactement que cette borne supérieure est
+approchée sans jamais être atteinte au-delà de 5040 — le critère est donc délicat par
+construction, non par accident.</li>
+<li>Montrez qu'il suffit de vérifier l'inégalité de Robin sur les nombres colossalement
+abondants, et expliquez la réduction : pourquoi un contre-exemple doit-il nécessairement
+battre un record pour \( \sigma(n)/n \) ?</li>
+<li>Répondez ensuite à la question honnête. Déduisez l'inégalité de Lagarias de celle de
+Robin pour n grand, ou suivez sa dérivation dans la référence ; puis écrivez un paragraphe
+sur ce qui a été gagné, si quelque chose l'a été. Les deux énoncés sont élémentaires ;
+tous deux sont équivalents à un problème que personne ne sait résoudre. Que cela vous
+apprend-il sur l'expression « formulation équivalente » ?</li>
+</ol>
+</div>
+<p class="context">Guy Robin a démontré son critère en 1984 dans un article sur l'ordre
+maximal de la fonction somme des diviseurs — mais il ne fut pas le premier à trouver
+l'inégalité. Ramanujan avait démontré essentiellement la même chose, sous l'hypothèse de
+Riemann, dans son mémoire de 1915 sur les nombres hautement composés ; les pages
+correspondantes furent coupées de la version publiée à cause de la pénurie de papier due à
+la guerre, et ne parurent qu'en 1997, quand Nicolas et Robin publièrent le manuscrit
+supprimé. La note de Lagarias parue en 2002 dans le <i>Monthly</i> pousse la reformulation
+aussi loin qu'elle peut aller : des nombres harmoniques et une somme de diviseurs, pas la
+moindre analyse complexe en vue, et pourtant l'un des problèmes ouverts les plus difficiles
+des mathématiques. Voilà la leçon à retenir. Une formulation équivalente redistribue la
+difficulté, elle ne la dissout pas — et qu'un énoncé soit élémentaire ne dit absolument
+rien sur le caractère élémentaire d'une démonstration.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_somme_des_puissances_k-i%C3%A8mes_des_diviseurs">Fonction somme des diviseurs (théorème de Robin) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_colossalement_abondant">Nombre colossalement abondant — Wikipédia</a></li>
+<li>Article : Jeffrey C. Lagarias, « An elementary problem equivalent to the Riemann hypothesis », <i>American Mathematical Monthly</i> 109 (2002), <a href="https://arxiv.org/abs/math/0008177">arXiv:math/0008177</a></li>
+<li>Article : Guy Robin, « Grandes valeurs de la fonction somme des diviseurs et hypothèse de Riemann », <i>Journal de Mathématiques Pures et Appliquées</i> 63 (1984)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-60" data-level="Licence" data-kind="court">
+<h3>OPEN-60 · Remplacez le 3 par un 5 <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Définissez \( U(n) = n/2 \) pour n pair et
+\( U(n) = 5n + 1 \) pour n impair, puis calculez les trajectoires de \( n = 5 \),
+\( n = 7 \) et \( n = 13 \) sur cent pas chacune. Dérivez ensuite le multiplicateur
+heuristique par pas impair pour U et pour l'application de Collatz T d'OPEN-17 — en
+moyenne, combien de facteurs 2 contient \( 3n+1 \), et combien en contient \( 5n+1 \) ? —
+et dites laquelle des deux applications vous vous attendriez à voir envoyer presque toute
+valeur initiale vers l'infini.</p>
+<p class="context">Le calcul prend quelques minutes et réorganise durablement votre
+intuition. Deux des trois valeurs initiales ci-dessus tombent dans un cycle et une semble
+grimper sans limite, et l'heuristique explique pourquoi : un pas impair de l'application de
+Collatz multiplie par 3 puis, en moyenne, divise par 4, pour un facteur net inférieur à 1,
+tandis que le même décompte pour \( 5n+1 \) donne un facteur net supérieur à 1. Cet unique
+accident arithmétique — 3 est plus petit que 4, et 5 ne l'est pas — est toute la raison
+pour laquelle quiconque croit à la conjecture de Collatz, et toute démonstration devra
+utiliser cet accident quelque part, exactement comme l'exige le test \( 3n-1 \) d'OPEN-18.
+Notez aussi la symétrie de notre ignorance : on n'a jamais démontré d'aucune trajectoire
+\( 5n+1 \) particulière qu'elle s'échappe vers l'infini, de même qu'il n'existe aucune
+démonstration que toute trajectoire \( 3n+1 \) rentre au bercail. L'heuristique prédit avec
+assurance dans les deux directions et ne démontre rien ni dans l'une ni dans l'autre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">Conjecture de Syracuse (Collatz) — Wikipédia</a></li>
+<li>Lecture : Jeffrey C. Lagarias, « The 3x+1 problem: an annotated bibliography », <a href="https://arxiv.org/abs/math/0309224">arXiv:math/0309224</a></li>
+<li>Lecture : Jeffrey C. Lagarias (dir.), <i>The Ultimate Challenge: The 3x+1 Problem</i>, AMS (2010)</li>
+</ul>
+</section>
+
+<h2>La conjecture de Collatz</h2>
+<p>Ce problème a droit à sa propre section parce qu'il est l'exemple le plus pur de ce
+dont ce site parle : une question qu'un enfant de dix ans peut comprendre, sur laquelle il
+peut commencer à calculer en quelques secondes, et à laquelle la profession mathématique
+tout entière ne sait pas répondre. Paul Erdős a dit à son sujet :
+<i>« Les mathématiques ne sont peut-être pas prêtes pour de tels problèmes. »</i> Il a
+aussi offert cinq cents dollars pour une solution.</p>
+
+<section class="problem" id="OPEN-17" data-level="Lycée">
+<h3>OPEN-17 · L'application \( 3n+1 \) : calculez, et voyez le problème <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Définissez l'application de Collatz sur les entiers strictement
+positifs par
+\[ T(n) = \begin{cases} n/2, & n \text{ pair},\\ 3n+1, & n \text{ impair}.\end{cases} \]</p>
+<ol class="parts" type="a">
+<li>Calculez la trajectoire complète de \( n = 27 \) jusqu'à ce qu'elle atteigne \( 1 \) ;
+notez le nombre de pas qu'elle demande et la plus grande valeur atteinte. (Vous devriez
+trouver que le voyage est bien plus long et bien plus haut que la taille de \( 27 \) ne le
+laisse supposer — c'est tout l'intérêt.)</li>
+<li>Définissez le <i>temps d'arrêt total</i> de \( n \) comme le nombre de pas nécessaires
+pour atteindre \( 1 \). Tabulez-le pour \( n = 1, \dots, 30 \) et trouvez quelle valeur
+initiale inférieure à \( 30 \) met le plus longtemps.</li>
+<li>Expliquez avec vos propres mots pourquoi un calcul, aussi loin qu'il soit poussé, ne
+pourra jamais démontrer la conjecture.</li>
+</ol>
+</div>
+<p class="context">Lothar Collatz a consigné le problème dans ses carnets en 1937 ; il a
+depuis été rattaché aux noms d'Ulam, Kakutani, Thwaites, Hasse et Syracuse, signe du
+nombre de personnes qui l'ont redécouvert indépendamment. Kakutani plaisantait en disant
+que c'était un complot pour ralentir la recherche mathématique américaine. La trajectoire
+de \( 27 \) est la démonstration classique : elle grimpe jusqu'à \( 9232 \) et prend
+\( 111 \) pas, sans raison visible. Toute valeur jusqu'à environ \( 2^{68} \), soit à peu
+près \( 2{,}95 \times 10^{20} \), a été vérifiée comme atteignant \( 1 \) — et cette
+vérification ne nous dit rien sur le nombre suivant.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">Conjecture de Syracuse (Collatz) — Wikipédia</a></li>
+<li>Lecture : Jeffrey C. Lagarias (dir.), <i>The Ultimate Challenge: The 3x+1 Problem</i>, AMS (2010)</li>
+<li>Lecture : Jeffrey C. Lagarias, « The 3x+1 problem: An annotated bibliography », <a href="https://arxiv.org/abs/math/0309224">arXiv:math/0309224</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-18" data-level="Lycée">
+<h3>OPEN-18 · L'application \( 3n-1 \) a des cycles — trouvez-les <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Changez un signe. Définissez
+\[ S(n) = \begin{cases} n/2, & n \text{ pair},\\ 3n-1, & n \text{ impair}.\end{cases} \]</p>
+<ol class="parts" type="a">
+<li>Montrez que \( S \) possède un cycle contenant \( 5 \), en calculant la trajectoire de
+\( 5 \) jusqu'à son retour.</li>
+<li>Trouvez un second cycle, plus long, en partant de \( 17 \).</li>
+<li>Expliquez maintenant la portée de tout cela : la conjecture \( 3n+1 \) affirme
+qu'aucun cycle autre que \( 1 \to 4 \to 2 \to 1 \) n'existe, et voici une application
+presque identique où cette affirmation est <b>fausse</b>. Que vous apprend cela sur toute
+démonstration proposée de Collatz qui fonctionnerait aussi bien pour \( 3n-1 \) ?</li>
+</ol>
+</div>
+<p class="context">C'est l'exercice le plus utile de la page, et il ne coûte que de
+l'arithmétique. Tout argument en faveur de la conjecture \( 3n+1 \) doit, quelque part,
+utiliser une propriété qui distingue \( +1 \) de \( -1 \) ; s'il ne le fait pas, le même
+argument démontrerait quelque chose de faux. Des générations de « démonstrations »
+amateurs de Collatz meurent exactement ici, et confronter votre propre raisonnement à
+l'application \( 3n-1 \) est le contrôle d'honnêteté le moins coûteux des mathématiques.
+Notez aussi que \( 3n-1 \) sur les entiers positifs revient au même que \( 3n+1 \) sur les
+négatifs, raison pour laquelle le comportement de l'application de Collatz sur les entiers
+négatifs fait partie du tableau standard.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">Conjecture de Syracuse (Collatz) — Wikipédia</a></li>
+<li>Lecture : Lagarias, <i>The Ultimate Challenge</i>, panorama introductif</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-19" data-level="Licence">
+<h3>OPEN-19 · Aucun cycle non trivial de longueur deux <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( T \) l'application de Collatz d'OPEN-17.</p>
+<ol class="parts" type="a">
+<li>Démontrez que le seul cycle de l'application de Collatz dans lequel figure exactement
+un nombre impair est \( 1 \to 4 \to 2 \to 1 \). Précisément : supposez \( n \) impair et
+\( T^{k}(n) = n \), la trajectoire passant par exactement une valeur impaire ; montrez que
+\( n = 1 \).</li>
+<li>Allez plus loin : supposez qu'un cycle contienne exactement deux nombres impairs
+\( a \) et \( b \), de sorte que
+\[ 3a+1 = 2^{i} b, \qquad 3b+1 = 2^{j} a \]
+pour des entiers strictement positifs \( i, j \). Résolvez ce système en nombres entiers
+et montrez que l'unique solution avec \( a, b \geq 1 \) est le cycle trivial.</li>
+</ol>
+</div>
+<p class="context">C'est un morceau authentique, complet et digne d'un manuel, du problème
+de Collatz, et il est entièrement à portée : un argument diophantien avec des majorations
+élémentaires. Le faire vous montre à quoi ressemble un vrai résultat partiel sur Collatz,
+et pourquoi le cas général est si difficile — la même méthode étendue à \( k \) nombres
+impairs produit une équation dont les solutions exigent des résultats profonds sur les
+formes linéaires de logarithmes (le théorème de Baker), et c'est ainsi que sont
+effectivement obtenues les bornes connues sur la longueur des cycles. Par de telles
+méthodes, on sait que tout cycle non trivial serait immensément long — les minorations
+actuelles se comptent en centaines de millions de termes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">Conjecture de Syracuse (Collatz) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Baker">Théorème de Baker — Wikipédia</a></li>
+<li>Lecture : Lagarias, <i>The Ultimate Challenge</i>, chap. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-20" data-level="Master">
+<h3>OPEN-20 · Le théorème de densité de Terras <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Lisez et reconstituez le théorème de Riho Terras (1976) : presque tout entier
+strictement positif \( n \), au sens de la densité naturelle, a un temps d'arrêt fini —
+c'est-à-dire qu'un certain itéré vérifie \( T^{k}(n) < n \).</li>
+<li>Identifiez l'heuristique probabiliste qui le sous-tend : une trajectoire de Collatz
+« aléatoire » multiplie par \( 3/2 \) aux pas impairs et par \( 1/2 \) aux pas pairs, de
+sorte que le multiplicateur espéré par pas est \( \sqrt{3}/2 < 1 \).</li>
+<li>Énoncez précisément pourquoi cette heuristique n'est <i>pas</i> une démonstration de
+la conjecture.</li>
+</ol>
+</div>
+<p class="context">Le résultat de Terras est le prototype de tout théorème sérieux sur
+Collatz : il démontre que la conjecture vaut pour presque tous les entiers tout en
+laissant ouverte la possibilité d'un ensemble clairsemé de contre-exemples — et un seul
+contre-exemple suffit. L'écart entre « de densité un » et « tous » est le problème tout
+entier. L'heuristique est aussi la raison pour laquelle la plupart des mathématiciens
+croient à la conjecture : en moyenne, les trajectoires devraient décroître. Croire et
+démontrer sont deux activités différentes, et c'est avec Collatz que cette différence est
+la plus visible.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">Conjecture de Syracuse, temps d'arrêt — Wikipédia</a></li>
+<li>Article : R. Terras, « A stopping time problem on the positive integers », <i>Acta Arithmetica</i> 30 (1976)</li>
+<li>Lecture : Lagarias, <i>The Ultimate Challenge</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-21" data-level="Recherche">
+<h3>OPEN-21 · Le théorème de Tao : presque toutes les orbites atteignent des valeurs presque bornées <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Lisez l'article de Terence Tao de 2019 et comprenez-en précisément
+l'énoncé : pour toute fonction \( f \) tendant vers l'infini, si lentement soit-il,
+presque tout \( n \) (au sens de la densité logarithmique) vérifie
+\( \min_k T^{k}(n) < f(n) \). Répondez par écrit aux questions suivantes.</p>
+<ol class="parts" type="a">
+<li>Que signifie exactement « presque tout » ici, et en quoi la densité logarithmique
+diffère-t-elle de la densité naturelle ?</li>
+<li>Pourquoi cela reste-t-il en deçà de la conjecture complète — que faudrait-il
+renforcer ?</li>
+<li>Quel rôle la mesure invariante sur les entiers 3-adiques joue-t-elle dans
+l'argument ?</li>
+</ol>
+</div>
+<p class="context">C'est le résultat général le plus fort connu sur Collatz, et il vient
+de l'un des meilleurs analystes vivants ; Tao a décrit le problème comme « notoirement
+difficile » et largement rétif aux techniques disponibles. La méthode de l'article —
+traiter l'application de Collatz de façon probabiliste et trouver une mesure invariante —
+est la frontière actuelle, et le lire attentivement constitue une véritable formation de
+niveau recherche sur la manière dont les techniques analytiques modernes se braquent sur
+une question d'apparence élémentaire. Notez l'expression « presque bornées » : même ce
+résultat héroïque ne peut exclure qu'une orbite rare s'échappe vers l'infini.</p>
+<ul class="refs">
+<li>Article : Terence Tao, « Almost all orbits of the Collatz map attain almost bounded values » (2019), <a href="https://arxiv.org/abs/1909.03562">arXiv:1909.03562</a></li>
+<li>Lecture : <a href="https://terrytao.wordpress.com/2019/09/10/almost-all-collatz-orbits-attain-almost-bounded-values/">le billet de blog de Tao expliquant le résultat (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">Conjecture de Syracuse (Collatz) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-22" data-level="Master">
+<h3>OPEN-22 · Le FRACTRAN de Conway et l'indécidabilité <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> En FRACTRAN, le langage de Conway, un programme est une liste de
+fractions et, à partir d'un état \( n \), on multiplie par la première fraction de la
+liste qui donne un entier.</p>
+<ol class="parts" type="a">
+<li>Apprenez FRACTRAN, et démontrez qu'il est Turing-complet.</li>
+<li>Comprenez le théorème de Conway de 1972 : la généralisation naturelle du problème de
+Collatz — les applications définies par morceaux par \( n \mapsto a_i n + b_i \) selon
+\( n \bmod d \) — est <b>indécidable</b> ; il n'existe aucun algorithme qui décide, pour
+une telle application et une valeur initiale arbitraires, si l'orbite atteint \( 1 \).</li>
+<li>Expliquez soigneusement ce que cela dit, et ne dit pas, de la conjecture \( 3n+1 \)
+originale, qui est une instance fixée unique et n'est donc pas couverte par le résultat
+d'indécidabilité.</li>
+</ol>
+</div>
+<p class="context">Le résultat de John Horton Conway est le fait structurel le plus profond
+connu sur cette famille de problèmes, et il reformule la remarque d'Erdős : si Collatz
+résiste, c'est peut-être qu'il se situe juste en dessous d'un seuil de calcul universel.
+Une application de Collatz généralisée peut simuler n'importe quel programme
+informatique ; s'interroger sur son comportement à long terme, c'est donc poser le
+problème de l'arrêt. La question (c) est le point intellectuellement délicat que bien des
+récits de vulgarisation manquent — l'indécidabilité d'une famille ne rend aucun membre
+particulier indémontrable, et la conjecture \( 3n+1 \) pourrait encore avoir une
+démonstration de deux pages que personne n'a trouvée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/FRACTRAN">FRACTRAN — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">Généralisations indécidables — Wikipédia</a></li>
+<li>Article : J. H. Conway, « Unpredictable iterations » (1972), réédité dans Lagarias, <i>The Ultimate Challenge</i></li>
+<li>Voir aussi : <a href="applied-discrete-cs.html">Mathématiques discrètes et informatique</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-47" data-level="Lycée" data-kind="court">
+<h3>OPEN-47 · Le temps d'arrêt total de 97 <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> À l'aide de l'application de Collatz \( T \)
+d'OPEN-17, calculez le temps d'arrêt total de \( n = 97 \) — le nombre de pas nécessaires
+pour atteindre \( 1 \) — et notez la plus grande valeur que sa trajectoire atteint en
+chemin. Comparez ces deux nombres à ceux qui correspondent à \( n = 27 \), et dites ce que
+la comparaison suggère quant à la prédiction d'une trajectoire à partir de la taille de sa
+valeur initiale.</p>
+<p class="context">Le faire une fois, à la main ou en cinq lignes de code, vaut mieux que
+lire n'importe quelle description du problème. Deux choses deviennent visibles : à quelle
+hauteur une trajectoire peut errer au-dessus de son point de départ, et comment des
+valeurs initiales différentes sont canalisées vers des chemins communs, de sorte que des
+nombres tout à fait étrangers l'un à l'autre finissent par descendre la même échelle
+jusqu'à \( 1 \). La suite des temps d'arrêt totaux est cataloguée sous OEIS A006577, et
+son graphe — hérissé, sans structure, n'obéissant à aucune formule que quiconque ait
+trouvée — est la raison pour laquelle Erdős disait que les mathématiques ne sont
+peut-être pas prêtes pour ce problème.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">Conjecture de Syracuse (Collatz) — Wikipédia</a></li>
+<li>Données : <a href="https://oeis.org/A006577">OEIS A006577</a> — nombre de pas pour atteindre 1 dans le problème \( 3x+1 \)</li>
+</ul>
+</section>
+
+<hr>
+<h2>Problèmes ouverts classiques</h2>
+<p>Des problèmes simplement, obstinément ouverts. Plusieurs sont assez anciens pour avoir
+leur propre littérature d'attaques manquées ; tous sont énoncés ici avec leur statut en
+2026.</p>
+
+<section class="problem" id="OPEN-23" data-level="Recherche">
+<h3>OPEN-23 · La conjecture de Goldbach <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> <b>Démontrez que tout entier pair supérieur à
+\( 2 \) est une somme de deux nombres premiers.</b> Statut : ouvert. La conjecture de
+Goldbach <i>faible</i> (ternaire) — tout entier impair supérieur à \( 5 \) est une somme
+de trois nombres premiers — a été démontrée par Harald Helfgott en 2013 ; sa démonstration
+est acceptée, même si la publication formelle du manuscrit complet en revue a longtemps
+tardé. Chen Jingrun a démontré en 1973 que tout entier pair assez grand est la somme d'un
+nombre premier et d'un nombre ayant au plus deux facteurs premiers.</p>
+<p class="context">Christian Goldbach a écrit la conjecture à Leonhard Euler dans une
+lettre du 7 juin 1742 ; Euler a répondu qu'il la tenait pour certaine, sans pouvoir la
+démontrer. Elle a été vérifiée au-delà de \( 4 \times 10^{18} \). L'écart entre la forme
+faible et la forme forte est instructif : trois nombres premiers laissent assez de marge
+pour que la méthode du cercle réussisse, deux n'en laissent pas assez, et aucune technique
+connue ne comble cette différence. C'est le motif récurrent de la théorie additive des
+nombres — les problèmes deviennent traitables exactement quand on vous accorde un degré de
+liberté de plus que vous n'en vouliez.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Goldbach">Conjecture de Goldbach — Wikipédia</a></li>
+<li>Article : H. A. Helfgott, « The ternary Goldbach conjecture is true » (2013), <a href="https://arxiv.org/abs/1312.7748">arXiv:1312.7748</a></li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-24" data-level="Recherche">
+<h3>OPEN-24 · Les nombres premiers jumeaux, et la révolution des écarts bornés <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La question voisine des écarts <i>bornés</i> a été percée : Yitang
+Zhang a démontré en 2013 que
+\[ \liminf_{n \to \infty}(p_{n+1} - p_n) < 7 \times 10^{7}, \]
+et après les raffinements de James Maynard, Terence Tao et la collaboration Polymath8, la
+borne s'établit aujourd'hui à \( 246 \).</p>
+<ol class="parts" type="a">
+<li><b>Démontrez qu'il existe une infinité de nombres premiers \( p \) tels que
+\( p + 2 \) soit également premier.</b> Statut : ouvert.</li>
+<li>Comprenez la différence entre « un écart au plus égal à 246 une infinité de fois » et
+« un écart exactement égal à 2 une infinité de fois », et pourquoi les méthodes de crible
+employées ne peuvent pas atteindre \( 2 \).</li>
+</ol>
+</div>
+<p class="context">L'article de Zhang est l'une des grandes histoires des mathématiques
+modernes : c'était un chargé de cours peu connu, de près de cinquante-huit ans, qui avait
+travaillé des années en marge du courant dominant de la recherche, et il a soumis une
+démonstration complète d'un résultat que les spécialistes croyaient éloigné de plusieurs
+décennies. La borne de soixante-dix millions était, comme chacun l'a immédiatement
+compris, sans importance — l'essentiel était qu'une borne finie existât, quelle qu'elle
+fût. En quelques mois, un projet Polymath en ligne, massivement collaboratif, l'avait
+ramenée à quelques centaines. La barrière à \( 246 \), ou à \( 6 \) sous la conjecture non
+démontrée d'Elliott–Halberstam, est une limitation réelle de la théorie du crible connue
+sous le nom de problème de parité, et parvenir à \( 2 \) demandera une idée que personne
+n'a.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombres_premiers_jumeaux">Nombres premiers jumeaux — Wikipédia</a></li>
+<li>Article : Yitang Zhang, « Bounded gaps between primes », <i>Annals of Mathematics</i> 179 (2014)</li>
+<li>Article : James Maynard, « Small gaps between primes », <i>Annals of Mathematics</i> 181 (2015), <a href="https://arxiv.org/abs/1311.4600">arXiv:1311.4600</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Projet_Polymath">Projet Polymath — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-25" data-level="Recherche">
+<h3>OPEN-25 · Les quatre problèmes de Landau <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Au Congrès international de 1912, Edmund Landau a énuméré quatre
+problèmes sur les nombres premiers qu'il jugeait « inattaquables dans l'état actuel de la
+science ». <b>Les quatre restent ouverts en 2026.</b> Pour chacun, notez le meilleur
+résultat partiel connu et énoncez exactement ce qui lui manque.</p>
+<ol class="parts" type="a">
+<li>Goldbach : tout \( n > 2 \) pair est une somme de deux nombres premiers.</li>
+<li>Nombres premiers jumeaux : il existe une infinité de \( p \) tels que \( p+2 \) soit
+premier.</li>
+<li>Conjecture de Legendre : il y a toujours un nombre premier entre \( n^2 \) et
+\( (n+1)^2 \).</li>
+<li>Existe-t-il une infinité de nombres premiers de la forme \( n^2 + 1 \) ?</li>
+</ol>
+</div>
+<p class="context">Un siècle et une décennie plus tard, le jugement de Landau tient
+toujours, ce qui en dit long sur la difficulté des questions additives concernant les
+nombres premiers. Du terrain a été gagné : le postulat de Bertrand donne un nombre premier
+entre \( n \) et \( 2n \) (exercice facile), et Baker–Harman–Pintz ont démontré qu'il y a
+un nombre premier dans \( [x, x + x^{0.525}] \) pour \( x \) grand — mais un écart de
+\( x^{0.525} \) est bien plus grand que les quelque \( 2\sqrt{n} \) qu'exige la conjecture
+de Legendre, et même l'hypothèse de Riemann ne le refermerait pas. Iwaniec a démontré
+qu'une infinité de \( n^2+1 \) ont au plus deux facteurs premiers. Rassembler en un seul
+endroit ces quatre meilleurs résultats connus est une véritable formation à la forme du
+sujet.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8mes_de_Landau">Problèmes de Landau — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Legendre">Conjecture de Legendre — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy &amp; E. M. Wright, <i>An Introduction to the Theory of Numbers</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-26" data-level="Recherche">
+<h3>OPEN-26 · Les nombres parfaits impairs <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un nombre est <i>parfait</i> s'il est égal à la somme de ses diviseurs
+propres, autrement dit si \( \sigma(n) = 2n \).</p>
+<ol class="parts" type="a">
+<li>Démontrez d'abord la moitié classique facile : tout nombre parfait <i>pair</i> a la
+forme d'Euclide–Euler \( 2^{p-1}(2^p - 1) \) avec \( 2^p - 1 \) premier.</li>
+<li><b>Existe-t-il un nombre parfait impair ?</b> Statut : ouvert. D'énormes contraintes
+sont connues — tout nombre parfait impair devrait dépasser \( 10^{1500} \), avoir au moins
+dix facteurs premiers distincts et satisfaire une longue liste de conditions de congruence
+— mais aucune démonstration de non-existence.</li>
+</ol>
+</div>
+<p class="context">C'est peut-être le plus ancien problème ouvert des mathématiques : les
+Grecs connaissaient \( 6 \) et \( 28 \), Euclide a démontré la suffisance de sa formule
+vers 300 av. J.-C., et Euler en a démontré la nécessité pour les nombres pairs deux mille
+ans plus tard. Le cas impair résiste depuis. C'est un bel exemple de problème où une
+montagne de conditions nécessaires s'est accumulée sans que personne trouve la
+contradiction — chaque contrainte publiée réduit la recherche et aucune ne la referme.
+Notez la possibilité honnête, si peu ragoûtante soit-elle : qu'un nombre parfait impair
+existe et soit simplement trop grand pour qu'on le trouve.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_parfait">Nombre parfait — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euclide-Euler">Théorème d'Euclide-Euler — Wikipédia</a></li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-27" data-level="Recherche">
+<h3>OPEN-27 · La conjecture abc, et une controverse <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Pour des entiers strictement positifs premiers entre
+eux vérifiant \( a + b = c \), notons \( \operatorname{rad}(n) \) le produit des nombres
+premiers distincts divisant \( n \). La conjecture de Masser et Oesterlé affirme que, pour
+tout \( \varepsilon > 0 \), il n'existe qu'un nombre fini de tels triplets avec
+\[ c > \operatorname{rad}(abc)^{1+\varepsilon} . \]
+Statut : <b>contesté</b>. Shinichi Mochizuki a publié en 2021, dans <i>PRIMS</i>, une
+démonstration revendiquée passant par la théorie de Teichmüller inter-universelle, mais
+cette démonstration n'est pas acceptée par la communauté mathématique au sens large :
+Peter Scholze et Jakob Stix ont publié en 2018 une objection détaillée identifiant une
+étape précise (dans la démonstration du corollaire 3.12) qu'ils jugent irrémédiablement
+défectueuse, et Mochizuki conteste leur objection. En 2026, il n'existe aucun consensus
+selon lequel abc serait démontrée.</p>
+<p class="context">La conjecture est d'une puissance saisissante — elle implique le dernier
+théorème de Fermat pour les grands exposants en quelques lignes, ainsi qu'une longue liste
+d'autres résultats — et c'est précisément pour cela que son statut importe tant et que la
+controverse a été si douloureuse. Cette entrée figure ici en partie comme exercice
+d'honnêteté intellectuelle : les mathématiques sont une activité humaine, la vérification
+est un processus social autant que logique, et « une démonstration a été publiée » n'est
+pas toujours la même chose que « le théorème est acquis ». Lisez les deux camps avant de
+vous forger une opinion, et remarquez avec quel soin chacun expose sa position.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_abc">Conjecture abc — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Inter-universal_Teichm%C3%BCller_theory">Théorie de Teichmüller inter-universelle — Wikipédia (en anglais)</a></li>
+<li>Lecture : Peter Scholze &amp; Jakob Stix, « Why abc is still a conjecture » (2018)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-28" data-level="Recherche">
+<h3>OPEN-28 · L'irrationalité de \( \gamma \), et celle de \( \zeta(5) \) <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La constante d'Euler–Mascheroni est
+\[ \gamma = \lim_{n \to \infty}\left( \sum_{k=1}^{n} \frac{1}{k} - \log n \right) \approx 0.5772156649 . \]</p>
+<ol class="parts" type="a">
+<li><b>Démontrez que \( \gamma \) est irrationnel.</b> Statut : ouvert — on ne sait même
+pas si \( \gamma \) est irrationnel, encore moins s'il est transcendant.</li>
+<li>Apéry a démontré en 1978 que \( \zeta(3) \) est irrationnel. <b>Démontrez que
+\( \zeta(5) \) est irrationnel.</b> Statut : ouvert ; on sait qu'au moins l'un des nombres
+\( \zeta(5), \zeta(7), \zeta(9), \zeta(11) \) est irrationnel, mais pas lequel.</li>
+</ol>
+</div>
+<p class="context">\( \gamma \) a été calculé avec plus de mille milliards de décimales et
+apparaît partout en analyse et en théorie des nombres, et nous ne savons pas démontrer à
+son sujet le fait qualitatif le plus élémentaire. La démonstration d'Apéry pour
+\( \zeta(3) \), en 1978, est légendaire par son accueil : il a présenté une suite
+d'identités d'apparence non motivée à un auditoire sceptique, dont plusieurs membres sont
+partis, et il a fallu des semaines de vérification avant qu'on admette qu'il s'agissait
+d'une démonstration réelle et élémentaire de quelque chose que tout le monde croyait
+éloigné de plusieurs décennies. Cette histoire vaut d'être connue quand votre propre
+argument a l'air bizarre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Constante_d%27Euler-Mascheroni">Constante d'Euler-Mascheroni — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Ap%C3%A9ry">Théorème d'Apéry — Wikipédia</a></li>
+<li>Lecture : Alfred van der Poorten, « A proof that Euler missed… Apéry's proof of the irrationality of ζ(3) » (1979)</li>
+<li>Voir aussi : <a href="applied-calculus.html">Analyse</a>, <a href="proofs.html">L'art de la démonstration</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-29" data-level="Recherche">
+<h3>OPEN-29 · Le problème du carré inscrit <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> <b>Démontrez que toute courbe de Jordan — toute
+courbe fermée simple continue du plan — contient quatre points formant les sommets d'un
+carré.</b> Statut : ouvert dans le cas général ; posé par Otto Toeplitz en 1911. Le
+résultat est connu pour les courbes convexes, pour les courbes analytiques par morceaux,
+et (Greene–Lobb, 2020) pour les courbes lisses dans le cas des <i>rectangles</i> inscrits
+de tout rapport d'aspect. L'obstruction tient entièrement aux courbes qui ne sont que
+continues, et donc possiblement sauvages.</p>
+<p class="context">Tracez n'importe quelle boucle fermée qui ne se recoupe pas, aussi
+déchiquetée soit-elle. Pouvez-vous toujours y trouver quatre points formant un carré
+parfait ? Tout le monde croit que oui et personne ne sait le démontrer, ce qui en fait le
+problème ouvert le plus accessible de la géométrie — l'énoncé ne demande aucun vocabulaire
+au-delà du lycée, et la difficulté est réelle et profonde. La démonstration de Joshua
+Greene et Andrew Lobb en 2020 pour les courbes lisses a utilisé la géométrie symplectique,
+un outil de la physique mathématique, pour régler la version rectangulaire ; c'est dans le
+saut du lisse au continu que vivent les monstres fractals.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_carr%C3%A9_inscrit">Problème du carré inscrit — Wikipédia</a></li>
+<li>Article : Joshua Greene &amp; Andrew Lobb, « The rectangular peg problem » (2020), <a href="https://arxiv.org/abs/2005.09193">arXiv:2005.09193</a></li>
+<li>Voir aussi : <a href="pure-geometry.html">Géométrie</a>, <a href="pure-topology.html">Topologie</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-30" data-level="Recherche">
+<h3>OPEN-30 · Le nombre chromatique du plan <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Coloriez chaque point du plan de sorte que deux points à distance
+exactement \( 1 \) n'aient jamais la même couleur, et soit \( \chi \) le nombre minimal de
+couleurs nécessaires. Statut : ouvert, mais resserré. Pendant soixante ans on savait
+seulement que la réponse était dans \( \{4,5,6,7\} \) ; en 2018 Aubrey de Grey a trouvé un
+graphe de distance unité à \( 1581 \) sommets qui ne peut pas être colorié avec 4
+couleurs, ce qui a relevé la borne inférieure, d'où \( 5 \leq \chi \leq 7 \).</p>
+<ol class="parts" type="a">
+<li>Démontrez vous-même les deux bornes classiques faciles : le fuseau de Moser force
+\( \chi \geq 4 \), et un pavage hexagonal donne \( \chi \leq 7 \).</li>
+<li><b>Déterminez \( \chi \).</b></li>
+</ol>
+</div>
+<p class="context">Le problème de Hadwiger–Nelson a été posé vers 1950 et il est célèbre
+pour le peu qui sépare l'amateur du professionnel : la borne supérieure est un dessin
+d'hexagones que n'importe qui peut tracer, la borne inférieure un petit graphe que
+n'importe qui peut vérifier, et la vérité se trouve quelque part dans un intervalle que
+personne n'a refermé en soixante-dix ans. De Grey — plus connu pour ses recherches sur le
+vieillissement, et travaillant là-dessus en électron libre — a annoncé son amélioration
+dans un article qu'un projet Polymath a ensuite vérifié et simplifié. C'est la
+démonstration récente la plus claire que cette page n'est pas réservée aux
+professionnels.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Hadwiger-Nelson">Problème de Hadwiger-Nelson — Wikipédia</a></li>
+<li>Article : Aubrey D. N. J. de Grey, « The chromatic number of the plane is at least 5 » (2018), <a href="https://arxiv.org/abs/1804.02385">arXiv:1804.02385</a></li>
+<li>Voir aussi : <a href="pure-combinatorics.html">Combinatoire et théorie des graphes</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-31" data-level="Recherche">
+<h3>OPEN-31 · La conjecture des familles stables par unions <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Une famille finie d'ensembles est <i>stable par
+union</i> si la réunion de deux de ses membres en est encore un membre. <b>Démontrez que
+toute famille stable par union (autre que \( \{\emptyset\} \)) contient un élément
+appartenant à au moins la moitié de ses ensembles.</b> Statut : ouvert. En 2022, Justin
+Gilmer a donné la première démonstration d'une minoration par une constante, à l'aide d'un
+argument d'entropie, montrant qu'un certain élément se trouve dans au moins une fraction
+\( 0.01 \) des ensembles ; sa méthode a été rapidement affinée par plusieurs équipes
+jusqu'à \( (3-\sqrt5)/2 \approx 0.38 \). La constante conjecturée \( 1/2 \) n'est
+toujours pas démontrée.</p>
+<p class="context">Péter Frankl a posé cette question en 1979 et, pendant quarante ans,
+personne n'a su démontrer <i>la moindre</i> fraction constante, ce qui est stupéfiant pour
+un énoncé aussi simple. La percée de Gilmer est un bel exemple de transfert de technique :
+il a appliqué la théorie de l'information, en mesurant l'entropie de choix aléatoires
+d'ensembles, à un problème d'apparence purement combinatoire, et la barrière est tombée
+quelques semaines après la parution de sa prépublication. On sait aujourd'hui que l'écart
+restant entre \( 0.38 \) et \( 0.5 \) est hors de portée de cette méthode particulière.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_des_familles_stables_par_unions">Conjecture des familles stables par unions — Wikipédia</a></li>
+<li>Article : Justin Gilmer, « A constant lower bound for the union-closed sets conjecture » (2022), <a href="https://arxiv.org/abs/2211.09055">arXiv:2211.09055</a></li>
+<li>Voir aussi : <a href="pure-combinatorics.html">Combinatoire et théorie des graphes</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-32" data-level="Recherche">
+<h3>OPEN-32 · Petits nombres de Ramsey : que vaut \( R(5,5) \) ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> \( R(5,5) \) est le plus petit \( n \) tel que tout coloriage en rouge
+et bleu des arêtes de \( K_n \) contienne un \( K_5 \) monochrome. Statut : ouvert. On
+sait que \( 43 \leq R(5,5) \leq 46 \), la borne supérieure étant due à Angeltveit et
+McKay (2024).</p>
+<ol class="parts" type="a">
+<li>Démontrez vous-même le petit cas classique \( R(3,3) = 6 \) — à la fois le coloriage
+montrant \( R(3,3) > 5 \) et l'argument des tiroirs montrant \( R(3,3) \leq 6 \).</li>
+<li><b>Déterminez \( R(5,5) \).</b></li>
+</ol>
+</div>
+<p class="context">La célèbre remarque d'Erdős dit les choses mieux que n'importe quel
+commentaire : si des extraterrestres exigeaient la valeur de \( R(5,5) \) sous peine de
+détruire la Terre, nous devrions mobiliser tous nos ordinateurs et tous nos mathématiciens
+pour tenter de la trouver — mais s'ils demandaient \( R(6,6) \), nous ferions mieux
+d'essayer de détruire les extraterrestres. L'espace de recherche est astronomiquement
+grand et la force brute est sans espoir ; les bornes ci-dessus proviennent d'un
+raisonnement combinatoire profond assorti d'énormes calculs. Du côté des
+<i>asymptotiques</i>, en revanche, il y a eu du mouvement récemment : Campos, Griffiths,
+Morris et Sahasrabudhe ont obtenu en 2023 la première amélioration exponentielle de la
+borne supérieure de Ramsey diagonale, après quatre-vingt-huit ans.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ramsey">Théorème de Ramsey — Wikipédia</a></li>
+<li>Lecture : Stanisław Radziszowski, « Small Ramsey Numbers », panorama dynamique de l'<i>Electronic Journal of Combinatorics</i> — la table de référence des bornes actuelles</li>
+<li>Article : Campos, Griffiths, Morris &amp; Sahasrabudhe, « An exponential improvement for diagonal Ramsey » (2023), <a href="https://arxiv.org/abs/2303.09521">arXiv:2303.09521</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-33" data-level="Recherche">
+<h3>OPEN-33 · La conjecture du coureur solitaire <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Supposons que \( n \) coureurs partent ensemble sur
+une piste circulaire de circonférence \( 1 \) et courent indéfiniment à des vitesses
+constantes deux à deux distinctes. Un coureur est <i>solitaire</i> à un instant où tous
+les autres sont à une distance d'au moins \( 1/n \) le long de la piste. <b>Démontrez que
+chaque coureur est solitaire à un certain moment.</b> Statut : ouvert dans le cas général ;
+démontré pour \( n \leq 7 \) coureurs.</p>
+<p class="context">La conjecture a été formulée indépendamment par Jörg Wills (1967) et
+Thomas Cusick (1973) dans le langage de l'approximation diophantienne, et elle doit son nom
+charmant à Luis Goddyn, en 1998. Chaque nouvelle valeur de \( n \) a exigé un travail
+substantiellement neuf, signature d'un problème pour lequel aucune idée unificatrice n'a
+encore été trouvée. C'est un bon exemple de la manière dont une question sur l'approximation
+simultanée de plusieurs nombres irrationnels peut être habillée sous une forme qu'un enfant
+peut se représenter — et du peu que cela aide.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_du_coureur_solitaire">Conjecture du coureur solitaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Approximation_diophantienne">Approximation diophantienne — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-34" data-level="Recherche">
+<h3>OPEN-34 · Le problème du sous-espace invariant <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> <b>Tout opérateur linéaire borné sur un espace de
+Hilbert complexe séparable de dimension infinie possède-t-il un sous-espace invariant
+fermé non trivial ?</b> Statut : ouvert pour les espaces de Hilbert. Pour les espaces de
+Banach généraux la réponse est <i>non</i> — Per Enflo a construit un contre-exemple
+(annoncé en 1975, publié en 1987) et Charles Read en a produit d'autres. Notez que des
+résolutions revendiquées du cas hilbertien ont été annoncées ces dernières années, y
+compris par Enflo lui-même en 2023 ; elles n'ont pas été acceptées par la communauté, et
+en 2026 le problème doit être considéré comme ouvert.</p>
+<p class="context">C'est la question ouverte centrale de la théorie des opérateurs, et son
+énoncé est trompeusement simple : tout opérateur préserve-t-il quelque chose ? En dimension
+finie, les vecteurs propres règlent la question immédiatement. Le cas hilbertien de
+dimension infinie a absorbé des efforts considérables, et l'on sait beaucoup de choses pour
+des classes particulières — opérateurs compacts (Aronszajn–Smith), opérateurs normaux,
+opérateurs polynomialement compacts (Bernstein–Robinson, par l'analyse non standard). Cette
+entrée sert aussi de leçon de lecture attentive des annonces : une prépublication n'est pas
+un théorème tant que la communauté ne l'a pas vérifiée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Invariant_subspace_problem">Problème du sous-espace invariant — Wikipédia (en anglais)</a></li>
+<li>Lecture : John B. Conway, <i>A Course in Functional Analysis</i></li>
+<li>Voir aussi : <a href="pure-functional-analysis.html">Analyse fonctionnelle</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-35" data-level="Recherche">
+<h3>OPEN-35 · La conjecture jacobienne <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( F : \mathbb{C}^n \to \mathbb{C}^n \) une
+application polynomiale dont le déterminant jacobien est une constante non nulle.
+<b>Démontrez que \( F \) est inversible, d'inverse polynomial.</b> Statut : ouvert pour
+tout \( n \geq 2 \). Des réductions connues montrent qu'il suffit de traiter les
+applications de la forme particulière \( F(x) = x + H(x) \) avec \( H \) cubique homogène
+— et même ce cas n'est pas résolu.</p>
+<p class="context">Ott-Heinrich Keller a posé cette question en 1939 et elle est devenue
+tristement célèbre par le nombre de fausses démonstrations publiées dans les deux sens ;
+Shreeram Abhyankar l'appelait « le cimetière des géomètres algébristes ». L'énoncé se situe
+à un curieux carrefour d'algèbre, de géométrie et d'analyse : l'hypothèse est une condition
+d'inversibilité purement locale et la conclusion est globale et algébrique, et toute la
+difficulté tient à ce que les polynômes sur \( \mathbb{C} \) refusent d'obéir à l'intuition
+que le théorème d'inversion locale donne sur \( \mathbb{R} \). Notez que la conjecture est
+<i>fausse</i> en caractéristique positive, avertissement qu'il vaut la peine de retenir.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_jacobienne">Conjecture jacobienne — Wikipédia</a></li>
+<li>Lecture : Arno van den Essen, <i>Polynomial Automorphisms and the Jacobian Conjecture</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-36" data-level="Recherche">
+<h3>OPEN-36 · La conjecture d'Erdős–Straus <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Erdős et Straus ont conjecturé que, pour tout entier \( n \geq 2 \),
+il existe des entiers strictement positifs \( x, y, z \) tels que
+\[ \frac{4}{n} = \frac{1}{x} + \frac{1}{y} + \frac{1}{z} . \]
+Statut : ouvert. Vérifiée par ordinateur pour tout \( n \) jusqu'à \( 10^{17} \) et
+au-delà, et connue pour tout \( n \) hors de certaines classes résiduelles modulo
+\( 840 \) — les cas difficiles sont essentiellement les \( n \) premiers congrus à
+\( 1, 11^2, 13^2, 17^2, 19^2 \) ou \( 23^2 \) modulo \( 840 \).</p>
+<ol class="parts" type="a">
+<li>Échauffez-vous en trouvant à la main des représentations pour \( n = 5, 7, 9 \).</li>
+<li><b>Démontrez la conjecture pour tout \( n \geq 2 \).</b></li>
+</ol>
+</div>
+<p class="context">Erdős et Ernst Straus ont posé cette question vers 1948. Les fractions
+égyptiennes — sommes de fractions unitaires distinctes — comptent parmi les objets les
+plus anciens des mathématiques écrites, puisqu'elles apparaissent dans le papyrus Rhind
+vers 1650 av. J.-C. ; c'est donc une question moderne dans une langue antique. Ce qui la
+rend typique d'Erdős, c'est qu'elle est élémentaire à énoncer, trivialement vérifiable sur
+n'importe quelle instance, et complètement rétive dans le cas général : les résultats
+connus viennent tous de systèmes de congruences couvrants, et aucun système couvrant ne
+traite les classes restantes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_d%27Erd%C5%91s-Straus">Conjecture d'Erdős-Straus — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fraction_%C3%A9gyptienne">Fraction égyptienne — Wikipédia</a></li>
+<li>Lecture : <a href="https://www.erdosproblems.com/">Erdős Problems</a> — le catalogue tenu par Thomas Bloom des problèmes d'Erdős et de leur statut</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-48" data-level="Lycée" data-kind="court">
+<h3>OPEN-48 · Goldbach à la main, de 4 à 60 <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour tout nombre pair \( n \) avec
+\( 4 \leq n \leq 60 \), écrivez \( n \) comme somme de deux nombres premiers et notez
+combien de représentations non ordonnées \( n = p + q \) avec \( p \leq q \) vous trouvez.
+Décrivez ensuite ce qu'il advient de ce décompte quand \( n \) grandit, et énoncez
+clairement pourquoi aucune quantité de vérifications de ce genre ne règle OPEN-23.</p>
+<p class="context">C'est le calcul que faisaient Goldbach et Euler en 1742, et il demande
+une vingtaine de minutes avec une liste des nombres premiers jusqu'à \( 60 \). Le nombre
+de représentations ne se contente pas de rester positif, il croît — son graphique est
+connu sous le nom de comète de Goldbach, et sa forme est prédite assez précisément par
+l'heuristique de la méthode du cercle de Hardy–Littlewood. Cette croissance explique
+pourquoi presque tout le monde croit à la conjecture, et aussi pourquoi personne ne sait
+la démontrer : un décompte asymptotique grand en moyenne ne dit rien sur la possibilité
+qu'un nombre pair isolé soit malchanceux.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Goldbach">Conjecture de Goldbach — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Com%C3%A8te_de_Goldbach">Comète de Goldbach — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-49" data-level="Licence" data-kind="court">
+<h3>OPEN-49 · Radicaux de triplets abc <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour chaque triplet d'entiers premiers entre eux
+avec \( a + b = c \) de la liste
+\[ (1,8,9), \quad (5,27,32), \quad (1,80,81), \quad (3,125,128) \]
+calculez \( \operatorname{rad}(abc) \), le produit des nombres premiers distincts divisant
+\( abc \), et déterminez lesquels des quatre vérifient
+\( c > \operatorname{rad}(abc) \). Calculez ensuite la <i>qualité</i>
+\( q = \log c / \log \operatorname{rad}(abc) \) de chaque triplet et énoncez ce que la
+conjecture abc d'OPEN-27 prédit au sujet des triplets vérifiant \( q \geq 1.4 \).</p>
+<p class="context">Les triplets vérifiant \( c > \operatorname{rad}(abc) \) ne sont pas
+rares — il y en a une infinité, et \( 1 + 8 = 9 \) est le plus petit — de sorte que la
+conjecture ne peut pas simplement les interdire ; tout le contenu tient dans l'exposant
+\( 1 + \varepsilon \). Faire quatre exemples à la main rend cette distinction physique. Le
+détenteur du record, trouvé par Éric Reyssat, est \( 2 + 3^{10} \cdot 109 = 23^{5} \), de
+qualité environ \( 1.6299 \), et aucun triplet de qualité \( 2 \) ou plus n'a jamais été
+trouvé — la conjecture abc dit que, pour chaque \( \varepsilon > 0 \) fixé, seul un nombre
+fini de triplets dépassent la qualité \( 1 + \varepsilon \).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_abc">Conjecture abc — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Radical_d%27un_entier">Radical d'un entier — Wikipédia</a></li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-50" data-level="Licence" data-kind="court">
+<h3>OPEN-50 · Compter les points entiers dans un disque <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( N(r) \) le nombre de points entiers
+\( (x,y) \in \mathbb{Z}^2 \) vérifiant \( x^2 + y^2 \leq r^2 \). Calculez \( N(r) \) pour
+\( r = 10, 20, 30, 50, 100 \), tabulez l'erreur \( E(r) = N(r) - \pi r^2 \), et décidez au
+vu de vos données si \( E(r) \) semble plutôt de taille \( r^{1/2} \) ou de taille
+\( r \).</p>
+<p class="context">C'est le problème du cercle de Gauss, ouvert depuis que Gauss l'a
+étudié vers 1800. Écrire \( N(r) = \pi r^2 + E(r) \) est trivial ; la question est de
+savoir à quel point \( E(r) \) doit être petit. L'argument de Gauss lui-même donne
+\( E(r) = O(r) \) — chaque carré du bord est compté ou manqué — et la conjecture est
+\( E(r) = O(r^{1/2 + \varepsilon}) \), tandis que Hardy et Landau ont démontré en 1915 que
+\( E(r) = O(r^{1/2}) \) est faux tel quel. La meilleure borne supérieure connue en 2026
+est l'exposant de Huxley, \( 131/208 = 0.6298\ldots \) (2000) ; l'écart entre ce qui est
+démontré et ce qui est cru reste donc ouvert. Cinq points de données ne trancheront pas,
+mais ils vous montreront pourquoi l'exposant est difficile à voir.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_cercle_de_Gauss">Problème du cercle de Gauss — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy &amp; E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, chap. 18</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-51" data-level="Recherche">
+<h3>OPEN-51 · La conjecture de Beal <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Supposons que \( A, B, C, x, y, z \) soient des
+entiers strictement positifs avec \( x, y, z > 2 \) et
+\[ A^{x} + B^{y} = C^{z} . \]
+<b>Démontrez que \( A \), \( B \) et \( C \) ont un facteur premier commun</b> — ou
+exhibez un contre-exemple. Statut : ouvert. Un prix d'un million de dollars américains,
+placé en fiducie auprès de l'American Mathematical Society, est offert pour une
+démonstration ou un contre-exemple publiés dans une revue à comité de lecture.</p>
+<p class="context">D. Andrew Beal, banquier de Dallas et théoricien des nombres autodidacte,
+est parvenu à cet énoncé au début des années 1990 en expérimentant sur des généralisations
+du dernier théorème de Fermat ; il l'a annoncé avec un prix en 1997, et le fonds a été porté
+par étapes à un million de dollars en 2013. La conjecture contient le dernier théorème de
+Fermat comme cas particulier \( x = y = z = n > 2 \), puisqu'un facteur commun pourrait
+être simplifié — de sorte que toute démonstration devra englober le théorème de Wiles, ce
+qui est la mesure honnête de sa difficulté. Ce que l'on sait provient de la même machinerie
+de modularité : certains triplets d'exposants comme \( (3,3,n) \) ont été réglés en
+attachant des courbes de Frey à des solutions hypothétiques, et de vastes calculs n'ont
+trouvé aucun contre-exemple à petites bases et petits exposants. L'hypothèse du facteur
+commun est essentielle et facile à tester : \( 3^{3} + 6^{3} = 3^{5} \), où tout est
+divisible par \( 3 \).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_de_Fermat_g%C3%A9n%C3%A9ralis%C3%A9e">Équation de Fermat généralisée (conjecture de Beal) — Wikipédia</a></li>
+<li>Prix : <a href="https://www.ams.org/profession/prizes-awards/ams-supported/beal-prize-rules">AMS — règlement et procédure du prix Beal</a></li>
+<li>Article : R. Daniel Mauldin, « A generalization of Fermat's last theorem: the Beal conjecture and prize problem », <i>Notices of the AMS</i> 44 (1997)</li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-52" data-level="Recherche">
+<h3>OPEN-52 · La conjecture de Fermat–Catalan <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez l'équation
+\[ a^{m} + b^{n} = c^{k} \]
+en entiers strictement positifs, avec \( a, b, c \) deux à deux premiers entre eux et des
+exposants vérifiant
+\[ \frac{1}{m} + \frac{1}{n} + \frac{1}{k} < 1 . \]</p>
+<ol class="parts" type="a">
+<li>Vérifiez les solutions connues \( 1 + 2^{3} = 3^{2} \), \( 2^{5} + 7^{2} = 3^{4} \) et
+\( 7^{3} + 13^{2} = 2^{9} \), et contrôlez dans chaque cas que la condition sur les
+exposants est satisfaite.</li>
+<li><b>Démontrez qu'il n'existe qu'un nombre fini de telles solutions.</b> Statut :
+ouvert. Dix solutions sont connues, la plus grande faisant intervenir des nombres de sept
+chiffres et plus, et aucune n'a été trouvée en plus de vingt ans de recherche.</li>
+</ol>
+</div>
+<p class="context">La condition sur les exposants est tout l'enjeu :
+\( 1/m + 1/n + 1/k \) supérieur, égal ou inférieur à \( 1 \) correspond aux géométries
+sphérique, euclidienne et hyperbolique sur un orbifold associé, et ce n'est que dans le
+cas hyperbolique que les solutions devraient être rares. Darmon et Granville ont démontré
+en 1995, à l'aide du théorème de Faltings, que pour chaque triplet d'exposants <i>fixé</i>
+il n'y a qu'un nombre fini de solutions premières entre elles ; la conjecture demande la
+finitude lorsque les exposants varient aussi, ce qui est bien plus fort et découlerait de
+la conjecture abc d'OPEN-27. Des jalons voisins montrent combien le terrain est délicat :
+la conjecture de Catalan — selon laquelle \( 8 \) et \( 9 \) sont les seules puissances
+parfaites consécutives — a résisté de 1844 jusqu'à ce que Preda Mihăilescu la démontre en
+2002, et le dernier théorème de Fermat est le sous-cas \( a^{n} + b^{n} = c^{n} \).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Fermat-Catalan">Conjecture de Fermat-Catalan — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Catalan">Conjecture de Catalan — Wikipédia</a></li>
+<li>Article : H. Darmon &amp; A. Granville, « On the equations \( z^m = F(x,y) \) and \( Ax^p + By^q = Cz^r \) », <i>Bulletin of the LMS</i> 27 (1995)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-53" data-level="Recherche">
+<h3>OPEN-53 · La conjecture de Sendov — <i>résolue en août 2026</i> <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème (résolu tout récemment ; la vérification est encore en
+cours de stabilisation).</b> Soit \( p \) un polynôme complexe de degré \( n \geq 2 \)
+dont toutes les racines appartiennent au disque unité fermé. <b>Montrez que, pour toute
+racine \( a \) de \( p \), le disque fermé \( \{ z : |z - a| \leq 1 \} \) contient au
+moins une racine de la dérivée \( p' \).</b> Statut au moment où ces lignes sont écrites :
+pendant soixante ans la question est restée ouverte dans le cas général — démontrée pour
+les degrés \( n \leq 8 \) (Brown et Xiang, 1999) et, par Terence Tao en 2020, pour tout
+\( n \) assez grand, avec un seuil ineffectif qui ne réglait aucun degré précis au-dessus
+de \( 8 \). En août 2026, Lech Mazur a annoncé une démonstration assistée par ordinateur
+du cas général, produite avec une aide massive de l'IA et vérifiée dans l'assistant de
+preuve Lean ; Tao a ensuite passé plusieurs jours à digérer, contextualiser et simplifier
+l'argument, et il rapporte qu'il démontre un énoncé plus fort qui règle aussi la
+conjecture de Phelps–Rodriguez. Tenez cela pour <b>résolu, mais pas encore expertisé par
+une revue</b> : la vérification en Lean est un indice fort, et le processus ordinaire
+d'évaluation par les pairs n'est pas encore allé à son terme.</p>
+<p class="context">Blagovest Sendov a proposé cette conjecture en 1959 ; Walter Hayman l'a
+imprimée dans son recueil de problèmes de 1967 en l'attribuant par erreur à Ljubomir Iliev,
+et le nom est resté des années. Le fait de fond est le théorème de Gauss–Lucas : les racines
+de \( p' \) se trouvent toujours dans l'enveloppe convexe des racines de \( p \), et ne
+peuvent donc pas s'échapper du disque unité. La question de Sendov est le raffinement local
+— non pas « quelque part dans le disque », mais « à distance au plus un de <i>chaque</i>
+racine » — et ce léger renforcement a consommé plus de soixante ans et quelque chose comme
+une centaine d'articles. L'article de Tao de 2020 mérite encore d'être étudié comme pièce
+de méthode : il raisonne par l'absurde à partir d'une suite de contre-exemples minimaux,
+extrait un objet limite et l'analyse par la probabilité et la théorie du potentiel, au prix
+d'un degré-seuil incalculable — exemple d'une netteté inhabituelle de théorème vrai
+« à terme » sans être vrai « à partir d'ici, explicitement ». Le dénouement de 2026 est un
+jalon d'une autre nature, et cette entrée est laissée ici, parmi les problèmes ouverts
+classiques, comme trace délibérée de la vitesse à laquelle le sol peut bouger : une
+conjecture qui avait tenu le domaine en échec pendant six décennies a été refermée par un
+argument produit par machine qu'un expert humain a ensuite dû passer des jours à apprendre
+à lire. Quoi que vous concluiez sur ce que cela signifie pour les mathématiques, remarquez
+que la vérification en Lean et le processus d'expertise sont deux choses différentes, et
+qu'une seule des deux a eu lieu.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_d%27Iliev-Sendov">Conjecture d'Iliev-Sendov — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Gauss-Lucas">Théorème de Gauss-Lucas — Wikipédia</a></li>
+<li>Article : Terence Tao, « Sendov's conjecture for sufficiently high degree polynomials », <i>Acta Mathematica</i> 229 (2022), <a href="https://arxiv.org/abs/2012.04125">arXiv:2012.04125</a></li>
+<li>Lecture : Terence Tao, « A digestion of the proof of Sendov's conjecture » (12 août 2026), <a href="https://terrytao.wordpress.com/2026/08/12/a-digestion-of-the-proof-of-sendovs-conjecture/">terrytao.wordpress.com</a> — l'exposé accessible de l'argument de 2026</li>
+<li>Article : Lech Mazur, « A computer-assisted proof of Sendov's conjecture » (5 août 2026), <a href="https://www.proofatlas.ai/papers/sendov-conjecture/SENDOV_CONJECTURE_PROOF_AUGUST_5_2026.pdf">ProofAtlas (PDF)</a> ; la <a href="https://www.proofatlas.ai/formalizations/sendov-conjecture/">formalisation en Lean</a> est déposée à côté</li>
+<li>Lecture : Q. I. Rahman &amp; G. Schmeisser, <i>Analytic Theory of Polynomials</i> (2002)</li>
+<li>Voir aussi : <a href="pure-complex-analysis.html">Analyse complexe</a> (le problème CA-31 traite les petits cas)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-54" data-level="Recherche">
+<h3>OPEN-54 · La conjecture de Singmaster <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour un entier \( t \geq 2 \), soit \( N(t) \) le nombre de couples
+\( (n,k) \) tels que \( \binom{n}{k} = t \) — autrement dit, le nombre de fois où \( t \)
+apparaît dans le triangle de Pascal.</p>
+<ol class="parts" type="a">
+<li>Trouvez les huit occurrences de \( 3003 \), le détenteur actuel du record, et montrez
+que tout \( t \geq 2 \) apparaît au moins deux fois.</li>
+<li><b>Démontrez que \( N(t) \) est majoré par une constante absolue.</b> Statut :
+ouvert. Les meilleures bornes connues sont \( N(t) = O(\log t / \log\log t) \) (Abbott,
+Erdős et Hanson, 1974) et le raffinement de Kane en 2007
+\[ N(t) = O\!\left( \frac{(\log t)(\log\log\log t)}{(\log\log t)^{3}} \right) . \]</li>
+</ol>
+</div>
+<p class="context">David Singmaster a demandé en 1971 si les entrées du triangle de Pascal
+peuvent se répéter arbitrairement souvent, et a supposé que la vraie borne pourrait être
+aussi petite que \( 8 \) ou \( 10 \) ; personne n'a trouvé de nombre apparaissant plus de
+huit fois, et \( 3003 \) est le seul nombre connu à apparaître huit fois. Une infinité de
+nombres apparaissent six fois, via une identité construite à partir des nombres de
+Fibonacci que Singmaster a trouvée lui-même — la réponse n'est donc certainement pas « au
+plus quatre ». La conjecture est un problème diophantien déguisé : chaque répétition est
+une solution de \( \binom{n}{k} = \binom{m}{j} \), un système d'équations polynomiales, et
+même une borne \( O(1) \) pour le cas particulier \( k = 2 \), \( j = 3 \) relève de la
+théorie des points entiers sur les courbes. En 2021, Matomäki, Radziwiłł, Shao, Tao et
+Teräväinen ont démontré la conjecture à l'intérieur du triangle, là où \( k \) n'est trop
+proche ni de \( 0 \) ni de \( n \) — laissant les fines régions de bord, c'est-à-dire
+exactement là où vivent les répétitions connues.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Singmaster">Conjecture de Singmaster — Wikipédia</a></li>
+<li>Article : K. Matomäki, M. Radziwiłł, X. Shao, T. Tao, J. Teräväinen, « Singmaster's conjecture in the interior of Pascal's triangle », <i>Quarterly Journal of Mathematics</i> 73 (2022), <a href="https://arxiv.org/abs/2106.03335">arXiv:2106.03335</a></li>
+<li>Lecture : Richard K. Guy, <i>Unsolved Problems in Number Theory</i></li>
+<li>Voir aussi : <a href="pure-combinatorics.html">Combinatoire</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-55" data-level="Recherche">
+<h3>OPEN-55 · La conjecture de Zaremba <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Tout rationnel \( b/d \) sous forme irréductible admet un
+développement en fraction continue fini
+\[ \frac{b}{d} = \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{\ddots + \cfrac{1}{a_r}}}}
+= [0; a_1, a_2, \dots, a_r] , \]
+à quotients partiels \( a_i \) entiers strictement positifs.</p>
+<ol class="parts" type="a">
+<li>Échauffement : pour \( d = 2, 3, \dots, 20 \), trouvez pour chaque \( d \) un \( b \)
+premier avec \( d \) dont tous les quotients partiels sont au plus \( 5 \).</li>
+<li><b>Démontrez la conjecture de Zaremba : il existe une constante absolue \( A \) telle
+que tout entier \( d \geq 2 \) admette un \( b \) avec \( \gcd(b,d) = 1 \) et tous les
+quotients partiels de \( b/d \) au plus égaux à \( A \).</b> Statut : ouvert ;
+\( A = 5 \) est la valeur conjecturée et elle s'accorde à tous les indices numériques.</li>
+</ol>
+</div>
+<p class="context">Stanisław Zaremba a posé la question au début des années 1970 pour une
+raison tout à fait pratique : dans la méthode du « bon point de réseau » en intégration
+numérique, la qualité d'une règle de réseau de module \( d \) est gouvernée par les
+quotients partiels de \( b/d \), et il faut donc disposer de modules dont les fractions
+continues sont sages. L'obstruction, c'est que les fractions continues à quotients partiels
+bornés forment un ensemble de Cantor de dimension de Hausdorff fractionnaire — les
+dénominateurs qu'elles produisent sont clairsemés — et exiger qu'elles atteignent
+<i>tout</i> entier, c'est demander à un ensemble mince d'être arithmétiquement complet.
+Bourgain et Kontorovich ont réalisé la percée en 2014, en démontrant la conjecture pour un
+ensemble de dénominateurs de densité un, grâce au développement d'une méthode du cercle
+pour les semi-groupes minces de \( \mathrm{SL}_2(\mathbb{Z}) \) — machinerie qui anime aussi
+les travaux modernes sur les empilements de cercles apolloniens. Shinnyih Huang a ensuite
+ramené la constante à la valeur conjecturée \( 5 \) pour un ensemble de densité un. Densité
+un n'est pas la totalité : l'ensemble exceptionnel reste infini, et aucun \( d \) explicite
+n'est connu pour mettre la conjecture en défaut.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Restricted_partial_quotients">Quotients partiels bornés (conjecture de Zaremba) — Wikipédia (en anglais)</a></li>
+<li>Article : J. Bourgain &amp; A. Kontorovich, « On Zaremba's conjecture », <i>Annals of Mathematics</i> 180 (2014), <a href="https://arxiv.org/abs/1107.3776">arXiv:1107.3776</a></li>
+<li>Article : Shinnyih Huang, « An improvement to Zaremba's conjecture » (2013), <a href="https://arxiv.org/abs/1310.3772">arXiv:1310.3772</a></li>
+<li>Lecture : A. Ya. Khintchine, <i>Continued Fractions</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-56" data-level="Recherche">
+<h3>OPEN-56 · Les irrationnels algébriques sont-ils normaux ? <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> Un nombre réel est <i>normal</i> en base \( b \) si,
+pour tout \( k \geq 1 \), chacun des \( b^{k} \) blocs de \( k \) chiffres apparaît dans
+son développement en base \( b \) avec une fréquence limite \( b^{-k} \). <b>Démontrez que
+tout nombre algébrique irrationnel — \( \sqrt{2} \), disons, ou \( 2^{1/3} \) — est normal
+dans toute base.</b> Statut : ouvert, et ouvert à une profondeur embarrassante : aucun
+nombre algébrique irrationnel n'a été démontré normal dans quelque base que ce soit, et
+l'on ne sait même pas si le développement décimal de \( \sqrt{2} \) contient une infinité
+d'occurrences du chiffre \( 7 \).</p>
+<p class="context">Émile Borel a démontré en 1909 que presque tout nombre réel est normal
+dans toute base — les nombres non normaux forment un ensemble de mesure nulle — et en 1950
+il a conjecturé que les irrationnels algébriques figurent parmi les nombres normaux. Le
+gouffre entre ces deux phrases est tout l'objet de cette entrée : une propriété peut valoir
+pour presque tous les nombres et rester invérifiable pour un seul nombre que vous savez
+nommer. Des constructions existent bien — Champernowne a montré en 1933 que
+\( 0{,}123456789101112\ldots \) est normal en base dix — mais ce sont des nombres bâtis
+pour être normaux, non des nombres apparus pour d'autres raisons. Les vrais résultats
+partiels mesurent l'éloignement de la frontière : Bailey, Borwein, Crandall et Pomerance
+ont démontré qu'un irrationnel algébrique de degré \( d \) compte au moins de l'ordre de
+\( N^{1/d} \) chiffres 1 parmi ses \( N \) premiers chiffres binaires, et Adamczewski et
+Bugeaud ont démontré que le nombre de blocs distincts de longueur \( k \) dans le
+développement croît plus vite que linéairement en \( k \), de sorte qu'aucun irrationnel
+algébrique n'a un développement aussi simple qu'une suite automatique. Les deux résultats
+sont immensément plus faibles que « chaque chiffre apparaît un dixième du temps ».</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_normal">Nombre normal — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Constante_de_Champernowne">Constante de Champernowne — Wikipédia</a></li>
+<li>Article : B. Adamczewski &amp; Y. Bugeaud, « On the complexity of algebraic numbers I. Expansions in integer bases », <i>Annals of Mathematics</i> 165 (2007)</li>
+<li>Article : D. H. Bailey, J. M. Borwein, R. E. Crandall, C. Pomerance, « On the binary expansions of algebraic numbers », <i>Journal de Théorie des Nombres de Bordeaux</i> 16 (2004)</li>
+<li>Voir aussi : <a href="pure-real-analysis.html">Analyse réelle</a>, <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="OPEN-61" data-level="Recherche">
+<h3>OPEN-61 · La conjecture de Cramér : quelle taille un écart entre nombres premiers peut-il atteindre ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Notons \( g_n = p_{n+1} - p_n \) l'écart qui suit le n-ième nombre
+premier. Cramér a conjecturé en 1936 que
+\[ g_n \;=\; O\!\left( (\log p_n)^2 \right), \]
+et, sous sa forme fine, que \( \limsup_{n \to \infty} g_n / (\log p_n)^2 = 1 \).</p>
+<ol class="parts" type="a">
+<li>Échauffez-vous avec les faits classiques : démontrez que les écarts entre nombres
+premiers ne sont pas bornés, en exhibant n entiers composés consécutifs pour tout n, et
+déduisez du théorème des nombres premiers que l'écart moyen au voisinage de x vaut environ
+\( \log x \).</li>
+<li>Situez la frontière des deux côtés. Énoncez la meilleure borne supérieure
+inconditionnelle — Baker, Harman et Pintz (2001) donnent \( g_n < p_n^{0.525} \) pour n
+grand — et la meilleure borne connue sous l'hypothèse de Riemann, celle de Cramér :
+\( g_n = O(\sqrt{p_n} \log p_n) \). Dites ensuite précisément ce qu'il faudrait améliorer
+pour atteindre \( (\log p_n)^2 \), et notez que même en supposant OPEN-01 vous en restez
+exponentiellement loin.</li>
+<li>Lisez la minoration de 2014 due à Ford, Green, Konyagin, Maynard et Tao : pour toute
+constante c, une infinité de n vérifient
+\[ g_n \;>\; c \, \log p_n \, \frac{\log\log p_n \, \log\log\log\log p_n}{(\log\log\log p_n)^2}. \]
+Identifiez le point où la machinerie qui produit de <i>grands</i> écarts se sépare de celle
+d'OPEN-24, qui en produit de <i>petits</i>, alors même que les deux sont issues du même
+crible.</li>
+<li><b>Démontrez ou réfutez la conjecture de Cramér.</b> Statut : ouvert, et même la
+constante conjecturée est contestée — voir le contexte ci-dessous.</li>
+</ol>
+</div>
+<p class="context">Le modèle de Cramér — colorier chaque entier n comme premier
+indépendamment avec probabilité \( 1/\log n \) — est le plus influent des modèles faux de
+la théorie des nombres. Il prédit la bonne réponse à un très grand nombre de questions, et
+une réponse démontrablement fausse à certaines : Helmut Maier a démontré en 1985 que le
+nombre de nombres premiers dans les intervalles courts de longueur \( (\log x)^A \) fluctue
+plus que le modèle ne le permet, raison pour laquelle le raffinement de Granville prédit une
+limite supérieure d'au moins \( 2e^{-\gamma} \approx 1.1229 \) plutôt que le 1 de Cramér.
+La minoration de la question (c) a réglé un problème qu'Erdős avait doté de 10 000 dollars,
+son plus gros prix annoncé ; deux démonstrations sont parues sur arXiv à un jour
+d'intervalle en août 2014, l'une signée de quatre auteurs et l'autre de Maynard seul, avant
+d'être fondues en un article commun. Les outils étaient les mêmes méthodes de crible qui
+venaient de produire les écarts bornés entre nombres premiers — la machine identique
+écartant les nombres premiers et les resserrant. Pour l'échelle : le plus grand écart
+maximal jamais calculé vaut 1854, juste après le nombre premier 101412319996363309069,
+tandis que \( (\log p)^2 \) y vaut à peu près 2200.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Cram%C3%A9r">Conjecture de Cramér — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89cart_entre_nombres_premiers">Écart entre nombres premiers — Wikipédia</a></li>
+<li>Article : K. Ford, B. Green, S. Konyagin, J. Maynard &amp; T. Tao, « Long gaps between primes », <i>Journal of the AMS</i> 31 (2018), 65–105</li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-62" data-level="Recherche">
+<h3>OPEN-62 · La liste de Hilbert, passée en revue <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le 8 août 1900, au deuxième Congrès international des mathématiciens à
+Paris, David Hilbert a donné une conférence sur les problèmes qui, selon lui, allaient
+façonner le siècle à venir. Il en a lu dix à voix haute ; la version imprimée en compte 23.
+Ce problème est une revue de compte, et c'est la revue qui est l'exercice.</p>
+<ol class="parts" type="a">
+<li>Construisez le tableau vous-même. Pour chacun des 23, écrivez une phrase énonçant le
+problème, puis classez-le comme résolu (en nommant l'auteur de la solution et l'année),
+partiellement résolu, non résolu, ou trop vague pour avoir une valeur de vérité — et
+défendez par écrit toute classification que vous n'avez pas pu simplement aller
+chercher.</li>
+<li>Trois entrées figurent sur cette page à part entière. Le huitième problème de Hilbert
+contient l'hypothèse de Riemann (OPEN-01), la conjecture de Goldbach (OPEN-23) et la
+conjecture des nombres premiers jumeaux (OPEN-24), tous encore ouverts ; une partie du
+dix-huitième est la conjecture de Kepler, tombée en 2014 (OPEN-38) ; le dixième a reçu une
+réponse négative en 1970, avec un reste toujours ouvert (OPEN-63). Pour chacun, énoncez
+exactement quelle part de la question de Hilbert a reçu réponse et quelle part n'en a pas
+reçu.</li>
+<li>Vient maintenant la partie qui n'est pas de la comptabilité. Choisissez un problème
+qui s'est révélé mal posé — le sixième, qui demande une axiomatisation de la physique, et
+le vingt-troisième, qui demande le développement ultérieur du calcul des variations, sont
+les candidats habituels — et écrivez deux pages sur ce que « résoudre » aurait bien pu
+vouloir dire. Que vous apprend le taux d'échec d'une liste sur la valeur des listes de
+problèmes ?</li>
+<li>Enfin, comparez. Placez la liste de Hilbert à côté de la liste des prix du millénaire
+de 2000, en haut de cette page, et à côté du « vingt-quatrième problème » que Rüdiger
+Thiele a trouvé dans les carnets de Hilbert en 2000 — une demande de critère de simplicité
+pour les démonstrations, que Hilbert avait rédigée et jamais publiée. Quelle liste
+vieillira le mieux selon vous, et sur quels indices ?</li>
+</ol>
+</div>
+<p class="context">Statut : plusieurs des 23 restent ouverts, au premier chef le huitième,
+le douzième et le seizième, tandis que le quatrième, le vingt-troisième et le
+vingt-quatrième resté inédit sont généralement jugés trop vagues pour être tranchés. La
+liste a fonctionné d'une manière que personne n'aurait pu concevoir : des domaines entiers
+sont nés d'une seule entrée — la théorie de la démonstration du deuxième, la théorie des
+ensembles diophantiens du dixième, la théorie moderne de la transcendance du septième — et
+les mathématiciens se sont disputé l'honneur d'en refermer un. Elle montre aussi les
+limites de la prophétie. Les plus grandes surprises du vingtième siècle — les théorèmes
+d'incomplétude de Gödel, l'ordinateur, la théorie des catégories, la classification des
+groupes finis simples — sont presque entièrement absentes d'une liste dressée par le
+mathématicien le plus complètement informé de son temps. Il y a aussi une belle ironie dans
+le calendrier : la phrase la plus citée de Hilbert, « wir müssen wissen, wir werden wissen »,
+ne vient pas de Paris en 1900 mais d'une allocution radiophonique à Königsberg en septembre
+1930, prononcée à un jour près de la première annonce publique de l'incomplétude par Gödel,
+lors d'un colloque tenu dans cette même ville.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8mes_de_Hilbert">Problèmes de Hilbert — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Hilbert%27s_twenty-fourth_problem">Vingt-quatrième problème de Hilbert — Wikipédia (en anglais)</a></li>
+<li>Lecture : Felix E. Browder (dir.), <i>Mathematical Developments Arising from Hilbert Problems</i>, AMS (1976)</li>
+<li>Lecture : Benjamin H. Yandell, <i>The Honors Class: Hilbert's Problems and Their Solvers</i> (2002)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-63" data-level="Recherche" data-kind="court">
+<h3>OPEN-63 · Le dixième problème de Hilbert sur les rationnels <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Iouri Matiiassevitch, achevant les travaux de Martin
+Davis, Hilary Putnam et Julia Robinson, a démontré en 1970 qu'aucun algorithme ne décide si
+une équation polynomiale arbitraire à coefficients entiers admet une solution en
+<i>entiers</i>. <b>Tranchez la même question en remplaçant les entiers par les rationnels :
+existe-t-il un algorithme qui détermine si une équation polynomiale à coefficients
+rationnels admet une solution rationnelle ?</b> Statut : ouvert.</p>
+<p class="context">La voie classique vers une réponse négative sur un anneau R consiste à
+écrire une définition diophantienne de ℤ à l'intérieur de R, puis à invoquer le théorème de
+1970 — et pour ℚ, c'est exactement ce que personne ne sait faire. Les conjectures de Barry
+Mazur sur la topologie des points rationnels vont en sens inverse : si les points réels de
+l'ensemble des solutions rationnelles d'une variété n'ont toujours qu'un nombre fini de
+composantes connexes, alors ℤ n'est pas diophantien sur ℚ et cette voie est morte, de sorte
+qu'une démonstration d'indécidabilité devrait avoir une allure complètement différente. Le
+cas voisin vient de bouger. En décembre 2024, Peter Koymans et Carlo Pagano ont déposé une
+démonstration de l'indécidabilité du problème sur l'anneau des entiers de <i>tout</i> corps
+de nombres, et en janvier 2025 Levent Alpöge, Manjul Bhargava, Wei Ho et leurs coauteurs
+ont déposé une démonstration indépendante du même résultat par d'autres méthodes ; ces
+travaux sont récents et encore en cours de stabilisation, et aucun ne touche ℚ lui-même.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Dixi%C3%A8me_probl%C3%A8me_de_Hilbert">Dixième problème de Hilbert — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Diophantien">Ensemble diophantien — Wikipédia</a></li>
+<li>Lecture : Yuri Matiyasevich, <i>Hilbert's Tenth Problem</i> (MIT Press, 1993)</li>
+
+<li>Voir aussi : <a href="pure-foundations.html#FND-33">FND-33</a> — la mise en perspective ensembliste et décidabilité sur la page Fondements.</li></ul>
+</section>
+
+<section class="problem" id="OPEN-64" data-level="Recherche" data-kind="court">
+<h3>OPEN-64 · \( \pi + e \) est-il irrationnel ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez d'abord, en n'utilisant que la
+transcendance de π et de e ainsi que le fait que les nombres algébriques forment un corps,
+qu'au moins l'un des nombres \( \pi + e \) et \( \pi e \) est transcendant. <b>Tranchez
+ensuite la vraie question : \( \pi + e \) est-il irrationnel ?</b> Statut : ouvert — et
+l'on ne sait même pas si \( \pi + e \), \( \pi e \), \( \pi/e \), \( \pi^{\pi} \),
+\( e^{e} \) ou \( \pi^{e} \) est seulement irrationnel, encore moins transcendant.</p>
+<p class="context">Hermite a démontré la transcendance de e en 1873 et Lindemann celle de
+π en 1882, mettant fin à deux mille ans de tentatives de quadrature du cercle ; un siècle
+et demi plus tard, personne ne sait décider de l'irrationalité de leur somme. L'argument en
+deux lignes de la première phrase — considérez le trinôme unitaire dont les racines sont π
+et e — constitue à peu près tout ce que l'on sait, ce qui en fait la démonstration la moins
+coûteuse de la minceur persistante de la théorie. La conjecture de Schanuel, formulée dans
+les années 1960, réglerait cette question et presque toutes les questions du même genre
+d'un seul coup, puisqu'elle implique que π et e sont algébriquement indépendants ; qu'une
+unique conjecture énorme porte tout le sujet est en soi le diagnostic. Gardez cette entrée
+à l'esprit chaque fois qu'un énoncé vous semble trop évident pour mériter une
+démonstration.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_transcendant">Nombre transcendant — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Schanuel">Conjecture de Schanuel — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Lindemann-Weierstrass">Théorème de Lindemann-Weierstrass — Wikipédia</a></li>
+<li>Lecture : Alan Baker, <i>Transcendental Number Theory</i> (Cambridge, 1975)</li>
+
+<li>Voir aussi : <a href="applied-calculus.html#CAL-32">CAL-32</a> — la page Analyse, où il figure aux côtés des autres constantes que l'analyse ne sait pas cerner.</li></ul>
+</section>
+
+<h2>Récemment tombés</h2>
+<p>Les murs finissent par tomber. Chacun des problèmes ci-dessous a été, de mémoire
+d'homme, exactement aussi désespérant que tout ce qui le précède sur cette page. Chaque
+entrée nomme ce qui est tombé, qui l'a fait tomber, et où lire l'histoire — parce que
+savoir que ces choses furent un jour impossibles est le meilleur argument pour consacrer
+sa vie à quelque chose qui l'est encore.</p>
+
+<section class="problem" id="OPEN-37" data-level="Master">
+<h3>OPEN-37 · Le dernier théorème de Fermat (1637–1995) <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème (tombé).</b> Aucun triplet d'entiers strictement positifs ne vérifie
+\[ a^n + b^n = c^n \qquad \text{pour } n > 2. \]
+Démontré par Andrew Wiles en 1995, une étape clé étant achevée conjointement avec Richard
+Taylor, en établissant la modularité des courbes elliptiques semi-stables. Comprenez
+l'architecture.</p>
+<ol class="parts" type="a">
+<li>Énoncez la conjecture de modularité de Taniyama–Shimura–Weil.</li>
+<li>Expliquez la construction de Frey et le théorème de Ribet, qui montrent ensemble qu'un
+contre-exemple à Fermat produirait une courbe elliptique non modulaire.</li>
+<li>Démontrez vous-même le cas \( n = 4 \) par la méthode de descente infinie de Fermat
+lui-même.</li>
+</ol>
+</div>
+<p class="context">Fermat a écrit son affirmation dans la marge d'un livre vers 1637 ; trois
+siècles et demi d'efforts ont produit des branches entières de la théorie algébrique des
+nombres — les idéaux, la théorie du corps de classes, et bien d'autres choses — comme
+sous-produits de l'échec. Wiles a travaillé dans un quasi-secret pendant sept ans, a
+annoncé la démonstration à Cambridge en juin 1993, puis a dû survivre à la découverte d'une
+lacune sérieuse à l'automne, qu'il a refermée avec Taylor en septembre 1994. La structure
+de la question (b) est ce qu'il faut admirer : le problème n'a pas été résolu de front, il
+a été transformé en un énoncé portant sur un objet complètement différent.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Dernier_th%C3%A9or%C3%A8me_de_Fermat">Dernier théorème de Fermat — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_modularit%C3%A9">Théorème de modularité — Wikipédia</a></li>
+<li>Lecture : Simon Singh, <i>Fermat's Enigma</i> (1997) — publié en français sous le titre <i>Le Dernier Théorème de Fermat</i></li>
+<li>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a>, <a href="proofs.html">L'art de la démonstration</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-38" data-level="Master">
+<h3>OPEN-38 · La conjecture de Kepler, et la démonstration par ordinateur (1611–2014) <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème (tombé).</b> Aucun empilement de sphères congruentes dans
+\( \mathbb{R}^3 \) n'a une densité supérieure à \( \pi/\sqrt{18} \approx 0.74048 \) — la
+densité de la pile de l'épicier. Thomas Hales a annoncé une démonstration en 1998 ; les
+rapporteurs ont indiqué qu'ils étaient « certains à 99 % » mais ne pouvaient pas vérifier
+intégralement les calculs, si bien que Hales a dirigé le projet Flyspeck, qui a produit en
+2014 une démonstration formelle complète vérifiée par machine. Lisez l'histoire, puis
+répondez par écrit :</p>
+<ol class="parts" type="a">
+<li>Que signifie, pour une démonstration, être <i>vérifiée</i> ?</li>
+<li>Une démonstration formelle que vous ne pouvez pas lire vous-même vous donne-t-elle une
+connaissance ?</li>
+</ol>
+</div>
+<p class="context">Kepler a énoncé la conjecture en 1611 dans un opuscule sur les flocons
+de neige. Hilbert l'a incluse dans son dix-huitième problème. La démonstration finale a
+exigé de vérifier par ordinateur des milliers de problèmes d'optimisation non linéaire, ce
+qui a forcé la communauté mathématique à affronter une question authentiquement nouvelle
+sur ce qui constitue une démonstration — la même question que soulevait le théorème des
+quatre couleurs en 1976, et qui est aujourd'hui centrale dans l'essor des assistants de
+preuve comme Lean. L'empilement de sphères a aussi produit l'une des grandes surprises
+récentes : voir l'entrée suivante.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Kepler">Conjecture de Kepler — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Flyspeck">Projet Flyspeck — Wikipédia (en anglais)</a></li>
+<li>Lecture : George Szpiro, <i>Kepler's Conjecture</i> (2003)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-39" data-level="Master">
+<h3>OPEN-39 · L'empilement de sphères en dimensions 8 et 24 (2016) <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème (tombé).</b> Le réseau \( E_8 \) donne l'empilement de
+sphères le plus dense en dimension \( 8 \), et le réseau de Leech en dimension \( 24 \).
+Démontré par Maryna Viazovska en 2016 (dimension 8), puis quelques jours plus tard en
+dimension 24 avec Cohn, Kumar, Miller et Radchenko. Comprenez la méthode : la borne de
+programmation linéaire de Cohn–Elkies ramène le problème à la construction d'une fonction
+auxiliaire « magique » à zéros prescrits, et Viazovska l'a bâtie à partir de formes
+modulaires. Notez ensuite ce qui subsiste : <b>la dimension 3 a exigé la démonstration par
+ordinateur de Hales, et les dimensions autres que 1, 2, 3, 8, 24 sont ouvertes.</b></p>
+<p class="context">C'est l'un des résultats les plus stupéfiants du siècle. La borne de
+Cohn–Elkies était connue depuis 2003 et, numériquement, elle était <i>terriblement</i>
+proche de la vérité exactement en dimensions 8 et 24 — tout le monde voyait bien que la
+fonction magique devait exister, et personne ne savait l'écrire. Viazovska l'a trouvée, dans
+un article de vingt-trois pages signé d'elle seule, en utilisant les formes modulaires d'une
+manière que nul n'avait anticipée ; elle a reçu la médaille Fields en 2022. C'est la
+démonstration moderne la plus claire qu'un problème bloqué depuis une décennie peut tomber
+parce qu'une seule personne a eu la bonne idée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Empilement_compact">Empilement de sphères — Wikipédia</a></li>
+<li>Article : Maryna Viazovska, « The sphere packing problem in dimension 8 » (2016), <a href="https://arxiv.org/abs/1603.04246">arXiv:1603.04246</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Maryna_Viazovska">Maryna Viazovska — Wikipédia</a></li>
+<li>Voir aussi : <a href="pure-geometry.html">Géométrie</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-40" data-level="Licence">
+<h3>OPEN-40 · La monotuile apériodique : le « chapeau » (2023) <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème (tombé).</b> Pendant des décennies, on ignorait si une seule tuile pouvait
+paver le plan de façon uniquement apériodique — un « einstein », de l'allemand
+<i>ein Stein</i>, une pierre. En mars 2023, David Smith, Joseph Samuel Myers, Craig Kaplan
+et Chaim Goodman-Strauss ont exhibé le « chapeau », un polycerf-volant à 13 côtés qui fait
+exactement cela ; la même année, ils ont produit le « spectre », qui n'a besoin d'aucune
+réflexion.</p>
+<ol class="parts" type="a">
+<li>Découpez des copies du chapeau et pavez avec, à la main.</li>
+<li>Lisez la stratégie de démonstration et expliquez comment un système de substitution
+exclut la périodicité.</li>
+</ol>
+</div>
+<p class="context">Les pavages apériodiques ont commencé avec l'ensemble de 20 426 tuiles
+de Berger, en 1966, ont été réduits par Penrose en 1974 à deux seulement, puis ont stagné à
+deux pendant un demi-siècle. La résolution est venue en partie d'un amateur : David Smith
+est un technicien de l'imprimerie à la retraite qui a trouvé le chapeau en découpant des
+formes dans du carton et en jouant avec, avant de l'apporter à des mathématiciens qui ont
+fourni la démonstration. Tout l'épisode — la forme d'un amateur, une vérification assistée
+par ordinateur, un résultat annoncé d'abord sur un blog — est un portrait de la façon dont
+les mathématiques se font aujourd'hui.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_einstein">Problème einstein — Wikipédia</a></li>
+<li>Article : Smith, Myers, Kaplan &amp; Goodman-Strauss, « An aperiodic monotile » (2023), <a href="https://arxiv.org/abs/2303.10798">arXiv:2303.10798</a></li>
+<li>Voir aussi : <a href="pure-geometry.html">Géométrie</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-41" data-level="Recherche">
+<h3>OPEN-41 · Le problème du canapé (2024, en cours d'évaluation) <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème (résolu tout récemment, vérification complète en
+attente).</b> Quelle est la plus grande aire d'une forme rigide que l'on puisse manœuvrer
+autour d'un coin à angle droit dans un couloir de largeur unité ? Gerver a construit en
+1992 un canapé d'aire \( \approx 2.2195 \) et l'a conjecturé optimal. En novembre 2024,
+Jineon Baek a déposé une démonstration de 119 pages établissant que le canapé de Gerver est
+bien le maximum. Statut en 2026 : <b>la démonstration est en cours d'évaluation par les
+pairs et n'est pas encore parue dans une revue, même si l'accueil a été positif et que les
+spécialistes la jugent très probablement correcte.</b> Pendant ce temps, la variante
+« ambidextre », où le couloir tourne dans les deux sens, reste ouverte.</p>
+<p class="context">Leo Moser a posé le problème formellement en 1966. Son charme tient à ce
+que c'est un vrai problème de recherche que l'on peut expliquer en déménageant des meubles,
+et sa difficulté à ce que la forme optimale n'est donnée par aucune formule simple — le
+canapé de Gerver est assemblé à partir de dix-huit arcs analytiques distincts. Tout le monde
+s'attendait à ce que la démonstration finale soit assistée par ordinateur ; celle de Baek ne
+l'est pas. Cette entrée est délibérément laissée dans l'état « en attente » pour montrer à
+quoi ressemble le statut honnête d'un résultat tout frais — l'acceptation par la communauté
+mathématique est un processus, et cela prend du temps.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_sofa">Problème du sofa — Wikipédia</a></li>
+<li>Article : Jineon Baek, « Optimality of Gerver's sofa » (2024), <a href="https://arxiv.org/abs/2411.19826">arXiv:2411.19826</a></li>
+<li>Lecture : <a href="https://www.quantamagazine.org/the-largest-sofa-you-can-move-around-a-corner-20250214/">Quanta Magazine — The Largest Sofa You Can Move Around a Corner (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-42" data-level="Recherche">
+<h3>OPEN-42 · La conjecture de Kakeya en dimension trois (2025) <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème (résolu tout récemment).</b> Un ensemble de Kakeya
+contient un segment de droite de longueur unité dans chaque direction. <b>Démontrez que
+tout ensemble de Kakeya de \( \mathbb{R}^3 \) est de dimension de Hausdorff et de
+Minkowski égale à \( 3 \).</b> En février 2025, Hong Wang et Joshua Zahl ont déposé une
+démonstration, reçue comme un jalon ; Larry Guth en a écrit une introduction explicative.
+La conjecture demeure <b>ouverte en dimension \( n \geq 4 \)</b>, et les conjectures
+apparentées de restriction et de Bochner–Riesz en analyse harmonique sont ouvertes.</p>
+<p class="context">Besicovitch a montré en 1919 qu'un ensemble de Kakeya peut être de
+mesure nulle, ce qui est déjà saisissant — on peut faire pivoter une aiguille dans toutes
+les directions à l'intérieur d'un ensemble sans aire. La conjecture affirme qu'un tel
+ensemble doit néanmoins être dimensionnellement plein, et elle se trouve au centre d'un
+réseau de problèmes d'analyse harmonique, d'EDP et de combinatoire additive, ce qui
+explique que Quanta ait qualifié la démonstration d'événement « d'une fois par siècle ».
+Prenez cette entrée comme rappel que la frontière bouge : c'était encore, il y a quelques
+années, un problème ouvert sur des listes exactement comme celle-ci.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ensemble_de_Besicovitch">Ensemble de Besicovitch (Kakeya) — Wikipédia</a></li>
+<li>Article : Larry Guth, « Introduction to the proof of the Kakeya conjecture » (2025), <a href="https://arxiv.org/abs/2505.07695">arXiv:2505.07695</a></li>
+<li>Lecture : <a href="https://terrytao.wordpress.com/2025/02/25/the-three-dimensional-kakeya-conjecture-after-wang-and-zahl/">Terence Tao — The three-dimensional Kakeya conjecture, after Wang and Zahl (en anglais)</a></li>
+<li>Voir aussi : <a href="pure-real-analysis.html">Analyse réelle et théorie de la mesure</a></li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="OPEN-65" data-level="Recherche">
+<h3>OPEN-65 · La conjecture de Duffin–Schaeffer (1941–2019) <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème (tombé).</b> Avec quelle finesse un nombre réel typique peut-il être
+approché par des fractions ? Fixez une fonction \( f \colon \mathbb{N} \to [0, \infty) \)
+et demandez pour quelles f presque tout réel α admet une infinité de fractions \( p/q \)
+irréductibles vérifiant
+\[ \left| \alpha - \frac{p}{q} \right| \;<\; \frac{f(q)}{q}. \]
+Duffin et Schaeffer ont conjecturé en 1941 que cela se produit pour presque tout α
+exactement lorsque \( \sum_{q} \varphi(q) f(q)/q \) diverge, φ étant l'indicatrice
+d'Euler. Démontré par Dimitris Koukoulopoulos et James Maynard en 2019, publié dans les
+<i>Annals of Mathematics</i> en 2020.</p>
+<ol class="parts" type="a">
+<li>Démontrez vous-même la moitié facile : si \( \sum_q \varphi(q) f(q)/q \) converge,
+alors presque tout α n'admet qu'un nombre fini de telles approximations. (Borel–Cantelli,
+après avoir compté combien de p admissibles il y a pour chaque q.)</li>
+<li>Démontrez le théorème de Khintchine de 1924, ou reconstituez-le à partir des
+références : le même critère, la condition de primalité entre p et q étant supprimée et f
+supposée décroissante. Repérez ensuite l'étape exacte où la monotonie est utilisée.</li>
+<li>Construisez le contre-exemple de Duffin et Schaeffer, qui explique pourquoi la
+conjecture a dû être formulée : une fonction f portée par un ensemble mince de
+dénominateurs, avec \( \sum_q f(q) \) divergente, pour laquelle presque aucun α n'est
+approchable. Expliquez ce que cela montre sur le critère de Khintchine une fois la
+monotonie retirée.</li>
+<li>Lisez la démonstration de 2019 et décrivez son dispositif central — un graphe pondéré
+sur les dénominateurs dont les arêtes enregistrent combien de facteurs premiers deux
+dénominateurs partagent — et expliquez en un paragraphe pourquoi le second lemme de
+Borel–Cantelli ne peut pas être appliqué tel quel, c'est-à-dire pourquoi les événements
+associés à des q différents sont corrélés et en quoi le facteur d'indicatrice est la
+correction due à la primalité mutuelle.</li>
+</ol>
+</div>
+<p class="context">C'était le problème central de l'approximation diophantienne métrique et
+il a tenu soixante-dix-huit ans. Le théorème de Khintchine de 1924 avait donné le motif —
+pour f monotone, une seule série divergente décide de tout, et la loi du zéro-un de
+Gallagher, en 1961, garantit que l'ensemble des α approchables est de mesure exactement 0
+ou exactement 1, et rien entre les deux. Ce que Duffin et Schaeffer ont vu, c'est que
+supprimer la monotonie brise l'indépendance sur laquelle l'argument repose en secret : les
+événements attachés à deux dénominateurs se recouvrent largement lorsque ces dénominateurs
+partagent beaucoup de facteurs premiers, et aucune précaution portant sur une seule série
+ne peut le voir. La démonstration de Koukoulopoulos et Maynard transforme la structure de
+corrélation elle-même en objet combinatoire et y fait tourner un argument de compression
+subtil, raison pour laquelle l'article se lit comme de la combinatoire additive plutôt que
+comme de l'analyse. Maynard a reçu la médaille Fields en 2022, la citation mentionnant ce
+travail à côté de ses résultats sur les écarts entre nombres premiers (OPEN-24,
+OPEN-61).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Duffin-Schaeffer">Conjecture de Duffin-Schaeffer — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Approximation_diophantienne">Approximation diophantienne — Wikipédia</a></li>
+<li>Article : D. Koukoulopoulos &amp; J. Maynard, « On the Duffin–Schaeffer conjecture », <i>Annals of Mathematics</i> 192 (2020), <a href="https://arxiv.org/abs/1907.04593">arXiv:1907.04593</a></li>
+<li>Lecture : Glyn Harman, <i>Metric Number Theory</i> (Oxford, 1998)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPEN-66" data-level="Master" data-kind="court">
+<h3>OPEN-66 · La conjecture de Mertens, réfutée (1897–1985) <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème (tombé).</b> Soit \( M(x) = \sum_{n \le x} \mu(n) \) la
+fonction de Mertens. À l'aide de la représentation intégrale
+\[ \frac{1}{\zeta(s)} \;=\; s \int_{1}^{\infty} \frac{M(x)}{x^{s+1}} \, dx,
+\qquad \operatorname{Re}(s) > 1, \]
+démontrez que la conjecture de Mertens — selon laquelle \( |M(x)| < \sqrt{x} \) pour tout
+\( x > 1 \) — aurait impliqué l'hypothèse de Riemann d'OPEN-01. Énoncez ensuite avec soin
+ce que la réfutation de 1985 fait, et ne fait pas, à l'hypothèse de Riemann.</p>
+<p class="context">Stieltjes a annoncé dans une lettre de 1885 à Hermite qu'il savait
+démontrer que \( M(x)/\sqrt{x} \) est borné ; les tables de Mertens de 1897 appuyaient la
+forme plus fine, avec la constante 1 ; les deux avaient tort. Andrew Odlyzko et Herman te
+Riele ont réfuté la conjecture en 1985 en utilisant l'algorithme de réduction de base de
+réseau LLL pour traquer une quasi-résonance parmi les deux mille premiers zéros de ζ,
+établissant que \( M(x)/\sqrt{x} \) dépasse 1 une infinité de fois et descend sous −1 une
+infinité de fois — sans exhiber le moindre contre-exemple. On n'en connaît toujours aucun :
+la meilleure borne disponible situe seulement le premier en dessous d'environ
+\( e^{1.96 \times 10^{19}} \), et les constantes limites ont depuis été poussées au-delà de
+1,82 et de −1,83. Pendant ce temps, l'énoncé plus faible
+\( M(x) = O(x^{1/2 + \varepsilon}) \) est, lui, réellement équivalent à l'hypothèse de
+Riemann, et il est ouvert. Voici l'avertissement le plus net de la page : une conjecture
+confirmée pour toutes les valeurs que quiconque savait calculer, crue pendant un siècle,
+assez forte pour impliquer la conjecture la plus célèbre des mathématiques — et
+fausse.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Mertens">Conjecture de Mertens — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_de_Mertens">Fonction de Mertens — Wikipédia</a></li>
+<li>Article : A. M. Odlyzko &amp; H. J. J. te Riele, « Disproof of the Mertens conjecture », <i>Journal für die reine und angewandte Mathematik</i> 357 (1985), 138–160</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Descriptions officielles des problèmes : <a href="https://www.claymath.org/millennium-problems/">Clay Mathematics Institute — Millennium Problems</a>. Elles sont rédigées par des spécialistes et constituent la bonne source primaire.</li>
+<li><a href="https://www.erdosproblems.com/">Erdős Problems</a> — des centaines de problèmes d'Erdős avec leur statut actuel, beaucoup portant encore ses prix en espèces.</li>
+<li><a href="https://arxiv.org/archive/math">arXiv (math)</a> — où vit chacun des articles cités sur cette page. Lisez d'abord les panoramas.</li>
+<li><a href="https://terrytao.wordpress.com/">Le blog de Terence Tao</a> — le meilleur commentaire suivi de la recherche actuelle, écrit par quelqu'un qui en occupe le centre.</li>
+<li><a href="https://www.quantamagazine.org/mathematics/">Quanta Magazine</a> — un journalisme fiable sur les résultats nouveaux ; la plupart des entrées « récemment tombés » y ont d'abord été traitées.</li>
+<li>Livres : Derbyshire, <i>Prime Obsession</i> ; Fortnow, <i>The Golden Ticket</i> ; du Sautoy, <i>The Music of the Primes</i> ; Lagarias (dir.), <i>The Ultimate Challenge: The 3x+1 Problem</i>.</li>
+</ul>
+<p>Voir aussi : <a href="pure-number-theory.html">Théorie des nombres</a>,
+<a href="applied-discrete-cs.html">Mathématiques discrètes et informatique</a>,
+<a href="proofs.html">L'art de la démonstration</a>,
+<a href="resources.html">Ressources</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

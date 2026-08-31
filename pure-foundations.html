@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logique, théorie des ensembles et fondements — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Logique, théorie des ensembles et fondements</h1>
+<p class="lede">Les fondements, c'est la mathématique retournée sur elle-même : la logique fait
+des lois de l'inférence correcte des objets mathématiques, et la théorie des ensembles bâtit un
+univers unique où toute la mathématique peut habiter. La discipline est née de force vers 1900,
+quand la théorie cantorienne de l'infini est entrée en collision avec le paradoxe de Russell et
+que Hilbert a exigé une démonstration que la mathématique ne pourrait jamais se contredire — un
+programme que les théorèmes d'incomplétude de Gödel ont transformé à jamais en 1931. Travailler
+ici, c'est monter un escalier en colimaçon : on se sert du raisonnement pour étudier le
+raisonnement, des ensembles pour étudier les ensembles, et les vraies surprises — des suites qui
+doivent s'arrêter mais dont on démontre qu'on ne peut pas le démontrer, des énoncés vrais dans un
+univers et faux dans un autre — n'en finissent jamais d'arriver.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/pure-foundations.tex" download>source LaTeX</a> · <a href="tex/pure-foundations.pdf" download>PDF compilé</a></p>
+<!-- site.js insere automatiquement la barre de filtre par niveau / recherche ici. NE PAS en construire une. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="FND-01" data-level="Lycée">
+<h3>FND-01 · Chevaliers et valets <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Sur une certaine île, tout habitant est un <i>chevalier</i>,
+qui dit toujours la vérité, ou un <i>valet</i>, qui ment toujours.</p>
+<ol class="parts" type="a">
+<li>Vous rencontrez A et B. A déclare :
+« Au moins l'un de nous deux est un valet. » Déterminez, avec démonstration, ce que sont A et B.</li>
+<li>Vous rencontrez C et D.
+C déclare : « Nous sommes tous les deux des valets. » Déterminez ce que sont C et D.</li>
+<li>Vous arrivez à une bifurcation ; une
+branche mène au village, l'autre au marécage. Un habitant isolé, de type inconnu, se tient
+à la bifurcation. Trouvez une unique question fermée (oui/non) que vous puissiez poser de sorte que
+la réponse vous indique la bonne route, et démontrez que votre question fonctionne, que
+l'habitant soit chevalier ou valet.</li>
+</ol>
+</div>
+<p class="context">Raymond Smullyan a rendu ces énigmes célèbres — et forgé les noms de chevalier
+et de valet — dans son recueil de 1978 <i>What Is the Name of This Book?</i> C'est de la logique
+propositionnelle déguisée : chaque énigme revient à décider quelles attributions de valeurs de
+vérité satisfont une petite formule, et (c) est un premier avant-goût de la conception d'une
+formule dont la valeur de vérité est invariante sous le comportement d'un adversaire. Les
+résoudre par une analyse de cas systématique, plutôt que par un éclair d'intuition, est le
+premier pas vers la démonstration.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Knights_and_Knaves">Chevaliers et valets — Wikipédia (en anglais)</a></li>
+<li>Lecture : Raymond Smullyan, <i>What Is the Name of This Book?</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-02" data-level="Lycée">
+<h3>FND-02 · Seize fonctions de vérité <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Écrivez les tables de vérité de \( \neg P \),
+\( P \wedge Q \), \( P \vee Q \), \( P \to Q \) et \( P \leftrightarrow Q \), et vérifiez par
+table de vérité que \( ((P \to Q) \wedge (Q \to R)) \to (P \to R) \) est une tautologie (vraie
+sous toute attribution de valeurs).</li>
+<li>Montrez que \( P \to Q \) n'est <i>pas</i> logiquement équivalente à sa
+réciproque \( Q \to P \), mais qu'elle l'<i>est</i> à sa contraposée
+\( \neg Q \to \neg P \).</li>
+<li>Comptez combien il existe de fonctions de vérité distinctes de deux variables,
+et démontrez que chacune d'elles peut s'exprimer à l'aide des seuls connecteurs \( \neg \)
+et \( \wedge \).</li>
+</ol>
+</div>
+<p class="context">Les tables de vérité ont pris leur forme reconnaissable chez Emil Post et
+Ludwig Wittgenstein vers 1920, avec des racines chez Frege, Peirce et Boole. La partie (c) est un
+premier théorème de <i>complétude fonctionnelle</i> — le constat qu'un tout petit jeu de
+connecteurs engendre toute la logique propositionnelle. Henry Sheffer a montré en 1913 qu'un seul
+connecteur (la barre de Sheffer, NON-ET) suffit, fait câblé en dur dans chaque puce
+d'ordinateur.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9">Table de vérité — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Functional_completeness">Complétude fonctionnelle — Wikipédia (en anglais)</a></li>
+<li>Lecture : Daniel Velleman, <i>How to Prove It: A Structured Approach</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-03" data-level="Lycée">
+<h3>FND-03 · Le jeu de la négation des quantificateurs <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Toutes les variables parcourent les entiers relatifs ℤ.</p>
+<ol class="parts" type="a">
+<li>Écrivez la
+négation de chacun des énoncés ci-dessous sous une forme où aucun signe de négation ne précède
+un quantificateur, puis déterminez — avec démonstration — lesquels des six énoncés (les trois
+originaux, les trois négations) sont vrais : (i) \( \forall x\, \exists y\, (y \cdot y = x) \) ;
+(ii) \( \exists y\, \forall x\, (x + y = x) \) ; (iii) tout nombre pair supérieur à 2 est
+la somme de deux nombres premiers.</li>
+<li>Exhibez une propriété \( P(x,y) \) des couples d'entiers pour
+laquelle \( \forall x\, \exists y\, P(x,y) \) est vraie mais \( \exists y\, \forall x\, P(x,y) \)
+est fausse, et démontrez que, pour toute propriété \( P \), le second énoncé implique le premier.</li>
+</ol>
+</div>
+<p class="context">Apprendre que « pour tout x il existe un y » et « il existe un y pour tout x »
+ne disent pas la même chose est le pas le plus important du calcul vers l'analyse : les
+définitions en ε–δ de Weierstrass vivent tout entières dans les alternances de quantificateurs.
+L'énoncé (iii) est la conjecture de Goldbach (1742), toujours non démontrée — et c'est
+exactement pourquoi on vous demande seulement de la nier correctement, non de la trancher ;
+voyez la page des Problèmes ouverts. Depuis Hintikka, les logiciens voient les quantificateurs
+alternés comme un jeu entre un vérificateur et un falsificateur.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Quantification_(logique)">Quantification (logique) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Calcul_des_pr%C3%A9dicats">Calcul des prédicats (logique du premier ordre) — Wikipédia</a></li>
+<li>Lecture : Daniel Velleman, <i>How to Prove It: A Structured Approach</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-04" data-level="Lycée">
+<h3>FND-04 · La récurrence, et une démonstration qui démontre trop <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Démontrez par récurrence que
+\( 1 + 2 + \cdots + n = \frac{n(n+1)}{2} \) et que
+\( 1^3 + 2^3 + \cdots + n^3 = (1 + 2 + \cdots + n)^2 \).</li>
+<li>Démontrez par récurrence forte que
+tout entier \( n \ge 2 \) est un produit de nombres premiers.</li>
+<li>Voici une célèbre « démonstration » que tous
+les chevaux ont la même couleur. <i>Cas de base :</i> tout ensemble de 1 cheval n'a qu'une couleur.
+<i>Pas de récurrence :</i> étant donné \( n+1 \) chevaux, retirez-en un ; les \( n \) restants
+partagent une couleur par hypothèse. Remettez-le, puis retirez-en un autre ; de nouveau les \( n \)
+restants partagent une couleur. Les deux ensembles se chevauchant, les \( n+1 \) chevaux doivent
+tous partager une même couleur. Identifiez le point exact où cet argument échoue, et expliquez
+pourquoi.</li>
+</ol>
+</div>
+<p class="context">La récurrence a été utilisée implicitement pendant des siècles, énoncée
+clairement par Pascal (1654), nommée par De Morgan (1838), et érigée en axiome de l'arithmétique
+par Peano (1889). Le sophisme des chevaux, popularisé par George Pólya comme mise en garde,
+enseigne la leçon que tout mathématicien en exercice finit par apprendre à ses dépens : une
+récurrence ne vaut que ce que vaut le cas où le pas de récurrence s'enclenche pour la première
+fois.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Raisonnement_par_r%C3%A9currence">Raisonnement par récurrence — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Axiomes_de_Peano">Axiomes de Peano — Wikipédia</a></li>
+<li>Lecture : Daniel Velleman, <i>How to Prove It: A Structured Approach</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-05" data-level="Lycée">
+<h3>FND-05 · Le barbier, et l'ensemble de tous les ensembles <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Dans un certain village, le barbier rase exactement les
+villageois qui ne se rasent pas eux-mêmes. Démontrez qu'un tel barbier ne peut pas exister.</li>
+<li>La théorie naïve des ensembles
+autorise la formation de l'ensemble \( \{x : P(x)\} \) pour toute propriété \( P \). Formez
+\( R = \{x : x \notin x\} \) et déduisez-en une contradiction.</li>
+<li>Expliquez précisément quelle étape
+de formation de (b) les axiomes de Zermelo–Fraenkel interdisent, énoncez le schéma d'axiomes de
+séparation (compréhension) qui la remplace, et servez-vous de la séparation ainsi que de votre
+argument de (b) pour démontrer qu'il n'existe pas d'ensemble de tous les ensembles.</li>
+</ol>
+</div>
+<p class="context">Bertrand Russell a trouvé ce paradoxe en 1901 et l'a communiqué à Frege en
+1902, au moment précis où le second volume de l'œuvre d'une vie de Frege, les
+<i>Grundgesetze</i>, était sous presse ; l'appendice où Frege reconnaît l'effondrement est l'un
+des documents les plus poignants de la mathématique. Zermelo avait remarqué le paradoxe de son
+côté. La réparation — les axiomes de Zermelo de 1908, étendus par Fraenkel — est la théorie des
+ensembles (ZFC) dans laquelle on fait des mathématiques aujourd'hui.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_de_Russell">Paradoxe de Russell — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_du_barbier">Paradoxe du barbier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_des_ensembles_de_Zermelo-Fraenkel">Théorie des ensembles de Zermelo–Fraenkel — Wikipédia</a></li>
+<li>Lecture : Paul Halmos, <i>Naive Set Theory</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-24" data-level="Lycée" data-kind="court">
+<h3>FND-24 · Une phrase qu'aucun insulaire ne peut prononcer <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Sur l'île des chevaliers et des valets de FND-01, démontrez
+qu'aucun habitant — chevalier ou valet — ne peut jamais dire « Je suis un valet ».</p>
+<p class="context">C'est le paradoxe du menteur désamorcé : la phrase « Je mens », attribuée dans
+l'Antiquité à Épiménide le Crétois, ne peut être affirmée de façon cohérente par quiconque est
+astreint à la vérité ou au mensonge. Smullyan a fait de cette observation même le moteur de ses
+recueils d'énigmes — quand un personnage dit quelque chose qu'aucun insulaire ne pourrait dire,
+ce sont les hypothèses elles-mêmes qui doivent céder.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_du_menteur">Paradoxe du menteur — Wikipédia</a></li>
+<li>Lecture : Raymond Smullyan, <i>What Is the Name of This Book?</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-25" data-level="Lycée" data-kind="court">
+<h3>FND-25 · Compter les parties <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez qu'un ensemble à \( n \) éléments possède
+exactement \( 2^n \) parties, en comptant l'ensemble vide et l'ensemble tout entier.</p>
+<p class="context">La collection de toutes les parties de \( A \) est l'<i>ensemble des parties</i>
+\( \mathcal{P}(A) \), et ce dénombrement est la raison de la notation \( 2^A \) : une partie,
+c'est la même chose qu'une réponse par oui ou non pour chaque élément. Le théorème de Cantor
+(FND-07), c'est ce qu'il advient de ce fait innocent quand \( n \) devient infini — l'ensemble
+des parties dépasse l'ensemble, à jamais.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ensemble_des_parties_d%27un_ensemble">Ensemble des parties d'un ensemble — Wikipédia</a></li>
+<li>Lecture : Daniel Velleman, <i>How to Prove It: A Structured Approach</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-36" data-level="Lycée">
+<h3>FND-36 · L'hôtel de Hilbert <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un hôtel a des chambres numérotées \( 1, 2, 3, \ldots \) — une par entier
+strictement positif — et toutes les chambres sont occupées. Dans chaque partie ci-dessous, donnez
+une règle explicite de réattribution des clients aux chambres et <i>démontrez</i> que votre règle
+est une bijection, de sorte que personne ne soit expulsé et que personne ne partage sa chambre.</p>
+<ol class="parts" type="a">
+<li>Un nouveau client arrive. Logez tout le monde.</li>
+<li>Un car transportant une infinité de nouveaux clients, numérotés \( 1, 2, 3, \ldots \),
+arrive. Logez tout le monde.</li>
+<li>Une infinité de cars arrivent, chacun transportant une infinité de clients, ceux-ci étant
+repérés par des couples (numéro du car, numéro du siège). Logez tout le monde.</li>
+<li>On dit qu'un ensemble \( A \) est <i>infini au sens de Dedekind</i> s'il existe une bijection
+entre \( A \) et une partie propre de \( A \). Démontrez que \( \mathbb{N} \) est infini au sens
+de Dedekind, qu'aucun ensemble fini ne l'est, et que tout ensemble infini au sens de Dedekind
+contient une partie en bijection avec \( \mathbb{N} \).</li>
+</ol>
+</div>
+<p class="context">Hilbert s'est servi de cet hôtel dans une conférence de 1924–25, « Über das
+Unendliche », pour faire voir que « l'hôtel est plein » et « on ne peut plus loger personne »
+cessent d'être la même phrase dès que les chambres sont en nombre infini ; George Gamow l'a porté
+devant le grand public dans <i>One Two Three… Infinity</i> (1947). La mathématique est plus
+ancienne et plus tranchante que la plaisanterie : Dedekind avait déjà pris la propriété de
+l'hôtel comme <i>définition</i> de l'infini dans <i>Was sind und was sollen die Zahlen?</i>
+(1888) — un ensemble est infini quand on peut le mettre en correspondance avec une partie de
+lui-même. La partie (d) cache une subtilité qu'il vaut la peine de connaître : démontrer que tout
+ensemble infini est infini au sens de Dedekind exige une forme faible de l'axiome du choix
+(FND-09), et dans ZF seul les deux notions se séparent.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/H%C3%B4tel_de_Hilbert">Hôtel de Hilbert — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Dedekind-infinite_set">Ensemble infini au sens de Dedekind — Wikipédia (en anglais)</a></li>
+<li>Lecture : Paul Halmos, <i>Naive Set Theory</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-37" data-level="Lycée" data-kind="court">
+<h3>FND-37 · La récurrence et le principe du plus petit élément <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Le <i>principe du plus petit élément</i> dit que toute partie
+non vide de l'ensemble des entiers naturels contient un plus petit élément. Démontrez qu'il est
+équivalent au principe de récurrence — déduisez chacun de l'autre.</p>
+<p class="context">Tout argument du type « prenons un contre-exemple minimal » et toute récurrence
+sont la même démonstration sous des habits différents, et c'est le théorème qui le dit ; la
+méthode de descente infinie de Fermat (NT-29, sur la page de théorie des nombres) est le principe
+du plus petit élément employé comme une arme. Peano a pris la récurrence pour axiome en 1889, si
+bien que chez lui le principe du plus petit élément est un théorème — mais ce choix est une
+convention, non un fait sur les entiers. Un avertissement pour plus tard : restreints à des
+formules de complexité logique bornée, les deux schémas cessent d'être interchangeables, et
+démêler exactement en quoi ils diffèrent est un vrai sujet, l'étude des fragments de
+l'arithmétique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Well-ordering_principle">Principe du bon ordre — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Raisonnement_par_r%C3%A9currence">Raisonnement par récurrence — Wikipédia</a></li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="FND-06" data-level="Licence">
+<h3>FND-06 · ℚ est dénombrable <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On dit qu'un ensemble est <i>dénombrable</i> s'il est fini ou en
+bijection avec \( \mathbb{N} \).</p>
+<ol class="parts" type="a">
+<li>Exhibez des bijections explicites montrant que
+\( \mathbb{Z} \) et \( \mathbb{N} \times \mathbb{N} \) sont dénombrables.</li>
+<li>Démontrez que
+\( \mathbb{Q} \) est dénombrable.</li>
+<li>Démontrez qu'une réunion dénombrable d'ensembles
+dénombrables est dénombrable — et repérez précisément où votre démonstration utilise l'axiome du
+choix.</li>
+</ol>
+</div>
+<p class="context">Cantor a établi ces faits dans les années 1870, dans sa correspondance avec
+Dedekind, avant que presque personne ne croie que « de même taille » ait un sens pour des
+ensembles infinis. La partie (c) cache une véritable subtilité sur laquelle glissent même des
+auteurs soigneux : pour énumérer la réunion, il faut <i>choisir</i> simultanément une énumération
+de chaque ensemble, et sans une forme de choix cela peut échouer — dans certains modèles de ZF
+sans choix, ℝ est une réunion dénombrable d'ensembles dénombrables.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ensemble_d%C3%A9nombrable">Ensemble dénombrable — Wikipédia</a></li>
+<li>Lecture : Herbert Enderton, <i>Elements of Set Theory</i>, ch. 6</li>
+<li>Article : Georg Cantor, "Über eine Eigenschaft des Inbegriffes aller reellen algebraischen Zahlen" (1874), Crelle's Journal</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-07" data-level="Licence">
+<h3>FND-07 · Diagonalisation : ℝ n'est pas dénombrable <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Démontrez que \( \mathbb{R} \) n'est pas dénombrable par l'argument
+diagonal, en traitant explicitement le fait que certains réels ont deux développements décimaux
+(\( 0{,}0999\ldots = 0{,}1000\ldots \)).</li>
+<li>Démontrez le théorème de Cantor : pour tout ensemble
+\( A \), il n'existe pas de surjection de \( A \) sur l'ensemble de ses parties
+\( \mathcal{P}(A) \).</li>
+<li>Déduisez-en qu'il existe une hiérarchie infinie strictement croissante de cardinalités
+infinies.</li>
+</ol>
+</div>
+<p class="context">La première démonstration de non-dénombrabilité de Cantor (1874) utilisait des
+intervalles emboîtés ; l'argument diagonal est venu en 1891 et s'est révélé être le passe-partout
+du sujet — le même geste anime le paradoxe de Russell, l'insolubilité du problème de l'arrêt et
+le lemme de diagonalisation de Gödel. La diagonalisation comme technique de démonstration est
+traitée en détail dans <a href="proofs.html">L'art de la démonstration</a>. L'hostilité de
+Kronecker à ces théorèmes, et le serment ultérieur de Hilbert que « nul ne nous chassera du
+paradis que Cantor a créé », encadrent toute la crise des fondements.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Argument_de_la_diagonale_de_Cantor">Argument de la diagonale de Cantor — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cantor">Théorème de Cantor — Wikipédia</a></li>
+<li>Lecture : Herbert Enderton, <i>Elements of Set Theory</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-08" data-level="Licence">
+<h3>FND-08 · Le théorème de Cantor–Bernstein <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Supposons qu'il existe des injections \( f\colon A \to B \) et
+\( g\colon B \to A \).</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'il existe une bijection entre \( A \) et \( B \). Votre démonstration ne doit
+pas utiliser l'axiome du choix — le théorème appartient à ZF.</li>
+<li>Utilisez le théorème, avec des injections explicitement construites dans les deux sens, pour
+démontrer que \( \mathbb{R} \) est en bijection avec \( \mathcal{P}(\mathbb{N}) \), l'ensemble
+des parties de \( \mathbb{N} \).</li>
+</ol>
+</div>
+<p class="context">Cantor a énoncé le théorème mais le déduisait du bon ordre ; des démonstrations
+n'utilisant pas le choix ont été trouvées par Dedekind (1887, non publiée de son vivant) et par
+Felix Bernstein, élève de Cantor (1897), tandis que la démonstration publiée par Schröder
+contenait une erreur. C'est le cheval de trait de l'arithmétique cardinale : pour montrer que deux
+ensembles ont la même taille, on n'a jamais besoin d'une bijection astucieuse — deux injections
+faciles suffisent.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cantor-Bernstein">Théorème de Cantor–Bernstein — Wikipédia</a></li>
+<li>Lecture : Herbert Enderton, <i>Elements of Set Theory</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-09" data-level="Licence">
+<h3>FND-09 · Les trois visages du choix <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> En travaillant dans ZF, démontrez que les énoncés suivants sont équivalents :</p>
+<ol class="parts" type="i">
+<li>l'<i>axiome du choix</i> — toute famille d'ensembles non vides admet une fonction de choix ;</li>
+<li>le <i>lemme de Zorn</i> — tout ensemble ordonné non vide dans lequel toute chaîne admet un
+majorant contient un élément maximal ;</li>
+<li>le <i>théorème de Zermelo</i> — tout ensemble peut
+être bien ordonné. Utilisez ensuite le lemme de Zorn pour démontrer que tout espace vectoriel
+possède une base.</li>
+</ol>
+</div>
+<p class="context">Zermelo a déduit (iii) de (i) en 1904 et a allumé l'une des controverses les
+plus vives de l'histoire des mathématiques ; le lemme qui porte le nom de Zorn (1935) avait été
+trouvé plus tôt par Kuratowski (1922). La plaisanterie de Jerry Bona en dit toute la psychologie :
+« L'axiome du choix est manifestement vrai, le principe du bon ordre manifestement faux, et qui
+peut se prononcer sur le lemme de Zorn ? » La boucle s'est refermée en 1984, quand Andreas Blass a
+démontré que « tout espace vectoriel possède une base » implique l'axiome du choix sur ZF.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Axiome_du_choix">Axiome du choix — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_Zorn">Lemme de Zorn — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Zermelo">Théorème de Zermelo (théorème du bon ordre) — Wikipédia</a></li>
+<li>Lecture : Thomas Jech, <i>The Axiom of Choice</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-10" data-level="Licence">
+<h3>FND-10 · L'arithmétique au-delà du fini <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'addition, la multiplication et l'exponentiation ordinales se
+définissent par récurrence transfinie : \( \alpha + 0 = \alpha \),
+\( \alpha + (\beta+1) = (\alpha+\beta) + 1 \), et bornes supérieures aux étapes limites ; de
+même pour la multiplication et l'exponentiation.</p>
+<ol class="parts" type="a">
+<li>Montrez que \( 1 + \omega = \omega \ne \omega + 1 \) et
+que \( 2 \cdot \omega = \omega \ne \omega \cdot 2 \).</li>
+<li>Déterminez, avec démonstration ou
+contre-exemple, lesquelles des propriétés suivantes valent pour tous les ordinaux : associativité
+de l'addition et de la multiplication ; commutativité de l'addition et de la multiplication ;
+distributivité à gauche
+\( \alpha \cdot (\beta + \gamma) = \alpha\cdot\beta + \alpha\cdot\gamma \) ; distributivité à
+droite \( (\alpha + \beta) \cdot \gamma = \alpha\cdot\gamma + \beta\cdot\gamma \).</li>
+<li>Soit \( \varepsilon_0 = \sup\{\omega,\ \omega^{\omega},\ \omega^{\omega^{\omega}},\
+\ldots\} \). Démontrez que \( \omega^{\varepsilon_0} = \varepsilon_0 \) et que
+\( \varepsilon_0 \) est le plus petit ordinal ayant cette propriété.</li>
+</ol>
+</div>
+<p class="context">Cantor a créé les ordinaux dans ses <i>Grundlagen</i> de 1883 pour compter
+« au-delà de l'infini » les étapes d'une construction sur les séries trigonométriques ; von
+Neumann en a donné la définition moderne (chaque ordinal est l'ensemble de ses prédécesseurs) en
+1923. L'étrange arithmétique asymétrique n'est pas un défaut mais un relevé fidèle de la géométrie
+des bons ordres. L'ordinal \( \varepsilon_0 \) de la partie (c) mesure en fait la force exacte de
+l'arithmétique de Peano — c'est la démonstration de cohérence de Gentzen de 1936, et la raison
+pour laquelle FND-11 fonctionne.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Op%C3%A9rations_arithm%C3%A9tiques_sur_les_ordinaux">Arithmétique ordinale — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_epsilon">Nombre epsilon — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/R%C3%A9currence_transfinie">Récurrence transfinie — Wikipédia</a></li>
+<li>Lecture : Herbert Enderton, <i>Elements of Set Theory</i>, ch. 7–8</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-11" data-level="Licence">
+<h3>FND-11 · Les suites de Goodstein <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Écrivez un entier strictement positif en <i>notation héréditaire en base
+n</i> : exprimez-le en base \( n \), puis exprimez chaque exposant en base \( n \), et ainsi de
+suite (par exemple, en base héréditaire 2, \( 26 = 2^{2^2} + 2^{2+1} + 2 \)). La suite de
+Goodstein de \( m \) commence à \( m \) ; à chaque étape, on réécrit la valeur courante en base
+héréditaire \( n \), on remplace chaque occurrence de \( n \) par \( n+1 \), puis on retranche 1
+(et on augmente \( n \) de 1 pour l'étape suivante), en partant de \( n = 2 \).</p>
+<ol class="parts" type="a">
+<li>Calculez la suite de Goodstein de 3 jusqu'à
+son terme, et calculez les quatre premiers termes de la suite de Goodstein de 4.</li>
+<li>Démontrez le
+théorème de Goodstein : pour toute valeur initiale \( m \), la suite de Goodstein de \( m \)
+finit par atteindre 0.</li>
+</ol>
+</div>
+<p class="context">Reuben Goodstein a démontré cela en 1944 en utilisant les ordinaux inférieurs à
+\( \varepsilon_0 \) — la croissance de la base est dominée, en un sens précis, par une suite
+strictement décroissante d'ordinaux, et FND-10 fournit tout le nécessaire. La suite étonnante est
+venue en 1982 : Kirby et Paris ont démontré que le théorème de Goodstein, bien qu'énoncé purement
+sur les entiers, est <i>indémontrable dans l'arithmétique de Peano</i> — l'un des premiers exemples
+naturels d'incomplétude gödelienne. Leur article démontre la même chose pour la terminaison du jeu
+de l'hydre, une bataille d'élagage d'arbres qui vaut la rencontre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Goodstein">Théorème de Goodstein — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Hydra_game">Jeu de l'hydre — Wikipédia (en anglais)</a></li>
+<li>Article : L. Kirby and J. Paris, "Accessible independence results for Peano arithmetic" (1982), Bull. London Math. Soc. 14</li>
+<li>Article : R. L. Goodstein, "On the restricted ordinal theorem" (1944), J. Symbolic Logic 9</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-12" data-level="Licence">
+<h3>FND-12 · La compacité en miniature <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de compacité pour la logique
+propositionnelle : un ensemble \( \Sigma \) de formules propositionnelles (sur un ensemble
+dénombrable de variables) est satisfiable si et seulement si toute partie finie de \( \Sigma \)
+l'est.</li>
+<li>Déduisez-en le
+théorème de De Bruijn–Erdős : pour tout \( k \), un graphe (éventuellement infini) est
+\( k \)-coloriable si et seulement si chacun de ses sous-graphes finis l'est.</li>
+</ol>
+</div>
+<p class="context">La compacité propositionnelle est l'ancêtre combinatoire du théorème de
+compacité du premier ordre de FND-13, et l'application au coloriage est due à De Bruijn et Erdős
+(1951). Le principe est un authentique fragment du choix : sur ZF, il est équivalent au théorème
+de l'idéal premier booléen, strictement plus faible que l'axiome du choix complet. Dans le cas
+dénombrable, le lemme de l'infini de Kőnig (1927) — tout arbre infini à branchement fini possède
+une branche infinie — en est le moteur naturel, et mérite d'être démontré pour lui-même.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_compacit%C3%A9">Théorème de compacité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_K%C5%91nig">Lemme de Kőnig — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_De_Bruijn-Erd%C5%91s_(th%C3%A9orie_des_graphes)">Théorème de De Bruijn–Erdős (théorie des graphes) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-26" data-level="Licence" data-kind="court">
+<h3>FND-26 · Pas de descente infinie dans les ordinaux <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez qu'il n'existe pas de suite infinie d'ordinaux
+\[ \alpha_0 > \alpha_1 > \alpha_2 > \cdots \]
+strictement décroissante à l'infini. Vous pouvez utiliser le fait que tout ensemble non vide
+d'ordinaux possède un plus petit élément.</p>
+<p class="context">Cette seule ligne est tout le moteur de la récurrence transfinie : un argument
+qui associe un ordinal décroissant à chaque étape d'un processus doit s'arrêter, si
+astronomiquement grands que soient les ordinaux en jeu. C'est pourquoi les suites de Goodstein de
+FND-11 redescendent jusqu'à zéro alors même qu'elles grimpent au-delà de toute borne qu'on puisse
+énoncer d'avance, et c'est la raison pour laquelle les démonstrations de terminaison en
+informatique s'écrivent avec des ordinaux plutôt qu'avec des entiers.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/R%C3%A9currence_transfinie">Récurrence transfinie — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_ordinal">Nombre ordinal — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-27" data-level="Licence" data-kind="court">
+<h3>FND-27 · Le principe des tiroirs infini, deux fois <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Coloriez chaque partie à deux éléments de ℕ avec l'une d'un
+nombre fini de couleurs. Démontrez qu'il existe un ensemble infini \( H \subseteq \mathbb{N} \)
+dont toutes les parties à deux éléments reçoivent la même couleur.</p>
+<p class="context">C'est le théorème de Ramsey pour les paires, et la démonstration consiste à
+appliquer le principe des tiroirs fini une infinité de fois, puis une fois de plus : on construit
+une suite emboîtée d'ensembles infinis, chacun décidant la couleur d'un sommet face à tous les
+suivants, puis on applique le principe des tiroirs aux décisions. Frank Ramsey l'a démontré en
+1928, à 25 ans et à deux ans de sa mort, comme lemme au sein d'un article sur un problème de
+décision pour la logique du premier ordre — la combinatoire était l'outil, non le but. Remplacez
+« paires » par « sommes finies » et vous obtenez le théorème de Hindman, dont la force logique
+reste inconnue (FND-35).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ramsey">Théorème de Ramsey — Wikipédia</a></li>
+<li>Article : F. P. Ramsey, "On a problem of formal logic" (1930), Proc. London Math. Soc. 30</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-28" data-level="Licence">
+<h3>FND-28 · Ultrafiltres, et des limites qui existent toujours <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un <i>filtre</i> sur un ensemble \( S \) est une famille non vide \( F \) de
+parties de \( S \), ne contenant pas \( \varnothing \), stable par intersections finies et par
+passage aux sur-ensembles. C'est un <i>ultrafiltre</i> si, pour toute partie
+\( A \subseteq S \), on a \( A \in F \) ou \( S \setminus A \in F \) ; il est <i>principal</i>
+s'il est la famille de toutes les parties contenant un point fixé.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'un filtre est un ultrafiltre si et seulement s'il est maximal parmi les filtres
+pour l'inclusion.</li>
+<li>À l'aide du lemme de Zorn (FND-09), démontrez que tout filtre s'étend en un ultrafiltre, et
+déduisez-en qu'il existe un ultrafiltre non principal sur ℕ — c'est-à-dire ne contenant aucune
+partie finie.</li>
+<li>Soit \( U \) un ultrafiltre sur ℕ et \( (x_n) \) une suite réelle bornée. Démontrez qu'il
+existe exactement un \( L \in \mathbb{R} \) tel que \( \{ n : |x_n - L| < \varepsilon \} \in U \)
+pour tout \( \varepsilon > 0 \). Démontrez que cette \( U \)-limite est linéaire et monotone en la
+suite, et qu'elle coïncide avec \( \lim x_n \) chaque fois que la limite ordinaire existe.</li>
+<li>Démontrez que l'énoncé « tout filtre s'étend en un ultrafiltre » implique le théorème de
+compacité pour la logique propositionnelle (FND-12), et précisez — références à l'appui — où se
+situe exactement ce principe entre ZF et l'axiome du choix complet.</li>
+</ol>
+</div>
+<p class="context">Henri Cartan a introduit les filtres en 1937 pour remplacer les suites en
+topologie générale, et Bourbaki les a portés partout ; l'ultrafiltre est l'aboutissement de cette
+idée — un verdict cohérent sur <i>toute</i> partie à la fois, une mesure finiment additive à deux
+valeurs. La partie (c) est le gain qu'un premier cours montre rarement : un ultrafiltre en main,
+toute suite bornée converge, et le prix à payer est qu'on ne peut jamais en écrire un, la
+démonstration d'existence étant du pur Zorn. Les ultrafiltres servent ensuite à construire le
+compactifié de Stone–Čech, les ultraproduits et le théorème de Łoś, l'analyse non standard de
+Robinson, et la démonstration en un paragraphe du théorème de Hindman (FND-35).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ultrafiltre">Ultrafiltre — Wikipédia</a>, <a href="https://fr.wikipedia.org/wiki/Filtre_(math%C3%A9matiques)">Filtre (mathématiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_l%27id%C3%A9al_premier_dans_une_alg%C3%A8bre_de_Boole">Théorème de l'idéal premier dans une algèbre de Boole — Wikipédia</a></li>
+<li>Lecture : C. C. Chang and H. J. Keisler, <i>Model Theory</i>, ch. 4</li>
+<li>Lecture : Thomas Jech, <i>The Axiom of Choice</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-38" data-level="Licence">
+<h3>FND-38 · Logique du second ordre : la catégoricité payée au prix fort <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> En logique du second ordre avec la sémantique <i>standard</i>, un
+quantificateur \( \forall X \) parcourt <i>toutes</i> les parties du domaine — et non un ensemble
+de parties fourni par la structure.</p>
+<ol class="parts" type="a">
+<li>Écrivez les axiomes de Peano du second ordre (l'axiome de récurrence est désormais un unique
+énoncé
+\( \forall X \, [\,(0 \in X \wedge \forall n\,(n \in X \to n+1 \in X)) \to \forall n\, (n \in X)\,] \))
+et démontrez le théorème de catégoricité de Dedekind : deux modèles quelconques sont isomorphes.</li>
+<li>Écrivez les axiomes du second ordre d'un corps ordonné complet — la complétude étant exprimée
+par une quantification sur toutes les parties non vides majorées — et démontrez que deux modèles
+quelconques sont isomorphes.</li>
+<li>Déduisez-en que le théorème de compacité (FND-13) et les deux théorèmes de Löwenheim–Skolem
+(FND-15) <i>tombent en défaut</i> pour la logique du second ordre avec sémantique standard.
+Exhibez concrètement l'échec dans chaque cas.</li>
+<li>Démontrez qu'il n'existe aucun système de démonstration correct, complet et effectivement
+axiomatisé pour la validité au second ordre. (Combinez (a) avec le premier théorème d'incomplétude
+de Gödel, FND-16.) Énoncez ensuite le théorème de Lindström — la logique du premier ordre est la
+plus forte des logiques possédant à la fois la compacité et la propriété de Löwenheim–Skolem
+descendante — et expliquez ce qu'il dit du compromis que vous venez de mesurer.</li>
+</ol>
+</div>
+<p class="context">Dedekind a démontré (a) en 1888, avant même que « premier ordre » et « second
+ordre » ne soient distingués, et pendant une génération la lecture au second ordre a simplement
+été ce que « logique » voulait dire — les systèmes de Frege et de Russell sont du second ordre. Le
+repli sur la logique du premier ordre dans les années 1920 et 1930 fut un échange délibéré, et ce
+problème est cet échange mis à plat : la sémantique pleine détermine exactement \( \mathbb{N} \)
+et \( \mathbb{R} \), ce qui est précisément pourquoi elle ne peut avoir de système de
+démonstration utilisable, tandis que la logique du premier ordre a la complétude et la compacité
+et ne peut donc rien déterminer d'infini (FND-14). Lindström a démontré en 1969 qu'il n'y a pas de
+troisième voie : toute logique possédant les deux propriétés retombe sur le premier ordre. La
+sémantique alternative de Henkin (1950) restaure la complétude en restreignant les quantificateurs
+du second ordre, et abandonne la catégoricité du même geste. Le verdict de Quine selon lequel la
+logique du second ordre est « de la théorie des ensembles déguisée en brebis » et la réponse de
+Shapiro, longue d'un livre, forment la postérité philosophique du théorème.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Logique_du_second_ordre">Logique du second ordre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Lindstr%C3%B6m">Théorème de Lindström — Wikipédia</a></li>
+<li>Lecture : Herbert Enderton, <i>A Mathematical Introduction to Logic</i>, ch. 4</li>
+<li>Lecture : Stewart Shapiro, <i>Foundations without Foundationalism: A Case for Second-order Logic</i> (Oxford, 1991)</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-39" data-level="Licence">
+<h3>FND-39 · La hiérarchie arithmétique <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une partie \( A \subseteq \mathbb{N} \) est \( \Sigma^0_n \) si elle est
+définissable par une formule à \( n \) blocs de quantificateurs alternés commençant par
+\( \exists \), appliqués à une matrice calculable ; \( \Pi^0_n \) est la classe duale, et
+\( \Delta^0_n = \Sigma^0_n \cap \Pi^0_n \).</p>
+<ol class="parts" type="a">
+<li>Démontrez les faits de clôture élémentaires : chaque \( \Sigma^0_n \) est stable par réunions
+finies, intersections finies et quantification existentielle numérique ; \( \Sigma^0_n \cup
+\Pi^0_n \subseteq \Delta^0_{n+1} \) ; et \( \Delta^0_1 \) est exactement la classe des ensembles
+calculables tandis que \( \Sigma^0_1 \) est exactement celle des ensembles récursivement
+énumérables.</li>
+<li>Situez correctement trois ensembles concrets et démontrez vos placements : l'ensemble d'arrêt
+\( K \) est \( \Sigma^0_1 \)-complet ; \( \mathrm{TOT} = \{ e : \varphi_e \text{ est totale} \} \)
+est \( \Pi^0_2 \)-complet ; et \( \{ e : \varphi_e \text{ a un domaine infini} \} \) est
+\( \Pi^0_2 \).</li>
+<li>Démontrez le théorème de hiérarchie : pour tout \( n \), il existe un ensemble
+\( \Sigma^0_{n} \) qui n'est pas \( \Pi^0_{n} \), de sorte que la hiérarchie est stricte et ne
+s'effondre pas. (Construisez un ensemble \( \Sigma^0_n \) universel et diagonalisez — le geste de
+FND-07, encore une fois.)</li>
+<li>Démontrez le théorème de Post : \( A \) est \( \Sigma^0_{n+1} \) si et seulement si \( A \)
+est récursivement énumérable relativement au \( n \)-ième saut de Turing \( \varnothing^{(n)} \),
+et \( \varnothing^{(n)} \) est \( \Sigma^0_n \)-complet. Expliquez ce que signifie dire que
+complexité de définition et complexité de calcul sont ici une seule et même mesure.</li>
+</ol>
+</div>
+<p class="context">Kleene (1943) et Mostowski (1946) sont arrivés à la hiérarchie indépendamment,
+et c'est le théorème de Post qui en fait plus qu'un dispositif de comptabilité syntaxique :
+compter les alternances de quantificateurs et itérer le problème de l'arrêt se révèlent être deux
+noms pour une seule chose. Le gain pratique est que « à quel point est-ce incalculable ? » devient
+une question à réponse numérique — il suffit de regarder la forme de la définition. La hiérarchie
+est aussi la colonne vertébrale de plusieurs entrées plus loin sur cette page : \( \mathrm{ACA}_0 \)
+en mathématiques à rebours (FND-35, FND-44) est exactement le sous-système clos par saut de
+Turing, et l'\( \omega \)-cohérence de FND-16 est une hypothèse de saveur \( \Pi^0_2 \) pour la
+même raison.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Hi%C3%A9rarchie_arithm%C3%A9tique">Hiérarchie arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Post">Théorème de Post — Wikipédia</a></li>
+<li>Lecture : Robert I. Soare, <i>Recursively Enumerable Sets and Degrees</i> (Springer, 1987)</li>
+<li>Lecture : George Boolos, John Burgess, and Richard Jeffrey, <i>Computability and Logic</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-40" data-level="Licence" data-kind="court">
+<h3>FND-40 · Réels calculables, et l'égalité que l'on ne peut pas tester <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> On dit qu'un réel \( \alpha \) est <i>calculable</i> si un
+algorithme, recevant \( n \), produit un rationnel à \( 2^{-n} \) près de \( \alpha \). Démontrez
+que seuls des réels en quantité dénombrable sont calculables — il existe donc des réels non
+calculables — et démontrez qu'aucun algorithme ne décide, à partir de programmes pour deux réels
+calculables, si ces deux réels sont égaux.</p>
+<p class="context">Turing a introduit les nombres calculables dans l'article de 1936 qui a
+introduit les machines de Turing ; les machines étaient le moyen et les nombres étaient le but, ce
+qui est l'inverse de ce dont on se souvient d'ordinaire (Borel avait esquissé l'idée en 1912).
+L'indécidabilité de l'égalité n'est pas un détail technique : c'est pourquoi toute bibliothèque
+d'arithmétique réelle exacte ne compare les nombres qu'à une précision annoncée, et pourquoi les
+réels calculables, bien qu'ils forment un corps réel clos, ne se manipulent pas comme les réels
+d'un premier cours. Opposez calculabilité et définissabilité — la probabilité d'arrêt \( \Omega \)
+de Chaitin est un réel parfaitement spécifié qu'aucun algorithme ne peut approcher — et vous tenez
+le début du sujet que FND-39 mesure.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_r%C3%A9el_calculable">Nombre réel calculable — Wikipédia</a></li>
+<li>Article : A. M. Turing, "On computable numbers, with an application to the Entscheidungsproblem" (1936), <i>Proceedings of the London Mathematical Society</i> 42</li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="FND-13" data-level="Master">
+<h3>FND-13 · Le théorème de compacité <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Déduisez le théorème de compacité pour la logique du premier ordre
+— un ensemble d'énoncés admet un modèle si et seulement si toute partie finie en admet un — du
+théorème de complétude de Gödel.</li>
+<li>Utilisez la compacité pour démontrer que la classe des groupes finis n'est pas
+axiomatisable au premier ordre : il n'existe aucun ensemble d'énoncés du premier ordre dont les
+modèles soient exactement les groupes finis.</li>
+<li>Démontrez le théorème de Löwenheim–Skolem ascendant : une théorie ayant un
+modèle infini a des modèles de tout cardinal au moins égal à celui de son langage.</li>
+</ol>
+</div>
+<p class="context">Gödel a démontré la complétude et la compacité pour les langages dénombrables
+dans sa thèse de 1930 ; Mal'cev a étendu la compacité aux langages quelconques en 1936 et fut le
+premier à s'en servir comme d'un outil en algèbre. La compacité est la source vive de la théorie
+des modèles : elle fabrique des structures aux propriétés prescrites à partir de pure syntaxe, et
+ses conséquences — la finitude est invisible à la logique du premier ordre, la cardinalité
+au-dessus de \( \aleph_0 \) est négociable — marquent exactement la frontière du pouvoir
+expressif du premier ordre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_compacit%C3%A9">Théorème de compacité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_compl%C3%A9tude_de_G%C3%B6del">Théorème de complétude de Gödel — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_L%C3%B6wenheim-Skolem">Théorème de Löwenheim–Skolem — Wikipédia</a></li>
+<li>Lecture : David Marker, <i>Model Theory: An Introduction</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-14" data-level="Master">
+<h3>FND-14 · Modèles non standard de l'arithmétique <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( \mathrm{Th}(\mathbb{N}) \) l'ensemble de tous les
+énoncés du premier ordre vrais dans la structure \( (\mathbb{N};\, 0, 1, +, \cdot, &lt;) \).</p>
+<ol class="parts" type="a">
+<li>Utilisez la compacité pour construire un modèle de \( \mathrm{Th}(\mathbb{N}) \) contenant un
+élément plus grand que tout entier naturel standard.</li>
+<li>Démontrez que le type d'ordre de tout
+modèle non standard dénombrable de \( \mathrm{Th}(\mathbb{N}) \) est \( \mathbb{N} \) suivi d'une
+famille dense de copies de \( \mathbb{Z} \) — autrement dit, \( \mathbb{N} + \mathbb{Z} \cdot
+\mathbb{Q} \).</li>
+<li>Dedekind a démontré que l'axiome de récurrence du <i>second ordre</i> détermine
+\( (\mathbb{N};\, 0, \mathrm{successeur}) \) à isomorphisme près. Expliquez précisément pourquoi
+(a) ne le contredit pas : sur quoi le schéma de récurrence du premier ordre quantifie-t-il, et que
+manque-t-il ?</li>
+</ol>
+</div>
+<p class="context">Skolem a construit des modèles non standard en 1934, montrant qu'aucune liste
+de vérités du premier ordre ne détermine les entiers naturels. Le théorème de Tennenbaum (1959)
+ajoute une contrainte frappante : dans aucun modèle non standard dénombrable de PA l'addition ou
+la multiplication n'est calculable — ces modèles existent mais ne peuvent jamais être exhibés
+chiffre par chiffre. Abraham Robinson a transformé le même phénomène sur ℝ en atout en 1961 :
+l'analyse non standard, où les infiniment petits vivent enfin rigoureusement.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_non_standard_de_l%27arithm%C3%A9tique">Modèle non standard de l'arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Tennenbaum">Théorème de Tennenbaum — Wikipédia</a></li>
+<li>Lecture : Richard Kaye, <i>Models of Peano Arithmetic</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-15" data-level="Master">
+<h3>FND-15 · Le paradoxe de Skolem <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Löwenheim–Skolem descendant pour un
+langage dénombrable : toute structure possède une sous-structure élémentaire dénombrable.</li>
+<li>Supposons ZFC cohérente ; par complétude elle a un modèle, et par (a) elle a un modèle
+dénombrable \( M \). À l'intérieur de \( M \), le théorème « ℝ n'est pas dénombrable » (FND-07)
+est vrai. Résolvez la contradiction apparente en toute rigueur : dites exactement quelle notion
+cesse d'être absolue entre \( M \) et l'univers ambiant, exhibez l'énoncé dont le sens se déplace,
+et expliquez ce que « dénombrable » veut dire <i>dans</i> \( M \) par opposition à <i>au sujet
+de</i> \( M \).</li>
+</ol>
+</div>
+<p class="context">Thoralf Skolem a présenté cela en 1922 comme un argument montrant que les
+fondements ensemblistes sont intrinsèquement relatifs ; la résolution moderne — la dénombrabilité
+d'un ensemble est attestée par une bijection, et cette bijection peut vivre hors du modèle — est
+une leçon définitive de relativisation, et le pain quotidien de quiconque travaille avec des
+modèles de la théorie des ensembles. Hilary Putnam a plus tard ranimé le paradoxe en philosophie
+sous le nom d'« argument modèle-théorique ». Le traverser honnêtement est la meilleure préparation
+possible au forcing (FND-18).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_de_Skolem">Paradoxe de Skolem — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_L%C3%B6wenheim-Skolem">Théorème de Löwenheim–Skolem — Wikipédia</a></li>
+<li>Lecture : Kenneth Kunen, <i>Set Theory: An Introduction to Independence Proofs</i>, ch. IV</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-16" data-level="Master">
+<h3>FND-16 · Pourquoi « cet énoncé est indémontrable » exige l'arithmétisation <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( T \) une théorie cohérente, récursivement axiomatisée,
+extension de l'arithmétique de Peano, et soit \( \ulcorner \varphi \urcorner \) le
+numéral du numéro de Gödel de \( \varphi \).</p>
+<ol class="parts" type="a">
+<li>Démontrez le lemme de diagonalisation : pour toute formule
+\( \psi(x) \) à une variable libre, il existe un énoncé \( \varphi \) tel que
+\( T \vdash \varphi \leftrightarrow \psi(\ulcorner \varphi \urcorner) \).</li>
+<li>Appliquez (a) à
+la négation du prédicat de démontrabilité pour obtenir l'énoncé de Gödel \( G \), et démontrez :
+\( T \) ne démontre pas \( G \) ; et si \( T \) est \( \omega \)-cohérente, \( T \) ne démontre
+pas \( \neg G \) non plus.</li>
+<li>Expliquez comment la modification de Rosser (1936) remplace
+l'\( \omega \)-cohérence par la simple cohérence.</li>
+<li>Démontrez le théorème d'indéfinissabilité de Tarski — aucune
+formule arithmétique \( \mathrm{True}(x) \) ne vérifie \( \mathbb{N} \models \varphi
+\leftrightarrow \mathrm{True}(\ulcorner \varphi \urcorner) \) pour tous les énoncés \( \varphi \)
+— et servez-vous-en pour expliquer précisément pourquoi l'énoncé de Gödel doit dire « je suis
+indémontrable » plutôt que « je suis faux ».</li>
+</ol>
+</div>
+<p class="context">C'est autant un problème de compréhension qu'un problème de démonstration : la
+paraphrase courante « Gödel a formalisé le menteur » est fautive sur un point essentiel, et les
+parties (a) et (d) montrent pourquoi. Un énoncé formel n'a pas de mot « ceci » ; l'autoréférence
+doit être fabriquée par arithmétisation — en codant la syntaxe par des nombres, de sorte qu'un
+énoncé puisse parler de (du code de) lui-même via la fonction de substitution. La démontrabilité
+est arithmétiquement définissable ; la vérité, d'après (d), ne l'est pas. Cette asymétrie est tout
+le moteur de l'article de Gödel de 1931, et la raison pour laquelle l'incomplétude est un théorème
+et non un paradoxe.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8mes_d%27incompl%C3%A9tude_de_G%C3%B6del">Théorèmes d'incomplétude de Gödel — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Diagonal_lemma">Lemme de diagonalisation — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Tarski">Théorème de Tarski (indéfinissabilité de la vérité) — Wikipédia</a></li>
+<li>Lecture : Peter Smith, <i>An Introduction to Gödel's Theorems</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-17" data-level="Master">
+<h3>FND-17 · Le théorème de Löb <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( T \) comme en FND-16, et soit
+\( \mathrm{Prov}(x) \) un prédicat de démontrabilité standard vérifiant les
+conditions de dérivabilité de Hilbert–Bernays–Löb : (D1) si \( T \vdash \varphi \) alors
+\( T \vdash \mathrm{Prov}(\ulcorner \varphi \urcorner) \) ;
+(D2) \( T \vdash \mathrm{Prov}(\ulcorner \varphi \to \psi \urcorner) \to
+(\mathrm{Prov}(\ulcorner \varphi \urcorner) \to \mathrm{Prov}(\ulcorner \psi \urcorner)) \);
+(D3) \( T \vdash \mathrm{Prov}(\ulcorner \varphi \urcorner) \to
+\mathrm{Prov}(\ulcorner \mathrm{Prov}(\ulcorner \varphi \urcorner) \urcorner) \).</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Löb : si \( T \vdash \mathrm{Prov}(\ulcorner \varphi \urcorner) \to
+\varphi \), alors \( T \vdash \varphi \).</li>
+<li>Déduisez-en le second théorème d'incomplétude de Gödel : si
+\( T \) est cohérente, \( T \) ne démontre pas \( \mathrm{Con}(T) \).</li>
+<li>Déduisez-en que l'énoncé
+de Henkin — le point fixe affirmant « je suis démontrable » — est démontrable dans \( T \).</li>
+</ol>
+</div>
+<p class="context">En 1952, Leon Henkin a posé une question d'apparence innocente : l'énoncé de
+Gödel affirme sa propre indémontrabilité et est indémontrable — qu'en est-il de l'énoncé affirmant
+sa propre démontrabilité ? La réponse de Martin Löb en 1955 est l'un des vrais chocs de la
+logique : une théorie démontre « la démontrabilité de φ implique φ » seulement quand elle démontre
+déjà φ purement et simplement. La logique modale GL, la boîte se lisant Prov, capture exactement
+les principes modaux démontrables de l'arithmétique — c'est le théorème de complétude arithmétique
+de Solovay (1976), le couronnement de la logique de la démontrabilité.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_L%C3%B6b">Théorème de Löb — Wikipédia</a></li>
+<li>Article : M. H. Löb, "Solution of a problem of Leon Henkin" (1955), J. Symbolic Logic 20</li>
+<li>Lecture : George Boolos, <i>The Logic of Provability</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-18" data-level="Master">
+<h3>FND-18 · Comment l'hypothèse du continu s'est révélée indépendante <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'hypothèse du continu (HC) affirme que toute partie infinie
+de ℝ est en bijection avec ℕ ou avec ℝ, c'est-à-dire \( 2^{\aleph_0} = \aleph_1 \).</p>
+<ol class="parts" type="a">
+<li>Définissez la hiérarchie constructible \( L \) de Gödel (à chaque étape, on ne prend que les
+parties définissables avec paramètres sur l'étape précédente) et, en admettant le lemme de
+condensation, démontrez que l'hypothèse du continu généralisée est vraie dans \( L \) ; concluez
+\( \mathrm{Con}(\mathrm{ZF}) \Rightarrow \mathrm{Con}(\mathrm{ZFC} + \mathrm{HCG}) \).</li>
+<li>Énoncez précisément ce que réalise la construction de forcing de Cohen —
+\( \mathrm{Con}(\mathrm{ZF}) \Rightarrow \mathrm{Con}(\mathrm{ZFC} + \neg\mathrm{HC}) \) —
+et expliquez le rôle du modèle de base transitif dénombrable (FND-15) et pourquoi l'ajout de
+\( \aleph_2 \) réels de Cohen exige de démontrer que les cardinaux sont préservés (la condition
+de chaîne dénombrable).</li>
+<li>Dites exactement ce que les deux moitiés ensemble établissent, et n'établissent pas, quant à
+la vérité de HC.</li>
+</ol>
+</div>
+<p class="context">HC était le premier des problèmes de Hilbert de 1900, et Cantor l'a poursuivie
+jusqu'aux limites de sa santé. Gödel a construit \( L \) et démontré la moitié de l'indépendance
+en 1938 ; Paul Cohen, analyste venu de l'extérieur de la logique, a inventé le forcing et l'a
+achevée en 1963, ce qui lui a valu la seule médaille Fields jamais décernée pour la logique
+(1966). Savoir si l'indépendance clôt la question ou ne fait que la déplacer reste un débat vivant
+— voyez FND-21. Les traitements approfondis de problèmes de ce rang se trouvent sur la page
+<a href="open-problems.html">Problèmes ouverts</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Hypoth%C3%A8se_du_continu">Hypothèse du continu — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Univers_constructible">Univers constructible — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Forcing">Forcing — Wikipédia</a></li>
+<li>Article : Paul Cohen, "The independence of the continuum hypothesis" (1963), Proc. Nat. Acad. Sci. USA 50</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-19" data-level="Master">
+<h3>FND-19 · Un îlot de décidabilité : l'arithmétique de Presburger <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'arithmétique de Presburger est la théorie du premier ordre de
+\( (\mathbb{N};\, 0, 1, +, &lt;) \) — l'addition, mais pas la multiplication.</p>
+<ol class="parts" type="a">
+<li>Démontrez que cette
+théorie admet l'élimination des quantificateurs dès que l'on enrichit le langage des prédicats
+\( x \equiv r \pmod{n} \) pour chaque \( n \ge 2 \) et \( 0 \le r &lt; n \).</li>
+<li>Concluez que
+l'arithmétique de Presburger est complète et décidable.</li>
+<li>Combinez (b) avec le premier
+théorème d'incomplétude de Gödel (FND-16) pour démontrer que la multiplication n'est pas
+définissable par une formule du premier ordre dans \( (\mathbb{N};\, 0, 1, +, &lt;) \).</li>
+</ol>
+</div>
+<p class="context">Mojżesz Presburger a démontré la décidabilité en 1929, alors qu'il était
+étudiant de maîtrise au séminaire de Tarski à Varsovie — à la légère déception de Tarski,
+dit-on, puisqu'il ne s'agissait « que » d'un problème de maîtrise ; Presburger fut plus tard
+assassiné pendant la Shoah. La théorie se tient exactement à la frontière : une multiplication
+la sépare de l'indécidabilité. Fischer et Rabin ont démontré en 1974 que toute procédure de
+décision exige un temps doublement exponentiel dans le pire des cas, et pourtant des solveurs
+Presburger tournent chaque jour au sein des compilateurs et des vérificateurs de programmes
+fondés sur SMT.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arithm%C3%A9tique_de_Presburger">Arithmétique de Presburger — Wikipédia</a></li>
+<li>Lecture : George Boolos, John Burgess, and Richard Jeffrey, <i>Computability and Logic</i></li>
+<li>Article : M. J. Fischer and M. O. Rabin, "Super-exponential complexity of Presburger arithmetic" (1974), SIAM–AMS Proceedings 7</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-29" data-level="Master" data-kind="court">
+<h3>FND-29 · Le principe de réflexion <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( V_\alpha \) la hiérarchie cumulative
+(\( V_0 = \varnothing \), \( V_{\alpha+1} = \mathcal{P}(V_\alpha) \), réunions aux limites) et soit
+\( \varphi(x_1, \ldots, x_n) \) une formule quelconque du langage de la théorie des ensembles.
+Démontrez dans ZF que, pour tout ordinal \( \beta \), il existe un ordinal \( \alpha > \beta \) tel
+que, pour tous \( a_1, \ldots, a_n \in V_\alpha \), \( \varphi(a_1, \ldots, a_n) \) est vraie si et
+seulement si sa relativisée \( \varphi^{V_\alpha}(a_1, \ldots, a_n) \) l'est.</p>
+<p class="context">Montague et Lévy ont isolé ce schéma vers 1960, et il dit quelque chose de
+troublant : aucun énoncé isolé ne peut distinguer l'univers entier des ensembles de l'un de ses
+propres segments initiaux. Combiné au second théorème d'incomplétude de Gödel, il démontre que ZF
+n'est pas finiment axiomatisable, et combiné à Löwenheim–Skolem (FND-15), il produit les modèles
+transitifs dénombrables au-dessus desquels on effectue le forcing (FND-32).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Reflection_principle">Principe de réflexion — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Univers_de_von_Neumann">Univers de von Neumann — Wikipédia</a></li>
+<li>Lecture : Kenneth Kunen, <i>Set Theory: An Introduction to Independence Proofs</i>, ch. IV</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-30" data-level="Master" data-kind="court">
+<h3>FND-30 · Le deuxième niveau de la hiérarchie de Borel n'est pas le premier <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que ℚ est une partie \( F_\sigma \) de ℝ — une
+réunion dénombrable de fermés — mais n'est pas un \( G_\delta \), c'est-à-dire une intersection
+dénombrable d'ouverts. Concluez que la hiérarchie de Borel sur ℝ ne s'effondre pas à son deuxième
+niveau.</p>
+<p class="context">C'est le théorème de Baire qui fait le travail, et le corollaire mérite d'être
+énoncé pour lui-même : il n'existe aucune fonction \( f : \mathbb{R} \to \mathbb{R} \) continue
+exactement aux points rationnels, car l'ensemble de continuité d'une fonction quelconque est un
+\( G_\delta \). Baire a démontré son théorème dans sa thèse de 1899 ; Lebesgue a montré en 1905
+que la hiérarchie reste stricte à tout niveau dénombrable, ce qui fait de la théorie descriptive
+des ensembles une discipline plutôt qu'un exercice de classification.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Hi%C3%A9rarchie_de_Borel">Hiérarchie de Borel — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Baire">Théorème de Baire — Wikipédia</a></li>
+<li>Lecture : A. S. Kechris, <i>Classical Descriptive Set Theory</i>, ch. II</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-31" data-level="Master">
+<h3>FND-31 · Le dixième problème de Hilbert et le théorème MRDP <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On dit que \( S \subseteq \mathbb{N}^k \) est <i>diophantien</i> s'il existe un
+polynôme \( P \) à coefficients entiers tel que
+\[ \bar{a} \in S \iff \exists\, y_1, \ldots, y_m \in \mathbb{N} : \;
+P(\bar{a}, y_1, \ldots, y_m) = 0 . \]</p>
+<ol class="parts" type="a">
+<li>Démontrez que les ensembles diophantiens sont stables par réunion, intersection et
+quantification existentielle sur ℕ, et qu'un système fini d'équations diophantiennes peut toujours
+être remplacé par une seule équation.</li>
+<li>Démontrez que tout ensemble diophantien est récursivement énumérable, en décrivant la
+recherche qui l'énumère.</li>
+<li>Le théorème MRDP énonce la réciproque : tout ensemble récursivement énumérable est
+diophantien. En l'admettant, démontrez que le dixième problème de Hilbert est indécidable — il
+n'existe aucun algorithme qui décide si une équation polynomiale donnée à coefficients entiers a
+une solution en nombres entiers — par réduction depuis le problème de l'arrêt.</li>
+<li>Déduisez-en qu'il existe un polynôme à coefficients entiers dont l'ensemble des valeurs
+positives, quand ses variables parcourent ℕ, est exactement l'ensemble des nombres premiers.
+Expliquez soigneusement pourquoi ce n'est pas une formule donnant les nombres premiers.</li>
+</ol>
+</div>
+<p class="context">Hilbert a demandé en 1900 une procédure pour décider n'importe quelle équation
+diophantienne ; il supposait qu'il en existait une, la notion d'« aucun algorithme » ne devant
+apparaître que trente ans plus tard. Martin Davis, Hilary Putnam et Julia Robinson ont ramené le
+problème en 1961 à la recherche d'une seule relation diophantienne à croissance exponentielle —
+l'hypothèse de Robinson, qu'elle a poursuivie pendant deux décennies — et en janvier 1970, Iouri
+Matiiassevitch, âgé de 22 ans, l'a fournie à l'aide des nombres de Fibonacci, dont la croissance
+est exactement celle qu'il fallait. Le polynôme générateur de nombres premiers de la partie (d) a
+été explicité par Jones, Sato, Wada et Wiens en 1976 : 26 variables, une par lettre de l'alphabet,
+de degré 25.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Dixi%C3%A8me_probl%C3%A8me_de_Hilbert">Dixième problème de Hilbert — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Diophantien">Ensemble diophantien — Wikipédia</a></li>
+<li>Lecture : Yuri Matiyasevich, <i>Hilbert's Tenth Problem</i> (MIT Press, 1993)</li>
+<li>Article : Martin Davis, "Hilbert's tenth problem is unsolvable" (1973), <i>American Mathematical Monthly</i> 80</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-32" data-level="Master">
+<h3>FND-32 · Construire une extension générique à la main <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> FND-18 vous demandait de dire ce que réalise le forcing. Celui-ci vous demande
+de le construire. Soit \( M \) un modèle transitif dénombrable de ZFC, et, à l'intérieur de
+\( M \), soit \( \mathbb{P} \) l'ensemble des fonctions partielles finies de
+\( \omega_2 \times \omega \) dans \( \{0,1\} \), ordonné par inclusion inverse (plus fort veut dire
+plus d'information).</p>
+<ol class="parts" type="a">
+<li>Démontrez que, \( M \) étant dénombrable, il existe un filtre \( G \subseteq \mathbb{P} \)
+rencontrant toute partie dense de \( \mathbb{P} \) appartenant à \( M \) — et démontrez qu'aucun
+tel \( G \) ne peut lui-même appartenir à \( M \).</li>
+<li>Définissez les \( \mathbb{P} \)-noms et l'évaluation \( \tau \mapsto \tau_G \), et démontrez
+que \( M[G] = \{ \tau_G : \tau \in M^{\mathbb{P}} \} \) est transitif, contient \( M \) et
+\( G \), et a les mêmes ordinaux que \( M \). Vérifiez l'extensionnalité, la paire et la réunion
+dans \( M[G] \), et décrivez comment se traitent les axiomes restants.</li>
+<li>Énoncez la relation de forcing \( p \Vdash \varphi \) et démontrez le lemme de vérité :
+\( M[G] \models \varphi \) exactement lorsqu'un \( p \in G \) force \( \varphi \). Expliquez
+pourquoi la relation doit être définissable à l'intérieur de \( M \) pour que toute la méthode
+fonctionne.</li>
+<li>Démontrez que \( \mathbb{P} \) vérifie la condition de chaîne dénombrable (utilisez le lemme
+du \( \Delta \)-système), déduisez-en que \( M \) et \( M[G] \) ont les mêmes cardinaux, et
+concluez que \( M[G] \models 2^{\aleph_0} \ge \aleph_2 \), de sorte que HC y est fausse.</li>
+</ol>
+</div>
+<p class="context">Paul Cohen a inventé cette machinerie en 1963 et elle reste la technique la plus
+puissante de la théorie des ensembles ; presque tous les résultats d'indépendance de cette page en
+sont une application. Si elle mérite un problème à elle seule, c'est que le forcing est
+notoirement difficile à <i>comprendre</i> plutôt qu'à employer : le \( G \) générique n'existe pas
+dans \( M \), et pourtant \( M \) peut raisonner sur ce qui serait vrai s'il existait, et c'est le
+lemme de vérité qui liquide cette circularité. La reformulation à valeurs booléennes de Scott,
+Solovay et Vopěnka a été inventée précisément pour rendre le même contenu inévitable ; lire les
+deux présentations est le chemin le plus rapide vers l'idée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Forcing">Forcing — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Condition_de_cha%C3%AEne_d%C3%A9nombrable">Condition de chaîne dénombrable — Wikipédia</a></li>
+<li>Lecture : Kenneth Kunen, <i>Set Theory: An Introduction to Independence Proofs</i>, ch. VII</li>
+<li>Article : Timothy Y. Chow, "A beginner's guide to forcing" (2008), <a href="https://arxiv.org/abs/0712.1320">arXiv:0712.1320</a></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-41" data-level="Master">
+<h3>FND-41 · Cofinalité et théorème de König <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La <i>cofinalité</i> \( \operatorname{cf}(\alpha) \) d'un ordinal limite
+\( \alpha \) est le plus petit type d'ordre d'une partie de \( \alpha \) non bornée dans
+\( \alpha \). Un cardinal \( \kappa \) est <i>régulier</i> si
+\( \operatorname{cf}(\kappa) = \kappa \), et <i>singulier</i> sinon.</p>
+<ol class="parts" type="a">
+<li>Démontrez que \( \operatorname{cf}(\alpha) \) est toujours un cardinal régulier. Calculez
+\( \operatorname{cf}(\aleph_\omega) \) et \( \operatorname{cf}(\aleph_{\omega_1}) \), et
+démontrez (en utilisant le choix) que tout cardinal successeur \( \aleph_{\alpha+1} \) est
+régulier.</li>
+<li>Démontrez le théorème de König : si \( \kappa_i &lt; \lambda_i \) pour tout \( i \) d'un
+ensemble d'indices \( I \), alors
+\[ \sum_{i \in I} \kappa_i \;&lt;\; \prod_{i \in I} \lambda_i . \]
+Notez où l'axiome du choix est utilisé, et notez que c'est l'une des très rares inégalités
+strictes de l'arithmétique cardinale.</li>
+<li>Déduisez-en que \( \kappa &lt; \kappa^{\operatorname{cf}(\kappa)} \) pour tout \( \kappa \)
+infini, d'où \( \operatorname{cf}(2^{\aleph_0}) &gt; \aleph_0 \), d'où
+\( 2^{\aleph_0} \ne \aleph_\omega \). Démontrez plus généralement que
+\( \operatorname{cf}(2^{\kappa}) &gt; \kappa \).</li>
+<li>Énoncez le théorème d'Easton (1970) : hormis la monotonie et la contrainte de (c), ZFC ne
+démontre absolument rien sur la fonction continu aux cardinaux <i>réguliers</i>. Expliquez
+précisément pourquoi la méthode d'Easton ne dit rien des cardinaux singuliers, et indiquez où
+vivent les vrais théorèmes de ce côté-là — le théorème de Silver et la théorie pcf de Shelah
+(FND-34).</li>
+</ol>
+</div>
+<p class="context">Julius König a annoncé au congrès de Heidelberg de 1904 que le continu n'est pas
+un aleph — c'est-à-dire que ℝ ne peut être bien ordonné — et Cantor était dans la salle. En un
+jour, Zermelo avait trouvé l'erreur. Ce qui a survécu au naufrage est le théorème de la partie
+(b), et il vaut la peine d'apprécier à quel point c'est peu et beaucoup : pour l'essentiel, la
+<i>seule</i> restriction que ZFC impose à la taille du continu est que sa cofinalité soit non
+dénombrable. Tout le reste dans cette direction appartient à Easton, et c'est une licence plutôt
+qu'une contrainte : \( 2^{\aleph_0} \) peut valoir, de façon cohérente, \( \aleph_1 \),
+\( \aleph_2 \), \( \aleph_{17} \) ou \( \aleph_{\omega+1} \). La découverte que les cardinaux
+singuliers ne jouissent <i>pas</i> de la même liberté — que ZFC y démontre de vrais théorèmes —
+est la surprise de Silver en 1974 et de la théorie pcf de Shelah, et c'est pourquoi FND-34 est un
+problème vivant et non une affaire réglée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cofinalit%C3%A9">Cofinalité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_K%C3%B6nig_(th%C3%A9orie_des_ensembles)">Théorème de König (théorie des ensembles) — Wikipédia</a></li>
+<li>Lecture : Thomas Jech, <i>Set Theory</i> (Third Millennium Edition), ch. 3 and 5</li>
+<li>Lecture : Kenneth Kunen, <i>Set Theory: An Introduction to Independence Proofs</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-42" data-level="Master">
+<h3>FND-42 · Le problème de Souslin et l'axiome de Martin <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Cantor a caractérisé ℝ à isomorphisme d'ordre près comme l'unique ordre total
+dense et complet sans extrémités possédant une partie dense dénombrable. Souslin a demandé en 1920
+si « posséder une partie dense dénombrable » peut être affaibli en la <i>condition de chaîne
+dénombrable</i> : toute famille d'intervalles ouverts non vides deux à deux disjoints est
+dénombrable. Une <i>droite de Souslin</i> est un contre-exemple ; l'<i>hypothèse de Souslin</i>
+affirme qu'il n'en existe pas.</p>
+<ol class="parts" type="a">
+<li>Démontrez la caractérisation de Cantor, afin que le contenu exact de la question de Souslin
+soit clair.</li>
+<li>Un <i>arbre de Souslin</i> est un arbre de hauteur \( \omega_1 \) sans chaîne non dénombrable
+ni antichaîne non dénombrable. Démontrez qu'il existe une droite de Souslin si et seulement s'il
+existe un arbre de Souslin.</li>
+<li>Énoncez l'axiome de Martin \( \mathrm{MA}(\kappa) \) : pour tout ordre partiel vérifiant la
+condition de chaîne dénombrable et toute famille d'au plus \( \kappa \) parties denses, il existe
+un filtre les rencontrant toutes. Démontrez \( \mathrm{MA}(\aleph_0) \) directement dans ZFC
+(c'est le lemme de Rasiowa–Sikorski), démontrez que \( \mathrm{MA}(2^{\aleph_0}) \) est faux, et
+démontrez que \( \mathrm{MA}(\aleph_1) \) entraîne qu'il n'existe pas d'arbre de Souslin.</li>
+<li>Énoncez le théorème de Jensen selon lequel le principe diamant \( \diamondsuit \) entraîne
+l'existence d'un arbre de Souslin, et que \( \diamondsuit \) est vrai dans le \( L \) de Gödel
+(FND-18). Assemblez les pièces en une démonstration complète de l'indépendance de l'hypothèse de
+Souslin vis-à-vis de ZFC, en nommant quelle moitié provient de quelle construction.</li>
+</ol>
+</div>
+<p class="context">Mikhaïl Souslin l'a posé comme problème 3 dans le premier volume de
+<i>Fundamenta Mathematicae</i> en 1920 ; il a paru après sa mort à vingt-cinq ans, et est resté
+sans réponse près de cinquante ans. Les deux moitiés de la réponse sont arrivées en quatre ans :
+Jech (1967) et Tennenbaum (1968) ont forcé l'existence de droites de Souslin, Jensen a extrait
+\( \diamondsuit \) de la structure fine de \( L \) et les a obtenues gratuitement là, et Solovay
+et Tennenbaum (1971) ont inventé le forcing itéré pour tuer tous les arbres de Souslin d'un coup
+— la construction dont Martin et Solovay (1970) ont ensuite distillé l'axiome de Martin comme
+principe autonome. C'est la vraie raison pour laquelle ce problème vaut la peine d'être fait : MA
+est le substitut de HC pour le théoricien des ensembles au travail, un axiome compatible avec un
+\( 2^{\aleph_0} \) grand qui tranche pourtant quantité de questions combinatoires, et le problème
+de Souslin est son lieu de naissance.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Souslin">Problème de Souslin — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Axiome_de_Martin">Axiome de Martin — Wikipédia</a>, <a href="https://en.wikipedia.org/wiki/Diamond_principle">Principe diamant — Wikipédia (en anglais)</a></li>
+<li>Lecture : Kenneth Kunen, <i>Set Theory: An Introduction to Independence Proofs</i>, ch. II</li>
+<li>Article : R. M. Solovay and S. Tennenbaum, "Iterated Cohen extensions and Souslin's problem", <i>Annals of Mathematics</i> 94 (1971), 201–245</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-43" data-level="Master" data-kind="court">
+<h3>FND-43 · Interpolation et définissabilité <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Énoncez précisément le théorème d'interpolation de Craig pour
+la logique du premier ordre, et servez-vous-en pour démontrer le théorème de définissabilité de
+Beth : un symbole de relation dont l'interprétation est uniquement déterminée, dans tout modèle
+d'une théorie \( T \), par le reste de la structure, est déjà explicitement définissable, dans
+\( T \), par une formule du langage plus petit.</p>
+<p class="context">Beth a répondu en 1953 à une question soulevée par Padoa au tournant du siècle
+— la méthode de Padoa montre qu'une notion primitive n'est <i>pas</i> définissable en exhibant
+deux modèles s'accordant par ailleurs, et le théorème de Beth dit que cette méthode est complète,
+que définissabilité implicite et explicite coïncident. Craig a démontré son théorème
+d'interpolation en 1957 à partir du théorème de Herbrand–Gentzen, et la déduction de Beth à partir
+de Craig tient en trois lignes une fois la bonne théorie écrite, ce qui vaut la peine de la faire
+à la main. Les deux résultats ont connu une seconde carrière en informatique : les interpolants de
+Craig extraits de démonstrations par réfutation sont un moteur standard de la vérification de
+modèles fondée sur SAT.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27interpolation_de_Craig">Théorème d'interpolation de Craig — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_d%C3%A9finissabilit%C3%A9_de_Beth">Théorème de définissabilité de Beth — Wikipédia</a></li>
+<li>Lecture : C. C. Chang and H. J. Keisler, <i>Model Theory</i></li>
+<li>Lecture : Wilfrid Hodges, <i>A Shorter Model Theory</i> (Cambridge, 1997)</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="FND-20" data-level="Recherche">
+<h3>FND-20 · La hiérarchie des grands cardinaux : une ligne ou plusieurs ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un cardinal \( \kappa \) est <i>inaccessible</i> s'il est
+non dénombrable, régulier (non borne supérieure de moins de \( \kappa \) cardinaux plus petits),
+et limite fort (\( \lambda &lt; \kappa \) entraîne \( 2^{\lambda} &lt; \kappa \)).</p>
+<ol class="parts" type="a">
+<li>Démontrez
+que si \( \kappa \) est inaccessible, alors \( V_{\kappa} \), l'étage de la hiérarchie cumulative
+en \( \kappa \), est un modèle de ZFC ; concluez, via le second théorème d'incomplétude de Gödel,
+que ZFC, si elle est cohérente, ne peut démontrer l'existence de cardinaux inaccessibles.</li>
+<li>La question
+de recherche : les axiomes de grands cardinaux connus — inaccessible, mesurable, de Woodin,
+supercompact, et des dizaines d'autres — semblent, sans exception, linéairement ordonnés par force
+de cohérence. Existe-t-il un théorème précis expliquant cette linéarité observée, ou un couple
+naturel d'hypothèses de grands cardinaux de forces de cohérence incomparables ?
+<i>Statut : la linéarité est un phénomène empirique, non un théorème démontré ; formuler même la
+question avec précision fait partie du problème, et celui-ci est ouvert.</i></li>
+</ol>
+</div>
+<p class="context">Les grands cardinaux descendent de Hausdorff et d'Ulam au début du vingtième
+siècle et sont devenus, par les travaux de Scott, Solovay, Martin, Woodin et bien d'autres,
+l'étalon standard de la force des énoncés mathématiques : on calibre un énoncé indémontrable en
+demandant de quel grand cardinal il a besoin. Que tout énoncé naturel se soit jusqu'ici rangé
+quelque part sur une seule ligne est l'une des régularités inexpliquées les plus profondes des
+mathématiques — le programme de Gödel pour trancher des questions comme HC par de nouveaux axiomes
+repose dessus.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Grand_cardinal">Grand cardinal — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Liste_d%27%C3%A9nonc%C3%A9s_ind%C3%A9cidables_dans_ZFC">Liste d'énoncés indécidables dans ZFC — Wikipédia</a></li>
+<li>Lecture : Akihiro Kanamori, <i>The Higher Infinite</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-21" data-level="Recherche">
+<h3>FND-21 · Ultimate L <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le \( L \) de Gödel (FND-18) est un univers intérieur canonique et ordonné,
+mais il est incompatible avec les cardinaux mesurables (Scott, 1961). Le <i>programme Ultimate-L</i>
+de Woodin demande s'il existe une version « ultime » de \( L \) : un modèle intérieur canonique
+compatible avec tous les grands cardinaux, tel que l'axiome « V = Ultimate L » tranche
+l'hypothèse du continu (par l'affirmative), soit insensible au forcing, et fournisse une théorie
+complète des ensembles héréditairement non dénombrables modulo les grands cardinaux.</p>
+<ol class="parts" type="a">
+<li>À partir de
+l'article de synthèse cité ci-dessous, énoncez précisément le théorème de dichotomie HOD de
+Woodin : s'il existe un cardinal extensible, alors le modèle intérieur HOD des ensembles
+héréditairement définissables par des ordinaux est soit « proche » de \( V \), soit « loin » de
+\( V \) en un sens nettement défini.</li>
+<li>Énoncez la conjecture
+Ultimate-L et expliquez ce qu'une réponse positive signifierait pour HC. <i>Statut : la conjecture
+Ultimate-L et la conjecture HOD qui l'accompagne sont ouvertes en 2026 ; le programme est actif,
+avec des progrès récents sur la dichotomie HOD (par exemple l'affaiblissement de l'hypothèse vers
+la compacité forte), et il est contesté — d'autres théoriciens des ensembles s'attendent à ce que
+l'emportent les axiomes de forcing, qui réfutent HC.</i></li>
+</ol>
+</div>
+<p class="context">C'est la réponse moderne la plus tranchante à « HC a-t-elle jamais été vraiment
+tranchée ? » Woodin lui-même a autrefois argumenté, à partir de sa Ω-logique, que HC est fausse,
+puis a changé de cap à mesure qu'émergeait la structure fine d'Ultimate L — un rare revirement
+public au sommet d'un domaine. Le programme serait, s'il aboutissait, ce qui se rapproche le plus
+d'un achèvement du programme de Gödel de 1947 pour de nouveaux axiomes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/W._Hugh_Woodin">W. Hugh Woodin — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Ordinal_definable_set">Ensemble définissable par des ordinaux — Wikipédia (en anglais)</a></li>
+<li>Article : W. H. Woodin, "In search of Ultimate-L: the 19th Midrasha Mathematicae Lectures" (2017), Bull. Symbolic Logic 23</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-22" data-level="Recherche">
+<h3>FND-22 · La frontière de la décidabilité : le problème de la fonction exponentielle de Tarski <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Tarski a démontré (1951) que la théorie du premier ordre du
+corps des réels \( (\mathbb{R};\, +, \cdot, \le) \) est décidable, par élimination des
+quantificateurs.</p>
+<ol class="parts" type="a">
+<li>En guise d'échauffement, effectuez une étape d'élimination à la main : trouvez une condition
+sans quantificateur sur les paramètres \( a, b, c \) équivalente sur ℝ à
+\( \exists x\, (a x^2 + b x + c = 0) \), et démontrez l'équivalence.</li>
+<li>La question de recherche — le <i>problème de la fonction exponentielle
+de Tarski</i> : la théorie du premier ordre de \( (\mathbb{R};\, +, \cdot, \le, e^x) \)
+est-elle décidable ? <i>Statut : ouvert. Macintyre et Wilkie ont démontré en 1996 que la
+décidabilité découle de la conjecture de Schanuel en théorie des nombres transcendants, elle-même
+grande ouverte ; Wilkie a démontré que la théorie est modèle-complète et o-minimale, de sorte que
+la géométrie est apprivoisée — seule manque la procédure de décision.</i></li>
+</ol>
+</div>
+<p class="context">Le contraste avec FND-19 et FND-16 situe la frontière exactement : la
+multiplication entière donne l'indécidabilité, la multiplication réelle est décidable, et
+l'exponentiation réelle est le poste-frontière ouvert. Le problème relie la logique à une théorie
+des nombres profonde : un unique énoncé conjectural sur des degrés de transcendance trancherait
+une question portant sur des algorithmes. L'o-minimalité, née de ce cercle d'idées, a ensuite
+alimenté le comptage de points de Pila–Wilkie et ses applications à la géométrie
+diophantienne.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Tarski%27s_exponential_function_problem">Problème de la fonction exponentielle de Tarski — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Schanuel">Conjecture de Schanuel — Wikipédia</a></li>
+<li>Article : A. Macintyre and A. J. Wilkie, "On the decidability of the real exponential field" (1996), in <i>Kreiseliana: About and Around Georg Kreisel</i></li>
+</ul>
+</section>
+
+<section class="problem" id="FND-23" data-level="Recherche">
+<h3>FND-23 · p = t : un problème de soixante-dix ans résolu <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour des ensembles infinis \( A, B \subseteq \mathbb{N} \), on écrit
+\( A \subseteq^{*} B \) si \( A \setminus B \) est fini. Le <i>nombre de
+pseudo-intersection</i> \( \mathfrak{p} \) est le plus petit cardinal d'une famille \( F \) de
+parties infinies de ℕ telle que toute sous-famille finie ait une intersection infinie, sans
+qu'aucun \( A \) infini ne vérifie \( A \subseteq^{*} B \) pour tout \( B \in F \). Le <i>nombre
+de tour</i> \( \mathfrak{t} \) est la plus petite longueur d'une suite \( \subseteq^{*} \)-décroissante
+de parties infinies de ℕ telle qu'aucun \( A \) infini ne soit presque contenu dans toutes.</p>
+<ol class="parts" type="a">
+<li>Démontrez, dans ZFC, que \( \aleph_1 \le \mathfrak{p} \le \mathfrak{t} \le 2^{\aleph_0} \).</li>
+<li>Savoir si \( \mathfrak{p} &lt; \mathfrak{t} \) est cohérent est resté ouvert quelque soixante-dix
+ans. <i>Statut : résolu — Malliaris et Shelah ont démontré \( \mathfrak{p} = \mathfrak{t} \)
+dans ZFC (annoncé en 2012–13, publié en 2016), par une voie inattendue passant par l'ordre de
+Keisler, issu de la théorie des modèles.</i> Étudiez leur stratégie de démonstration et expliquez
+pourquoi une question portant sur ℝ a reçu une réponse par la théorie des modèles.</li>
+</ol>
+</div>
+<p class="context">Les caractéristiques cardinales du continu mesurent les nombreuses tailles
+distinctes que peuvent avoir les « petites » parties de ℝ quand HC est fausse ; presque toutes les
+paires de caractéristiques avaient été séparées par forcing, et \( \mathfrak{p} \) contre
+\( \mathfrak{t} \) était le survivant obstiné d'un travail remontant à Rothberger (1948). Le
+théorème de Malliaris–Shelah — récompensé par la médaille Hausdorff 2017 — est l'exemple moderne
+type d'un énoncé « manifestement indépendant » se révélant être un théorème de ZFC : un
+avertissement et un encouragement pour tout le reste de cette page.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Cardinal_characteristic_of_the_continuum">Caractéristique cardinale du continu — Wikipédia (en anglais)</a></li>
+<li>Article : M. Malliaris and S. Shelah, "General topology meets model theory, on p and t" (2013), Proc. Nat. Acad. Sci. USA 110</li>
+<li>Article : M. Malliaris and S. Shelah, "Cofinality spectrum theorems in model theory, set theory, and general topology" (2016), J. Amer. Math. Soc. 29</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-33" data-level="Recherche" data-kind="court">
+<h3>FND-33 · Le dixième problème de Hilbert sur les rationnels <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> (Ouvert.) Sur les entiers, il n'existe aucun algorithme
+décidant si une équation polynomiale à coefficients entiers a une solution (FND-31). Tranchez
+l'analogue rationnel : existe-t-il un algorithme qui, étant donné un polynôme \( P \) à
+coefficients rationnels, détermine si \( P(x_1, \ldots, x_n) = 0 \) a une solution dans ℚ ?</p>
+<p class="context">La voie classique vers une réponse négative consiste à montrer que ℤ est
+diophantien dans ℚ, ce qui transférerait vers le bas l'indécidabilité de Matiiassevitch ; Jochen
+Koenigsmann s'en est approché en 2016 en donnant une définition du premier ordre purement
+universelle de ℤ à l'intérieur de ℚ, mais une définition universelle n'est pas une définition
+diophantienne. Le problème a beaucoup bougé sur le terrain voisin : en 2024–25, Peter Koymans et
+Carlo Pagano, et indépendamment Levent Alpöge, Manjul Bhargava, Wei Ho et Ari Shnidman, ont établi
+la réponse négative pour l'anneau des entiers de tout corps de nombres, en utilisant la stabilité
+du rang des courbes elliptiques dans les extensions quadratiques. En 2026, le cas de ℚ lui-même
+reste ouvert.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Dixi%C3%A8me_probl%C3%A8me_de_Hilbert">Dixième problème de Hilbert — Wikipédia</a></li>
+<li>Article : J. Koenigsmann, "Defining Z in Q" (2016), <i>Annals of Mathematics</i> 183</li>
+<li>Article : P. Koymans and C. Pagano, "Hilbert's tenth problem via additive combinatorics" (2024), <a href="https://arxiv.org/abs/2412.01768">arXiv:2412.01768</a></li>
+
+<li>Voir aussi : <a href="open-problems.html#OPEN-63">OPEN-63</a> — la formulation en théorie des nombres, sur la page des Problèmes ouverts.</li></ul>
+</section>
+
+<section class="problem" id="FND-34" data-level="Recherche" data-kind="court">
+<h3>FND-34 · Quelle taille le continu en \( \aleph_\omega \) peut-il atteindre ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> (Ouvert.) Supposons \( \aleph_\omega \) cardinal limite fort,
+c'est-à-dire \( 2^{\aleph_n} < \aleph_\omega \) pour tout \( n < \omega \) ; Shelah a démontré dans
+ZFC qu'alors \( 2^{\aleph_\omega} < \aleph_{\omega_4} \). Déterminez s'il est cohérent
+avec ZFC que, sous la même hypothèse, \( 2^{\aleph_\omega} > \aleph_{\omega_1} \) — de façon
+équivalente, si \( \mathrm{pcf}\{\aleph_n : n < \omega\} \) peut être non dénombrable.</p>
+<p class="context">Easton a montré en 1970 que ZFC ne dit presque rien de la fonction continu aux
+cardinaux réguliers : elle peut être n'importe quelle fonction monotone respectant la cofinalité.
+Les cardinaux singuliers se sont révélés différents. Le théorème de Silver de 1974, puis la
+théorie pcf de Shelah (1989), ont extrait de véritables contraintes ZFC de la seule structure des
+cofinalités, et la borne \( \aleph_{\omega_4} \) est l'emblème de cette théorie — un nombre
+étrange et spécifique que personne ne croit optimal et que personne ne sait améliorer. En 2026, la
+question est ouverte, et c'est le problème central de l'arithmétique cardinale.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/PCF_theory">Théorie pcf — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Singular_cardinals_hypothesis">Hypothèse des cardinaux singuliers — Wikipédia (en anglais)</a></li>
+<li>Lecture : Saharon Shelah, <i>Cardinal Arithmetic</i> (Oxford, 1994)</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-35" data-level="Recherche">
+<h3>FND-35 · Quelle est la force du théorème de Hindman ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> (Partiellement résolu ; la question centrale est ouverte.) Le théorème de
+Hindman dit que, pour tout coloriage de ℕ avec un nombre fini de couleurs, il existe un ensemble
+infini \( X \subseteq \mathbb{N} \) tel que toute somme d'un nombre fini d'éléments distincts de
+\( X \) reçoive la même couleur. Les mathématiques à rebours mesurent un théorème par le plus
+faible sous-système de l'arithmétique du second ordre qui le démontre : ici, les systèmes
+pertinents sont \( \mathrm{RCA}_0 \) (la théorie de base), \( \mathrm{ACA}_0 \) (clôture par saut
+de Turing) et \( \mathrm{ACA}_0^{+} \) (clôture par le \( \omega \)-ième saut de Turing).</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Hindman par l'argument de Galvin–Glazer : munissez les ultrafiltres
+de ℕ (FND-28) d'une opération de semi-groupe, montrez qu'elle possède un idempotent, et lisez le
+théorème sur cet idempotent.</li>
+<li>Travaillez la démonstration de Blass, Hirst et Simpson selon laquelle le théorème de Hindman
+implique \( \mathrm{ACA}_0 \) sur \( \mathrm{RCA}_0 \), et qu'il est démontrable dans
+\( \mathrm{ACA}_0^{+} \).</li>
+<li>Expliquez pourquoi la démonstration par ultrafiltres de (a) est bien plus forte qu'elle n'en a
+l'air de l'extérieur, et ce qu'une démonstration menée à l'intérieur de \( \mathrm{ACA}_0 \)
+devrait éviter.</li>
+<li>Le problème ouvert : cerner la force exacte. Le théorème de Hindman est-il équivalent à
+\( \mathrm{ACA}_0 \), à \( \mathrm{ACA}_0^{+} \), ou strictement entre les deux ? Une question
+ouverte apparentée : la restriction aux sommes d'au plus deux éléments distincts est-elle déjà
+équivalente au théorème complet ?</li>
+</ol>
+</div>
+<p class="context">Neil Hindman a démontré le théorème des sommes finies en 1974 par un long
+argument combinatoire ; la démonstration par ultrafiltres de Glazer, s'appuyant sur Galvin, l'a
+réduite à une demi-page et en a fait l'exemple fondateur de l'algèbre du compactifié de
+Stone–Čech. Blass, Hirst et Simpson l'ont coincé entre \( \mathrm{ACA}_0 \) et
+\( \mathrm{ACA}_0^{+} \) en 1987, et il y est resté : cet écart est depuis près de quarante ans
+l'un des problèmes ouverts les plus connus des mathématiques à rebours, résistant à la machinerie
+de calculabilité bâtie autour du théorème de Ramsey pour les paires (FND-27). En 2026, il est
+ouvert.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Hindman%27s_theorem">Théorème de Hindman — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Math%C3%A9matiques_%C3%A0_rebours">Mathématiques à rebours — Wikipédia</a></li>
+<li>Lecture : Stephen G. Simpson, <i>Subsystems of Second Order Arithmetic</i></li>
+<li>Article : N. Hindman, "Finite sums from sequences within cells of a partition of N" (1974), <i>Journal of Combinatorial Theory, Series A</i> 17</li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="FND-44" data-level="Recherche">
+<h3>FND-44 · Les Cinq Grands, et pourquoi ils sont cinq <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Les mathématiques à rebours demandent, d'un théorème des mathématiques
+ordinaires, quels axiomes d'existence d'ensembles sont nécessaires pour le démontrer — et
+répondent en démontrant le théorème équivalent, sur une théorie de base faible, à ces axiomes. Les
+cinq sous-systèmes récurrents de l'arithmétique du second ordre sont
+\( \mathrm{RCA}_0 \subsetneq \mathrm{WKL}_0 \subsetneq \mathrm{ACA}_0 \subsetneq \mathrm{ATR}_0
+\subsetneq \Pi^1_1\text{-}\mathrm{CA}_0 \).</p>
+<ol class="parts" type="a">
+<li>Démontrez deux équivalences sur \( \mathrm{RCA}_0 \). D'abord : \( \mathrm{WKL}_0 \) est
+équivalent au théorème de Heine–Borel pour \( [0,1] \), et à l'énoncé que toute fonction réelle
+continue sur \( [0,1] \) est uniformément continue. Ensuite : \( \mathrm{ACA}_0 \) est équivalent
+au théorème de Bolzano–Weierstrass, et à l'énoncé que l'image de toute injection
+\( \mathbb{N} \to \mathbb{N} \) existe en tant qu'ensemble.</li>
+<li>Démontrez que \( \mathrm{RCA}_0 \) ne démontre pas \( \mathrm{WKL}_0 \) : montrez que le
+\( \omega \)-modèle dont les ensembles sont exactement les ensembles calculables satisfait
+\( \mathrm{RCA}_0 \), et exhibez un arbre binaire calculable infini sans chemin infini
+calculable.</li>
+<li>Énoncez soigneusement le « phénomène des Cinq Grands » : pour l'essentiel, tout théorème des
+mathématiques classiques analysé jusqu'ici est soit démontrable dans \( \mathrm{RCA}_0 \), soit
+équivalent sur cette base à l'un des quatre autres systèmes. Passez ensuite en revue les
+échappées connues, toutes situées sous \( \mathrm{ACA}_0 \) : le théorème de Ramsey pour les
+paires \( \mathrm{RT}^2_2 \) (FND-27) est strictement plus faible que \( \mathrm{ACA}_0 \) par le
+théorème de Seetapun, et est incomparable avec \( \mathrm{WKL}_0 \) — aucun des deux ne démontre
+l'autre — de sorte qu'il n'est équivalent à aucun des cinq. Étudiez le « zoo des mathématiques à
+rebours », l'ensemble de principes qui a poussé dans cet intervalle.</li>
+<li>Le problème de recherche : <b>existe-t-il un théorème expliquant le phénomène des Cinq
+Grands ?</b> Donnez une conjecture précise — une propriété des énoncés mathématiques
+« naturels » sous laquelle les cinq systèmes épuisent démontrablement les possibilités — ou
+expliquez pourquoi le verdict honnête est que la régularité est empirique. <i>Statut : ouvert, et
+le formuler précisément fait partie du problème.</i></li>
+</ol>
+</div>
+<p class="context">Harvey Friedman a lancé le programme au Congrès international de 1974 et Stephen
+Simpson en a fait une discipline ; la surprise fondatrice fut le peu d'axiomes dont les
+mathématiques ordinaires ont réellement besoin, et la surprise plus profonde fut que tant de
+théorèmes sans rapport atterrissent exactement sur les mêmes cinq barreaux. Personne ne sait
+pourquoi. La meilleure preuve que le motif n'est pas un théorème en attente d'être trouvé est la
+région sous \( \mathrm{ACA}_0 \) : Specker a montré en 1971 que le théorème de Ramsey pour les
+paires admet des coloriages calculables sans ensemble homogène calculable, Seetapun et Slaman ont
+démontré en 1995 qu'il reste néanmoins en deçà de \( \mathrm{ACA}_0 \), et Liu Jiayi a démontré en
+2012 qu'il n'implique même pas le lemme de König faible. Ce qui y a poussé depuis est un véritable
+zoo — des dizaines de principes, deux à deux incomparables, dont aucun n'est l'un des cinq.
+Comparez avec FND-35, où la force exacte d'un seul théorème est ouverte depuis près de quarante
+ans. En 2026, le phénomène des Cinq Grands n'a ni démonstration ni explication admise.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Math%C3%A9matiques_%C3%A0_rebours">Mathématiques à rebours — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ramsey">Théorème de Ramsey — Wikipédia</a> (voir sa section sur les mathématiques à rebours)</li>
+<li>Lecture : Stephen G. Simpson, <i>Subsystems of Second Order Arithmetic</i></li>
+<li>Article : A. Montalbán, "Open questions in reverse mathematics", <i>Bulletin of Symbolic Logic</i> 17 (2011), 431–454</li>
+</ul>
+</section>
+
+<section class="problem" id="FND-45" data-level="Recherche" data-kind="court">
+<h3>FND-45 · Quelle est la force de l'axiome du forcing propre ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> (<b>Ouvert.</b>) L'axiome du forcing propre PFA étend
+l'axiome de Martin (FND-42) des ordres partiels ccc à tous les ordres <i>propres</i> ; il implique
+\( 2^{\aleph_0} = \aleph_2 \), et il est vrai dans une extension générique dès qu'il existe un
+cardinal supercompact, tandis que la meilleure minoration connue de sa force de cohérence se situe
+très en dessous, un peu en deçà d'un cardinal de Woodin limite de cardinaux de Woodin. Déterminez
+la force de cohérence exacte de PFA — un cardinal supercompact est-il vraiment nécessaire, ou la
+force véritable est-elle bien moindre ?</p>
+<p class="context">PFA est issu des travaux sur le forcing propre itéré du début des années 1980,
+et c'est le plus fort des axiomes de forcing d'usage courant : contrairement à HC ou à sa négation,
+il tranche un éventail énorme de questions combinatoires, et il tranche le continu. L'écart entre
+sa majoration supercompacte et la minoration connue est probablement le plus large de ce genre en
+théorie des ensembles et l'un des problèmes ouverts les plus cités du domaine. Il se trouve aussi
+au centre d'un désaccord vivant : les axiomes de forcing donnent \( 2^{\aleph_0} = \aleph_2 \), le
+programme Ultimate-L de Woodin (FND-21) pointe dans l'autre direction, et la quantité de force de
+grand cardinal que coûte vraiment PFA fait partie de ce dont on débat. Voyez aussi FND-20 sur la
+linéarité inexpliquée de la hiérarchie des grands cardinaux.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Proper_forcing_axiom">Axiome du forcing propre — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Grand_cardinal">Grand cardinal — Wikipédia</a></li>
+<li>Article : J. T. Moore, "The proper forcing axiom", <i>Proceedings of the International Congress of Mathematicians</i> (Hyderabad, 2010)</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/24-241-logic-i-fall-2009/">MIT OCW 24.241 Logic I</a>,
+<a href="https://ocw.mit.edu/courses/24-242-logic-ii-spring-2004/">MIT OCW 24.242 Logic II</a>,
+<a href="https://www.coursera.org/learn/mathematical-thinking">Stanford — Introduction to Mathematical Thinking (Keith Devlin, Coursera)</a>.</li>
+<li>Livres : Daniel Velleman, <i>How to Prove It</i> ; Herbert Enderton, <i>A Mathematical
+Introduction to Logic</i> et <i>Elements of Set Theory</i> ; Kenneth Kunen, <i>Set Theory: An
+Introduction to Independence Proofs</i> ; Thomas Jech, <i>Set Theory</i> (Third Millennium
+Edition) ; Akihiro Kanamori, <i>The Higher Infinite</i>.</li>
+<li>Articles et essais : Kurt Gödel, « Über formal unentscheidbare Sätze der Principia
+Mathematica und verwandter Systeme I » (1931) ; Paul Cohen, « The independence of the continuum
+hypothesis » (1963) ; W. H. Woodin, « In search of Ultimate-L » (2017).</li>
+</ul>
+<p>Voir aussi : <a href="proofs.html">L'art de la démonstration</a>, <a href="pure-category-theory.html">Théorie des catégories</a>, <a href="open-problems.html">Problèmes ouverts</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

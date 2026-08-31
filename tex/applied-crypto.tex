@@ -1,0 +1,1969 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Cryptographie et théorie de l'information}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Lycée}
+
+\begin{problem}[{Cassez ce chiffre de César --- Lycée}]
+\textbf{CRY-01.} \textbf{Problème.} Le message suivant a été chiffré par un chiffre
+de César : chaque lettre du texte clair, rédigé en anglais, a été décalée vers l'avant dans
+l'alphabet d'une même quantité secrète (Z revenant à A), les espaces restant intacts.
+ \texttt{DRO ZBSCYXOBC WSCDKUO DRO CRKNYGC YX DRO GKVV PYB DRO DRSXQC
+DROWCOVFOC}
+\begin{enumerate}
+\item[(a)] Retrouvez le texte clair et le décalage \textit{sans essayer aveuglément les 25 décalages} :
+comptez les fréquences des lettres dans le texte chiffré, comparez-les aux fréquences
+connues de l'anglais (E, T, A, O en sont les lettres les plus courantes) et justifiez votre
+identification.
+\item[(b)] Expliquez en général pourquoi tout chiffre qui remplace toujours une même lettre claire
+par une même lettre chiffrée doit laisser fuir le profil de fréquences du texte clair, si
+compliquée que soit la règle de remplacement.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Suétone rapporte que Jules César utilisait la version à décalage de trois
+de ce chiffre pour sa correspondance militaire. L'attaque systématique --- l'analyse
+fréquentielle --- a d'abord été décrite par le philosophe arabe al-Kindī dans le Bagdad du
+neuvième siècle, dans un manuscrit sur le déchiffrement des messages cryptographiques ;
+c'est sans doute la naissance de la cryptanalyse, et elle a tué la substitution simple pour
+toujours. Toute définition moderne de sécurité est, au fond, la promesse que ce genre de
+fuite statistique ne peut pas se produire.
+
+\begin{refs}
+\item Contexte : Chiffrement par décalage (chiffre de César) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffrement_par_d%C3%A9calage})
+\item Contexte : Analyse fréquentielle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Analyse_fr%C3%A9quentielle})
+\item Lecture : Simon Singh, \textit{The Code Book}, ch. 1
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Échauffements d'arithmétique modulaire --- Lycée}]
+\textbf{CRY-02.} \textbf{Problème.} Écrivons $a \equiv b \pmod{n}$ pour signifier que
+$n$ divise $a-b$.
+\begin{enumerate}
+\item[(a)] Démontrez que les congruences s'additionnent et se multiplient : si
+$a \equiv b$ et $c \equiv d \pmod{n}$, alors $a+c \equiv b+d$ et
+$ac \equiv bd \pmod{n}$.
+\item[(b)] Démontrez qu'un carré parfait est toujours $\equiv 0$
+ou $1 \pmod 4$, et déduisez-en qu'aucun entier de la forme $4k+3$ n'est somme de deux
+carrés.
+\item[(c)] Trouvez, avec démonstration, les deux derniers chiffres de $3^{2026}$. (Indice sur la
+méthode, non sur la réponse : les puissances de 3 modulo 100 doivent finir par se répéter ---
+pourquoi ?)
+\end{enumerate}
+
+\end{problem}
+
+\noindent La notation des congruences est due à Gauss, qui ouvrit avec elle ses
+\textit{Disquisitiones Arithmeticae} (1801) et transforma l'\og{} arithmétique de l'horloge \fg{} en
+un calcul. Toute la cryptographie à clé publique --- Diffie--Hellman, RSA, courbes elliptiques ---
+est du calcul dans exactement cette arithmétique : ces exercices de doigté sont donc le droit
+d'entrée de tout ce qui suit. La théorie des nombres qui les sous-tend est développée plus
+avant sur la page Théorie des nombres (\url{pure-number-theory.html}).
+
+\begin{refs}
+\item Contexte : Arithmétique modulaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Arithm%C3%A9tique_modulaire})
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Quels chiffres affines sont vraiment des chiffres ? --- Lycée}]
+\textbf{CRY-03.} \textbf{Problème.} Numérotons les lettres $A=0,\dots,Z=25$. Un
+\textit{chiffre affine} de clé $(a,b)$ chiffre la lettre $x$ en
+$ax+b \pmod{26}$.
+\begin{enumerate}
+\item[(a)] Montrez que cette règle peut être défaite (de sorte que le déchiffrement soit
+possible) exactement lorsque $\gcd(a,26)=1$.
+\item[(b)] Montrez concrètement ce qui se gâte pour
+$a=13$ : trouvez deux lettres différentes qui se chiffrent en la même lettre chiffrée.
+\item[(c)] Comptez le nombre de clés $(a,b)$ valides.
+\item[(d)] Expliquez pourquoi, malgré ses centaines
+de clés au lieu de 25, le chiffre affine tombe exactement sous la même attaque par analyse
+fréquentielle que le chiffre de César.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le chiffre affine est le plus petit exemple d'un thème qui traverse toute
+la cryptographie : une application de chiffrement doit être une bijection, et savoir si une
+formule donne une bijection est une question de théorie des nombres (ici, l'inversibilité
+modulo 26). La même condition de PGCD, portée à des modules de 2048 bits, décide quels
+exposants sont des clés RSA légales.
+
+\begin{refs}
+\item Contexte : Chiffre affine --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffre_affine})
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Un espace de clés immense n'est pas la sécurité --- Lycée}]
+\textbf{CRY-04.} \textbf{Problème.} Un chiffre par substitution général remplace chaque
+lettre par une autre selon une permutation arbitraire de l'alphabet de 26 lettres : il y a
+donc $26!$ clés.
+\begin{enumerate}
+\item[(a)] Démontrez que $26! > 10^{26}$.
+\item[(b)] Montrez qu'un ordinateur
+essayant un milliard ($10^9$) de clés par seconde mettrait plus de $10^9$ années
+à les essayer toutes.
+\item[(c)] Et pourtant, les chiffres par substitution appliqués à un texte
+anglais de quelques centaines de lettres se cassent couramment à la main. Réconciliez cela
+avec (b) : dites précisément quelle propriété du chiffre l'attaque par analyse fréquentielle
+exploite, et formulez une leçon de la forme \og{} un grand espace de clés est une condition
+\_\_\_\_\_\_ de sécurité, mais non une condition \_\_\_\_\_\_ \fg{}.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est la plus ancienne leçon chèrement acquise du domaine : la recherche
+exhaustive n'est pas la seule attaque. Edgar Allan Poe a mis en scène le cassage à la main
+de chiffres par substitution dans \og{} Le Scarabée d'or \fg{} (1843), et al-Kindī possédait la
+méthode un millénaire plus tôt. La cryptographie moderne répond par des définitions : un
+schéma doit résister à \textit{toute} attaque efficace, et non seulement à l'attaque évidente ---
+raison pour laquelle ce sont les démonstrations de sécurité, et non les décomptes de clés,
+qui font la monnaie du domaine.
+
+\begin{refs}
+\item Contexte : Chiffrement par substitution --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffrement_par_substitution})
+\item Contexte : Attaque par force brute --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Attaque_par_force_brute})
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le chiffre de Vigenère et l'examen de Kasiski --- Lycée}]
+\textbf{CRY-24.} \textbf{Problème.} Le chiffre de Vigenère fixe un mot-clé, disons \texttt{LEMON}, et
+chiffre un message en décalant ses 1re, 2e, 3e, \dots{} lettres
+par les 1re, 2e, 3e, \dots{} lettres du mot-clé, en répétant
+celui-ci autant de fois qu'il le faut (avec $A = 0, \dots, Z = 25$ comme quantités de
+décalage).
+\begin{enumerate}
+\item[(a)] Expliquez précisément pourquoi l'analyse fréquentielle à un seul comptage de CRY-01
+échoue contre ce chiffre : une même lettre claire n'est plus toujours chiffrée par la même
+lettre chiffrée.
+\item[(b)] Montrez cependant que si le mot-clé a pour longueur $k$, alors les lettres du texte
+chiffré aux positions $1, k+1, 2k+1, \dots$ sont toutes chiffrées par un seul et même
+décalage de César --- et de même pour chacune des $k-1$ autres classes de positions.
+\item[(c)] Démontrez l'observation qui fonde l'examen de Kasiski : si un bloc de lettres claires se
+répète, et si les deux occurrences commencent à des positions dont la différence est un
+multiple de $k$, alors le texte chiffré se répète aussi. Expliquez comment le recueil des
+distances entre blocs chiffrés répétés et la prise de leurs diviseurs communs exposent la
+longueur $k$ du mot-clé.
+\item[(d)] Assemblez l'attaque complète : devinez $k$, scindez le texte chiffré en $k$ chiffres
+de César, et cassez chacun par analyse fréquentielle. Quelle propriété de la langue du texte
+clair l'attaque entière consomme-t-elle ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'idée polyalphabétique remonte à Alberti (1467) et à Bellaso
+(1553) ; elle fut attribuée à tort à Blaise de Vigenère et régna trois siècles durant
+comme \textit{le chiffre indéchiffrable}. Charles Babbage le cassa en privé vers 1854, et
+Friedrich Kasiski publia la méthode en 1863, faisant de la cryptanalyse une science
+systématique. La leçon a survécu à son époque : un chiffre à clé courte répétée n'est qu'un
+entrelacement de nombreux chiffres faibles, et le masque jetable de CRY-05 est exactement la
+limite dans laquelle le \og{} mot-clé \fg{} ne se répète jamais.
+
+\begin{refs}
+\item Contexte : Chiffre de Vigenère --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffre_de_Vigen%C3%A8re})
+\item Contexte : Cryptanalyse du chiffre de Vigenère (examen de Kasiski) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Cryptanalyse_du_chiffre_de_Vigen%C3%A8re})
+\item Lecture : Simon Singh, \textit{The Code Book}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le double chiffrement n'apporte rien --- Lycée, short}]
+\textbf{CRY-25.} \textbf{Problème.} Démontrez que chiffrer par un décalage de César de
+$a$ puis chiffrer le résultat par un décalage de $b$ revient exactement au décalage de
+César unique de $a + b \bmod 26$ --- de sorte que le double chiffrement de César (ou le
+centuple) n'est pas plus fort que le simple. Concluez que les 26 décalages forment un groupe
+pour la composition, et expliquez en une phrase pourquoi cette propriété de clôture est
+précisément ce qui rend ici le chiffrement répété sans valeur.
+\end{problem}
+
+\noindent Une famille de chiffres close par composition s'appelle un groupe, et pour
+de telles familles itérer le chiffrement n'achète rien. Savoir si DES avait ce défaut fut une
+question ouverte sérieuse jusqu'à ce que Campbell et Wiener démontrent en 1992 que DES n'est
+\textit{pas} un groupe --- raison pour laquelle Triple-DES l'a véritablement renforcé.
+
+\begin{refs}
+\item Contexte : Chiffrement par décalage (chiffre de César) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffrement_par_d%C3%A9calage})
+\item Contexte : Groupe (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Groupe_(math%C3%A9matiques)})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Quelle est la force d'une phrase secrète ? --- Lycée, short}]
+\textbf{CRY-26.} \textbf{Problème.} On construit une phrase secrète en choisissant quatre
+mots indépendamment et uniformément au hasard dans une liste publique de $7776 = 6^5$ mots.
+Montrez que le nombre de phrases secrètes possibles vaut environ $3.7 \times 10^{15}$ ---
+soit à peu près $4\log_2 7776 \approx 51.7$ bits d'entropie --- et comparez-le à un mot de
+passe de huit lettres minuscules aléatoires ($26^8$ possibilités, environ
+$37.6$ bits) : lequel est le plus difficile à deviner, et par quel facteur ?
+\end{problem}
+
+\noindent C'est le procédé Diceware (Arnold Reinhold, 1995) : la liste compte
+$6^5$ mots afin que cinq jets de dés en sélectionnent un uniformément. L'idée, popularisée
+par une bande dessinée d'xkcd, est celle de Shannon (CRY-11) déguisée --- ce qui compte est
+l'entropie de la \textit{procédure de sélection}, non l'air compliqué du résultat, et le
+caractère public de la procédure ne coûte rien.
+
+\begin{refs}
+\item Contexte : Diceware --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Diceware})
+\item Contexte : Robustesse d'un mot de passe --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Robustesse_d%27un_mot_de_passe})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Clés de contrôle : attraper les erreurs que les gens font vraiment --- Lycée}]
+\textbf{CRY-36.} \textbf{Problème.} Un ISBN-10 est une suite de chiffres $d_1 d_2 \dots d_{10}$, dont le
+dernier peut aussi être le symbole X valant 10, vérifiant
+\[ \sum_{i=1}^{10} i \, d_i \;\equiv\; 0 \pmod{11}. \]
+Le dernier chiffre est choisi pour que cela soit vérifié.
+\begin{enumerate}
+\item[(a)] Démontrez que ce contrôle détecte toute erreur modifiant un seul chiffre, et toute erreur
+échangeant deux chiffres distincts --- qu'ils soient adjacents ou non. Où exactement votre
+démonstration utilise-t-elle que 11 est premier ?
+\item[(b)] Le contrôle des cartes bancaires (Luhn) travaille modulo 10 : en lisant depuis la droite,
+on double un chiffre sur deux, on retranche 9 de toute valeur doublée dépassant 9, et l'on
+exige que le total soit $0 \bmod 10$. Montrez qu'il attrape toute erreur d'un chiffre et
+toute transposition de chiffres \textit{adjacents} sauf une, et trouvez cette exception.
+\item[(c)] Démontrez que l'exception est inévitable pour les schémas de cette forme : aucun contrôle
+du type $\sum_i a_i d_i \equiv 0 \pmod{10}$, à poids entiers fixés $a_i$, ne peut
+détecter à la fois toutes les erreurs d'un chiffre et toutes les transpositions adjacentes.
+(Montrez que la détection des erreurs simples force tous les $a_i$ à être impairs, et voyez
+ce que cela fait à $a_i - a_{i+1}$.)
+\end{enumerate}
+
+\end{problem}
+
+\noindent En 1969 Jacobus Verhoeff fit une chose inhabituelle pour un mathématicien :
+avant de concevoir un code, il collecta des données sur les fautes que commettent les êtres
+humains en recopiant des nombres. Les chiffres isolément faux représentaient environ quatre
+erreurs sur cinq, les transpositions adjacentes l'essentiel du reste --- ce sont donc les deux
+classes qu'une clé de contrôle décimale doit attraper, et la question (c) montre que
+l'arithmétique modulo 10 ne peut attraper les deux. La réponse de Verhoeff fut d'abandonner
+tout à fait l'addition et de calculer dans le groupe diédral d'ordre 10, dont la
+non-commutativité fournit exactement ce qui manque à l'addition modulaire. L'autre solution,
+celle des libraires, fut de changer de module : l'ISBN-10 a pris 11, au prix d'un onzième
+symbole X. Lorsque le commerce du livre a fusionné avec le système mondial de codes-barres en
+2007, l'ISBN-13 a adopté les poids 1 et 3 modulo 10 et a discrètement abandonné la garantie
+sur les transpositions.
+
+\begin{refs}
+\item Contexte : Clé de contrôle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Cl%C3%A9_de_contr%C3%B4le})
+\item Contexte : Formule de Luhn --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_de_Luhn})
+\item Contexte : International Standard Book Number --- Wikipédia (\url{https://fr.wikipedia.org/wiki/International_Standard_Book_Number})
+\item Lecture : J. Verhoeff, \textit{Error Detecting Decimal Codes}, Mathematical Centre Tracts 29 (Amsterdam, 1969)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Arbres de Merkle : un reçu de la taille d'un logarithme --- Lycée}]
+\textbf{CRY-41.} \textbf{Problème.} Un journal public contient $n = 2^k$ enregistrements $x_1, \dots, x_n$.
+Hachez chaque enregistrement pour obtenir les feuilles d'un arbre binaire, puis hachez à
+répétition les paires voisines --- en remplaçant deux valeurs $u, v$ par $h(u \,\|\, v)$,
+où $\|$ désigne la concaténation --- jusqu'à ce qu'il ne reste qu'une valeur : la
+\textit{racine}. Supposez seulement que la fonction de hachage $h$ est \textit{résistante aux
+collisions}, au sens où personne ne peut exhiber deux entrées différentes de même
+sortie.
+\begin{enumerate}
+\item[(a)] Démontrez qu'il y a exactement $k = \log_2 n$ niveaux au-dessus des feuilles, et
+comptez le nombre total de calculs de hachage nécessaires pour construire l'arbre entier.
+Remarquez que la racine publiée est une unique valeur de hachage, si grand que soit $n$.
+\item[(b)] Une \textit{preuve d'inclusion} pour l'enregistrement $x_i$ est la liste des valeurs
+sœurs rencontrées sur le chemin de la feuille $i$ jusqu'à la racine. Montrez que cette
+liste compte exactement $k$ entrées, et décrivez précisément le calcul par lequel un
+vérificateur qui ne connaît que la racine et $x_i$ la contrôle.
+\item[(c)] Démontrez la propriété de sécurité : si un exploitant de journal malhonnête convainc le
+vérificateur qu'un certain $y \ne x_i$ occupe la position $i$ d'un arbre de \textit{même}
+racine, alors quelque part le long des deux chemins il existe deux entrées différentes de
+$h$ ayant la même sortie, contredisant la résistance aux collisions. (Comparez les deux
+chemins niveau par niveau et considérez le niveau le plus bas où les valeurs coïncident.)
+\item[(d)] Des chiffres, puis une subtilité. Avec $n = 2^{30}$ enregistrements et des valeurs de
+hachage de 32 octets, calculez la taille en octets d'une preuve d'inclusion et comparez-la au
+coût de l'envoi du journal entier. Expliquez ensuite ce qui se gâte si les feuilles et les
+nœuds internes sont hachés par exactement la même règle : montrez qu'un attaquant pourrait
+présenter un nœud interne comme s'il s'agissait d'un enregistrement, et dites ce qu'il faut
+intégrer à l'entrée de $h$ pour l'empêcher.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Ralph Merkle a décrit les arbres de hachage dans sa thèse de doctorat à
+Stanford en 1979 et les a brevetés la même année, comme moyen de signer de nombreux messages
+avec une seule valeur publique ; l'idée a dormi jusqu'à ce que le monde des systèmes découvre
+qu'elle résout le problème de prouver l'appartenance à une énorme collection à quelqu'un qui
+n'est pas disposé à la télécharger. Git nomme chaque commit par un arbre de hachages, Bitcoin
+résume les transactions de chaque bloc par une racine de Merkle, et Certificate Transparency ---
+créé après que la compromission en 2011 de l'autorité de certification DigiNotar fut passée
+inaperçue des semaines durant --- publie chaque certificat TLS émis dans un journal de Merkle en
+ajout seul, de sorte qu'un navigateur peut exiger une preuve au lieu de se fier à une
+promesse. La confusion décrite en (d) n'a rien d'hypothétique : la norme (RFC 6962) préfixe
+les entrées de feuille par un octet nul et les entrées internes par un octet égal à un,
+exactement pour cette raison.
+
+\begin{refs}
+\item Contexte : Arbre de Merkle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Arbre_de_Merkle})
+\item Contexte : Certificate Transparency --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Certificate_Transparency})
+\item Contexte : Fonction de hachage cryptographique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_de_hachage_cryptographique})
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Pourquoi le mode ECB dessine le manchot --- Lycée, short}]
+\textbf{CRY-42.} \textbf{Problème.} Un chiffrement par bloc chiffre des blocs de 16 octets
+sous une clé $K$ par une bijection $E_K$ de l'ensemble de tous les blocs de 16 octets ; le
+mode \textit{dictionnaire de codes électronique} (ECB) chiffre un long message en le découpant
+en blocs $P_1, P_2, \dots$ et en envoyant $E_K(P_1), E_K(P_2), \dots$. Démontrez que
+$P_i = P_j$ si et seulement si les $i$-ième et $j$-ième blocs chiffrés sont égaux --- pour
+tout chiffrement par bloc, toute clé, et si robuste que soit $E_K$ --- et décrivez exactement
+ce qu'une oreille indiscrète apprend, dès lors, du chiffrement ECB d'une image comportant de
+larges plages d'une seule couleur.
+\end{problem}
+
+\noindent La démonstration standard est une image de Tux, le manchot de Linux,
+chiffrée en mode ECB : les couleurs changent et le manchot reste parfaitement visible. ECB
+fut l'un des quatre modes publiés avec DES en 1980 et il a survécu dans les logiciels depuis
+lors, ce qui explique que cette image a probablement empêché plus de brèches réelles
+qu'aucun théorème. L'acte d'accusation formel arrive plus loin sur cette page : un schéma ECB
+est déterministe, et CRY-38(a) montre qu'aucun schéma déterministe ne peut satisfaire la
+définition moderne de la sécurité, si incassable que soit le chiffrement sous-jacent.
+
+\begin{refs}
+\item Contexte : Mode d'opération (cryptographie) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mode_d%27op%C3%A9ration_(cryptographie)})
+\item Contexte : Chiffrement par bloc --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffrement_par_bloc})
+\end{refs}
+
+\bigskip
+
+
+\section*{Licence}
+
+\begin{problem}[{Le masque jetable a le secret parfait --- Licence}]
+\textbf{CRY-05.} \textbf{Problème.} Messages, clés et textes chiffrés sont des chaînes
+de $n$ bits ; la clé $K$ est tirée uniformément au hasard et utilisée une seule fois ; le
+chiffrement est le OU exclusif bit à bit, $C = M \oplus K$. Shannon a appelé un schéma de
+chiffrement \textit{parfaitement secret} si, pour toute loi a priori sur les messages, tout
+message $m$ et tout texte chiffré $c$,
+\[ \Pr[M=m \mid C=c] \;=\; \Pr[M=m], \]
+c'est-à-dire si voir le texte chiffré ne change en rien les croyances de l'oreille
+indiscrète.
+\begin{enumerate}
+\item[(a)] Démontrez que le masque jetable est parfaitement secret.
+\item[(b)] Démontrez la réciproque de Shannon :
+tout schéma parfaitement secret exige au moins autant de clés que de messages, de sorte que
+le secret parfait ne peut jamais coûter moins cher que le masque jetable.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le masque a été breveté par Gilbert Vernam (1919) et sa discipline
+d'usage unique préconisée par Joseph Mauborgne, mais le \textit{théorème} --- à la fois qu'il est
+incassable et que l'incassabilité a exactement ce prix --- est de Claude Shannon, dans
+\og{} Communication Theory of Secrecy Systems \fg{} (1949), l'article qui a fondé la cryptographie
+mathématique. La réciproque de (b) explique toute la forme du sujet moderne : puisque nous
+refusons d'acheminer des clés gigantesques, nous nous contentons de la sécurité
+calculatoire, et chaque schéma ci-dessous vit avec une hypothèse de difficulté non
+démontrée.
+
+\begin{refs}
+\item Contexte : Masque jetable --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Masque_jetable})
+\item Contexte : Sécurité inconditionnelle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9curit%C3%A9_inconditionnelle})
+\item Article : C. E. Shannon, "Communication Theory of Secrecy Systems" (1949), à propos de l'article --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Communication_Theory_of_Secrecy_Systems})
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le masque utilisé deux fois : réemploi et ruine --- Licence}]
+\textbf{CRY-06.} \textbf{Problème.} Deux messages ont été chiffrés avec le
+\textit{même} masque jetable : $c_1 = m_1 \oplus k$ et $c_2 = m_2 \oplus k$.
+\begin{enumerate}
+\item[(a)] Démontrez que $c_1 \oplus c_2 = m_1 \oplus m_2$ : la clé disparaît entièrement.
+\item[(b)] Expliquez pourquoi $m_1 \oplus m_2$, pour deux messages en langue naturelle, est loin
+d'être aléatoire, et décrivez une méthode pour en récupérer les deux messages.
+\item[(c)] Mettez votre
+méthode à l'œuvre. Les deux textes clairs ci-dessous sont des phrases anglaises en
+majuscules et espaces (octets ASCII), chiffrées avec le même masque de 33 octets ; textes
+chiffrés en hexadécimal : 
+\texttt{c1 = 6dc1c864836e81da216d2b5af91cd46c12d1c6578a41f1c8b52428baebbe9f304b} 
+\texttt{c2 = 74ccc810f36297a93776594a9110a7030dc2a9479c4efcdcb8243da185b9973751} 
+Retrouvez les deux phrases.
+\item[(d)] Réconciliez cette rupture avec CRY-05 : quelle hypothèse
+du théorème du secret parfait a été violée ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Ce n'est pas une fable de salle de classe. Pendant et après la Seconde
+Guerre mondiale, des chiffreurs soviétiques sous pression de production réutilisèrent des
+pages de masque ; le projet Venona de l'armée américaine exploita exactement l'identité de
+(a) pour lire des milliers de messages du KGB sur quatre décennies. La même bévue s'est
+répétée dans les logiciels depuis lors --- un chiffrement de flux à nonce répété est un masque
+utilisé deux fois --- d'où la maxime gravée au fronton du domaine : \og{} ne jamais réutiliser de
+matière à clé \fg{}.
+
+\begin{refs}
+\item Contexte : Masque jetable --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Masque_jetable})
+\item Contexte : Projet Venona --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Projet_Venona})
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Exponentiation modulaire rapide --- Licence}]
+\textbf{CRY-07.} \textbf{Problème.} La cryptographie à clé publique calcule sans cesse
+$a^e \bmod n$ pour des nombres de plusieurs centaines de chiffres.
+\begin{enumerate}
+\item[(a)] Décrivez la
+méthode \og{} élever au carré et multiplier \fg{} (carrés répétés pilotés par l'écriture binaire de
+$e$) et démontrez qu'elle calcule $a^e \bmod n$ en au plus
+$2\lfloor \log_2 e \rfloor$ multiplications modulo $n$.
+\item[(b)] Expliquez pourquoi réduire
+modulo $n$ après chaque multiplication est essentiel --- estimez le nombre de chiffres
+qu'aurait $a^e$ lui-même pour $a$ et $e$ de 300 chiffres.
+\item[(c)] Calculez
+$5^{2026} \bmod 2027$ à la main, et montrez que la méthode naïve (2025 multiplications
+successives) dépasse tout ordinateur lorsque l'exposant a 300 chiffres, tandis que
+\og{} carré et multiplie \fg{} n'a besoin que de quelques milliers de multiplications.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les carrés répétés sont anciens --- ils apparaissent dans la prosodie
+sanskrite de Pingala (avant 200 av. J.-C.) pour calculer des puissances --- mais ils sont
+devenus une infrastructure porteuse en 1976 : sans eux, Diffie--Hellman et RSA seraient
+inutilisables, car leur sécurité exige des exposants si grands qu'une exponentiation naïve
+survivrait à l'univers. C'est l'exemple standard d'une tâche d'apparence exponentielle qui
+cache un algorithme logarithmique.
+
+\begin{refs}
+\item Contexte : Exponentiation modulaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Exponentiation_modulaire})
+\item Contexte : Exponentiation rapide --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Exponentiation_rapide})
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Diffie--Hellman : correction et hypothèse exacte --- Licence}]
+\textbf{CRY-08.} \textbf{Problème.} Fixez un grand nombre premier $p$ et un générateur $g$
+du groupe multiplicatif modulo $p$. Alice choisit un secret $a$ et envoie
+$A = g^a \bmod p$ ; Bob choisit un secret $b$ et envoie $B = g^b \bmod p$ ; chacun
+élève ce qu'il a reçu à la puissance de son propre secret.
+\begin{enumerate}
+\item[(a)] Démontrez que les deux parties aboutissent
+à la même valeur $g^{ab} \bmod p$.
+\item[(b)] Soyez maintenant précis sur la sécurité. Définissez le
+problème du logarithme discret (DLP : à partir de $g^a$ trouver $a$), le problème
+Diffie--Hellman calculatoire (CDH : à partir de $g^a, g^b$ trouver $g^{ab}$) et le
+problème décisionnel (DDH : distinguer $g^{ab}$ d'un élément aléatoire). Démontrez la
+chaîne de réductions : un algorithme pour DLP résout CDH, et un algorithme pour CDH résout
+DDH. Dites ensuite exactement lequel des trois doit être difficile pour que la clé espionnée
+soit (i) irrécupérable, (ii) indistinguable de l'aléa --- et expliquez pourquoi \og{} DLP est
+difficile \fg{} à lui seul n'est \textit{pas} connu comme suffisant.
+\item[(c)] Montrez qu'un homme du milieu capable de modifier
+le trafic met le protocole complètement en échec : les hypothèses de difficulté ne peuvent
+donc pas remplacer l'authentification.
+\end{enumerate}
+
+\end{problem}
+
+\noindent \og{} New Directions in Cryptography \fg{} (1976) de Whitfield Diffie et Martin
+Hellman, s'appuyant sur les casse-tête de Ralph Merkle, proposait la première méthode
+permettant à deux inconnus de convenir d'un secret en public --- l'acte fondateur de la
+cryptographie à clé publique. (Ellis, Cocks et Williamson au GCHQ avaient trouvé les idées
+plus tôt, dans le secret.) La question (b) est la vraie leçon du problème : la cryptographie
+moderne vit ou meurt selon qu'elle énonce \textit{exactement} quel problème calculatoire
+l'adversaire est supposé incapable de résoudre.
+
+\begin{refs}
+\item Contexte : Échange de clés Diffie--Hellman --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89change_de_cl%C3%A9s_Diffie-Hellman})
+\item Contexte : Hypothèse décisionnelle de Diffie--Hellman --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Hypoth%C3%A8se_d%C3%A9cisionnelle_de_Diffie-Hellman})
+\item Article : W. Diffie et M. Hellman, "New Directions in Cryptography," IEEE Transactions on Information Theory (1976)
+\item Cours : Stanford, Dan Boneh, Cryptography I (Coursera) (\url{https://www.coursera.org/learn/crypto})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{RSA : démontrez que le déchiffrement marche --- et que la version scolaire est cassée --- Licence}]
+\textbf{CRY-09.} \textbf{Problème.} Soit $n = pq$ avec $p, q$ premiers distincts,
+et choisissez $e$ avec $\gcd(e,(p-1)(q-1)) = 1$ et $d$ avec
+$ed \equiv 1 \pmod{(p-1)(q-1)}$. Le chiffrement est $m \mapsto m^e \bmod n$, le
+déchiffrement $c \mapsto c^d \bmod n$.
+\begin{enumerate}
+\item[(a)] Démontrez $m^{ed} \equiv m \pmod n$ pour
+\textit{tout} $m \in \mathbb{Z}/n\mathbb{Z}$ --- d'abord lorsque $\gcd(m,n)=1$ à l'aide du
+théorème d'Euler, puis en général via le petit théorème de Fermat appliqué séparément modulo
+$p$ et modulo $q$ et le théorème des restes chinois.
+\item[(b)] Montrez maintenant que le \og{} RSA scolaire \fg{}
+tel qu'énoncé n'est pas un schéma de chiffrement sûr : il est déterministe, de sorte qu'un
+adversaire capable de deviner une courte liste de textes clairs possibles (un vote :
+OUI/NON) identifie le message en chiffrant les candidats ; et il est malléable --- à partir
+d'un chiffré $c$ de $m$, produisez un chiffré valide de $2m$ sans connaître $m$.
+\item[(c)] Expliquez
+en un paragraphe à quoi sert un remplissage aléatoire.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Rivest, Shamir et Adleman ont trouvé le schéma en 1977, un an après que
+Diffie--Hellman eut appelé de ses vœux une telle fonction \og{} à trappe \fg{} (Clifford Cocks
+l'avait secrètement au GCHQ en 1973). La question (a) est un joyau de théorie des nombres
+appliquée --- les pièces qui travaillent sont Fermat, Euler et le théorème des restes chinois,
+développés comme mathématiques pures dans le groupe de problèmes sur la primalité de la page
+Théorie des nombres (\url{pure-number-theory.html}), trois siècles avant que quiconque
+puisse les dépenser. La question (b) enseigne la seconde leçon fondatrice : un schéma
+correct n'est pas encore un schéma sûr ; la définition de la sécurité fait un vrai
+travail.
+
+\begin{refs}
+\item Contexte : Chiffrement RSA --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffrement_RSA})
+\item Contexte : Théorème d'Euler (arithmétique) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euler_(arithm%C3%A9tique)})
+\item Article : R. Rivest, A. Shamir, L. Adleman, "A Method for Obtaining Digital Signatures and Public-Key Cryptosystems," Communications of the ACM (1978)
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'attaque des anniversaires : établissez la borne en $\surd$N --- Licence}]
+\textbf{CRY-10.} \textbf{Problème.} Une fonction de hachage rend des valeurs dans un ensemble de taille
+$N$ ; modélisez ses sorties sur des entrées distinctes comme des tirages uniformes
+indépendants.
+\begin{enumerate}
+\item[(a)] Montrez
+qu'après $k$ tirages la probabilité que toutes les valeurs soient distinctes vaut
+$\prod_{i=1}^{k-1}\bigl(1 - \frac{i}{N}\bigr)$ et, à l'aide de $1-x \le e^{-x}$,
+déduisez-en qu'une collision survient avec probabilité au moins
+$1 - e^{-k(k-1)/2N}$.
+\item[(b)] Concluez que $k \approx 1.18\sqrt{N}$ tirages suffisent
+pour une collision de probabilité $1/2$ --- et démontrez une borne correspondante dans
+l'autre sens, en montrant que $o(\sqrt N)$ tirages trouvent une collision avec probabilité
+$o(1)$, de sorte que $\sqrt N$ est la vérité et non un artefact.
+\item[(c)] Tirez-en la
+conséquence pratique : une empreinte de $n$ bits n'offre qu'environ $n/2$ bits de
+résistance aux collisions. Expliquez pourquoi SHA-256 a une sortie de 256 bits quand la
+cible réelle est \og{} 128 bits de sécurité \fg{}.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est le paradoxe des anniversaires --- 23 personnes suffisent pour un
+anniversaire commun --- transformé en arme. Les attaques par collision gouvernent les marges de
+conception de toute fonction de hachage ; les ruptures de MD5 et SHA-1 (Wang et al.
+2004-05 ; la collision SHAttered sur SHA-1, 2017) ont réussi en battant la borne générique
+$\sqrt N$, ce qui est bien la raison pour laquelle cette borne doit devenir une seconde
+nature. Le même $\sqrt N$ resurgit en CRY-13 et dans la recherche quantique de Grover --- une
+étrange rime à travers le domaine.
+
+\begin{refs}
+\item Contexte : Attaque des anniversaires --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Attaque_des_anniversaires})
+\item Contexte : Paradoxe des anniversaires --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Paradoxe_des_anniversaires})
+\item Contexte : Fonction de hachage cryptographique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_de_hachage_cryptographique})
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'entropie à partir des premiers principes --- Licence}]
+\textbf{CRY-11.} \textbf{Problème.} Pour une variable aléatoire $X$ prenant la valeur $i$
+avec probabilité $p_i$, Shannon a défini l'entropie
+\[ H(X) = -\sum_i p_i \log_2 p_i \qquad (\text{avec } 0\log 0 = 0). \]
+Démontrez-en les propriétés de base à partir de rien.
+\begin{enumerate}
+\item[(a)] $H(X) \ge 0$, avec égalité si et seulement si
+$X$ est déterministe.
+\item[(b)] Pour un alphabet de taille $n$, $H(X) \le \log_2 n$,
+avec égalité si et seulement si $X$ est uniforme (utilisez l'inégalité de Jensen, ou
+démontrez à la main la convexité nécessaire).
+\item[(c)] Si $X$ et $Y$ sont indépendantes alors
+$H(X,Y) = H(X) + H(Y)$.
+\item[(d)] Compréhension : Shannon a démontré que la continuité, la
+croissance en $n$ pour les lois uniformes et une règle naturelle de regroupement (règle de
+chaînage) forcent $H$ à valoir $-K\sum p_i \log p_i$ pour une constante $K$. Lisez
+l'énoncé de ce théorème d'unicité et expliquez avec vos propres mots pourquoi l'axiome de
+regroupement est celui qui porte tout le poids.
+\end{enumerate}
+
+\end{problem}
+
+\noindent \og{} A Mathematical Theory of Communication \fg{} (1948) s'ouvre en demandant ce
+que peut bien vouloir dire \og{} quantité d'information \fg{}, et répond par un théorème : les
+axiomes n'admettent qu'une seule fonction. L'entropie s'est ensuite révélée être la réponse
+exacte à deux questions concrètes d'ingénierie --- la compressibilité (CRY-19) et la capacité
+d'un canal (CRY-20) --- ce qui est le schéma de toute la théorie : définir, caractériser, puis
+faire correspondre la définition à une tâche opérationnelle. La même fonctionnelle
+réapparaît en physique statistique ; voyez le problème sur la distribution de Boltzmann sur
+la page Physique mathématique (\url{applied-physics.html}).
+
+\begin{refs}
+\item Contexte : Entropie de Shannon --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Entropie_de_Shannon})
+\item Article : C. E. Shannon, "A Mathematical Theory of Communication" (1948), à propos de l'article --- Wikipédia (\url{https://fr.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication})
+\item Lecture : Cover \& Thomas, \textit{Elements of Information Theory}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'inégalité de Kraft --- Licence}]
+\textbf{CRY-12.} \textbf{Problème.} Un code binaire attribue à chacun de $n$ symboles
+un mot de code, chaîne finie de bits ; c'est un \textit{code préfixe} si aucun mot de code
+n'est préfixe d'un autre (le décodage n'a alors jamais besoin de regarder en avant).
+\begin{enumerate}
+\item[(a)] Démontrez l'inégalité de Kraft :
+si un code préfixe a des longueurs de mots $\ell_1, \dots, \ell_n$, alors
+\[ \sum_{i=1}^{n} 2^{-\ell_i} \le 1. \]
+\item[(b)] Démontrez la réciproque : toutes longueurs vérifiant l'inégalité sont réalisées par un
+code préfixe.
+\item[(c)] Plus difficile (McMillan) : montrez que la même inégalité vaut pour tout
+code uniquement déchiffrable, préfixe ou non --- les codes préfixes ne coûtent donc rien en
+compression. (Considérez la puissance $k$-ième de $\sum 2^{-\ell_i}$ et dénombrez les
+chaînes.)
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'inégalité de Kraft (1949, tirée de son mémoire de master au MIT ; la
+réciproque de McMillan date de 1956) est le plancher combinatoire de toute la compression de
+données : elle convertit \og{} déchiffrable \fg{} en une contrainte analytique sur les longueurs,
+contre laquelle l'entropie peut être jouée comme borne inférieure. C'est la charnière entre
+l'entropie abstraite de CRY-11 et le théorème de compression de CRY-19, et l'argument de
+dénombrement sur les arbres de la question (a) est un petit classique de l'écriture des
+démonstrations.
+
+\begin{refs}
+\item Contexte : Inégalité de Kraft--McMillan --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Kraft})
+\item Contexte : Codage de Huffman --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Codage_de_Huffman})
+\item Lecture : Cover \& Thomas, \textit{Elements of Information Theory}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le chiffrement d'ElGamal : correction, malléabilité et hypothèse exacte --- Licence}]
+\textbf{CRY-27.} \textbf{Problème.} Fixez un groupe cyclique $G$ d'ordre $q$ de générateur $g$.
+La clé secrète d'Alice est $x$, sa clé publique $h = g^x$. Pour chiffrer
+$m \in G$, Bob tire un $r$ uniforme frais et envoie le couple
+\[ (c_1, c_2) = (g^r,\ m \cdot h^r). \]
+\begin{enumerate}
+\item[(a)] Démontrez la correction : Alice retrouve $m$ comme $c_2 \cdot (c_1^x)^{-1}$.
+\item[(b)] Observez que le chiffrement est aléatoire --- un même $m$ donne des chiffrés différents
+selon les jours --- de sorte que l'attaque \og{} deviner puis chiffrer \fg{} qui a cassé le RSA
+scolaire en CRY-09(b) échoue. Montrez cependant qu'ElGamal est malléable : à partir d'un
+chiffré de $m$, produisez un chiffré valide de $m \cdot m'$ sans connaître $m$.
+\item[(c)] Démontrez que retrouver $m$ à partir d'un chiffré et de la clé publique est
+\textit{équivalent} au problème Diffie--Hellman calculatoire de CRY-08 : un algorithme pour
+l'une des deux tâches en fournit un pour l'autre.
+\item[(d)] Dites pourquoi l'indistinguabilité des chiffrés équivaut à l'hypothèse décisionnelle de
+Diffie--Hellman, et démontrez le sens le plus facile (celui qui casse DDH distingue les
+chiffrés).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Taher ElGamal a publié le schéma en 1985 ; c'est l'échange de clés
+Diffie--Hellman (CRY-08) figé en un schéma de chiffrement --- $h^r$ est exactement le secret
+partagé, utilisé comme masque à usage unique. Ce fut le premier schéma à clé publique dont la
+sécurité est \textit{équivalente} à une hypothèse standard nette, et non simplement impliquée
+par elle, et ses descendants (sur les groupes de courbes elliptiques de CRY-14) tournent au
+sein des protocoles modernes. La malléabilité de la question (b), défaut pour le chiffrement,
+est la graine homomorphe des schémas de vote électronique.
+
+\begin{refs}
+\item Contexte : Cryptosystème de ElGamal --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Cryptosyst%C3%A8me_de_ElGamal})
+\item Article : T. ElGamal, "A Public Key Cryptosystem and a Signature Scheme Based on Discrete Logarithms," IEEE Transactions on Information Theory (1985)
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{RSA avec le théorème des restes chinois --- et l'attaque par faute qu'il invite --- Licence}]
+\textbf{CRY-28.} \textbf{Problème.} Soit $n = pq$ un module RSA d'exposant privé $d$ comme
+en CRY-09. Les implémentations pratiques ne calculent jamais $c^d \bmod n$ directement.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème des restes chinois pour deux modules premiers entre eux :
+l'application $x \mapsto (x \bmod p,\ x \bmod q)$ est un isomorphisme d'anneaux
+$\mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}/p\mathbb{Z} \times \mathbb{Z}/q\mathbb{Z}$,
+et donnez l'inverse explicite.
+\item[(b)] Justifiez la procédure de déchiffrement par restes chinois : calculez
+$m_p = c^{\,d \bmod (p-1)} \bmod p$ et $m_q = c^{\,d \bmod (q-1)} \bmod q$,
+puis recombinez par le théorème. Démontrez que le résultat est égal à $c^d \bmod n$ (c'est
+le petit théorème de Fermat qui autorise la réduction de l'exposant).
+\item[(c)] Chiffrez l'économie. Avec \og{} carré et multiplie \fg{} (CRY-07), chaque exponentiation de
+demi-taille emploie deux fois moins de multiplications, chacune sur des opérandes deux fois
+plus courts. En supposant une multiplication scolaire (coût quadratique en la longueur des
+opérandes), montrez que le facteur d'accélération total vaut environ 4.
+\item[(d)] Et voici la piqûre (Boneh--DeMillo--Lipton, 1997). Un attaquant provoque un incident
+matériel de sorte que $m_p$ soit calculé faussement tandis que $m_q$ est correct, et
+obtient la sortie fautive $\tilde m$ ainsi qu'une signature correcte $m$ du même message.
+Démontrez que $\gcd(\tilde m - m,\ n) = q$, de sorte qu'une seule faute factorise le
+module. Quelle contre-mesure bon marché cela impose-t-il ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'astuce des restes chinois est aussi vieille que le déploiement de RSA et
+figure dans toute implémentation sérieuse --- une accélération gratuite d'un facteur quatre
+achetée au vieux théorème de Sunzi. L'attaque par faute de 1997 de Boneh, DeMillo et Lipton
+a montré que la même structure est un couteau tourné vers l'intérieur : un seul bit basculé
+pendant une moitié du calcul livre la clé. Elle a ouvert le champ moderne de l'analyse par
+fautes et par canaux auxiliaires, où l'adversaire attaque la physique du calcul plutôt que
+les mathématiques du schéma.
+
+\begin{refs}
+\item Contexte : Théorème des restes chinois --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois})
+\item Contexte : Chiffrement RSA --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffrement_RSA})
+\item Article : D. Boneh, R. DeMillo, R. Lipton, "On the Importance of Checking Cryptographic Protocols for Faults," EUROCRYPT 1997
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La borne de Hamming et le code parfait (7,4) --- Licence}]
+\textbf{CRY-29.} \textbf{Problème.} Un code binaire de longueur $n$ est une partie
+$C \subseteq \{0,1\}^n$ ; sa distance minimale est la plus petite distance de Hamming
+(nombre de coordonnées qui diffèrent) entre mots de code distincts. Un code de distance
+minimale $2e+1$ corrige $e$ erreurs de bits quelconques par décodage au mot de code le
+plus proche.
+\begin{enumerate}
+\item[(a)] Démontrez la borne de Hamming (dite d'empilement de sphères) : si $C$ corrige $e$
+erreurs, alors
+\[ |C| \cdot \sum_{i=0}^{e} \binom{n}{i} \;\le\; 2^n . \]
+Un code atteignant l'égalité est dit \textit{parfait} : les boules de rayon $e$ centrées sur
+les mots de code pavent exactement $\{0,1\}^n$.
+\item[(b)] Construisez le code de Hamming $(7,4)$ : les 16 mots binaires
+$(d_1,d_2,d_3,d_4,p_1,p_2,p_3)$ dont les trois bits de parité vérifient
+$p_1 = d_1{+}d_2{+}d_4$, $p_2 = d_1{+}d_3{+}d_4$, $p_3 = d_2{+}d_3{+}d_4$
+(mod 2). Démontrez que sa distance minimale vaut 3 et vérifiez qu'il atteint la borne de (a)
+avec $e = 1$ : il est parfait.
+\item[(c)] Exhibez concrètement la correction d'une erreur : montrez que les trois contrôles de
+parité, convenablement lus, nomment la position de tout bit basculé (le syndrome \textit{est}
+l'adresse de l'erreur en binaire).
+\item[(d)] Compréhension : énoncez le théorème de classification (Tietäväinen 1973, après van
+Lint) : les seuls codes binaires parfaits non triviaux sont les codes de Hamming et le
+code de Golay $(23,12)$. Pourquoi la rareté de la perfection ne diminue-t-elle pas
+l'utilité des codes imparfaits (rappelez-vous la promesse de CRY-20) ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Richard Hamming, qui partageait un ordinateur à relais aux Bell Labs en
+1947, s'est lassé de voir ses travaux du week-end mourir sur une unique erreur détectée mais
+non corrigible, et il a inventé les premiers codes \textit{correcteurs} d'erreurs ; l'article
+de 1950 a créé la théorie des codes. Le code $(7,4)$ est le plus petit cas intéressant de
+la géométrie qui régit tout le sujet --- les mots de code comme centres de sphères dans
+l'espace de Hamming --- et la borne d'empilement de sphères de (a) est l'ombre combinatoire
+exacte de la limite de capacité de canal de Shannon (CRY-20).
+
+\begin{refs}
+\item Contexte : Borne de Hamming --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Borne_de_Hamming})
+\item Contexte : Code de Hamming (7,4) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Code_de_Hamming_(7,4)})
+\item Article : R. W. Hamming, "Error Detecting and Error Correcting Codes," Bell System Technical Journal (1950)
+\item Lecture : MacWilliams \& Sloane, \textit{The Theory of Error-Correcting Codes}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Compter les générateurs --- Licence, short}]
+\textbf{CRY-30.} \textbf{Problème.} En admettant que le groupe multiplicatif
+$(\mathbb{Z}/p\mathbb{Z})^\times$ est cyclique pour tout nombre premier $p$, démontrez
+qu'il possède exactement $\varphi(p-1)$ générateurs, où $\varphi$ est l'indicatrice
+d'Euler.
+\end{problem}
+
+\noindent Gauss a démontré la cyclicité dans les \textit{Disquisitiones} (1801) ;
+le décompte importe en pratique parce que Diffie--Hellman (CRY-08) a besoin d'un générateur,
+et ce résultat dit qu'une fraction honorable des éléments fera l'affaire --- l'une des raisons
+pour lesquelles la génération de paramètres est faisable. La théorie des nombres se poursuit
+sur la page Théorie des nombres (\url{pure-number-theory.html}).
+
+\begin{refs}
+\item Contexte : Racine primitive modulo n --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Racine_primitive_modulo_n})
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les fonctions ne peuvent pas créer d'entropie --- Licence, short}]
+\textbf{CRY-31.} \textbf{Problème.} Avec l'entropie de CRY-11, démontrez que pour toute
+fonction $f$ et toute variable aléatoire $X$,
+$ H(f(X)) \le H(X) $,
+avec égalité si et seulement si $f$ est injective sur le support de $X$.
+\end{problem}
+
+\noindent Ce fait d'apparence anodine est la raison pour laquelle aucune quantité de
+hachage, d'étirement ou de \og{} brassage \fg{} ne peut améliorer un mot de passe faible : un
+traitement déterministe ne peut que détruire de l'information, jamais en frapper. C'est le
+cas zéro de l'inégalité de traitement de données, cheval de trait de la théorie de
+l'information.
+
+\begin{refs}
+\item Contexte : Entropie de Shannon --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Entropie_de_Shannon})
+\item Lecture : Cover \& Thomas, \textit{Elements of Information Theory}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'horloge comme oracle : les attaques temporelles comme modèle mathématique --- Licence}]
+\textbf{CRY-37.} \textbf{Problème.} Un chiffre est une fonction ; une \textit{implémentation} est une fonction
+plus un temps d'exécution, et ce temps d'exécution est une sortie supplémentaire que le
+concepteur n'a jamais voulu publier. Modélisez l'exponentiation \og{} carré et multiplie \fg{}
+(CRY-07) calculant $g^{d} \bmod N$ : en traitant les bits de $d$ depuis le haut, chaque
+bit coûte une élévation au carré de coût $S$, et chaque bit égal à 1 coûte une
+multiplication supplémentaire de coût $M$. Le temps mesuré vaut
+$T = c + Sn + M\,w(d) + \xi$, où $n$ est la longueur en bits, $w(d)$ le poids de
+Hamming, et $\xi$ un bruit de mesure de moyenne 0 et d'écart type
+$\sigma$.
+\begin{enumerate}
+\item[(a)] Démontrez que $T$ est une fonction affine de $w(d)$, et estimez combien
+d'échantillons de temps indépendants un adversaire doit prendre pour trancher entre deux
+exposants candidats dont les poids de Hamming diffèrent de 1, avec une probabilité d'erreur
+au plus $\delta$. Exprimez la réponse en fonction de $\sigma/M$ et de $\delta$, et
+expliquez pourquoi le coût de l'attaque ne croît qu'avec le \textit{carré} du niveau de
+bruit.
+\item[(b)] Formalisez la récupération bit par bit de Kocher comme une procédure séquentielle : les
+$j-1$ premiers bits de $d$ étant déjà connus, l'adversaire simule les deux
+continuations sur chacune de nombreuses bases connues $g_1,\dots,g_m$ et compare les temps
+prédits aux temps mesurés. Énoncez l'hypothèse de modélisation précise sous laquelle la
+bonne devinette donne des temps résiduels de variance strictement plus petite que la
+mauvaise, et démontrez-le sous cette hypothèse. Expliquez pourquoi cela fait passer la
+récupération de clé d'exponentielle à linéaire en $n$.
+\item[(c)] Le même phénomène sans aucune statistique : une étiquette d'authentification de message
+de $n$ octets est vérifiée par une comparaison qui rend la main dès que deux octets
+diffèrent. Démontrez qu'un adversaire capable de chronométrer le vérificateur retrouve
+l'étiquette en $O(256n)$ requêtes plutôt que les $256^{n}$ qu'exige une recherche
+exhaustive. Énoncez ensuite, comme propriété précise d'un programme, ce que doit vouloir dire
+\og{} à temps constant \fg{} pour que cette attaque soit impossible, et vérifiez que l'échelle de
+Montgomery pour l'exponentiation possède cette propriété alors que \og{} carré et multiplie \fg{} ne
+l'a pas.
+\item[(d)] Les contre-mesures aussi sont des théorèmes. L'aveuglement RSA calcule $m = (r^{e}x)^{d}
+r^{-1} \bmod N$ pour un $r$ aléatoire frais. Démontrez que la valeur ainsi élevée à la
+puissance est alors uniformément distribuée et indépendante de $x$, et déterminez
+exactement lesquelles des attaques ci-dessus cela met en échec --- et lesquelles cela laisse
+entièrement intactes.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Paul Kocher n'était pas un cryptographe universitaire lorsqu'il a remarqué,
+en 1996, que les mathématiques de RSA ne disent rien du temps que prend RSA. L'article a
+brisé une hypothèse véritable du domaine --- qu'on pouvait analyser la sécurité d'un chiffre à
+partir de son seul comportement entrée-sortie --- et il a ouvert la cryptanalyse par canaux
+auxiliaires, étendue par la suite à la consommation électrique, au rayonnement
+électromagnétique, à l'acoustique et aux caches des processeurs. Brumley et Boneh ont montré
+en 2003 que l'attaque fonctionne à travers un réseau contre OpenSSL, tuant l'espoir que le
+bruit sauverait les systèmes réels ; la question (a) explique pourquoi, puisque le bruit ne
+coûte à l'attaquant que davantage d'échantillons. La conséquence durable est un changement de
+ce que doit dire une spécification : les normes cryptographiques modernes contraignent le
+flot de contrôle et les motifs d'accès mémoire, et pas seulement l'algèbre, et \og{} à temps
+constant \fg{} est désormais une propriété que l'on démontre.
+
+\begin{refs}
+\item Contexte : Attaque temporelle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Attaque_temporelle})
+\item Contexte : Attaque par canal auxiliaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Attaque_par_canal_auxiliaire})
+\item Article : P. C. Kocher, "Timing Attacks on Implementations of Diffie-Hellman, RSA, DSS, and Other Systems," CRYPTO 1996
+\item Article : D. Brumley \& D. Boneh, "Remote Timing Attacks are Practical," USENIX Security 2003
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Registres à décalage à rétroaction linéaire : pourquoi la linéarité est fatale --- Licence}]
+\textbf{CRY-43.} \textbf{Problème.} Un LFSR binaire de longueur $L$ détient un état
+$(s_0, \dots, s_{L-1}) \in \mathbb{F}_2^L$ et le prolonge indéfiniment par la récurrence
+\[ s_{j+L} \;=\; c_1 s_{j+L-1} + c_2 s_{j+L-2} + \cdots + c_L s_j \pmod 2 , \]
+en produisant $s_0, s_1, s_2, \dots$. Un chiffrement de flux peut utiliser cette suite comme
+suite chiffrante, en chiffrant par OU exclusif exactement comme le masque jetable de
+CRY-05.
+\begin{enumerate}
+\item[(a)] Démontrez que la sortie est ultimement périodique de période au plus $2^L - 1$, et que
+tout état initial non nul donne la période exactement $2^L - 1$ précisément lorsque le
+polynôme de connexion $C(x) = 1 + c_1 x + \cdots + c_L x^L$ est primitif sur
+$\mathbb{F}_2$. (Identifiez l'espace des états à $\mathbb{F}_2[x]/(C)$ et lisez la
+récurrence comme la multiplication par $x$ ; lorsque $C$ est irréductible, c'est le corps
+$\mathbb{F}_{2^L}$.)
+\item[(b)] Cassez-le maintenant. Supposez qu'un adversaire apprenne $2L$ bits consécutifs de la
+suite chiffrante --- ce qui arrive dès qu'un fragment du texte clair est deviné. Montrez que
+les prises inconnues $c_1, \dots, c_L$ vérifient alors un système de $L$ équations
+linéaires sur $\mathbb{F}_2$, et démontrez que la solution est unique lorsque la matrice
+$L \times L$ associée est inversible. Concluez que tout le passé et tout l'avenir de la
+suite chiffrante s'ensuivent, à un coût polynomial en $L$ plutôt que les $2^L$
+qu'exigerait de deviner l'état.
+\item[(c)] Berlekamp et Massey suppriment les deux défauts de (b) : aucune hypothèse
+d'inversibilité, et $L$ n'a pas à être connu d'avance. Définissez la \textit{complexité
+linéaire} d'une suite binaire finie comme la longueur du plus court LFSR qui la produit,
+énoncez la garantie de l'algorithme --- il retrouve la complexité linéaire et les prises à
+partir de $2L$ termes en $O(L^2)$ opérations sur les bits --- et démontrez le lemme
+d'unicité sur lequel il repose : si deux LFSR de longueur au plus $L$ coïncident sur $2L$
+termes consécutifs, ils engendrent la même suite infinie.
+\item[(d)] Les concepteurs détruisent donc la linéarité plutôt que les registres. Pour chacun des
+procédés suivants, expliquez quelle non-linéarité il introduit et par quoi l'attaque de (b)
+doit être remplacée : combiner plusieurs LFSR par une fonction booléenne non linéaire ;
+cadencer irrégulièrement un registre sous le contrôle d'un autre, comme dans l'A5/1 du GSM ;
+filtrer un registre unique à travers une fonction de sortie non linéaire. Dans chaque cas,
+dites quelle doit être la complexité linéaire de la suite obtenue pour que l'attaque de (b)
+soit hors de portée.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les registres à décalage ont été le cheval de trait des chiffrements de
+flux matériels pendant un demi-siècle : quelques portes logiques, un bit par cycle d'horloge,
+et une période démontrable. Solomon Golomb en a rassemblé les mathématiques dans \textit{Shift
+Register Sequences} (1967), pour une bonne part développées au Jet Propulsion Laboratory
+pour des signaux de télémétrie plutôt que pour le secret. Puis l'algorithme de décodage des
+codes BCH d'Elwyn Berlekamp (1968) a été reformulé par James Massey en 1969 comme synthèse de
+registres à décalage, et la complexité linéaire est devenue d'un même coup l'étalon standard
+et la notice nécrologique standard des générateurs de suites chiffrantes --- une suite ne vaut
+que le plus court registre capable de la produire. L'histoire des déploiements le confirme :
+l'A5/1 du GSM, l'E0 de Bluetooth et le Content Scrambling System des DVD combinaient tous des
+LFSR, et tous sont tombés.
+
+\begin{refs}
+\item Contexte : Registre à décalage à rétroaction linéaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Registre_%C3%A0_d%C3%A9calage_%C3%A0_r%C3%A9troaction_lin%C3%A9aire})
+\item Contexte : Algorithme de Berlekamp--Massey --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Berlekamp%E2%80%93Massey_algorithm})
+\item Contexte : Chiffrement de flux --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffrement_de_flux})
+\item Article : J. L. Massey, "Shift-register synthesis and BCH decoding," IEEE Transactions on Information Theory 15 (1969)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le mode CBC et l'oracle de remplissage --- Licence}]
+\textbf{CRY-44.} \textbf{Problème.} Le chaînage de blocs chiffrés répare le défaut de CRY-42. Avec des blocs
+de $b$ octets, un chiffrement par bloc $E_K$ et un vecteur d'initialisation aléatoire
+frais $C_0 = IV$, le chiffrement s'écrit
+\[ C_i \;=\; E_K\bigl(P_i \oplus C_{i-1}\bigr), \qquad i = 1, \dots, m . \]
+Les messages sont d'abord complétés jusqu'à un multiple de $b$ octets en ajoutant $t$
+octets tous égaux au nombre $t$, où $1 \le t \le b$ (la règle PKCS\#7) ; le déchiffreur
+contrôle que le remplissage retrouvé a bien cette forme.
+\begin{enumerate}
+\item[(a)] Démontrez que $P_i = E_K^{-1}(C_i) \oplus C_{i-1}$ inverse le chiffrement, et qu'avec un
+$IV$ frais des blocs clairs égaux ne produisent plus des blocs chiffrés égaux. Montrez aussi
+qu'altérer un bloc chiffré abîme exactement deux blocs clairs, et dites lesquels.
+\item[(b)] Démontrez que CBC est malléable d'une manière très précise : basculer le bit $j$ de
+$C_{i-1}$ bascule le bit $j$ de $P_i$ tout en transformant $P_{i-1}$ en une valeur
+incontrôlée. Concluez que le chiffrement CBC n'offre absolument aucune garantie
+d'intégrité.
+\item[(c)] Passons à l'attaque. Supposez qu'un serveur déchiffre les textes chiffrés qu'on lui
+soumet et ne révèle --- par un message d'erreur, une différence de temps ou tout autre canal ---
+rien d'autre que le fait que le remplissage était bien formé ou non. Étant donné un couple
+$(C_{i-1}, C_i)$, montrez comment un adversaire autorisé à soumettre des valeurs modifiées
+de $C_{i-1}$ retrouve le dernier octet de $P_i$ en au plus 256 requêtes, puis l'octet qui
+le précède, et ainsi de suite. Démontrez que le texte clair entier tombe en environ
+$256\,b\,m$ requêtes, et énoncez avec soin l'ambiguïté qui surgit sur le tout premier octet
+retrouvé et la façon dont l'adversaire la lève.
+\item[(d)] Tirez la morale dans le vocabulaire de CRY-38. L'oracle de remplissage est une attaque à
+textes chiffrés choisis, et le chiffrement CBC peut être IND-CPA sûr tout en y succombant
+entièrement : IND-CPA n'est donc pas le mot de la fin. Définissez le chiffrement authentifié
+et démontrez que la composition \og{} chiffrer puis authentifier \fg{} --- transmettre $C$ avec une
+étiquette infalsifiable portant sur $C$, et refuser de déchiffrer tout ce dont l'étiquette
+échoue --- rend l'attaque de (c) impossible.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Serge Vaudenay a présenté cette attaque à EUROCRYPT 2002 et, l'année
+suivante, Canvel, Hiltgen, Vaudenay et Vuagnoux l'ont retournée contre de vrais serveurs
+SSL/TLS par le seul chronométrage, alors que ces serveurs avaient été soigneusement écrits
+pour rendre des messages d'erreur identiques. La même fissure s'est rouverte pendant une
+décennie --- contre ASP.NET en 2010, contre la construction MAC-puis-chiffrement de TLS sous le
+nom de \og{} Lucky Thirteen \fg{} en 2013, contre SSL 3.0 sous le nom de POODLE en 2014 --- parce qu'il
+est vain de colmater la fuite tant que l'architecture y invite. TLS 1.3 a fini par supprimer
+tout à fait les modes CBC et exige un chiffrement authentifié. La question (c) est la
+démonstration préférée du domaine que \og{} l'adversaire apprend un bit \fg{} et \og{} l'adversaire
+apprend tout \fg{} peuvent être la même phrase.
+
+\begin{refs}
+\item Contexte : Attaque par oracle de remplissage --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Padding_oracle_attack})
+\item Contexte : Mode d'opération (cryptographie) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mode_d%27op%C3%A9ration_(cryptographie)})
+\item Contexte : Chiffrement authentifié --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chiffrement_authentifi%C3%A9})
+\item Article : S. Vaudenay, "Security Flaws Induced by CBC Padding --- Applications to SSL, IPSEC, WTLS\dots{}," EUROCRYPT 2002
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La distance d'unicité --- Licence, short}]
+\textbf{CRY-45.} \textbf{Problème.} Shannon a défini la \textit{distance d'unicité} d'un chiffre
+comme $n_0 = H(K)/D$, où $H(K)$ est l'entropie de la clé et
+$D = \log_2 26 - H_{\mathrm{Eng}}$ la redondance par lettre de la langue du texte clair ;
+au-delà de $n_0$ lettres de texte chiffré, on s'attend à ce qu'une seule clé donne un
+déchiffrement doué de sens. En prenant $H_{\mathrm{Eng}} \approx 1.5$ bit par lettre pour
+l'anglais et une clé uniforme, calculez $n_0$ pour le chiffre par substitution simple de
+CRY-04 ($H(K) = \log_2 26!$), justifiez la formule en estimant le nombre espéré de clés
+parasites qui survivent à $n$ lettres de texte chiffré, et expliquez pourquoi le masque
+jetable de CRY-05 a $n_0 = \infty$.
+\end{problem}
+
+\noindent Shannon a introduit la distance d'unicité dans \og{} Communication Theory of
+Secrecy Systems \fg{} (1949) et a mesuré l'entropie de l'anglais deux ans plus tard par une
+expérience où des sujets humains devinaient la lettre suivante d'un texte, arrivant à environ
+0,6 à 1,3 bit par lettre. Le nombre qui tombe ici --- une vingtaine de lettres --- explique
+pourquoi les énigmes de CRY-01 et CRY-04 ont des réponses uniques : deux courtes lignes de
+texte chiffré surdéterminent déjà la clé, et tout ce qui vient ensuite n'est que
+confirmation. Un chiffre atteint une distance d'unicité infinie exactement lorsque la
+redondance est nulle, ce qui fait de la compression avant chiffrement plus qu'une
+économie.
+
+\begin{refs}
+\item Contexte : Distance d'unicité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Distance_d%27unicit%C3%A9})
+\item Contexte : Entropie de Shannon --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Entropie_de_Shannon})
+\item Article : C. E. Shannon, "Prediction and Entropy of Printed English," Bell System Technical Journal 30 (1951)
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{Baby-step giant-step --- Master}]
+\textbf{CRY-13.} \textbf{Problème.} Soit $G$ un groupe cyclique d'ordre connu
+$n$ et de générateur $g$, et supposons $h = g^x$ pour un $x$ inconnu. L'algorithme de
+Shanks pose $m = \lceil \sqrt n\, \rceil$, tabule les \og{} petits pas \fg{} $g^j$
+pour $0 \le j < m$, puis calcule les \og{} grands pas \fg{} $h \cdot (g^{-m})^i$ pour
+$i = 0, 1, 2, \dots$ jusqu'à trouver une entrée de la table.
+\begin{enumerate}
+\item[(a)] Démontrez que l'algorithme trouve toujours
+$x$, et qu'il utilise $O(\sqrt n)$ opérations de groupe et $O(\sqrt n)$ éléments
+stockés (précisez votre hypothèse sur les recherches en table).
+\item[(b)] Comparez à la force brute
+et exhibez le compromis temps--mémoire : pour une taille de table $m$ quelconque, quel est
+le temps d'exécution ?
+\item[(c)] Compréhension : Shoup a démontré (1997) que tout algorithme
+\textit{générique} --- n'utilisant que les opérations de groupe, non le codage des éléments ---
+requiert $\Omega(\sqrt p)$ opérations pour les groupes d'ordre premier $p$. Expliquez ce
+que cela dit et ne dit pas des logarithmes discrets dans $(\mathbb{Z}/p\mathbb{Z})^\times$,
+où les méthodes de calcul d'indices battent nettement $\sqrt p$.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Daniel Shanks a introduit la méthode (1971) pour des calculs de groupes de
+classes, avant que quiconque sache que les logarithmes discrets garderaient le trafic du
+monde. C'est la raison pour laquelle \og{} 128 bits de sécurité \fg{} à partir d'un groupe exige un
+ordre d'environ $2^{256}$ : les attaques génériques (BSGS et le rho de Pollard) prennent la
+racine carrée de la taille du groupe --- le même $\sqrt N$ qu'en CRY-10, pour la même raison
+de collision. L'écart de la question (c) entre groupes génériques et
+$(\mathbb{Z}/p\mathbb{Z})^\times$ est précisément ce qui permet aux groupes de courbes
+elliptiques (CRY-14), où l'on ne connaît rien de mieux que les attaques génériques, d'employer
+des clés bien plus courtes.
+
+\begin{refs}
+\item Contexte : Baby-step giant-step --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Baby-step_giant-step})
+\item Contexte : Logarithme discret --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Logarithme_discret})
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}, ch. 2
+\item Cours : MIT OCW 6.875 Cryptography and Cryptanalysis (\url{https://ocw.mit.edu/courses/6-875-cryptography-and-cryptanalysis-spring-2005/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La loi de groupe des courbes elliptiques --- l'associativité est le point difficile --- Master}]
+\textbf{CRY-14.} \textbf{Problème.} Soit $E$ la courbe $y^2 = x^3 + ax + b$
+sur un corps de caractéristique $\ne 2, 3$, avec $4a^3 + 27b^2 \ne 0$, munie
+d'un point $O$ \og{} à l'infini \fg{}. Définissez $P+Q$ par la règle de la corde et de la
+tangente : la droite passant par $P$ et $Q$ rencontre $E$ en un troisième point ;
+réfléchissez-le par rapport à l'axe des $x$.
+\begin{enumerate}
+\item[(a)] Établissez les formules d'addition explicites (les formules
+à pente $\lambda$), cas du doublement compris.
+\item[(b)] Vérifiez les axiomes de groupe faciles : $O$ est
+neutre, les inverses sont les réfléchis, et la loi est commutative --- et expliquez
+\textit{pourquoi} chacun de ces points est immédiat au vu de la géométrie.
+\item[(c)] Le point difficile : démontrez
+l'associativité, $(P+Q)+R = P+(Q+R)$. Toute voie honnête est recevable --- un calcul direct
+(et brutal) avec les formules, l'argument classique par les neuf points d'intersection de
+deux cubiques (Cayley--Bacharach), ou l'identification de $E$ à son groupe des classes de
+diviseurs. Compréhension : expliquez pourquoi l'associativité est ici le seul axiome de
+contenu réel, et ce que cela dit de la profondeur géométrique de la loi de groupe.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La construction de la corde et de la tangente remonte aux travaux de
+Fermat et de Newton sur les équations diophantiennes, et la structure de groupe a été
+cristallisée par Poincaré (1901). Koblitz et Miller ont proposé indépendamment (1985)
+d'utiliser ces groupes en cryptographie, précisément parce que --- contrairement à
+$(\mathbb{Z}/p\mathbb{Z})^\times$ --- on ne connaît aucune attaque par calcul d'indices, de
+sorte que la barrière générique en $\sqrt N$ de CRY-13 semble être la vérité, et que des
+courbes de 256 bits égalent un RSA de 3072 bits. Quiconque s'est une fois battu avec la
+question (c) ne prend plus jamais \og{} ceci est un groupe \fg{} sur parole.
+
+\begin{refs}
+\item Contexte : Courbe elliptique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Courbe_elliptique})
+\item Contexte : Cryptographie sur les courbes elliptiques --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Cryptographie_sur_les_courbes_elliptiques})
+\item Lecture : Silverman \& Tate, \textit{Rational Points on Elliptic Curves}, ch. 1
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}, ch. 6
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'algorithme de Shor : que calcule-t-il exactement ? --- Master}]
+\textbf{CRY-15.} \textbf{Problème.} Ceci est un problème de compréhension avec un vrai
+théorème à l'intérieur.
+\begin{enumerate}
+\item[(a)] Démontrez la réduction classique au cœur de l'algorithme de Shor :
+soit $N$ impair ayant au moins deux facteurs premiers distincts, tirez un $a$ au hasard
+premier avec $N$, et soit $r$ l'ordre multiplicatif de $a \bmod N$. Montrez
+que si $r$ est pair et $a^{r/2} \not\equiv -1 \pmod N$, alors
+$\gcd(a^{r/2} - 1,\, N)$ est un facteur non trivial de $N$. (Montrez aussi, ou bien
+cherchez et énoncez, qu'un $a$ aléatoire réussit avec probabilité au moins $1/2$.)
+\item[(b)] Expliquez ce que fait la partie quantique : elle trouve la période $r$ de la fonction
+$k \mapsto a^k \bmod N$ à l'aide de la transformée de Fourier quantique, en temps polynomial
+en $\log N$ --- la seule étape sans contrepartie classique connue.
+\item[(c)] Assemblez la
+conséquence : pourquoi un grand ordinateur quantique tolérant aux fautes casse-t-il RSA
+(CRY-09), Diffie--Hellman (CRY-08) et la cryptographie sur les courbes elliptiques (CRY-14) ---
+tout en ne faisant qu'affaiblir AES et les fonctions de hachage (Grover : accélération
+quadratique seulement, donc doublement des tailles de clés) ? Soyez précis sur les problèmes
+calculatoires que résout l'algorithme de Shor : la factorisation et le logarithme discret,
+tous deux instances du problème du sous-groupe caché pour les groupes abéliens finis.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Peter Shor a annoncé l'algorithme en 1994 ; la version publiée date de
+1997. Il a converti l'informatique quantique d'une curiosité en un projet d'échelle
+civilisationnelle, et il est la raison entière de la migration post-quantique de CRY-21.
+Notez ce qu'il ne dit \textit{pas} : aucune démonstration n'existe que la factorisation soit
+classiquement difficile --- Shor a élargi l'écart entre ce que nous savons faire
+quantiquement et ce que nous \textit{croyons} classiquement, ce qui est un énoncé sur notre
+ignorance autant que sur notre savoir (voir CRY-23).
+
+\begin{refs}
+\item Contexte : Algorithme de Shor --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_de_Shor})
+\item Contexte : Problème du sous-groupe caché --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Hidden_subgroup_problem})
+\item Article : P. Shor, "Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer" (1997), arXiv:quant-ph/9508027 (\url{https://arxiv.org/abs/quant-ph/9508027})
+\item Lecture : Nielsen \& Chuang, \textit{Quantum Computation and Quantum Information}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Réseaux et apprentissage avec erreurs : la porte d'entrée --- Master}]
+\textbf{CRY-16.} \textbf{Problème.} Fixez un module $q$ et un vecteur secret
+$s \in (\mathbb{Z}/q\mathbb{Z})^n$. Un échantillon LWE est un couple
+$(a,\ \langle a, s\rangle + e \bmod q)$ où $a$ est uniforme et $e$ une petite erreur
+aléatoire.
+\begin{enumerate}
+\item[(a)] Montrez qu'avec $e = 0$ le secret se retrouve à partir de $n$
+échantillons indépendants par élimination de Gauss --- le bruit est donc l'unique source de
+difficulté.
+\item[(b)] Expliquez l'image réticulaire : retrouver $s$ à partir de $m$ échantillons est un
+problème de décodage à distance bornée sur un réseau aléatoire de $\mathbb{Z}^m$.
+\item[(c)] Construisez le schéma de chiffrement de Regev à partir de LWE (clé publique : des
+échantillons LWE ; on chiffre un bit en sommant un sous-ensemble aléatoire et en ajoutant
+$\text{bit} \cdot \lfloor q/2 \rfloor$) et démontrez que le déchiffrement est correct
+pourvu que l'erreur accumulée reste sous $q/4$.
+\item[(d)] Compréhension : énoncez la réduction du pire cas au cas moyen de Regev --- la difficulté de
+LWE sur des instances \textit{aléatoires} découle de la difficulté dans le pire cas de problèmes
+de réseau approchés (GapSVP/SIVP) --- et expliquez pourquoi une telle réduction est une forme de
+preuve fondamentalement plus forte que tout ce que l'on connaît pour la factorisation.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Oded Regev a introduit LWE en 2005 ; en quinze ans, c'était devenu le
+fondement des schémas que le NIST a normalisés contre l'attaque quantique (CRY-21) et du
+premier chiffrement complètement homomorphe (Gentry 2009). Le lien pire cas / cas moyen de la
+question (d), qui descend de la découverte d'Ajtai en 1996, en est le cœur conceptuel : la
+cryptographie a besoin d'instances \textit{aléatoires} difficiles, et les réseaux sont le seul
+endroit où les mathématiques en fournissent actuellement à la demande.
+
+\begin{refs}
+\item Contexte : Apprentissage avec erreurs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Apprentissage_avec_erreurs})
+\item Contexte : Cryptographie fondée sur les réseaux --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Lattice-based_cryptography})
+\item Article : O. Regev, "On Lattices, Learning with Errors, Random Linear Codes, and Cryptography," Journal of the ACM (2009 ; version de conférence STOC 2005)
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography} (chapitre post-quantique, 3e éd.)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Divulgation nulle de connaissance : le protocole de l'isomorphisme de graphes --- Master}]
+\textbf{CRY-17.} \textbf{Problème.} Peggy affirme que deux graphes publics $G_0, G_1$
+sont isomorphes et connaît un isomorphisme $\varphi$. Protocole, répété $t$
+fois : Peggy choisit une permutation $\pi$ uniformément aléatoire et envoie
+$H = \pi(G_0)$ ; Victor tire à pile ou face un bit $b \in \{0,1\}$ ; Peggy répond par une
+permutation $\sigma$ qui doit vérifier $H = \sigma(G_b)$ ; Victor contrôle. Démontrez
+les trois propriétés qui définissent le protocole.
+\begin{enumerate}
+\item[(a)] \textit{Complétude} --- une Peggy honnête convainc toujours
+Victor (exhibez $\sigma$ pour les deux valeurs de $b$).
+\item[(b)] \textit{Solidité}
+--- si les graphes ne sont \textit{pas} isomorphes, tout prouveur tricheur est démasqué à chaque
+tour avec probabilité au moins $1/2$, et passe donc les $t$ tours avec probabilité au plus
+$2^{-t}$.
+\item[(c)] \textit{Divulgation nulle parfaite} --- construisez un
+simulateur qui, ne disposant que de $G_0, G_1$ et d'aucun isomorphisme, produit des
+transcriptions de loi exactement identique à celle des vraies (rembobinage autorisé), et
+expliquez soigneusement pourquoi cela formalise \og{} Victor n'a rien appris au-delà de la
+véracité de l'affirmation \fg{}.
+\item[(d)] Compréhension : expliquez pourquoi l'interaction et l'aléa sont tous deux
+indispensables --- une version déterministe ou non interactive de ce protocole
+s'effondre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les preuves à divulgation nulle de connaissance ont été inventées par
+Goldwasser, Micali et Rackoff (1985), et ce protocole, dû à Goldreich, Micali et Wigderson
+(1986-91), en est l'exemple canonique --- ils ont de plus montré que tout énoncé de NP admet
+une preuve à divulgation nulle, à condition que des fonctions à sens unique existent. La
+définition par simulateur de la question (c) est l'un des grands gestes définitionnels de
+l'informatique : \og{} n'a rien appris \fg{} devient \og{} aurait pu engendrer la conversation tout seul \fg{}.
+Quarante ans après, les preuves ZK vérifient des calculs à grande échelle dans des systèmes
+déployés ; la définition, elle, n'a pas changé.
+
+\begin{refs}
+\item Contexte : Preuve à divulgation nulle de connaissance --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Preuve_%C3%A0_divulgation_nulle_de_connaissance})
+\item Contexte : Problème de l'isomorphisme de graphes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_l%27isomorphisme_de_graphes})
+\item Article : S. Goldwasser, S. Micali, C. Rackoff, "The Knowledge Complexity of Interactive Proof Systems," SIAM Journal on Computing (1989)
+\item Article : O. Goldreich, S. Micali, A. Wigderson, "Proofs that Yield Nothing But Their Validity," Journal of the ACM (1991)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le partage de secret de Shamir : la sécurité à seuil, exactement --- Master}]
+\textbf{CRY-18.} \textbf{Problème.} Pour partager un secret $s \in \mathbb{F}_p$
+($p$ premier, $p > n$) entre $n$ participants de sorte que $t$ quelconques
+puissent le reconstituer mais que $t-1$ quelconques n'apprennent rien : tirez un polynôme
+$f$ uniformément aléatoire de degré $\le t-1$ avec $f(0) = s$, et donnez au participant
+$i$ la part $(i, f(i))$.
+\begin{enumerate}
+\item[(a)] Démontrez la reconstitution : $t$ parts quelconques déterminent $f$ de façon unique
+(interpolation de Lagrange --- démontrez l'unicité, et pas seulement la formule), et donc
+déterminent $s$.
+\item[(b)] Démontrez la sécurité à seuil parfaite : pour $t-1$ parts quelconques et
+\textit{tout} secret candidat $s' \in \mathbb{F}_p$, le nombre de polynômes compatibles avec
+les parts et avec $f(0) = s'$ est exactement le même --- de sorte que la loi conditionnelle du
+secret sachant $t-1$ parts est égale à sa loi a priori, au sens de la théorie de
+l'information de CRY-05, sans la moindre hypothèse de difficulté.
+\item[(c)] Montrez que le schéma est linéaire : les parts de $s$ et de $s'$ s'additionnent en des
+parts de $s + s'$, et expliquez en une phrase pourquoi cette propriété homomorphe importe
+(elle est la graine du calcul multipartite sécurisé).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Adi Shamir a publié \og{} How to Share a Secret \fg{} en 1979 --- deux pages, une
+idée : un polynôme de degré $t-1$ représente exactement $t$ nombres d'information.
+(George Blakley a trouvé un schéma géométrique indépendamment la même année.) C'est la
+sécurité parfaite au sens de la théorie de l'information dans la nature --- descendante
+directe de l'étalon de Shannon de 1949 --- et, via la question (c), elle est devenue la graine
+du calcul multipartite (Ben-Or--Goldwasser--Wigderson, 1988) : calculer sur des secrets
+qu'aucune partie ne détient.
+
+\begin{refs}
+\item Contexte : Partage de clé secrète de Shamir --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Partage_de_cl%C3%A9_secr%C3%A8te_de_Shamir})
+\item Contexte : Interpolation lagrangienne --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Interpolation_lagrangienne})
+\item Article : A. Shamir, "How to Share a Secret," Communications of the ACM (1979)
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography} (chapitre sur le partage de secret)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème du codage de source --- Master}]
+\textbf{CRY-19.} \textbf{Problème.} Soit $X$ un symbole aléatoire d'entropie
+$H(X)$, et considérons les codes préfixes binaires pour $X$ de longueur moyenne
+$L = \sum_i p_i \ell_i$.
+\begin{enumerate}
+\item[(a)] Démontrez la réciproque : tout code préfixe vérifie
+$L \ge H(X)$. (Combinez l'inégalité de Kraft, CRY-12, avec la positivité de l'entropie
+relative, ou inégalité de Gibbs --- que vous démontrerez.)
+\item[(b)] Démontrez l'atteignabilité :
+les longueurs de Shannon $\ell_i = \lceil -\log_2 p_i \rceil$ vérifient Kraft et donnent
+$L < H(X) + 1$ ; concluez qu'en codant des blocs de $k$ symboles on amène le débit à
+$1/k$ de l'entropie.
+\item[(c)] Compréhension : pour des sources i.i.d., lisez l'énoncé de la
+propriété d'équipartition asymptotique (des ensembles typiques de taille environ
+$2^{nH}$) et expliquez comment elle transforme (a)+(b) en le théorème complet du codage de
+source de Shannon --- une compression fiable est possible à tout débit supérieur à $H$ et
+impossible en dessous de $H$. Expliquez avec vos propres mots pourquoi l'entropie, définie
+par les axiomes de CRY-11, se révèle être exactement la limite opérationnelle de la
+compression.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est le premier des deux piliers de l'article de Shannon de 1948 : il
+donne au \og{} contenu en information \fg{} un sens d'ingénieur --- le nombre de bits que l'on ne peut
+pas éviter de transmettre. Huffman a trouvé le code optimal par symbole en 1951, étudiant de
+troisième cycle (dans le cours de Fano, pour échapper à un examen final), et chaque fichier
+zip et chaque codec de diffusion depuis lors vivent dans le couloir $[H, H+1)$ que ce
+problème construit.
+
+\begin{refs}
+\item Contexte : Théorème du codage de source de Shannon --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_codage_de_source})
+\item Contexte : Propriété d'équipartition asymptotique --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Asymptotic_equipartition_property})
+\item Lecture : Cover \& Thomas, \textit{Elements of Information Theory}, ch. 3 et 5
+\item Cours : MIT OCW 6.441 Information Theory (\url{https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Capacité du canal binaire symétrique --- Master}]
+\textbf{CRY-20.} \textbf{Problème.} Le canal binaire symétrique $\mathrm{BSC}(p)$
+transmet un bit et le bascule avec probabilité $p < 1/2$, indépendamment d'un usage à
+l'autre. Shannon a défini la capacité d'un canal comme $C = \max I(X;Y)$, le maximum sur
+les lois d'entrée de l'information mutuelle entre entrée et sortie.
+\begin{enumerate}
+\item[(a)] En partant des définitions ($I(X;Y) = H(Y) - H(Y \mid X)$), démontrez que la
+capacité de $\mathrm{BSC}(p)$ vaut
+\[ C = 1 - H_2(p), \qquad H_2(p) = -p\log_2 p - (1-p)\log_2(1-p), \]
+en identifiant la loi d'entrée qui réalise le maximum, et vérifiez les valeurs extrêmes
+$C = 1$ pour $p = 0$ et $C = 0$ pour $p = 1/2$, en expliquant les deux.
+\item[(b)] Compréhension : lisez
+l'énoncé du théorème du codage de canal bruité et expliquez précisément ce qu'il promet ---
+pour tout débit $R < C$ il existe des codes de grande longueur de bloc à probabilité
+d'erreur tendant vers 0, et pour $R > C$ il n'en existe pas --- et pourquoi cela était
+stupéfiant en 1948, alors que les ingénieurs croyaient que la fiabilité exigeait de ralentir
+indéfiniment.
+\item[(c)] Expliquez le rôle du codage aléatoire dans l'argument de Shannon, et pourquoi
+le théorème est fameusement non constructif.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est le second pilier de l'article de 1948 et le théorème fondateur de
+l'âge numérique : le bruit ne plafonne pas la fiabilité, seulement le débit. L'écart de la
+question (c) --- Shannon démontre que de bons codes existent sans en exhiber un seul --- a
+alimenté soixante-dix ans de théorie des codes, de Hamming et Reed--Solomon aux turbocodes,
+aux codes LDPC et aux codes polaires d'Arıkan (2009), la première famille explicite dont on
+ait démontré qu'elle atteint la capacité du canal binaire symétrique.
+
+\begin{refs}
+\item Contexte : Canal binaire symétrique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Canal_binaire_sym%C3%A9trique})
+\item Contexte : Théorème du codage de canal bruité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_codage_de_canal})
+\item Lecture : Cover \& Thomas, \textit{Elements of Information Theory}, ch. 7
+\item Cours : MIT OCW 6.441 Information Theory (\url{https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le rho de Pollard pour les logarithmes discrets --- Master}]
+\textbf{CRY-32.} \textbf{Problème.} Soit $G$ un groupe cyclique d'ordre premier $n$ et de générateur
+$g$, et $h = g^x$ avec $x$ inconnu. La méthode rho de Pollard itère une
+application $f: G \to G$ \og{} d'allure aléatoire \fg{} : on partitionne $G$ en trois classes à
+peu près égales et l'on pose $f(y) = gy$, $hy$ ou $y^2$ selon la classe de
+$y$, en partant de $y_0 = 1$.
+\begin{enumerate}
+\item[(a)] Montrez que le long de l'orbite $y_{i+1} = f(y_i)$ on peut maintenir des exposants
+$(a_i, b_i)$ avec $y_i = g^{a_i} h^{b_i}$, et que toute collision
+$y_i = y_j$ avec $b_i \not\equiv b_j \pmod n$ donne
+\[ x \equiv (a_j - a_i)(b_i - b_j)^{-1} \pmod n . \]
+\item[(b)] Démontrez que l'orbite de toute suite ultimement périodique a la forme d'un \og{} rho \fg{}
+(queue plus cycle), et que l'astuce de détection de cycle de Floyd --- avancer une tortue d'un
+pas et un lièvre de deux pas jusqu'à ce que $y_i = y_{2i}$ --- trouve une collision en
+stockant $O(1)$ éléments et en un nombre de pas linéaire en la somme des longueurs de la
+queue et du cycle.
+\item[(c)] Analyse heuristique : en modélisant $f$ comme une fonction uniformément aléatoire,
+servez-vous de la borne des anniversaires de CRY-10 pour justifier que le temps de collision
+espéré est $O(\sqrt n)$. Concluez au marché : rho égale le temps d'exécution
+$O(\sqrt n)$ de baby-step giant-step (CRY-13) tout en remplaçant sa mémoire en
+$O(\sqrt n)$ par $O(1)$ --- et expliquez pourquoi cela fait de rho, et non de BSGS,
+l'attaque générique pratique, celle à laquelle les clés des défis publics sur courbes
+elliptiques ont effectivement succombé.
+\end{enumerate}
+
+\end{problem}
+
+\noindent John Pollard a publié la méthode en 1978, en la nommant d'après la lettre
+grecque à laquelle ressemble le dessin de son orbite. C'est la raison pour laquelle \og{} la
+sécurité générique d'un groupe de 256 bits vaut 128 bits \fg{} est un énoncé sur des machines
+réelles et non seulement sur des asymptotiques : c'est le rho parallélisé
+(van Oorschot--Wiener) qui a résolu les problèmes de défi ECC publics, et son modèle de coût
+étalonne toutes les tailles de clés elliptiques déployées. L'analyse rigoureuse de la marche
+--- démontrer le $O(\sqrt n)$ heuristique pour le $f$ réel, non aléatoire --- a dû attendre
+les travaux de Miller, Venkatesan et d'autres, des décennies plus tard.
+
+\begin{refs}
+\item Contexte : Algorithme rho de Pollard (logarithme discret) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_rho_de_Pollard_(logarithme_discret)})
+\item Contexte : Détection de cycle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/D%C3%A9tection_de_cycle})
+\item Article : J. M. Pollard, "Monte Carlo Methods for Index Computation (mod p)," Mathematics of Computation 32 (1978)
+\item Lecture : Hoffstein, Pipher \& Silverman, \textit{An Introduction to Mathematical Cryptography}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Codage arithmétique : comprimer jusqu'à l'entropie, deux bits de surcoût en tout --- Master}]
+\textbf{CRY-33.} \textbf{Problème.} Le codage de Huffman (CRY-19) gaspille jusqu'à un bit \textit{par symbole},
+ce qui est ruineux quand un symbole a une probabilité proche de 1. Le codage arithmétique ne
+dépense son surcoût qu'une fois par \textit{message}. Codez une chaîne $x_1 x_2 \cdots x_n$
+sur un alphabet fini de probabilités de symboles connues par subdivisions emboîtées : partez
+de $[0,1)$ et, à chaque étape, découpez l'intervalle courant en sous-intervalles de
+longueurs proportionnelles aux probabilités des symboles, en descendant dans celui qui
+correspond au symbole suivant.
+\begin{enumerate}
+\item[(a)] Démontrez que l'intervalle final a pour largeur exactement
+$P(x_1)P(x_2)\cdots P(x_n)$, la probabilité du message entier, et que des messages
+distincts de même longueur reçoivent des intervalles disjoints.
+\item[(b)] Montrez que tout intervalle de largeur $w$ contient un rationnel dyadique spécifiable
+par $\lceil -\log_2 w \rceil + 1$ bits, et concluez que le message peut être transmis avec
+au plus
+\[ -\log_2 P(x_1 \cdots x_n) + 2 \]
+bits --- à deux bits près du contenu en information du message entier, de sorte que le débit
+par symbole tend vers l'entropie pour les longs messages, sans aucune astuce de mise en
+blocs.
+\item[(c)] Calculez les deux schémas sur une source concrète : des bits i.i.d. avec
+$P(0) = 0.99$. Montrez que Huffman reste coincé à 1 bit par symbole tandis que la borne de
+(b) donne environ $0.081$ bit par symbole --- et réconciliez cela avec le théorème du codage
+de source.
+\item[(d)] Compréhension : expliquez comment le décodeur retrouve le message à partir du
+nombre transmis (il rejoue les mêmes subdivisions), et pourquoi toute la construction est le
+codage de Shannon--Fano--Elias étiré des symboles isolés aux messages entiers.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'idée a circulé sans être publiée depuis Elias au début des années 1960 ;
+Rissanen et Pasco l'ont rendue implémentable en 1976, et l'article de 1987 de Witten, Neal et
+Cleary, accompagné de code fonctionnel, l'a rendue universelle. Des fourrés de brevets l'ont
+tenue à l'écart des premiers formats (bzip2 l'a fameusement évitée), mais les brevets ont
+expiré et ses descendants siègent aujourd'hui dans JPEG, dans le CABAC de H.264/H.265 et dans
+les codeurs ANS de zstd --- toute vidéo diffusée en flux est un nombre dans un intervalle qui
+rétrécit.
+
+\begin{refs}
+\item Contexte : Codage arithmétique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Codage_arithm%C3%A9tique})
+\item Article : I. H. Witten, R. M. Neal, J. G. Cleary, "Arithmetic Coding for Data Compression," Communications of the ACM 30 (1987)
+\item Lecture : MacKay, \textit{Information Theory, Inference, and Learning Algorithms}, ch. 6
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Conditionner diminue l'entropie --- Master, short}]
+\textbf{CRY-34.} \textbf{Problème.} Définissez l'entropie conditionnelle
+$H(Y \mid X) = \sum_x p(x)\, H(Y \mid X = x)$ et démontrez que
+$H(Y \mid X) \le H(Y)$, avec égalité si et seulement si $X$ et $Y$ sont
+indépendantes.
+\end{problem}
+
+\noindent \og{} L'information ne nuit jamais \fg{} --- en moyenne. La démonstration doit
+respecter une subtilité véritable : pour une observation \textit{particulière} $x$, l'entropie
+$H(Y \mid X = x)$ peut dépasser $H(Y)$ ; seule l'espérance est garantie de baisser. Cette
+inégalité est la positivité de l'information mutuelle déguisée, et le moteur de tout théorème
+réciproque de cette page.
+
+\begin{refs}
+\item Contexte : Entropie conditionnelle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Entropie_conditionnelle})
+\item Lecture : Cover \& Thomas, \textit{Elements of Information Theory}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Aucune mise en gage n'est à la fois parfaitement cachante et parfaitement liante --- Master, short}]
+\textbf{CRY-35.} \textbf{Problème.} Un schéma de mise en gage permet à un émetteur de publier
+$c = \mathrm{Com}(m, r)$ (message $m$, aléa $r$) puis de l'ouvrir plus tard ; il est
+\textit{parfaitement cachant} si la loi de $c$ est identique pour tout $m$, et
+\textit{parfaitement liant} si aucun $c$ ne peut être ouvert sur deux messages différents.
+Démontrez qu'aucun schéma ne satisfait les deux propriétés.
+\end{problem}
+
+\noindent L'impossibilité force un choix, et les deux choix sont faits
+quotidiennement : les mises en gage de Pedersen (1991) sont parfaitement cachantes mais
+seulement calculatoirement liantes ; celles fondées sur le hachage font l'inverse. Une mise
+en gage est l'enveloppe scellée du cryptographe, et ce petit théorème dit que toute enveloppe
+doit se fier aux limites calculatoires de quelqu'un --- une répétition en deux lignes des
+arguments d'impossibilité à la Shannon de CRY-05.
+
+\begin{refs}
+\item Contexte : Mise en gage --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mise_en_gage})
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{IND-CPA, écrit en toutes lettres --- Master}]
+\textbf{CRY-38.} \textbf{Problème.} Fixez un schéma de chiffrement symétrique
+$\Pi = (\mathrm{Gen}, \mathrm{Enc}, \mathrm{Dec})$ de paramètre de sécurité
+$\lambda$. Dans l'expérience IND-CPA, le challenger tire
+$k \leftarrow \mathrm{Gen}(1^{\lambda})$ et un bit $b$ ; l'adversaire $A$ interroge
+librement un oracle de chiffrement $\mathrm{Enc}_k(\cdot)$, soumet deux messages
+$m_0, m_1$ de même longueur, reçoit $c \leftarrow \mathrm{Enc}_k(m_b)$, peut interroger de
+nouveau, et produit $b'$. Son avantage vaut
+\[ \mathrm{Adv}(A) \;=\; \Bigl| \Pr[b' = b] - \tfrac{1}{2} \Bigr| . \]
+\begin{enumerate}
+\item[(a)] Écrivez la définition complètement et formellement --- le paramètre de sécurité, l'ordre
+des quantificateurs, ce que veulent dire \og{} temps polynomial probabiliste \fg{} et
+\og{} négligeable \fg{} --- de sorte que rien ne soit laissé à la bonne volonté du lecteur. Démontrez
+ensuite qu'\textit{aucun} schéma déterministe et sans état n'est IND-CPA sûr, en exhibant un
+adversaire d'avantage exactement $1/2$. Concluez que le RSA scolaire (CRY-09) est peu sûr
+au sens de cette définition, alors même que personne ne sait factoriser son module.
+\item[(b)] Démontrez que tout schéma IND-CPA sûr a des chiffrés strictement plus longs que ses
+textes clairs : montrez que si $|\mathrm{Enc}_k(m)| = |m|$ pour tout $m$, alors la
+correction du déchiffrement force $\mathrm{Enc}_k$ à être déterministe, puis appliquez
+(a).
+\item[(c)] Démontrez l'hybride multi-messages : si $\Pi$ est IND-CPA sûr pour un unique défi,
+alors pour tout $q$ polynomial en $\lambda$ aucun adversaire ne distingue le chiffrement
+d'un $q$-uplet $(m_1,\dots,m_q)$ de celui de $(m'_1,\dots,m'_q)$ avec un avantage
+supérieur à $q$ fois l'avantage à un seul message. Repérez précisément où le facteur
+$q$ est perdu et dites s'il est nécessaire.
+\item[(d)] Montrez que la définition n'est pas le mot de la fin. Donnez un adversaire qui casse le
+chiffrement en mode CBC dans le jeu à \textit{chiffrés} choisis tout en laissant intacte sa
+sécurité IND-CPA, et énoncez la définition originale de sécurité sémantique de Goldwasser et
+Micali, en esquissant pourquoi elle équivaut à IND-CPA.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Avant 1982, \og{} chiffrement sûr \fg{} était une description de ce qu'une attaque
+devait échouer à faire, et chaque proposition tombait sous une attaque que nul n'avait pensé
+à interdire. \textit{Probabilistic Encryption} de Goldwasser et Micali a remplacé la liste de
+souhaits par un jeu --- un adversaire, un défi, un avantage --- et en a tiré deux conséquences
+qu'aucun concepteur n'avait acceptées : le chiffrement doit être aléatoire, et les chiffrés
+doivent être plus longs que les textes clairs. Tout ce qui figure sur cette page au-dessus de
+la section Master est un schéma ; ce problème-ci est la grammaire dans laquelle on dit ce
+qu'un schéma réalise, et mettre les quantificateurs dans le bon ordre est tout le sujet. Ce
+travail a valu à Goldwasser et Micali le prix Turing 2012, et la question (d) montre que le
+projet définitionnel ne s'est pas arrêté là : la sécurité CPA ne dit rien d'un adversaire
+capable de soumettre des chiffrés au déchiffrement, ce qui est la façon dont les protocoles
+réels sont attaqués.
+
+\begin{refs}
+\item Contexte : Indistinguabilité des chiffrés (niveaux d'attaques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Niveaux_d%27attaques})
+\item Contexte : Sécurité sémantique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9curit%C3%A9_s%C3%A9mantique})
+\item Article : S. Goldwasser \& S. Micali, "Probabilistic Encryption," Journal of Computer and System Sciences 28 (1984)
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Réseaux de Feistel et le théorème de Luby--Rackoff --- Master}]
+\textbf{CRY-46.} \textbf{Problème.} Fixez $n$ et des fonctions $f_1, \dots, f_r \colon \{0,1\}^n \to
+\{0,1\}^n$. Le réseau de Feistel à $r$ tours $\Psi(f_1, \dots, f_r)$ agit sur
+$\{0,1\}^{2n}$ en itérant
+\[ (L_{i-1},\, R_{i-1}) \;\longmapsto\; (L_i,\, R_i) \;=\; \bigl(R_{i-1},\;\; L_{i-1}
+\oplus f_i(R_{i-1})\bigr). \]
+\begin{enumerate}
+\item[(a)] Démontrez que $\Psi(f_1, \dots, f_r)$ est une permutation de $\{0,1\}^{2n}$ pour
+\textit{tout} choix des $f_i$, fussent-elles constantes, et écrivez-en l'inverse
+explicitement. Expliquez pourquoi c'est là tout l'intérêt du schéma : on peut bâtir un
+chiffre sur une fonction de tour que personne n'a besoin de savoir inverser.
+\item[(b)] Montrez que deux tours ne suffisent jamais. Avec $f_1, f_2$ tirées uniformément au
+hasard, exhibez un adversaire qui distingue $\Psi(f_1, f_2)$ d'une permutation uniformément
+aléatoire de $\{0,1\}^{2n}$ au moyen de deux entrées choisies et d'un travail constant, avec
+un avantage proche de 1.
+\item[(c)] Énoncez précisément le théorème de Luby--Rackoff : pour $f_1, f_2, f_3$ indépendantes et
+uniformément aléatoires, aucun adversaire faisant $q$ requêtes ne distingue
+$\Psi(f_1,f_2,f_3)$ d'une permutation uniformément aléatoire de $\{0,1\}^{2n}$ avec un
+avantage dépassant $O(q^2/2^n)$. Démontrez-le, ou au minimum démontrez le lemme central :
+sauf si deux des requêtes entrent en collision sur une certaine valeur interne --- événement de
+probabilité $O(q^2/2^n)$ par la borne des anniversaires de CRY-10 --- les réponses que voit
+l'adversaire sont uniformes et indépendantes.
+\item[(d)] Trois tours ne suffisent pas pour une permutation pseudo-aléatoire \textit{forte}, où
+l'adversaire peut aussi interroger l'inverse. Exhibez un tel distingueur pour
+$\Psi(f_1,f_2,f_3)$, énoncez le théorème à quatre tours qui répare le défaut, puis dites
+soigneusement ce que ce théorème affirme et n'affirme pas au sujet de DES, dont les seize
+fonctions de tour ne sont ni uniformément aléatoires ni indépendantes.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'équipe de Horst Feistel chez IBM a construit le chiffre Lucifer vers 1971
+et la structure est passée dans DES en 1977. La question (a) explique son emprise sur le
+domaine pendant cinquante ans : l'inversibilité est gratuite, un concepteur peut donc dépenser
+tout son budget à rendre la fonction de tour imprévisible. En 1988, Michael Luby et Charles
+Rackoff ont transformé le savoir empirique en théorème --- trois tours d'une fonction
+pseudo-aléatoire donnent une permutation pseudo-aléatoire, quatre en donnent une qui survit
+aux attaques à chiffrés choisis --- produisant ainsi l'une des premières constructions dont la
+sécurité est \textit{réduite} à celle de ses composants plutôt qu'argumentée par l'échec des
+attaques connues. L'écart de la question (d) est l'endroit où la théorie s'arrête et où
+l'ingénierie reprend : aucun chiffre déployé n'a de fonctions de tour aléatoires
+indépendantes.
+
+\begin{refs}
+\item Contexte : Réseau de Feistel --- Wikipédia (\url{https://fr.wikipedia.org/wiki/R%C3%A9seau_de_Feistel})
+\item Contexte : Permutation pseudo-aléatoire --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Pseudorandom_permutation})
+\item Article : M. Luby et C. Rackoff, "How to Construct Pseudorandom Permutations from Pseudorandom Functions," SIAM Journal on Computing 17 (1988)
+\item Lecture : Katz \& Lindell, \textit{Introduction to Modern Cryptography}, ch. 7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Cryptanalyse linéaire et différentielle d'un chiffre jouet --- Master}]
+\textbf{CRY-47.} \textbf{Problème.} Soit $S \colon \{0,1\}^4 \to \{0,1\}^4$ une bijection (une boîte S) et
+construisez un petit réseau de substitution-permutation sur des blocs de 16 bits : chaque tour
+ajoute par OU exclusif une clé de tour, applique $S$ à chacun des quatre quartets, puis
+permute les seize positions de bits par un câblage fixe. Faites quatre tours.
+\begin{enumerate}
+\item[(a)] Démontrez le \textit{lemme d'empilement} de Matsui : si $X_1, \dots, X_k$ sont des
+variables aléatoires binaires indépendantes avec $\Pr[X_i = 0] = \tfrac12 + \varepsilon_i$,
+alors
+\[ \Pr[X_1 \oplus \cdots \oplus X_k = 0] \;=\; \tfrac12 \;+\; 2^{\,k-1}
+\prod_{i=1}^{k} \varepsilon_i . \]
+Déduisez-en que le biais d'une chaîne d'approximations s'effondre géométriquement avec sa
+longueur, et expliquez pourquoi cela fait de \og{} quel est le biais de la meilleure approximation
+sur un tour ? \fg{} la question de conception d'une boîte S.
+\item[(b)] Bâtissez l'attaque linéaire. Définissez la table d'approximation linéaire de $S$ : pour
+chaque couple de masques $(a,b)$, le biais de l'événement $a \cdot x \oplus b \cdot S(x) = 0$
+pour $x$ uniforme. Calculez-la pour une boîte S de 4 bits explicite de votre choix,
+enchaînez les meilleures approximations sur trois tours, et décrivez comment la relation
+biaisée obtenue entre bits du texte clair, bits du chiffré et bits de clé permet de retrouver
+la clé du dernier tour en classant les sous-clés candidates. Démontrez que distinguer un biais
+$\varepsilon$ de l'absence de biais demande de l'ordre de $\varepsilon^{-2}$ textes clairs
+connus, et repérez où se cache la constante.
+\item[(c)] Bâtissez l'attaque différentielle. Définissez la table de distribution des différences de
+$S$, dont l'entrée en $(\alpha, \beta)$ compte les $x$ tels que $S(x) \oplus S(x \oplus \alpha) =
+\beta$. Démontrez que chaque ligne somme à 16 et que chaque entrée est paire, et expliquez
+pourquoi une permutation uniformément aléatoire aurait presque toutes ses entrées proches de 1.
+Construisez ensuite une caractéristique différentielle sur trois tours de probabilité $p$, et
+montrez qu'environ $p^{-1}$ couples de textes clairs choisis suffisent à la détecter et à
+trier les bons couples des mauvais.
+\item[(d)] Compréhension : une boîte S résiste aux deux attaques exactement lorsque les deux tables
+sont plates. Énoncez les critères de conception qui en découlent --- non-linéarité et uniformité
+différentielle --- et expliquez comment la boîte S d'AES, l'inversion dans
+$\mathbb{F}_{256}$ suivie d'une application affine sur $\mathbb{F}_2$, a été choisie de
+sorte que sa probabilité différentielle maximale soit démontrablement $2^{-6}$ et son biais
+linéaire maximal comparablement petit. Dites ensuite précisément ce que cela ne démontre
+\textit{pas} au sujet d'AES.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Eli Biham et Adi Shamir ont introduit la cryptanalyse différentielle vers
+1990 et l'ont employée contre le DES complet avec $2^{47}$ textes clairs choisis --- sur quoi
+Don Coppersmith a révélé en 1994 que l'équipe d'origine d'IBM avait trouvé la même technique
+en 1974 sous le nom d'\og{} attaque T \fg{} et avait réglé les boîtes S de DES pour y résister, la
+raison en étant tenue classifiée deux décennies durant à la demande de la NSA. Un chiffre
+conçu en 1974 contre une attaque publiée en 1990 est le plus étrange compliment de l'histoire
+du domaine. La cryptanalyse linéaire de Mitsuru Matsui a suivi en 1993 et, en 1994, il a
+retrouvé une clé DES avec $2^{43}$ textes clairs connus et cinquante jours de temps de
+station de travail --- la première rupture expérimentale du chiffre complet. Ensemble, les deux
+attaques ont converti la conception des chiffrements par bloc d'un art en un problème
+d'optimisation à deux objectifs publiés, et tout chiffre sérieux depuis lors est livré avec
+des bornes contre les deux.
+
+\begin{refs}
+\item Contexte : Cryptanalyse linéaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Cryptanalyse_lin%C3%A9aire})
+\item Contexte : Cryptanalyse différentielle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Cryptanalyse_diff%C3%A9rentielle})
+\item Article : E. Biham et A. Shamir, "Differential Cryptanalysis of DES-like Cryptosystems," Journal of Cryptology 4 (1991) ; M. Matsui, "Linear Cryptanalysis Method for DES Cipher," EUROCRYPT 1993
+\item Lecture : H. M. Heys, "A Tutorial on Linear and Differential Cryptanalysis," Cryptologia 26 (2002)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le protocole de Schnorr : extraire le témoin --- Master, short}]
+\textbf{CRY-48.} \textbf{Problème.} Dans un groupe cyclique $G = \langle g \rangle$ d'ordre
+premier $q$, un prouveur qui connaît $x$ tel que $h = g^x$ envoie $a = g^r$ pour un
+$r$ uniforme frais, reçoit un défi $c \in \mathbb{Z}/q\mathbb{Z}$, et répond par
+$s = r + cx \bmod q$ ; le vérificateur accepte lorsque $g^s = a\,h^c$. Démontrez la
+\textit{solidité spéciale} --- à partir de deux transcriptions acceptantes quelconques
+$(a,c,s)$ et $(a,c',s')$ de même premier message et avec $c \ne c'$, le secret $x$ se
+calcule --- et la \textit{divulgation nulle vis-à-vis d'un vérificateur honnête}, en exhibant un
+simulateur qui produit des transcriptions de loi exactement correcte tout en ne connaissant
+que $g$ et $h$.
+\end{problem}
+
+\noindent Claus-Peter Schnorr a publié ce protocole d'identification et le schéma de
+signature qui en dérive entre 1989 et 1991, en le concevant assez court pour tenir dans une
+carte à puce. C'est le protocole canonique à trois passes, et les deux propriétés démontrées
+ici en sont le couple canonique : rembobiner un prouveur pour obtenir deux défis sur un même
+engagement extrait le témoin, ce qui est le sens de \og{} preuve de connaissance \fg{}, tandis que le
+simulateur montre que le vérificateur n'a rien gagné --- la même forme d'argument qu'en CRY-17,
+cette fois sur un groupe au lieu d'un graphe. Le lemme de bifurcation (forking lemma) de
+Pointcheval et Stern (1996) a fait de l'étape de rembobinage un théorème général sur les
+signatures. Le brevet de Schnorr a expiré en 2008, après quoi la construction s'est répandue
+dans EdDSA et, en 2021, dans Bitcoin.
+
+\begin{refs}
+\item Contexte : Protocole d'authentification de Schnorr --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Protocole_d%27authentification_de_Schnorr})
+\item Contexte : Preuve de connaissance --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Proof_of_knowledge})
+\item Article : C. P. Schnorr, "Efficient signature generation by smart cards," Journal of Cryptology 4 (1991)
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{Quelle est la sécurité des schémas post-quantiques à réseaux ? --- Recherche}]
+\textbf{CRY-21.} \textbf{Problème.} En août 2024, le NIST a finalisé ses premières
+normes post-quantiques : FIPS 203 (ML-KEM, issu de CRYSTALS-Kyber, encapsulation de clé),
+FIPS 204 (ML-DSA, issu de CRYSTALS-Dilithium, signatures) --- tous deux fondés sur des réseaux
+de modules et sur le problème Module-LWE --- et FIPS 205 (SLH-DSA, issu de SPHINCS+,
+signatures fondées sur le hachage) ; en mars 2025 il a retenu HQC, fondé sur les codes, comme
+mécanisme d'encapsulation de secours. La question mathématique sous-jacente est grande
+ouverte. Comprenez l'état de l'art et repérez les points fragiles.
+\begin{enumerate}
+\item[(a)] Le problème (Module-)LWE
+est-il réellement difficile --- classiquement ou quantiquement ? Aucun algorithme quantique
+polynomial n'est connu, mais aucune démonstration n'en exclut l'existence ; la voie du
+sous-groupe caché qui a cassé la factorisation ne s'applique pas, mais ce n'est qu'une preuve
+d'absence, non une absence de preuve.
+\item[(b)] Quelle est la finesse de la sécurité concrète ? Les meilleures attaques connues sont des
+algorithmes de réduction de réseau et de criblage dont le temps est exponentiel en la
+dimension ; les choix de paramètres extrapolent leur coût, et une véritable amélioration des
+constantes de criblage rognerait des bits réels sur chaque clé déployée.
+\item[(c)] La structure
+algébrique supplémentaire des réseaux de modules et d'anneaux (sur des réseaux d'idéaux dans
+des corps cyclotomiques) autorise-t-elle des attaques que le LWE non structuré ne permet
+pas ? Des attaques partielles sur des problèmes voisins (par exemple sur certains cadres de
+réseaux d'idéaux) sont connues ; rien n'atteint les schémas normalisés.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est la plus grande expérience en cours de la cryptographie : une
+compétition publique d'une décennie (2016-2024) s'est achevée sur le début de la migration
+mondiale de l'échange de clés vers les réseaux, sur la foi des réductions du pire cas de
+Regev (CRY-16) et de vingt-cinq ans d'attaques infructueuses. Le statut honnête : aucune
+attaque efficace, aucune démonstration, et des enjeux aussi élevés qu'il est possible.
+L'histoire conseille l'humilité --- SIKE, finaliste fondé sur les isogénies, a été cassé par des
+mathématiques classiques (Castryck--Decru) en 2022, quelques semaines après avoir été
+retenu.
+
+\begin{refs}
+\item Contexte : Kyber --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Kyber})
+\item Contexte : Cryptographie post-quantique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Cryptographie_post-quantique})
+\item Norme : NIST FIPS 203, Module-Lattice-Based Key-Encapsulation Mechanism Standard (2024) (\url{https://csrc.nist.gov/pubs/fips/203/final})
+\item Contexte : Annonce du NIST, août 2024 (\url{https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Obfuscation indistinguable : de l'impossible à l'impraticable --- Recherche}]
+\textbf{CRY-22.} \textbf{Problème.} Un obfuscateur indistinguable (iO)
+compile les programmes de sorte que les obfuscations de deux circuits quelconques de même
+taille calculant la même fonction soient calculatoirement indistinguables. iO est
+\og{} crypto-complet \fg{} : avec lui (plus quelques hypothèses légères) on peut construire presque
+tout objet cryptographique connu --- chiffrement fonctionnel, chiffrement déniable, et bien
+d'autres. Statut, honnêtement : après le premier candidat (Garg et al., 2013) et les ruptures
+successives de nombreux candidats à applications multilinéaires, Jain, Lin et Sahai ont
+démontré (STOC 2021) que iO existe en supposant la difficulté sous-exponentielle de quatre
+problèmes bien étudiés (couplages, LPN sur de grands corps, et générateurs pseudo-aléatoires
+dans $\mathrm{NC}^0$). La construction n'est qu'un résultat de faisabilité --- astronomiquement
+loin d'être praticable. Les points suivants sont ouverts ; comprenez l'architecture de
+Jain--Lin--Sahai assez bien pour expliquer où chaque hypothèse intervient.
+\begin{enumerate}
+\item[(a)] Construire iO à partir d'une seule hypothèse standard,
+idéalement LWE seul (l'obtention d'un iO post-quantique à partir d'hypothèses bien fondées
+demeure non tranchée).
+\item[(b)] Amener l'efficacité en vue d'une implémentation.
+\item[(c)] Déterminer
+si les hypothèses sous-exponentielles requises peuvent être affaiblies en hypothèses
+polynomiales.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Pendant deux décennies, iO a oscillé entre \og{} manifestement impossible \fg{}
+(l'obfuscation en boîte noire, elle, \textit{est} impossible --- Barak et al., 2001) et
+\og{} manifestement trop beau pour être vrai \fg{}. Le théorème de 2021 a réglé l'existence sous des
+hypothèses de type standard et il est considéré comme l'un des résultats les plus profonds de
+l'histoire de la cryptographie ; la distance entre l'existence et le déploiement est
+désormais la frontière.
+
+\begin{refs}
+\item Contexte : Obfuscation indistinguable --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Obfuscation_indistinguable})
+\item Article : A. Jain, H. Lin, A. Sahai, "Indistinguishability Obfuscation from Well-Founded Assumptions" (STOC 2021), arXiv:2008.09317 (\url{https://arxiv.org/abs/2008.09317})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Quelle est la finesse des accélérations quantiques ? --- Recherche}]
+\textbf{CRY-23.} \textbf{Problème.} L'algorithme de Grover fouille un espace non
+structuré de $N$ objets en $O(\sqrt N)$ requêtes quantiques, et le théorème BBBV
+(Bennett, Bernstein, Brassard, Vazirani, 1997) démontre que c'est optimal : l'accélération
+quadratique est \textit{exactement} la limite pour la recherche en boîte noire, ce qui explique
+que la cryptographie symétrique survive aux ordinateurs quantiques au prix d'un doublement des
+longueurs de clés. Pour les problèmes structurés, le paysage est ouvert. Dressez la carte des
+hypothèses cryptographiques qui tombent devant quelle classe d'attaque quantique, et de
+l'endroit où les démonstrations s'arrêtent réellement.
+\begin{enumerate}
+\item[(a)] L'accélération exponentielle de Shor pour la factorisation se
+mesure au meilleur algorithme classique \textit{connu} ; il n'existe aucune borne inférieure
+classique surpolynomiale pour la factorisation, ni aucune démonstration que
+$\mathrm{BQP} \ne \mathrm{BPP}$. Qu'impliquerait l'un ou l'autre énoncé ?
+\item[(b)] Raz et
+Tal (2019) ont démontré une séparation par oracle de BQP et de la hiérarchie polynomiale ---
+dites soigneusement ce que les séparations par oracle établissent et n'établissent pas au
+sujet du monde non relativisé.
+\item[(c)] Statut honnête : pour les problèmes NP-complets, aucune
+accélération quantique surpolynomiale n'est connue ni largement jugée possible (BBBV exclut
+déjà la voie de la boîte noire) ; démontrer ou réfuter \og{} les ordinateurs quantiques ne
+peuvent pas résoudre les problèmes NP-complets en temps polynomial \fg{} est aussi hors de portée
+que P contre NP.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La cryptographie d'après Shor est un pari sur la structure fine de la
+théorie de la complexité quantique. Les croyances de travail du domaine --- la factorisation est
+facile quantiquement, LWE et AES-256 ne le sont pas --- reposent sur un théorème d'optimalité
+démontré (BBBV), sur un algorithme (Shor) et sur des décennies d'échecs à étendre l'un ou
+l'autre. Énoncer précisément ce qui est démontré, ce qui est conjecturé et ce qui n'est
+qu'habitude est en soi un exercice de niveau recherche ; les plus profondes de ces questions
+rejoignent les problèmes de complexité de la page
+Problèmes ouverts (\url{open-problems.html}).
+
+\begin{refs}
+\item Contexte : Algorithme de Grover --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_de_Grover})
+\item Contexte : BQP --- Wikipédia (\url{https://fr.wikipedia.org/wiki/BQP})
+\item Article : C. Bennett, E. Bernstein, G. Brassard, U. Vazirani, "Strengths and Weaknesses of Quantum Computing," SIAM Journal on Computing (1997)
+\item Article : R. Raz et A. Tal, "Oracle Separation of BQP and PH," STOC 2019
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les fonctions à sens unique existent-elles ? --- Recherche, short}]
+\textbf{CRY-39.} \textbf{Problème.} Démontrez que si des fonctions à sens unique existent
+alors $\mathrm{P} \ne \mathrm{NP}$, et expliquez précisément pourquoi l'implication
+réciproque n'est pas connue. Énoncez ensuite, avec toutes les hypothèses exactes, le théorème
+de Liu et Pass (2020) selon lequel des fonctions à sens unique existent si et seulement si la
+complexité de Kolmogorov à temps borné $K^{t}$ est légèrement difficile en moyenne.
+\end{problem}
+
+\noindent \textbf{Statut : ouvert}, et c'est le fondement sur lequel repose tout le
+reste de cette page : générateurs pseudo-aléatoires, chiffrement symétrique, signatures
+numériques et mises en gage (CRY-35) existent tous si et seulement si les fonctions à sens
+unique existent --- une seule phrase non démontrée porte donc la cryptographie à clé secrète
+tout entière. Démontrer qu'elles existent réglerait $\mathrm{P} \ne \mathrm{NP}$ en
+corollaire, ce qui explique que personne n'attende de démonstration prochaine. Liu et Pass ont
+changé la forme de la question en trouvant, après quarante ans de recherche, un problème
+\textit{naturel} en moyenne équivalent à leur existence --- calculer le plus court programme qui
+produit une chaîne donnée dans une limite de temps.
+
+\begin{refs}
+\item Contexte : Fonction à sens unique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_%C3%A0_sens_unique})
+\item Article : Y. Liu \& R. Pass, "On One-way Functions and Kolmogorov Complexity," FOCS 2020
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'écart d'approximation des réseaux --- Recherche, short}]
+\textbf{CRY-40.} \textbf{Problème.} L'algorithme LLL (1982) produit, en temps polynomial,
+un vecteur non nul du réseau qui n'est pas plus long que $2^{(n-1)/2}$ fois le plus court,
+tandis que le problème du plus court vecteur est NP-difficile sous réductions aléatoires pour
+tout facteur d'approximation constant, et qu'une approximation à $\sqrt{n}$ près appartient
+à $\mathrm{NP} \cap \mathrm{coNP}$ et est donc peu susceptible d'être NP-difficile.
+Déterminez où se trouve la vérité : trouvez le plus grand facteur d'approximation pour lequel
+le problème est difficile, ou le plus petit pour lequel il est facile.
+\end{problem}
+
+\noindent \textbf{Statut : ouvert}, avec un écart exponentiellement large --- le meilleur
+facteur polynomial connu en temps polynomial reste seulement $2^{O(n \log\log n / \log n)}$,
+à peine en deçà de celui de LLL, et aucun facteur d'approximation polynomial n'est atteignable
+en temps polynomial par une méthode connue. La cryptographie post-quantique (CRY-16, CRY-21)
+est déployée à l'intérieur de cet écart : sa sécurité suppose que le problème reste difficile
+pour des facteurs polynomiaux en $n$, région où n'existent ni démonstration de difficulté ni
+algorithme. LLL fut lui-même un produit dérivé --- Lenstra, Lenstra et Lovász l'ont inventé pour
+factoriser les polynômes à coefficients rationnels, et ce n'est que plus tard qu'il est devenu
+l'instrument standard de la cryptanalyse des réseaux.
+
+\begin{refs}
+\item Contexte : Problème de réseau --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_r%C3%A9seau})
+\item Contexte : Algorithme de réduction de base de réseau de Lenstra--Lenstra--Lovász --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_LLL})
+\item Article : A. K. Lenstra, H. W. Lenstra Jr. \& L. Lovász, "Factoring polynomials with rational coefficients," Mathematische Annalen 261 (1982)
+\item Article : D. Aharonov \& O. Regev, "Lattice problems in NP $\cap$ coNP," Journal of the ACM 52 (2005)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La transformation de Fiat--Shamir est-elle solide hors du modèle de l'oracle aléatoire ? --- Recherche}]
+\textbf{CRY-49.} \textbf{Problème.} La transformation de Fiat--Shamir rend non interactive une preuve
+interactive à pièces publiques en remplaçant le défi aléatoire du vérificateur par un haché de
+tout ce qui a été envoyé jusque-là : $c = H(x, a)$. Si $H$ est modélisée par un \textit{oracle
+aléatoire} --- une fonction uniformément aléatoire que toute partie, honnête ou non, ne peut
+évaluer qu'en l'interrogeant --- la transformation se démontre solide, et pratiquement tout
+schéma de signature déployé de type Schnorr (CRY-48) repose sur une telle démonstration. La
+question est de savoir ce qui subsiste quand $H$ est une fonction publiée réelle.
+\begin{enumerate}
+\item[(a)] Comprenez les résultats négatifs. Canetti, Goldreich et Halevi (1998) ont exhibé des
+schémas démontrablement sûrs dans le modèle de l'oracle aléatoire qui sont non sûrs pour
+\textit{toute} instanciation concrète de l'oracle ; Goldwasser et Kalai (2003) ont fait de même
+spécifiquement pour Fiat--Shamir, en construisant un argument interactif dont l'effondrement à
+la Fiat--Shamir est non sûr quelle que soit la fonction de hachage. Énoncez précisément les
+deux résultats, puis dites exactement ce qu'ils excluent et n'excluent pas au sujet des
+signatures de Schnorr.
+\item[(b)] Comprenez les résultats positifs. Une famille de fonctions de hachage est \textit{intraitable
+en corrélation} pour une relation si aucun adversaire efficace ne peut trouver un $x$ tel
+que $(x, H(x))$ y appartienne ; pour des relations convenables, cette propriété rend
+Fiat--Shamir solide sans aucune idéalisation, et de telles familles ont été construites à
+partir de l'apprentissage avec erreurs (CRY-16) par Canetti, Chen, Holmgren, Lombardi,
+Rothblum, Rothblum et Wichs en 2019, donnant des preuves non interactives à divulgation nulle
+pour NP sous une hypothèse de réseau standard. Déterminez quels protocoles cette machinerie
+couvre et lesquels elle laisse intacts.
+\item[(c)] Le problème ouvert : démontrez ou réfutez que le schéma de signature Fiat--Shamir--Schnorr,
+avec une fonction de hachage concrète, est infalsifiable sous une hypothèse standard
+réfutable. Déterminez également si la perte de sécurité inhérente au rembobinage --- le lemme de
+bifurcation abandonne un facteur égal au nombre de requêtes de hachage --- est nécessaire ou
+n'est qu'un artefact de la technique de démonstration.
+\end{enumerate}
+\textit{Statut : (a) et (b) sont des théorèmes ; (c) est ouvert. Aucune démonstration dans le
+modèle standard n'est connue pour le schéma de signature de Schnorr tel qu'il est déployé, et
+des résultats de méta-réduction (Paillier et Vergnaud, 2005) montrent que des familles
+entières de stratégies de démonstration naturelles ne peuvent pas aboutir.}
+\end{problem}
+
+\noindent Bellare et Rogaway ont proposé le modèle de l'oracle aléatoire en 1993
+comme compromis délibéré : démontrer la sécurité contre un haché idéalisé, puis l'instancier
+et espérer. Trente ans après, le compromis tient toujours et reste toujours injustifié --- les
+schémas qui signent le trafic du monde ont des démonstrations dans un modèle dont on sait, par
+la question (a), qu'il n'est pas solide en général, et pourtant aucun contre-exemple n'a jamais
+touché un schéma que quiconque utilise. La version quantique de la question a été réglée par
+l'affirmative en 2019, quand Don, Fehr, Majenz et Schaffner et, indépendamment, Liu et Zhandry
+ont montré que Fiat--Shamir survit à un adversaire disposant d'un accès quantique à l'oracle.
+La distance entre \og{} démontrable dans un modèle idéalisé \fg{} et \og{} utilisé par tous les
+navigateurs \fg{} est la plus grosse dette impayée de la cryptographie appliquée.
+
+\begin{refs}
+\item Contexte : Heuristique de Fiat--Shamir --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Heuristique_de_Fiat-Shamir})
+\item Contexte : Modèle de l'oracle aléatoire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mod%C3%A8le_de_l%27oracle_al%C3%A9atoire})
+\item Article : S. Goldwasser et Y. Tauman Kalai, "On the (In)security of the Fiat-Shamir Paradigm," FOCS 2003
+\item Article : R. Canetti, Y. Chen, J. Holmgren, A. Lombardi, G. N. Rothblum, R. D. Rothblum et D. Wichs, "Fiat-Shamir: From Practice to Theory," STOC 2019
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le transfert inconscient peut-il se construire à partir de fonctions à sens unique ? --- Recherche, short}]
+\textbf{CRY-50.} \textbf{Problème.} Dans le \textit{transfert inconscient} 1 parmi 2, un émetteur
+détient deux chaînes $m_0, m_1$ et un récepteur détient un bit $b$ ; à la fin du protocole
+le récepteur connaît $m_b$ et rien de $m_{1-b}$, tandis que l'émetteur n'a rien appris
+sur $b$. Démontrez que le transfert inconscient implique la mise en accord de clé, puis
+tranchez le sens réciproque de la hiérarchie : décidez si le transfert inconscient peut être
+construit à partir des seules fonctions à sens unique (CRY-39).
+\end{problem}
+
+\noindent \textbf{Statut : ouvert, et jugé impossible par toute voie en boîte noire.}
+Michael Rabin a proposé le transfert inconscient en 1981, et Even, Goldreich et Lempel en ont
+donné la forme 1 parmi 2 en 1985 ; Joe Kilian a démontré en 1988 qu'il est \textit{complet} ---
+disposant du transfert inconscient, des parties mutuellement méfiantes peuvent calculer de
+façon sûre n'importe quelle fonction --- ce qui en fait le pivot de toute la théorie du calcul
+multipartite. La réduction demandée ci-dessus le place au-dessus de la mise en accord de clé
+dans la carte des mondes possibles d'Impagliazzo, et Impagliazzo et Rudich ont montré en 1989
+que la mise en accord de clé n'admet aucune construction en boîte noire à partir de fonctions
+à sens unique : une construction classique exigerait donc des techniques que personne ne
+possède. Le développement récent le plus frappant contourne la question tout entière :
+Bartusek, Coladangelo, Khurana et Ma et, indépendamment, Grilo, Lin, Song et Vaikuntanathan
+ont montré en 2021 que si les parties peuvent échanger des états quantiques, alors les
+fonctions à sens unique \textit{suffisent} --- la séparation classique est donc un énoncé sur la
+communication classique, non sur la cryptographie.
+
+\begin{refs}
+\item Contexte : Transfert inconscient --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Transfert_inconscient})
+\item Contexte : Calcul multipartite sécurisé --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Calcul_multipartite_s%C3%A9curis%C3%A9})
+\item Article : J. Kilian, "Founding Cryptography on Oblivious Transfer," STOC 1988
+\item Article : A. B. Grilo, H. Lin, F. Song et V. Vaikuntanathan, "Oblivious Transfer is in MiniQCrypt" (2020), arXiv:2011.14980 (\url{https://arxiv.org/abs/2011.14980})
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}

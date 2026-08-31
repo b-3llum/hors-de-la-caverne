@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algèbre abstraite — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Algèbre abstraite</h1>
+<p class="lede">L'algèbre abstraite étudie les opérations elles-mêmes : ce que l'on peut dire de
+l'addition, de la multiplication, de la composition et de la symétrie une fois que l'on oublie ce
+qui est additionné ou composé et que l'on ne garde que les règles. Elle est née de questions très
+concrètes — toute équation du cinquième degré se résout-elle par une formule ? peut-on trisecter
+un angle à la règle et au compas ? — dont les réponses, trouvées par Abel et par Galois à vingt
+ans dans les années 1820 et 1830, se sont révélées dépendre non pas de formules plus habiles mais
+de structures cachées : groupes, anneaux, corps. Emmy Noether et son école ont ensuite reconstruit
+la discipline dans les années 1920 autour de ces structures pour elles-mêmes. Faire de l'algèbre,
+c'est apprendre une langue où les démonstrations d'impossibilité deviennent naturelles : on ne
+manque pas de trouver la formule, on démontre que les symétries l'interdisent. Tout ici demande
+une démonstration ; les références disent d'où viennent les idées.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/pure-algebra.tex" download>source LaTeX</a> · <a href="tex/pure-algebra.pdf" download>PDF compilé</a></p>
+<!-- site.js insere automatiquement la barre de filtre par niveau / recherche ici. NE PAS en construire une. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="ALG-01" data-level="Lycée">
+<h3>ALG-01 · Casting out nines and the clock of powers <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Two integers \(a\) and \(b\) are called <i>congruent
+modulo \(n\)</i>, written \(a \equiv b \pmod{n}\), if \(n\) divides \(a-b\).</p>
+<ol class="parts" type="i">
+<li>Prove that
+congruence modulo \(n\) respects addition and multiplication: if \(a \equiv a' \pmod{n}\) and
+\(b \equiv b' \pmod{n}\), then \(a+b \equiv a'+b' \pmod{n}\) and \(ab \equiv a'b' \pmod{n}\).</li>
+<li>Using (i), prove that a positive integer is divisible by 9 if and only if the sum of its
+decimal digits is divisible by 9.</li>
+<li>Determine, with proof, the last decimal digit of
+\(7^{2026}\).</li>
+</ol>
+</div>
+<p class="context">Modular arithmetic was made systematic by Gauss in the opening pages of his
+<i>Disquisitiones Arithmeticae</i> (1801), written when he was 24; the ≡ notation is his. The
+digit-sum test ("casting out nines") is far older — medieval accountants used it to check
+ledgers. Behind part (iii) hides the first example of a group in this collection: the residues
+modulo 10 that have multiplicative inverses, cycling under multiplication.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arithm%C3%A9tique_modulaire">Arithmétique modulaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Disquisitiones_arithmeticae">Disquisitiones arithmeticae — Wikipédia</a></li>
+<li>Lecture : J. Fraleigh, <i>A First Course in Abstract Algebra</i>, sections 0 and 4</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-02" data-level="Lycée">
+<h3>ALG-02 · The twenty-four rotations of the cube <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Prove that a cube has exactly 24 rotational symmetries
+— rotations of space that carry the cube onto itself — and justify that your list is complete.</li>
+<li>A cube has four space diagonals (segments joining opposite vertices). Show that every
+rotational symmetry permutes these four diagonals, and that distinct rotations give distinct
+permutations.</li>
+<li>Conclude that the rotations of the cube realize <i>every</i> one of the
+\(4! = 24\) possible rearrangements of the four diagonals.</li>
+</ol>
+</div>
+<p class="context">Counting symmetries is where group theory touches the eye. The regular solids
+were studied by the Greeks — Euclid's <i>Elements</i> ends with them — but the insight that their
+symmetries form a closed system of composable operations belongs to the nineteenth century, and
+part (iii) says the cube's rotation group "is" the symmetric group \(S_4\) in disguise.
+Klein's 1872 Erlangen program proposed defining geometry itself by its symmetry groups.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Octahedral_symmetry">Symétrie octaédrique — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_de_sym%C3%A9trie">Groupe de symétrie — Wikipédia</a></li>
+<li>Lecture : M. Artin, <i>Algebra</i>, ch. 6 (Symmetry)</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-03" data-level="Lycée">
+<h3>ALG-03 · When is \(n^4 + 4\) prime? <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Determine, with proof, all positive integers \(n\) for which
+\(n^4 + 4\) is a prime number. More generally, show that \(n^4 + 4m^4\) is composite for all
+integers \(n, m \ge 2\).</p>
+<p class="context">The key is a factorization that most people insist cannot exist — a sum
+that factors. It is named after Sophie Germain (1776–1831), who taught herself mathematics
+from her father's library during the French Revolution and corresponded with Gauss under a
+male pseudonym until he learned, with delight, who "Monsieur Le Blanc" really was. The
+identity behind this problem appears throughout olympiad mathematics and in her work on
+Fermat's Last Theorem.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Identit%C3%A9_de_Sophie_Germain">Identité de Sophie Germain — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sophie_Germain">Sophie Germain — Wikipédia</a></li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 6 (Number Theory)</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-04" data-level="Lycée">
+<h3>ALG-04 · The rational root theorem, and why \(\sqrt[3]{2}\) is irrational <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Prove the rational root theorem: if a polynomial
+\(a_n x^n + \cdots + a_1 x + a_0\) with integer coefficients has a rational root \(p/q\) in
+lowest terms, then \(p\) divides \(a_0\) and \(q\) divides \(a_n\).</li>
+<li>Deduce that
+\(\sqrt[3]{2}\) is irrational.</li>
+<li>Show that \(x^3 - x - 1\) has no rational root, and
+explain why for a cubic this already proves it cannot be factored into polynomials of lower
+degree with rational coefficients.</li>
+</ol>
+</div>
+<p class="context">This is the humble ancestor of everything in the Graduate band below: the
+irrationality of \(\sqrt[3]{2}\) is the first, easiest obstruction in the 2000-year-old problem
+of doubling the cube (ALG-18). The theorem itself is essentially due to Descartes and was
+routine by Euler's time; what changed later is that "has no rational root" grew into the far
+deeper notion of <i>irreducibility</i>, the atom-concept of field theory.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Racine_%C3%A9vidente">Théorème de la racine rationnelle — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyn%C3%B4me_irr%C3%A9ductible">Polynôme irréductible — Wikipédia</a></li>
+<li>Lecture : J. Fraleigh, <i>A First Course in Abstract Algebra</i>, section 23</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-26" data-level="Lycée" data-kind="court">
+<h3>ALG-26 · The symmetries of a rectangle <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> List all four symmetries of a non-square rectangle, write out their composition table, and prove that every non-identity element is its own inverse.</p>
+<p class="context">This is the Klein four-group, the smallest group that is not cyclic, and it can be discovered with a piece of cardboard before the word "group" is ever defined. Building the table by hand and then noticing the pattern is exactly how the abstract axioms were arrived at historically — the examples came first.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_de_Klein">Groupe de Klein — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-27" data-level="Lycée" data-kind="court">
+<h3>ALG-27 · A clock that loses numbers <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> In arithmetic modulo \( 12 \), determine exactly which residues have a multiplicative inverse, and prove that your criterion is correct for a general modulus \( n \).</p>
+<p class="context">Modular arithmetic looks like ordinary arithmetic until division fails, and finding precisely when it fails — exactly when the residue shares a factor with the modulus — is the first genuine theorem most people prove about rings. It is also why prime moduli behave so much better, which is the reason cryptography prefers them.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Inverse_modulaire">Inverse modulaire — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-34" data-level="Lycée">
+<h3>ALG-34 · Parity, and the 14–15 that never comes out <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> A <i>transposition</i> is a permutation that exchanges two elements and fixes
+the rest; every permutation of a finite set is a product of transpositions. The <i>15 puzzle</i>
+is a \(4 \times 4\) tray holding tiles \(1, 2, \dots, 15\) and one empty square; a move slides a
+tile that is horizontally or vertically adjacent to the empty square into it.</p>
+<ol class="parts" type="a">
+<li>Prove that if a permutation \(\sigma\) is written as a product of transpositions in two
+ways, the two numbers of factors have the same parity. So the <i>sign</i>
+\(\operatorname{sgn}(\sigma) = \pm 1\) is well defined; prove that
+\(\operatorname{sgn}(\sigma\tau) = \operatorname{sgn}(\sigma)\operatorname{sgn}(\tau)\).</li>
+<li>Deduce that for \(n \ge 2\) the even permutations form a subgroup of \(S_n\) containing
+exactly half its elements.</li>
+<li>Read a position of the puzzle as a permutation \(\sigma\) of the sixteen squares (the empty
+square counting as a sixteenth piece), with the empty square in row \(i\) and column \(j\).
+Prove that
+\[ \operatorname{sgn}(\sigma) \cdot (-1)^{\,i+j} \]
+is unchanged by every legal move.</li>
+<li>Conclude that the position obtained from the solved one by exchanging the tiles 14 and 15 can
+never be reached, and prove that at most half of the \(16!\) arrangements are reachable from any
+given one.</li>
+</ol>
+</div>
+<p class="context">The puzzle was devised around 1874 by Noyes Palmer Chapman, a postmaster in
+Canastota, New York, and became a craze in 1880; Sam Loyd, who had nothing to do with inventing
+it, later offered \(\$1000\) for a solution to the 14–15 position and from 1891 claimed the puzzle
+as his own — a claim demolished by Slocum and Sonneveld's 2006 history. The prize was safe,
+because in 1879 William Woolsey Johnson and William E. Story had already published the invariant
+of part (c) in the <i>American Journal of Mathematics</i>: one of the earliest arguments in which
+an algebraic invariant proves that something cannot be done, rather than merely failing to do it.
+The sign of a permutation, born in eighteenth-century work on determinants, is the same
+homomorphism that produces the alternating group of ALG-11 and, in the end, the unsolvability of
+the quintic.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Taquin">Taquin — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Signature_d%27une_permutation">Signature d'une permutation — Wikipédia</a></li>
+<li>Article : Wm. W. Johnson &amp; W. E. Story, “Notes on the ‘15’ Puzzle” (1879), American Journal of Mathematics 2, 397–404</li>
+<li>Article : A. F. Archer, “A modern treatment of the 15 puzzle” (1999), American Mathematical Monthly 106, 793–799</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-35" data-level="Lycée" data-kind="court">
+<h3>ALG-35 · Every group table is a Latin square <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Prove that in the multiplication table of a finite group,
+every element of the group appears exactly once in each row and exactly once in each column.
+Then show, by exhibiting one, that a square array with that property need not be the
+multiplication table of any group.</p>
+<p class="context">The table is Cayley's invention: in his 1854 paper on abstract groups he laid
+one out and observed exactly this pattern, which is nothing but the cancellation law made visible.
+Squares filled so that each symbol occurs once per row and column had already been studied by
+Euler in 1782 under the name <i>Latin squares</i>, and the gap between the two notions is
+instructive — a Latin square encodes cancellation, but associativity leaves no visible trace in
+the grid, which is why the converse fails and why the objects that satisfy only the row-and-column
+condition (quasigroups) form a separate subject.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Table_de_Cayley">Table de Cayley — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Carr%C3%A9_latin">Carré latin — Wikipédia</a></li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="ALG-05" data-level="Licence">
+<h3>ALG-05 · What is a group, exactly? <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> A <i>group</i> is a set \(G\) with an operation \(*\) that
+is associative, has an identity element, and gives every element an inverse. Determine, with
+proof, which of the following are groups:</p>
+<ol class="parts" type="a">
+<li>the integers under subtraction;</li>
+<li>the positive
+rationals under multiplication;</li>
+<li>the set \(\{0, 1, \dots, 11\}\) under multiplication mod 12;</li>
+<li>those elements of \(\{0, 1, \dots, 11\}\) having a multiplicative inverse mod 12, under
+multiplication mod 12;</li>
+<li>invertible \(2 \times 2\) real matrices under matrix multiplication.
+Then prove from the axioms alone that in any group the identity is unique, each element has a
+unique inverse, and \((ab)^{-1} = b^{-1}a^{-1}\).</li>
+</ol>
+</div>
+<p class="context">The axioms were distilled slowly, over a century, from three separate springs:
+Galois's groups of permutations of roots (1830s), Klein's and Lie's groups of geometric
+transformations, and number-theoretic composition laws going back to Gauss. Cayley wrote down an
+abstract definition in 1854 and was largely ignored; only around 1900 did the axiomatic viewpoint
+win. The exercise of checking which familiar structures satisfy the axioms — and which fail, and
+why — is how every algebraist first learns what the axioms are actually for.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_(math%C3%A9matiques)">Groupe (mathématiques) — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., ch. 1</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-701-algebra-i-fall-2010/">MIT OCW 18.701 Algebra I</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-06" data-level="Licence">
+<h3>ALG-06 · Lagrange's theorem <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Let \(G\) be a finite group and \(H\) a subgroup.</p>
+<ol class="parts" type="i">
+<li>Prove
+Lagrange's theorem: the order (size) of \(H\) divides the order of \(G\).</li>
+<li>Deduce that the
+order of any element of \(G\) divides the order of \(G\), and that every group of prime order is
+cyclic.</li>
+<li>Deduce Fermat's little theorem: if \(p\) is prime and \(p\) does not divide \(a\),
+then \(a^{p-1} \equiv 1 \pmod{p}\).</li>
+</ol>
+</div>
+<p class="context">Lagrange stated a special case in 1770–71 while studying how the value of a
+polynomial expression changes when its variables are permuted — work that predates the definition
+of a group by decades. The modern statement and proof, via the beautiful device of cosets slicing
+a group into equal-sized pieces, crystallized with Galois and Jordan. It is the first structural
+theorem of the subject: a group's size constrains what can live inside it. That Fermat's 1640
+observation about primes falls out as a corollary is an early hint of algebra's unifying power.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Lagrange_sur_les_groupes">Théorème de Lagrange (théorie des groupes) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Petit_th%C3%A9or%C3%A8me_de_Fermat">Petit théorème de Fermat — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., ch. 3</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-701-algebra-i-fall-2010/">MIT OCW 18.701 Algebra I</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-07" data-level="Licence">
+<h3>ALG-07 · Cayley's theorem: every group is a group of permutations <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Prove Cayley's theorem: every group \(G\) is isomorphic
+to a subgroup of the symmetric group \(\mathrm{Sym}(G)\) of all permutations of the set \(G\).</li>
+<li>The theorem embeds a group of order \(n\) into \(S_n\), but often one can do much better —
+or not. Show that the quaternion group \(Q_8 = \{\pm 1, \pm i, \pm j, \pm k\}\) admits no
+faithful action on fewer than 8 points: it is not isomorphic to a subgroup of \(S_n\) for any
+\(n &lt; 8\).</li>
+</ol>
+</div>
+<p class="context">Cayley proved (i) in 1854, in the very paper where he first defined abstract
+groups — it was his argument that the abstract definition loses nothing, since every abstract group
+is realized by permutations. Part (ii) is the classic counterpoint: the regular representation can
+be wildly inefficient, but for \(Q_8\) (Hamilton's quaternion units, 1843) it is provably
+optimal. The study of minimal faithful permutation degrees is still an active corner of group
+theory.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cayley">Théorème de Cayley — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_des_quaternions">Groupe des quaternions — Wikipédia</a></li>
+<li>Lecture : J. Rotman, <i>An Introduction to the Theory of Groups</i>, 4th ed., ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-08" data-level="Licence">
+<h3>ALG-08 · Subgroup lattices: \(D_4\) and \(\mathbb{Z}/12\mathbb{Z}\) <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> The subgroups of a group, ordered by inclusion, form its
+<i>subgroup lattice</i>.</p>
+<ol class="parts" type="i">
+<li>Find all subgroups of the dihedral group \(D_4\) (the 8 symmetries
+of a square), prove your list is complete, and draw the lattice. Mark which subgroups are
+normal.</li>
+<li>Prove that every subgroup of a cyclic group is cyclic, and that the subgroup
+lattice of \(\mathbb{Z}/n\mathbb{Z}\) is exactly the lattice of divisors of \(n\). Draw it for
+\(n = 12\).</li>
+<li>Exhibit two nonisomorphic groups with isomorphic subgroup lattices.</li>
+</ol>
+</div>
+<p class="context">Drawing a subgroup lattice is to a group theorist what dissection is to an
+anatomist. The systematic study of what the lattice does and does not remember about the group was
+begun by Ada Rottlaender (a student of Schur) in 1928 and grew into a whole subject, surveyed in
+Suzuki's 1956 book; part (iii) shows the lattice is a genuine but lossy invariant. The picture for
+\(D_4\), with its ten subgroups, reappears in ALG-20 as one half of a Galois correspondence.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Treillis_des_sous-groupes">Treillis des sous-groupes — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_di%C3%A9dral">Groupe diédral — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., section 2.5</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-09" data-level="Licence">
+<h3>ALG-09 · Group actions and Burnside counting <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> A group \(G\) <i>acts</i> on a set \(X\) if each
+\(g \in G\) permutes \(X\) compatibly with the group operation.</p>
+<ol class="parts" type="i">
+<li>Prove the orbit–stabilizer
+theorem: for finite \(G\) and any \(x \in X\), \(|G| = |\mathrm{Orb}(x)| \cdot |\mathrm{Stab}(x)|\).</li>
+<li>Prove Burnside's lemma: the number of orbits equals
+\(\frac{1}{|G|} \sum_{g \in G} |\mathrm{Fix}(g)|\), the average number of points fixed by a
+group element.</li>
+<li>Use it to count the essentially different ways to paint the six faces of a
+cube with three colors, where two paintings are the same if a rotation carries one to the
+other.</li>
+</ol>
+</div>
+<p class="context">The counting lemma is the subject's most famous misattribution: it appears in
+Cauchy (1845) and Frobenius (1887), and Burnside himself cited Frobenius when he included it in his
+1897 textbook — group theorists wryly call it "the lemma that is not Burnside's" (the title of a
+1979 note by Peter Neumann). Beyond puzzles, the orbit–stabilizer theorem is the engine of nearly
+every counting argument in finite group theory, including the Sylow theorems two problems below.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_Burnside">Lemme de Burnside — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Action_de_groupe_(math%C3%A9matiques)">Action de groupe — Wikipédia</a></li>
+<li>Lecture : M. Artin, <i>Algebra</i>, ch. 6–7</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-701-algebra-i-fall-2010/">MIT OCW 18.701 Algebra I</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-10" data-level="Licence">
+<h3>ALG-10 · Sylow theory in action: groups of order \(pq\) <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> The Sylow theorems say: if \(p^k\) is the largest power of
+the prime \(p\) dividing \(|G|\), then subgroups of order \(p^k\) (Sylow \(p\)-subgroups) exist,
+are all conjugate, and their number is \(\equiv 1 \pmod{p}\) and divides \(|G|\). Take these as
+given (or prove them).</p>
+<ol class="parts" type="i">
+<li>Prove that every group of order 15 is cyclic.</li>
+<li>More generally,
+let \(p &lt; q\) be primes with \(p\) not dividing \(q - 1\); prove every group of order \(pq\)
+is cyclic.</li>
+<li>Show that when \(p\) does divide \(q - 1\), a nonabelian group of order
+\(pq\) exists.</li>
+<li>Prove that no group of order 30 is simple.</li>
+</ol>
+</div>
+<p class="context">Ludwig Sylow, a Norwegian high-school teacher for most of his career, published
+his three theorems in 1872 in a ten-page paper that became the cornerstone of finite group theory.
+They are the partial converse Lagrange's theorem lacks: divisibility of the order forces existence
+of subgroups. Arguments like (i)–(iv) — juggling counts of Sylow subgroups until a group is forced
+to be cyclic, or forced to have a normal subgroup — are the daily bread of the classification
+programme that culminates in ALG-22.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8mes_de_Sylow">Théorèmes de Sylow — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., ch. 4</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-701-algebra-i-fall-2010/">MIT OCW 18.701 Algebra I</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-11" data-level="Licence">
+<h3>ALG-11 · The simplicity of \(A_5\) <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> A group is <i>simple</i> if its only normal subgroups are
+itself and the trivial group.</p>
+<ol class="parts" type="i">
+<li>Prove that the alternating group \(A_5\) (even permutations
+of five letters, order 60) is simple.</li>
+<li>Prove that every nonabelian simple group of order at
+most 60 has order exactly 60, so \(A_5\) is the smallest nonabelian simple group.</li>
+<li>Prove
+that \(A_5\) is isomorphic to the rotation group of the icosahedron.</li>
+</ol>
+</div>
+<p class="context">This one group is the villain — or hero — of the whole story. Galois knew by
+1832 that \(A_5\) is simple, and its simplicity is precisely what makes the general quintic
+unsolvable by radicals (ALG-21). Part (ii), a classic tour of Sylow counting, explains why degree
+five is the first bad degree. Part (iii), beloved of Klein (whose 1884 <i>Lectures on the
+Icosahedron</i> built a whole theory around it), says the obstruction has been sitting inside a
+Platonic solid all along.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_altern%C3%A9">Groupe alterné — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_simple">Groupe simple — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., sections 4.5–4.6</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-12" data-level="Licence">
+<h3>ALG-12 · Semidirect products <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Given groups \(N\) and \(H\) and a homomorphism
+\(\varphi : H \to \operatorname{Aut}(N)\), the <i>semidirect product</i>
+\(N \rtimes_\varphi H\) is the set \(N \times H\) with multiplication
+\((n_1, h_1)(n_2, h_2) = (n_1 \, \varphi(h_1)(n_2), \; h_1 h_2)\).</p>
+<ol class="parts" type="i">
+<li>Verify this is a group
+containing \(N\) as a normal subgroup.</li>
+<li>Show that the dihedral group \(D_n\) is a
+semidirect product \(\mathbb{Z}/n\mathbb{Z} \rtimes \mathbb{Z}/2\mathbb{Z}\).</li>
+<li>Construct
+a nonabelian group of order 21, and prove that up to isomorphism there is exactly one.</li>
+<li>For primes \(p &lt; q\), determine exactly when a nonabelian semidirect product
+\(\mathbb{Z}/q\mathbb{Z} \rtimes \mathbb{Z}/p\mathbb{Z}\) exists.</li>
+</ol>
+</div>
+<p class="context">The semidirect product is the algebraist's basic tool for building new groups
+from old, formalized by Hölder in the 1890s during the first classification of groups of small
+order. It answers the "extension problem" in its easiest case: how can a group be assembled from a
+normal subgroup and a quotient? Hölder's program — understand simple groups, then understand how
+they glue — is still the blueprint of finite group theory.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_semi-direct">Produit semi-direct — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., section 5.5</li>
+<li>Lecture : J. Rotman, <i>An Introduction to the Theory of Groups</i>, 4th ed., ch. 7</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-13" data-level="Licence">
+<h3>ALG-13 · Rings, ideals, and what quotients detect <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Let \(R\) be a commutative ring with 1. An <i>ideal</i>
+\(I \subset R\) is a nonempty subset closed under addition and under multiplication by arbitrary
+ring elements.</p>
+<ol class="parts" type="i">
+<li>Prove that the ideals of \(R\) are exactly the kernels of ring homomorphisms
+out of \(R\).</li>
+<li>Prove that the quotient \(R/I\) is a field if and only if \(I\) is maximal
+(contained in no larger proper ideal), and an integral domain if and only if \(I\) is prime
+(\(ab \in I\) forces \(a \in I\) or \(b \in I\)).</li>
+<li>Determine all prime and all maximal
+ideals of \(\mathbb{Z}\), and of the polynomial ring \(\mathbb{R}[x]\).</li>
+</ol>
+</div>
+<p class="context">Ideals were born of a crisis: Kummer's "ideal numbers" (1840s) rescued unique
+factorization in the number rings where it fails, and Dedekind recast them (1871) as the subsets
+now bearing the name. Emmy Noether's 1921 paper <i>Idealtheorie in Ringbereichen</i> made ideals
+the central objects of commutative algebra — the modern subject is unrecognizable without her.
+The dictionary in (ii), translating properties of quotients into properties of ideals, is the
+template for algebraic geometry's dictionary between rings and spaces.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Id%C3%A9al">Idéal (théorie des anneaux) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Anneau_(math%C3%A9matiques)">Anneau (mathématiques) — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., ch. 7</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-702-algebra-ii-spring-2011/">MIT OCW 18.702 Algebra II</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-14" data-level="Licence">
+<h3>ALG-14 · Quotient constructions: building \(\mathbb{C}\) from \(\mathbb{R}[x]\) <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Prove the first isomorphism theorem, for groups and for
+rings: if \(f : A \to B\) is a homomorphism, then \(A/\ker f \cong \operatorname{im} f\).</li>
+<li>Prove that \(\mathbb{R}[x]/(x^2 + 1)\) is a field isomorphic to the complex numbers
+\(\mathbb{C}\).</li>
+<li>More generally, prove that if \(p(x)\) is irreducible over a field \(F\),
+then \(F[x]/(p(x))\) is a field containing (a copy of) \(F\) in which \(p\) has a root.</li>
+<li>Use (iii) to build a field with exactly 4 elements, and write out its addition and
+multiplication tables.</li>
+</ol>
+</div>
+<p class="context">Part (iii) is Kronecker's construction (1887): given any polynomial, a root can
+be <i>manufactured</i> by pure algebra, with no appeal to \(\mathbb{C}\) or to analysis. This
+inverted the history — mathematicians had adjoined \(i\) to the reals with a guilty conscience for
+three centuries, and here was a machine that mints roots legally. It is the engine that makes
+field theory self-sufficient and the direct route to the finite fields of ALG-17.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Anneau_quotient">Anneau quotient — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8mes_d%27isomorphisme">Théorèmes d'isomorphisme — Wikipédia</a></li>
+<li>Lecture : M. Artin, <i>Algebra</i>, ch. 11</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-702-algebra-ii-spring-2011/">MIT OCW 18.702 Algebra II</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-15" data-level="Licence">
+<h3>ALG-15 · Eisenstein's criterion and the cyclotomic polynomial <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Prove Gauss's lemma: a polynomial with integer
+coefficients that factors over \(\mathbb{Q}\) already factors over \(\mathbb{Z}\) (into factors
+of the same degrees).</li>
+<li>Prove Eisenstein's criterion: if a prime \(p\) divides every
+coefficient of \(f(x) = a_n x^n + \cdots + a_0\) except \(a_n\), and \(p^2\) does not divide
+\(a_0\), then \(f\) is irreducible over \(\mathbb{Q}\).</li>
+<li>Deduce that \(x^n - p\) is
+irreducible over \(\mathbb{Q}\) for every \(n \ge 1\) and prime \(p\).</li>
+<li>Show that for
+\(p\) prime, \(\Phi_p(x) = x^{p-1} + x^{p-2} + \cdots + 1\) is irreducible over \(\mathbb{Q}\).
+(The standard trick: apply the criterion after a change of variable.)</li>
+</ol>
+</div>
+<p class="context">Irreducibility is easy to define and maddening to verify; Eisenstein's 1850
+criterion is the one tool every algebraist carries. It was actually published four years earlier by
+Schönemann, and historians now write "Schönemann–Eisenstein"; both were after part (iv), the
+irreducibility of the cyclotomic polynomial, which Gauss had needed for his 17-gon (ALG-19).
+Eisenstein died at 29; Gauss reportedly ranked him with Archimedes and Newton.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8re_d%27Eisenstein">Critère d'Eisenstein — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_Gauss_(polyn%C3%B4mes)">Lemme de Gauss (polynômes) — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., ch. 9</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-16" data-level="Licence">
+<h3>ALG-16 · Field extensions and the tower law <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> If \(F \subset K\) are fields, \(K\) is a vector space over
+\(F\); its dimension is the <i>degree</i> \([K : F]\).</p>
+<ol class="parts" type="i">
+<li>Prove the tower law: if
+\(F \subset K \subset L\) then \([L : F] = [L : K] \cdot [K : F]\).</li>
+<li>Prove that
+\([\mathbb{Q}(\sqrt[3]{2}) : \mathbb{Q}] = 3\) and
+\([\mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q}] = 4\), and find a single element \(\alpha\)
+with \(\mathbb{Q}(\sqrt{2}, \sqrt{3}) = \mathbb{Q}(\alpha)\).</li>
+<li>Prove that the elements of
+an extension of \(F\) that are algebraic over \(F\) (roots of polynomials with coefficients in
+\(F\)) form a field. Conclude that the sum of two algebraic numbers is algebraic — without ever
+exhibiting its polynomial.</li>
+</ol>
+</div>
+<p class="context">Measuring a field extension by a whole number is one of the great compressions
+in mathematics, and it is linear algebra smuggled into arithmetic: dimension arguments do all the
+work. The viewpoint matured from Dedekind through Steinitz, whose 1910 paper <i>Algebraische
+Theorie der Körper</i> organized all of field theory; the tower law's multiplicativity is exactly
+what powers the impossibility proofs of ALG-18.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Extension_de_corps">Extension de corps — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Degr%C3%A9_d%27une_extension">Degré d'une extension de corps — Wikipédia</a></li>
+<li>Lecture : I. Stewart, <i>Galois Theory</i>, 4th ed., ch. 4–6</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-702-algebra-ii-spring-2011/">MIT OCW 18.702 Algebra II</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-17" data-level="Licence">
+<h3>ALG-17 · Finite fields <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Prove that every finite field has \(p^n\) elements for
+some prime \(p\) and \(n \ge 1\).</li>
+<li>Prove existence and uniqueness: for each such \(p^n\)
+there is a field of that order, unique up to isomorphism — the field \(\mathbb{F}_{p^n}\),
+obtained as the splitting field of \(x^{p^n} - x\) over \(\mathbb{F}_p\).</li>
+<li>Prove that the
+multiplicative group of any finite field is cyclic.</li>
+<li>Show that \(\mathbb{F}_{p^m}\) embeds
+in \(\mathbb{F}_{p^n}\) if and only if \(m\) divides \(n\), so the subfields of
+\(\mathbb{F}_{p^n}\) form a copy of the divisor lattice of \(n\).</li>
+</ol>
+</div>
+<p class="context">Galois introduced these fields in 1830, three years after Abel's death and two
+before his own, to study equations modulo \(p\) — they are still called Galois fields, and
+E. H. Moore proved the uniqueness (ii) in 1893. A structure invented in the purest corner of
+algebra now runs the physical world: every QR code, CD, and deep-space transmission is protected
+by Reed–Solomon codes doing arithmetic in \(\mathbb{F}_{256}\), and elliptic-curve cryptography
+lives over large prime fields.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Corps_fini">Corps fini — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., section 14.3</li>
+<li>Lecture : R. Lidl &amp; H. Niederreiter, <i>Finite Fields</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-28" data-level="Licence" data-kind="court">
+<h3>ALG-28 · A group with no proper subgroup <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Determine all finite groups whose only subgroups are the trivial group and the whole group, and prove your classification is complete.</p>
+<p class="context">The answer is short — the cyclic groups of prime order — and the proof is a clean application of Lagrange's theorem together with the fact that every element generates a subgroup. It is a good first taste of a classification result: not "here is an example" but "here is everything there is".</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Lagrange_sur_les_groupes">Théorème de Lagrange — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-29" data-level="Licence" data-kind="court">
+<h3>ALG-29 · Centre of a \( p \)-group <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Let \( G \) be a finite group of order \( p^n \) with \( p \) prime and \( n \geq 1 \). Prove that the centre of \( G \) is non-trivial, and deduce that every group of order \( p^2 \) is abelian.</p>
+<p class="context">The proof runs through the class equation, and it is the moment when counting conjugacy classes stops being bookkeeping and starts producing structure out of nothing but the order of the group. The corollary is striking: an arithmetic fact about \( |G| \) forces a commutativity fact about its elements.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Centre_d%27un_groupe">Centre d'un groupe — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Action_par_conjugaison">Équation aux classes — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-36" data-level="Licence">
+<h3>ALG-36 · Every finitely generated abelian group, listed once <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Let \(G\) be an abelian group generated by finitely many elements.</p>
+<ol class="parts" type="a">
+<li>Prove the invariant factor form: there are an integer \(r \ge 0\) and integers
+\(d_1 \mid d_2 \mid \cdots \mid d_k\) with each \(d_i \ge 2\) such that
+\[ G \;\cong\; \mathbb{Z}^{r} \oplus \mathbb{Z}/d_1\mathbb{Z} \oplus \cdots \oplus \mathbb{Z}/d_k\mathbb{Z}, \]
+and prove that \(r\) and the list \(d_1, \dots, d_k\) are determined by \(G\) up to isomorphism.</li>
+<li>Prove the equivalence with the elementary divisor form, in which every summand is cyclic of
+prime power order, and explain precisely where the Chinese remainder theorem does the
+translating.</li>
+<li>Determine, with proof, all abelian groups of order \(360\) up to isomorphism, and prove that
+no two groups on your list are isomorphic.</li>
+<li>Prove that for a prime \(p\), the number of abelian groups of order \(p^n\) up to isomorphism
+equals the number of partitions of \(n\).</li>
+</ol>
+</div>
+<p class="context">This theorem is older than the word "group" in its modern sense. Gauss handled a
+first case in the <i>Disquisitiones</i> (1801), in the guise of classes of binary quadratic forms;
+Kronecker proved it for finite abelian groups in 1870; H. J. S. Smith's 1861 normal form for
+integer matrices gives the finitely presented case, since an integer matrix is exactly a
+presentation; and Emmy Noether, in 1926, put it in the form used today. Its real weight is that it
+is a <i>complete</i> classification — the rarest kind of theorem — and that the same argument, run
+over a polynomial ring instead of \(\mathbb{Z}\), produces the rational and Jordan canonical forms
+of linear algebra (LIN-14). Uniqueness in part (a) is the subtle half; the existence half is
+essentially Gaussian elimination over \(\mathbb{Z}\).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_ab%C3%A9lien_de_type_fini">Groupe abélien de type fini — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_facteurs_invariants">Théorème des facteurs invariants — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., section 5.2 and ch. 12</li>
+<li>Lecture : M. Artin, <i>Algebra</i>, ch. 14</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-37" data-level="Licence">
+<h3>ALG-37 · Euclidean, principal, unique — and the gaps between <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Let \(R\) be an integral domain. Call \(R\) <i>Euclidean</i> if there is a
+function \(f : R \setminus \{0\} \to \mathbb{Z}_{\ge 0}\) such that any \(a, b\) with \(b \ne 0\)
+admit \(a = qb + r\) with \(r = 0\) or \(f(r) &lt; f(b)\); a <i>PID</i> if every ideal is generated
+by a single element; a <i>UFD</i> if every nonzero nonunit factors into irreducibles, uniquely up
+to order and unit multiples.</p>
+<ol class="parts" type="a">
+<li>Prove that Euclidean \(\Rightarrow\) PID \(\Rightarrow\) UFD. Prove also that in a PID every
+irreducible element is prime, and that a PID has no infinite strictly increasing chain of
+ideals.</li>
+<li>Prove that \(\mathbb{Z}[x]\) is a UFD but not a PID, by exhibiting an ideal that no single
+element generates.</li>
+<li>Prove that \(\mathbb{Z}[\sqrt{-5}]\) is not a UFD, using the norm
+\(N(a + b\sqrt{-5}) = a^2 + 5b^2\); then say exactly which implication of part (a) this does
+<i>not</i> contradict, and why.</li>
+<li>Call \(u \in R\) a <i>universal side divisor</i> if \(u\) is a nonzero nonunit and every
+\(x \in R\) satisfies \(u \mid x - r\) for some \(r\) that is zero or a unit. Prove that a
+Euclidean domain which is not a field must contain one, and prove that the ring
+\(\mathbb{Z}\!\left[\tfrac{1 + \sqrt{-19}}{2}\right]\) contains none — so it is not Euclidean,
+although it is known to be a PID.</li>
+</ol>
+</div>
+<p class="context">Every schoolchild's division-with-remainder is doing more work than it looks:
+it is the reason \(\mathbb{Z}\) has unique factorization at all. When Kummer found in the 1840s
+that unique factorization fails in the cyclotomic rings he needed for Fermat's Last Theorem, the
+whole hierarchy above had to be untangled, and Dedekind's ideals (ALG-13) were the repair.
+Part (d) is the delicate end of the story: "Euclidean" asserts that some measuring function
+exists, so proving a ring is <i>not</i> Euclidean requires an obstruction that no function can
+dodge. Motzkin supplied one in 1949 with the universal side divisor, and
+\(\mathbb{Z}\!\left[\tfrac{1+\sqrt{-19}}{2}\right]\) became the first known principal ideal
+domain in which no Euclidean algorithm can be installed.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Anneau_euclidien">Anneau euclidien — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Anneau_principal">Anneau principal — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., ch. 8</li>
+<li>Article : Th. Motzkin, “The Euclidean algorithm” (1949), Bulletin of the American Mathematical Society 55, 1142–1146</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-38" data-level="Licence" data-kind="court">
+<h3>ALG-38 · The largest abelian quotient <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> For a group \(G\), let \([G,G]\) be the subgroup generated by
+all commutators \(xyx^{-1}y^{-1}\); prove that \([G,G]\) is normal, that \(G/[G,G]\) is abelian,
+and that every homomorphism from \(G\) to an abelian group factors uniquely through the quotient
+map \(G \to G/[G,G]\). Determine \([S_n, S_n]\), with proof.</p>
+<p class="context">The quotient \(G/[G,G]\), the <i>abelianisation</i>, is the largest piece of a
+group that commutative arithmetic can see, and the factoring property says it is the universal
+such piece — a first, painless example of a universal property. Iterating the construction gives
+the derived series, whose termination is exactly solvability (ALG-21), so this two-line definition
+is what stands between the quartic and the quintic. In topology the same group reappears as the
+first homology of a space, by Poincaré's and Hurewicz's theorem that \(H_1\) is the abelianisation
+of the fundamental group.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_d%C3%A9riv%C3%A9">Groupe dérivé — Wikipédia</a></li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., ch. 6</li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="ALG-18" data-level="Master">
+<h3>ALG-18 · Doubling the cube, trisecting the angle <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Call a real number <i>constructible</i> if it is a
+coordinate of a point obtainable from \((0,0)\) and \((1,0)\) by finitely many
+straightedge-and-compass steps.</p>
+<ol class="parts" type="i">
+<li>Prove that the constructible numbers form a field closed
+under square roots, and that every constructible number lies in a tower of fields
+\(\mathbb{Q} = F_0 \subset F_1 \subset \cdots \subset F_k\) with each
+\([F_{i+1} : F_i] = 2\).</li>
+<li>Conclude that every constructible number has degree \(2^m\) over
+\(\mathbb{Q}\) for some \(m\).</li>
+<li>Prove that \(\sqrt[3]{2}\) is not constructible: the cube
+cannot be doubled.</li>
+<li>Prove that \(\cos 20^\circ\) has degree 3 over \(\mathbb{Q}\), and
+conclude that the \(60^\circ\) angle — hence a general angle — cannot be trisected.</li>
+</ol>
+</div>
+<p class="context">The Delian problem (legend: the oracle at Delos demanded an altar of double the
+volume) and the trisection tormented geometers for 2200 years. The impossibility proofs came only
+in 1837, from Pierre Wantzel, a 23-year-old engineer, in a seven-page paper in Liouville's journal
+— and were so far ahead of their audience that Wantzel remained obscure for a century. The proof
+is a two-line consequence of the tower law: powers of two cannot make a three. It is the purest
+example of algebra answering geometry's oldest questions.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Duplication_du_cube">Duplication du cube — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Trisection_de_l%27angle">Trisection de l'angle — Wikipédia</a></li>
+<li>Lecture : I. Stewart, <i>Galois Theory</i>, 4th ed., ch. 7</li>
+<li>Article : P. Wantzel, “Recherches sur les moyens de reconnaître si un problème de Géométrie peut se résoudre avec la règle et le compas” (1837), J. Math. Pures Appl. 2, 366–372</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-19" data-level="Master">
+<h3>ALG-19 · Gauss's 17-gon and constructible polygons <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Show that the regular \(n\)-gon is constructible if and
+only if \(\cos(2\pi/n)\) is a constructible number.</li>
+<li>Prove that the regular 17-gon is
+constructible.</li>
+<li>Prove that the regular 7-gon and 9-gon are not.</li>
+<li>Prove the
+Gauss–Wantzel theorem: the regular \(n\)-gon is constructible if and only if \(n\) is a power of
+2 times a product of distinct Fermat primes (primes of the form \(2^{2^k} + 1\)). You may use
+the irreducibility of cyclotomic polynomials.</li>
+</ol>
+</div>
+<p class="context">On 30 March 1796, the eighteen-year-old Gauss woke to see how to construct the
+17-gon — the first advance on ruler-and-compass polygons since antiquity — and the discovery decided
+him for mathematics over philology. He kept a mathematical diary from that day on, and asked for a
+17-gon on his tombstone (the stonemason refused: it would look like a circle). Sufficiency is
+Gauss's (Disquisitiones, §VII); necessity was proved by Wantzel in 1837. Whether infinitely many
+Fermat primes exist — only 3, 5, 17, 257, 65537 are known — remains open, so nobody knows whether
+the list of constructible polygons with an odd number of sides is finite.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polygone_constructible">Polygone constructible — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Heptad%C3%A9cagone">Heptadécagone — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Fermat">Nombre de Fermat — Wikipédia</a></li>
+<li>Lecture : M. Artin, <i>Algebra</i>, ch. 15–16</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-20" data-level="Master">
+<h3>ALG-20 · The Galois correspondence <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Let \(K/F\) be a finite Galois extension (normal and
+separable) with Galois group \(G = \mathrm{Gal}(K/F)\), the group of automorphisms of \(K\)
+fixing \(F\).</p>
+<ol class="parts" type="i">
+<li>Prove the fundamental theorem of Galois theory: the maps \(H \mapsto K^H\)
+(fixed field) and \(L \mapsto \mathrm{Gal}(K/L)\) are mutually inverse, inclusion-reversing
+bijections between subgroups of \(G\) and intermediate fields \(F \subset L \subset K\);
+moreover \([K : K^H] = |H|\), and \(H\) is normal in \(G\) exactly when \(K^H/F\) is Galois,
+with \(\mathrm{Gal}(K^H/F) \cong G/H\).</li>
+<li>Work the correspondence out completely for the
+splitting field of \(x^3 - 2\) over \(\mathbb{Q}\): find the Galois group, all subgroups, and
+all intermediate fields.</li>
+<li>Do the same for \(\mathbb{Q}(\zeta_{17})\), the field of 17th
+roots of unity, and explain what your lattice has to do with ALG-19.</li>
+</ol>
+</div>
+<p class="context">This is the theorem Galois sketched in the memoir he left the night before his
+fatal duel in May 1832, aged 20 — rejected earlier by the Academy, deciphered by Liouville in 1846,
+and given its modern field-theoretic form by Dedekind, Weber, and Artin. It is mathematics' first
+great <i>duality</i>: a dictionary under which hard questions about fields become finite questions
+about groups. Everything after it — from the unsolvability of the quintic to the Langlands program
+— speaks its language.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_fondamental_de_la_th%C3%A9orie_de_Galois">Théorème fondamental de la théorie de Galois — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_Galois">Théorie de Galois — Wikipédia</a></li>
+<li>Lecture : I. Stewart, <i>Galois Theory</i>, 4th ed., ch. 8–12</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-702-algebra-ii-spring-2011/">MIT OCW 18.702 Algebra II</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-21" data-level="Master">
+<h3>ALG-21 · The insolvability of the general quintic <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> A group \(G\) is <i>solvable</i> if it has a chain of
+subgroups from \(G\) down to the trivial group, each normal in the next, with abelian quotients.</p>
+<ol class="parts" type="i">
+<li>Prove that \(S_n\) is solvable for \(n \le 4\) and not solvable for \(n \ge 5\) (use
+ALG-11).</li>
+<li>Prove Galois's criterion, in characteristic 0: if a polynomial is solvable by
+radicals — its roots expressible from the coefficients by field operations and \(k\)-th roots —
+then its Galois group is solvable.</li>
+<li>Prove that the Galois group of
+\(f(x) = x^5 - 4x + 2\) over \(\mathbb{Q}\) is all of \(S_5\). (Show \(f\) is irreducible with
+exactly three real roots, and use what complex conjugation and an element of order 5 must be.)
+(iv) Conclude that \(f = 0\) — and hence the general quintic — cannot be solved by radicals.</li>
+</ol>
+</div>
+<p class="context">Three centuries separate the cubic and quartic formulas of dal Ferro, Tartaglia,
+Cardano, and Ferrari (1500s) from the proof that degree five is different. Ruffini published a
+flawed impossibility proof in 1799; Abel, in poverty, closed the gap in 1824 (he died at 26);
+Galois explained <i>why</i>, attaching a group to each equation and reading solvability off the
+group. The result is often the first genuine impossibility theorem a mathematician meets: not
+"no one has found a formula," but "the symmetry group forbids one."</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Abel_(alg%C3%A8bre)">Théorème d'Abel–Ruffini — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_r%C3%A9soluble">Groupe résoluble — Wikipédia</a></li>
+<li>Lecture : I. Stewart, <i>Galois Theory</i>, 4th ed., ch. 13–15</li>
+<li>Lecture : D. Dummit &amp; R. Foote, <i>Abstract Algebra</i>, 3rd ed., section 14.7</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-22" data-level="Master">
+<h3>ALG-22 · Reading the classification of finite simple groups <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> The classification of finite simple groups (CFSG) states:
+every finite simple group is cyclic of prime order, an alternating group \(A_n\) (\(n \ge 5\)),
+a group of Lie type (16 families of matrix-like groups over finite fields), or one of exactly
+26 sporadic groups, the largest being the Monster, of order about \(8 \times 10^{53}\). This is
+a reading-and-verification problem.</p>
+<ol class="parts" type="i">
+<li>Prove the easy fragment: every abelian finite simple
+group is \(\mathbb{Z}/p\mathbb{Z}\).</li>
+<li>Prove that simple groups are the "atoms" of finite
+group theory, by proving the Jordan–Hölder theorem: any two composition series of a finite
+group have the same simple factors.</li>
+<li>Locate in the classification: \(A_5\), the group
+\(\mathrm{PSL}_2(\mathbb{F}_7)\) of order 168, and the Mathieu group \(M_{23}\).</li>
+<li>Write a
+two-page account, with citations, of what was proved when: the odd-order theorem
+(Feit–Thompson, 1963), the announcement of completion (1983), the quasithin gap closed by
+Aschbacher and Smith (2004), and the ongoing second-generation proof of Gorenstein, Lyons, and
+Solomon.</li>
+</ol>
+</div>
+<p class="context">The CFSG is the largest proof in mathematical history: tens of thousands of
+journal pages by about a hundred authors over five decades. No single person has read all of it,
+which raises honest philosophical questions about mathematical certainty that the second-generation
+rewrite (planned at roughly a dozen volumes) is meant to settle. A working algebraist today mostly
+uses CFSG as a black box — which makes knowing exactly what it says, and what it cost, part of
+basic literacy.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Classification_des_groupes_finis_simples">Classification des groupes finis simples — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Liste_des_groupes_finis_simples">Liste des groupes finis simples — Wikipédia</a></li>
+<li>Lecture : R. Wilson, <i>The Finite Simple Groups</i> (Springer GTM 251)</li>
+<li>Article : R. Solomon, “A brief history of the classification of the finite simple groups” (2001), Bull. Amer. Math. Soc. 38, 315–352</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-30" data-level="Master" data-kind="court">
+<h3>ALG-30 · Irreducible by Eisenstein, after a shift <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Prove that the cyclotomic polynomial \( \Phi_p(x) = x^{p-1} + \cdots + x + 1 \) is irreducible over \( \mathbb{Q} \) for prime \( p \), by applying Eisenstein's criterion to \( \Phi_p(x+1) \).</p>
+<p class="context">Eisenstein's criterion does not apply to \( \Phi_p \) directly, and the substitution \( x \mapsto x+1 \) — which changes nothing about irreducibility — makes it apply immediately. Learning that a change of variable can turn an inapplicable theorem into an applicable one is a technique you will use for the rest of your mathematical life.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyn%C3%B4me_cyclotomique">Polynôme cyclotomique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8re_d%27Eisenstein">Critère d'Eisenstein — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-31" data-level="Master" data-kind="court">
+<h3>ALG-31 · The character table of \( S_3 \) <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Construct the character table of the symmetric group \( S_3 \) from scratch: identify the three conjugacy classes, find the three irreducible complex representations, and verify the orthogonality relations for the rows.</p>
+<p class="context">This is the smallest non-abelian character table and the standard entry point to representation theory, where a group is studied by the matrices it can act as. The orthogonality check is the payoff: the rows behave like an orthonormal basis, which is why characters determine a representation completely.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Table_de_caract%C3%A8res_(math%C3%A9matiques)">Table de caractères — Wikipédia</a></li>
+<li>Lecture : Jean-Pierre Serre, <i>Linear Representations of Finite Groups</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-39" data-level="Master">
+<h3>ALG-39 · Free groups, presentations, and where the subgroups are <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Let \(S\) be a set. The <i>free group</i> \(F(S)\) is the group of reduced
+words in the letters of \(S\) and their formal inverses, multiplied by concatenation followed by
+cancellation.</p>
+<ol class="parts" type="a">
+<li>Prove that \(F(S)\) has the universal property: any map from \(S\) into a group \(H\) extends
+to a unique homomorphism \(F(S) \to H\). Deduce that every group is a quotient of a free group, so
+every group has a presentation \(\langle S \mid R \rangle\).</li>
+<li>Prove von Dyck's theorem in a concrete case: show that
+\(\langle r, s \mid r^{n}, s^{2}, (rs)^{2} \rangle\) is a group of order exactly \(2n\), namely
+the dihedral group \(D_n\). (Getting an upper bound of \(2n\) is easy; the content is that the
+group is no smaller.)</li>
+<li>Prove the Nielsen–Schreier theorem: every subgroup of a free group is free. Then prove the
+Schreier index formula: if \(H \le F\) has finite index \(e\) in a free group \(F\) of rank \(n\),
+then \(H\) is free of rank \(e(n-1) + 1\). Deduce that the free group of rank 2 contains free
+subgroups of every finite rank, and of countably infinite rank.</li>
+<li>The word problem asks for an algorithm deciding whether a given word in the generators
+represents the identity. Read Novikov's (1955) and Boone's (1958) proof that no such algorithm
+exists for all finite presentations, and explain carefully why this does not contradict the fact,
+from (a), that every group is a quotient of a free group.</li>
+</ol>
+</div>
+<p class="context">Presenting a group by generators and relations is Walther von Dyck's idea
+(1882), and it is a bargain with a catch: any group can be written down in a line, and almost
+nothing about it can be read off. Nielsen proved the subgroup theorem for finitely generated
+subgroups in 1921 by a combinatorial straightening algorithm; Schreier removed the finiteness in
+1927; Baer and Levi gave the topological proof in 1936, in which \(F\) is the fundamental group of
+a bouquet of circles and a subgroup is the fundamental group of a covering graph, so freeness is
+just the statement that a graph deformation-retracts to a bouquet. Every known proof uses the
+axiom of choice, and provably must. Part (d) is the shock at the end: the objects of (a) are
+perfectly explicit, and the questions you want to ask about them are undecidable — the discovery
+that opened combinatorial and then geometric group theory (ALG-25).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_libre">Groupe libre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pr%C3%A9sentation_d%27un_groupe">Présentation d'un groupe — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Nielsen-Schreier">Théorème de Nielsen–Schreier — Wikipédia</a></li>
+<li>Lecture : W. Magnus, A. Karrass &amp; D. Solitar, <i>Combinatorial Group Theory</i>, ch. 1–3</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-40" data-level="Master">
+<h3>ALG-40 · How a group algebra falls apart: Maschke to Wedderburn <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> For a field \(k\) and a finite group \(G\), the group algebra \(k[G]\) is the
+\(k\)-vector space with basis \(G\) and multiplication extending that of \(G\). A module is
+<i>semisimple</i> if it is a direct sum of simple submodules.</p>
+<ol class="parts" type="a">
+<li>Prove Maschke's theorem: if the characteristic of \(k\) does not divide \(|G|\), then every
+\(k[G]\)-module is semisimple. Then show the hypothesis is needed: for \(k = \mathbb{F}_p\) and
+\(G\) cyclic of order \(p\), prove that \(k[G]\) is not a direct sum of simple modules.</li>
+<li>Prove Schur's lemma, and deduce that for \(k\) algebraically closed of characteristic zero
+\[ k[G] \;\cong\; M_{n_1}(k) \times \cdots \times M_{n_t}(k). \]
+Deduce that \(n_1^2 + \cdots + n_t^2 = |G|\) and that \(t\) is the number of conjugacy classes of
+\(G\) — and check both against the character table of \(S_3\) in ALG-31.</li>
+<li>Prove the Wedderburn–Artin theorem in general: a semisimple ring is isomorphic to a finite
+product of matrix rings \(M_{n_i}(D_i)\) over division rings, with the \(n_i\) and the
+isomorphism classes of the \(D_i\) uniquely determined.</li>
+<li>Over \(\mathbb{R}\) the division rings that can occur are \(\mathbb{R}\), \(\mathbb{C}\) and
+the quaternions \(\mathbb{H}\) — this is Frobenius's 1878 theorem, which you should prove or read.
+Then determine the Wedderburn decomposition of \(\mathbb{R}[Q_8]\) for the quaternion group
+\(Q_8\) of ALG-07, and identify which division rings appear.</li>
+</ol>
+</div>
+<p class="context">Representation theory begins by refusing to study a group directly: study the
+algebra it generates, and let ring theory take it apart. Molien (1893) and Frobenius (1896)
+found the decomposition for complex group algebras; Maschke proved the averaging theorem in 1898;
+Wedderburn classified finite-dimensional algebras in 1907; and Emil Artin extended the result in
+1927 to rings with the descending chain condition, which is why such rings are called Artinian.
+Part (a)'s excluded case is not a technicality but a doorway: when \(p\) divides \(|G|\) the
+algebra is no longer semisimple, and Brauer's modular representation theory begins — the tool
+that made the classification of finite simple groups (ALG-22) possible. Part (d) explains why
+Hamilton's quaternions cannot be avoided: they are forced by a real group as small as
+\(Q_8\).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Artin-Wedderburn">Théorème d'Artin–Wedderburn — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Maschke">Théorème de Maschke — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Frobenius_(alg%C3%A8bre)">Théorème de Frobenius (algèbres à division réelles) — Wikipédia</a></li>
+<li>Lecture : T. Y. Lam, <i>A First Course in Noncommutative Rings</i> (Springer GTM 131), ch. 1–3</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-41" data-level="Master" data-kind="court">
+<h3>ALG-41 · Nakayama's lemma <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Let \(R\) be a commutative ring with 1, let \(J\) be its
+Jacobson radical (the intersection of all maximal ideals), and let \(M\) be a finitely generated
+\(R\)-module with \(JM = M\); prove that \(M = 0\). Deduce that if \(R\) is local with maximal
+ideal \(\mathfrak{m}\), and \(x_1, \dots, x_n \in M\) have images spanning
+\(M/\mathfrak{m}M\) as a vector space over \(R/\mathfrak{m}\), then \(x_1, \dots, x_n\) generate
+\(M\) — and show by example that both statements fail without finite generation.</p>
+<p class="context">Also called the Krull–Azumaya theorem — Nakayama, who published this form in a
+two-page 1951 note, insisted the credit belonged to Krull and Azumaya — this is the lemma that
+makes modules over a local ring behave like vector spaces: a basis of the fibre lifts to a
+generating set. Its standard proof is the "determinant trick", a Cayley–Hamilton argument
+(LIN-09) applied to a module rather than a space, and its geometric reading is that generators of
+a sheaf at a point suffice near the point. Almost every argument in commutative algebra and
+algebraic geometry passes through it at some stage.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_Nakayama">Lemme de Nakayama — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Radical_de_Jacobson">Radical de Jacobson — Wikipédia</a></li>
+<li>Lecture : M. Atiyah &amp; I. Macdonald, <i>Introduction to Commutative Algebra</i>, ch. 2</li>
+<li>Lecture : D. Eisenbud, <i>Commutative Algebra with a View Toward Algebraic Geometry</i>, ch. 4</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="ALG-23" data-level="Recherche">
+<h3>ALG-23 · The inverse Galois problem <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Is every finite group the Galois group of some extension of
+\(\mathbb{Q}\)? <b>Status: open.</b> As a first step into the problem:</p>
+<ol class="parts" type="i">
+<li>prove that every
+finite abelian group is a Galois group over \(\mathbb{Q}\) (use cyclotomic fields and
+Dirichlet's theorem on primes in arithmetic progressions);</li>
+<li>show that every finite group is
+the Galois group of some extension of <i>some</i> number field, and explain why this does not
+answer the question over \(\mathbb{Q}\) itself.</li>
+</ol>
+</div>
+<p class="context">Implicit in Hilbert's 1892 work — where he proved \(S_n\) and \(A_n\) are
+Galois groups over \(\mathbb{Q}\) via his irreducibility theorem — the problem is open after 130
+years. Shafarevich proved all solvable groups occur (1954); rigidity methods of Belyi, Matzat,
+and Thompson realized many simple groups, including the Monster (Thompson, 1984). A milestone
+fell in August 2026: the Mathieu group \(M_{23}\), the last of the 26 sporadic groups
+outstanding, was realized over \(\mathbb{Q}\) by Huang, Jackson, Lee, Poonen, Pries, and Zhang.
+The general problem — even, say, for all finite simple groups — remains open, and no general
+strategy is known.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_Galois_inverse">Théorie de Galois inverse — Wikipédia</a></li>
+<li>Lecture : J.-P. Serre, <i>Topics in Galois Theory</i></li>
+<li>Article : X. Huang, B. Jackson, K.-H. Lee, B. Poonen, R. Pries, S. Zhang, “The Mathieu group M₂₃ is a Galois group over ℚ” (2026), <a href="https://arxiv.org/abs/2608.08538">arXiv:2608.08538</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-24" data-level="Recherche">
+<h3>ALG-24 · Burnside problems: bounded exponent <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Say a group has <i>exponent</i> \(n\) if \(g^n = 1\) for
+every element \(g\). Burnside asked (1902): must a finitely generated group of finite exponent
+be finite?</p>
+<ol class="parts" type="i">
+<li>Prove the case \(n = 2\): every group of exponent 2 is abelian, and a finitely
+generated one is finite.</li>
+<li>Try \(n = 3\) (Burnside settled it in the same 1902 paper).</li>
+<li>Read the status of the rest. <b>Status:</b> the general answer is <b>no</b> — Novikov and
+Adian (1968) constructed infinite finitely generated groups of odd exponent \(n \ge 4381\)
+(Adian later improved the bound to odd \(n \ge 665\), and Ivanov (1994) treated all
+sufficiently large exponents, even ones included). The <i>restricted</i> Burnside problem — are
+there only finitely many <i>finite</i> \(m\)-generator groups of exponent \(n\)? — was answered
+<b>yes</b> by Zelmanov (1990–91), earning him the 1994 Fields Medal. Sharply open to this day:
+is the free Burnside group \(B(2,5)\) — two generators, exponent 5 — finite or infinite?
+Nobody knows.</li>
+</ol>
+</div>
+<p class="context">William Burnside posed the question at the very beginning of infinite group
+theory, and it shaped a century: the negative solution required the monumental combinatorial
+machinery of Novikov–Adian (300+ pages), while Zelmanov's positive solution of the restricted
+problem drew on Lie-algebra methods and the odd-order theorem's legacy via the reduction of Hall
+and Higman. That \(B(2,5)\), an object definable in one line, resists every known technique is a
+standing humiliation cheerfully acknowledged by the field.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Burnside">Problème de Burnside — Wikipédia</a></li>
+<li>Lecture : J. Rotman, <i>An Introduction to the Theory of Groups</i>, 4th ed., ch. 12</li>
+<li>Article : E. Zelmanov, “Solution of the restricted Burnside problem for groups of odd exponent” (1990), Izv. Akad. Nauk SSSR Ser. Mat. 54; and “…for 2-groups” (1991), Mat. Sb. 182</li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-25" data-level="Recherche">
+<h3>ALG-25 · How fast do groups grow? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> For a group \(G\) generated by a finite set \(S\), let
+\(\gamma(n)\) be the number of elements expressible as products of at most \(n\) generators and
+inverses — the <i>growth function</i>.</p>
+<ol class="parts" type="i">
+<li>Prove that \(\mathbb{Z}^d\) has polynomial growth of
+degree \(d\), and that a free group on two generators has exponential growth.</li>
+<li>Prove that
+the growth type (polynomial of given degree, exponential, or between) does not depend on the
+choice of \(S\).</li>
+<li>Read Gromov's theorem (1981): a finitely generated group has polynomial
+growth if and only if it is virtually nilpotent — and the construction by Grigorchuk (1984) of
+a group of <i>intermediate</i> growth, strictly between polynomial and exponential.
+<b>Status of the frontier:</b> Grigorchuk's Gap Conjecture — that no group grows strictly
+between polynomial growth and \(\exp(\sqrt{n})\) — is <b>open</b>. The precise growth of
+Grigorchuk's own group was determined only in 2020, by Erschler and Zheng. It is also still
+unknown whether every group of intermediate growth is commensurable with a residually finite
+one, and Gromov's theorem keeps being re-proved with new eyes (Kleiner 2010, Ozawa 2018).</li>
+</ol>
+</div>
+<p class="context">Growth of groups began with Milnor's questions in the 1960s and Wolf's and
+Bass's work on nilpotent groups; Gromov's 1981 solution introduced the audacious idea of viewing a
+discrete group from infinitely far away until it becomes a smooth object — a technique
+(Gromov–Hausdorff limits) that reorganized geometry as much as algebra. Grigorchuk's group, built
+from automorphisms of an infinite binary tree, showed the landscape between polynomial and
+exponential is inhabited; how densely, the Gap Conjecture asks, and forty years on there is no
+answer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Growth_rate_(group_theory)">Croissance des groupes — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Gromov_sur_les_groupes_%C3%A0_croissance_polynomiale">Théorème de Gromov sur les groupes à croissance polynomiale — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_de_Grigorchuk">Groupe de Grigorchuk — Wikipédia</a></li>
+<li>Article : A. Erschler, T. Zheng, “Growth of periodic Grigorchuk groups” (2020), Invent. Math. 219, 1069–1155, <a href="https://arxiv.org/abs/1802.09077">arXiv:1802.09077</a></li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="ALG-32" data-level="Recherche" data-kind="court">
+<h3>ALG-32 · State the inverse Galois problem precisely <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Write a precise statement of the inverse Galois problem — is every finite group the Galois group of some Galois extension of \( \mathbb{Q} \)? — and summarise its status honestly: open in general, known for all solvable groups by Shafarevich, and known for most finite simple groups, including the monster.</p>
+<p class="context">Galois theory tells you the group of a given equation; this problem reverses the arrow and asks which groups arise at all, and the reversal turns a computational subject into a wide-open one. That solvable groups and the monster are both settled while the general case resists is a good illustration of how uneven mathematical knowledge can be.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_Galois_inverse">Théorie de Galois inverse — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-33" data-level="Recherche" data-kind="court">
+<h3>ALG-33 · How long is the classification? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> State the classification of finite simple groups — every finite simple group is cyclic of prime order, alternating of degree at least five, of Lie type, or one of twenty-six sporadic groups — and write a short account of why its proof is unusual: it runs to roughly ten thousand journal pages by over a hundred authors, and a "second generation" project to produce a single coherent proof has been under way for decades.</p>
+<p class="context">This is the largest theorem ever proved, and it raises a real epistemological question the site's readers should confront: what does it mean for a community to know something that no single person has verified end to end? Compare it with the computer-assisted proofs on the Open Problems page — the difficulty is the same in kind.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Classification_des_groupes_finis_simples">Classification des groupes finis simples — Wikipédia</a></li>
+<li>Voir aussi : <a href="open-problems.html">Open Problems</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-42" data-level="Recherche">
+<h3>ALG-42 · Kaplansky's conjectures on group rings <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Let \(K\) be a field and \(G\) a torsion-free group, and form the group ring
+\(K[G]\) of finite formal sums \(\sum k_g\, g\). The <i>trivial</i> units are the elements
+\(k g\) with \(k \ne 0\). Kaplansky's three conjectures assert that \(K[G]\) has no zero divisors,
+no idempotents other than \(0\) and \(1\), and no units other than the trivial ones.
+<b>Status:</b> the unit conjecture — originally Graham Higman's, popularised by Kaplansky — is
+<b>false</b>, disproved by Giles Gardam in 2021 over \(\mathbb{F}_2\); the zero-divisor and
+idempotent conjectures remain <b>open</b>, though both are theorems for large classes of groups.</p>
+<ol class="parts" type="a">
+<li>Prove that, for fixed \(K\) and \(G\), absence of zero divisors implies absence of nontrivial
+idempotents.</li>
+<li>Prove that torsion must be excluded: if \(g \in G\) has finite order \(n \ge 2\), exhibit a
+zero divisor in \(K[G]\), and — when the characteristic of \(K\) does not divide \(n\) — a
+nontrivial idempotent.</li>
+<li>Prove that if \(G\) carries a total order invariant under left multiplication, then \(K[G]\)
+has no zero divisors and only trivial units. Deduce all three conjectures for free abelian groups
+of finite rank and for free groups (ALG-39).</li>
+<li>Study Gardam's counterexample: the group is the fundamental group of the Hantzsche–Wendt flat
+3-manifold, a torsion-free crystallographic group, and the field is \(\mathbb{F}_2\). Verify by
+direct multiplication that his element is a nontrivial unit, and write an account of what the
+example does and does not settle — in particular, why it leaves the zero-divisor conjecture
+untouched.</li>
+</ol>
+</div>
+<p class="context">Kaplansky's questions, asked in the 1950s and 60s, are the sharpest test of a
+simple intuition: a torsion-free group has no finite cycles, so its group ring should have no
+"collapse" — no nilpotents, no idempotents, no exotic units. The intuition held up for eighty
+years and resisted every general technique, which made Gardam's 2021 counterexample, found by
+reformulating the search as a satisfiability problem and letting a computer hunt through the
+finite pieces of a specific crystallographic group, a genuine surprise; a later preprint of his
+(2023) reports a counterexample in characteristic zero as well. The remaining two conjectures are
+tied to deep machinery elsewhere — the idempotent conjecture is a cousin of the Baum–Connes
+programme in operator algebras — and their resolution would be major news.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Kaplansky">Conjectures de Kaplansky — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Group_ring">Anneau de groupe — Wikipédia (en anglais)</a></li>
+<li>Article : G. Gardam, “A counterexample to the unit conjecture for group rings” (2021), Annals of Mathematics 194, 967–979, <a href="https://arxiv.org/abs/2102.11818">arXiv:2102.11818</a></li>
+<li>Lecture : D. Passman, <i>The Algebraic Structure of Group Rings</i></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-43" data-level="Recherche" data-kind="court">
+<h3>ALG-43 · The Andrews–Curtis conjecture <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> A presentation \(\langle x_1, \dots, x_n \mid r_1, \dots,
+r_n \rangle\) with equally many generators and relators is <i>balanced</i>; the Andrews–Curtis
+conjecture (1965) states that every balanced presentation of the trivial group can be reduced to
+\(\langle x_1, \dots, x_n \mid x_1, \dots, x_n \rangle\) by finitely many Nielsen transformations
+of the relators together with conjugations of relators. Prove it, or produce a counterexample —
+<b>status: open</b>, with no counterexample known and a widespread expectation that the
+conjecture is false.</p>
+<p class="context">Andrews and Curtis raised the question in a 1965 paper on free groups and
+handlebodies, and it is a rare open problem whose statement needs nothing beyond the presentations
+of ALG-39: a purely combinatorial game on words that has resisted sixty years of attack. It has
+topological teeth — the Zeeman collapsibility conjecture implies it, and it stands in the way of
+certain approaches to smooth four-dimensional problems — and it is a favourite testing ground for
+automated search, since celebrated candidate counterexamples have one after another been
+trivialised by computer once enough moves were allowed.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_d%27Andrews-Curtis">Conjecture d'Andrews–Curtis — Wikipédia</a></li>
+<li>Article : J. J. Andrews &amp; M. L. Curtis, “Free groups and handlebodies” (1965), Proceedings of the American Mathematical Society 16, 192–195</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Courses: <a href="https://ocw.mit.edu/courses/18-701-algebra-i-fall-2010/">MIT OCW 18.701 Algebra I</a>,
+<a href="https://ocw.mit.edu/courses/18-702-algebra-ii-spring-2011/">MIT OCW 18.702 Algebra II</a>,
+<a href="https://ocw.mit.edu/courses/18-703-modern-algebra-spring-2013/">MIT OCW 18.703 Modern Algebra</a>;
+for folklore's sake, <a href="https://fr.wikipedia.org/wiki/Math_55">le Math 55 de Harvard</a> covers much of this page in one legendary year.</li>
+<li>Books: J. Fraleigh, <i>A First Course in Abstract Algebra</i> (gentlest start);
+M. Artin, <i>Algebra</i> (geometric, opinionated, wonderful);
+D. Dummit &amp; R. Foote, <i>Abstract Algebra</i> (the encyclopedic standard);
+I. Stewart, <i>Galois Theory</i> (the story of this page's second half);
+R. Wilson, <i>The Finite Simple Groups</i> (advanced).</li>
+<li>Papers &amp; essays: R. Solomon, “A brief history of the classification of the finite simple groups,” Bull. AMS 38 (2001);
+M. Aschbacher, “The Status of the Classification of the Finite Simple Groups,” Notices of the AMS 51 (2004).</li>
+</ul>
+<p>See also: <a href="pure-linear-algebra.html">Linear Algebra</a>, <a href="proofs.html">The Art of Proof</a>, <a href="open-problems.html">Open Problems</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Géométrie — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Géométrie</h1>
+<p class="lede">La géométrie étudie la forme, la taille et la position — la plus ancienne
+branche des mathématiques à disposer d'une méthode axiomatique écrite, fixée par les
+<i>Éléments</i> d'Euclide vers 300 av. J.-C. et demeurée deux mille ans durant l'étalon de
+la rigueur. Son histoire moderne tient tout entière dans une phrase : le cinquième postulat
+d'Euclide, dont l'obstinée indépendance a contraint Gauss, Bolyai et Lobatchevski à admettre
+d'autres géométries, et a mené Riemann à cette idée de courbure sur laquelle repose la
+relativité générale. Travailler en géométrie, c'est dessiner en tenant une démonstration
+dans l'autre main : vous voyez l'énoncé avant de savoir le dire, et toute la discipline
+consiste à apprendre à le dire de sorte qu'il survive à n'importe quelle figure.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/pure-geometry.tex" download>source LaTeX</a> · <a href="tex/pure-geometry.pdf" download>PDF compilé</a></p>
+<!-- site.js insère automatiquement la barre de filtre par niveau / recherche ici. N'en construisez pas. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="GEO-01" data-level="Lycée">
+<h3>GEO-01 · Le théorème de l'angle inscrit <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soient \( A \) et \( B \) deux points d'un cercle de centre \( O \),
+et soit \( P \) un point quelconque du grand arc \( AB \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que l'angle au centre vaut le double de l'angle inscrit :
+\[ \angle AOB = 2\,\angle APB. \]</li>
+<li>Déduisez-en le théorème de l'angle inscrit dans un demi-cercle : un angle inscrit dans un demi-cercle est droit.</li>
+<li>Déduisez-en que les angles opposés d'un quadrilatère inscriptible ont pour somme \( 180^\circ \).</li>
+</ol>
+</div>
+<p class="context">Le théorème de l'angle inscrit est la proposition 20 du livre III des
+<i>Éléments</i> d'Euclide, et la tradition attribue à Thalès de Milet (VI<sup>e</sup> siècle
+av. J.-C.) le cas du demi-cercle — peut-être le tout premier théorème de l'histoire attribué
+à une personne nommée. C'est le moteur de la « chasse aux angles » : presque tout problème
+sérieux de géométrie du cercle en olympiade tourne grâce à lui. La démonstration exige une
+disjonction de cas ; trouver la bonne décomposition, c'est tout l'enjeu.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Angle_inscrit">Angle inscrit — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Angle_inscrit_dans_un_demi-cercle">Angle inscrit dans un demi-cercle — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-02" data-level="Lycée">
+<h3>GEO-02 · Le théorème de Ptolémée <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( ABCD \) un quadrilatère inscrit dans un cercle.</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Ptolémée :
+\[ AC \cdot BD = AB \cdot CD + AD \cdot BC. \]</li>
+<li>Déduisez-en le théorème de Pythagore comme cas particulier.</li>
+<li>Pour aller plus loin, démontrez la forme en inégalité : pour <i>quatre points quelconques</i>
+\( A, B, C, D \) du plan, \( AC \cdot BD \le AB \cdot CD + AD \cdot BC \), avec
+égalité exactement lorsque \( ABCD \) est inscriptible dans cet ordre.</li>
+</ol>
+</div>
+<p class="context">Claude Ptolémée a démontré cette identité dans l'<i>Almageste</i>
+(II<sup>e</sup> siècle apr. J.-C.) : elle était le cœur calculatoire de sa table des cordes —
+en pratique une table des sinus construite pour l'astronomie. Appliquée à des quadrilatères
+bien choisis, elle fournit les formules d'addition des sinus, et c'est ainsi que les identités
+trigonométriques ont d'abord été obtenues. La démonstration classique introduit un point
+auxiliaire ; le trouver est un rite de passage.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ptol%C3%A9m%C3%A9e">Théorème de Ptolémée — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-03" data-level="Lycée">
+<h3>GEO-03 · La droite d'Euler <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans un triangle non équilatéral quelconque, soient \( O \) le centre du
+cercle circonscrit (intersection des médiatrices), \( G \) le centre de gravité (intersection
+des médianes) et \( H \) l'orthocentre (intersection des hauteurs).</p>
+<ol class="parts" type="a">
+<li>Démontrez que chacun de ces trois points existe bel et bien — c'est-à-dire que les triplets
+de droites concernés sont concourants.</li>
+<li>Démontrez que \( O, G, H \) sont alignés et que \( OG : GH = 1 : 2 \).</li>
+</ol>
+</div>
+<p class="context">Euler a démontré cet alignement en 1765, deux millénaires après Euclide :
+rappel saisissant que la géométrie élémentaire du triangle n'était pas close. La démonstration
+moderne, élégante, repose sur une homothétie bien choisie de centre \( G \) ; découvrir cette
+application enseigne davantage sur les transformations qu'un chapitre de théorie. La droite
+porte aujourd'hui le nom d'Euler et passe par plusieurs autres centres remarquables.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Droite_d%27Euler">Droite d'Euler — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-04" data-level="Lycée">
+<h3>GEO-04 · Le cercle des neuf points <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez un triangle quelconque, d'orthocentre \( H \) et de centre du
+cercle circonscrit \( O \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que les neuf points suivants sont sur un même cercle : les milieux des trois
+côtés, les pieds des trois hauteurs, et les milieux des trois segments joignant les sommets
+à \( H \).</li>
+<li>Démontrez de plus que le centre de ce cercle est le milieu de \( OH \) (sur la droite
+d'Euler de GEO-03) et que son rayon vaut la moitié du rayon du cercle circonscrit.</li>
+</ol>
+</div>
+<p class="context">Le théorème complet a été publié par Karl Feuerbach en 1822, après des
+versions partielles dues à Brianchon et Poncelet ; Feuerbach a ensuite montré que ce cercle
+est tangent au cercle inscrit et aux trois cercles exinscrits, l'un des plus beaux résultats
+de la géométrie classique. Une démonstration propre compose l'idée d'homothétie de GEO-03 avec
+le théorème de l'angle inscrit — la récompense d'avoir traité honnêtement les deux problèmes
+précédents.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cercle_d%27Euler">Cercle d'Euler (cercle des neuf points) — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-05" data-level="Lycée">
+<h3>GEO-05 · Isopérimétrie, premiers pas <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le but à l'horizon est le théorème isopérimétrique : parmi toutes les
+courbes fermées de longueur donnée \( L \), le cercle enferme la plus grande aire, à savoir
+\( L^2/4\pi \). Montez-y par étapes.</p>
+<ol class="parts" type="a">
+<li>Parmi tous les rectangles de périmètre donné, démontrez que le carré a la plus grande
+aire.</li>
+<li>Parmi tous les triangles de base donnée et de périmètre donné, démontrez que l'isocèle a
+la plus grande aire, et déduisez-en que parmi tous les triangles de périmètre donné c'est
+l'équilatéral qui maximise l'aire.</li>
+<li>Démontrez qu'une région d'aire maximale à périmètre fixé est nécessairement convexe.</li>
+<li>Expliquez précisément ce qui manque encore à (a)–(c) si l'on veut le théorème
+isopérimétrique complet.</li>
+</ol>
+</div>
+<p class="context">Le problème isopérimétrique est antique — la tradition grecque le rattache
+à la reine Didon, à qui l'on accorda autant de terre qu'elle pourrait en entourer avec une
+peau de bœuf découpée en lanières. Zénodore (II<sup>e</sup> siècle av. J.-C.) comparait les
+polygones ; Jakob Steiner (1838) donna de superbes arguments de symétrisation, dont l'astuce
+de réflexion qui résout (c) — mais l'argument de Steiner supposait, on le sait bien, l'existence
+d'un maximiseur, lacune qui ne fut comblée que par Weierstrass. La question (d) vous demande de
+trouver cette lacune vous-même : c'est une première leçon sur l'importance des démonstrations
+d'existence.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_isop%C3%A9rim%C3%A9trique">Théorème isopérimétrique — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-23" data-level="Lycée" data-kind="court">
+<h3>GEO-23 · La puissance d'un point <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( P \) un point extérieur à un cercle, et soit une droite passant par \( P \) qui coupe le cercle en \( A \) et \( B \). Démontrez que le produit \( PA \cdot PB \) est le même pour toute droite de ce type passant par \( P \).</p>
+<p class="context">Cet invariant est la puissance du point, et il transforme une famille de configurations apparemment sans lien en un seul nombre attaché à \( P \) seul. C'est le moteur de l'axe radical et de la plupart des problèmes d'olympiade mettant en jeu deux cercles, et la démonstration se réduit à une application des triangles semblables.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Puissance_d%27un_point_par_rapport_%C3%A0_un_cercle">Puissance d'un point par rapport à un cercle — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-24" data-level="Lycée" data-kind="court">
+<h3>GEO-24 · Compter les points entiers dans un polygone <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Vérifiez le théorème de Pick — un polygone simple dont les sommets sont sur le réseau des points entiers a pour aire \( I + B/2 - 1 \), où \( I \) est le nombre de points entiers intérieurs et \( B \) le nombre de ceux du bord — sur cinq polygones de votre invention, dont un non convexe. Démontrez-le ensuite pour les rectangles à côtés parallèles aux axes.</p>
+<p class="context">Le théorème de Pick, démontré en 1899, relie une quantité continue (l'aire) à un dénombrement purement discret : c'est le genre de pont qui donnera plus tard toute la géométrie des points d'un réseau. Le vérifier sur un exemple non convexe est important : l'intuition de la plupart des gens suppose discrètement la convexité, alors que le théorème n'en a pas besoin.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Pick">Théorème de Pick — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-31" data-level="Lycée">
+<h3>GEO-31 · Le théorème des trisectrices de Morley <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans un triangle \( ABC \), partagez chacun des trois angles intérieurs en trois
+parts égales. Pour chaque côté, prenez les deux trisectrices les plus proches de lui — une issue de
+chaque extrémité de ce côté — et soient \( P_A, P_B, P_C \) les points où ces couples se rencontrent,
+\( P_A \) étant celui associé au côté \( BC \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que chacun de ces couples de trisectrices se rencontre effectivement à l'intérieur du
+triangle, de sorte que les trois points existent.</li>
+<li>Démontrez le théorème de Morley : le triangle \( P_A P_B P_C \) est équilatéral, quel que soit le
+triangle de départ. (Une voie trigonométrique utilise la loi des sinus jointe à l'identité
+\( \sin 3\theta = 4 \sin\theta \, \sin(60^\circ + \theta) \, \sin(60^\circ - \theta) \).)</li>
+<li>Démontrez que le côté du triangle de Morley a pour longueur
+\[ 8R \, \sin\tfrac{A}{3} \, \sin\tfrac{B}{3} \, \sin\tfrac{C}{3} , \]
+où \( R \) est le rayon du cercle circonscrit à \( ABC \) et \( A, B, C \) ses angles.</li>
+<li>Autorisez également les trisectrices des angles <i>extérieurs</i>. Exhibez au moins un autre
+triangle équilatéral obtenu de cette façon — il y a en tout dix-huit triangles de Morley — et dites
+lesquels de vos arguments de (b) se transposent sans changement.</li>
+</ol>
+</div>
+<p class="context">Frank Morley, un Anglais qui fit toute sa carrière à Haverford puis à Johns Hopkins,
+remarqua ce fait vers 1899 en étudiant la géométrie des cardioïdes tangentes aux côtés d'un triangle ;
+il en parla à des amis et le résultat circula de bouche à oreille bien avant sa publication, la
+première démonstration imprimée étant due à M. T. Naraniengar en 1909. Ce retard n'a rien d'un
+hasard : la trisection de l'angle est impossible à la règle et au compas, si bien que la configuration
+ne peut être tracée par les moyens classiques et qu'aucun Grec n'aurait pu tomber dessus. Le théorème
+attire encore de nouvelles démonstrations — Alain Connes en a publié une, algébrique, en 1998, qui
+vaut sur tout corps de caractéristique différente de deux et de trois.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Morley">Théorème de Morley — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Trisection_de_l%27angle">Trisection de l'angle — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter et S. L. Greitzer, <i>Geometry Revisited</i>, ch. 1</li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-32" data-level="Lycée" data-kind="court">
+<h3>GEO-32 · Deux bissectrices de même longueur <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez le théorème de Steiner–Lehmus : si les bissectrices
+intérieures issues de deux sommets d'un triangle ont la même longueur, alors le triangle est
+isocèle. (La réciproque est une conséquence immédiate de la symétrie ; toute la difficulté est dans
+ce sens-ci.)</p>
+<p class="context">C. L. Lehmus demanda à Sturm, dans une lettre de 1840, une démonstration purement
+géométrique ; Sturm fit circuler la question, et Jakob Steiner fut parmi les premiers à répondre —
+depuis, le problème a suscité bien plus d'une centaine de démonstrations publiées. Presque toutes
+raisonnent par l'absurde, en prouvant plutôt qu'un triangle non isocèle a des bissectrices de
+longueurs différentes, et la possibilité d'une démonstration véritablement « directe » est devenue
+une petite controverse logique à part entière : John Conway soutenait qu'il n'en existe aucune,
+Victor Pambuccian a démontré ensuite que des démonstrations directes doivent exister en logique
+classique comme en logique intuitionniste, et l'on en a depuis écrit une vérifiée par
+machine.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Steiner-Lehmus">Théorème de Steiner-Lehmus — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter et S. L. Greitzer, <i>Geometry Revisited</i>, ch. 1</li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="GEO-06" data-level="Licence">
+<h3>GEO-06 · Le postulat des parallèles et l'axiome de Playfair <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Travaillez à partir des quatre premiers postulats d'Euclide — ou, pour être
+tout à fait rigoureux, à partir des axiomes d'incidence, d'ordre et de congruence de Hilbert
+(la « géométrie neutre »).</p>
+<ol class="parts" type="a">
+<li>Démontrez que le cinquième postulat d'Euclide équivaut à l'axiome de Playfair : par un
+point extérieur à une droite \( \ell \) il passe au plus une droite qui ne rencontre pas
+\( \ell \).</li>
+<li>Démontrez que les deux équivalent à l'énoncé « il existe un triangle dont la somme des
+angles vaut exactement \( 180^\circ \) ».</li>
+</ol>
+</div>
+<p class="context">Pendant deux mille ans, les géomètres ont tenté de <i>démontrer</i> le cinquième
+postulat à partir des autres — Proclus, Omar Khayyam, Saccheri (dont l'ouvrage de 1733 « vengeant
+Euclide » déroule des pages de géométrie hyperbolique correcte tout en la croyant absurde),
+Lambert, Legendre. Les équivalences ci-dessus expliquent pourquoi chaque tentative supposait
+secrètement la conclusion. La résolution — le postulat est indépendant, et le nier donne une
+géométrie cohérente — est venue avec Lobatchevski (1829) et János Bolyai (1832), Gauss en étant
+convaincu en privé plus tôt. Les <i>Grundlagen</i> de Hilbert (1899) ont enfin fait de
+« travailler à partir des axiomes » une activité précise.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Axiome_des_parall%C3%A8les">Axiome des parallèles — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Playfair%27s_axiom">Axiome de Playfair — Wikipédia (en anglais)</a></li>
+<li>Lecture : R. Hartshorne, <i>Geometry: Euclid and Beyond</i>, ch. 1–4</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-07" data-level="Licence">
+<h3>GEO-07 · Les géodésiques du plan hyperbolique <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le demi-plan supérieur \( \mathbb{H} = \{(x,y) : y &gt; 0\} \), muni de la
+longueur de courbe définie comme la longueur euclidienne usuelle pondérée en chaque point par
+\( 1/y \), est un modèle du plan hyperbolique.</p>
+<ol class="parts" type="a">
+<li>Démontrez que les géodésiques (les courbes localement les plus courtes) sont exactement les
+demi-droites verticales et les demi-cercles rencontrant l'axe des \( x \) à angle droit.</li>
+<li>Concluez que par tout point \( P \) hors d'une géodésique \( g \) il passe une infinité de
+géodésiques disjointes de \( g \) — l'axiome de Playfair (GEO-06) est donc en défaut, tandis que
+les quatre premiers postulats d'Euclide, convenablement interprétés, restent vrais.</li>
+</ol>
+</div>
+<p class="context">Les modèles sont ce qui a rendu la géométrie non euclidienne respectable :
+Beltrami (1868), puis Klein et Poincaré, ont montré que toute contradiction dans la géométrie
+hyperbolique serait déjà une contradiction dans la géométrie euclidienne, réglant la question
+bimillénaire de GEO-06. Les modèles du demi-plan et du disque restent aujourd'hui les images de
+l'espace hyperbolique dont se sert le géomètre au travail — dans le modèle du disque, les gravures
+<i>Circle Limit</i> d'Escher sont littéralement des dessins d'un pavage hyperbolique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Demi-plan_de_Poincar%C3%A9">Demi-plan de Poincaré — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/G%C3%A9om%C3%A9trie_hyperbolique">Géométrie hyperbolique — Wikipédia</a></li>
+<li>Lecture : R. Hartshorne, <i>Geometry: Euclid and Beyond</i>, ch. 7</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-08" data-level="Licence">
+<h3>GEO-08 · Le défaut angulaire est une aire <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Travaillez dans le plan hyperbolique, avec le modèle du demi-plan de GEO-07,
+dont l'élément d'aire est l'élément euclidien multiplié par \( 1/y^2 \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que tout triangle a une somme d'angles strictement inférieure à \( \pi \).</li>
+<li>Démontrez que l'aire d'un triangle d'angles \( \alpha, \beta, \gamma \) est exactement son
+défaut angulaire
+\[ \pi - (\alpha + \beta + \gamma). \]
+Commencez par les triangles idéaux — dont les trois sommets sont sur le bord — qui ont tous
+leurs angles \( 0 \) et, comme vous le montrerez, une aire \( \pi \).</li>
+<li>Concluez que les triangles hyperboliques ont une aire inférieure à \( \pi \), quelle que soit
+la longueur de leurs côtés.</li>
+</ol>
+</div>
+<p class="context">Lambert observa dans les années 1760 que, si le postulat des parallèles tombe,
+le défaut angulaire doit se comporter comme une aire — et nota l'étrange analogie avec l'excès
+sphérique (GEO-09), spéculant sur une « sphère de rayon imaginaire ». Que les triangles ne
+puissent pas avoir une grande aire est l'un des premiers faits véritablement étranges que
+rencontre l'étudiant en géométrie hyperbolique, et c'est le cas de courbure \( -1 \) du théorème
+de Gauss–Bonnet (GEO-14).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/G%C3%A9om%C3%A9trie_hyperbolique">Géométrie hyperbolique — Wikipédia</a></li>
+<li>Lecture : R. Hartshorne, <i>Geometry: Euclid and Beyond</i>, ch. 7</li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i>, ch. 16</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-09" data-level="Licence">
+<h3>GEO-09 · Le théorème de Girard sur la sphère <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un fuseau sur une sphère est une région bornée par deux demi-grands cercles de
+mêmes extrémités ; un triangle sphérique est borné par trois arcs de grands cercles.</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Girard : sur une sphère de rayon \( R \), un triangle d'angles
+\( \alpha, \beta, \gamma \) a pour aire
+\[ R^2\,(\alpha + \beta + \gamma - \pi). \]
+(L'indication est dans l'énoncé : calculez d'abord l'aire d'un fuseau, puis recouvrez la sphère
+par les fuseaux engendrés par les trois côtés du triangle.)</li>
+<li>Déduisez-en que la somme des angles d'un triangle sphérique est toujours supérieure à
+\( 180^\circ \).</li>
+<li>Déduisez-en que sur la sphère il n'existe pas de triangles semblables mais non égaux.</li>
+</ol>
+</div>
+<p class="context">Thomas Harriot démontra ce résultat en 1603 mais ne le publia jamais ; Albert
+Girard l'imprima en 1629. C'est le plus ancien théorème d'une géométrie non euclidienne, découvert
+des siècles avant que quiconque ne le formule ainsi — les navigateurs avaient simplement besoin de
+trigonométrie sphérique. La quantité \( \alpha + \beta + \gamma - \pi \) est l'« excès sphérique »,
+miroir exact du défaut hyperbolique (GEO-08), et les mesures géodésiques de Gauss sur un grand
+triangle reliant trois sommets allemands n'étaient assez précises que pour confirmer que l'espace
+physique est très proche d'être plat.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Trigonom%C3%A9trie_sph%C3%A9rique">Trigonométrie sphérique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/G%C3%A9om%C3%A9trie_sph%C3%A9rique">Géométrie sphérique — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-10" data-level="Licence">
+<h3>GEO-10 · La courbure détermine la courbe <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit une courbe plane paramétrée par l'abscisse curviligne \( s \), et soit
+\( \kappa(s) \) sa courbure algébrique — la vitesse à laquelle tourne son angle de direction.</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème fondamental des courbes planes : étant donné une fonction continue
+\( \kappa(s) \) quelconque, il existe une courbe de vitesse unité ayant cette courbure, unique à
+un déplacement du plan près.</li>
+<li>Déduisez-en que les seules courbes planes de courbure constante sont les droites et les
+cercles.</li>
+<li>Pour une courbe de l'espace, définissez la courbure et la torsion via le repère de
+Frenet–Serret, puis énoncez (ou démontrez) le théorème analogue.</li>
+</ol>
+</div>
+<p class="context">C'est la porte d'entrée de la géométrie différentielle : des invariants locaux
+(courbure, torsion) déterminent la forme globale. Le cas plan est un agréable exercice d'équations
+différentielles ordinaires ; le cas de l'espace, systématisé par Frenet (1847) et Serret (1851),
+est le modèle que Gauss et Riemann ont généralisé aux surfaces et au-delà. La morale — la géométrie
+est stockée dans les dérivées — c'est tout le sujet en une phrase.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Courbure">Courbure — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Rep%C3%A8re_de_Frenet">Repère de Frenet — Wikipédia</a></li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-11" data-level="Licence">
+<h3>GEO-11 · Géodésiques : grands cercles et relation de Clairaut <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Une géodésique sur une surface est une courbe localement la
+plus courte, ce qui équivaut à dire que son accélération est partout normale à la surface.
+(a) Démontrez que les géodésiques de la sphère ronde sont exactement les grands cercles. (Une voie
+élégante : montrez que l'ensemble des points fixes d'une isométrie qui fixe le point de départ et
+la direction d'une géodésique contient nécessairement cette géodésique.) (b) Sur une surface de
+révolution, démontrez la relation de Clairaut : le long de toute géodésique, la quantité
+\( r \cos\theta \) est constante, où \( r \) est la distance à l'axe et \( \theta \) l'angle que
+fait la géodésique avec le parallèle local. Servez-vous-en pour décrire qualitativement comment
+les géodésiques d'une surface en forme de trompette rebondissent entre les parallèles.</p>
+<p class="context">Les géodésiques répondent à la question du marin — quelle est la route la plus
+courte ? — et expliquent pourquoi les vols long-courriers décrivent un arc vers les pôles sur une
+carte plate. Clairaut publia sa relation en 1733, avant même que la notion générale de courbure
+géodésique n'existe ; c'est la conservation du moment cinétique déguisée, exemple précoce du
+principe symétrie–conservation que Noether rendra plus tard précis. Les géodésiques sont aussi les
+trajectoires de la lumière et des particules en chute libre en relativité générale.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/G%C3%A9od%C3%A9sique">Géodésique — Wikipédia</a></li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 4</li>
+<li>Cours : <a href="https://ocw.mit.edu/">MIT OCW 18.950 Differential Geometry</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-12" data-level="Licence">
+<h3>GEO-12 · Les sphères de Dandelin : les coniques à partir du cône <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Un plan coupe une nappe d'un cône de révolution suivant une
+courbe bornée \( C \), rencontrant chaque génératrice une fois. Inscrivez dans le cône deux sphères
+tangentes au plan de coupe, une de chaque côté, touchant le plan aux points \( F_1 \) et
+\( F_2 \). Démontrez que pour tout point \( P \) de \( C \), la somme \( PF_1 + PF_2 \) est
+constante — de sorte que \( C \) est une ellipse de foyers \( F_1, F_2 \). Adaptez l'argument pour
+obtenir la propriété foyer–directrice, et décrivez ce qui change pour la parabole et
+l'hyperbole.</p>
+<p class="context">Les Grecs — Ménechme, Euclide et surtout Apollonios de Perga (<i>Les Coniques</i>,
+vers 200 av. J.-C.) — définissaient les coniques comme sections d'un cône mais en tiraient les
+propriétés focales par de longs arguments synthétiques. Les deux sphères de Germinal Dandelin
+(1822) réduisent la dérivation à quelques lignes de géométrie pure : c'est une sérieuse candidate
+au titre de plus élégante démonstration du domaine. Les coniques sont aussi la porte d'entrée de la
+géométrie algébrique : ce sont exactement les courbes planes de degré 2, premier cas des questions
+de classification de GEO-16.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Dandelin">Théorème de Dandelin (sphères de Dandelin) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conique">Conique — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-25" data-level="Licence" data-kind="court">
+<h3>GEO-25 · Toute isométrie du plan est l'une de quatre choses <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que toute isométrie du plan euclidien est une translation, une rotation, une réflexion ou une réflexion glissée, et que toute isométrie est composée d'au plus trois réflexions.</p>
+<p class="context">Voilà une classification complète obtenue avec presque aucun outillage, et elle explique pourquoi les dix-sept groupes de papier peint sont ce qu'ils sont. L'énoncé « trois réflexions » est la forme mémorable : les réflexions engendrent tout, si bien que le groupe des symétries du plan tout entier se construit à partir d'un seul type de mouvement.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Euclidean_plane_isometry">Isométrie du plan euclidien — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-26" data-level="Licence" data-kind="court">
+<h3>GEO-26 · Helly dans le plan <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez le théorème de Helly dans le plan : si une famille finie de convexes de \( \mathbb{R}^2 \) est telle que trois quelconques d'entre eux ont un point commun, alors tous ont un point commun. Montrez par un exemple que « trois » ne peut pas être affaibli en « deux ».</p>
+<p class="context">Le théorème de Helly, de 1913, est le prototype de toute une famille de résultats affirmant que la convexité permet à un accord local de forcer un accord global. Le contre-exemple est aussi instructif que la démonstration — trois droites en position générale se coupent deux à deux sans avoir de point commun — car il montre que la constante, qui dépend de la dimension, est optimale.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Helly">Théorème de Helly — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-33" data-level="Licence">
+<h3>GEO-33 · Naviguer sur une Terre ronde <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Modélisez la Terre par une sphère de rayon \( R = 6371 \) km. Le point de
+latitude \( \varphi \) et de longitude \( \lambda \) est le vecteur unitaire
+\( (\cos\varphi\cos\lambda, \ \cos\varphi\sin\lambda, \ \sin\varphi) \), et la distance entre deux
+points vaut \( R \) fois l'angle entre leurs vecteurs.</p>
+<ol class="parts" type="a">
+<li>Démontrez la loi des cosinus sphérique : dans un triangle sphérique de côtés \( a, b, c \)
+(mesurés comme angles au centre) et où \( C \) est l'angle au sommet opposé au côté \( c \),
+\[ \cos c = \cos a \cos b + \sin a \sin b \cos C . \]
+Obtenez-la à partir des produits scalaire et vectoriel des trois vecteurs unitaires.</li>
+<li>Déduisez-en la formule de la distance orthodromique : pour les points \( (\varphi_1, \lambda_1) \)
+et \( (\varphi_2, \lambda_2) \),
+\[ \frac{d}{R} = \arccos\Big( \sin\varphi_1 \sin\varphi_2 + \cos\varphi_1 \cos\varphi_2
+\cos(\lambda_2 - \lambda_1) \Big) . \]</li>
+<li>Calculez la distance orthodromique de Londres (\( 51.5^\circ \) N, \( 0.13^\circ \) O) à
+New York (\( 40.71^\circ \) N, \( 74.01^\circ \) O), et comparez-la à la longueur de la
+<i>loxodromie</i> — la route à cap constant — entre ces deux mêmes points. Expliquez
+géométriquement pourquoi la route la plus courte commence par un cap nettement au nord de
+l'ouest.</li>
+<li>Montrez que la formule de (b) perd en précision pour des points proches, l'arccosinus étant
+mal conditionné au voisinage de \( 1 \), et démontrez que l'identité de haversine
+\[ \sin^2\!\Big(\frac{d}{2R}\Big) = \sin^2\!\Big(\frac{\varphi_2 - \varphi_1}{2}\Big)
++ \cos\varphi_1 \cos\varphi_2 \, \sin^2\!\Big(\frac{\lambda_2 - \lambda_1}{2}\Big) \]
+lui est équivalente tout en étant numériquement sûre.</li>
+</ol>
+</div>
+<p class="context">La trigonométrie sphérique est plus ancienne que la géométrie analytique plane :
+la loi des cosinus pour les côtés était en usage chez les astronomes du monde islamique médiéval
+calculant la direction de La Mecque, et toute la discipline existait pour répondre à des questions
+sur le ciel et sur la mer. La loxodromie fut décrite par Pedro Nunes en 1537, et la projection de
+Mercator de 1569 fut conçue précisément pour la tracer comme une droite — une carte qui échange les
+routes les plus courtes contre des routes gouvernables. La forme haversine de (d) fut mise en table
+pour les navigateurs au début du XIX<sup>e</sup> siècle et nommée par James Inman en 1835 ; c'est
+encore la formule employée par la bibliothèque cartographique de votre téléphone, exactement pour
+la raison qu'on vous demande de démontrer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Spherical_law_of_cosines">Loi des cosinus sphérique — Wikipédia (en anglais)</a>, <a href="https://fr.wikipedia.org/wiki/Distance_du_grand_cercle">Distance du grand cercle — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Formule_de_haversine">Formule de haversine — Wikipédia</a>, <a href="https://fr.wikipedia.org/wiki/Loxodromie">Loxodromie — Wikipédia</a></li>
+<li>Lecture : G. Van Brummelen, <i>Heavenly Mathematics: The Forgotten Art of Spherical Trigonometry</i> (Princeton, 2013)</li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-34" data-level="Licence">
+<h3>GEO-34 · L'inversion, et le porisme de Steiner <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'inversion de centre \( O \) et de rayon \( r \) est l'application du plan
+privé de \( O \) dans lui-même donnée par
+\[ P \ \longmapsto \ O + r^2 \, \frac{P - O}{|P - O|^2} . \]</p>
+<ol class="parts" type="a">
+<li>Démontrez que l'inversion est une involution, qu'elle envoie les cercles ne passant pas par
+\( O \) sur des cercles, les cercles passant par \( O \) sur des droites évitant \( O \), et les
+droites passant par \( O \) sur elles-mêmes — de sorte que « cercles et droites » forment une seule
+famille, permutée par les inversions.</li>
+<li>Démontrez que l'inversion conserve la valeur absolue de l'angle entre deux courbes, tout en en
+renversant l'orientation.</li>
+<li>Soient \( \alpha \) et \( \beta \) deux cercles, \( \beta \) intérieur à \( \alpha \) et les
+deux non concentriques. Démontrez qu'il existe une inversion les transformant en deux cercles
+concentriques.</li>
+<li>Une <i>chaîne de Steiner</i> est une suite cyclique de cercles, chacun tangent au suivant, tous
+intérieurement tangents à \( \alpha \) et extérieurement tangents à \( \beta \). À l'aide de (c),
+démontrez le porisme de Steiner : s'il existe une chaîne fermée de \( n \) cercles pour le couple
+\( (\alpha, \beta) \), alors une chaîne fermée de \( n \) cercles part de <i>n'importe quel</i>
+cercle tangent aux deux — la chaîne se referme toujours, quelle que soit la position de départ.
+Démontrez aussi que les centres des cercles de la chaîne sont sur une même ellipse dont les foyers
+sont les centres de \( \alpha \) et de \( \beta \).</li>
+</ol>
+</div>
+<p class="context">Jakob Steiner découvrit ce porisme dans les années 1820, dans l'élan de travaux
+qui produisit aussi les arguments de symétrisation de GEO-05. Le mot « porisme » vient d'un livre
+perdu d'Euclide de ce nom et décrit exactement ce type d'énoncé : non pas « voici l'objet » mais
+« s'il en existe un, il en existe une infinité ». L'inversion est l'outil qui rend la chose évidente
+au lieu de miraculeuse — vous transportez la configuration difficile en une configuration facile,
+vous la résolvez par symétrie, et vous revenez — et la même astuce donne la démonstration standard
+de l'inégalité de Ptolémée de GEO-02(c) et du théorème de tangence de Feuerbach derrière GEO-04.
+C'est aussi la première transformation véritablement non euclidienne que rencontrent la plupart des
+étudiants : les angles survivent, les distances et l'alignement non.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Inversion_g%C3%A9om%C3%A9trique">Inversion géométrique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cha%C3%AEne_de_Steiner">Chaîne de Steiner — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter et S. L. Greitzer, <i>Geometry Revisited</i>, ch. 5</li>
+<li>Lecture : H. S. M. Coxeter, <i>Introduction to Geometry</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-35" data-level="Licence" data-kind="court">
+<h3>GEO-35 · L'inégalité d'Erdős–Mordell <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( P \) un point intérieur à un triangle \( ABC \), et
+soient \( p_a, p_b, p_c \) les distances de \( P \) aux trois côtés. Démontrez que
+\[ PA + PB + PC \ \ge \ 2\,(p_a + p_b + p_c) , \]
+et déterminez exactement le cas d'égalité.</p>
+<p class="context">Paul Erdős proposa cet énoncé comme problème dans l'<i>American Mathematical
+Monthly</i> en 1935 sans en avoir de démonstration ; Louis Mordell et D. F. Barrow en fournirent
+une en 1937, au prix d'une trigonométrie assez lourde pour que trouver un argument élémentaire
+devienne un sport, et l'on dispose aujourd'hui de démonstrations courtes par triangles semblables
+ou par l'inégalité arithmético-géométrique. La constante \( 2 \) est ce qui rend l'inégalité fine
+et délicate : le cas d'égalité fixe une seule configuration, et l'inégalité de Barrow renforce
+l'énoncé en remplaçant les distances aux côtés par des segments plus longs.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Erd%C5%91s-Mordell">Théorème d'Erdős-Mordell — Wikipédia</a></li>
+<li>Lecture : H. S. M. Coxeter et S. L. Greitzer, <i>Geometry Revisited</i></li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="GEO-13" data-level="Master">
+<h3>GEO-13 · Le Theorema Egregium, ou pourquoi toute carte de la Terre ment <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> (Problème de compréhension.) La courbure de Gauss \( K \)
+d'une surface de l'espace est le produit de ses deux courbures principales. Travaillez une
+démonstration complète du Theorema Egregium de Gauss : \( K \) est intrinsèque — calculable à
+partir de mesures de longueur faites au sein de la surface, donc invariante par flexion sans
+étirement. Rédigez ensuite, en une page autonome, l'argument du corollaire : aucune carte d'une
+région de la surface terrestre, si petite soit-elle, ne peut représenter toutes les distances à une
+même échelle. Enfin, conciliez cela avec la pratique cartographique : identifiez une projection qui
+conserve tous les angles et une autre qui conserve toutes les aires, et démontrez qu'aucune
+projection ne peut faire les deux.</p>
+<p class="context">Gauss publia le théorème dans ses <i>Disquisitiones generales circa superficies
+curvas</i> (1827) et le baptisa lui-même « egregium » — remarquable : la courbure était définie en
+faisant appel à l'espace ambiant, et il se trouve qu'elle n'en a pas besoin. Le corollaire donne
+son statut professionnel à un fait que tout usager d'atlas pressent (le Groenland n'est pas si
+grand ; Mercator conserve les angles au prix brutal des aires). La leçon de 1854 de Riemann prit le
+point de vue intrinsèque comme définition, créant la géométrie riemannienne, langue dans laquelle
+la relativité générale allait s'écrire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Theorema_egregium">Theorema egregium — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Projection_cartographique">Projection cartographique — Wikipédia</a></li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-14" data-level="Master">
+<h3>GEO-14 · Le théorème de Gauss–Bonnet <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Admettez la formule de Gauss–Bonnet locale : pour un triangle géodésique
+\( T \) sur une surface, \( \iint_T K \, dA = \alpha + \beta + \gamma - \pi \). Par
+triangulation, démontrez le théorème global : pour une surface compacte orientable \( S \) de
+genre \( g \),
+\[ \iint_S K \, dA = 2\pi\,\chi(S) = 2\pi\,(2 - 2g). \]
+Déduisez-en :</p>
+<ol class="parts" type="a">
+<li>que la courbure totale de toute surface de type sphère vaut \( 4\pi \) et celle de tout tore
+\( 0 \), quelle que soit la manière dont on les déforme ;</li>
+<li>qu'une surface de genre au moins \( 2 \) doit porter quelque part de la courbure
+négative ;</li>
+<li>que le théorème de Girard (GEO-09) et la formule du défaut hyperbolique (GEO-08) en sont les
+cas particuliers à courbure constante.</li>
+</ol>
+</div>
+<p class="context">Bonnet démontra la version à bord en 1848, en s'appuyant sur Gauss ; l'énoncé
+pour les surfaces fermées est le prototype du thème le plus profond de la géométrie moderne, le
+principe du local au global : la courbure est locale et librement déformable, et pourtant son total
+est un invariant topologique, rigide comme un entier. Sa descendance — Chern–Gauss–Bonnet en
+dimension supérieure, Riemann–Roch, le théorème de l'indice d'Atiyah–Singer — forme l'un des grands
+récits des mathématiques du XX<sup>e</sup> siècle.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Formule_de_Gauss-Bonnet">Formule de Gauss-Bonnet — Wikipédia</a></li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 4</li>
+<li>Cours : <a href="https://ocw.mit.edu/">MIT OCW 18.950 Differential Geometry</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-15" data-level="Master">
+<h3>GEO-15 · Surfaces minimales et films de savon <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une surface est minimale si sa courbure moyenne (la moyenne des courbures
+principales) est identiquement nulle — condition d'équilibre d'un film de savon, que la physique
+contraint à minimiser l'aire localement.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'une surface de révolution est minimale si et seulement si c'est un plan ou une
+caténoïde, la surface engendrée par la rotation du graphe de \( \cosh \).</li>
+<li>Démontrez que l'hélicoïde — la surface en escalier en colimaçon — est minimale.</li>
+<li>Démontrez qu'une surface minimale de \( \mathbb{R}^3 \) ne peut avoir de composante compacte,
+de sorte que tout film de savon doit avoir un fil de bord.</li>
+</ol>
+</div>
+<p class="context">Euler trouva la caténoïde en 1744, première surface minimale après le plan ; le
+mémoire de Lagrange de 1762 fondant le calcul des variations posa le problème général de l'aire
+minimale, et Meusnier l'interpréta par la courbure moyenne en 1776. Le physicien belge aveugle
+Joseph Plateau (années 1870) fit des films de savon une branche expérimentale des mathématiques :
+trempez n'importe quel cadre de fil de fer et une surface minimale apparaît en une seconde. Savoir
+si les mathématiques pouvaient égaler l'expérience — l'existence d'une surface d'aire minimale pour
+toute courbe de bord — est devenu le problème de Plateau, objet de GEO-22.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Surface_minimale">Surface minimale — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cat%C3%A9no%C3%AFde">Caténoïde — Wikipédia</a></li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-16" data-level="Master">
+<h3>GEO-16 · Le théorème de Bézout, mis à l'épreuve à la main <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Travaillez dans le plan projectif complexe \( \mathbb{P}^2(\mathbb{C}) \).</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'une droite rencontre une courbe de degré \( d \) ne la contenant pas en
+exactement \( d \) points, comptés avec multiplicité.</li>
+<li>Démontrez que deux coniques sans composante commune se rencontrent en exactement \( 4 \)
+points, comptés avec multiplicité, et exhibez des configurations réalisant les schémas
+d'intersection \( 1{+}1{+}1{+}1 \), \( 2{+}1{+}1 \), \( 2{+}2 \), \( 3{+}1 \) et \( 4 \).</li>
+<li>Énoncez le théorème de Bézout — deux courbes de degrés \( m \) et \( n \) sans composante
+commune se rencontrent en exactement \( mn \) points comptés avec multiplicité — et montrez par des
+exemples explicites que chacune des hypothèses (travailler sur \( \mathbb{C} \), travailler
+projectivement, compter les multiplicités) est nécessaire.</li>
+</ol>
+</div>
+<p class="context">Étienne Bézout énonça ce décompte en 1779 ; le rendre vrai a demandé un siècle
+d'invention des bonnes notions — points à l'infini (espace projectif), points complexes et
+multiplicité d'intersection. Cette trajectoire, « réparer le théorème en réparant les définitions »,
+est le geste fondateur de la géométrie algébrique, et ce problème vous invite à le revivre. Bézout
+est aussi le moteur de GEO-17 : la loi de groupe sur une cubique repose sur le fait qu'une droite
+la rencontre en exactement 3 points.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_B%C3%A9zout">Théorème de Bézout — Wikipédia</a></li>
+<li>Lecture : M. Reid, <i>Undergraduate Algebraic Geometry</i></li>
+<li>Cours : <a href="https://ocw.mit.edu/">MIT OCW 18.725 Algebraic Geometry</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-17" data-level="Master">
+<h3>GEO-17 · La loi de groupe sur une cubique plane <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( E \) une cubique non singulière de
+\( \mathbb{P}^2(\mathbb{C}) \), et fixez un point \( O \) sur \( E \). Définissez l'addition par
+cordes et tangentes : pour \( P, Q \) sur \( E \), soit \( P \ast Q \) la troisième intersection de
+la droite \( PQ \) avec \( E \) (Bézout, GEO-16), et posez \( P + Q = O \ast (P \ast Q) \).
+Démontrez que \( (E, +) \) est un groupe abélien d'élément neutre \( O \). Tout est routinier sauf
+l'associativité — démontrez-la, soit via le théorème de Cayley–Bacharach (une cubique passant par
+8 des 9 points d'intersection de deux cubiques passe par le 9<sup>e</sup>), soit par un calcul
+honnête que vous êtes prêt à défendre.</p>
+<p class="context">La construction par cordes est implicite chez Diophante et explicite chez Fermat
+et Newton comme machine à fabriquer de nouveaux points rationnels à partir d'anciens ; Poincaré
+(1901) a dégagé la structure de groupe comme le bon objet d'étude. Les courbes elliptiques sont
+aujourd'hui à un carrefour des mathématiques : théorème de Mordell, conjecture de
+Birch–Swinnerton-Dyer (un problème du prix du millénaire — voir la page des problèmes ouverts),
+démonstration par Wiles du dernier théorème de Fermat, et la cryptographie sur courbes elliptiques
+de votre téléphone. L'associativité est la seule étape vraiment difficile, et tout étudiant sérieux
+devrait en souffrir une fois.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Courbe_elliptique">Courbe elliptique — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Cayley%E2%80%93Bacharach_theorem">Théorème de Cayley–Bacharach — Wikipédia (en anglais)</a></li>
+<li>Lecture : M. Reid, <i>Undergraduate Algebraic Geometry</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-18" data-level="Master">
+<h3>GEO-18 · Vingt-sept droites sur une surface cubique <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Démontrez que la surface cubique de Fermat \( x^3 + y^3 + z^3 + w^3 = 0 \) dans
+\( \mathbb{P}^3(\mathbb{C}) \) contient exactement 27 droites, et dressez-en la liste.</li>
+<li>Lisez une démonstration du théorème de Cayley–Salmon : <i>toute</i> surface cubique lisse sur
+\( \mathbb{C} \) contient exactement 27 droites.</li>
+<li>Sur la cubique de Fermat, déterminez combien des 27 droites en rencontrent une donnée.</li>
+</ol>
+</div>
+<p class="context">Arthur Cayley montra en 1849 qu'une surface cubique lisse ne porte qu'un nombre
+fini de droites, et George Salmon les compta aussitôt : 27, toujours 27 — le premier grand théorème
+énumératif de la géométrie algébrique. La configuration des 27 droites a une symétrie
+extraordinaire (son groupe de symétrie est le groupe de Weyl de \( E_6 \)), et le résultat a semé
+la théorie de l'intersection et le calcul de Schubert. La surface de Fermat rend toute l'histoire
+calculable à la main — rare occasion de toucher du doigt un théorème célèbre par simple
+arithmétique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Surface_cubique">Surface cubique — Wikipédia</a></li>
+<li>Lecture : M. Reid, <i>Undergraduate Algebraic Geometry</i>, ch. 7</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-27" data-level="Master" data-kind="court">
+<h3>GEO-27 · Une courbure qu'aucune carte ne peut cacher <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Utilisez le Theorema Egregium pour démontrer qu'aucune région d'une sphère, si petite soit-elle, ne peut être envoyée sur le plan sans déformer les distances. Dites exactement quelle quantité fait obstruction.</p>
+<p class="context">Le « théorème remarquable » de Gauss affirme que la courbure de Gauss est intrinsèque — mesurable par un habitant de la surface qui n'en sort jamais — de sorte qu'une sphère de courbure \( 1/R^2 \) et un plan de courbure nulle ne peuvent jamais être localement isométriques. Toutes les cartes du monde que vous avez vues mentent sur quelque chose, et voici le théorème qui dit qu'elles le doivent.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Theorema_egregium">Theorema egregium — Wikipédia</a></li>
+<li>Lecture : Manfredo do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-28" data-level="Master" data-kind="court">
+<h3>GEO-28 · Gauss–Bonnet sur un polyèdre <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour un polyèdre convexe, définissez le défaut angulaire en un sommet comme \( 2\pi \) moins la somme des angles des faces qui s'y rencontrent. Démontrez le théorème de Descartes selon lequel le défaut total sur tous les sommets vaut \( 4\pi \), et expliquez en quoi c'est le théorème de Gauss–Bonnet pour une surface dont la courbure est concentrée en des points.</p>
+<p class="context">Descartes découvrit cela vers 1630, deux siècles avant Gauss–Bonnet, et c'est l'ombre discrète de ce théorème : la courbure a fui les faces planes et s'est amassée dans les coins, mais le total reste \( 2\pi \chi \). Voir l'ancêtre discret d'un théorème lisse est l'une des expériences les plus satisfaisantes de la géométrie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Descartes%27_theorem_on_total_angular_defect">Théorème de Descartes sur le défaut angulaire total — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Formule_de_Gauss-Bonnet">Formule de Gauss-Bonnet — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-36" data-level="Master">
+<h3>GEO-36 · L'inégalité isopérimétrique, démontrée <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> GEO-05 montait vers le théorème isopérimétrique et s'arrêtait là où il fallait
+l'existence d'un maximiseur. La démonstration de Hurwitz évite entièrement cette lacune en
+transformant l'énoncé en analyse de Fourier. Soit \( C \) une courbe fermée simple du plan, de
+classe \( C^1 \), de longueur \( L \) et d'aire enfermée \( A \).</p>
+<ol class="parts" type="a">
+<li>Démontrez l'inégalité de Wirtinger : si \( f \) est \( 2\pi \)-périodique et \( C^1 \) avec
+\( \int_0^{2\pi} f = 0 \), alors
+\[ \int_0^{2\pi} f(t)^2 \, dt \ \le \ \int_0^{2\pi} f'(t)^2 \, dt , \]
+avec égalité exactement lorsque \( f(t) = a\cos t + b \sin t \). (Développez \( f \) en série de
+Fourier et appliquez l'identité de Parseval.)</li>
+<li>Démontrez la formule de l'aire \( A = \tfrac12 \oint_C (x \, dy - y \, dx) \) à partir du
+théorème de Green, et expliquez pourquoi la convention de signe importe.</li>
+<li>Paramétrez \( C \) sur \( [0, 2\pi] \) proportionnellement à l'abscisse curviligne et
+translatez-la de sorte que \( \int_0^{2\pi} x \, dt = 0 \). Démontrez l'inégalité isopérimétrique
+\[ L^2 - 4\pi A \ \ge \ 0 , \]
+et démontrez que l'égalité force \( C \) à être un cercle.</li>
+<li>Dites précisément où la régularité a servi, et décrivez comment étendre le résultat à toutes
+les courbes fermées simples rectifiables par approximation. Comparez ensuite avec l'argument de
+symétrisation de Steiner (GEO-05) : qu'apporte chaque démonstration que l'autre n'apporte
+pas ?</li>
+</ol>
+</div>
+<p class="context">Les arguments de symétrisation de Steiner (1838) étaient beaux et incomplets — ils
+montrent que toute forme autre que le cercle peut être améliorée, mais non qu'une forme optimale
+existe, objection que Weierstrass souleva puis leva en développant la méthode directe du calcul des
+variations. La démonstration d'Adolf Hurwitz par séries de Fourier, en 1901, contourne entièrement
+la difficulté : aucun maximiseur n'est supposé, l'inégalité tombe de l'identité de Parseval, et le
+cas d'égalité identifie le cercle en lisant quels coefficients de Fourier survivent. C'est
+l'illustration moderne standard d'un principe général — une identité analytique peut trancher net
+un problème géométrique d'extremum — et sa descendance va de l'inégalité de Brunn–Minkowski aux
+théorèmes isopérimétriques sur les variétés.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_isop%C3%A9rim%C3%A9trique">Théorème isopérimétrique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Wirtinger">Inégalité de Wirtinger — Wikipédia</a></li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 1</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-950-differential-geometry-fall-2008/">MIT OCW 18.950 Differential Geometry</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-37" data-level="Master">
+<h3>GEO-37 · Courbure totale, et ce que coûte un nœud <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( \gamma \) une courbe fermée de classe \( C^2 \) dans
+\( \mathbb{R}^3 \), paramétrée par l'abscisse curviligne, de tangente unitaire \( T \) et de
+courbure \( \kappa \). Son <i>indicatrice tangentielle</i> est la courbe sphérique fermée
+\( T : [0, L] \to S^2 \), et sa courbure totale est \( \int_\gamma \kappa \, ds \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que la courbure totale de \( \gamma \) est égale à la longueur de son indicatrice
+tangentielle sur la sphère unité.</li>
+<li>Démontrez le lemme clé : une courbe fermée de \( S^2 \) de longueur inférieure à \( 2\pi \) est
+contenue dans un hémisphère ouvert ; et démontrez que l'indicatrice tangentielle d'une courbe
+fermée de l'espace ne peut être contenue dans aucun hémisphère ouvert. (Pour la seconde moitié,
+intégrez \( T \) le long de la courbe.)</li>
+<li>Déduisez-en le théorème de Fenchel : toute courbe fermée de l'espace a une courbure totale au
+moins égale à \( 2\pi \), avec égalité exactement pour les courbes planes convexes.</li>
+<li>Démontrez ou reconstituez soigneusement le théorème de Fáry–Milnor : si \( \gamma \) est
+nouée, sa courbure totale dépasse \( 4\pi \). (La voie de Milnor : montrer que la courbure totale
+vaut \( 2\pi \) fois le nombre moyen de maxima locaux des fonctions hauteur \( \gamma \cdot v \)
+sur les vecteurs unitaires \( v \), et qu'une courbe admettant une fonction hauteur à un seul
+maximum et un seul minimum est dénouée.)</li>
+</ol>
+</div>
+<p class="context">Werner Fenchel démontra la borne \( 2\pi \) en 1929, et Karol Borsuk, qui
+l'étendit aux dimensions supérieures en 1947, demanda ce que devait coûter le nouage. István Fáry
+répondit en 1949 et John Milnor indépendamment en 1950, alors qu'il était encore étudiant de
+premier cycle à Princeton — l'article qui fit son nom. Le résultat est un pont rare entre les deux
+moitiés des pages de géométrie et de topologie de ce site : une quantité de géométrie
+différentielle, définie par une intégrale de courbure locale, impose une limite dure à une
+propriété purement topologique de la courbe. La borne est optimale au sens où aucune constante plus
+petite ne convient, mais elle est loin d'être une égalité — mesurer la véritable courbure totale
+minimale d'un type de nœud donné reste une question vivante.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Fary-Milnor">Théorème de Fary-Milnor — Wikipédia</a>, <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Fenchel">Théorème de Fenchel — Wikipédia</a></li>
+<li>Article : J. Milnor, « On the total curvature of knots » (1950), <i>Annals of Mathematics</i> 52, 248–257</li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 1 et 5</li>
+<li>Lecture : C. C. Adams, <i>The Knot Book</i></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-38" data-level="Master" data-kind="court">
+<h3>GEO-38 · Des surfaces faites uniquement de droites <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dites qu'une surface lisse de \( \mathbb{R}^3 \) est
+<i>doublement réglée</i> si par chacun de ses points passent deux droites distinctes entièrement
+contenues dans la surface. Démontrez qu'une surface doublement réglée est contenue dans un plan,
+dans un paraboloïde hyperbolique \( z = xy \), ou dans un hyperboloïde à une nappe
+\( \frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1 \).</p>
+<p class="context">Christopher Wren montra en 1669 que l'hyperboloïde à une nappe est engendré par
+une droite mobile, fait qui ressemble à un tour de prestidigitation la première fois qu'on en voit
+le modèle. La classification est un classique du XIX<sup>e</sup> siècle en géométrie analytique des
+quadriques, et c'est la raison pour laquelle les tours de refroidissement et les tours en treillis
+de Vladimir Choukhov (1896) sont des hyperboloïdes : on obtient une surface à double courbure avec
+des barres d'acier rectilignes, bon marché à fabriquer et rigides dans deux directions à la fois.
+Notez que les trois surfaces ici ont une courbure de Gauss négative ou nulle — une droite contenue
+dans une surface force la courbure normale à s'annuler dans cette direction, conséquence immédiate
+de la machinerie de GEO-13.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Surface_r%C3%A9gl%C3%A9e">Surface réglée — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Hyperbolo%C3%AFde">Hyperboloïde — Wikipédia</a></li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 3</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="GEO-19" data-level="Recherche">
+<h3>GEO-19 · Empilement de sphères : résolu en dimensions 8 et 24, ouvert entre les deux <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Avec quelle densité peut-on empiler des boules égales sans recouvrement dans
+\( \mathbb{R}^n \) ?</p>
+<ol class="parts" type="a">
+<li>Échauffement, à la main : démontrez que l'empilement hexagonal de cercles a pour densité
+\( \pi/\sqrt{12} \approx 0{,}9069 \), et démontrez qu'il est optimal parmi les empilements
+<i>en réseau</i> du plan.</li>
+<li>Problème de compréhension : étudiez la borne de programmation linéaire de Cohn–Elkies et
+expliquez comment une unique fonction bien choisie certifie d'un coup une borne supérieure sur la
+densité de tout empilement ; lisez ensuite comment Viazovska a construit les fonctions magiques en
+dimensions 8 et 24.</li>
+</ol>
+</div>
+<p class="context">État des lieux, honnêtement : la dimension 2 est résolue (Thue 1910, complétée
+par Fejes Tóth en 1942) ; la dimension 3 est la conjecture de Kepler (1611), démontrée par Hales en
+1998 par une analyse de cas massivement informatique et formellement vérifiée par machine en 2017 ;
+la dimension 8 a été résolue par Maryna Viazovska en 2016 (le réseau \( E_8 \) est optimal) par une
+stupéfiante démonstration de 23 pages via les formes modulaires, étendue en une semaine à la
+dimension 24 (le réseau de Leech) par Cohn, Kumar, Miller, Radchenko et Viazovska. Elle a reçu la
+médaille Fields en 2022. Toute autre dimension \( n \ge 4 \) reste ouverte — même \( n = 4 \), et
+même si le record est « récemment tombé » deux fois, personne ne s'attend à ce que les techniques
+connues fonctionnent en dimension générale.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Empilement_compact">Empilement compact (empilement de sphères) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Kepler">Conjecture de Kepler — Wikipédia</a></li>
+<li>Article : M. Viazovska, « The sphere packing problem in dimension 8 » (2017), <a href="https://arxiv.org/abs/1603.04246">arXiv:1603.04246</a></li>
+<li>Article : H. Cohn, A. Kumar, S. D. Miller, D. Radchenko, M. Viazovska, « The sphere packing problem in dimension 24 » (2017), <a href="https://arxiv.org/abs/1603.06518">arXiv:1603.06518</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-20" data-level="Recherche">
+<h3>GEO-20 · Le problème einstein : une seule tuile pour tout désordonner <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un <i>einstein</i> (« une pierre ») est une tuile unique dont les copies pavent
+le plan, mais jamais de façon périodique.</p>
+<ol class="parts" type="a">
+<li>Échauffement, à la main : démontrez que tout triangle, et en fait tout quadrilatère, convexe ou
+non, pave le plan périodiquement — aucun einstein ne se cache donc parmi eux.</li>
+<li>Problème de compréhension : lisez la démonstration de 2023 selon laquelle le « chapeau » — un
+polykite à 13 côtés — est une monotuile apériodique (en utilisant des copies réfléchies), et
+rédigez un compte rendu de deux pages de l'architecture de la démonstration : le système de
+substitution par métatuiles, et l'argument distinct assisté par ordinateur. Expliquez ce qu'apporte
+le « spectre » : une tuile unique qui est apériodique même sans réflexions.</li>
+</ol>
+</div>
+<p class="context">État des lieux, honnêtement : résolu en 2023, et assez récemment pour que cela
+ait encore un air d'actualité. Les <i>ensembles</i> de tuiles apériodiques remontent à Berger (1966,
+plus de 20 000 tuiles de Wang) et à Penrose (1974, deux tuiles) ; savoir si une seule tuile pouvait
+suffire est resté ouvert un demi-siècle. En novembre 2022, David Smith, technicien d'imprimerie à
+la retraite bricolant des formes, a trouvé le chapeau ; avec Myers, Kaplan et Goodman-Strauss, il
+en a démontré l'apériodicité (prépublication en mars 2023), et la même équipe a produit quelques
+mois plus tard le « spectre » chiral. C'est une histoire exemplaire de collaboration entre amateur
+et professionnels, et les questions voisines (dimensions supérieures, tuiles à contraintes plus
+fortes) demeurent des sujets de recherche actifs.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_einstein">Problème einstein — Wikipédia</a></li>
+<li>Article : D. Smith, J. S. Myers, C. S. Kaplan, C. Goodman-Strauss, « An aperiodic monotile » (2023), <a href="https://arxiv.org/abs/2303.10798">arXiv:2303.10798</a></li>
+<li>Article : D. Smith, J. S. Myers, C. S. Kaplan, C. Goodman-Strauss, « A chiral aperiodic monotile » (2023), <a href="https://arxiv.org/abs/2305.17743">arXiv:2305.17743</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-21" data-level="Recherche">
+<h3>GEO-21 · Le problème du déménagement de canapé <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Quelle est la plus grande aire d'une forme plane que l'on puisse déplacer (par
+translations et rotations) autour d'un angle droit dans un couloir de largeur unité ?</p>
+<ol class="parts" type="a">
+<li>À la main : vérifiez qu'un carré unité passe, qu'un demi-disque de rayon 1 (d'aire
+\( \pi/2 \)) passe, et que la forme de Hammersley — un rectangle amputé d'une échancrure
+semi-circulaire, flanqué de deux quarts de disque, d'aire \( \pi/2 + 2/\pi \approx 2{,}2074 \) —
+tourne le coin.</li>
+<li>Démontrez une borne supérieure : montrez que l'aire d'un canapé est au plus
+\( 2\sqrt{2} \), ou mieux.</li>
+<li>Problème de compréhension : décrivez le canapé en 18 morceaux de Gerver et ce que
+signifierait son optimalité.</li>
+</ol>
+</div>
+<p class="context">État des lieux, honnêtement : posé par Leo Moser en 1966 ; Gerver construisit en
+1992 son canapé à 18 arcs, d'aire \( \approx 2{,}2195 \), et le conjectura optimal. En novembre
+2024, Jineon Baek (université Yonsei) a mis en ligne une démonstration de 119 pages, « Optimality of
+Gerver's Sofa », prétendant résoudre le problème — notamment sans assistance informatique. En 2026,
+la démonstration est toujours en cours de relecture par les pairs, les experts se montrant
+optimistes quant à sa correction (Scientific American l'a comptée parmi les percées de 2025),
+mais il faut honnêtement la dire « annoncée, en cours d'évaluation » plutôt que réglée. La variante
+ambidextre — un canapé qui tourne à la fois les coins à gauche et à droite, avec l'optimum conjecturé
+par Romik — reste ouverte.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_sofa">Problème du sofa — Wikipédia</a></li>
+<li>Article : J. Baek, « Optimality of Gerver's Sofa » (2024), <a href="https://arxiv.org/abs/2411.19826">arXiv:2411.19826</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-22" data-level="Recherche">
+<h3>GEO-22 · Le problème de Plateau et ses affaires inachevées <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le problème de Plateau demande : toute courbe de bord fermée de l'espace
+sous-tend-elle une surface d'aire minimale ?</p>
+<ol class="parts" type="a">
+<li>Problème de compréhension : expliquez pourquoi la solution de Douglas–Radó des années 1930
+(surfaces <i>de type disque</i> d'aire minimale) ne peut rendre compte des films de savon réels,
+comme le film sur un cadre de fil tétraédrique, qui présente des courbes singulières où trois
+nappes se rencontrent à \( 120^\circ \) et des points où quatre de ces courbes se rencontrent à
+\( \approx 109{,}47^\circ \) — les lois de Plateau, observées expérimentalement dans les années
+1870 et démontrées par Jean Taylor en 1976.</li>
+<li>Formulez précisément, et comparez, deux formulations modernes non équivalentes de « surface
+sous-tendue par une courbe » (par exemple les courants de Federer–Fleming face à une formulation
+ensembliste, de type film de savon), et expliquez ce que « solution » veut dire dans chacune.</li>
+</ol>
+</div>
+<p class="context">État des lieux, honnêtement : le problème de type disque a été résolu
+indépendamment par Jesse Douglas et Tibor Radó vers 1930–31, et Douglas en reçut la première
+médaille Fields (1936). Mais choisir les bonnes définitions s'est révélé le problème le plus
+profond, donnant naissance à la théorie géométrique de la mesure. Beaucoup reste véritablement
+ouvert : la structure des singularités des surfaces minimisant l'aire en dimension et codimension
+élevées (le monumental théorème de régularité partielle d'Almgren borne l'ensemble singulier, mais
+sa structure fine est une frontière active), et les questions d'existence de type Plateau pour les
+modèles de films de savon continuent d'alimenter la recherche aujourd'hui.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Plateau">Problème de Plateau — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conditions_de_Plateau">Conditions de Plateau (lois de Plateau) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_g%C3%A9om%C3%A9trique_de_la_mesure">Théorie géométrique de la mesure — Wikipédia</a></li>
+<li>Lecture : M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i>, ch. 3</li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="GEO-29" data-level="Recherche" data-kind="court">
+<h3>GEO-29 · Que sait-on de l'empilement de sphères ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dressez un tableau précis de l'empilement de sphères le plus dense connu en dimensions \( 1 \) à \( 24 \), en indiquant pour chaque dimension si l'optimalité est <i>démontrée</i> ou seulement <i>conjecturée</i>. Seules les dimensions \( 1, 2, 3, 8 \) et \( 24 \) sont réglées.</p>
+<p class="context">Composer ce tableau vous oblige à mesurer combien nos connaissances sont minces : trois des cinq cas résolus ont exigé soit une démonstration par ordinateur, soit les formes modulaires, et la dimension \( 4 \) — que vous pouvez presque vous représenter — est ouverte. C'est aussi un utile antidote à l'idée que les problèmes en petite dimension seraient forcément faciles.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Empilement_compact">Empilement compact (empilement de sphères) — Wikipédia</a></li>
+<li>Voir aussi : <a href="open-problems.html">Problèmes ouverts</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-30" data-level="Recherche" data-kind="court">
+<h3>GEO-30 · L'aiguille de Kakeya, et ce qu'elle coûte <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Expliquez la construction de Besicovitch (1919) montrant qu'une aiguille de longueur unité peut être tournée de \( 180^\circ \) à l'intérieur d'un ensemble d'aire arbitrairement petite, puis énoncez précisément ce qu'affirme au contraire la conjecture de Kakeya — qu'un tel ensemble doit néanmoins avoir une dimension de Hausdorff maximale. Notez l'état des lieux : démontrée en dimension trois par Wang et Zahl en 2025, ouverte en dimension quatre et au-delà.</p>
+<p class="context">La tension est ici tout l'enjeu : la mesure peut s'évanouir alors que la dimension ne le peut pas, et apprendre à tenir séparées ces deux notions de taille est un vrai pas conceptuel. Ce problème est aussi directement lié à la conjecture de restriction en analyse harmonique, ce qui explique pourquoi les analystes s'intéressent à une question qui sonne comme de la géométrie récréative.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ensemble_de_Besicovitch">Ensemble de Besicovitch (ensemble de Kakeya) — Wikipédia</a></li>
+<li>Voir aussi : <a href="open-problems.html">Problèmes ouverts</a>, <a href="pure-real-analysis.html">Analyse réelle</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-39" data-level="Recherche" data-kind="court">
+<h3>GEO-39 · Combien de boules peuvent en toucher une seule ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> (Ouvert dans presque toutes les dimensions.) Le nombre de
+contacts \( \tau_n \) est le plus grand nombre de boules unités sans recouvrement de
+\( \mathbb{R}^n \) pouvant toutes toucher une boule unité fixée. Déterminez \( \tau_n \) — les
+valeurs exactes ne sont connues que pour \( n = 1, 2, 3, 4, 8, 24 \), et le plus petit cas ouvert
+est \( n = 5 \), où tout ce que l'on sait est \( 40 \le \tau_5 \le 44 \).</p>
+<p class="context">Newton et David Gregory se disputèrent en 1694 pour savoir si douze ou treize
+boules pouvaient en toucher une treizième dans l'espace ordinaire ; Newton disait douze et avait
+raison, mais les jeux dans la disposition à douze boules sont assez larges pour qu'aucune
+démonstration ne paraisse avant Schütte et van der Waerden en 1953. Musin régla \( n = 4 \) en 2003
+en poussant plus loin la méthode de programmation linéaire de Delsarte, et \( \tau_8 = 240 \) et
+\( \tau_{24} = 196560 \) tombèrent indépendamment sous Odlyzko–Sloane et Levenshtein en 1979, avec
+ces mêmes réseaux \( E_8 \) et de Leech qui résoudront plus tard le problème d'empilement de
+GEO-19. Notez que ce n'est pas ce problème-là : le contact est une question locale sur les voisins
+d'une boule, la densité une question globale, et aucune des deux réponses n'entraîne l'autre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_contacts">Nombre de contacts — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/E8_lattice">Réseau E8 — Wikipédia (en anglais)</a>, <a href="https://fr.wikipedia.org/wiki/R%C3%A9seau_de_Leech">Réseau de Leech — Wikipédia</a></li>
+<li>Lecture : J. H. Conway et N. J. A. Sloane, <i>Sphere Packings, Lattices and Groups</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-40" data-level="Recherche">
+<h3>GEO-40 · Un carré sur toute courbe fermée ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> (Ouvert.) Une <i>courbe de Jordan</i> est l'image d'une application continue
+injective \( S^1 \to \mathbb{R}^2 \). Toeplitz demanda en 1911 si toute courbe de Jordan contient
+les quatre sommets d'un carré.</p>
+<ol class="parts" type="a">
+<li>Démontrez la version rectangle, qui n'exige aucune régularité. L'espace des paires non
+ordonnées de points de \( S^1 \) est un ruban de Möbius dont le bord est la diagonale ; envoyez une
+paire non ordonnée \( \{p, q\} \) de points de la courbe sur
+\( (\,m(p,q), \ |p - q|\,) \in \mathbb{R}^2 \times [0,\infty) \), où \( m \) est le milieu, et
+montrez qu'un défaut d'injectivité est exactement un rectangle inscrit dans la courbe — puis
+montrez que l'injectivité est impossible, car le ruban de Möbius ne se plonge pas dans un
+demi-espace avec son bord dans le plan frontière.</li>
+<li>Démontrez la version carré pour les courbes convexes, et lisez la démonstration d'Emch (1916)
+pour les courbes analytiques par morceaux.</li>
+<li>Étudiez le théorème de Greene et Lobb (2020) : toute courbe de Jordan lisse inscrit un
+rectangle de <i>tout</i> rapport d'aspect. Expliquez comment le problème est reformulé en une
+question sur deux tores lagrangiens de \( \mathbb{C}^2 \), et ce que la géométrie symplectique
+apporte que la topologie plane ne pouvait pas apporter.</li>
+<li>Le problème lui-même : démontrez que toute courbe de Jordan inscrit un carré, ou exhibez-en une
+qui n'en inscrit pas. Dites précisément quelle étape des démonstrations connues casse pour une
+courbe seulement continue.</li>
+</ol>
+</div>
+<p class="context">État des lieux, honnêtement : ouvert. Otto Toeplitz posa la question en 1911, et
+un siècle de travaux l'a réglée pour toute classe raisonnable de courbes — courbes convexes,
+courbes analytiques par morceaux (Emch, 1916), courbes localement monotones (Stromquist, 1989),
+courbes présentant diverses symétries — tandis que le cas continu général résiste, parce qu'une
+courbe de Jordan peut être assez sauvage pour qu'aucun argument de passage à la limite ne survive.
+Le progrès récent le plus frappant est le théorème du piquet rectangulaire de Joshua Greene et
+Andrew Lobb (<i>Annals of Mathematics</i> 194, 2021), qui importe la géométrie symplectique dans un
+problème qui semble relever d'un premier cours, et qu'ils ont étendu peu après aux quadrilatères
+inscriptibles inscrits. En 2026, on ne connaît ni contre-exemple ni démonstration générale.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_carr%C3%A9_inscrit">Problème du carré inscrit — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Jordan">Théorème de Jordan — Wikipédia</a></li>
+<li>Article : J. E. Greene et A. Lobb, « The rectangular peg problem » (2021), <i>Annals of Mathematics</i> 194, <a href="https://arxiv.org/abs/2005.09193">arXiv:2005.09193</a></li>
+<li>Voir aussi : <a href="open-problems.html">Problèmes ouverts</a>, <a href="pure-topology.html">Topologie</a></li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/">MIT OCW 18.950 Differential Geometry</a> ;
+<a href="https://ocw.mit.edu/">MIT OCW 18.725 Algebraic Geometry</a> ;
+<a href="https://ocw.mit.edu/">MIT OCW 18.02 Multivariable Calculus</a> (la boîte à outils préalable).</li>
+<li>Livres : H. S. M. Coxeter, <i>Introduction to Geometry</i> (niveau d'entrée, d'une richesse inépuisable) ;
+R. Hartshorne, <i>Geometry: Euclid and Beyond</i> (axiomes, postulat des parallèles, géométrie hyperbolique) ;
+M. do Carmo, <i>Differential Geometry of Curves and Surfaces</i> (courbure, géodésiques, Gauss–Bonnet) ;
+M. Reid, <i>Undergraduate Algebraic Geometry</i> (des coniques aux surfaces cubiques).</li>
+<li>Articles et essais : Viazovska, « The sphere packing problem in dimension 8 »
+(<a href="https://arxiv.org/abs/1603.04246">arXiv:1603.04246</a>) — un jalon lisible ;
+Smith–Myers–Kaplan–Goodman-Strauss, « An aperiodic monotile »
+(<a href="https://arxiv.org/abs/2303.10798">arXiv:2303.10798</a>).</li>
+</ul>
+<p>Voir aussi : <a href="pure-combinatorics.html">Combinatoire et théorie des graphes</a>, <a href="open-problems.html">Problèmes ouverts</a>, <a href="proofs.html">L'art de la démonstration</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

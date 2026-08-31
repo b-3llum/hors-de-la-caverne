@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+._*
+
+# LaTeX build intermediates (the .tex sources and final .pdf files ARE tracked)
+tex/*.aux
+tex/*.log
+tex/*.out
+tex/*.toc
+tex/*.synctex.gz
+tex/*.fls
+tex/*.fdb_latexmk
+
+# editor scratch
+*.swp
+*~

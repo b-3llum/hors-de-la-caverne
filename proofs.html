@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'art de la démonstration — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>L'art de la démonstration</h1>
+<p class="lede">Une démonstration est une chaîne finie de raisonnements qui part de prémisses
+admises par tous et emporte l'adhésion à chaque maillon — un argument si explicite qu'un
+inconnu sceptique, ne concédant rien d'autre que la logique, doit aboutir exactement là où
+vous avez abouti. Les Grecs en ont fait la monnaie des mathématiques : la tradition attribue
+à Thalès les premières démonstrations vers 600 av. J.-C., et les <i>Éléments</i> d'Euclide ont
+ordonné toute la géométrie en une échelle allant des axiomes aux théorèmes, une forme si
+durable qu'elle a instruit le monde pendant vingt-trois siècles. La démonstration est ce qui
+rend les mathématiques différentes par nature de toute science expérimentale : non pas une
+conviction au-delà du doute raisonnable, mais la certitude. Et écrire des démonstrations est
+un métier. Les armes classiques — récurrence, absurde, contraposée, principe des tiroirs,
+invariants, arguments extrémaux, double dénombrement — s'apprennent comme des gammes ; le
+goût et le style viennent après, à force de réécrire.</p>
+<p class="lede">Cette page est le cœur du site, et elle applique la règle du site avec une
+obstination particulière : pas de réponses. Le nom inscrit au fronton est celui de la caverne
+de Platon, et la leçon de Socrate tient toujours — une démonstration seulement lue n'est
+qu'une ombre de plus sur la paroi, tandis qu'une démonstration trouvée est le soleil lui-même,
+et personne ne peut être porté hors de la caverne. Chaque problème ci-dessous vous donne donc
+un énoncé précis, l'histoire de sa provenance, et des références qui pointent vers la lumière.
+Les premières sections entraînent aux techniques classiques ; le milieu abrite le canon — avec
+le problème de Bâle, le calcul de somme le plus célèbre de l'analyse, en pièce maîtresse, et la
+grande lignée des démonstrations sur les nombres premiers, d'Euclide à Fürstenberg ; les
+problèmes de métier entraînent l'écriture elle-même ; et la section Recherche montre que la
+démonstration reste un sujet vivant, avec ses propres questions ouvertes.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/proofs.tex" download>source LaTeX</a> · <a href="tex/proofs.pdf" download>PDF compilé</a></p>
+<!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="PRF-01" data-level="Lycée">
+<h3>PRF-01 · Démonstration directe ou contraposée ? <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une implication « si P alors Q » peut se démontrer directement
+(on suppose P, on en déduit Q) ou par contraposée (on suppose Q fausse, on en déduit que
+P est fausse). Pour chacun des énoncés ci-dessous, décidez laquelle des deux formes donne
+la démonstration la plus nette, et rédigez-la.</p>
+<ol class="parts" type="a">
+<li>Si n est un entier impair, alors \( n^2 \) est impair.</li>
+<li>Si \( n^2 \) est pair pour un entier n, alors n est pair.</li>
+<li>Si x et y sont des réels strictement positifs avec \( xy \gt 25 \), alors \( x \gt 5 \) ou
+\( y \gt 5 \).</li>
+<li>Si la somme de deux entiers vaut au moins 100, alors l'un au moins des deux vaut au
+moins 50.</li>
+<li>Formulez ensuite, en une ou deux phrases, une règle empirique pour reconnaître quand
+la contraposée sera la voie la plus facile.</li>
+</ol>
+</div>
+<p class="context">Qu'une implication et sa contraposée soient vraies ou fausses ensemble
+était déjà clair pour Aristote, et ce fut un lieu commun de la logique médiévale
+(<i>modus tollens</i>). Choisir la bonne forme est la première décision véritable que prend
+celui qui rédige une démonstration : un énoncé dont la conclusion contient un « ou », ou
+dont l'hypothèse est difficile à saisir, devient souvent docile dès qu'on le retourne.
+Toute introduction à la démonstration commence ici.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Proposition_contrapos%C3%A9e">Proposition contraposée — Wikipédia</a></li>
+<li>Lecture : D. J. Velleman, <i>How to Prove It</i>, ch. 3</li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 4–5 (<a href="https://richardhammack.github.io/BookOfProof/">gratuit en ligne</a>)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-02" data-level="Lycée">
+<h3>PRF-02 · La racine carrée de 2 est irrationnelle <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que \( \sqrt{2} \) est irrationnel : il
+n'existe pas d'entiers strictement positifs p et q tels que \( \sqrt{2} = p/q \). (Forme
+suggérée : le raisonnement par l'absurde — supposez qu'une telle fraction existe et partez
+en chasse d'une impossibilité.)</p>
+<p class="context">Le plus vieux coup de tonnerre des mathématiques. Les pythagoriciens, pour
+qui « tout est nombre » voulait dire les entiers et leurs rapports, ont découvert que la
+diagonale d'un carré est incommensurable avec son côté — la légende veut que la découverte
+ait été imputée à Hippase de Métaponte, noyé en mer pour l'avoir révélée. Aristote cite
+l'argument pair-impair comme exemple type du raisonnement par l'impossible, et une version
+en clôt le livre X des <i>Éléments</i> d'Euclide. C'est le modèle du raisonnement par
+l'absurde, et le problème suivant demande de quoi ce modèle est réellement fait.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Racine_carr%C3%A9e_de_deux">Racine carrée de deux — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy &amp; E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 4</li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-03" data-level="Lycée">
+<h3>PRF-03 · Deux autres irrationnels, et la forme du canevas <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> PRF-02 a démontré que \( \sqrt{2} \) est irrationnel ; l'argument
+est un canevas réutilisable, et ce problème vous fait l'en extraire.</p>
+<ol class="parts" type="a">
+<li>Démontrez que \( \sqrt{3} \) est irrationnel.</li>
+<li>Démontrez que \( \log_2 3 \) est irrationnel.</li>
+<li>Prenez maintenant du recul : énoncez précisément le canevas commun aux trois
+démonstrations (PRF-02 comprise) — ce que l'on suppose, quel genre d'impossibilité on
+produit, et quel fait arithmétique sur les entiers fait tourner le moteur.</li>
+<li>Faites tourner le canevas sur \( \sqrt{4} \) et désignez la ligne exacte où il casse.
+S'il ne cassait pas, quelque chose irait très mal — pourquoi ?</li>
+</ol>
+</div>
+<p class="context">Une démonstration qu'on ne sait exécuter qu'une fois est un tour de main ;
+une démonstration qu'on sait exécuter sur toute une famille est une méthode. Extraire le
+canevas réutilisable d'un argument déjà rédigé — et le mettre à l'épreuve sur un cas où la
+conclusion est fausse — voilà comment les mathématiciens apprennent réellement les
+techniques. La question (b) est une favorite parce que le canevas se transplante sur un
+énoncé de logarithmes où nulle racine carrée n'est en vue : l'impossibilité y devient un
+conflit de parités entre puissances de 2 et puissances de 3.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Raisonnement_par_l%27absurde">Raisonnement par l'absurde — Wikipédia</a></li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 6</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/">MIT OCW 6.042J Mathematics for Computer Science (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-04" data-level="Lycée">
+<h3>PRF-04 · Récurrence : les n premiers nombres impairs <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour tout entier strictement positif n,
+\[ 1 + 3 + 5 + \cdots + (2n-1) = n^2 . \]</p>
+<ol class="parts" type="a">
+<li>Démontrez l'identité par récurrence, en énonçant intégralement l'initialisation et
+l'hérédité.</li>
+<li>Trouvez ensuite une seconde démonstration qui n'utilise aucune récurrence — une façon
+de <i>voir</i> l'identité — et comparez ce que chacune des deux exige du lecteur.</li>
+</ol>
+</div>
+<p class="context">L'identité elle-même est très ancienne : les pythagoriciens disposaient des
+cailloux en équerres (gnomons) autour d'un carré et le regardaient croître. La récurrence
+comme principe de démonstration explicitement énoncé remonte d'ordinaire à Francesco
+Maurolico (1575) — qui a démontré cette identité même — et à Pascal ; le nom « induction
+mathématique » a été fixé par Augustus De Morgan en 1838. La récurrence est la manière
+standard de gravir une échelle infinie barreau par barreau, et voici son premier exercice
+traditionnel.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Raisonnement_par_r%C3%A9currence">Raisonnement par récurrence — Wikipédia</a></li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 10</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/">MIT OCW 6.042J Mathematics for Computer Science (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-05" data-level="Lycée">
+<h3>PRF-05 · Trouvez la faille : tous les chevaux sont de la même couleur <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Voici une « démonstration » par récurrence du fait que tous les
+chevaux sont de la même couleur. <i>Initialisation : tout ensemble de 1 cheval ne contient
+que des chevaux d'une seule couleur. Hérédité : supposons que tout ensemble de n chevaux
+soit monochrome. Étant donné n+1 chevaux, mettez-en un de côté ; les n restants partagent
+une couleur. Remettez-le et mettez de côté un cheval différent ; de nouveau les n restants
+partagent une couleur. Les deux groupes se recouvrent, donc les n+1 chevaux partagent une
+seule et même couleur. Donc, par récurrence, tous les chevaux sont de la même couleur.</i>
+La conclusion est absurde, donc la démonstration est fausse. Votre tâche n'est pas de le
+constater, mais de localiser la défaillance.</p>
+<ol class="parts" type="a">
+<li>Identifiez la valeur exacte de n à laquelle l'argument d'hérédité casse pour la
+première fois, et dites précisément quelle phrase y échoue, et pourquoi.</li>
+<li>Expliquez pourquoi « mais les chevaux ont des couleurs variées » n'est pas une réponse
+recevable.</li>
+</ol>
+</div>
+<p class="context">Cette parabole a été popularisée par George Pólya dans les années 1950 (sa
+version d'origine démontrait que toutes les jeunes filles ont les yeux de la même couleur).
+C'est le vaccin classique contre une maladie précise : une hérédité valable pour les grands
+n mais qui suppose en silence quelque chose de faux pour un unique petit n. Déboguer une
+démonstration est un savoir-faire distinct de celui de l'écrire, et il s'apprend le mieux sur
+des arguments conçus pour échouer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/All_horses_are_the_same_color">Tous les chevaux sont de la même couleur — Wikipédia (en anglais)</a></li>
+<li>Lecture : G. Pólya, <i>Induction and Analogy in Mathematics</i> (1954)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-06" data-level="Lycée">
+<h3>PRF-06 · Trouvez la faille : une démonstration que 1 = 2 <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez la « démonstration » classique suivante. <i>Soient
+\( a = b \) non nuls. Alors \( a^2 = ab \), donc \( a^2 - b^2 = ab - b^2 \), donc
+\( (a-b)(a+b) = b(a-b) \), donc \( a + b = b \), donc \( 2b = b \), et par conséquent
+\( 2 = 1 \).</i></p>
+<ol class="parts" type="a">
+<li>Identifiez l'étape exacte qui est illicite et énoncez la règle générale qu'elle
+viole.</li>
+<li>Énoncez la leçon sous forme d'un principe précis sur la manipulation des équations :
+quelles opérations préservent la vérité sans condition, et lesquelles portent des
+conditions annexes ?</li>
+<li>Construisez votre propre démonstration fallacieuse — d'un énoncé faux de votre choix —
+qui dissimule le même coup illicite au moins deux étapes plus profond que celle-ci.</li>
+</ol>
+</div>
+<p class="context">Les sophismes algébriques de ce genre circulent comme folklore scolaire
+depuis le dix-neuvième siècle ; E. A. Maxwell en a rassemblé les classiques dans
+<i>Fallacies in Mathematics</i> (1959). Ce sont plus que des plaisanteries : chaque ligne
+d'une vraie démonstration est une affirmation assortie d'une justification, et le plus
+rapide moyen d'intérioriser cette discipline est de regarder une chaîne d'équations à l'air
+assuré y faire entrer un mensonge en fraude.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pseudo-d%C3%A9monstration_d%27%C3%A9galit%C3%A9_entre_nombres">Pseudo-démonstration d'égalité entre nombres — Wikipédia</a></li>
+<li>Lecture : E. A. Maxwell, <i>Fallacies in Mathematics</i> (Cambridge, 1959)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-07" data-level="Lycée">
+<h3>PRF-07 · Principe des tiroirs : cinq points entiers <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un point entier du plan est un point dont les coordonnées sont
+entières.</p>
+<ol class="parts" type="a">
+<li>Démontrez que parmi 5 points entiers quelconques, il en existe deux dont le milieu est
+lui-même un point entier.</li>
+<li>Montrez que 5 ne peut pas être remplacé par 4.</li>
+<li>Déterminez ensuite, avec démonstration, le plus petit nombre de points entiers de
+l'espace de dimension trois qui force l'existence d'une telle paire.</li>
+</ol>
+</div>
+<p class="context">Le principe des tiroirs — si l'on range plus de k objets dans k tiroirs,
+l'un des tiroirs en contient deux — a l'air trop évident pour être une arme. Dirichlet a
+montré le contraire, en se servant de son <i>Schubfachprinzip</i> (« principe des tiroirs »,
+1834) pour démontrer des faits profonds sur l'approximation des irrationnels par des
+fractions. Tout l'art réside dans le choix des tiroirs ; ce classique du point milieu,
+standard des olympiades depuis des décennies, en est l'illustration la plus limpide
+possible.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_des_tiroirs">Principe des tiroirs — Wikipédia</a></li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 4 (le principe des tiroirs)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-08" data-level="Lycée">
+<h3>PRF-08 · Double dénombrement : le lemme des poignées de main <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que, dans toute assemblée, le nombre de
+personnes ayant serré un nombre impair de mains est pair. (De façon équivalente : dans tout
+graphe fini, la somme des degrés des sommets vaut deux fois le nombre d'arêtes, de sorte que
+le nombre de sommets de degré impair est pair.) Arme suggérée : comptez une même quantité —
+les participations à une poignée de main — de deux manières différentes.</p>
+<p class="context">C'est le premier théorème de la théorie des graphes, et il figure dans le
+premier article de la théorie des graphes : la résolution par Euler, en 1736, du problème des
+ponts de Königsberg. La technique, le double dénombrement, est l'un des gestes les plus
+élégants de la combinatoire — une égalité démontrée non par manipulation, mais en décrivant
+un même ensemble depuis deux points de vue. Si simple soit-il, le lemme des poignées de main
+tue quantité de constructions à l'air plausible (essayez de dessiner un graphe ayant
+exactement trois sommets de degré 3 et aucun autre).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_des_poign%C3%A9es_de_main">Lemme des poignées de main — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Preuve_par_double_d%C3%A9nombrement">Preuve par double dénombrement — Wikipédia</a></li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/">MIT OCW 6.042J Mathematics for Computer Science (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-09" data-level="Lycée">
+<h3>PRF-09 · Invariants : l'échiquier mutilé <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Retirez deux cases d'angle diagonalement opposées d'un échiquier
+ordinaire 8 × 8, ce qui laisse 62 cases. Un domino recouvre exactement deux cases partageant
+un côté.</p>
+<ol class="parts" type="a">
+<li>Démontrez que l'échiquier restant ne peut pas être pavé par 31 dominos.</li>
+<li>Tranchez ensuite la question réciproque : si l'on retire à la place une case noire et
+une case blanche — n'importe laquelle de ces paires — les 62 cases restantes peuvent-elles
+toujours être pavées ? Déterminez la réponse, avec démonstration.</li>
+</ol>
+</div>
+<p class="context">Posé par le philosophe Max Black dans <i>Critical Thinking</i> (1946) et
+chéri depuis lors ; Gomory a répondu à la seconde question par un argument resté célèbre. La
+méthode — trouver une quantité ou une configuration que tout coup licite préserve, puis
+montrer que le départ et l'arrivée n'en donnent pas la même valeur — c'est le principe
+d'invariance, une bête de somme qui va des mathématiques récréatives jusqu'aux lois de
+conservation. John McCarthy a proposé l'échiquier mutilé à la jeune communauté de
+l'intelligence artificielle en 1964 comme cas d'école, précisément parce que la recherche
+exhaustive y est immense alors qu'une seule idée clôt l'affaire à l'instant.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_l%27%C3%A9chiquier_mutil%C3%A9">Problème de l'échiquier mutilé — Wikipédia</a></li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 1–2</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-10" data-level="Lycée">
+<h3>PRF-10 · Ce que la démonstration par l'exemple ne peut pas faire <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Trois exercices sur ce que la vérification d'exemples peut et ne peut
+pas établir.</p>
+<ol class="parts" type="a">
+<li>Énoncez précisément ce qui cloche dans la « démonstration par l'exemple » : pourquoi
+aucune liste finie de cas vérifiés ne peut-elle établir un énoncé de la forme « pour tout
+n » ? Dites aussi ce que la vérification d'exemples <i>peut</i> légitimement démontrer.</li>
+<li>Le polynôme \( n^2 + n + 41 \) produit des nombres premiers pour
+\( n = 0, 1, 2, \dots, 39 \) — quarante d'affilée. Trouvez, avec démonstration, le plus
+petit n pour lequel il échoue, et expliquez pourquoi il était condamné à échouer, sans rien
+calculer.</li>
+<li>Fermat croyait que tout nombre \( F_k = 2^{2^k} + 1 \) est premier, et les cinq
+premiers le sont. Montrez que \( 641 \mid F_5 \) en utilisant les identités
+\( 641 = 5^4 + 2^4 = 5 \cdot 2^7 + 1 \) plutôt qu'une division posée.</li>
+</ol>
+</div>
+<p class="context">Les exemples sont ce qui fait naître les conjectures, et les exemples sont
+ce qui a tué celle-ci : en 1732 le jeune Euler a factorisé \( F_5 = 4294967297 \), démolissant
+la conjecture à laquelle Fermat s'était engagé avec le plus d'assurance. (Le polynôme de la
+question (b) est lui aussi d'Euler, et date de 1772.) <i>Mathematics and Plausible
+Reasoning</i> de Pólya est la méditation classique sur le juste rapport entre indices et
+démonstration : les exemples suggèrent ; seul l'argument établit.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Fermat">Nombre de Fermat — Wikipédia</a></li>
+<li>Lecture : G. Pólya, <i>Mathematics and Plausible Reasoning</i> (1954)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-11" data-level="Lycée">
+<h3>PRF-11 · Quand une figure est-elle une démonstration ? <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La figure classique de réarrangement pour le théorème de Pythagore
+place quatre copies d'un triangle rectangle de côtés de l'angle droit a et b et d'hypoténuse
+c à l'intérieur d'un carré de côté \( a + b \), de deux manières différentes. L'une laisse à
+découvert un unique carré incliné d'aire \( c^2 \) ; l'autre laisse deux carrés d'aires
+\( a^2 \) et \( b^2 \).</p>
+<ol class="parts" type="a">
+<li>Dessinez les deux dispositions et rédigez, en phrases complètes, l'argument que les
+figures encodent — y compris chaque fait que la figure vous demande d'admettre sur parole
+(que les pièces ne se chevauchent pas, que les régions découvertes sont bien des carrés,
+que l'aire survit au réarrangement).</li>
+<li>Proposez des critères : quand un dessin doit-il compter comme une démonstration, et
+quand n'est-il qu'un indice ?</li>
+<li>Le célèbre paradoxe de découpage dans lequel un carré 8 × 8 est coupé en quatre pièces
+puis réassemblé en un rectangle 5 × 13 « démontre » que 64 = 65. Expliquez exactement où
+cette figure ment, et ce que vos critères de la question (b) en disent.</li>
+</ol>
+</div>
+<p class="context">Les démonstrations du théorème de Pythagore par réarrangement sont très
+anciennes — l'une accompagne le <i>Zhoubi Suanjing</i> en Chine, et l'on rapporte que
+Bhāskara II, dans l'Inde du douzième siècle, dessina la figure et écrivit un seul mot :
+« Vois ! ». Les mathématiciens débattent depuis lors de la confiance que l'on peut accorder à
+une figure ; la réponse honnête est qu'un bon dessin est un argument comprimé dont la
+décompression incombe au lecteur. <i>Proofs Without Words</i> de Nelsen en rassemble une
+centaine de beaux spécimens sur lesquels s'exercer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Preuve_sans_mots">Preuve sans mots — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Pythagore">Théorème de Pythagore — Wikipédia</a></li>
+<li>Lecture : R. B. Nelsen, <i>Proofs Without Words: Exercises in Visual Thinking</i> (MAA, 1993)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-37" data-level="Lycée">
+<h3>PRF-37 · La symétrie comme stratégie : des pièces sur une table ronde <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Deux joueurs posent tour à tour des pièces circulaires identiques sur
+une table ronde. Chaque pièce doit reposer entièrement sur la table sans recouvrir aucune
+pièce déjà posée (le contact est autorisé), et le joueur qui n'a plus de coup licite
+perd.</p>
+<ol class="parts" type="a">
+<li>Démontrez que le premier joueur peut toujours gagner, quelles que soient les tailles
+de la table et des pièces : décrivez une stratégie et démontrez qu'elle ne manque jamais
+de coups avant l'adversaire.</li>
+<li>Désignez les faits géométriques exacts qu'utilise votre démonstration — où,
+précisément, l'argument a-t-il besoin de la symétrie de la table, et pourquoi le premier
+coup doit-il être le centre ?</li>
+<li>Pour une table carrée, une table rectangulaire non carrée et une table en L, décidez
+si votre démonstration survit ; partout où elle échoue, identifiez l'étape exacte qui
+meurt.</li>
+</ol>
+</div>
+<p class="context">Un classique des mathématiques récréatives qui distille un principe
+sérieux : une symétrie du plateau peut être enrôlée comme stratégie, car l'image miroir de
+tout coup licite de l'adversaire est licite à coup sûr — pourvu que l'on se soit d'abord
+emparé de l'unique point que la symétrie laisse fixe. Les stratégies d'appariement et de
+miroir de ce genre décident quantité de jeux à deux joueurs sans le moindre calcul, et cette
+même habitude de pensée — argumenter une fois, laisser la symétrie répéter l'argument à
+votre place — raccourcit les démonstrations partout en mathématiques, depuis chaque « sans
+perte de généralité » en géométrie jusqu'au dénombrement par involution de PRF-47.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Strategy-stealing_argument">Argument de vol de stratégie — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Symmetry_in_mathematics">La symétrie en mathématiques — Wikipédia (en anglais)</a></li>
+<li>Lecture : E. R. Berlekamp, J. H. Conway &amp; R. K. Guy, <i>Winning Ways for Your Mathematical Plays</i> (1982)</li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 13 (les jeux)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-38" data-level="Lycée" data-kind="court">
+<h3>PRF-38 · Démontrez ou réfutez : irrationnel + irrationnel <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez ou réfutez : la somme de deux nombres
+irrationnels est irrationnelle. Faites ensuite de même pour le produit de deux nombres
+irrationnels.</p>
+<p class="context">« Démontrez ou réfutez » est un genre à part entière : la moitié de la
+tâche consiste à décider de quel côté on se range, et une réfutation est une démonstration
+elle aussi — un contre-exemple bien choisi, présenté avec le soin dû à un théorème (PRF-43
+en est l'atelier complet). Remarquez à quel point les deux charges sont inégales : une
+affirmation universelle meurt d'un seul exemple.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_irrationnel">Nombre irrationnel — Wikipédia</a></li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 9 (la réfutation)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-39" data-level="Lycée" data-kind="court">
+<h3>PRF-39 · Trois démonstrations que 6 divise n³ − n <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que \( n^3 - n \) est divisible par 6 pour
+tout entier n — trois fois, par trois arguments véritablement différents (candidats : la
+récurrence ; la factorisation en entiers consécutifs ; l'arithmétique modulo 2 et modulo
+3).</p>
+<p class="context">Une miniature de la discipline récurrente de cette page (PRF-15, PRF-18,
+PRF-24) : une vérité, plusieurs démonstrations, et une comparaison de ce que chacune voit.
+L'argument par entiers consécutifs se généralise aux coefficients binomiaux ; l'argument
+modulaire est le germe du petit théorème de Fermat, qui fait pour \( n^p - n \) ce que ce
+problème fait pour \( n^3 - n \) (PRF-18).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arithm%C3%A9tique_modulaire">Arithmétique modulaire — Wikipédia</a></li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 10</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-40" data-level="Lycée" data-kind="court">
+<h3>PRF-40 · Six personnes à une soirée, en dix phrases <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que parmi six personnes quelconques, il en
+existe trois qui se connaissent deux à deux, ou trois qui sont deux à deux étrangères l'une
+à l'autre — en dix phrases au plus. Montrez ensuite que six est optimal : disposez cinq
+personnes de sorte qu'aucun des deux trios n'existe.</p>
+<p class="context">Le théorème des amis et des étrangers — R(3,3) = 6 dans la notation de
+Ramsey — figurait au concours Putnam de 1953 et ouvre toute visite guidée de la théorie de
+Ramsey, l'étude de l'ordre qu'aucune quantité de désordre ne peut éviter. Le budget de
+phrases est ici le véritable exercice : un argument correct s'étale facilement, et le
+comprimer sans rien perdre, c'est l'écriture de démonstration sous sa forme la plus pure. La
+frontière est étonnamment proche : la valeur de R(5,5) est toujours inconnue.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_amis_et_des_%C3%A9trangers">Théorème des amis et des étrangers — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ramsey">Théorème de Ramsey — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-46" data-level="Lycée">
+<h3>PRF-46 · La réciproque n'est pas gratuite <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une affirmation de la forme « P si et seulement si Q » énonce deux
+implications distinctes — \( P \Rightarrow Q \) et sa réciproque \( Q \Rightarrow P \) — et
+aucune des deux ne découle de l'autre.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'un entier n est divisible par 3 si et seulement si la somme de ses
+chiffres décimaux est divisible par 3. Rédigez les deux sens comme deux arguments
+clairement étiquetés, et marquez à quel sens appartient chaque étape de votre travail.</li>
+<li>Pour chacun des énoncés ci-dessous, écrivez sa réciproque et décidez, par une
+démonstration ou par un contre-exemple, si cette réciproque est vraie : (i) si un
+quadrilatère est un carré, alors ses diagonales sont perpendiculaires ; (ii) si n est un
+nombre premier supérieur à 2, alors n est impair ; (iii) si un entier est divisible par 24,
+alors il est divisible à la fois par 4 et par 6.</li>
+<li>Certaines équivalences se démontrent d'un seul trait, par une chaîne d'étapes toutes
+réversibles. Déterminez toutes les solutions réelles de
+\[ \sqrt{x+7} \;=\; x+1, \]
+puis repérez l'étape exacte de la méthode habituelle « on élève les deux membres au
+carré » qui n'est <i>pas</i> réversible, et expliquez pourquoi cette seule étape oblige la
+méthode à s'achever par une vérification.</li>
+</ol>
+</div>
+<p class="context">Euclide traite déjà un théorème et sa réciproque comme deux travaux
+distincts : la proposition I.5 des <i>Éléments</i> démontre qu'un triangle isocèle a des
+angles à la base égaux, et I.6 — proposition entièrement séparée, munie de sa propre
+démonstration — en établit la réciproque. La plupart des erreurs d'étudiants du genre « je
+l'ai démontré à l'envers » sont des erreurs de réciproque, et le phénomène des racines
+parasites de la question (c) est la même faute en habits algébriques : élever au carré est
+une voie à sens unique, de sorte que la chaîne d'équations démontre seulement que <i>si</i>
+une solution existe, elle figure parmi les candidates trouvées. L'abréviation « iff » est de
+Paul Halmos, et la convention selon laquelle le mot « si » dans une <i>définition</i>
+signifie tacitement « si et seulement si » est de celles que tout lecteur doit assimiler
+tôt.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Condition_n%C3%A9cessaire_et_suffisante">Condition nécessaire et suffisante — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Implication_r%C3%A9ciproque">Implication réciproque — Wikipédia</a></li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, le chapitre sur la démonstration des énoncés non conditionnels (<a href="https://richardhammack.github.io/BookOfProof/">gratuit en ligne</a>)</li>
+<li>Lecture : D. J. Velleman, <i>How to Prove It</i>, ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-54" data-level="Lycée" data-kind="court">
+<h3>PRF-54 · Deux quantificateurs, deux sens <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Décidez, avec démonstration, si les deux phrases de
+chacune des paires ci-dessous disent la même chose : (i) « pour tout entier x il existe un
+entier y tel que \( y > x \) » contre « il existe un entier y tel que \( y > x \) pour tout
+entier x » ; (ii) « tout réel strictement positif est plus petit qu'un certain entier »
+contre « un certain entier est plus grand que tout réel strictement positif ». Énoncez
+ensuite, en une phrase, la règle générale sur l'échange de « pour tout » et « il existe », et
+identifiez le seul sens de cet échange qui soit toujours valide.</p>
+<p class="context">L'ordre des quantificateurs est de loin la première source de
+démonstrations fausses qui ont l'air justes, et l'ennui est que la langue courante le
+masque : « tout le monde aime quelqu'un » et « quelqu'un est aimé de tout le monde » ne
+diffèrent que par l'accent lorsqu'on les dit, et totalement par le sens lorsqu'on les écrit.
+Le <i>Begriffsschrift</i> de Frege (1879) fut la première notation capable d'exprimer sans
+ambiguïté une quantification imbriquée, et ce n'est pas un hasard si l'analyse rigoureuse —
+où continuité, continuité uniforme et convergence ne se distinguent les unes des autres que
+par l'ordre des quantificateurs — est devenue possible au même siècle. PRF-44 met le même
+savoir-faire au travail sur la négation d'un énoncé en ε–δ.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Calcul_des_pr%C3%A9dicats">Calcul des prédicats — Wikipédia</a></li>
+<li>Lecture : D. J. Velleman, <i>How to Prove It</i>, ch. 2</li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 2 (<a href="https://richardhammack.github.io/BookOfProof/">gratuit en ligne</a>)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-55" data-level="Lycée">
+<h3>PRF-55 · Le principe des tiroirs déguisé : inventer les tiroirs <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le principe des tiroirs est trivial à énoncer et difficile à employer,
+car toute la difficulté est d'inventer les tiroirs. Dans PRF-07 les tiroirs étaient presque
+visibles ; dans chacune des questions ci-dessous, ils ne vous sont pas donnés du tout.</p>
+<ol class="parts" type="a">
+<li>Démontrez que parmi \( n+1 \) nombres quelconques choisis dans
+\( \{1, 2, \dots, 2n\} \), l'un d'eux en divise un autre.</li>
+<li>Démontrez que toute liste de n entiers (pas nécessairement distincts) contient un bloc
+non vide de termes consécutifs dont la somme est divisible par n.</li>
+<li>Démontrez le théorème d'Erdős–Szekeres : toute suite de \( n^2 + 1 \) réels distincts
+contient une sous-suite croissante de longueur \( n+1 \) ou une sous-suite décroissante de
+longueur \( n+1 \).</li>
+<li>Démontrez le théorème d'approximation de Dirichlet : pour tout réel α et tout entier
+strictement positif N, il existe des entiers p et q avec \( 1 \le q \le N \) et
+\[ \left| \alpha - \frac{p}{q} \right| < \frac{1}{qN}. \]</li>
+<li>Voici maintenant le but de l'exercice. Pour chacune des questions (a)–(d), écrivez
+explicitement quels étaient les objets à ranger, quels étaient les tiroirs, et combien il y
+en avait de chaque — puis dites, en une phrase par question, ce qui rendait ces tiroirs
+difficiles à voir.</li>
+</ol>
+</div>
+<p class="context">Dirichlet a introduit le <i>Schubfachprinzip</i> en 1834 non comme une
+curiosité mais comme un outil, et la question (d) est ce pour quoi il l'a bâti : un énoncé
+absolument non évident sur l'approximation des irrationnels, démontré en laissant tomber
+\( N+1 \) parties fractionnaires dans N tiroirs. La question (c) est le théorème d'Erdős et
+Szekeres de 1935, dont la démonstration la plus habile — d'ordinaire attribuée à Seidenberg
+(1959) — étiquette chaque terme par un couple de nombres et laisse le principe des tiroirs
+conclure en une ligne. Le schéma est le même dans tous les cas, et il mérite d'être nommé :
+les tiroirs ne sont pas les objets qu'on vous a remis, mais un invariant calculé à partir
+d'eux — une partie impaire, un reste, un couple de longueurs, une partie fractionnaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Erd%C5%91s-Szekeres">Théorème d'Erdős-Szekeres — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Approximation_diophantienne">Approximation diophantienne — Wikipédia</a></li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 4 (le principe des tiroirs)</li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, le chapitre sur le principe des tiroirs et le double dénombrement</li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="PRF-12" data-level="Licence">
+<h3>PRF-12 · Récurrence forte : l'existence de la factorisation en nombres premiers <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Tout entier \( n \ge 2 \) peut s'écrire comme un produit de nombres
+premiers.</p>
+<ol class="parts" type="a">
+<li>Démontrez-le par récurrence forte.</li>
+<li>Démontrez ensuite le même énoncé d'une seconde manière : supposez qu'il soit en
+défaut, considérez le <i>plus petit</i> contre-exemple, et aboutissez à une
+contradiction.</li>
+<li>Enfin, expliquez pourquoi ces deux démonstrations sont la même démonstration sous des
+habits différents — autrement dit, explicitez le rapport entre la récurrence forte et le
+principe du bon ordre (toute partie non vide d'entiers strictement positifs possède un plus
+petit élément).</li>
+</ol>
+</div>
+<p class="context">L'existence de la factorisation en nombres premiers est la moitié facile
+du théorème fondamental de l'arithmétique ; l'unicité est plus subtile et a dû attendre les
+<i>Disquisitiones Arithmeticae</i> de Gauss (1801) pour être énoncée et démontrée en toute
+généralité. Le point pédagogique est ici l'interchangeabilité de la récurrence forte et du
+plus petit contre-exemple — deux tournures pour un seul principe — et l'apprentissage d'une
+écriture aisée des deux. L'unicité, par le lemme d'Euclide, est une suite qui en vaut la
+peine : voyez la lecture.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_fondamental_de_l%27arithm%C3%A9tique">Théorème fondamental de l'arithmétique — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy &amp; E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 1–2</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/">MIT OCW 6.042J Mathematics for Computer Science (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-13" data-level="Licence">
+<h3>PRF-13 · Le principe extrémal <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le principe extrémal : pour démontrer qu'il existe un objet possédant
+une certaine propriété, examinez un objet extrême — le plus grand, le plus petit, le plus
+long, le plus proche — et montrez que s'il n'avait pas cette propriété, on pourrait le
+rendre plus extrême encore, ce qui est contradictoire. Employez-le deux fois.</p>
+<ol class="parts" type="a">
+<li>Un tournoi est un graphe complet dont chaque arête a reçu une orientation (chacune des
+paires parmi n joueurs s'est rencontrée une fois ; quelqu'un a gagné chaque partie).
+Démontrez que tout tournoi fini contient un chemin hamiltonien : un ordre sur l'ensemble
+des joueurs dans lequel chacun a battu le suivant. Considérez un chemin orienté de longueur
+maximale.</li>
+<li>Étant donné n points rouges et n points bleus du plan, jamais trois alignés, démontrez
+qu'on peut les apparier, chaque rouge avec un bleu, de sorte que les n segments de liaison
+soient deux à deux sans intersection.</li>
+</ol>
+</div>
+<p class="context">La question (a) est un théorème de László Rédei (1934). Le principe
+extrémal, c'est le principe du bon ordre en tenue de travail, et il est d'une polyvalence
+étonnante : la célèbre démonstration par Kelly du théorème de Sylvester–Gallai (PRF-26) est
+un argument extrémal pur. Le chapitre qu'Engel lui consacre est le terrain d'entraînement
+classique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Tournoi_(th%C3%A9orie_des_graphes)">Tournoi (théorie des graphes) — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Well-ordering_principle">Principe du bon ordre — Wikipédia (en anglais)</a></li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 3 (le principe extrémal)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-14" data-level="Licence">
+<h3>PRF-14 · Euclide : les nombres premiers sont en infinité <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le théorème d'Euclide — et l'art de ne pas le citer de travers.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'il existe une infinité de nombres premiers.</li>
+<li>Une lecture erronée très répandue de l'argument d'Euclide prétend que si
+\( p_1, \dots, p_n \) sont les n premiers nombres premiers, alors
+\( p_1 p_2 \cdots p_n + 1 \) est lui-même premier. Réfutez-la : trouvez, avec démonstration,
+le plus petit n pour lequel \( p_1 p_2 \cdots p_n + 1 \) est composé.</li>
+<li>Réécrivez votre démonstration de (a) de sorte qu'elle n'affirme rien que votre
+réfutation de (b) contredise — énoncez exactement ce que le nombre auxiliaire de l'argument
+est garanti de faire, et rien de plus.</li>
+</ol>
+</div>
+<p class="context">Proposition 20 du livre IX des <i>Éléments</i> d'Euclide (vers 300 av.
+J.-C.) : « les nombres premiers sont en quantité plus grande que toute multitude assignée de
+nombres premiers » — pour bien des mathématiciens, la première démonstration qu'ils appellent
+belle. L'argument propre à Euclide est direct, et non le raisonnement par l'absurde sous
+lequel on le raconte si souvent ; ce sont les récits qui engendrent la lecture erronée de la
+question (b). Michael Hardy et Catherine Woodgold ont documenté ce téléphone arabe dans
+« Prime Simplicity ». Restituer Euclide exactement est un rite de passage de l'écriture
+soignée des démonstrations — et le point de départ de deux démonstrations plus profondes du
+même théorème dans la section Master (PRF-28, PRF-29).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euclide_sur_les_nombres_premiers">Théorème d'Euclide sur les nombres premiers — Wikipédia</a></li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, ch. 1</li>
+<li>Article : M. Hardy &amp; C. Woodgold, « Prime Simplicity » (2009), <i>Mathematical Intelligencer</i> 31</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-15" data-level="Licence">
+<h3>PRF-15 · Le problème de Bâle <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez la série \( \sum_{n=1}^{\infty} \frac{1}{n^2} \) —
+la pièce maîtresse de cette page.</p>
+<ol class="parts" type="a">
+<li>Montrez que la série converge et que sa valeur est inférieure à 2.</li>
+<li>Le problème de Bâle : démontrez que
+\[ \sum_{n=1}^{\infty} \frac{1}{n^2} \;=\; \frac{\pi^2}{6}. \]
+Toute voie honnête est recevable ; deux d'entre elles sont cartographiées dans PRF-16 et
+PRF-17. On connaît au moins quatorze démonstrations essentiellement différentes — après la
+première, allez en chercher une seconde dans les références et déterminez précisément où
+les deux font un travail différent.</li>
+</ol>
+</div>
+<p class="context">La pièce maîtresse de cette page. Pietro Mengoli a posé la question en
+1650 : les inverses des carrés se somment manifestement en quelque chose d'un peu supérieur
+à 1,6 — mais en <i>quoi</i> ? Elle a vaincu Leibniz et vaincu les Bernoulli ; Jakob
+Bernoulli, de Bâle, qui avait sommé tant de séries, publia un appel en 1689 : « si quelqu'un
+trouve et nous communique ce qui a jusqu'ici échappé à nos efforts, grande sera notre
+gratitude. » En 1734-35 Leonhard Euler — né à Bâle, élève de Jean Bernoulli, alors âgé de
+vingt-huit ans et installé à Saint-Pétersbourg — annonça la réponse, et l'apparition
+parfaitement inattendue de π dans un problème où nul cercle n'était en vue fit son nom dans
+toute l'Europe. Le problème a tout ensemencé : Euler évalua ensuite ζ(2k) pour tout k, relia
+la fonction zêta aux nombres premiers (PRF-28), et remit ainsi à Riemann l'objet central de
+la théorie analytique des nombres. La compilation de Robin Chapman rassemble quatorze
+démonstrations ; Aigner et Ziegler en impriment trois des plus belles.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_B%C3%A2le">Problème de Bâle — Wikipédia</a></li>
+<li>Lecture : W. Dunham, <i>Euler: The Master of Us All</i> (MAA, 1999)</li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, ch. « Three times π²/6 »</li>
+<li>Article : R. Chapman, « Evaluating ζ(2) » (1999-2003), <a href="https://empslocal.ex.ac.uk/people/staff/rjchapma/etc/zeta2.pdf">quatorze démonstrations, PDF (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-16" data-level="Licence">
+<h3>PRF-16 · L'heuristique d'Euler : sin x comme polynôme infini <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'argument original d'Euler, en 1734, traitait
+\( \frac{\sin x}{x} \) comme un polynôme de degré infini. Ses « racines » sont
+\( \pm\pi, \pm 2\pi, \pm 3\pi, \dots \), et donc — en factorisant sur les racines comme on
+le ferait pour un polynôme — Euler écrivit
+\[ \frac{\sin x}{x} \;=\; \prod_{n=1}^{\infty} \left( 1 - \frac{x^2}{n^2 \pi^2} \right). \]</p>
+<ol class="parts" type="a">
+<li>En admettant cette identité, comparez le coefficient de \( x^2 \) des deux côtés et
+déduisez-en la valeur de \( \sum 1/n^2 \).</li>
+<li>Auditez maintenant l'argument : dressez la liste de chaque étape injustifiée au regard
+des normes du dix-huitième siècle. En particulier : exhibez deux fonctions, chacune donnée
+par une série entière convergeant sur ℝ tout entier, ayant exactement les mêmes zéros et
+pourtant non égales — pourquoi cela condamne-t-il la recette naïve « une fonction est le
+produit sur ses racines », et quelle information supplémentaire un théorème de
+factorisation correct doit-il utiliser ?</li>
+<li>Soit rendez l'argument d'Euler rigoureux (la voie moderne est la factorisation de
+Weierstrass–Hadamard du sinus), soit vérifiez le contrôle de vraisemblance d'Euler
+lui-même : en posant \( x = \pi/2 \) dans le produit, on retrouve la formule de Wallis pour
+π.</li>
+</ol>
+</div>
+<p class="context">C'est la lacune la plus instructive de l'histoire de l'analyse. Euler
+savait parfaitement que sa factorisation n'était pas démontrée — c'est pourquoi il n'a cessé
+de revenir au problème, publiant d'autres démonstrations en 1741 et 1755 — mais il savait
+aussi que la réponse était juste, l'ayant vérifiée à de nombreuses décimales et confrontée au
+produit de Wallis de 1655. L'épisode est l'illustration canonique de ce que Terence Tao
+appelle la pensée pré-rigoureuse par opposition à la pensée post-rigoureuse : le bond qui
+trouve la vérité, puis la discipline qui l'assure. Weierstrass a fourni le théorème manquant
+un siècle et demi plus tard.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_factorisation_de_Weierstrass">Théorème de factorisation de Weierstrass — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_de_Wallis">Produit de Wallis — Wikipédia</a></li>
+<li>Lecture : W. Dunham, <i>Euler: The Master of Us All</i> (MAA, 1999)</li>
+<li>Lecture : T. Tao, <a href="https://terrytao.wordpress.com/career-advice/theres-more-to-mathematics-than-rigour-and-proofs/">« There’s more to mathematics than rigour and proofs » (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-17" data-level="Licence">
+<h3>PRF-17 · Une route rigoureuse vers π²/6 <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Deux routes pleinement rigoureuses vers la somme de Bâle. Choisissez-en
+une et parcourez-la de bout en bout ; pour l'autre, rédigez en un paragraphe une carte du
+terrain d'après les références.</p>
+<ol class="parts" type="a">
+<li>Route A (intégrale double) : montrez que
+\[ \int_0^1 \!\! \int_0^1 \frac{dx\, dy}{1 - xy} \;=\; \sum_{n=1}^{\infty} \frac{1}{n^2}, \]
+en justifiant l'interversion de la somme et de l'intégrale, puis évaluez l'intégrale par un
+changement de variables bien choisi.</li>
+<li>Route B (séries de Fourier) : calculez les coefficients de Fourier de \( f(x) = x \)
+sur \( [-\pi, \pi] \) et appliquez l'identité de Parseval.</li>
+</ol>
+</div>
+<p class="context">La route A est la démonstration que Tom Apostol a appelée « une
+démonstration qui a échappé à Euler » dans sa note de 1983, avec l'évaluation par changement
+de variables étudiée en profondeur par Beukers, Calabi et Kolk (1993), dont la méthode évalue
+ζ(2k) pour tout k ; c'est un joyau d'Aigner–Ziegler. La route B est le premier triomphe
+classique de l'analyse de Fourier : l'identité de Parseval transforme un calcul
+d'orthogonalité en la somme de Bâle, et la même machine livre ζ(4), ζ(6), … à partir d'autres
+fonctions simples. Comparer les deux routes enseigne ce que signifie « des démonstrations
+véritablement différentes » — elles se généralisent selon des axes entièrement distincts.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Valeurs_particuli%C3%A8res_de_la_fonction_z%C3%AAta_de_Riemann">Valeurs particulières de la fonction zêta de Riemann — Wikipédia</a></li>
+<li>Article : T. M. Apostol, « A proof that Euler missed: evaluating ζ(2) the easy way » (1983), <i>Mathematical Intelligencer</i> 5</li>
+<li>Article : F. Beukers, E. Calabi &amp; J. A. C. Kolk, « Sums of generalized harmonic series and volumes » (1993), <i>Nieuw Archief voor Wiskunde</i></li>
+<li>Lecture : E. M. Stein &amp; R. Shakarchi, <i>Fourier Analysis: An Introduction</i></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-18" data-level="Licence">
+<h3>PRF-18 · Le petit théorème de Fermat, de deux façons <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit p un nombre premier. Démontrez que
+\[ a^{p-1} \equiv 1 \pmod{p} \]
+pour tout entier a non divisible par p — deux fois.</p>
+<ol class="parts" type="a">
+<li>Démonstration 1 (récurrence) : montrez d'abord, par récurrence sur a à l'aide de la
+formule du binôme, que \( a^p \equiv a \pmod{p} \) pour tout entier \( a \ge 0 \) ;
+déduisez-en le théorème. Il vous faudra savoir quels coefficients binomiaux
+\( \binom{p}{k} \) sont divisibles par p — démontrez-le également.</li>
+<li>Démonstration 2 (théorie des groupes) : montrez que les résidus non nuls modulo p
+forment un groupe pour la multiplication, et déduisez le théorème du théorème de Lagrange
+sur l'ordre d'un élément.</li>
+<li>Comparez ensuite : que voit chaque démonstration à quoi l'autre est aveugle, et
+laquelle se généralise au théorème d'Euler pour un module composé ?</li>
+</ol>
+</div>
+<p class="context">Fermat a énoncé le théorème dans une lettre à Frénicle de Bessy en octobre
+1640, ajoutant qu'il en enverrait la démonstration « si je ne craignais d'être trop long ».
+Leibniz en possédait une démonstration qu'il n'a jamais publiée ; Euler a imprimé la première
+en 1736. Les deux démonstrations demandées ici forment la paire moderne standard, et leur
+contraste est tout le propos : la démonstration par récurrence est élémentaire et se suffit à
+elle-même, tandis que la démonstration par la théorie des groupes explique <i>pourquoi</i> le
+théorème est vrai et s'étend instantanément à tout groupe fini. Le petit théorème de Fermat
+est aussi le moteur des tests de primalité de PRF-19 et PRF-20 — et du cryptosystème RSA.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Petit_th%C3%A9or%C3%A8me_de_Fermat">Petit théorème de Fermat — Wikipédia</a></li>
+<li>Lecture : D. M. Burton, <i>Elementary Number Theory</i></li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/">MIT OCW 18.781 Theory of Numbers (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-19" data-level="Licence">
+<h3>PRF-19 · Le nombre 341, ou pourquoi le test de Fermat ment <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le test de primalité de Fermat : pour tester n, choisissez une base a
+avec \( 1 \lt a \lt n \) et calculez \( a^{n-1} \bmod n \) ; si le résultat n'est pas 1,
+alors n est à coup sûr composé. La réciproque rendrait le test de primalité trivial — mais
+elle est fausse.</p>
+<ol class="parts" type="a">
+<li>Démontrez que \( 2^{340} \equiv 1 \pmod{341} \) bien que
+\( 341 = 11 \cdot 31 \) soit composé : le plus petit pseudo-premier de base 2.</li>
+<li>Montrez que
+le test en base 3, lui, démasque 341 : \( 3^{340} \not\equiv 1 \pmod{341} \).</li>
+<li>Pire
+encore est vrai : il existe des nombres composés qui passent le test de Fermat pour
+<i>toute</i> base première avec eux — le plus petit est 561. Démontrez que 561 possède cette
+propriété, et extrayez de votre démonstration un critère net indiquant quand un composé n
+trompe toutes les bases premières avec lui.</li>
+</ol>
+</div>
+<p class="context">Sarrus a remarqué la traîtrise de 341 en 1819. Les trompeurs universels de
+la question (c) sont les nombres de Carmichael, caractérisés par Korselt en 1899, onze ans
+avant que Carmichael ne publie le plus petit d'entre eux, 561, en 1910, et en 1994 Alford, Granville et Pomerance ont démontré
+qu'il en existe une infinité : le test de Fermat n'est donc pas seulement percé, il l'est
+irrémédiablement. Voilà pourquoi le test de primalité pratique a eu besoin du raffinement
+plus puissant de Miller–Rabin, et pourquoi l'existence d'un test rapide et <i>certain</i>
+(AKS, 2002 ; voyez PRF-20) fut un véritable événement.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_pseudo-premier">Nombre pseudo-premier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Carmichael">Nombre de Carmichael — Wikipédia</a></li>
+<li>Article : W. R. Alford, A. Granville &amp; C. Pomerance, « There are infinitely many Carmichael numbers » (1994), <i>Annals of Mathematics</i> 139</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-20" data-level="Licence">
+<h3>PRF-20 · Le théorème de Wilson : un test parfait et inutile <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une caractérisation exacte de la primalité — et l'écart entre un
+critère et un algorithme.</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Wilson : un entier
+\( n \gt 1 \) est premier si et seulement si
+\[ (n-1)! \equiv -1 \pmod{n}. \]
+Pour le sens « composé », démontrez le fait plus précis que \( (n-1)! \equiv 0 \pmod{n} \)
+pour tout composé \( n \gt 4 \).</li>
+<li>Contrairement au test de Fermat, c'est une
+caractérisation exacte de la primalité — et pourtant elle ne vaut rien en pratique. Rendez
+cela précis : estimez le nombre de multiplications nécessaires pour calculer directement
+\( (n-1)! \bmod n \), exprimez-le en fonction du nombre de chiffres de n, et comparez au
+coût d'un seul test de Fermat calculé par élévations au carré répétées. Concluez en
+explicitant la distinction entre un <i>critère</i> et un <i>algorithme</i>. (On ne connaît
+aucune méthode calculant \( (n-1)! \bmod n \) en un temps polynomial en le nombre de
+chiffres — si vous en trouvez une, vous aurez trouvé un nouveau test de primalité.)</li>
+</ol>
+</div>
+<p class="context">L'énoncé était connu d'Ibn al-Haytham vers l'an 1000. John Wilson,
+étudiant d'Edward Waring à Cambridge, l'a redécouvert ; Waring l'a publié en 1770, sans
+démonstration, déplorant que les théorèmes de ce genre parussent hors d'atteinte faute d'une
+notation pour les nombres premiers — ce à quoi Gauss, qui en donna une démonstration dans les
+<i>Disquisitiones</i>, rétorqua que de telles vérités demandent des notions, non des
+notations. Lagrange en a donné la première démonstration en 1771. La morale de la question
+(b) est sérieuse : l'écart entre caractériser un objet et le calculer efficacement est
+exactement celui que le théorème d'Agrawal, Kayal et Saxena de 2002 (« PRIMES is in P ») a
+fini par combler pour la primalité.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Wilson">Théorème de Wilson — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_AKS">Test de primalité AKS — Wikipédia</a></li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/">MIT OCW 18.781 Theory of Numbers (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-21" data-level="Licence">
+<h3>PRF-21 · L'argument diagonal de Cantor <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La méthode diagonale de Cantor, parcourue du concret à
+l'abstrait.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'il n'existe pas de surjection de ℕ sur
+l'ensemble de toutes les suites infinies de 0 et de 1 : étant donné une liste quelconque
+\( s_1, s_2, s_3, \dots \) de telles suites, construisez une suite qui ne figure nulle part
+dans la liste. Déduisez-en que les nombres réels ne sont pas dénombrables.</li>
+<li>Adaptez l'argument pour démontrer le théorème de Cantor : aucun
+ensemble X n'admet de surjection sur l'ensemble de ses parties \( \mathcal{P}(X) \).</li>
+<li>La construction
+de (a) est un canevas. Énoncez-la assez abstraitement pour que le même squelette donne (b),
+et nommez l'autoréférence qui en est le cœur.</li>
+</ol>
+</div>
+<p class="context">Cantor a d'abord démontré la non-dénombrabilité des réels en 1874 par un
+argument différent, moins souple ; la méthode diagonale est apparue en 1891 et a changé la
+discipline. Elle fut attaquée en son temps — Kronecker tenait les infinis de Cantor pour
+illégitimes — et défendue par la fameuse déclaration de Hilbert : « nul ne doit nous chasser
+du paradis que Cantor a créé ». Le squelette diagonal est devenu l'un des canevas de
+démonstration les plus lourds de conséquences jamais conçus : le théorème d'incomplétude de
+Gödel et la démonstration par Turing de l'indécidabilité du problème de l'arrêt sont l'un et
+l'autre des arguments diagonaux. Apprendre à voir le canevas unique sous les trois théorèmes,
+voilà le véritable exercice ici.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Argument_de_la_diagonale_de_Cantor">Argument de la diagonale de Cantor — Wikipédia</a></li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 14</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-22" data-level="Licence">
+<h3>PRF-22 · e est irrationnel <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( e = \sum_{n=0}^{\infty} \frac{1}{n!} \).</p>
+<ol class="parts" type="a">
+<li>À l'aide de la série, démontrez que e est irrationnel. (Le procédé classique : en
+supposant \( e = p/q \), examinez \( q! \, e \) et piégez une certaine quantité strictement
+entre 0 et 1.)</li>
+<li>Démontrez que \( e^2 \) est irrationnel.</li>
+<li>Expliquez pourquoi votre argument de (a) démontre quelque chose d'un peu plus fort que
+l'irrationalité — à quelle vitesse des rationnels peuvent-ils approcher e ? — et pourquoi il
+ne dit néanmoins rien sur, disons, \( e + \pi \).</li>
+</ol>
+</div>
+<p class="context">Euler a démontré l'irrationalité de e en 1737 par sa fraction continue ; le
+court argument par les séries demandé ici est d'ordinaire attribué à Fourier (1815).
+Liouville a poussé jusqu'à \( e^2 \) et au-delà en 1840, et Hermite a démontré la
+transcendance de e en 1873 — le premier nombre apparu naturellement dont on l'ait démontré.
+La question (c) est une leçon sur les limites d'une technique : à ce jour personne ne sait
+démontrer que \( e + \pi \) est irrationnel, rappel qu'en mathématiques la distance entre
+« manifestement vrai » et « démontré » peut être un abîme. Le chapitre « Some irrational
+numbers » d'Aigner et Ziegler mène cette histoire bien plus loin.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Proof_that_e_is_irrational">Démonstration de l'irrationalité de e — Wikipédia (en anglais)</a></li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, ch. « Some irrational numbers »</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-23" data-level="Licence">
+<h3>PRF-23 · L'inégalité arithmético-géométrique par récurrence avant-arrière <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Démontrez l'inégalité entre moyenne arithmétique et moyenne
+géométrique : pour des réels positifs ou nuls \( a_1, \dots, a_n \),
+\[ \sqrt[n]{a_1 a_2 \cdots a_n} \;\le\; \frac{a_1 + a_2 + \cdots + a_n}{n}, \]
+avec égalité exactement lorsque tous les \( a_i \) sont égaux — par la récurrence
+avant-arrière de Cauchy :</p>
+<ol class="parts" type="a">
+<li>démontrez le cas \( n = 2 \) à la main ;</li>
+<li>montrez que le cas n entraîne le cas
+2n (bond en avant à travers les puissances de deux) ;</li>
+<li>montrez que le cas n entraîne le cas
+\( n - 1 \) (pas en arrière, par un choix astucieux de la variable écartée) ;</li>
+<li>expliquez
+soigneusement pourquoi (a)–(c) couvrent tous les n, et suivez à la trace où loge le cas
+d'égalité à chaque étape. Pourquoi la récurrence ordinaire peine-t-elle ici, tandis que
+cette étrange démarche réussit ?</li>
+</ol>
+</div>
+<p class="context">C'est la démonstration propre à Cauchy, tirée du <i>Cours d'analyse</i>
+(1821), et le schéma de récurrence est aussi célèbre que l'inégalité : il grimpe vers
+l'infini en doublant, puis redescend un barreau à la fois. L'inégalité
+arithmético-géométrique a accumulé des dizaines de démonstrations — Pólya disait que sa
+préférée (par l'inégalité \( e^x \ge 1 + x \)) lui était venue en rêve — et la
+<i>Cauchy-Schwarz Master Class</i> de Steele en fait la deuxième halte d'une visite de tout
+le paysage des inégalités.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_arithm%C3%A9tico-g%C3%A9om%C3%A9trique">Inégalité arithmético-géométrique — Wikipédia</a></li>
+<li>Lecture : J. M. Steele, <i>The Cauchy-Schwarz Master Class</i> (MAA/Cambridge, 2004), ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-24" data-level="Licence">
+<h3>PRF-24 · Trois démonstrations de Cauchy–Schwarz <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Démontrez que, pour tous réels
+\( a_1, \dots, a_n, b_1, \dots, b_n \),
+\[ \left( \sum_{i=1}^{n} a_i b_i \right)^{\!2} \;\le\; \left( \sum_{i=1}^{n} a_i^2 \right) \left( \sum_{i=1}^{n} b_i^2 \right), \]
+par trois arguments véritablement différents. Familles candidates : un argument de polynôme
+du second degré et de discriminant ; une identité algébrique exacte exhibant la différence
+des deux membres comme une somme de carrés ; une récurrence sur n ; une normalisation qui
+ramène le tout à l'inégalité arithmético-géométrique.</p>
+<ol class="parts" type="a">
+<li>Rédigez les trois démonstrations, et pour chacune déterminez le cas d'égalité qu'elle
+fournit.</li>
+<li>Jugez ensuite : laquelle de vos démonstrations survit, mot pour mot, lorsque les sommes
+sont remplacées par des intégrales ?</li>
+<li>Laquelle survit dans un espace préhilbertien abstrait, où les coordonnées n'existent
+pas ?</li>
+</ol>
+</div>
+<p class="context">Cauchy a démontré l'inégalité pour les sommes en 1821 ; Bouniakovski est
+passé aux intégrales en 1859 ; Schwarz a redécouvert la forme intégrale en 1888 en bâtissant
+la géométrie des espaces de fonctions, ce qui explique que la version abstraite porte son
+nom. C'est peut-être l'inégalité la plus utilisée des mathématiques — toute la géométrie des
+espaces de Hilbert s'y appuie — et Steele ouvre son livre exactement sur cet exercice, parce
+qu'un résultat aussi central mérite d'être compris depuis plusieurs directions à la fois.
+Trouver des démonstrations « véritablement différentes », et dire ce que cela signifie, c'est
+la moitié du problème.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Cauchy-Schwarz">Inégalité de Cauchy-Schwarz — Wikipédia</a></li>
+<li>Lecture : J. M. Steele, <i>The Cauchy-Schwarz Master Class</i> (MAA/Cambridge, 2004), ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-25" data-level="Licence">
+<h3>PRF-25 · La formule d'Euler pour les polyèdres <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La formule d'Euler pour les polyèdres, et le contre-exemple qui met à
+l'épreuve chacune de ses démonstrations.</p>
+<ol class="parts" type="a">
+<li>Démontrez que tout graphe planaire connexe à V
+sommets, E arêtes et F faces (en comptant la face extérieure non bornée) vérifie
+\[ V - E + F = 2, \]
+et déduisez-en l'énoncé classique pour les polyèdres convexes.</li>
+<li>Calculez \( V - E + F \)
+pour un polyèdre en « cadre de tableau » — un solide percé de part en part d'un trou
+rectangulaire — et identifiez exactement quelle hypothèse de votre démonstration il
+viole.</li>
+<li>La formule d'Euler a de
+nombreuses démonstrations, dont certaines subtilement incomplètes ; écrivez la forme la plus
+forte de l'hypothèse de planarité que votre propre démonstration utilise réellement, et
+expliquez comment vous la défendriez face à un sceptique armé de la question (b).</li>
+</ol>
+</div>
+<p class="context">Euler a annoncé la formule dans une lettre à Goldbach en novembre 1750,
+étonné que « ces propriétés générales de la géométrie des solides n'aient pas été remarquées
+plus tôt » ; sa propre démonstration avait des lacunes, Legendre en donna une correcte par la
+géométrie sphérique en 1794, et la démonstration de Cauchy de 1811 introduisit le point de vue
+des graphes planaires. L'histoire de contre-exemples et de réparations de ce théorème — les
+exceptions de Lhuilier, dont le cadre de tableau — fait tout le sujet de <i>Proofs and
+Refutations</i> de Lakatos (1976), le livre le plus célèbre jamais écrit sur la façon dont
+les démonstrations évoluent réellement : définition et théorème négociant l'un avec l'autre
+jusqu'à ce que tous deux tiennent bon.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Caract%C3%A9ristique_d%27Euler">Caractéristique d'Euler — Wikipédia</a></li>
+<li>Lecture : I. Lakatos, <i>Proofs and Refutations</i> (Cambridge, 1976)</li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-26" data-level="Licence">
+<h3>PRF-26 · Sylvester–Gallai <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un théorème de géométrie réelle, et la configuration complexe qui
+montre qu'il parle bel et bien de ℝ.</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Sylvester–Gallai : tout ensemble
+fini de points du plan, non tous alignés, détermine au moins une <i>droite
+ordinaire</i> — une droite passant par exactement deux des points.</li>
+<li>Montrez que
+l'énoncé tombe en défaut sur les nombres complexes : il existe un ensemble fini de points
+du plan projectif complexe, non tous alignés, dans lequel toute droite passant par deux des
+points en contient un troisième. (Une célèbre configuration de neuf points fait
+l'affaire.)</li>
+</ol>
+</div>
+<p class="context">Sylvester a posé (a) dans l'<i>Educational Times</i> en 1893 ; la question
+a dormi cinquante ans, jusqu'à ce qu'Erdős la réveille en 1943, et Gallai l'a démontrée en
+1944. Melchior avait, sans qu'on le remarque, démontré une version projective duale en 1941.
+La démonstration à traquer est celle de L. M. Kelly, un argument extrémal de deux lignes (la
+technique de PRF-13) qu'Erdős avait rangé dans son « Livre » imaginaire des démonstrations
+parfaites ; Aigner et Ziegler l'ont dûment réimprimée. La question (b) — la configuration
+hessienne, faite des neuf points d'inflexion d'une courbe cubique — montre que le théorème
+porte véritablement sur la géométrie réelle, et non sur la seule incidence. L'histoire se
+poursuit au niveau recherche dans PRF-36.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Sylvester-Gallai">Théorème de Sylvester-Gallai — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Configuration_hessienne">Configuration hessienne — Wikipédia</a></li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-27" data-level="Licence">
+<h3>PRF-27 · Réécriture : une démonstration correcte, mal racontée <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La démonstration suivante de l'énoncé (vrai)
+« \( \frac{2n+1}{n+3} \to 2 \) quand \( n \to \infty \) » est logiquement récupérable mais
+mal écrite. <i>Démonstration : \( \left| \frac{2n+1}{n+3} - 2 \right| = \left| \frac{2n+1-2n-6}{n+3} \right| = \frac{5}{n+3} \lt \varepsilon \),
+donc \( n \gt \frac{5}{\varepsilon} - 3 \), donc ça marche pour n assez grand, donc on prend
+N plus grand que ça et c'est réglé pour tous les n d'après. ∎</i>&nbsp;</p>
+<ol class="parts" type="a">
+<li>Dressez la liste de tous les défauts que vous pouvez trouver : symboles employés avant
+d'être introduits ou quantifiés, raisonnement présenté à l'envers de son ordre logique,
+étapes injustifiées, pronoms sans antécédent, conclusions jamais réellement énoncées.</li>
+<li>Réécrivez la démonstration
+aux normes d'une revue : la définition de la limite d'abord, N exhibé explicitement, chaque
+inégalité s'enchaînant vers l'avant.</li>
+<li>Tirez de l'exercice trois règles de bonne
+écriture mathématique, et confrontez-les aux recommandations de Su et à l'essai de
+Halmos.</li>
+</ol>
+</div>
+<p class="context">La plupart des démonstrations que rencontrent les étudiants sont déjà
+polies, si bien que le métier du polissage n'est jamais vu à l'œuvre. L'essai de Halmos de
+1970, « How to Write Mathematics » — toujours ce que l'on a écrit de meilleur sur le sujet —
+insiste sur le fait qu'une démonstration est un morceau de prose d'exposition dont la tâche
+est de convaincre et d'éclairer, non la transcription des brouillons de l'auteur. Transformer
+par la réécriture une mauvaise démonstration en une bonne, la logique restant fixée, isole le
+savoir-faire de l'écriture de celui de la découverte ; c'est le remède connu le plus rapide à
+la soupe de quantificateurs.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9monstration_%28logique_et_math%C3%A9matiques%29">Démonstration (logique et mathématiques) — Wikipédia</a></li>
+<li>Article : P. R. Halmos, « How to Write Mathematics » (1970), <i>L'Enseignement Mathématique</i> 16</li>
+<li>Article : F. E. Su, « Guidelines for Good Mathematical Writing » (2015), <a href="https://math.hmc.edu/su/wp-content/uploads/sites/10/2020/08/Guidelines-for-Good-Mathematical-Writing.pdf">PDF (en anglais)</a></li>
+<li>Lecture : D. J. Velleman, <i>How to Prove It</i></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-41" data-level="Licence">
+<h3>PRF-41 · Bon ordre et récurrence : un principe, deux habits <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le principe du bon ordre (PBO) dit : toute partie non vide d'entiers
+strictement positifs possède un plus petit élément. Le principe de récurrence (PR) dit : si
+une partie S d'entiers strictement positifs contient 1, et contient \( n+1 \) dès qu'elle
+contient n, alors S contient tous les entiers strictement positifs.</p>
+<ol class="parts" type="a">
+<li>En admettant le PBO, démontrez le PR.</li>
+<li>En admettant le PR, démontrez le PBO. (Attention au piège classique : la tentative
+naturelle a secrètement besoin de la récurrence forte — soit déduisez d'abord la récurrence
+forte du PR, soit trouvez le bon ensemble sur lequel raisonner par récurrence.)</li>
+<li>Montrez que les deux principes tombent en défaut pour les rationnels positifs ou nuls,
+et identifiez quel trait structurel de ℕ chaque défaillance met au jour.</li>
+<li>Dans les axiomes de Peano, la récurrence est l'axiome et le bon ordre est un théorème.
+Discutez en un court paragraphe : étant donné l'équivalence, dire de l'un des deux qu'il est
+« plus fondamental », est-ce une affirmation mathématique ou une affirmation
+esthétique ?</li>
+</ol>
+</div>
+<p class="context">Cette page spécule sur cette équivalence depuis le début — PRF-12
+échangeait la récurrence forte contre un plus petit contre-exemple, PRF-13 appelait le
+principe extrémal le bon ordre en tenue de travail, et la descente de PRF-31 est le bon ordre
+parcouru à l'envers. Ce problème acquitte la dette et démontre le taux de change. Le soin
+qu'exige la question (b) est toute la leçon : les équivalences entre principes quasi évidents
+sont exactement là où se cache le raisonnement circulaire, et la défense de celui qui rédige
+est d'afficher, à chaque étape, quel principe il a en main et lequel lui est interdit.
+Dedekind (1888) et Peano (1889) ont fixé la récurrence comme axiome ; lequel des deux habits
+est le « fondamental » se discute depuis lors.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Well-ordering_principle">Principe du bon ordre — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Axiomes_de_Peano">Axiomes de Peano — Wikipédia</a></li>
+<li>Lecture : D. J. Velleman, <i>How to Prove It</i>, ch. 6</li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 10</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-42" data-level="Licence">
+<h3>PRF-42 · Le criminel minimal : six couleurs suffisent <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une démonstration par contre-exemple minimal s'ouvre ainsi :
+« supposons que le théorème soit en défaut, et parmi tous les contre-exemples fixons-en un
+de taille minimale ». Le bénéfice est que toute instance plus petite obéit au théorème et
+peut être employée librement ; le but est de fabriquer un contre-exemple plus petit, ce qui
+contredit la minimalité.</p>
+<ol class="parts" type="a">
+<li>À l'aide de la formule d'Euler (PRF-25), démontrez que tout graphe planaire simple
+possède un sommet de degré au plus 5.</li>
+<li>Démontrez par contre-exemple minimal que tout graphe planaire simple admet une
+coloration propre en 6 couleurs (des sommets adjacents recevant toujours des couleurs
+différentes).</li>
+<li>Réécrivez la démonstration de (b) comme une récurrence sur le nombre de sommets, et
+énoncez précisément comment les deux tournures se traduisent l'une dans l'autre (comparez
+PRF-12 et PRF-41).</li>
+<li>À partir des références, cartographiez ce qui se produit quand le compte diminue :
+l'argument des chaînes de Kempe donne 5 couleurs honnêtement — étudiez-le — et a donné 4
+couleurs de façon fallacieuse pendant onze ans. Où exactement la démonstration de Kempe
+cassait-elle ?</li>
+</ol>
+</div>
+<p class="context">« Criminel minimal » est le nom affectueux de la technique, et la
+coloration de graphes en est le foyer historique. Kempe a publié une démonstration du
+théorème des quatre couleurs en 1879 ; Heawood en a trouvé la faille en 1890 et a sauvé du
+naufrage le théorème des cinq couleurs — la démonstration ratée la plus instructive des
+mathématiques, une suite grandeur nature à PRF-05 et PRF-06. Le cas des quatre couleurs a
+finalement été réglé par Appel et Haken en 1976, en le ramenant à une énorme vérification de
+cas menée par ordinateur, ce qui a allumé sur ce qu'est une démonstration un débat dont
+l'essai de Thurston (PRF-32) porte encore l'écho ; la formalisation vérifiée par machine de
+Gonthier en Coq (2005) a bouclé la boucle par l'autre bout.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_cinq_couleurs">Théorème des cinq couleurs — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_quatre_couleurs">Théorème des quatre couleurs — Wikipédia</a></li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, ch. « Five-coloring plane graphs »</li>
+<li>Article : G. Gonthier, « Formal Proof — The Four-Color Theorem » (2008), <i>Notices of the AMS</i> 55</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-43" data-level="Licence">
+<h3>PRF-43 · L'atelier du contre-exemple <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour tuer un énoncé universel, un seul objet bien fait suffit. Pour
+chacune des affirmations ci-dessous, démontrez-la ou réfutez-la ; quand vous réfutez,
+présentez le contre-exemple avec le soin dû à un théorème — l'objet, la vérification, la
+conclusion.</p>
+<ol class="parts" type="a">
+<li>Si \( f\colon \mathbb{R} \to \mathbb{R} \) et si \( |f| \) est continue, alors f est
+continue.</li>
+<li>Si \( \sum a_n \) converge, alors \( \sum a_n^2 \) converge.</li>
+<li>Si \( f\colon \mathbb{R} \to \mathbb{R} \) est dérivable partout, alors sa dérivée
+\( f' \) est continue.</li>
+<li>Toute fonction \( f\colon \mathbb{R} \to \mathbb{R} \) vérifiant
+\( f(x+y) = f(x) + f(y) \) pour tous x, y est de la forme \( f(x) = cx \). (Celle-ci est
+particulière : tranchez-la, puis discutez de ce que « construire un contre-exemple » peut
+vouloir dire quand — comme ici, par un théorème de Hamel — un contre-exemple existe sans
+qu'aucun puisse être écrit explicitement, mais seulement invoqué à partir de l'axiome du
+choix.)</li>
+</ol>
+</div>
+<p class="context">Les contre-exemples ne sont pas le contraire des démonstrations, mais une
+espèce de démonstrations, et en construire un est un problème de conception : dressez la
+liste des exigences, trouvez leurs tensions, et bâtissez l'objet exigence par exigence.
+L'analyse en est la carrière classique — <i>Counterexamples in Analysis</i> de Gelbaum et
+Olmsted en est tout un musée — parce que ses définitions sont juste assez permissives pour
+admettre des monstres. La question (d) ouvre une porte plus profonde : Hamel a montré en 1905
+que des fonctions additives sauvages existent, et pourtant chacune d'elles est non mesurable,
+de sorte qu'aucune formule n'en exhibera jamais une. Ce qu'<i>est</i> un contre-exemple,
+lorsqu'il n'existe que par l'axiome du choix, se poursuit en PRF-45 et PRF-48.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Contre-exemple">Contre-exemple — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_fonctionnelle_de_Cauchy">Équation fonctionnelle de Cauchy — Wikipédia</a></li>
+<li>Lecture : B. R. Gelbaum &amp; J. M. H. Olmsted, <i>Counterexamples in Analysis</i> (1964)</li>
+<li>Lecture : I. Lakatos, <i>Proofs and Refutations</i> (Cambridge, 1976)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-44" data-level="Licence" data-kind="court">
+<h3>PRF-44 · La négation sans « non » <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Écrivez la négation exacte de « pour tout
+\( \varepsilon \gt 0 \) il existe un \( \delta \gt 0 \) tel que
+\( |x - a| \lt \delta \) implique \( |f(x) - f(a)| \lt \varepsilon \) » — quantificateurs
+dans le bon ordre, sans le mot « non » et sans aucun symbole de négation. Puis maniez-la :
+démontrez que la fonction valant \( f(x) = 1 \) pour x rationnel et \( f(x) = 0 \) pour x
+irrationnel n'est continue en aucun point.</p>
+<p class="context">Faire traverser à une négation une file de quantificateurs — chaque ∀
+basculant en ∃ et retour, l'implication finale s'effondrant en un témoin — est la
+gymnastique de l'analyse ; la plupart des démonstrations de limite ratées sont des erreurs
+de quantificateurs déguisées. La fonction test est celle de Dirichlet (1829), la première
+fonction célèbre discontinue partout, et démontrer sa discontinuité est exactement un jeu
+consistant à produire les bons témoins.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_continue_nulle_part">Fonction continue nulle part — Wikipédia</a></li>
+<li>Lecture : D. J. Velleman, <i>How to Prove It</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-45" data-level="Licence" data-kind="court">
+<h3>PRF-45 · Un irrationnel élevé à une puissance irrationnelle <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez qu'il existe des nombres irrationnels a et
+b tels que \( a^b \) soit rationnel. (Un célèbre argument à deux cas y parvient sans jamais
+déterminer lequel de ses deux candidats convient ; trouvez-le — ou toute autre démonstration
+— puis dites clairement si votre démonstration exhibe un couple effectif.)</p>
+<p class="context">Le spécimen classique de la démonstration d'existence non constructive :
+le tour à deux cas, appliqué à \( \sqrt{2}^{\sqrt{2}} \), convainc pleinement tout en vous
+laissant incapable de nommer le couple qu'il promet — tout repose sur le principe du tiers
+exclu, que les mathématiciens constructivistes refusent d'accorder. Le théorème de
+Gelfond–Schneider (1934) règle l'affaire hors du prétoire, et à grands frais :
+\( \sqrt{2}^{\sqrt{2}} \) est en réalité transcendant. Une pièce jumelle des contre-exemples
+innommables de PRF-43 et des démonstrations d'existence probabilistes de PRF-48.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9monstration_constructive">Démonstration constructive — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Gelfond-Schneider">Théorème de Gelfond-Schneider — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-47" data-level="Licence">
+<h3>PRF-47 · La démonstration d'une seule phrase de Zagier <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit p un nombre premier tel que \( p \equiv 1 \pmod 4 \) et soit
+\[ S \;=\; \{\, (x,y,z) \in \mathbb{Z}_{\gt 0}^{3} \;:\; x^{2} + 4yz = p \,\}. \]
+Une <i>involution</i> d'un ensemble est une application égale à sa propre réciproque ; sur un
+ensemble fini, le nombre de ses points fixes a la même parité que le cardinal de
+l'ensemble.</p>
+<ol class="parts" type="a">
+<li>Montrez que S est fini et non vide, que \( (x,y,z) \mapsto (x,z,y) \) est une
+involution de S, et que cette involution possède un point fixe si et seulement si p est une
+somme de deux carrés.</li>
+<li>Vérifiez que
+\[ (x,y,z) \;\longmapsto\;
+\begin{cases}
+(x+2z,\; z,\; y-x-z) & \text{si } x \lt y-z,\\
+(2y-x,\; y,\; x-y+z) & \text{si } y-z \lt x \lt 2y,\\
+(x-2y,\; x-y+z,\; y) & \text{si } x \gt 2y
+\end{cases} \]
+est bien définie sur S — en particulier que les trois cas sont exhaustifs et mutuellement
+exclusifs, et qu'aucune coordonnée ne quitte jamais \( \mathbb{Z}_{\gt 0} \) —, que c'est
+une involution, et qu'elle possède exactement un point fixe.</li>
+<li>Assemblez (a) et (b) en une démonstration du théorème de Fermat : tout nombre premier
+\( p \equiv 1 \pmod 4 \) est une somme de deux carrés. Répondez ensuite à la question
+inconfortable que soulève cette démonstration : ayant vérifié chaque ligne, qu'avez-vous
+appris ? Rédigez un paragraphe sur les raisons pour lesquelles cette démonstration convainc
+sans expliquer, et comparez-la à une démonstration passant par les entiers de Gauss
+\( \mathbb{Z}[i] \) ou par le lemme de Thue.</li>
+</ol>
+</div>
+<p class="context">Fermat a annoncé le théorème à Mersenne dans une lettre de décembre 1640
+et, comme à son habitude, a gardé la démonstration pour lui ; il a fallu à Euler sept ans
+d'efforts intermittents avant d'en publier une en 1749. En 1990 Don Zagier a comprimé un
+argument de Heath-Brown en une seule phrase imprimée dans l'<i>American Mathematical
+Monthly</i> — très littéralement une phrase, l'application affichée ci-dessus plus une
+proposition subordonnée — et c'est depuis lors la pièce à conviction standard dans la
+dispute sur ce à quoi <i>sert</i> une démonstration. Chaque étape est vérifiable en un
+après-midi par un étudiant appliqué ; d'où vient l'application, cela reste invisible. Des
+exposés ultérieurs restituent une part du sens en dessinant les triplets comme des figures
+en « moulin à vent », un carré muni de quatre bras rectangulaires, moyennant quoi les trois
+cas deviennent trois façons de rebâtir le moulin. Comparez l'involution d'ici à la stratégie
+du miroir de PRF-37 : toutes deux laissent une symétrie faire le dénombrement.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_deux_carr%C3%A9s_de_Fermat">Théorème des deux carrés de Fermat — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Involution_%28math%C3%A9matiques%29">Involution (mathématiques) — Wikipédia</a></li>
+<li>Article : D. Zagier, « A One-Sentence Proof That Every Prime <i>p</i> ≡ 1 (mod 4) Is a Sum of Two Squares » (1990), <i>American Mathematical Monthly</i> 97, p. 144</li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, le chapitre sur la représentation des nombres comme sommes de deux carrés</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-56" data-level="Licence">
+<h3>PRF-56 · Absurde ou construction : ce qu'une démonstration vous remet <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un raisonnement par l'absurde suppose P fausse, en tire une absurdité,
+et conclut P. Une démonstration directe de P ne mentionne jamais la négation de P. Les deux
+ne sont pas la même chose, et la différence mérite d'être suivie à la trace.</p>
+<ol class="parts" type="a">
+<li>Chacun des énoncés suivants est habituellement présenté comme un raisonnement par
+l'absurde. Pour chacun, décidez si l'absurde fait véritablement le travail ou si l'argument
+est une démonstration directe (ou une contraposée) déguisée, et réécrivez-le sous la forme
+correcte la plus dépouillée : (i) \( \sqrt{2} \) est irrationnel (PRF-02) ; (ii) si
+\( n^2 \) est pair, alors n est pair ; (iii) il existe une infinité de nombres premiers
+(PRF-14) ; (iv) une fonction strictement croissante
+\( f\colon \mathbb{R} \to \mathbb{R} \) est injective.</li>
+<li>Explicitez la logique. Montrez que la démonstration d'un énoncé <i>négatif</i> « non Q »
+obtenue en supposant Q et en aboutissant à une absurdité est une démonstration directe de
+« non Q » et n'emploie aucun principe supplémentaire ; montrez ensuite que la démonstration
+d'un énoncé <i>positif</i> P obtenue en supposant « non P » et en aboutissant à une
+absurdité emploie exactement l'inférence de « non non P » à P. Identifiez à quelle loi
+classique cette inférence est équivalente.</li>
+<li>Voici maintenant le prix. Une démonstration directe de « il existe x tel que
+\( Q(x) \) » vous remet d'ordinaire un x ; un raisonnement par l'absurde n'y est pas tenu.
+Prenez l'argument à deux cas de PRF-45 et la coloration aléatoire de PRF-48, et dans chaque
+cas désignez l'unique étape qui détruit le témoin.</li>
+<li>Enfin, lisez ce que les constructivistes font à la place. Énoncez la lecture de
+Brouwer–Heyting–Kolmogorov du « ou » et du « il existe », expliquez pourquoi, sous cette
+lecture, l'argument de PRF-45 n'est pas du tout une démonstration, puis dites précisément ce
+que l'on y gagne : nommez une chose qu'une démonstration constructive d'un énoncé
+d'existence vous donne et qu'une démonstration classique ne donne pas.</li>
+</ol>
+</div>
+<p class="context">Brouwer a commencé à attaquer le principe du tiers exclu sans restriction
+vers 1908, et Hilbert a répondu qu'ôter ce principe au mathématicien reviendrait à refuser le
+télescope à l'astronome ou à interdire au boxeur l'usage de ses poings. La querelle n'a jamais
+été tranchée, plutôt affinée : Gödel et Gentzen ont montré en 1933 que l'arithmétique
+classique se traduit dans l'arithmétique intuitionniste par insertion de doubles négations,
+de sorte que le raisonnement classique ne démontre rien de neuf quant à la cohérence — ce
+qu'il change, c'est le <i>contenu</i> d'une démonstration, non sa sûreté. Les <i>Foundations
+of Constructive Analysis</i> d'Errett Bishop (1967) ont ensuite fait ce que les arguments ne
+peuvent pas faire : reconstruire constructivement une large part de l'analyse, pour montrer
+que c'était faisable. L'enjeu n'est plus seulement philosophique. Sous la correspondance de
+Curry–Howard, une démonstration constructive d'un énoncé d'existence <i>est</i> un programme
+qui produit l'objet, ce qui explique que les assistants de preuve se soucient intensément de
+savoir quelles étapes sont classiques.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_du_tiers_exclu">Principe du tiers exclu — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Logique_intuitionniste">Logique intuitionniste — Wikipédia</a></li>
+<li>Lecture : E. Bishop, <i>Foundations of Constructive Analysis</i> (McGraw-Hill, 1967)</li>
+<li>Lecture : D. Bridges &amp; F. Richman, <i>Varieties of Constructive Mathematics</i> (Cambridge, 1987)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-57" data-level="Licence" data-kind="court">
+<h3>PRF-57 · Récurrence sur la structure, non sur les nombres <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Définissez un arbre binaire comme étant soit une
+feuille unique, soit un couple ordonné d'arbres binaires, et définissez une formule
+propositionnelle comme étant soit un atome, soit \( \neg \varphi \) pour une formule φ, soit
+\( (\varphi \wedge \psi) \) pour des formules φ et ψ. Démontrez par induction structurelle
+que tout arbre binaire a exactement une feuille de plus qu'il n'a de nœuds internes, et que
+toute formule propositionnelle contient autant de parenthèses ouvrantes que de fermantes —
+puis énoncez sur quelle relation bien fondée chacune de ces inductions s'appuie réellement,
+et pourquoi la récurrence ordinaire sur les entiers naturels en est un cas particulier
+plutôt qu'une rivale.</p>
+<p class="context">On enseigne d'ordinaire la récurrence comme un énoncé sur ℕ, ce qui masque
+ce qui la fait fonctionner : n'importe quelle relation sans chaîne descendante infinie fera
+l'affaire, et les objets construits par une grammaire finie portent gratuitement une telle
+relation. R. M. Burstall a mis ce point au service de l'informatique en 1969, et l'induction
+structurelle est aujourd'hui la manière dont on vérifie compilateurs, systèmes de types et
+assistants de preuve — les démonstrations de mathlib sur la syntaxe sont des inductions
+structurelles presque à la ligne près. Le fait jumeau, à savoir que les <i>définitions</i>
+récursives sur de telles structures sont légitimes, est un théorème à part entière et vaut
+d'être poursuivi après celui-ci. Comparez avec PRF-41, qui acquitte la dette entre récurrence
+et bon ordre sur ℕ.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Induction_structurelle">Induction structurelle — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Relation_bien_fond%C3%A9e">Relation bien fondée — Wikipédia</a></li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/">MIT OCW 6.042J Mathematics for Computer Science (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-58" data-level="Licence">
+<h3>PRF-58 · La démonstration par la figure, rendue rigoureuse : l'équidécomposabilité <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dites que deux polygones sont <i>équidécomposables</i> si l'un peut
+être découpé en un nombre fini de pièces polygonales que l'on peut réassembler, par
+translations et rotations, en l'autre. PRF-11 demandait quand une figure de découpage compte
+comme une démonstration ; ce problème répond à la question en dimension deux, puis montre où
+les figures s'épuisent — et le démontre.</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Wallace–Bolyai–Gerwien : deux polygones sont
+équidécomposables si et seulement s'ils ont la même aire. (Une voie praticable : tout
+polygone se découpe en triangles, tout triangle en un rectangle, tout rectangle en un
+rectangle de largeur prescrite quelconque, et l'équidécomposabilité est une relation
+d'équivalence.)</li>
+<li>Auditez ce que vous avez fait à l'aune de PRF-11. Lesquelles des hypothèses qu'une
+figure de découpage formule en silence votre démonstration a-t-elle désormais acquittées, et
+lesquelles sont-elles encore supposées — que les pièces ne se rencontrent que le long de
+leurs bords, que l'aire est finiment additive, que les déplacements préservent l'aire ?
+Énoncez comme hypothèses celles que vous conservez.</li>
+<li>Passons à la dimension trois. Énoncez le troisième problème de Hilbert, définissez
+l'invariant de Dehn d'un polyèdre, démontrez qu'il est additif par découpage, et calculez-le
+pour un cube et pour un tétraèdre régulier — tranchant ainsi la question de savoir si un
+cube et un tétraèdre régulier de même volume peuvent être équidécomposables.</li>
+<li>Énoncez le théorème de Sydler (1965) sur les couples de polyèdres qui <i>sont</i>
+équidécomposables, et dites ce qu'il signifie pour le programme des démonstrations par la
+figure dans l'espace. Cherchez ensuite le paradoxe de Banach–Tarski et expliquez, en un
+paragraphe, pourquoi il n'est un contre-exemple à rien de ce qui précède.</li>
+</ol>
+</div>
+<p class="context">Wallace a démontré le théorème bidimensionnel en 1807, et Bolyai et
+Gerwien l'ont redécouvert indépendamment en 1833 et 1835 ; il dit que dans le plan une
+démonstration par découpage n'est jamais l'obstacle — si deux polygones ont la même aire, la
+figure existe et il suffit de la trouver. Gauss s'était plaint dans ses lettres que la théorie
+élémentaire du volume parût requérir des arguments d'exhaustion là où l'aire n'en demandait
+pas, et Hilbert a converti la plainte en le troisième de ses problèmes de 1900 : exhiber deux
+polyèdres de même volume que l'on ne puisse découper l'un en l'autre. Max Dehn a répondu dans
+l'année — le premier des vingt-trois à tomber — en inventant un invariant bâti sur les
+longueurs d'arêtes et les angles dièdres, qui survit au découpage ; Sydler a démontré en 1965
+que le volume et l'invariant de Dehn décident ensemble la question complètement, et Jessen a
+étendu cela à la dimension quatre. La question analogue dans l'espace hyperbolique et dans
+l'espace sphérique est toujours ouverte.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Wallace-Bolyai-Gerwien">Théorème de Wallace-Bolyai-Gerwien — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Troisi%C3%A8me_probl%C3%A8me_de_Hilbert">Troisième problème de Hilbert — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Dehn_invariant">Invariant de Dehn — Wikipédia (en anglais)</a></li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, le chapitre sur le troisième problème de Hilbert</li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="PRF-28" data-level="Master">
+<h3>PRF-28 · La seconde démonstration d'Euler : la somme des 1/p diverge <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Démontrez que
+\[ \sum_{p \text{ premier}} \frac{1}{p} \;=\; \frac{1}{2} + \frac{1}{3} + \frac{1}{5} + \frac{1}{7} + \frac{1}{11} + \cdots \]
+diverge.</p>
+<ol class="parts" type="a">
+<li>Route 1 : rendez rigoureuse la manipulation d'Euler de 1737 — reliez
+\( \sum_{n \le N} \frac{1}{n} \) au produit
+\( \prod_{p \le N} \left(1 - \frac{1}{p}\right)^{-1} \)
+sur les nombres premiers, prenez les logarithmes, et contrôlez les termes d'erreur.</li>
+<li>Route 2 : donnez la démonstration élémentaire par dénombrement d'Erdős (1938), qui n'a
+besoin d'aucun logarithme.</li>
+<li>Tirez ensuite la conséquence qui donne sa force à ce théorème : les nombres premiers
+sont en infinité (Euclide, encore !) et, de surcroît, plus « denses » que les carrés, dont
+la somme des inverses converge (PRF-15). Quantifiez cette dernière remarque aussi finement
+que vous le pouvez.</li>
+</ol>
+</div>
+<p class="context">Les <i>Variae observationes circa series infinitas</i> d'Euler (1737) sont
+l'acte de naissance de la théorie analytique des nombres : la formule du produit reliant la
+fonction zêta aux nombres premiers transforme une question d'arithmétique en une question
+d'analyse. Là où la démonstration d'Euclide produit un nouveau nombre premier à la fois,
+celle d'Euler mesure combien il y en a — Mertens a rendu la mesure précise en 1874, montrant
+que les sommes partielles croissent comme log log x, peut-être la reptation la plus célèbre
+des mathématiques. Un siècle après Euler, Dirichlet a fait tourner le même moteur dans les
+progressions arithmétiques, et Riemann a fait passer la formule du produit dans le complexe.
+La démonstration alternative d'Erdős est la première entrée de <i>Proofs from THE
+BOOK</i>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/S%C3%A9rie_des_inverses_des_nombres_premiers">Série des inverses des nombres premiers — Wikipédia</a></li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, ch. 1</li>
+<li>Lecture : G. H. Hardy &amp; E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 22</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-29" data-level="Master">
+<h3>PRF-29 · La démonstration topologique de Fürstenberg <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Sur les entiers ℤ, dites qu'un ensemble est ouvert s'il est une
+réunion (éventuellement vide) de progressions arithmétiques bilatères
+\( a + b\mathbb{Z} = \{ a + bn : n \in \mathbb{Z} \} \) avec \( b \ne 0 \).</p>
+<ol class="parts" type="a">
+<li>Vérifiez que cela définit une topologie sur ℤ.</li>
+<li>Montrez que tout ouvert non vide est
+infini, et que chaque ensemble de base \( a + b\mathbb{Z} \) est fermé autant qu'ouvert.</li>
+<li>Déduisez-en qu'il existe une infinité de nombres premiers, en contemplant l'ensemble
+\( \bigcup_{p \text{ premier}} p\mathbb{Z} \) et son complémentaire.</li>
+<li>Vient maintenant la question de
+discussion, à laquelle il faut répondre par une position et un argument : est-ce une
+démonstration véritablement nouvelle du théorème d'Euclide, ou bien l'arithmétique d'Euclide
+elle-même vêtue de langage topologique ? Quel travail, exactement, la topologie
+accomplit-elle ?</li>
+</ol>
+</div>
+<p class="context">Harry Fürstenberg a publié cette merveille d'une demi-page dans l'<i>American
+Mathematical Monthly</i> en 1955, alors qu'il était encore étudiant de premier cycle à
+l'université Yeshiva ; il devait ensuite révolutionner la théorie ergodique et partager le
+prix Abel 2020. Cette démonstration est une favorite précisément parce qu'elle provoque la
+question (d) : les mathématiciens ne s'accordent pas sur le point de savoir si la topologie
+fait un travail réel ou fournit un emballage brillant, et décider ce qui fait que deux
+démonstrations sont « la même » se révèle une sérieuse question philosophique sur la
+démonstration elle-même — question qui reparaît au niveau recherche en théorie de la
+démonstration.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9monstration_de_Furstenberg_de_l%27infinit%C3%A9_des_nombres_premiers">Démonstration de Furstenberg de l'infinité des nombres premiers — Wikipédia</a></li>
+<li>Article : H. Furstenberg, « On the infinitude of primes » (1955), <i>American Mathematical Monthly</i> 62, p. 353</li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-30" data-level="Master">
+<h3>PRF-30 · Schröder–Bernstein <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le théorème de Schröder–Bernstein : s'il existe des injections
+\( f\colon A \to B \) et \( g\colon B \to A \), alors il existe une bijection entre A et
+B.</p>
+<ol class="parts" type="a">
+<li>Démontrez-le. Votre démonstration ne doit pas invoquer l'axiome du choix. Deux
+stratégies classiques à traquer : partitionner A et B en remontant l'ascendance de chaque
+élément, en avant et en arrière à travers f et g, et voir où cette ascendance s'arrête ; ou
+appliquer un principe de point fixe pour les applications monotones d'ensembles
+(Knaster–Tarski).</li>
+<li>Après avoir démontré le théorème, exhibez un couple concret — les intervalles
+\( [0,1] \) et \( (0,1) \), avec des injections de votre choix — et décrivez explicitement
+la bijection que votre démonstration en construit.</li>
+</ol>
+</div>
+<p class="context">Un théorème doté d'une comédie de paternité : Cantor l'a énoncé en 1887,
+mais sa voie s'appuyait sur des principes équivalents à l'axiome du choix ; Dedekind avait
+dans ses carnets, la même année, une démonstration nette et sans axiome du choix, qu'il n'a
+jamais publiée ; Schröder a imprimé en 1896 une démonstration que l'on a plus tard trouvée
+fallacieuse ; et la première démonstration correcte publiée est venue en 1897 de Felix
+Bernstein — étudiant de dix-neuf ans du séminaire de Cantor — parvenant à l'impression par le
+traité de Borel de 1898. C'est l'outil fondamental qui fait que la comparaison des cardinaux
+se comporte comme un ordre, et les deux démonstrations standard offrent un beau contraste de
+styles : l'une dynamique et imagée, l'autre relevant de la théorie des ordres et
+abstraite.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cantor-Bernstein">Théorème de Cantor-Bernstein — Wikipédia</a></li>
+<li>Lecture : P. R. Halmos, <i>Naive Set Theory</i> (1960)</li>
+<li>Lecture : R. Hammack, <i>Book of Proof</i>, ch. 14</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-31" data-level="Master">
+<h3>PRF-31 · La descente infinie de Fermat <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'arme propre de Fermat : la <i>descente infinie</i>.</p>
+<ol class="parts" type="a">
+<li>Démontrez par descente infinie que l'équation
+\( x^4 + y^4 = z^2 \) n'a pas de solution en entiers strictement positifs : de toute
+solution supposée, fabriquez-en une strictement plus petite, et expliquez soigneusement
+pourquoi cela constitue une démonstration (quel principe de PRF-12 la garantit ?).
+Déduisez-en le cas \( n = 4 \) du grand théorème de Fermat : \( x^4 + y^4 = z^4 \) n'a pas
+de solution en entiers strictement positifs.</li>
+<li>Démontrez le théorème de Fermat
+sur les triangles rectangles : aucun triangle rectangle dont les côtés ont des longueurs
+entières n'a une aire égale à un carré parfait.</li>
+<li>Expliquez le rapport logique entre (a) et (b).</li>
+</ol>
+</div>
+<p class="context">Parmi les quarante-huit observations que Fermat a griffonnées dans son
+exemplaire de Diophante — publiées par son fils Samuel en 1670, cinq ans après la mort de
+Fermat —, le théorème sur les triangles rectangles est la seule accompagnée d'une véritable
+démonstration : c'est donc l'unique spécimen complet subsistant de la méthode propre du
+maître, la <i>descente infinie ou indéfinie</i>. La descente, c'est l'absurde mû par le bon
+ordre : un plus petit criminel ne peut exister si tout criminel en engendre un plus petit. Le
+théorème dit aussi que 1 n'est pas un <i>nombre congruent</i> (l'aire d'un triangle rectangle
+rationnel), problème que Fibonacci avait soulevé en 1225 ; son prolongement moderne passe par
+le théorème de Tunnell (1983) et va droit à la conjecture de Birch et Swinnerton-Dyer —
+voyez la page des problèmes ouverts. L'histoire écrite par Weil reconstitue le raisonnement
+de Fermat dans un détail amoureux.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_de_descente_infinie">Méthode de descente infinie — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Fermat_sur_les_triangles_rectangles">Théorème de Fermat sur les triangles rectangles — Wikipédia</a></li>
+<li>Lecture : A. Weil, <i>Number Theory: An Approach Through History from Hammurapi to Legendre</i> (1984), ch. II</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-32" data-level="Master">
+<h3>PRF-32 · Un théorème, trois publics <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Prenez un théorème de cette page que vous avez déjà démontré —
+PRF-02 ou PRF-14 sont idéaux — et rédigez-en la démonstration trois fois.</p>
+<ol class="parts" type="a">
+<li>Pour un lycéen
+curieux : aucun symbole au-delà de l'arithmétique, chaque idée motivée, rien de perdu.</li>
+<li>Pour une revue : rigueur complète, dans les conventions de Halmos et de Su, aussi
+économe que l'honnêteté le permet.</li>
+<li>Sous forme de squelette de formalisation : dressez la liste de chaque définition,
+axiome et lemme qu'un assistant de preuve tel que Lean vous forcerait à fournir — jusqu'à
+la raison pour laquelle un produit d'entiers est un entier — dans l'ordre des dépendances,
+sans nécessairement écrire le code.</li>
+<li>Puis, en un paragraphe : qu'est-ce que chaque public vous a forcé à comprendre que les
+deux autres vous laissaient sauter ?</li>
+</ol>
+</div>
+<p class="context">L'essai de Thurston « On Proof and Progress in Mathematics » (1994) —
+écrit en réponse à un débat sur la rigueur dans le <i>Bulletin of the AMS</i> — soutient que
+les mathématiques avancent par la compréhension humaine, dont la démonstration formelle est
+la partie porteuse mais non l'unique ; une démonstration s'écrit <i>à</i> quelqu'un. Le
+troisième public n'est plus hypothétique : mathlib, la bibliothèque de la communauté Lean,
+contient désormais une large part du canon de premier cycle (théorème d'Euclide compris), et
+l'achèvement en 2022 du Liquid Tensor Experiment a montré la démonstration vérifiée par
+machine atteignant la frontière de la recherche. Traduire une même vérité dans trois
+registres est ce que l'écriture de démonstrations offre de plus proche d'un entraînement
+complet.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lean_%28assistant_de_preuve%29">Lean (assistant de preuve) — Wikipédia</a></li>
+<li>Article : W. P. Thurston, « On Proof and Progress in Mathematics » (1994), <a href="https://arxiv.org/abs/math/9404236">arXiv:math/9404236</a></li>
+<li>Article : F. E. Su, « Guidelines for Good Mathematical Writing » (2015), <a href="https://math.hmc.edu/su/wp-content/uploads/sites/10/2020/08/Guidelines-for-Good-Mathematical-Writing.pdf">PDF (en anglais)</a></li>
+<li>Lecture : P. R. Halmos, « How to Write Mathematics » (1970), <i>L'Enseignement Mathématique</i> 16</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-48" data-level="Master">
+<h3>PRF-48 · La méthode probabiliste : démontrer l'existence à pile ou face <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( R(k,k) \) le plus petit n tel que toute coloration en rouge et
+bleu des arêtes du graphe complet \( K_n \) contienne un \( K_k \) monochrome. La méthode
+probabiliste démontre qu'un objet existe en montrant qu'un objet tiré au hasard a une
+probabilité strictement positive de convenir.</p>
+<ol class="parts" type="a">
+<li>Colorez les arêtes de \( K_n \) indépendamment et uniformément au hasard. Démontrez que si
+\[ \binom{n}{k} 2^{\,1 - \binom{k}{2}} \;\lt\; 1 \]
+alors \( R(k,k) \gt n \), et déduisez-en la borne d'Erdős \( R(k,k) \gt 2^{k/2} \) pour
+\( k \ge 3 \).</li>
+<li>Le raffinement par suppression : au lieu d'exiger zéro copie monochrome, majorez leur
+<i>nombre espéré</i>, supprimez un sommet dans chacune, et montrez que cela donne une
+minoration strictement meilleure qu'en (a). Énoncez le principe général que vous venez
+d'employer, sous une forme qui ne mentionne pas les graphes.</li>
+<li>Énoncez précisément le lemme local de Lovász (Erdős–Lovász, 1975), y compris
+l'hypothèse sur le graphe de dépendance, et employez-le pour démontrer que tout hypergraphe
+k-uniforme dans lequel chaque arête en rencontre au plus \( 2^{k}/e - 1 \) autres admet une
+2-coloration propre de ses sommets (aucune arête monochrome).</li>
+<li>Voici maintenant la piqûre. Chacune des démonstrations ci-dessus montre qu'une
+coloration existe sans en produire aucune. Expliquez précisément quelle étape détruit la
+construction, et lisez ce que l'on sait de sa récupération : Moser et Tardos (2010) ont
+transformé le lemme local en algorithme, tandis que construire explicitement une coloration
+de \( K_n \) sans clique monochrome de taille \( C\log n \) — à la hauteur de ce qu'obtient
+un tirage à pile ou face — reste ouvert, les meilleures constructions explicites, après les
+travaux de Chattopadhyay et Zuckerman de 2016 sur les extracteurs à deux sources, demeurant
+très en deçà de la borne aléatoire.</li>
+</ol>
+</div>
+<p class="context">La note d'Erdős de 1947 sur les nombres de Ramsey fait trois pages, et
+l'argument de la question (a) en occupe un paragraphe ; elle a changé ce qu'un
+combinatoricien entend par « il existe ». Szele avait employé l'idée en 1943 pour produire
+des tournois à nombreux chemins hamiltoniens, mais c'est Erdős qui en a fait une méthode, et
+le livre d'Alon et Spencer qui en a fait un sujet. Philosophiquement, la méthode voisine avec
+le tour à deux cas de PRF-45 et les contre-exemples invoqués par l'axiome du choix de
+PRF-43 : une démonstration peut être étanche, quantitative, voire optimale, et refuser malgré
+tout de livrer l'objet qu'elle promet. Ce refus s'est révélé fécond — la recherche de
+substituts constructifs a engendré la technique de compression d'entropie, la théorie des
+extracteurs d'aléa et une bonne part de la dérandomisation.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_probabiliste">Méthode probabiliste — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_local_de_Lov%C3%A1sz">Lemme local de Lovász — Wikipédia</a></li>
+<li>Article : P. Erdős, « Some remarks on the theory of graphs » (1947), <i>Bulletin of the AMS</i> 53</li>
+<li>Article : R. A. Moser &amp; G. Tardos, « A constructive proof of the general Lovász Local Lemma » (2010), <i>Journal of the ACM</i> 57</li>
+<li>Lecture : N. Alon &amp; J. H. Spencer, <i>The Probabilistic Method</i></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-49" data-level="Master" data-kind="court">
+<h3>PRF-49 · Une identité, deux démonstrations : bijection ou série génératrice <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez le théorème d'Euler selon lequel le nombre
+de partitions de n en parts impaires égale le nombre de partitions de n en parts distinctes
+— deux fois : une fois en exhibant une bijection explicite entre les deux ensembles de
+partitions, une fois en démontrant l'identité de séries formelles
+\[ \prod_{i \ge 1} \frac{1}{1 - q^{2i-1}} \;=\; \prod_{i \ge 1} \bigl(1 + q^{i}\bigr). \]
+Décidez ensuite laquelle des deux vous emploieriez pour répondre à « quelle partition de 100
+en parts distinctes correspond à \( 99 + 1 \) ? », et dites ce que cela vous apprend sur la
+différence entre les deux.</p>
+<p class="context">Euler a démontré l'identité analytiquement dans l'<i>Introductio</i>
+(1748) ; la bijection est venue plus tard, dans les travaux de Glaisher (1883), et procède en
+scindant chaque part impaire répétée en puissances de deux — une procédure, non une formule.
+Le couple est le cas d'école standard d'un véritable clivage méthodologique : les séries
+génératrices sont mécaniques, robustes, et se généralisent par l'algèbre, tandis qu'une
+bijection est une pièce d'ingénierie combinatoire qui transporte réellement un objet vers un
+autre et que l'on peut exécuter de tête. La démonstration par involution donnée par Franklin
+en 1881 du théorème des nombres pentagonaux d'Euler est l'archétype du second genre, et la
+même tension est à l'œuvre dans l'involution de PRF-47.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Glaisher%27s_theorem">Théorème de Glaisher — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Partition_d%27un_entier">Partition d'un entier — Wikipédia</a></li>
+<li>Lecture : G. E. Andrews, <i>The Theory of Partitions</i> (1976), ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-50" data-level="Master" data-kind="court">
+<h3>PRF-50 · Le squelette de la démonstration de Bertrand par Erdős <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Lisez la démonstration par Erdős du postulat de
+Bertrand — pour tout entier \( n \ge 1 \) il existe un nombre premier p avec
+\( n \lt p \le 2n \) — et reconstituez-en le squelette : dressez dans l'ordre la liste de
+chaque lemme qu'elle emploie sur le coefficient binomial central \( \binom{2n}{n} \),
+énoncez chacun comme une inégalité autonome, et signalez celui qui fait le vrai travail.
+Déterminez ensuite quels lemmes il faudrait renforcer, et de combien, pour démontrer le même
+énoncé sur l'intervalle plus court \( (n, \tfrac{3}{2}n] \).</p>
+<p class="context">Bertrand a conjecturé l'énoncé en 1845 après l'avoir vérifié à la main
+jusqu'à trois millions ; Tchebychev l'a démontré en 1852 avec une lourde machinerie ;
+Ramanujan en a donné une démonstration plus courte en 1919 ; et en 1932 Erdős, âgé de
+dix-neuf ans, a publié, comme tout premier article, un argument n'utilisant rien de plus que
+la décomposition en facteurs premiers de \( \binom{2n}{n} \) et une majoration du produit des
+nombres premiers. Démonter une démonstration achevée en ses pièces porteuses est un
+savoir-faire distinct de celui d'en trouver une — et le moyen de découvrir quelles hypothèses
+étaient réellement nécessaires. Pièce jumelle des exercices de réécriture PRF-27 et
+PRF-32.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Postulat_de_Bertrand">Postulat de Bertrand — Wikipédia</a></li>
+<li>Article : P. Erdős, « Beweis eines Satzes von Tschebyschef » (1932), <i>Acta Litterarum ac Scientiarum (Szeged)</i> 5, 194–198</li>
+<li>Lecture : M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i>, le chapitre sur le postulat de Bertrand</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-59" data-level="Master">
+<h3>PRF-59 · Trouvez l'axiome du choix <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Quelque part dans la plupart des arguments ci-dessous, une sélection
+est faite une infinité de fois et personne ne le dit. L'exercice consiste à trouver l'étape,
+à la nommer, et à déterminer ce qu'elle coûte réellement en axiome du choix.</p>
+<ol class="parts" type="a">
+<li>Pour chacune des démonstrations standard suivantes, localisez l'étape qui emploie une
+forme de l'axiome du choix et identifiez le principe le plus faible qui suffise — l'axiome
+du choix complet, le choix dépendant, le choix dénombrable, ou aucun du tout : (i) tout
+ensemble infini possède une partie infinie dénombrable ; (ii) une réunion dénombrable
+d'ensembles dénombrables est dénombrable ; (iii) pour
+\( f\colon \mathbb{R} \to \mathbb{R} \), la continuité en a au sens séquentiel entraîne la
+continuité en a au sens ε–δ ; (iv) toute surjection admet un inverse à droite ; (v) tout
+espace vectoriel possède une base.</li>
+<li>Deux des cinq ne sont pas de simples usagers d'un principe : ils lui sont équivalents.
+Démontrez que « toute surjection \( g\colon B \to A \) admet un inverse à droite » est
+équivalent à l'axiome du choix au-dessus de ZF, et énoncez — avec une référence, la
+démonstration étant difficile — le théorème de Blass selon lequel « tout espace vectoriel
+possède une base » lui est équivalent aussi.</li>
+<li>Exercez la discipline sur (iii) : réécrivez la démonstration habituelle de sorte que le
+choix soit complètement explicite, en affichant la famille d'ensembles non vides et la
+fonction de choix que l'on en extrait. Déterminez ensuite, à partir des références, si une
+démonstration de (iii) sans axiome du choix est seulement possible, et dites quel genre
+d'élément pourrait trancher une telle question.</li>
+<li>Enfin la méta-question, en un paragraphe. Gödel a démontré en 1938 que l'axiome du
+choix est cohérent avec ZF, et Cohen a démontré en 1963 que sa négation l'est aussi : aucune
+contradiction ne peut donc naître de son emploi. PRF-30 exigeait pourtant une démonstration
+de Schröder–Bernstein sans axiome du choix. Pourquoi les mathématiciens se soucient-ils de
+savoir quels axiomes une démonstration consomme ?</li>
+</ol>
+</div>
+<p class="context">Zermelo a isolé l'axiome en 1904 afin de démontrer que tout ensemble peut
+être bien ordonné, et la réaction fut féroce : Baire, Borel et Lebesgue ont publié des
+objections en quelques mois, réunies dans les <i>Cinq lettres sur la théorie des ensembles</i>
+de Hadamard (1905), et la dispute portait exactement sur ce que la question (c) vous demande
+de faire — savoir si une démonstration peut invoquer une sélection qu'elle ne sait pas
+décrire. L'image de Russell est celle dont tout le monde se souvient : choisir une chaussure
+dans chacune d'une infinité de paires ne demande aucun axiome, car « la gauche » est une
+règle ; choisir une chaussette dans chacune d'une infinité de paires indiscernables demande
+l'axiome. L'habitude de suivre l'axiome du choix à la trace n'est pas une manie d'antiquaire.
+C'est la même habitude que les mathématiques à rebours ont transformée en programme de
+recherche (PRF-63), et la même qui fait qu'un assistant de preuve vous demande quels
+principes classiques vous voulez activer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Axiome_du_choix">Axiome du choix — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Axiome_du_choix_d%C3%A9nombrable">Axiome du choix dénombrable — Wikipédia</a></li>
+<li>Lecture : T. J. Jech, <i>The Axiom of Choice</i> (North-Holland, 1973)</li>
+<li>Article : A. Blass, « Existence of bases implies the axiom of choice » (1984), <i>Contemporary Mathematics</i> 31</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-60" data-level="Master">
+<h3>PRF-60 · Le Nullstellensatz combinatoire comme arme <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le Nullstellensatz combinatoire d'Alon. Soit F un corps et soit
+\( f \in F[x_1, \dots, x_n] \) de degré total \( k_1 + \cdots + k_n \) ; supposons que le
+coefficient de \( x_1^{k_1} \cdots x_n^{k_n} \) dans f soit non nul. Si
+\( A_1, \dots, A_n \) sont des parties finies de F avec \( |A_i| > k_i \) pour tout i, alors
+il existe des \( a_i \in A_i \) tels que \( f(a_1, \dots, a_n) \ne 0 \).</p>
+<ol class="parts" type="a">
+<li>Démontrez-le. (Route : le fait, à une variable, qu'un polynôme non nul de degré d a au
+plus d racines, joint à la réduction de f modulo les polynômes
+\( g_i(x_i) = \prod_{a \in A_i} (x_i - a) \), qui ne change aucun coefficient
+pertinent.)</li>
+<li>Déduisez-en le théorème de Cauchy–Davenport : pour un nombre premier p et des parties
+non vides A, B de \( \mathbb{Z}/p\mathbb{Z} \),
+\[ |A + B| \;\ge\; \min\{\, p,\; |A| + |B| - 1 \,\}. \]
+Tout l'art est de choisir le polynôme ; dites ensuite comment vous l'auriez
+trouvé.</li>
+<li>Déduisez-en le théorème d'Erdős–Ginzburg–Ziv : parmi \( 2n - 1 \) entiers quelconques,
+il en existe n dont la somme est divisible par n. Traitez d'abord le cas premier, puis
+ramenez-y le cas général, et énoncez exactement où la réduction a besoin du cas premier et
+non du seul énoncé.</li>
+<li>Vient ensuite la question méthodologique que cette page ne cesse de poser. Le
+Nullstellensatz démontre qu'un bon choix existe en exhibant un coefficient non nul — un
+objet d'une tout autre nature que celui qui était promis. Comparez-le à la méthode
+probabiliste de PRF-48 : laquelle des deux, si tant est que l'une des deux le puisse,
+peut-on amener à produire un témoin pour (b), et à quel prix ?</li>
+</ol>
+</div>
+<p class="context">La technique est née des travaux d'Alon et Tarsi de 1989 sur les
+colorations et les orientations de graphes, a été affûtée avec Nathanson et Ruzsa en 1995-96,
+et a reçu son nom et son énoncé net dans l'exposé de synthèse d'Alon de 1999, qui reste le
+meilleur endroit où l'apprendre. Ce qui en a fait un jalon, c'est le transfert : des questions
+additives sur des ensembles de résidus, des questions de coloration sur des graphes et des
+questions de recouvrement sur le cube sont toutes devenues des questions portant sur un unique
+coefficient d'un polynôme que l'on a le droit de concevoir. Ce geste — encoder le problème
+dans un polynôme, puis y lire un coefficient — s'appelle aujourd'hui la méthode polynomiale,
+et ses triomphes ultérieurs sont saisissants : la solution par Dvir, en 2008, du problème de
+Kakeya sur les corps finis tient en une page, et l'idée de Croot, Lev et Pach a donné à
+Ellenberg et Gijswijt, en 2016, la borne sur les cap sets, après des décennies de
+stagnation.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Combinatorial_Nullstellensatz">Nullstellensatz combinatoire — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Somme_restreinte_d%27ensembles">Somme restreinte d'ensembles (théorème de Cauchy–Davenport) — Wikipédia</a></li>
+<li>Article : N. Alon, « Combinatorial Nullstellensatz » (1999), <i>Combinatorics, Probability and Computing</i> 8, 7–29</li>
+<li>Lecture : L. Guth, <i>Polynomial Methods in Combinatorics</i> (AMS, 2016)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-61" data-level="Master" data-kind="court">
+<h3>PRF-61 · Une seule diagonale, cinq théorèmes <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez le cas ensembliste du théorème du point fixe
+de Lawvere : si A et B sont des ensembles et si une application \( f\colon A \to B^{A} \) est
+<i>point-surjective</i> — toute fonction \( A \to B \) est égale à \( f(a) \) pour un certain
+\( a \in A \) — alors toute \( g\colon B \to B \) possède un point fixe. Lisez ensuite la
+contraposée comme une usine et faites-la tourner cinq fois, en en dérivant le théorème de
+Cantor, le paradoxe de Russell, l'indécidabilité du problème de l'arrêt, le théorème
+d'indéfinissabilité de Tarski et le premier théorème d'incomplétude de Gödel, et en disant à
+chaque fois exactement ce que sont A, B, f et le g sans point fixe.</p>
+<p class="context">PRF-21 vous demandait d'énoncer le canevas diagonal assez abstraitement
+pour couvrir deux théorèmes ; voici ce qui arrive quand quelqu'un le fait pour de bon. William
+Lawvere a publié le théorème en 1969, dans un article sur les catégories cartésiennes fermées
+que la plupart des logiciens n'ont pas lu pendant trente ans, et il dit quelque chose de
+véritablement surprenant : cinq résultats qui semblent appartenir à cinq disciplines
+différentes sont un seul résultat plus cinq dictionnaires, et les « paradoxes » ne sont que le
+constat que certains g n'ont pas de point fixe. L'exposé de Yanofsky de 2003 en retire la
+théorie des catégories et constitue la voie d'accès la plus rapide. Une fois cela fait,
+remarquez ce qu'il en coûte : la démonstration unifiée explique pourquoi les théorèmes sont
+vrais et n'est presque d'aucun secours pour démontrer quoi que ce soit de nouveau — une
+tension qu'il vaut la peine de garder à l'esprit.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Lawvere%27s_fixed-point_theorem">Théorème du point fixe de Lawvere — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Diagonal_lemma">Lemme de diagonalisation — Wikipédia (en anglais)</a></li>
+<li>Article : F. W. Lawvere, « Diagonal arguments and cartesian closed categories » (1969), <i>Lecture Notes in Mathematics</i> 92</li>
+<li>Article : N. S. Yanofsky, « A universal approach to self-referential paradoxes, incompleteness and fixed points » (2003), <i>Bulletin of Symbolic Logic</i> 9, 362–386, <a href="https://arxiv.org/abs/math/0305282">arXiv:math/0305282</a></li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="PRF-33" data-level="Recherche">
+<h3>PRF-33 · Après Bâle : les valeurs impaires de zêta <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Euler ne s'est pas arrêté à \( \zeta(2) \) : il a démontré
+que \( \zeta(2k) \) est un multiple rationnel de \( \pi^{2k} \) pour tout k.</p>
+<ol class="parts" type="a">
+<li>Échauffement :
+étendez la comparaison de coefficients de PRF-16 pour démontrer
+\( \zeta(4) = \sum 1/n^4 = \pi^4/90 \).</li>
+<li>Reconstituez, à partir du compte rendu informel de van der Poorten, la démonstration
+donnée par Apéry en 1978 de l'irrationalité de \( \zeta(3) = \sum 1/n^3 \).</li>
+<li>Le problème ouvert : déterminer si \( \zeta(5) \) est irrationnel. <b>État :</b>
+ouvert en 2026. Ce que l'on sait : ζ(3) est irrationnel (Apéry, 1978) ; une infinité des
+valeurs impaires ζ(2k+1) sont irrationnelles (Ball–Rivoal, 2001) ; au moins l'une de ζ(5),
+ζ(7), ζ(9), ζ(11) est irrationnelle (Zudilin, 2001). Aucune valeur impaire au-delà de ζ(3)
+n'a été tranchée, et la question de savoir si ζ(3) est transcendant est ouverte elle
+aussi.</li>
+</ol>
+</div>
+<p class="context">Les descendants directs du problème de Bâle. Euler a cherché âprement une
+forme close pour ζ(3) et n'en a trouvé aucune ; nous croyons aujourd'hui qu'il n'en existe
+pas au sens où il l'entendait. Quand Apéry, âgé de 61 ans, a annoncé en 1978 une
+démonstration d'irrationalité n'utilisant que des mathématiques connues d'Euler, l'auditoire
+s'est montré ouvertement incrédule — le compte rendu de van der Poorten, « A proof that
+Euler missed… », consigne la stupéfaction et reste la meilleure porte d'entrée. Le sujet mêle
+aujourd'hui l'élémentaire et le transcendant : l'état de l'art ne parvient toujours pas à
+trancher sur un nombre, ζ(5), que n'importe quelle calculatrice imprime à mille
+décimales.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Ap%C3%A9ry">Théorème d'Apéry — Wikipédia</a></li>
+<li>Article : A. van der Poorten, « A proof that Euler missed… Apéry's proof of the irrationality of ζ(3) » (1979), <i>Mathematical Intelligencer</i> 1</li>
+<li>Article : W. Zudilin, « One of the numbers ζ(5), ζ(7), ζ(9), ζ(11) is irrational » (2001), <i>Russian Mathematical Surveys</i> 56</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-34" data-level="Recherche">
+<h3>PRF-34 · Les nombres premiers de Wilson <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le théorème de Wilson (PRF-20) dit que p divise
+\( (p-1)! + 1 \) pour tout nombre premier p. Un <i>nombre premier de Wilson</i> est un
+nombre premier pour lequel la divisibilité est doublement forte :
+\( p^2 \mid (p-1)! + 1 \).</p>
+<ol class="parts" type="a">
+<li>Vérifiez à la main que 5
+et 13 sont des nombres premiers de Wilson, et à l'ordinateur que 563 en est un.</li>
+<li>Le problème ouvert : démontrez
+ou réfutez qu'il existe une infinité de nombres premiers de Wilson — ou même qu'il en existe
+un quatrième. <b>État :</b> ouvert en 2026. On n'en connaît que 5, 13 et 563 ; une recherche
+exhaustive de Costa, Gerbicz et Harvey n'en a trouvé aucun autre en dessous de
+\( 2 \times 10^{13} \).</li>
+<li>Expliquez l'heuristique standard — traiter \( ((p-1)!+1)/p \bmod p \) comme un résidu
+aléatoire — et déduisez-en la prédiction selon laquelle le nombre de nombres premiers de
+Wilson jusqu'à x devrait croître comme log log x. Que faudrait-il pour transformer une telle
+heuristique en démonstration ?</li>
+</ol>
+</div>
+<p class="context">Un spécimen parfait de frontière de recherche poussant directement sur un
+théorème classique : renforcez une congruence d'une puissance de p et la démontrabilité
+s'effondre. L'heuristique de la question (c) est crue de tous et démontrée par personne — le
+même mur que celui qui se dresse devant les nombres premiers de Fermat, les nombres premiers
+de Mersenne et la conjecture des nombres premiers jumeaux (voyez la page des problèmes
+ouverts). La recherche de Costa, Gerbicz et Harvey est aussi un jalon de la théorie
+algorithmique des nombres : même <i>vérifier</i> la congruence de Wilson assez vite pour
+atteindre \( 2 \times 10^{13} \) a exigé des idées nouvelles sur le calcul des factorielles
+modulo p.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_premier_de_Wilson">Nombre premier de Wilson — Wikipédia</a></li>
+<li>Article : E. Costa, R. Gerbicz &amp; D. Harvey, « A search for Wilson primes » (2014), <i>Mathematics of Computation</i> 83, <a href="https://arxiv.org/abs/1209.3436">arXiv:1209.3436</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-35" data-level="Recherche">
+<h3>PRF-35 · Toutes les tautologies ont-elles des démonstrations courtes ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un système de démonstration propositionnel est, informellement, tout
+format correct et complet permettant de certifier qu'une formule booléenne est une
+tautologie, avec des certificats vérifiables en temps polynomial.</p>
+<ol class="parts" type="a">
+<li>À partir des références, travaillez le
+théorème de Cook–Reckhow : NP = coNP si et seulement s'il existe un système de démonstration
+propositionnel admettant des démonstrations de taille polynomiale pour toutes les
+tautologies. Vérifiez vous-même le sens facile.</li>
+<li>Étudiez le théorème de Haken de 1985 : le système de démonstration par résolution exige
+des démonstrations de taille exponentielle pour les tautologies des tiroirs — l'encodage
+propositionnel du principe de PRF-07 selon lequel n+1 objets ne peuvent entrer
+injectivement dans n tiroirs.</li>
+<li>Le problème ouvert : exhiber une
+famille de tautologies exigeant des démonstrations de taille superpolynomiale dans un
+système de Frege (la logique propositionnelle ordinaire des manuels) — ou démontrer qu'il
+n'en existe aucune. <b>État :</b> ouvert en 2026 ; on ne connaît aucune minoration
+superpolynomiale pour Frege, et la question NP contre coNP reste ouverte (une réponse
+négative impliquerait P ≠ NP).</li>
+</ol>
+</div>
+<p class="context">Ici, la démonstration elle-même devient l'objet des mathématiques. Cook et
+Reckhow ont fondé la complexité des preuves en 1979 précisément pour attaquer P contre NP par
+le côté logique, et la minoration de Haken — le fait « évident » des tiroirs n'admet pas de
+démonstration courte par résolution — fut la première grande victoire du programme, avec une
+morale sur laquelle tout rédacteur de démonstrations devrait méditer : un énoncé peut être
+facile à croire, facile à démontrer avec la bonne idée (une ligne de dénombrement !), et
+démontrablement impossible à démontrer brièvement dans un langage restreint. La distance qui
+sépare la résolution des systèmes de Frege a résisté à quarante ans d'efforts. Voyez la page
+des problèmes ouverts pour l'histoire plus large de P contre NP.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Complexit%C3%A9_des_preuves">Complexité des preuves — Wikipédia</a></li>
+<li>Article : S. A. Cook &amp; R. A. Reckhow, « The relative efficiency of propositional proof systems » (1979), <i>Journal of Symbolic Logic</i> 44</li>
+<li>Article : A. Haken, « The intractability of resolution » (1985), <i>Theoretical Computer Science</i> 39</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-36" data-level="Recherche">
+<h3>PRF-36 · Les droites ordinaires après Sylvester–Gallai <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Sylvester–Gallai (PRF-26) garantit une droite ordinaire ; combien
+doit-il y en avoir ? La conjecture de Dirac–Motzkin affirme que n points non alignés
+déterminent au moins \( n/2 \) droites ordinaires lorsque n est pair (avec des
+configurations exceptionnelles connues pour certains petits n impairs).</p>
+<ol class="parts" type="a">
+<li>Construisez, pour une infinité de n pairs, une
+configuration atteignant exactement \( n/2 \) droites ordinaires.</li>
+<li>Trouvez une configuration de
+7 points n'ayant que 3 droites ordinaires.</li>
+<li>Étudiez le théorème de Green et Tao (2013) : pour tout
+n assez grand, tout ensemble de n points non alignés détermine au moins \( n/2 \)
+droites ordinaires. <b>État :</b> résolu pour tout n assez grand par Green et Tao
+(2013), dont le seuil « assez grand » est astronomiquement grand et ineffectif en
+pratique ; obtenir un seuil explicite et à taille humaine — et donc la conjecture pour
+tout n — reste ouvert en 2026.</li>
+</ol>
+</div>
+<p class="context">Un arc long d'un siècle : le casse-tête de Sylvester en 1893, la
+démonstration de Gallai en 1944, les deux lignes parfaites de Kelly, puis un saut de
+difficulté d'un tout autre ordre — la démonstration de Green et Tao fait intervenir la
+géométrie algébrique des courbes cubiques, montrant que les configurations à peu de droites
+ordinaires doivent épouser une cubique (la configuration hessienne de PRF-26 n'est pas un
+hasard). C'est un modèle de la façon dont un théorème classique résolu continue d'engendrer
+de la recherche : remplacez « au moins une » par « combien » et un sujet élémentaire rencontre
+la frontière. Leur article a du même coup réglé, pour n grand, le problème de la plantation
+du verger de 1868.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Sylvester-Gallai">Théorème de Sylvester-Gallai — Wikipédia</a></li>
+<li>Article : B. Green &amp; T. Tao, « On sets defining few ordinary lines » (2013), <i>Discrete &amp; Computational Geometry</i> 50, <a href="https://arxiv.org/abs/1208.4714">arXiv:1208.4714</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-51" data-level="Recherche">
+<h3>PRF-51 · Quand le rapporteur est une machine <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Plusieurs théorèmes reposent désormais sur des démonstrations
+qu'aucun humain n'a lues intégralement : le théorème des quatre couleurs (Appel–Haken,
+1976 ; simplifié par Robertson, Sanders, Seymour et Thomas, 1997 ; formalisé en Coq par
+Gonthier, 2005), la conjecture de Kepler (Hales, 1998, dont les rapporteurs ont refusé de la
+certifier complètement — formalisée par le projet Flyspeck, achevé en 2014 et publié en
+2017), et le théorème de Feit–Thompson sur l'ordre impair (formalisé en Coq par Gonthier et
+ses collaborateurs, 2012).</p>
+<ol class="parts" type="a">
+<li>Énoncez exactement ce qu'établit un assistant de preuve. Décrivez la base de confiance
+d'une démonstration en Lean ou en Coq — noyau, axiomes, l'énoncé du théorème lui-même — et
+expliquez pourquoi « un ordinateur l'a vérifié » est une affirmation portant sur un système
+formel donné, et pourquoi l'énoncé que l'on formalise est justement la partie qu'une machine
+ne peut pas vérifier à votre place.</li>
+<li>Formalisez, en Lean 4 avec mathlib, un théorème que vous savez démontrer en une page :
+l'irrationalité de \( \sqrt{2} \) (PRF-02) ou l'infinité des nombres premiers (PRF-14).
+Mesurez le rapport de la longueur formelle à la longueur informelle — le « facteur de de
+Bruijn » — et identifiez quelles étapes informelles se sont le plus dilatées. Débattez de ce
+que révèle cette dilatation.</li>
+<li>Prenez position, éléments à l'appui, sur la question de la vérifiabilité humaine
+soulevée par Tymoczko en 1979 : si personne ne peut vérifier une démonstration, en quel sens
+la communauté connaît-elle le théorème ? Opposez le cas du théorème des quatre couleurs à
+celui du Liquid Tensor Experiment (2020-2022), où Scholze a demandé la vérification par
+machine d'une démonstration qu'il avait écrite et à laquelle il ne se fiait pas
+entièrement, et à celui du théorème polynomial de Freiman–Ruzsa de Gowers, Green, Manners et
+Tao (2023), formalisé quelques semaines après son annonce.
+<b>État :</b> ouvert, et en partie non mathématique. On ne connaît aucune démonstration sans
+ordinateur du théorème des quatre couleurs ni de la conjecture de Kepler, et aucun théorème
+ne dit qu'il ne peut en exister ; savoir si les démonstrations vérifiées par machine
+resteront une spécialité ou deviendront la norme se décide dans la pratique, à ce jour en
+2026.</li>
+</ol>
+</div>
+<p class="context">La démonstration du théorème des quatre couleurs par Appel et Haken en
+1976 a vérifié 1 834 configurations réductibles par ordinateur et a provoqué une véritable
+crise : des mathématiciens qui avaient passé un siècle à échouer à démontrer le théorème
+s'entendaient dire qu'il était vrai par une machine dont ils ne pouvaient auditer la sortie.
+Le développement en Coq de Gonthier, en 2005, a répondu à la forme la plus étroite de
+l'objection — l'argument est réellement correct, jusqu'aux axiomes — sans toucher à la plus
+large, à savoir que la compréhension n'a jamais été obtenue. Trente ans plus tard, l'humeur
+s'est inversée : Hales s'est tourné vers la formalisation parce que des rapporteurs humains
+ne parvenaient pas à finir, et Scholze parce qu'il voulait faire vérifier une démonstration
+de son cru. La question de cette section n'est donc pas « les ordinateurs auront-ils raison »
+mais à quoi servent les mathématiques ; voyez aussi PRF-32 sur l'écriture d'un même théorème
+pour trois publics, et PRF-35 sur les démonstrations qu'un système formel ne peut exprimer
+qu'à une longueur déraisonnable.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Preuve_assist%C3%A9e_par_ordinateur">Preuve assistée par ordinateur — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_quatre_couleurs">Théorème des quatre couleurs — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lean_%28assistant_de_preuve%29">Lean (assistant de preuve) — Wikipédia</a></li>
+<li>Article : G. Gonthier, « Formal Proof — The Four-Color Theorem » (2008), <i>Notices of the AMS</i> 55</li>
+<li>Article : T. C. Hales et al., « A formal proof of the Kepler conjecture » (2017), <i>Forum of Mathematics, Pi</i> 5</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-52" data-level="Recherche" data-kind="court">
+<h3>PRF-52 · À quelle vitesse croissent les nombres de Ramsey diagonaux ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Erdős–Szekeres (1935) donne
+\( R(k,k) \le 4^{k} \) et la coloration aléatoire de PRF-48 donne
+\( R(k,k) \gt 2^{k/2} \) ; en 2023 Campos, Griffiths, Morris et Sahasrabudhe ont démontré
+\( R(k,k) \le (4-\varepsilon)^{k} \) pour une constante absolue \( \varepsilon \gt 0 \),
+la première amélioration exponentielle en quatre-vingt-huit ans. Déterminez le véritable taux
+de croissance exponentielle : décidez si \( \lim_{k\to\infty} R(k,k)^{1/k} \) existe et, si
+oui, calculez-le.</p>
+<p class="context"><b>État : ouvert</b> — même l'existence de la limite est inconnue, et
+Erdős avait notoirement offert des prix distincts pour les deux moitiés de la question. Lisez
+la démonstration de 2023 pour ce qu'elle fait à la constante, et pas seulement pour la
+constante : l'argument est un tour de force de comptabilité bâti sur une construction
+algorithmique dite « du livre », et il montre que huit décennies d'immobilité tenaient à une
+idée manquante plutôt qu'à une barrière. La minoration a elle aussi bougé récemment, la
+constante de l'estimation d'Erdős de 1947 ayant été améliorée pour la première fois.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Ramsey">Théorème de Ramsey — Wikipédia</a></li>
+<li>Article : M. Campos, S. Griffiths, R. Morris &amp; J. Sahasrabudhe, « An exponential improvement for diagonal Ramsey » (2023), <i>Annals of Mathematics</i> 203 (2026), <a href="https://arxiv.org/abs/2303.09521">arXiv:2303.09521</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-53" data-level="Recherche" data-kind="court">
+<h3>PRF-53 · La conjecture de Frankl sur les familles stables par union <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> La conjecture de Frankl (1979) affirme que dans toute
+famille finie d'ensembles stable par union — autre que la famille \( \{\emptyset\} \) — un
+élément appartient à au moins la moitié des ensembles. Lisez l'argument de Gilmer de 2022,
+qui emploie l'entropie de Shannon pour démontrer qu'un élément appartient à au moins une
+fraction fixe et strictement positive des ensembles, isolez l'étape exacte où sa constante
+est produite, et déterminez si la méthode peut être poussée jusqu'à \( 1/2 \).</p>
+<p class="context"><b>État : ouvert.</b> Pendant quarante-trois ans on n'a rien su au-delà de
+cas particuliers — pas même qu'<i>une</i> fraction constante convienne — puis un court
+argument a importé une technique de théorie de l'information venue d'un tout autre quartier
+de la combinatoire. La constante de Gilmer, d'environ \( 0.01 \), a été améliorée en quelques
+semaines à \( (3-\sqrt5)/2 \approx 0.38197 \) par plusieurs groupes indépendants, et des
+raffinements ultérieurs l'ont poussée un peu au-delà de \( 0.382 \) ; savoir si la voie
+entropique peut seulement atteindre \( 1/2 \) est en soi non tranché. Une démonstration en
+direct que c'est une technique de démonstration, et non simplement une démonstration, qui est
+la ressource rare.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_des_familles_stables_par_unions">Conjecture des familles stables par unions — Wikipédia</a></li>
+<li>Article : J. Gilmer, « A constant lower bound for the union-closed sets conjecture » (2022), <a href="https://arxiv.org/abs/2211.09055">arXiv:2211.09055</a></li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="PRF-62" data-level="Recherche">
+<h3>PRF-62 · Comment lire un article <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Lire la recherche est un savoir-faire que personne n'enseigne et que
+tout le monde est censé posséder. Choisissez un article dans cette liste — tous courts, tous
+réels, tous cités ailleurs sur cette page : Erdős, « Some remarks on the theory of graphs »
+(1947) ; Furstenberg, « On the infinitude of primes » (1955) ; la démonstration d'une seule
+phrase de Zagier (1990) ; Gilmer, « A constant lower bound for the union-closed sets
+conjecture » (2022). Effectuez ensuite les passes ci-dessous dans l'ordre, en écrivant votre
+production à chaque étape avant de passer à la suivante.</p>
+<ol class="parts" type="a">
+<li>Première passe, cinq minutes : titre, résumé, introduction, titres de sections,
+conclusions, références. Sans lire plus avant, écrivez ce que vous croyez que l'article
+démontre, ce qu'il suppose, avec les travaux de qui il est en concurrence, et quelles trois
+références il vous faudrait connaître pour le suivre.</li>
+<li>Deuxième passe, une heure : lisez le corps du texte, mais sautez les démonstrations.
+Produisez un graphe de dépendances des énoncés numérotés de l'article — quel lemme alimente
+quel théorème — et signalez chaque résultat importé de l'extérieur de l'article.</li>
+<li>Troisième passe : choisissez le lemme que votre graphe désigne comme le plus porteur, et
+essayez de le démontrer vous-même à partir de son seul énoncé, avant de lire la
+démonstration de l'auteur. Notez jusqu'où vous êtes allé et où vous vous êtes arrêté ; cette
+frontière est l'apport réel de l'article pour vous.</li>
+<li>Rédigez un rapport de rapporteur : le théorème principal dans vos propres mots, l'idée
+nouvelle, l'étape que vous n'avez pas su vérifier, trois questions à l'auteur, et une
+recommandation. Comparez ensuite votre rapport à la réception de l'article dans la
+littérature.</li>
+<li>Enfin, la passe historique. Trouvez l'article auquel celui-ci répond et le premier
+article qui le cite, et dites en un paragraphe ce qui a changé entre les deux.</li>
+</ol>
+</div>
+<p class="context">Un article de recherche n'est pas écrit dans l'ordre où il a été
+découvert ; l'introduction est composée en dernier, les tentatives ratées sont supprimées, et
+le tout est comprimé pour des lecteurs qui partagent déjà un énorme corps de contexte. Les
+premières lectures donnent donc à tout le monde, et durablement, un sentiment d'échec, et le
+remède est un protocole plutôt qu'un surcroît d'effort — la méthode des trois passes de
+Keshav, écrite pour l'informatique en 2007, est la plus connue et se transpose sans
+modification. L'essai de Thurston explique pourquoi cette compression a lieu et ce qu'elle
+fait perdre : les mathématiques circulent entre les personnes sous forme de compréhension,
+dont l'article est un encodage avec pertes. La question (d) n'est pas une simulation.
+L'évaluation par les pairs consiste en des gens qui font exactement cela, le plus souvent
+anonymement et le plus souvent gratuitement, et le moyen le plus rapide de comprendre comment
+la vérité mathématique est réellement certifiée est d'en rédiger un honnêtement. Comparez avec
+PRF-50, qui démonte une seule démonstration achevée, et avec PRF-32, qui en rebâtit une pour
+trois publics.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89valuation_par_les_pairs">Évaluation par les pairs — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/ArXiv">arXiv — Wikipédia</a></li>
+<li>Article : S. Keshav, « How to Read a Paper » (2007), <i>ACM SIGCOMM Computer Communication Review</i> 37(3), <a href="https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf">PDF (en anglais)</a></li>
+<li>Article : W. P. Thurston, « On Proof and Progress in Mathematics » (1994), <a href="https://arxiv.org/abs/math/9404236">arXiv:math/9404236</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-63" data-level="Recherche" data-kind="court">
+<h3>PRF-63 · Combien peu coûte un théorème ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> L'arithmétique des fonctions élémentaires (EFA) est le
+fragment de l'arithmétique doté de l'addition, de la multiplication et de l'exponentiation,
+dont la récurrence est restreinte aux formules à quantificateurs bornés — bien plus faible
+que l'arithmétique de Peano. La grande conjecture de Harvey Friedman (1999) affirme que tout
+théorème publié dans les <i>Annals of Mathematics</i> dont l'énoncé ne mentionne que des
+objets finitaires peut être démontré dans EFA : tranchez-la, ou réglez le seul cas d'école du
+grand théorème de Fermat.</p>
+<p class="context"><b>État : ouvert</b>, et pas du genre qu'une quinzaine astucieuse
+refermera, puisqu'il s'agit d'une affirmation portant sur toute une littérature publiée : une
+réfutation suppose d'exhiber un théorème arithmétique des <i>Annals</i> dont on démontre
+qu'il exige plus qu'EFA, et une démonstration suppose une réduction générale que personne ne
+sait actuellement imaginer. Friedman a posté la conjecture sur la liste de diffusion
+Foundations of Mathematics le 16 avril 1999. Le cas d'école de Fermat est concret et
+instructif : la démonstration de Wiles, telle qu'elle est écrite, passe par la cohomologie
+étale de Grothendieck, que l'on met normalement en place avec des univers — hypothèse bien
+au-delà de ZFC — et Colin McLarty a montré que la machinerie réellement nécessaire peut être
+rebâtie dans l'arithmétique d'ordre fini, laquelle est énormément plus faible que les univers
+et encore énormément plus forte qu'EFA. Derrière la conjecture se tient la découverte
+empirique centrale des mathématiques à rebours : les théorèmes ordinaires se regroupent en une
+poignée de niveaux de force, de sorte que les mathématiciens en exercice semblent employer
+bien moins de puissance axiomatique qu'ils n'y auraient droit, et personne ne sait
+pourquoi.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Elementary_function_arithmetic">Arithmétique des fonctions élémentaires — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Math%C3%A9matiques_%C3%A0_rebours">Mathématiques à rebours — Wikipédia</a></li>
+<li>Article : C. McLarty, « What does it take to prove Fermat's Last Theorem? Grothendieck and the logic of number theory » (2010), <i>Bulletin of Symbolic Logic</i> 16</li>
+<li>Lecture : S. G. Simpson, <i>Subsystems of Second Order Arithmetic</i> (2<sup>e</sup> éd., Cambridge, 2009)</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/">MIT OCW 6.042J Mathematics for Computer Science</a> (les techniques de démonstration depuis zéro) ;
+<a href="https://ocw.mit.edu/courses/18-a34-mathematical-problem-solving-putnam-seminar-fall-2018/">MIT OCW 18.A34 Mathematical Problem Solving (séminaire Putnam)</a> ;
+<a href="https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/">MIT OCW 18.100A Real Analysis</a> (pour les routes de Bâle) ;
+<a href="https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/">MIT OCW 18.781 Theory of Numbers</a> (pour la série de problèmes sur la primalité). Ces cours sont en anglais.</li>
+<li>Livres : G. Pólya, <i>How to Solve It</i> (1945) ; R. Hammack, <i>Book of Proof</i> (<a href="https://richardhammack.github.io/BookOfProof/">gratuit en ligne</a>) ; D. J. Velleman, <i>How to Prove It</i> (3<sup>e</sup> éd., 2019) ; A. Engel, <i>Problem-Solving Strategies</i> (1998) ; M. Aigner &amp; G. M. Ziegler, <i>Proofs from THE BOOK</i> (6<sup>e</sup> éd., 2018).</li>
+<li>Articles et essais : W. P. Thurston, <a href="https://arxiv.org/abs/math/9404236">« On Proof and Progress in Mathematics »</a> (1994) ; T. Tao, <a href="https://terrytao.wordpress.com/career-advice/theres-more-to-mathematics-than-rigour-and-proofs/">« There’s more to mathematics than rigour and proofs »</a> ; P. Lockhart, <a href="https://en.wikipedia.org/wiki/A_Mathematician%27s_Lament">« A Mathematician's Lament » (en anglais)</a> (2002/2009).</li>
+</ul>
+<p>Voir aussi : <a href="highschool.html">Lycée</a>, <a href="open-problems.html">Problèmes ouverts</a>, <a href="resources.html">Ressources</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

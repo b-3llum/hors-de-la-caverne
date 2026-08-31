@@ -1,0 +1,1365 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Analyse fonctionnelle}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Licence}
+
+\begin{problem}[{Deux normes sur C[0,1] --- Licence}]
+\textbf{FA-01.} \textbf{Problème.} Soit $ C[0,1] $ l'espace vectoriel des fonctions continues à valeurs réelles
+sur $ [0,1] $. Munissez-le de la norme sup puis, séparément, de la norme intégrale :
+\[ \|f\|_\infty = \sup\{\,|f(x)| : 0 \le x \le 1\,\}, \qquad \|f\|_1 = \int_0^1 |f(x)|\,dx . \]
+\begin{enumerate}
+\item[(a)] Démontrez que $ (C[0,1], \|\cdot\|_\infty) $ est complet : toute suite de Cauchy converge vers
+une fonction continue.
+\item[(b)] Exhibez une suite de $ C[0,1] $ qui est de Cauchy pour $ \|\cdot\|_1 $ mais n'a pas de limite
+dans $ C[0,1] $, et concluez que $ (C[0,1], \|\cdot\|_1) $ n'est pas complet.
+\item[(c)] Montrez que les deux normes ne sont pas équivalentes : il n'existe aucune constante $ K $ telle
+que $ \|f\|_\infty \le K\|f\|_1 $ pour toute $ f $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent En dimension finie toutes les normes sont équivalentes et tout espace normé est
+complet, si bien que rien de tout cela ne peut s'y voir. Le défaut de complétude de la question (b)
+n'est pas un défaut de la norme intégrale mais de l'espace : compléter $ C[0,1] $ pour
+$ \|\cdot\|_1 $ est précisément ce qui produit l'espace de Lebesgue $ L^1[0,1] $, découverte
+(Riesz et Fischer, 1907) qui a rendu l'intégrale de Lebesgue indispensable à l'analyse. Ce problème
+est la porte d'entrée de toute la discipline : la norme que vous choisissez détermine quelles limites
+existent.
+
+\begin{refs}
+\item Contexte : Espace complet --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_complet})
+\item Contexte : Convergence uniforme --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Convergence_uniforme}), Espace Lp --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_Lp})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 1--2
+\item Cours : MIT OCW 18.102 Introduction to Functional Analysis (en anglais) (\url{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ce qui fait un espace de Banach --- Licence}]
+\textbf{FA-02.} \textbf{Problème.} Un \textit{espace de Banach} est un espace vectoriel normé complet pour la distance
+induite par sa norme.
+\begin{enumerate}
+\item[(a)] Démontrez qu'un espace normé $ X $ est un espace de Banach si et seulement si toute série
+absolument convergente de $ X $ converge : dès que $ \sum_n \|x_n\| < \infty $, les sommes
+partielles de $ \sum_n x_n $ convergent dans $ X $.
+\item[(b)] À l'aide de ce critère ou directement, démontrez que les espaces de suites $ \ell^p $ pour
+$ 1 \le p < \infty $, munis de la norme $ \|x\|_p = \big(\sum_n |x_n|^p\big)^{1/p} $, et
+$ \ell^\infty $ (suites bornées avec la norme sup) sont des espaces de Banach.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Stefan Banach a axiomatisé ces espaces dans sa thèse de doctorat de 1920 à Lwów, et
+la théorie a grandi autour du Café écossais, où Banach, Steinhaus, Mazur et Ulam échangeaient des
+problèmes dans un cahier qui nous est parvenu. Le critère de séries de la question (a) est le cheval
+de trait déguisé en curiosité : c'est ainsi que l'on démontre la complétude des espaces quotients, de
+$ L^p $ et des espaces d'opérateurs de FA-06, et c'est l'ombre exacte, en dimension infinie, du fait
+que la convergence absolue entraîne la convergence dans $\mathbb{R}$.
+
+\begin{refs}
+\item Contexte : Espace de Banach --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Banach})
+\item Contexte : Espace de suites $\ell$p --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_suites_%E2%84%93p})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 2
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. III
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Géométrie de l'espace de Hilbert : le point le plus proche --- Licence}]
+\textbf{FA-03.} \textbf{Problème.} Soit $ H $ un espace de Hilbert --- un espace vectoriel muni d'un produit
+scalaire $ \langle\cdot,\cdot\rangle $ et complet pour la norme
+$ \|x\| = \sqrt{\langle x, x\rangle} $.
+\begin{enumerate}
+\item[(a)] Démontrez l'identité du parallélogramme
+\[ \|x+y\|^2 + \|x-y\|^2 = 2\|x\|^2 + 2\|y\|^2 . \]
+\item[(b)] Démontrez que tout convexe fermé non vide $ C \subset H $ contient un unique point de norme
+minimale, et plus généralement un unique point le plus proche d'un $ x \in H $ donné.
+\item[(c)] Déduisez-en le théorème de projection : pour tout sous-espace fermé $ M $, tout $ x \in H $
+se décompose de manière unique en $ x = m + n $ avec $ m \in M $ et $ n \perp M $, de sorte
+que $ H = M \oplus M^{\perp} $.
+\item[(d)] Utilisez (c) pour démontrer le théorème de représentation de Riesz : toute forme linéaire bornée
+$ \varphi $ sur $ H $ s'écrit $ \varphi(x) = \langle x, y\rangle $ pour un unique
+$ y \in H $, avec $ \|\varphi\| = \|y\| $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cet enchaînement --- identité du parallélogramme, point le plus proche, décomposition
+orthogonale, dualité --- est la raison pour laquelle l'espace de Hilbert est le seul espace de dimension
+infinie où l'intuition euclidienne survit à peu près intacte. David Hilbert a introduit l'espace
+$ \ell^2 $ vers 1906 en étudiant les équations intégrales ; von Neumann en a donné les axiomes
+abstraits en 1929, et Frigyes Riesz (ainsi que Fréchet, indépendamment) avait déjà trouvé le théorème
+de représentation en 1907. Toute la mécanique quantique et toute la théorie $ L^2 $ des équations
+aux dérivées partielles reposent sur la question (c).
+
+\begin{refs}
+\item Contexte : Espace de Hilbert --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Hilbert})
+\item Contexte : Théorème de représentation de Riesz --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_repr%C3%A9sentation_de_Riesz_(Fr%C3%A9chet-Riesz)})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 3
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Bases orthonormées et l'unique espace de Hilbert --- Licence}]
+\textbf{FA-04.} \textbf{Problème.} Soit $ H $ un espace de Hilbert et $ (e_n) $ une suite orthonormée de
+$ H $.
+\begin{enumerate}
+\item[(a)] Démontrez l'inégalité de Bessel : $ \sum_n |\langle x, e_n\rangle|^2 \le \|x\|^2 $ pour tout
+$ x \in H $.
+\item[(b)] On dit qu'une famille orthonormée est \textit{totale} (une base orthonormée) si son sous-espace
+engendré fermé est $ H $. Démontrez que $ (e_n) $ est totale si et seulement si l'identité de
+Parseval
+\[ \sum_n |\langle x, e_n\rangle|^2 = \|x\|^2 \]
+vaut pour tout $ x $.
+\item[(c)] Démontrez que tout espace de Hilbert séparable de dimension infinie possède une base orthonormée
+dénombrable, et concluez que deux tels espaces sont isométriquement isomorphes --- chacun d'eux est
+une copie de $ \ell^2 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La question (c) est l'une des grandes unifications de l'analyse : l'espace des suites
+de carré sommable, l'espace $ L^2 $ des fonctions de carré intégrable et l'espace des états d'une
+particule quantique sont un seul et même espace de Hilbert vêtu de coordonnées différentes. Le résultat
+est pour l'essentiel le théorème de Riesz--Fischer de 1907, démontré en quelques semaines par les deux
+hommes dès que l'intégrale de Lebesgue eut rendu $ L^2 $ complet. Notez le contraste avec les espaces
+de Banach, où aucune unicité de ce genre ne vaut --- l'espace de Hilbert est rigide à cause de son
+produit scalaire.
+
+\begin{refs}
+\item Contexte : Base orthonormée --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Base_orthonorm%C3%A9e})
+\item Contexte : Base de Schauder --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Base_de_Schauder})
+\item Lecture : M. Reed et B. Simon, \textit{Methods of Modern Mathematical Physics I: Functional Analysis}, ch. II
+\item Cours : MIT OCW 18.102 Introduction to Functional Analysis (en anglais) (\url{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les séries de Fourier comme géométrie : Parseval --- Licence}]
+\textbf{FA-05.} \textbf{Problème.} On travaille dans l'espace de Hilbert $ L^2(-\pi, \pi) $ muni du produit
+scalaire $ \langle f, g\rangle = \int_{-\pi}^{\pi} f(x)\,g(x)\,dx $.
+\begin{enumerate}
+\item[(a)] Vérifiez que le système trigonométrique
+$ \big\{\, 1/\sqrt{2\pi},\ \cos(nx)/\sqrt{\pi},\ \sin(nx)/\sqrt{\pi} : n \ge 1 \,\big\} $
+est orthonormé.
+\item[(b)] Montrez que sa totalité équivaut à l'énoncé suivant : l'identité de Parseval vaut pour toute
+$ f \in L^2(-\pi,\pi) $, c'est-à-dire que la série de Fourier de $ f $ converge vers $ f $
+en norme $ L^2 $ et que la somme des carrés des coefficients de Fourier vaut $ \|f\|^2 $.
+\item[(c)] En admettant la totalité (elle découle du théorème d'approximation de Weierstrass), calculez les
+coefficients de Fourier de $ f(x) = x $ et déduisez-en l'évaluation d'Euler
+\[ \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6} . \]
+\end{enumerate}
+
+\end{problem}
+
+\noindent Fourier a affirmé en 1807 que des fonctions arbitraires se développent en séries
+trigonométriques, et l'analyse a passé un siècle à décider de ce que cela pouvait signifier. La réponse
+hilbertienne est la plus limpide : un développement de Fourier n'est rien d'autre que l'écriture d'un
+vecteur dans une base orthonormée, et l'identité de Parseval (nommée d'après une observation formelle
+de Marc-Antoine Parseval en 1799) est le théorème de Pythagore en dimension infinie. La question (c)
+retrouve le problème de Bâle --- résolu par Euler en 1734 et traité en grande pompe sur notre page
+\textit{L'art de la démonstration} --- en deux lignes de géométrie, ce qui est peut-être la meilleure
+publicité qui soit pour le point de vue $ L^2 $.
+
+\begin{refs}
+\item Contexte : Égalité de Parseval --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89galit%C3%A9_de_Parseval})
+\item Contexte : Série de Fourier --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9rie_de_Fourier})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 3
+\item Cours : MIT OCW 18.103 Fourier Analysis (en anglais) (\url{https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Opérateurs bornés et norme d'opérateur --- Licence}]
+\textbf{FA-06.} \textbf{Problème.} Soient $ X, Y $ des espaces normés et $ T : X \to Y $ linéaire. On définit la
+norme d'opérateur
+\[ \|T\| = \sup\{\, \|Tx\| : \|x\| \le 1 \,\}, \]
+et on dit que $ T $ est borné si $ \|T\| < \infty $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ T $ est borné si et seulement si $ T $ est continu, si et seulement si
+$ T $ est continu en $ 0 $.
+\item[(b)] Démontrez que l'espace $ B(X, Y) $ des opérateurs bornés, muni de la norme ci-dessus, est un
+espace normé, et qu'il est complet dès que $ Y $ est complet.
+\item[(c)] Pour une suite bornée $ a = (a_n) $, l'opérateur de multiplication $ M_a $ sur $ \ell^2 $
+envoie $ (x_n) $ sur $ (a_n x_n) $ ; démontrez que $ \|M_a\| = \sup_n |a_n| $.
+\item[(d)] Pour un noyau continu $ k $ sur $ [0,1] \times [0,1] $, l'opérateur intégral
+$ (Tf)(x) = \int_0^1 k(x,y)\,f(y)\,dy $ agit sur $ (C[0,1], \|\cdot\|_\infty) $ ; démontrez que
+$ \|T\| = \max_{0 \le x \le 1} \int_0^1 |k(x,y)|\,dy $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent En dimension infinie la linéarité n'entraîne plus la continuité : il faut donc isoler
+les opérateurs bornés ; la norme d'opérateur, implicite dans les travaux de Fredholm de 1900 sur les
+équations intégrales et formalisée par Riesz et Banach, mesure l'étirement dans le pire des cas. La
+question (b) est ce qui permet à la théorie spectrale de seulement commencer : $ B(X) $ est
+lui-même un espace de Banach, et même une algèbre de Banach, si bien que l'on peut faire de l'analyse
+--- séries entières, exponentielles, inverses via les séries de Neumann --- avec des opérateurs pour
+variables.
+
+\begin{refs}
+\item Contexte : Opérateur borné --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Op%C3%A9rateur_born%C3%A9})
+\item Contexte : Norme d'opérateur --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Norme_d'op%C3%A9rateur})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 2
+\item Lecture : M. Reed et B. Simon, \textit{Methods of Modern Mathematical Physics I: Functional Analysis}, ch. III
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème du point fixe de Banach, et pourquoi les équations différentielles ont des solutions --- Licence}]
+\textbf{FA-07.} \textbf{Problème.} Le principe de contraction, et la raison pour laquelle les problèmes de Cauchy ont
+des solutions uniques.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème du point fixe de Banach : si $ (M, d) $ est un espace métrique complet non
+vide et si $ T : M \to M $ vérifie $ d(Tx, Ty) \le q\,d(x, y) $ pour un $ q < 1 $ fixé,
+alors $ T $ admet exactement un point fixe $ x^{*} $. Les itérées
+$ x_0,\ Tx_0,\ T^2x_0, \dots $ convergent vers $ x^{*} $ quel que soit le point de départ
+$ x_0 $, avec
+\[ d(T^n x_0, x^{*}) \le \frac{q^n}{1-q}\, d(Tx_0, x_0) . \]
+\item[(b)] Appliquez-le pour démontrer le théorème de Picard--Lindelöf (Cauchy--Lipschitz) : si $ F(x, y) $
+est continue sur un rectangle autour de $ (x_0, y_0) $ et lipschitzienne en $ y $, alors le
+problème de Cauchy $ y' = F(x, y) $, $ y(x_0) = y_0 $ admet exactement une solution sur un
+intervalle autour de $ x_0 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La méthode des approximations successives d'Émile Picard (1890), affinée par Ernst
+Lindelöf (1894), précède le théorème abstrait ; l'apport de Banach (1922) fut de voir qu'un seul court
+argument sur les espaces métriques complets la sous-tend --- et sous-tend aussi le théorème d'inversion
+locale, la convergence des itérations de type Newton et la théorie de stabilité des fractales. C'est
+l'exemple le plus pur de la méthode fonctionnelle-analytique : transformer une question locale
+difficile sur une équation différentielle en une question globale facile sur une application d'un
+espace de fonctions.
+
+\begin{refs}
+\item Contexte : Théorème du point fixe de Banach --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_point_fixe_de_Banach})
+\item Contexte : Théorème de Cauchy-Lipschitz (Picard--Lindelöf) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cauchy-Lipschitz})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Espaces duaux : qui sont les formes linéaires ? --- Licence}]
+\textbf{FA-08.} \textbf{Problème.} Le dual $ X^{*} $ d'un espace normé $ X $ est l'espace de Banach des formes
+linéaires bornées sur $ X $, muni de la norme d'opérateur.
+\begin{enumerate}
+\item[(a)] Démontrez que le dual de $ \ell^1 $ est isométriquement isomorphe à $ \ell^\infty $, via le
+couplage $ (x, a) \mapsto \sum_n a_n x_n $.
+\item[(b)] Démontrez que le dual de $ c_0 $ (suites tendant vers $ 0 $, norme sup) est isométriquement
+isomorphe à $ \ell^1 $.
+\item[(c)] Montrez que l'application analogue de $ \ell^1 $ dans le dual de $ \ell^\infty $ est une
+isométrie mais n'est \textit{pas} surjective. (Pour les formes linéaires manquantes, voir FA-09.)
+\end{enumerate}
+
+\end{problem}
+
+\noindent Identifier concrètement les duaux fut l'une des activités fondatrices du domaine :
+F. Riesz a identifié les duaux de $ L^p $ et de $ C[0,1] $ entre 1907 et 1910, ce dernier résultat
+(les formes linéaires sont des intégrations contre des mesures) étant le \og{} théorème de représentation
+de Riesz \fg{} original. L'asymétrie de la question (c) est le premier signe que la dualité est profonde :
+passer au dual peut agrandir un espace, la réflexivité peut échouer, et l'écart se mesure par des
+objets (mesures finiment additives, limites de Banach) qu'aucune formule explicite ne produit.
+
+\begin{refs}
+\item Contexte : Dual topologique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Dual_topologique})
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. III
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Dimension finie : toutes les normes s'accordent --- Licence}]
+\textbf{FA-19.} \textbf{Problème.} Deux normes $ \|\cdot\| $ et $ \|\cdot\|' $ sur un espace vectoriel $ X $
+sont \textit{équivalentes} s'il existe des constantes $ c, C > 0 $ telles que
+\[ c\,\|x\| \le \|x\|' \le C\,\|x\| \quad \text{pour tout } x \in X . \]
+\begin{enumerate}
+\item[(a)] Démontrez que deux normes quelconques sur $ \mathbb{R}^n $ sont équivalentes. (Comparez une
+norme arbitraire à la norme euclidienne, en utilisant la compacité de la sphère unité euclidienne.)
+\item[(b)] Déduisez-en que tout espace normé de dimension finie est complet, et que tout sous-espace de
+dimension finie d'un espace normé est fermé.
+\item[(c)] Déduisez-en que toute application linéaire d'un espace normé de dimension finie vers un espace
+normé quelconque est bornée.
+\item[(d)] Démontrez la dichotomie réciproque, à l'aide du lemme de Riesz (FA-12(c)) : un espace normé dont
+la boule unité fermée est compacte est de dimension finie.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Ce théorème est la frontière précise entre l'algèbre linéaire et l'analyse
+fonctionnelle : en deçà, la topologie est invisible --- toute norme sur $ \mathbb{R}^n $ raconte la
+même histoire de convergence, et toute application linéaire est continue --- tandis qu'au-delà rien de
+tout cela ne survit, comme FA-01 le montre sur $ C[0,1] $. La dichotomie de compacité de la question
+(d) est due à F. Riesz (1918), et elle explique pourquoi les exemples de base du domaine sont des
+espaces de fonctions : la dimension infinie, c'est exactement l'échec de Borel--Lebesgue.
+
+\begin{refs}
+\item Contexte : Norme (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Norme_(math%C3%A9matiques)})
+\item Contexte : Lemme de Riesz --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Riesz})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 2
+\item Cours : MIT OCW 18.102 Introduction to Functional Analysis (en anglais) (\url{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La série de Neumann --- Licence}]
+\textbf{FA-20.} \textbf{Problème.} Soit $ X $ un espace de Banach et $ T $ un opérateur borné sur $ X $ avec
+$ \|T\| < 1 $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ I - T $ est inversible dans $ B(X) $, que son inverse est la somme de la
+\textit{série de Neumann}
+\[ (I-T)^{-1} = \sum_{k=0}^{\infty} T^{k} , \]
+et que $ \|(I-T)^{-1}\| \le (1 - \|T\|)^{-1} $.
+\item[(b)] Déduisez-en que les opérateurs inversibles forment une partie ouverte de $ B(X) $, sur laquelle
+l'inversion est continue.
+\item[(c)] Appliquez (a) sur $ (C[0,1], \|\cdot\|_\infty) $ : si un noyau continu $ k $ vérifie
+$ \max_x \int_0^1 |k(x,y)|\,dy < 1 $, alors pour toute fonction continue $ g $ l'équation
+intégrale $ f(x) = g(x) + \int_0^1 k(x,y)\,f(y)\,dy $ admet exactement une solution continue
+$ f $.
+\item[(d)] Montrez que l'opérateur de Volterra $ (Vf)(x) = \int_0^x f(y)\,dy $ sur $ C[0,1] $ vérifie
+$ \|V^n\| \le 1/n! $, et concluez que $ I - \lambda V $ est inversible pour \textit{tout} scalaire
+$ \lambda $ --- l'astuce de la série porte bien au-delà de $ \|\lambda V\| < 1 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est la série géométrique avec un opérateur pour raison, nommée d'après Carl
+Neumann, qui l'employa dans les années 1870 sur les équations intégrales de la théorie du potentiel ;
+les approximations successives de Picard (FA-07) et les noyaux itérés de la question (c) sont la même
+idée sous d'autres habits. La question (b) fait des inversibles un groupe ouvert, et c'est là que
+démarre la théorie spectrale : cela force le spectre de tout opérateur borné à être un compact. La
+question (d) exhibe un opérateur \textit{quasi-nilpotent} --- le spectre de $ V $ est le seul point
+$ 0 $, aussi loin de la norme $ \|V\| = 1 $ que la formule du rayon spectral l'autorise.
+
+\begin{refs}
+\item Contexte : Série de Neumann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9rie_de_Neumann})
+\item Contexte : Opérateur de Volterra --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Op%C3%A9rateur_de_Volterra})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Noyau fermé, forme linéaire bornée --- Licence, short}]
+\textbf{FA-21.} \textbf{Problème.} Soit $ f $ une forme linéaire non nulle sur un espace normé
+$ X $. Démontrez que $ f $ est bornée si et seulement si son noyau
+$ \{\, x \in X : f(x) = 0 \,\} $ est fermé dans $ X $.
+\end{problem}
+
+\noindent La géométrie derrière l'énoncé est brutale : le noyau d'une forme linéaire est soit
+fermé, soit dense dans $ X $ --- rien entre les deux. Des formes linéaires non bornées existent bel et
+bien sur tout espace normé de dimension infinie, mais seulement au moyen d'une base de Hamel et de
+l'axiome du choix, ce qui explique que personne n'en ait jamais écrit une explicitement.
+
+\begin{refs}
+\item Contexte : Forme linéaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Forme_lin%C3%A9aire}), Application linéaire discontinue --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Discontinuous_linear_map})
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. III
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Polarisation --- Licence, short}]
+\textbf{FA-22.} \textbf{Problème.} Démontrez que dans un espace préhilbertien réel le produit
+scalaire se retrouve à partir de sa norme via l'identité de polarisation
+$ \langle x, y\rangle = \tfrac{1}{4}\big( \|x+y\|^2 - \|x-y\|^2 \big) $, et déduisez-en que toute
+application linéaire préservant la norme entre espaces préhilbertiens réels préserve automatiquement
+le produit scalaire.
+\end{problem}
+
+\noindent Cette identité (avec une version à quatre termes sur $\mathbb{C}$) est la raison pour laquelle
+les isométries des espaces de Hilbert sont si rigides, et elle soulève la question réciproque : quelles
+normes proviennent d'un produit scalaire ? Jordan et von Neumann ont répondu en 1935 --- exactement
+celles qui vérifient l'identité du parallélogramme de FA-03(a).
+
+\begin{refs}
+\item Contexte : Identité de polarisation --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Identit%C3%A9_de_polarisation})
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. I
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Réflexivité et plongement canonique --- Licence}]
+\textbf{FA-30.} \textbf{Problème.} Pour un espace normé $ X $, on définit l'\textit{application canonique}
+$ J : X \to X^{**} $ dans le dual du dual par
+\[ (Jx)(f) \;=\; f(x), \qquad x \in X,\ f \in X^{*} . \]
+On dit que $ X $ est \textit{réflexif} si $ J $ est surjective.
+\begin{enumerate}
+\item[(a)] Démontrez que $ J $ est une isométrie linéaire --- l'inégalité $ \|Jx\| \le \|x\| $ est
+immédiate, et la réciproque demande la forme linéaire normante produite par Hahn--Banach en FA-09(c).
+Déduisez-en que tout espace normé se plonge isométriquement dans un espace de Banach, et qu'un espace
+normé réflexif est complet.
+\item[(b)] Démontrez que tout espace de Hilbert est réflexif (utilisez le théorème de représentation de
+Riesz, FA-03(d)), et que $ \ell^p $ est réflexif pour $ 1 < p < \infty $, en admettant la
+dualité $ (\ell^p)^{*} \cong \ell^q $ avec $ 1/p + 1/q = 1 $.
+\item[(c)] Démontrez que $ c_0 $ et $ \ell^1 $ ne sont pas réflexifs, à l'aide des duaux calculés en
+FA-08. Prenez soin de montrer que c'est l'application \textit{canonique} qui n'est pas surjective, et
+non simplement qu'une application quelconque échoue.
+\item[(d)] Démontrez qu'un espace de Banach $ X $ est réflexif si et seulement si $ X^{*} $ est
+réflexif, et que tout sous-espace fermé d'un espace réflexif est réflexif. Déduisez-en que
+$ \ell^\infty $ n'est pas réflexif.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La réflexivité est la propriété qui fait qu'un espace de dimension infinie se comporte,
+en dualité, comme un espace de dimension finie, et l'insistance des questions (c) et (d) sur la
+surjectivité de l'application \textit{canonique} n'est pas du pédantisme : R. C. James a construit en 1951
+un espace de Banach isométriquement isomorphe à son propre bidual et pourtant non réflexif, si bien que
+le type d'isomorphisme de $ X^{**} $ est le mauvais invariant. La réflexivité équivaut, par un théorème
+de Kakutani, à la compacité faible de la boule unité fermée --- ce dont la méthode directe du calcul des
+variations a précisément besoin, et la raison pour laquelle la convergence faible de FA-14 est bien plus
+utile dans $ L^2 $ que dans $ L^1 $. La caractérisation la plus profonde est le théorème de James
+(démontré pour les espaces séparables en 1957 et en général en 1964) : $ X $ est réflexif si et
+seulement si toute forme linéaire bornée atteint sa norme sur la boule unité fermée --- un énoncé que tout
+le monde comprend et que presque personne ne sait démontrer.
+
+\begin{refs}
+\item Contexte : Espace réflexif --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_r%C3%A9flexif})
+\item Contexte : Théorème de James --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_James}), Espace de James --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_James})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 3
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. V
+\item Cours : MIT OCW 18.102 Introduction to Functional Analysis (en anglais) (\url{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Bases de Schauder --- Licence, short}]
+\textbf{FA-31.} \textbf{Problème.} On dit qu'une suite $ (e_n) $ d'un espace de Banach $ X $ est
+une \textit{base de Schauder} si tout $ x \in X $ admet un unique développement $ x = \sum_n a_n e_n $
+convergeant en norme. Démontrez que les vecteurs de coordonnées forment une base de Schauder de
+$ c_0 $ et de $ \ell^p $ pour $ 1 \le p < \infty $ mais pas de $ \ell^\infty $, et démontrez
+qu'un espace de Banach possédant une base de Schauder est nécessairement séparable.
+\end{problem}
+
+\noindent Notez ce qui est demandé : l'ordre de sommation est fixé, si bien qu'une base de
+Schauder est plus faible qu'une base orthonormée (FA-04) et bien différente d'une base de Hamel.
+Juliusz Schauder en a construit une pour $ C[0,1] $ en 1927, et le livre de Banach de 1932 demandait
+si tout espace de Banach séparable en possédait une --- le \og{} problème de la base \fg{}, annoncé dans le Livre
+écossais, où Mazur promit en 1936 une oie vivante à qui le résoudrait. Per Enflo est venu chercher l'oie
+en 1972 et a publié le contre-exemple dans \textit{Acta Mathematica} en 1973 : un espace de Banach séparable
+n'ayant même pas la propriété d'approximation, plus faible, et donc dépourvu de toute base.
+
+\begin{refs}
+\item Contexte : Base de Schauder --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Base_de_Schauder})
+\item Contexte : Propriété d'approximation --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Propri%C3%A9t%C3%A9_d'approximation})
+\item Article : P. Enflo, \og{} A counterexample to the approximation problem in Banach spaces \fg{} (1973), \textit{Acta Mathematica} 130, 309--317
+\item Lecture : Albiac \& Kalton, \textit{Topics in Banach Space Theory}, ch. 1
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{Hahn--Banach à l'œuvre --- Master}]
+\textbf{FA-09.} \textbf{Problème.} Démontrez le théorème de prolongement, puis mettez-le au travail.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de prolongement de Hahn--Banach : si $ p $ est une fonctionnelle
+sous-linéaire sur un espace vectoriel réel $ X $ et si $ f $ est une forme linéaire sur un
+sous-espace $ M $ avec $ f \le p $ sur $ M $, alors $ f $ se prolonge en une forme linéaire
+sur $ X $ tout entier, encore dominée par $ p $.
+\item[(b)] Déduisez-en la version \og{} espaces normés \fg{} : toute forme linéaire bornée sur un sous-espace se
+prolonge à l'espace entier avec la même norme.
+\item[(c)] Pour tout $ x_0 \ne 0 $ d'un espace normé $ X $, produisez $ f \in X^{*} $ avec
+$ \|f\| = 1 $ et $ f(x_0) = \|x_0\| $, et concluez que $ X^{*} $ sépare les points de
+$ X $.
+\item[(d)] Pour un sous-espace fermé $ M $ et $ x \notin M $, produisez $ f \in X^{*} $ nulle sur
+$ M $ avec $ f(x) \ne 0 $.
+\item[(e)] Construisez une \textit{limite de Banach} --- une forme linéaire positive $ L $ sur
+$ \ell^\infty $ invariante par le décalage
+$ (x_1, x_2, \dots) \mapsto (x_2, x_3, \dots) $ et coïncidant avec la limite ordinaire sur les
+suites convergentes --- et utilisez-la pour exhiber une forme linéaire sur $ \ell^\infty $ ne
+provenant pas de $ \ell^1 $, achevant FA-08(c).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Démontré par Hans Hahn (1927) et, sous la forme ci-dessus, par Banach (1929), c'est le
+théorème qui garantit que les espaces de dimension infinie possèdent assez de formes linéaires pour y
+voir ; tout argument de dualité en analyse s'appuie sur lui. C'est aussi la première rencontre honnête du
+domaine avec l'axiome du choix --- le prolongement de la question (a) existe mais en général aucune formule
+ne peut le nommer, et les limites de Banach sont l'exemple canonique d'un objet dont l'existence est
+démontrée et l'écriture impossible.
+
+\begin{refs}
+\item Contexte : Théorème de Hahn-Banach --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Hahn-Banach})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 1
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. III
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Bornitude uniforme, et une série de Fourier qui diverge --- Master}]
+\textbf{FA-10.} \textbf{Problème.} La catégorie de Baire verse son premier dividende : une fonction continue dont la
+série de Fourier diverge.
+\begin{enumerate}
+\item[(a)] Démontrez le principe de bornitude uniforme (Banach--Steinhaus) : si une famille d'opérateurs
+bornés d'un espace de Banach $ X $ vers un espace normé est ponctuellement bornée ---
+$ \sup_T \|Tx\| < \infty $ pour chaque $ x $ --- alors elle est uniformément bornée en norme
+d'opérateur.
+\item[(b)] Pour $ f $ continue et $ 2\pi $-périodique, notons $ S_n(f) $ la $ n $-ième somme
+partielle de sa série de Fourier évaluée en $ 0 $, de sorte que
+\[ S_n(f) = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t)\,D_n(t)\,dt , \qquad
+D_n(t) = \frac{\sin((n+\frac{1}{2})t)}{\sin(t/2)} \]
+où $ D_n $ est le noyau de Dirichlet. Démontrez que la norme de $ S_n $ comme forme linéaire sur
+$ (C(\mathbb{T}), \|\cdot\|_\infty) $ vaut
+$ \frac{1}{2\pi}\int_{-\pi}^{\pi} |D_n(t)|\,dt $, et que ces nombres tendent vers l'infini comme
+une constante fois $ \log n $.
+\item[(c)] Concluez qu'il existe une fonction continue $ 2\pi $-périodique dont la série de Fourier diverge
+en $ 0 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Paul du Bois-Reymond a stupéfié les analystes de 1873 en construisant une telle
+fonction à la main ; le théorème de Banach--Steinhaus (1927), bâti sur le théorème de catégorie de Baire
+de 1899, montre que le phénomène est générique et coûte trois lignes une fois la machinerie en place.
+C'est l'illustration canonique de ce qu'achète l'\og{} analyse molle \fg{} : l'existence sans la construction.
+Les constantes de la question (b) sont les constantes de Lebesgue, et leur croissance logarithmique
+gouverne tout ce qui concerne la convergence ponctuelle des séries de Fourier.
+
+\begin{refs}
+\item Contexte : Théorème de Banach-Steinhaus (bornitude uniforme) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Banach-Steinhaus})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 2
+\item Lecture : M. Reed et B. Simon, \textit{Methods of Modern Mathematical Physics I: Functional Analysis}, ch. III
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Application ouverte, graphe fermé, et de la continuité gratuite --- Master}]
+\textbf{FA-11.} \textbf{Problème.} Deux des grands théorèmes de Banach, et un cas de continuité offerte.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de l'application ouverte : un opérateur borné surjectif entre espaces de
+Banach envoie les ouverts sur des ouverts ; déduisez-en qu'une bijection bornée entre espaces de
+Banach a un inverse borné.
+\item[(b)] Déduisez-en le théorème du graphe fermé : si $ X, Y $ sont des espaces de Banach et si
+$ T : X \to Y $ est linéaire de graphe fermé --- dès que $ x_n \to x $ et $ Tx_n \to y $, on a
+$ y = Tx $ --- alors $ T $ est borné.
+\item[(c)] Utilisez-le pour démontrer le théorème de Hellinger--Toeplitz : un opérateur linéaire $ T $
+défini sur $ H $ \textit{tout entier}, espace de Hilbert, et symétrique
+($ \langle Tx, y\rangle = \langle x, Ty\rangle $ pour tous $ x, y $), est automatiquement borné.
+Concluez qu'un opérateur symétrique non borné ne peut jamais être défini sur l'espace entier --- ses
+ennuis de domaine, repris en FA-15, sont inévitables.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les deux théorèmes sont de Banach (avec Schauder), publiés autour de 1929--1932, et
+tous deux convertissent des hypothèses qualitatives en conclusions quantitatives via la catégorie de
+Baire --- l'astuce signature de l'école polonaise. Hellinger et Toeplitz ont trouvé (c) en 1910, des
+décennies avant que cela ne devienne un corollaire de deux lignes ; von Neumann y a plus tard reconnu la
+raison pour laquelle les observables quantiques comme l'énergie et l'impulsion, qui sont non bornées,
+doivent vivre sur des domaines denses et propres. La continuité, dans un espace de Banach, est parfois
+gratuite.
+
+\begin{refs}
+\item Contexte : Théorème de Banach-Schauder (application ouverte) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Banach-Schauder})
+\item Contexte : Théorème du graphe fermé --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_graphe_ferm%C3%A9}), Théorème de Hellinger--Toeplitz --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Hellinger%E2%80%93Toeplitz_theorem})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Opérateurs compacts --- Master}]
+\textbf{FA-12.} \textbf{Problème.} Un opérateur $ T $ sur un espace de Hilbert $ H $ est
+\textit{compact} s'il envoie la boule unité fermée sur un ensemble d'adhérence compacte.
+\begin{enumerate}
+\item[(a)] Démontrez que les opérateurs compacts forment un idéal bilatère $ K(H) $ fermé en norme dans
+$ B(H) $.
+\item[(b)] Démontrez que toute limite en norme d'opérateurs de rang fini est compacte, et que sur un espace
+de Hilbert la réciproque vaut également.
+\item[(c)] Démontrez le lemme de Riesz --- pour tout sous-espace fermé propre $ M $ d'un espace normé
+$ X $ et tout $ \theta < 1 $ il existe un vecteur unitaire $ x $ avec
+$ \mathrm{dist}(x, M) \ge \theta $ --- et déduisez-en que l'opérateur identité d'un espace normé de
+dimension infinie n'est jamais compact.
+\item[(d)] Démontrez qu'un opérateur intégral sur $ L^2[0,1] $ de noyau continu $ k(x,y) $ est
+compact.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les opérateurs compacts sont les matrices infinies qui se comportent comme des
+matrices finies, et c'est là que la théorie spectrale a d'abord fonctionné : la théorie des équations
+intégrales de Fredholm (1900) et les articles de Hilbert de 1904--1906 sont, en langage moderne, l'étude
+de $ K(H) $. La propriété d'idéal de la question (a) est le germe de toute une discipline --- l'algèbre
+de Calkin $ B(H)/K(H) $, la théorie de l'indice de Fredholm, et finalement la géométrie non commutative
+de FA-16 et FA-18. La question (c) explique la pathologie fondamentale de la dimension infinie : les
+boules fermées ne sont jamais compactes, si bien que la compacité doit être importée par l'opérateur.
+
+\begin{refs}
+\item Contexte : Opérateur compact --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Op%C3%A9rateur_compact})
+\item Contexte : Lemme de Riesz --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Riesz}), Alternative de Fredholm --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Alternative_de_Fredholm})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 8
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. II
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème spectral pour les opérateurs compacts autoadjoints --- Master}]
+\textbf{FA-13.} \textbf{Problème.} Soit $ T $ un opérateur compact autoadjoint sur un espace de Hilbert
+$ H $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ \|T\| = \sup\{\, |\langle Tx, x\rangle| : \|x\| = 1 \,\} $ et que cette borne
+supérieure est atteinte, de sorte que $ \|T\| $ ou $ -\|T\| $ est valeur propre de
+$ T $.
+\item[(b)] Démontrez que les vecteurs propres associés à des valeurs propres distinctes sont orthogonaux,
+que chaque valeur propre non nulle a un sous-espace propre de dimension finie, et que les valeurs
+propres non nulles forment un ensemble fini ou une suite tendant vers $ 0 $.
+\item[(c)] Démontrez le théorème spectral : $ H $ possède une base orthonormée de vecteurs propres de
+$ T $, et
+\[ T = \sum_n \lambda_n \langle \cdot\,, e_n\rangle\, e_n \]
+avec convergence en norme d'opérateur.
+\item[(d)] Expliquez en une page comment cette diagonalisation résout le problème de la corde vibrante : les
+fonctions propres de l'opérateur intégral pertinent sont les modes $ \sin(nx) $, et le développement
+selon ces modes est la série de Fourier de FA-05.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est le couronnement de la théorie classique, démontré par Hilbert (1906) pour les
+équations intégrales et mis sous sa forme moderne par Riesz et Schmidt. C'est l'analogue exact, en
+dimension infinie, de la diagonalisation d'une matrice symétrique, et sa signification physique --- tout
+système symétrique \og{} raisonnable \fg{} se décompose en modes indépendants de fréquences réelles --- explique
+que la théorie de Sturm--Liouville, les états liés quantiques et l'analyse en composantes principales
+finissent par faire le même calcul. Tout FA-15 et FA-16 commence par se demander ce qui survit lorsqu'on
+abandonne la compacité.
+
+\begin{refs}
+\item Contexte : Opérateur compact sur un espace de Hilbert --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Compact_operator_on_Hilbert_space})
+\item Contexte : Théorème spectral --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_spectral})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 6
+\item Cours : MIT OCW 18.102 Introduction to Functional Analysis (en anglais) (\url{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Convergence faible --- Master}]
+\textbf{FA-14.} \textbf{Problème.} Une suite $ (x_n) $ d'un espace de Hilbert $ H $
+\textit{converge faiblement} vers $ x $ si $ \langle x_n, y\rangle \to \langle x, y\rangle $ pour
+tout $ y \in H $.
+\begin{enumerate}
+\item[(a)] Montrez que toute suite orthonormée converge faiblement vers $ 0 $ mais ne converge pas en
+norme --- la convergence faible et la convergence en norme diffèrent donc réellement.
+\item[(b)] Démontrez que les limites faibles n'augmentent pas la norme : si $ x_n \to x $ faiblement alors
+$ \|x\| \le \liminf_n \|x_n\| $, et si de plus $ \|x_n\| \to \|x\| $ alors $ x_n \to x $ en
+norme (propriété de Radon--Riesz).
+\item[(c)] Démontrez que toute suite bornée d'un espace de Hilbert séparable admet une sous-suite faiblement
+convergente.
+\item[(d)] Montrez par un exemple que la limite faible de vecteurs unitaires peut être $ 0 $, et expliquez
+pourquoi (c) est le bon substitut du théorème de Bolzano--Weierstrass, dont FA-12(c) a montré l'échec
+en norme.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La convergence faible a été distillée par Hilbert et Riesz à partir des arguments de
+\og{} principe de choix \fg{} du calcul des variations : les suites minimisantes convergent rarement, mais elles
+convergent faiblement, et la semi-continuité inférieure de (b) est exactement ce dont la méthode directe
+du calcul des variations a besoin. La question (c) est le cas hilbertien séparable du théorème de
+Banach--Alaoglu (1940) et de la caractérisation de la réflexivité par Kakutani ; en EDP on s'en sert tous
+les jours, sous le nom d'\og{} extraction d'une sous-suite faiblement convergente \fg{}, pour fabriquer des
+solutions comme limites faibles.
+
+\begin{refs}
+\item Contexte : Convergence faible (espace de Hilbert) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Convergence_faible_(espace_de_Hilbert)})
+\item Contexte : Théorème de Banach--Alaoglu --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Banach-Alaoglu-Bourbaki})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Opérateurs non bornés et la forme de la mécanique quantique --- Master}]
+\textbf{FA-15.} \textbf{Problème.} La relation de commutation de Heisenberg ne peut pas vivre dans $ B(H) $ ; ce
+problème localise là où elle vit.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Wielandt--Wintner : il n'existe pas d'opérateurs bornés $ A, B $ sur un
+espace normé avec $ AB - BA = I $.
+\item[(b)] Sur $ L^2(\mathbb{R}) $, définissez l'opérateur de position $ (Qf)(x) = x f(x) $ sur son
+domaine maximal $ D(Q) = \{ f \in L^2(\mathbb{R}) : x f(x) \in L^2(\mathbb{R}) \} $, et l'opérateur
+d'impulsion $ P = -i\,\frac{d}{dx} $ sur l'espace de Schwartz des fonctions lisses à décroissance
+rapide. Vérifiez que $ PQ - QP = -iI $ sur l'espace de Schwartz, et concluez de (a) que $ P $ et
+$ Q $ ne peuvent pas être tous deux bornés.
+\item[(c)] Démontrez que $ Q $, muni du domaine ci-dessus, est autoadjoint : $ Q = Q^{*} $, où l'adjoint
+d'un opérateur à domaine dense est défini par $ \langle Tx, y\rangle = \langle x, T^{*}y\rangle $
+sur le domaine naturel.
+\item[(d)] Montrez que le spectre de $ Q $ est $\mathbb{R}$ tout entier bien que $ Q $ n'ait aucun vecteur propre
+dans $ L^2(\mathbb{R}) $ --- le spectre est purement continu.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La relation de commutation de 1925 entre position et impulsion, chez Heisenberg, est
+par (a) impossible pour des opérateurs bornés --- la mécanique quantique \textit{impose} donc la théorie des
+opérateurs non bornés à domaine dense, que von Neumann a bâtie en 1929--1932 exactement à cette fin, en
+traçant la ligne cruciale entre symétrique et autoadjoint. La question (d) montre le spectre débordant la
+valeur propre : une mesure de position peut donner n'importe quel réel, dont aucun ne correspond à un
+état normalisable. Le théorème de Stone, qui identifie les opérateurs autoadjoints aux générateurs
+d'évolutions unitaires en temps, complète ce tableau et constitue le problème suivant naturel à
+chercher.
+
+\begin{refs}
+\item Contexte : Opérateur non borné --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Op%C3%A9rateur_non_born%C3%A9}), Opérateur autoadjoint --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Endomorphisme_autoadjoint})
+\item Contexte : Théorème de Stone sur les groupes unitaires à un paramètre --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Stone%27s_theorem_on_one-parameter_unitary_groups})
+\item Lecture : M. Reed et B. Simon, \textit{Methods of Modern Mathematical Physics I: Functional Analysis}, ch. VIII
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 10--11
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'identité C* : là où l'algèbre rencontre l'analyse --- Master}]
+\textbf{FA-16.} \textbf{Problème.} Une \textit{C*-algèbre} est une algèbre de Banach $ A $ munie d'une involution
+$ a \mapsto a^{*} $ vérifiant l'identité C*
+\[ \|a^{*}a\| = \|a\|^2 . \]
+\begin{enumerate}
+\item[(a)] Vérifiez que $ B(H) $ muni de l'adjonction, et $ C(X) $ (fonctions complexes continues sur un
+espace compact séparé, norme sup, conjugaison ponctuelle) sont des C*-algèbres.
+\item[(b)] Démontrez que dans toute C*-algèbre $ \|a^{*}\| = \|a\| $.
+\item[(c)] Démontrez que pour $ a $ autoadjoint on a $ \|a^2\| = \|a\|^2 $, et déduisez-en, à l'aide de
+la formule du rayon spectral de Gelfand $ r(a) = \lim_n \|a^n\|^{1/n} $, que $ \|a\| = r(a) $ :
+pour les éléments autoadjoints la norme est déterminée par le spectre.
+\item[(d)] Concluez qu'une *-algèbre admet au plus une norme qui en fasse une C*-algèbre --- l'analyse est
+entièrement encodée dans l'algèbre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Gelfand et Naimark ont introduit ces axiomes en 1943 et démontré les deux théorèmes de
+structure qui les justifient : toute C*-algèbre commutative est $ C(X) $ pour un espace compact
+canonique $ X $, et toute C*-algèbre se plonge dans un $ B(H) $. La question (d) est le cœur
+philosophique --- la norme, donc la topologie, donc l'\og{} espace \fg{}, se retrouve à partir de l'algèbre pure ---
+et c'est pourquoi Connes a pu proposer les C*-algèbres et les algèbres de von Neumann comme \og{} topologie
+non commutative \fg{} et \og{} théorie de la mesure non commutative \fg{}. Ce problème est la porte d'entrée vers
+FA-18 et vers une large part de la théorie des opérateurs contemporaine.
+
+\begin{refs}
+\item Contexte : C*-algèbre --- Wikipédia (\url{https://fr.wikipedia.org/wiki/C*-alg%C3%A8bre})
+\item Contexte : Théorème de Gelfand--Naimark --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Gelfand%E2%80%93Naimark_theorem}), Spectre d'un opérateur linéaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Spectre_d'un_op%C3%A9rateur_lin%C3%A9aire})
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. VIII
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'adjoint --- Master}]
+\textbf{FA-23.} \textbf{Problème.} Soit $ H $ un espace de Hilbert complexe et $ T \in B(H) $. Le théorème de
+représentation de Riesz (FA-03(d)) produit un unique opérateur borné $ T^{*} $, l'\textit{adjoint} de
+$ T $, vérifiant
+\[ \langle Tx, y\rangle = \langle x, T^{*}y\rangle \quad \text{pour tous } x, y \in H . \]
+\begin{enumerate}
+\item[(a)] Menez cette construction, et démontrez que $ \|T^{*}\| = \|T\| $ et
+$ \|T^{*}T\| = \|T\|^{2} $.
+\item[(b)] Démontrez la dualité du noyau et de l'image :
+$ \ker T^{*} = (\operatorname{ran} T)^{\perp} $ et
+$ \overline{\operatorname{ran} T} = (\ker T^{*})^{\perp} $ ; déduisez-en que $ T $ est d'image
+dense si et seulement si $ T^{*} $ est injectif.
+\item[(c)] Calculez des adjoints : l'opérateur de multiplication $ M_a $ de FA-06(c) vérifie
+$ M_a^{*} = M_{\bar a} $ ; le décalage unilatéral
+$ S(x_1, x_2, \dots) = (0, x_1, x_2, \dots) $ sur $ \ell^2 $ a pour adjoint le décalage arrière
+$ S^{*}(x_1, x_2, \dots) = (x_2, x_3, \dots) $ ; vérifiez que
+$ S^{*}S = I \ne S S^{*} $.
+\item[(d)] On dit que $ T $ est \textit{autoadjoint} si $ T = T^{*} $, \textit{normal} si
+$ TT^{*} = T^{*}T $, et \textit{unitaire} si $ TT^{*} = T^{*}T = I $. Démontrez que $ T $ est
+normal si et seulement si $ \|Tx\| = \|T^{*}x\| $ pour tout $ x $, et que $ T $ est unitaire si
+et seulement si c'est une isométrie surjective.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'adjoint, c'est la transposée conjuguée libérée des coordonnées : il est entré en
+analyse comme le \og{} noyau transposé \fg{} $ k(y,x) $ des équations intégrales de Fredholm, et la définition
+abstraite de von Neumann (1929--30) est ce qui a rendu l'autoadjonction --- la propriété dont la mécanique
+quantique a besoin (FA-15) --- exprimable sans matrices. L'identité $ \|T^{*}T\| = \|T\|^{2} $ démontrée
+en (a) est l'identité C* : FA-16 prend exactement cette équation pour axiome et en fait repousser tout le
+jeu de l'algèbre et de l'analyse dans $ B(H) $. Les opérateurs qui échouent à $ SS^{*} = S^{*}S $,
+comme le décalage de (c), sont là où la théorie cesse de ressembler à l'algèbre linéaire ; FA-24 étudie
+cet exemple pour de bon.
+
+\begin{refs}
+\item Contexte : Opérateur adjoint --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Op%C3%A9rateur_adjoint})
+\item Lecture : E. Kreyszig, \textit{Introductory Functional Analysis with Applications}, ch. 3
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. II
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le décalage et son spectre --- Master}]
+\textbf{FA-24.} \textbf{Problème.} Le \textit{spectre} $ \sigma(T) $ de $ T \in B(H) $ est l'ensemble des
+$ \lambda \in \mathbb{C} $ pour lesquels $ T - \lambda I $ n'a pas d'inverse borné. On travaille
+sur $ \ell^2 $ avec le décalage unilatéral $ S $ et le décalage arrière $ S^{*} $ de
+FA-23(c).
+\begin{enumerate}
+\item[(a)] Montrez que $ S $ est une isométrie non unitaire, et que $ S $ n'a aucune valeur
+propre.
+\item[(b)] Montrez que tout $ \lambda $ avec $ |\lambda| < 1 $ est valeur propre de $ S^{*} $, de
+vecteur propre $ (1, \lambda, \lambda^2, \dots) $.
+\item[(c)] À l'aide de (b), de la fermeture du spectre et de la borne
+$ \sigma(T) \subset \{\, \lambda : |\lambda| \le \|T\| \,\} $ fournie par la série de Neumann
+(FA-20), démontrez que
+\[ \sigma(S) = \sigma(S^{*}) = \{\, \lambda \in \mathbb{C} : |\lambda| \le 1 \,\} . \]
+\item[(d)] Prenez maintenant le décalage bilatéral $ U(x_n)_{n \in \mathbb{Z}} = (x_{n-1})_{n \in \mathbb{Z}} $
+sur $ \ell^2(\mathbb{Z}) $. Démontrez que $ U $ est unitaire et que $ \sigma(U) $ est exactement
+le cercle unité. (Pour $ |\lambda| = 1 $, construisez des vecteurs propres approchés à partir de
+longues troncatures de $ (\dots, \lambda^{-1}, 1, \lambda, \lambda^{2}, \dots) $.)
+\end{enumerate}
+
+\end{problem}
+
+\noindent Halmos appelait le décalage unilatéral l'opérateur le plus important de l'espace de
+Hilbert : c'est le plus simple opérateur sans valeur propre mais avec un disque entier de spectre, et par
+la décomposition de Wold il est la brique de toute isométrie --- chacune est une partie unitaire plus des
+copies de $ S $. Ses sous-espaces invariants ont été classifiés par Beurling à la fin des années 1940
+en termes de fonctions intérieures de l'espace de Hardy $ H^2 $, pont précoce entre théorie des
+opérateurs et analyse complexe et raison pour laquelle les opérateurs de type décalage sont au cœur des
+travaux sur le problème du sous-espace invariant (FA-17). Le contraste entre (c) et (d) --- même formule,
+espace différent, spectre différent --- est l'avertissement le plus net que les spectres sont globaux et
+non formulaires.
+
+\begin{refs}
+\item Contexte : Opérateur de décalage --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Op%C3%A9rateur_de_d%C3%A9calage})
+\item Contexte : Spectre d'un opérateur linéaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Spectre_d'un_op%C3%A9rateur_lin%C3%A9aire})
+\item Lecture : P. R. Halmos, \textit{A Hilbert Space Problem Book}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'alternative de Fredholm --- Master}]
+\textbf{FA-25.} \textbf{Problème.} Soit $ H $ un espace de Hilbert et $ K $ un opérateur compact sur $ H $
+(FA-12).
+\begin{enumerate}
+\item[(a)] Démontrez que $ \ker(I - K) $ est de dimension finie et que $ \operatorname{ran}(I - K) $ est
+fermé.
+\item[(b)] Démontrez l'\textit{alternative de Fredholm} : $ I - K $ est injectif si et seulement s'il est
+surjectif. Ainsi, ou bien l'équation homogène $ x - Kx = 0 $ a une solution non nulle, ou bien
+$ x - Kx = y $ est uniquement soluble pour tout $ y $.
+\item[(c)] Démontrez que $ \dim \ker(I - K) = \dim \ker(I - K^{*}) $, de sorte que le nombre de conditions
+de solubilité portant sur $ y $ égale le nombre de degrés de liberté du problème homogène.
+\item[(d)] Déduisez-en le tableau spectral qui complète FA-13 : tout point non nul de $ \sigma(K) $ est une
+valeur propre de multiplicité finie. Traduisez ensuite (b)--(c) en la dichotomie classique de
+solubilité de l'équation intégrale
+$ f(x) - \lambda \int_0^1 k(x,y)\,f(y)\,dy = g(x) $ à noyau continu $ k $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'article d'Ivar Fredholm paru en 1903 dans \textit{Acta Mathematica} a établi cette
+dichotomie pour les équations intégrales en prenant au sérieux le déterminant d'une matrice infinie, et
+il a fait détonation : Hilbert a passé les années suivantes à bâtir ce qui allait devenir la théorie
+spectrale, et Riesz a reformulé l'alternative pour les opérateurs compacts abstraits en 1918 --- la forme
+démontrée ici. L'alternative est l'écho, en dimension infinie, du \og{} injectif si et seulement si
+surjectif \fg{} de l'algèbre linéaire, restauré par la compacité après que FA-24 en eut montré l'échec cuisant
+en général ($ S $ est injectif et jamais surjectif). En EDP c'est la machine standard pour le problème
+de Dirichlet : l'existence pour l'équation intégrale de bord suit dès l'unicité vérifiée.
+
+\begin{refs}
+\item Contexte : Alternative de Fredholm --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Alternative_de_Fredholm})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 6
+\item Article : I. Fredholm, \og{} Sur une classe d'équations fonctionnelles \fg{} (1903), \textit{Acta Mathematica} 27
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Projecteurs et sous-espaces --- Master, short}]
+\textbf{FA-26.} \textbf{Problème.} Soit $ P $ un opérateur borné sur un espace de Hilbert avec
+$ P^2 = P = P^{*} $. Démontrez que $ P $ est la projection orthogonale sur le sous-espace fermé
+$ \operatorname{ran} P $ au sens de FA-03(c), et que tout sous-espace fermé provient de cette manière
+d'un unique tel $ P $.
+\end{problem}
+
+\noindent Ce dictionnaire --- sous-espaces fermés d'un côté, idempotents autoadjoints de l'autre ---
+est celui de von Neumann, et il porte le bâtiment : le théorème spectral écrit tout opérateur autoadjoint
+comme une intégrale de projecteurs, et la mécanique quantique lit $ \langle Px, x\rangle $ comme la
+probabilité de l'événement $ P $. Abandonner la condition $ P = P^{*} $ laisse les projecteurs
+obliques, dont les normes peuvent être arbitrairement grandes.
+
+\begin{refs}
+\item Contexte : Projecteur (algèbre linéaire) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Projecteur_(math%C3%A9matiques)})
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. II
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le principe de sélection de Helly : Banach--Alaoglu en version séquentielle --- Master, short}]
+\textbf{FA-27.} \textbf{Problème.} Soit $ X $ un espace normé séparable. Démontrez que toute suite
+bornée $ (f_n) $ du dual $ X^{*} $ admet une sous-suite faiblement-* convergente : il existe des
+indices $ n_1 < n_2 < \cdots $ et $ f \in X^{*} $ avec $ f_{n_k}(x) \to f(x) $ pour tout
+$ x \in X $.
+\end{problem}
+
+\noindent Cette compacité par argument diagonal, trouvée par Helly en 1912 pour les formes
+linéaires sur $ C[a,b] $, est le germe séquentiel du théorème de Banach--Alaoglu (1940), dont la forme
+complète --- la boule unité fermée de tout dual est faiblement-* compacte --- exige le théorème de Tykhonov.
+C'est le pain quotidien des EDP et des probabilités : \og{} passer à une limite faible-* \fg{} fabrique des
+mesures, des solutions faibles et des limites généralisées chaque fois que la convergence explicite est
+hors de portée.
+
+\begin{refs}
+\item Contexte : Théorème de Banach--Alaoglu --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Banach-Alaoglu-Bourbaki})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La formule du rayon spectral --- Master, short}]
+\textbf{FA-32.} \textbf{Problème.} Soit $ A $ une algèbre de Banach complexe unifère et
+$ a \in A $, et posons
+$ \sigma(a) = \{\, \lambda \in \mathbb{C} : \lambda 1 - a \text{ n'est pas inversible} \,\} $.
+Démontrez que $ \sigma(a) $ est un compact non vide de $ \mathbb{C} $, et que son rayon
+$ r(a) = \sup\{\, |\lambda| : \lambda \in \sigma(a) \,\} $ est donné par la formule de
+Beurling--Gelfand
+\[ r(a) \;=\; \lim_{n \to \infty} \|a^n\|^{1/n} \;=\; \inf_{n \ge 1} \|a^n\|^{1/n} . \]
+\end{problem}
+
+\noindent La compacité vient de la série de Neumann de FA-20, mais la non-vacuité est le point où
+l'analyse complexe entre dans l'analyse fonctionnelle : la résolvante
+$ \lambda \mapsto (\lambda 1 - a)^{-1} $ est une fonction holomorphe à valeurs dans un espace de Banach
+qui s'annule à l'infini, si bien qu'un spectre vide contredirait le théorème de Liouville. La formule, due
+à Gelfand en 1941 et anticipée par Beurling en 1938, est remarquable en ce qu'elle égale une quantité
+purement spectrale à une quantité purement métrique ; l'opérateur de Volterra de FA-20(d), avec
+$ \|V\| = 1 $ et $ r(V) = 0 $, montre à quel point les deux membres peuvent s'écarter pour un $ n $
+donné. FA-16(c) a utilisé cette formule pour démontrer qu'une C*-algèbre n'admet qu'une seule norme
+possible --- ce problème en fournit l'outil.
+
+\begin{refs}
+\item Contexte : Rayon spectral --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Rayon_spectral})
+\item Contexte : Algèbre de Banach --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Alg%C3%A8bre_de_Banach})
+\item Lecture : W. Rudin, \textit{Functional Analysis}, ch. 10
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La théorie de Gelfand et le lemme de Wiener --- Master}]
+\textbf{FA-33.} \textbf{Problème.} Soit $ A $ une algèbre de Banach complexe commutative unifère. Un
+\textit{caractère} de $ A $ est une forme linéaire multiplicative non nulle
+$ \varphi : A \to \mathbb{C} $ ; on note $ \Delta(A) $ l'ensemble des caractères.
+\begin{enumerate}
+\item[(a)] Déduisez le théorème de Gelfand--Mazur de la non-vacuité du spectre (FA-32) : une algèbre de Banach
+complexe unifère dont tout élément non nul est inversible est isométriquement isomorphe à
+$ \mathbb{C} $.
+\item[(b)] Démontrez que tout caractère est automatiquement continu avec $ \|\varphi\| = 1 $, et que
+$ \varphi \mapsto \ker\varphi $ est une bijection de $ \Delta(A) $ sur l'ensemble des idéaux
+maximaux de $ A $. (Les idéaux maximaux sont fermés ; le quotient par l'un d'eux est une algèbre à
+division de Banach ; appliquez (a).)
+\item[(c)] Munissez $ \Delta(A) $ de la topologie faible-* héritée de $ A^{*} $ et démontrez qu'elle est
+compacte séparée (Banach--Alaoglu, FA-27). Démontrez que la \textit{transformation de Gelfand}
+\[ \hat{a}(\varphi) = \varphi(a), \qquad a \mapsto \hat{a} \in C(\Delta(A)), \]
+est un morphisme d'algèbres décroissant la norme, avec $ \hat{a}(\Delta(A)) = \sigma(a) $ et
+$ \|\hat{a}\|_\infty = r(a) $, et identifiez son noyau.
+\item[(d)] Faites tourner la machine. Soit $ A $ l'algèbre de Wiener des fonctions
+$ f(\theta) = \sum_{n \in \mathbb{Z}} c_n e^{in\theta} $ avec $ \sum_n |c_n| < \infty $, qui est
+$ \ell^1(\mathbb{Z}) $ muni du produit de convolution. Démontrez que les caractères de $ A $ sont
+exactement les évaluations $ f \mapsto f(\theta_0) $, de sorte que $ \Delta(A) $ est le cercle, et
+déduisez-en le lemme de Wiener : si $ f $ a une série de Fourier absolument convergente et ne
+s'annule jamais, alors $ 1/f $ a également une série de Fourier absolument convergente.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Israel Gelfand a créé cette théorie dans son article de 1941 sur les anneaux normés, et
+la question (d) en fut la carte de visite : Wiener avait démontré le lemme en 1932 par un argument long et
+délicat au sein de ses travaux sur les théorèmes taubériens, et la démonstration de Gelfand tient en
+quatre lignes une fois que l'on connaît les idéaux maximaux. La leçon se généralise --- une algèbre de
+Banach commutative est un espace de fonctions sur son propre espace d'idéaux maximaux, l'inversibilité
+signifie la non-annulation, et l'analyse se convertit en topologie. Ajouter l'identité C* de FA-16 rend la
+transformation isométrique et surjective, ce qui est le théorème de Gelfand--Naimark commutatif
+$ A \cong C(X) $ et la raison pour laquelle un espace compact séparé et son algèbre de fonctions sont
+interchangeables --- le point de départ de la géométrie non commutative.
+
+\begin{refs}
+\item Contexte : Transformation de Gelfand --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Gelfand_representation})
+\item Contexte : Théorème de Gelfand-Mazur --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Gelfand-Mazur}), Lemme de Wiener --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Wiener%27s_lemma})
+\item Lecture : W. Rudin, \textit{Functional Analysis}, ch. 11
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. VII
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'espace de Schwartz et les distributions tempérées --- Master}]
+\textbf{FA-34.} \textbf{Problème.} Soit $ \mathcal{S}(\mathbb{R}) $ l'espace des fonctions lisses dont toutes les
+dérivées décroissent plus vite que toute puissance, topologisé par les semi-normes
+$ p_{k,m}(f) = \sup_{x} |x^k f^{(m)}(x)| $, et utilisez la transformée de Fourier dans la
+normalisation
+\[ \hat{f}(\xi) \;=\; \int_{\mathbb{R}} f(x)\, e^{-2\pi i x\xi}\, dx . \]
+\begin{enumerate}
+\item[(a)] Démontrez que $ \mathcal{S}(\mathbb{R}) $ est un espace de Fréchet --- sa topologie provient d'une
+distance invariante par translation pour laquelle il est complet --- et qu'il n'est pas normable. Montrez
+que $ C_c^{\infty}(\mathbb{R}) $ y est dense.
+\item[(b)] Démontrez que la transformée de Fourier envoie $ \mathcal{S} $ continûment dans
+$ \mathcal{S} $, échangeant $ f' $ et $ 2\pi i \xi \hat{f} $, ainsi que $ xf $ et
+$ -\hat{f}'/(2\pi i) $ ; calculez la transformée de la gaussienne $ e^{-\pi x^2} $ ; et démontrez
+le théorème d'inversion, sous la forme suivante : la transformée de Fourier est une bijection de
+$ \mathcal{S} $ sur lui-même dont la puissance quatrième est l'identité.
+\item[(c)] Démontrez le théorème de Plancherel : $ \|\hat{f}\|_{L^2} = \|f\|_{L^2} $ pour
+$ f \in \mathcal{S} $, et déduisez-en que la transformée de Fourier se prolonge de manière unique en
+un opérateur unitaire sur $ L^2(\mathbb{R}) $.
+\item[(d)] Une \textit{distribution tempérée} est une forme linéaire continue sur $ \mathcal{S} $. Démontrez
+que l'évaluation $ \delta(f) = f(0) $ en est une, et qu'aucune fonction localement intégrable
+$ g $ ne vérifie $ \int g f = f(0) $ pour toute $ f \in \mathcal{S} $. Démontrez que la dérivée
+au sens des distributions de la fonction de Heaviside est $ \delta $, prolongez la transformée de
+Fourier aux distributions tempérées par dualité, et calculez les transformées de $ \delta $ et de la
+fonction constante 1.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Physiciens et ingénieurs dérivaient des fonctions discontinues et utilisaient le $\delta$ de
+Dirac depuis deux décennies lorsque Laurent Schwartz, dans sa \textit{Théorie des distributions} (1950--51),
+donna un foyer à ces opérations : une distribution est une forme linéaire, la dérivation est transposée
+sur la fonction test, et toute distribution est infiniment dérivable par décret. Sobolev avait eu l'idée
+essentielle en 1936 dans ses travaux sur l'équation des ondes, et Schwartz a reçu la médaille Fields en
+1950 pour la théorie générale. Notez ce qu'achète l'espace $ \mathcal{S} $ à la question (c) : la
+transformée de Fourier est une symétrie parfaite de $ \mathcal{S} $, si bien qu'elle se prolonge par
+dualité à $ \mathcal{S}' $ et par densité à $ L^2 $, et c'est seulement alors que les transformées de
+$ \delta $, des polynômes et de $ e^{2\pi i a x} $ prennent un sens. C'est aussi le moment où la
+discipline quitte les espaces normés : $ \mathcal{S} $ est métrisable mais non normable, et c'est bien
+pourquoi les espaces localement convexes existent.
+
+\begin{refs}
+\item Contexte : Espace de Schwartz --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Schwartz})
+\item Contexte : Distribution (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Distribution_(math%C3%A9matiques)}), Théorème de Plancherel --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Plancherel})
+\item Lecture : W. Rudin, \textit{Functional Analysis}, ch. 6--7
+\item Lecture : M. Reed et B. Simon, \textit{Methods of Modern Mathematical Physics I: Functional Analysis}, ch. V et IX
+\item Lecture : Friedlander \& Joshi, \textit{Introduction to the Theory of Distributions}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Injections de Sobolev et Rellich--Kondrachov --- Master}]
+\textbf{FA-35.} \textbf{Problème.} On dit que $ u \in L^2(0,1) $ admet la \textit{dérivée faible}
+$ v \in L^2(0,1) $ si $ \int_0^1 u\varphi' = -\int_0^1 v\varphi $ pour toute
+$ \varphi \in C_c^{\infty}(0,1) $, et on note $ H^1(0,1) $ l'espace de ces $ u $, muni de la
+norme $ \|u\|_{H^1}^2 = \|u\|_{L^2}^2 + \|u'\|_{L^2}^2 $. Soit $ H_0^1(0,1) $ l'adhérence de
+$ C_c^{\infty}(0,1) $ dans $ H^1(0,1) $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ H^1(0,1) $ est un espace de Hilbert, que toute $ u \in H^1(0,1) $ admet un
+représentant continu vérifiant $ u(y) - u(x) = \int_x^y u' $, et déduisez-en les estimations
+d'injection
+\[ |u(x) - u(y)| \le \|u'\|_{L^2}\,|x-y|^{1/2}, \qquad \|u\|_{\infty} \le C\,\|u\|_{H^1} . \]
+\item[(b)] Démontrez l'inégalité de Poincaré sur $ H_0^1(0,1) $ : il existe une constante $ C $ avec
+$ \|u\|_{L^2} \le C\,\|u'\|_{L^2} $ pour toute $ u \in H_0^1(0,1) $. Déterminez la meilleure
+constante, et identifiez-la comme une valeur propre.
+\item[(c)] Démontrez le théorème de Rellich--Kondrachov dans ce cadre : l'injection
+$ H_0^1(0,1) \hookrightarrow L^2(0,1) $ est compacte. (Les estimations de (a) rendent une partie
+bornée de $ H^1 $ uniformément bornée et équicontinue ; appliquez Arzelà--Ascoli, puis FA-12.)
+\item[(d)] Récoltez la conséquence. Étant donné $ f \in L^2(0,1) $, utilisez Lax--Milgram (FA-36) pour
+résoudre le problème faible $ \int_0^1 u'v' = \int_0^1 fv $ pour toute $ v \in H_0^1(0,1) $ ;
+démontrez que l'opérateur solution $ f \mapsto u $ est compact et autoadjoint sur $ L^2(0,1) $ ; et
+concluez de FA-13 que $ L^2(0,1) $ possède une base orthonormée de fonctions propres de
+$ -d^2/dx^2 $ avec conditions de Dirichlet au bord, de valeurs propres tendant vers l'infini.
+Identifiez-les explicitement et comparez avec FA-05. Énoncez enfin l'inégalité de Sobolev générale
+$ W^{1,p}(\mathbb{R}^n) \subset L^{p^*} $ avec $ p^{*} = np/(n-p) $ pour $ 1 \le p < n $, et
+expliquez l'argument d'homogénéité $ u_\lambda(x) = u(\lambda x) $ qui force cet exposant et aucun
+autre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Sergueï Sobolev a introduit ces espaces dans les années 1930 pour donner un sens aux
+solutions de l'équation des ondes qui ne sont pas dérivables, et les théorèmes d'injection sont le taux de
+change entre eux et la régularité classique : combien de dérivées faibles dans $ L^p $ achètent combien
+de continuité ou d'intégrabilité. Franz Rellich a démontré l'énoncé de compacité pour $ H^1 $ en 1930 et
+Vladimir Kondrachov l'a étendu en 1945 ; c'est le théorème de compacité le plus utilisé en équations aux
+dérivées partielles, parce que la méthode directe produit des limites faibles (FA-14) et que Rellich est ce
+qui les transforme en limites fortes. La question (d) est tout l'appareillage de cette page agissant d'un
+seul coup --- Lax--Milgram pour l'existence, Rellich pour la compacité, le théorème spectral de FA-13 pour la
+diagonalisation --- et elle se termine là où FA-05 commençait, avec $ \sin(n\pi x) $ et la corde
+vibrante.
+
+\begin{refs}
+\item Contexte : Espace de Sobolev --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Sobolev})
+\item Contexte : Injections de Sobolev --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Injections_de_Sobolev}), Théorème de Rellich--Kondrachov --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Rellich})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 8--9
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le lemme de Lax--Milgram --- Master, short}]
+\textbf{FA-36.} \textbf{Problème.} Soit $ H $ un espace de Hilbert réel et soit
+$ a : H \times H \to \mathbb{R} $ bilinéaire, continue ($ |a(u,v)| \le C\|u\|\,\|v\| $) et coercive
+($ a(u,u) \ge \alpha \|u\|^2 $ pour un $ \alpha > 0 $), sans hypothèse de symétrie. Démontrez que
+pour tout $ f \in H^{*} $ il existe exactement un $ u \in H $ avec $ a(u,v) = f(v) $ pour tout
+$ v \in H $, et que $ \|u\| \le \|f\|/\alpha $.
+\end{problem}
+
+\noindent Peter Lax et Arthur Milgram ont publié ce résultat en 1954, dans un article sur les
+équations paraboliques, et c'est le théorème d'existence de trait pour les problèmes elliptiques
+linéaires : la symétrie ayant sauté, le théorème de représentation de Riesz de FA-03(d) survit encore sous
+la forme ci-dessus, le théorème du point fixe de Banach (FA-07) ou la série de Neumann (FA-20) fournissant
+la surjectivité manquante. Lorsque $ a $ est symétrique, la solution minimise l'énergie
+$ \tfrac{1}{2}a(v,v) - f(v) $, si bien que le lemme est le principe de Dirichlet réhabilité --- le
+principe même que Weierstrass avait démoli et que Hilbert a réparé. Combiné au lemme de Céa, il est aussi
+la licence théorique de la méthode des éléments finis : la solution de Galerkine dans n'importe quel
+sous-espace fermé est quasi optimale, avec une constante $ C/\alpha $.
+
+\begin{refs}
+\item Contexte : Formulation faible et théorème de Lax--Milgram --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formulation_faible})
+\item Contexte : Lemme de Céa --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_C%C3%A9a})
+\item Lecture : H. Brezis, \textit{Analyse fonctionnelle : théorie et applications}, ch. 5
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{Le problème du sous-espace invariant --- Recherche}]
+\textbf{FA-17.} \textbf{Problème.} (Ouvert pour l'espace de Hilbert.) Soit $ H $ un espace de Hilbert complexe
+séparable de dimension infinie et $ T $ un opérateur borné sur $ H $.
+\begin{enumerate}
+\item[(a)] $ T $ doit-il posséder un sous-espace fermé invariant autre que $ \{0\} $ et $ H $ --- un
+sous-espace fermé $ M $ avec $ T(M) \subset M $ ?
+\item[(b)] Comme première entrée sérieuse dans ce cercle d'idées, démontrez le théorème d'Aronszajn--Smith
+selon lequel tout opérateur \textit{compact} possède un sous-espace fermé invariant non trivial, ou le
+théorème plus fort de Lomonosov (1973) selon lequel tout opérateur commutant avec un opérateur
+compact non nul en possède un.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La question remonte à von Neumann dans les années 1930. Pour les espaces de Banach la
+réponse est \textit{non} : Per Enflo a construit un contre-exemple (annoncé au milieu des années 1970,
+publié dans \textit{Acta Mathematica} en 1987), et Charles Read en a donné un sur l'espace concret
+$ \ell^1 $ (1985). À l'autre extrême, Argyros et Haydon (2011) ont bâti un espace de Banach sur lequel
+tout opérateur borné est scalaire plus compact, de sorte que tout opérateur y possède des sous-espaces
+invariants. Pour l'espace de Hilbert le problème reste ouvert. En mai 2023 Enflo a déposé sur arXiv une
+prépublication annonçant une solution positive pour les espaces de Hilbert (révisée en 2024) ; en 2026
+cette annonce n'a pas été validée par une publication avec comité de lecture et reste en cours
+d'évaluation par la communauté, si bien que le statut honnête est : revendiqué, non confirmé, et le
+problème doit encore être traité comme ouvert.
+
+\begin{refs}
+\item Contexte : Problème du sous-espace invariant --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Invariant_subspace_problem})
+\item Article : P. Enflo, \og{} On the invariant subspace problem for Banach spaces \fg{} (1987), \textit{Acta Mathematica} 158
+\item Article : S. A. Argyros et R. G. Haydon, \og{} A hereditarily indecomposable L$\infty$-space that solves the scalar-plus-compact problem \fg{} (2011), \textit{Acta Mathematica} 206
+\item Article : P. Enflo, \og{} On the invariant subspace problem in Hilbert spaces \fg{} (2023, prépublication), arXiv:2305.15442 (\url{https://arxiv.org/abs/2305.15442})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème de plongement de Connes --- Recherche}]
+\textbf{FA-18.} \textbf{Problème.} (Résolu par la négative, 2020.) Un facteur
+$ \mathrm{II}_1 $ est une algèbre de von Neumann de dimension infinie, de centre trivial et portant une
+trace : l'espace de probabilité non commutatif des analystes ; le facteur $ \mathrm{II}_1 $ hyperfini
+$ R $ est le plus petit d'entre eux, limite d'algèbres de matrices. Connes a demandé en 1976 si tout
+facteur $ \mathrm{II}_1 $ à prédual séparable se plonge, en préservant la trace, dans une ultrapuissance
+$ R^{\omega} $ de $ R $ --- informellement : tout espace de probabilité non commutatif peut-il être
+approché par des matrices ? On sait aujourd'hui que la réponse est \textit{non}. Le problème que nous posons :
+parcourir la remarquable chaîne d'équivalences --- plongement de Connes $\Leftrightarrow$ conjecture QWEP de Kirchberg $\Leftrightarrow$
+problème de Tsirelson sur les corrélations quantiques --- et rédiger un exposé autonome de la façon dont le
+théorème de complexité quantique $ \mathrm{MIP}^{*} = \mathrm{RE} $ de 2020 réfute les trois. Notez que
+la réfutation est indirecte : extraire de la démonstration un facteur non plongeable explicite et concret
+est un problème de recherche actif.
+\end{problem}
+
+\noindent Connes a fait sa remarque en passant dans son article de classification de 1976 aux
+\textit{Annals}, et pendant quatre décennies elle a organisé les algèbres d'opérateurs comme l'hypothèse de
+Riemann organise la théorie des nombres, avec des dizaines d'énoncés démontrés équivalents. La résolution
+est venue d'une direction inattendue : en janvier 2020, Ji, Natarajan, Vidick, Wright et Yuen ont démontré
+que la classe MIP* des langages décidables par preuves interactives multiprouveurs intriquées égale RE, la
+classe des langages récursivement énumérables --- des prouveurs intriqués peuvent donc vérifier le problème
+de l'arrêt. Via le problème de Tsirelson cela donne la non-fermeture de l'ensemble des corrélations
+quantiques, et donc une réponse négative à Connes. C'est l'un des franchissements de pont les plus
+frappants jamais enregistrés entre informatique et mathématiques pures, et son statut est réglé : l'article
+a paru après relecture par les pairs et les équivalences qu'il exploite étaient établies dans la
+littérature bien avant lui.
+
+\begin{refs}
+\item Contexte : Problème de plongement de Connes --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Connes_embedding_problem})
+\item Article : Z. Ji, A. Natarajan, T. Vidick, J. Wright, H. Yuen, \og{} MIP* = RE \fg{} (2020), arXiv:2001.04383 (\url{https://arxiv.org/abs/2001.04383})
+\item Article : A. Connes, \og{} Classification of injective factors \fg{} (1976), \textit{Annals of Mathematics} 104
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème du quotient séparable --- Recherche, short}]
+\textbf{FA-28.} \textbf{Problème.} (Ouvert.) Tout espace de Banach $ X $ de dimension infinie
+possède-t-il un sous-espace fermé $ M $ tel que le quotient $ X/M $ soit de dimension infinie et
+séparable ?
+\end{problem}
+
+\noindent La question est attribuée à Banach et Mazur et reste ouverte depuis les années 1930 ---
+un scandale de longévité, vu son air innocent. La version \og{} sous-espace \fg{} est facile (tout espace normé de
+dimension infinie contient un sous-espace fermé séparable de dimension infinie) ; ce sont les quotients qui
+résistent. La réponse est oui pour les espaces réflexifs, pour les espaces $ C(K) $ et $ L^1 $, et --- par
+un théorème d'Argyros, Dodos et Kanellopoulos de 2008 --- pour tout espace dual ; en 2026 le problème général
+reste ouvert. Le panorama de Mujica rassemble tout un réseau de formulations équivalentes.
+
+\begin{refs}
+\item Contexte : Espace de Banach --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Banach})
+\item Article : J. Mujica, \og{} Separable quotients of Banach spaces \fg{} (1997), \textit{Revista Matemática de la Universidad Complutense de Madrid} 10
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de Crouzeix --- Recherche, short}]
+\textbf{FA-29.} \textbf{Problème.} (Ouvert.) L'\textit{image numérique} d'un opérateur borné $ A $ sur
+un espace de Hilbert complexe est
+$ W(A) = \{\, \langle Ax, x\rangle : \|x\| = 1 \,\} $. Démontrez ou réfutez la conjecture de Crouzeix :
+pour un tel $ A $ et tout polynôme $ p $,
+\[ \|p(A)\| \le 2 \sup_{z \in W(A)} |p(z)| . \]
+\end{problem}
+
+\noindent Michel Crouzeix a posé la conjecture en 2004 et démontré l'inégalité avec la constante
+11,08 en 2007 ; la constante 2 serait optimale, l'égalité ayant déjà lieu pour une matrice nilpotente
+$ 2 \times 2 $. Crouzeix et Palencia ont ramené la constante à $ 1 + \sqrt{2} $ en 2017, dans une
+démonstration admirée pour sa brièveté, et la conjecture a un enjeu pratique : elle certifierait l'image
+numérique, calculable, comme estimateur de $ \|p(A)\| $ en algèbre linéaire numérique. Des prépublications
+annonçant des démonstrations complètes sont parues à la mi-2026 ; aucune n'a encore été validée par une
+relecture par les pairs, si bien que le statut honnête reste ouvert --- peut-être au bord de la
+résolution.
+
+\begin{refs}
+\item Contexte : Conjecture de Crouzeix --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Crouzeix%27s_conjecture})
+\item Contexte : Image numérique d'un opérateur --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Numerical_range})
+\item Article : M. Crouzeix et C. Palencia, \og{} The numerical range is a $ (1+\sqrt 2) $-spectral set \fg{} (2017), \textit{SIAM Journal on Matrix Analysis and Applications} 38
+\item Voir aussi : LIN-21 (\url{pure-linear-algebra.html#LIN-21}) énonce la même conjecture pour les matrices finies, où elle est tout aussi ouverte.
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème de Kadison--Singer --- Recherche}]
+\textbf{FA-37.} \textbf{Problème.} (Résolu par l'affirmative, 2013.) Un \textit{état} sur une C*-algèbre est une forme
+linéaire positive de norme 1, et il est \textit{pur} s'il n'est pas une combinaison convexe propre de deux
+autres états. Fixons une base orthonormée $ (e_n) $ de $ \ell^2 $ et soit $ D \subset B(\ell^2) $
+l'algèbre des opérateurs diagonaux dans cette base. Kadison et Singer ont demandé en 1959 : tout état pur
+sur $ D $ se prolonge-t-il en un \textit{unique} état sur $ B(\ell^2) $ ?
+\begin{enumerate}
+\item[(a)] Démontrez que $ D $ est une sous-algèbre abélienne autoadjointe maximale de $ B(\ell^2) $,
+*-isomorphe isométriquement à $ \ell^\infty $, et que ses états purs sont exactement les caractères de
+$ \ell^\infty $.
+\item[(b)] Réglez les états purs faciles : démontrez que pour chaque $ n $, l'état
+$ \varphi_n(T) = \langle Te_n, e_n \rangle $ sur $ D $ admet un et un seul prolongement en un état
+sur $ B(\ell^2) $, à savoir la même formule. (Montrez d'abord que tout prolongement $ \psi $ vérifie
+$ \psi(T) = \psi(P_nTP_n) $, où $ P_n $ est le projecteur sur $ \mathbb{C}e_n $.) Expliquez
+pourquoi les états purs restants --- ceux provenant d'ultrafiltres libres --- constituent toute la
+difficulté.
+\item[(c)] Lisez la conjecture de pavage d'Anderson (1979) et la reformulation en termes de discrépance en
+dimension finie de Weaver (2004), et rédigez un exposé soigné de la manière dont un énoncé sur le
+partage d'ensembles finis de vecteurs peut équivaloir à un énoncé sur les états de
+$ B(\ell^2) $.
+\item[(d)] Lisez la démonstration de Marcus, Spielman et Srivastava : familles entrelacées de polynômes, méthode
+des polynômes caractéristiques mixtes, et majoration de la plus grande racine qui produit une bonne
+partition. Prenez ensuite en charge ce que la démonstration ne donne pas : l'argument montre qu'une
+partition convenable existe sans en exhiber une, alors cherchez ce que l'on sait de son calcul
+efficace.
+\end{enumerate}
+
+\end{problem}
+
+\noindent \textbf{Statut : résolu.} Richard Kadison et Isadore Singer ont posé la question en 1959,
+dans le sillage de l'insistance de Dirac selon laquelle un système quantique possède un ensemble complet
+d'observables qui commutent et dont la mesure détermine l'état ; ils soupçonnaient que la réponse était non.
+En cinquante ans le problème s'est révélé équivalent à un éventail saisissant d'énoncés --- la conjecture de
+pavage d'Anderson en théorie des opérateurs, la conjecture de discrépance de Weaver, la conjecture de
+Feichtinger sur le partage des repères en traitement du signal --- de sorte qu'une solution quelque part les
+résolvait tous. Elle est venue en 2013 de trois chercheurs extérieurs aux algèbres d'opérateurs : Adam
+Marcus, Daniel Spielman et Nikhil Srivastava, dont la technique des familles entrelacées venait de produire
+des graphes de Ramanujan bipartis de tout degré, et qui ont démontré la conjecture de Weaver et donc une
+réponse positive. Le travail a paru dans les \textit{Annals of Mathematics} en 2015 et a reçu le prix Pólya
+2014 ; c'est le meilleur exemple récent d'un problème tombant sous une idée importée d'un domaine sans
+rapport.
+
+\begin{refs}
+\item Contexte : Problème de Kadison--Singer --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Kadison%E2%80%93Singer_problem})
+\item Article : A. Marcus, D. Spielman, N. Srivastava, \og{} Interlacing families II: Mixed characteristic polynomials and the Kadison--Singer problem \fg{} (2015), \textit{Annals of Mathematics} 182, arXiv:1306.3969 (\url{https://arxiv.org/abs/1306.3969})
+\item Lecture : J. B. Conway, \textit{A Course in Functional Analysis}, ch. VIII (états et représentations)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les facteurs des groupes libres --- Recherche}]
+\textbf{FA-38.} \textbf{Problème.} (Ouvert.) Pour un groupe discret $ G $, soit $ \lambda $ la représentation
+régulière gauche sur $ \ell^2(G) $ et soit $ L(G) = \lambda(G)'' \subset B(\ell^2(G)) $ l'algèbre de
+von Neumann de groupe qu'elle engendre. On note $ F_n $ le groupe libre à $ n $ générateurs.
+\begin{enumerate}
+\item[(a)] Démontrez que $ \tau(x) = \langle x\delta_e, \delta_e \rangle $ définit un état tracial fidèle sur
+$ L(G) $ : $ \tau(xy) = \tau(yx) $, et $ \tau(x^{*}x) = 0 $ entraîne $ x = 0 $.
+\item[(b)] Démontrez que $ L(G) $ a un centre trivial --- est un facteur --- si et seulement si $ G $ a des
+classes de conjugaison infinies, et vérifiez que $ F_n $ en a pour $ n \ge 2 $. Concluez que
+$ L(F_n) $ est un facteur $ \mathrm{II}_1 $, algèbre de von Neumann de dimension infinie munie d'une
+trace, comme en FA-18.
+\item[(c)] Démontrez, ou reconstituez à partir de l'article de Murray et von Neumann de 1943, que $ L(F_2) $
+n'est pas isomorphe au facteur hyperfini $ R $ : montrez que $ R $ a la propriété $\Gamma$ --- il existe des
+unitaires approximativement centraux de trace nulle --- et que $ L(F_2) $ ne l'a pas.
+\item[(d)] Voici maintenant la question ouverte : a-t-on $ L(F_2) \cong L(F_3) $ ? Lisez les probabilités
+libres de Voiculescu, les facteurs de groupes libres interpolés $ L(F_t) $ de Dykema et Rădulescu, et
+leur dichotomie, puis rédigez un exposé expliquant pourquoi les invariants standard échouent --- y compris
+le théorème de Voiculescu de 1996 selon lequel les facteurs de groupes libres n'ont pas de sous-algèbre
+de Cartan, ce qui a tué la stratégie la plus naturelle pour les séparer.
+\end{enumerate}
+
+\end{problem}
+
+\noindent \textbf{Statut : ouvert.} Murray et von Neumann ont construit les premiers exemples de
+facteurs $ \mathrm{II}_1 $ dans les années 1930 et se sont aussitôt demandé combien il y en avait ; ils
+ont séparé $ L(F_2) $ du facteur hyperfini $ R $ par la propriété $\Gamma$ en 1943, et la question des groupes
+libres en est restée là. Il n'est pas seulement inconnu que $ L(F_2) \cong L(F_3) $ --- on ne sait même pas
+si deux facteurs de groupes libres quelconques sont isomorphes. Voiculescu a inventé les probabilités libres
+dans les années 1980 pour attaquer exactement cela, et elles ont produit une étrange réponse partielle :
+Dykema et Rădulescu ont montré indépendamment au début des années 1990 que les facteurs interpolés
+$ L(F_t) $, définis pour tout réel $ t > 1 $, obéissent à une dichotomie du tout ou rien --- ou bien
+tous les $ L(F_n) $ avec $ 2 \le n \le \infty $ sont isomorphes, ou bien aucun couple ne l'est. La
+dimension d'entropie libre a été conçue pour trancher et n'y est pas encore parvenue.
+
+\begin{refs}
+\item Contexte : Algèbre de von Neumann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Alg%C3%A8bre_de_von_Neumann})
+\item Contexte : Probabilité libre --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probabilit%C3%A9_libre})
+\item Article : F. J. Murray et J. von Neumann, \og{} On rings of operators. IV \fg{} (1943), \textit{Annals of Mathematics} 44
+\item Lecture : Voiculescu, Dykema \& Nica, \textit{Free Random Variables} (CRM Monograph Series, 1992)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La constante de Grothendieck --- Recherche, short}]
+\textbf{FA-39.} \textbf{Problème.} (Ouvert.) L'inégalité de Grothendieck affirme l'existence d'une
+constante universelle $ K $ telle que, pour toute matrice réelle $ (m_{ij}) $ vérifiant
+$ \left| \sum_{i,j} m_{ij} s_i t_j \right| \le 1 $ pour tous réels
+$ s_i, t_j \in [-1, 1] $, et pour tous vecteurs unitaires $ x_i, y_j $ d'un espace de Hilbert réel
+quelconque,
+\[ \left| \sum_{i,j} m_{ij} \langle x_i, y_j \rangle \right| \;\le\; K . \]
+Déterminez la valeur exacte de la plus petite constante possible, la constante de Grothendieck réelle
+$ K_G^{\mathbb{R}} $.
+\end{problem}
+
+\noindent \textbf{Statut : ouvert.} Grothendieck a démontré l'inégalité dans son
+\textit{Résumé de la théorie métrique des produits tensoriels topologiques} de 1953, article si en avance sur
+son public qu'il fut ignoré quinze ans, jusqu'à ce que Lindenstrauss et Pełczyński le réécrivent dans le
+langage de la théorie des espaces de Banach. On sait seulement que la constante se situe entre environ
+1,6769, minoration de Davie et de Reeds, et la majoration de Krivine de 1979,
+$ \pi / (2\log(1+\sqrt{2})) \approx 1.7822 $, dont Krivine conjecturait qu'elle était exacte ;
+Braverman, Makarychev, Makarychev et Naor l'ont réfuté en 2011 en montrant que la vraie valeur est
+strictement plus petite, sans produire de nouvelle majoration explicite. L'inégalité a depuis complètement
+échappé à l'analyse fonctionnelle : elle contrôle la qualité des relaxations semi-définies de MAX-CUT en
+informatique théorique, et elle borne les corrélations réalisables par des systèmes quantiques
+intriqués.
+
+\begin{refs}
+\item Contexte : Inégalité de Grothendieck --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Grothendieck_inequality})
+\item Article : A. Grothendieck, \og{} Résumé de la théorie métrique des produits tensoriels topologiques \fg{} (1953), \textit{Boletim da Sociedade de Matemática de São Paulo} 8
+\item Lecture : Pisier, \textit{Similarity Problems and Completely Bounded Maps}
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}

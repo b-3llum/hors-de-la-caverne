@@ -1,0 +1,1577 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Statistique}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Lycée}
+
+\begin{problem}[{Moyenne contre médiane --- Lycée}]
+\textbf{STA-01.} \textbf{Problème.} Pour des réels $ x_1, \dots, x_n $, on pose
+\[ f(c) = \sum_{i=1}^{n} (x_i - c)^2 , \qquad g(c) = \sum_{i=1}^{n} |x_i - c| . \]
+\begin{enumerate}
+\item[(a)] Démontrez que $ f $ atteint son minimum en un unique point, la moyenne des nombres.
+\item[(b)] Démontrez que $ g $ atteint son minimum en toute médiane (tout point ayant au moins la
+moitié des données de chaque côté), et déterminez exactement quand le minimiseur est unique.
+\item[(c)] Construisez une liste de dix \og{} revenus des ménages \fg{} dont la moyenne dépasse dix fois la
+médiane, et argumentez laquelle des deux est le \og{} revenu typique \fg{} honnête pour votre liste ---
+avec une raison mathématique, pas un slogan.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La tension entre les deux moyennes est ancienne : la moyenne appartient à la
+tradition des moindres carrés de Legendre et Gauss, tandis que la médiane fut défendue par Laplace
+(qui démontra qu'elle minimise l'erreur absolue) puis par Edgeworth. Le choix tranche encore
+aujourd'hui des débats publics --- revenus, prix de l'immobilier, délais d'attente à l'hôpital ---
+parce que la moyenne court après les valeurs extrêmes et la médiane non. La partie (b) est une
+véritable démonstration sur une fonction affine par morceaux plutôt que dérivable, ce qui est
+exactement pourquoi elle mérite d'être rédigée.
+
+\begin{refs}
+\item Contexte : Médiane (statistiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9diane_(statistiques)})
+\item Lecture : D. Freedman, R. Pisani \& R. Purves, \textit{Statistics}, ch. 4
+\item Cours : MIT OCW 18.650 Statistics for Applications (\url{https://ocw.mit.edu/courses/18-650-statistics-for-applications-fall-2016/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Construisez votre propre paradoxe de Simpson --- Lycée}]
+\textbf{STA-02.} \textbf{Problème.} Deux hôpitaux, A et B, traitent chacun exactement 1000 patients, chaque
+patient étant classé comme cas bénin ou cas grave.
+\begin{enumerate}
+\item[(a)] Construisez des données entières telles que : l'hôpital A ait un taux de survie strictement
+supérieur à celui de B chez les cas bénins, A ait un taux de survie strictement supérieur à celui
+de B chez les cas graves, et pourtant B ait un taux de survie global strictement supérieur.
+\item[(b)] Démontrez le résultat d'impossibilité suivant : si les deux hôpitaux traitent le \textit{même
+nombre} de cas bénins (et donc le même nombre de cas graves), aucune inversion de ce genre ne
+peut se produire.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'inversion porte le nom d'E. H. Simpson (1951), bien que Karl Pearson et Udny
+Yule l'aient remarquée un demi-siècle plus tôt. Le cas réel le plus célèbre est celui des données
+d'admission en troisième cycle à Berkeley en 1973, analysées par Bickel, Hammel et O'Connell :
+l'université semblait globalement défavoriser les femmes, alors que département par département ce
+n'était pas le cas --- les femmes avaient postulé aux départements les plus sélectifs. Le paradoxe
+est un théorème sur les moyennes pondérées, et votre démonstration d'impossibilité montrera
+exactement d'où vient la liberté d'inverser.
+
+\begin{refs}
+\item Contexte : Paradoxe de Simpson --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Paradoxe_de_Simpson})
+\item Lecture : J. Pearl \& D. Mackenzie, \textit{The Book of Why}, ch. 6
+\item Article : P. J. Bickel, E. A. Hammel \& J. W. O'Connell, \og{} Sex bias in graduate admissions: Data from Berkeley \fg{}, \textit{Science} 187 (1975), 398--404
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Corrélation n'est pas causalité --- sous forme de théorème --- Lycée}]
+\textbf{STA-03.} \textbf{Problème.} La corrélation empirique $ r $ de données appariées mesure l'association
+linéaire et vérifie toujours $ -1 \le r \le 1 $ (vous pouvez l'admettre).
+\begin{enumerate}
+\item[(a)] Soient $ Z, U, V $ des quantités aléatoires indépendantes, chacune d'espérance 0 et de
+variance 1, et posons $ X = Z + U $ et $ Y = Z + V $. Montrez que la corrélation
+(théorique) de $ X $ et $ Y $ vaut $ 1/2 $, alors que ni $ X $ ni $ Y $ n'influence
+l'autre --- ils partagent seulement la cause commune $ Z $.
+\item[(b)] Construisez une variable aléatoire $ X $ prenant un nombre fini de valeurs, telle que
+$ X $ et $ Y = X^2 $ aient une corrélation exactement nulle bien que $ Y $ soit entièrement
+déterminée par $ X $. Démontrez les deux affirmations.
+\item[(c)] Concluez, en un paragraphe soigneux, sur ce qu'une corrélation non nulle établit et n'établit
+pas, et sur ce qu'une corrélation nulle établit et n'établit pas.
+\end{enumerate}
+
+\end{problem}
+
+\noindent \og{} Corrélation n'implique pas causalité \fg{} est d'ordinaire laissé à l'état de
+proverbe ; il devient ici deux petits théorèmes. La partie (a) est le \textit{facteur de confusion} :
+les ventes de glaces et les noyades sont corrélées parce que l'été entraîne les deux. La partie (b)
+montre le piège réciproque : corrélation nulle n'est pas indépendance. Le coefficient de
+corrélation lui-même est dû à Francis Galton et Karl Pearson dans les années 1880--1890 ; la
+mathématique moderne des conditions sous lesquelles une corrélation \textit{peut} soutenir une
+affirmation causale est l'objet de l'inférence causale, l'un des domaines les plus vivants de la
+statistique d'aujourd'hui.
+
+\begin{refs}
+\item Contexte : Corrélation n'implique pas causalité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Corr%C3%A9lation_n'implique_pas_causalit%C3%A9})
+\item Contexte : Coefficient de corrélation de Pearson --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Pearson_correlation_coefficient})
+\item Lecture : D. Freedman, R. Pisani \& R. Purves, \textit{Statistics}, ch. 9--12
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Pourquoi les fils des pères grands sont plus petits --- Lycée, short}]
+\textbf{STA-19.} \textbf{Problème.} Soient $ X $ et $ Y $ les tailles standardisées du père
+et du fils (chacune d'espérance 0 et d'écart type 1), de corrélation $ r $, et supposons la
+moyenne conditionnelle linéaire : $ \mathbb{E}[Y \mid X = x] = a + bx $. Démontrez que
+$ a = 0 $ et $ b = r $, de sorte que $ |\mathbb{E}[Y \mid X = x]| <|x| $ dès que
+$ |r| <1 $ et $ x \ne 0 $, puis expliquez --- par un argument de symétrie, pas par un slogan ---
+pourquoi cela ne signifie \textit{pas} que la dispersion des tailles se réduit de génération en
+génération.
+\end{problem}
+
+\noindent Francis Galton découvrit l'effet dans les années 1880 et l'appela \og{} régression
+vers la médiocrité \fg{} ; toute la discipline moderne de l'analyse de régression tire son nom de cette
+seule observation biologique. Le point de la seconde moitié du problème est que le même argument
+mené à l'envers prédit que les fils grands avaient des pères plus petits, ce qu'aucune théorie de
+l'hérédité ne peut expliquer --- l'effet est une propriété de la corrélation imparfaite, pas de la
+biologie. C'est aussi le piège classique de l'évaluation des interventions : les écoles les moins
+performantes, les patients les plus malades et les pilotes les plus malchanceux s'améliorent tout
+seuls, et quelque chose d'autre en récolte toujours le crédit.
+
+\begin{refs}
+\item Contexte : Régression vers la moyenne --- Wikipédia (\url{https://fr.wikipedia.org/wiki/R%C3%A9gression_vers_la_moyenne})
+\item Article : F. Galton, \og{} Regression towards mediocrity in hereditary stature \fg{}, \textit{Journal of the Anthropological Institute} 15 (1886), 246--263
+\item Lecture : D. Freedman, R. Pisani \& R. Purves, \textit{Statistics}, ch. 10
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une garantie qui n'a besoin d'aucune courbe en cloche --- Lycée, short}]
+\textbf{STA-20.} \textbf{Problème.} Soit $ x_1, \dots, x_n $ une liste quelconque de nombres,
+de moyenne $ \bar{x} $ et d'écart type
+$ s = \sqrt{\frac{1}{n}\sum_i (x_i - \bar{x})^2} $, et soit $ k >1 $. Démontrez que la
+proportion de la liste située à une distance au moins $ ks $ de $ \bar{x} $ est au plus
+$ 1/k^2 $, et montrez que la borne ne peut pas être améliorée en exhibant une liste de huit
+nombres pour laquelle cette proportion vaut exactement $ 1/4 $ lorsque $ k = 2 $.
+\end{problem}
+
+\noindent C'est l'inégalité de Bienaymé-Tchebychev dépouillée de toute probabilité : la
+démonstration tient en une ligne d'arithmétique --- chaque terme de la somme des carrés est positif,
+alors jetez les petits. La fameuse règle \og{} 68-95-99,7 \fg{} est bien plus fine, mais elle ne vaut que
+pour la courbe normale ; la borne de Tchebychev vaut pour des données de revenus, des magnitudes de
+séismes et n'importe quelle liste que vous rencontrerez, ce qui explique que Tchebychev s'en soit
+servi en 1867 pour démontrer la loi des grands nombres sans rien supposer sur la forme de la
+loi.
+
+\begin{refs}
+\item Contexte : Inégalité de Bienaymé-Tchebychev --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Bienaym%C3%A9-Tchebychev})
+\item Contexte : Règle 68-95-99,7 --- Wikipédia (\url{https://fr.wikipedia.org/wiki/R%C3%A8gle_68-95-99,7})
+\item Lecture : D. Freedman, R. Pisani \& R. Purves, \textit{Statistics}, ch. 4--5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Compter des poissons que l'on ne peut pas compter --- Lycée}]
+\textbf{STA-21.} \textbf{Problème.} Un lac contient un nombre inconnu $ N $ de poissons. Vous en capturez
+$ K $, vous les marquez et vous les relâchez ; plus tard vous capturez un second échantillon de
+$ n $ poissons, dont $ k $ se révèlent marqués. On suppose que tout sous-ensemble de $ n $
+poissons a la même probabilité d'être le second échantillon.
+\begin{enumerate}
+\item[(a)] Écrivez la probabilité d'observer exactement $ k $ poissons marqués (une probabilité
+hypergéométrique), en fonction de l'inconnue $ N $.
+\item[(b)] En examinant le rapport $ L(N)/L(N-1) $ de vraisemblances consécutives, démontrez que cette
+probabilité est maximale en $ \hat{N} = \lfloor Kn/k \rfloor $ lorsque $ k \ge 1 $ ---
+l'estimateur du maximum de vraisemblance est exactement la règle de proportionnalité naïve
+$ k/n \approx K/N $.
+\item[(c)] Montrez que $ \hat{N} $ est inutilisable tel quel : $ P(k = 0) >0 $ pour tout
+$ N \ge K + n $, et sur cet événement l'estimation est infinie. Démontrez que l'estimateur de
+Chapman
+\[ \tilde{N} = \frac{(K+1)(n+1)}{k+1} - 1 \]
+est exactement sans biais dès que $ K + n \ge N $. (Une identité de type Vandermonde pour les
+coefficients binomiaux fait le travail.)
+\item[(d)] Calculez les deux estimations pour $ K = 100 $, $ n = 100 $, $ k = 20 $. Énumérez ensuite
+les hypothèses de modélisation --- population fermée, aucune marque perdue, tous les poissons
+également capturables --- et pour chacune dites dans quel sens son échec ferait dévier
+l'estimation.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Laplace utilisa la même arithmétique en 1802 pour estimer la population de la
+France à partir des registres de naissances, et la méthode fut réinventée pour les animaux par
+C. G. J. Petersen pour les poissons (1896) et F. C. Lincoln pour les oiseaux d'eau bagués (1930) ;
+la correction de biais de (c) est celle de D. G. Chapman, en 1951. La technique sert aujourd'hui
+bien au-delà de l'écologie : estimer le sous-dénombrement d'un recensement, le nombre de défauts
+logiciels non découverts et --- en croisant plusieurs listes incomplètes --- le nombre de victimes d'un
+conflit armé. C'est l'exemple le plus net, en statistique élémentaire, de la façon d'apprendre la
+taille d'une chose que l'on ne pourra jamais voir en entier.
+
+\begin{refs}
+\item Contexte : Capture-marquage-recapture --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Capture-marquage-recapture})
+\item Contexte : Loi hypergéométrique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_hyperg%C3%A9om%C3%A9trique})
+\item Lecture : G. A. F. Seber, \textit{The Estimation of Animal Abundance and Related Parameters}, 2e éd.
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La dame qui déguste du thé --- Lycée, short}]
+\textbf{STA-31.} \textbf{Problème.} On prépare huit tasses de thé, quatre où le lait a été versé
+en premier et quatre où c'est le thé ; on informe la dégustatrice qu'il y en a quatre de chaque
+sorte et elle doit désigner les quatre tasses au lait versé en premier, de sorte que sous
+l'hypothèse nulle où elle devine au hasard, les $ \binom{8}{4} = 70 $ sélections possibles sont
+équiprobables. Démontrez que la probabilité de désigner les quatre correctement par hasard vaut
+$ 1/70 $, calculez la probabilité d'en trouver au moins trois sur quatre, et déduisez-en qu'au
+seuil de 5 \% rien de moins qu'un sans-faute ne peut compter comme preuve --- puis dites ce qui change
+si l'expérience est menée avec six tasses, trois de chaque sorte.
+\end{problem}
+
+\noindent Ronald Fisher ouvre \textit{The Design of Experiments} (1935) par cette
+expérience, et elle a réellement eu lieu : à Rothamsted, dans les années 1920, l'algologue Muriel
+Bristol affirmait pouvoir sentir au goût si le lait avait été versé dans la tasse en premier, et
+Fisher conçut le test sur-le-champ. Ce chapitre est le premier endroit où la randomisation,
+l'hypothèse nulle et la valeur p exacte apparaissent ensemble, et le dénombrement que vous venez de
+faire est le \textit{test exact de Fisher} pour un tableau $ 2 \times 2 $ --- pas d'approximation
+normale, pas de théorie asymptotique, rien que de la combinatoire. Remarquez ce que révèle la
+dernière partie : le plus petit effet détectable est fixé par le plan d'expérience avant qu'une
+seule tasse ne soit versée, et c'est pourquoi Fisher insistait pour que l'on consulte le
+statisticien avant l'expérience plutôt qu'après.
+
+\begin{refs}
+\item Contexte : La dame dégustant du thé --- Wikipédia (\url{https://fr.wikipedia.org/wiki/The_lady_tasting_tea})
+\item Contexte : Test exact de Fisher --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Test_exact_de_Fisher})
+\item Lecture : R. A. Fisher, \textit{The Design of Experiments} (1935), ch. 2
+\item Lecture : D. Salsburg, \textit{The Lady Tasting Tea: How Statistics Revolutionized Science in the Twentieth Century} (2001)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Deux millions de mauvaises réponses --- Lycée}]
+\textbf{STA-32.} \textbf{Problème.} Une population comporte une fraction $ p $ d'électeurs favorables au candidat
+R et $ 1 - p $ favorables au candidat L. Un magazine envoie des bulletins par la poste à une
+immense liste de noms. Indépendamment de tout le reste, un électeur favorable à R renvoie le
+bulletin avec probabilité $ r_1 $, et un électeur favorable à L le renvoie avec probabilité
+$ r_0 $ ; le magazine publie la fraction de partisans de R parmi les bulletins qui lui
+reviennent.
+\begin{enumerate}
+\item[(a)] Démontrez que lorsque le nombre de bulletins envoyés croît, la fraction publiée se stabilise
+non pas en $ p $ mais en
+\[ p^{*} = \frac{p\, r_1}{p\, r_1 + (1-p)\, r_0} , \]
+et que $ p^{*} = p $ si et seulement si $ r_1 = r_0 $. Remarquez que le nombre de bulletins
+n'apparaît nulle part dans $ p^{*} $ : l'erreur ne diminue pas quand le sondage grossit.
+\item[(b)] Injectez les chiffres historiques. En 1936, le \textit{Literary Digest} envoya environ dix
+millions de bulletins, en reçut environ 2,38 millions en retour, et prédit que Landon obtiendrait
+57 \% des voix ; Roosevelt en obtint 60,8 \%. À l'aide de (a), déterminez le rapport
+$ r_1/r_0 $ des taux de réponse qui expliquerait à lui seul l'écart, et commentez la modestie de
+ce différentiel.
+\item[(c)] Montrez que l'erreur d'échantillonnage n'était pas le problème. Pour un échantillon réellement
+aléatoire de taille $ n $ tiré de la population, démontrez que l'écart type de la fraction
+observée vaut $ \sqrt{p(1-p)/n} \le 1/(2\sqrt{n}) $, et évaluez-le pour
+$ n = 2{ }380{ }000 $. Comparez le résultat à l'erreur de 20 points du magazine, puis trouvez la
+taille d'échantillon à laquelle la seule erreur d'échantillonnage aléatoire atteint un point de
+pourcentage.
+\item[(d)] Le \textit{Digest} a commis deux erreurs distinctes : il a bâti son fichier d'adresses à partir
+d'annuaires téléphoniques, de listes de clubs et d'immatriculations d'automobiles, et il a accepté
+la réponse de quiconque voulait bien répondre. Expliquez, à l'aide de (a), pourquoi chacune est
+fatale à elle seule, et démontrez qu'envoyer vingt millions de bulletins au lieu de dix n'aurait
+remédié ni à l'une ni à l'autre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le \textit{Literary Digest} avait correctement annoncé toutes les élections
+présidentielles depuis 1920 et était si confiant dans le volume brut qu'il publia sa prévision de
+1936 comme une quasi-certitude ; George Gallup, travaillant sur un échantillon d'environ cinquante
+mille personnes choisies pour représenter l'électorat, annonça le résultat correct, et le magazine
+disparut en moins de deux ans. La reconstitution de Peverill Squire en 1988 a identifié la
+non-réponse comme le plus grave des deux échecs : les partisans de Roosevelt renvoyaient tout
+simplement moins de bulletins. La leçon n'est pas seulement historique. Xiao-Li Meng a montré en
+2018 que l'erreur d'une moyenne d'échantillon se factorise en un terme de qualité des données, un
+terme de quantité de données et la variance de la population, de sorte qu'une corrélation minuscule
+entre le fait de répondre et la préférence rend un échantillon énorme aussi mauvais qu'un petit
+échantillon aléatoire --- son \og{} paradoxe des mégadonnées \fg{}, appliqué à l'élection américaine de 2016,
+est STA-32(a) réécrit pour le XXIe siècle.
+
+\begin{refs}
+\item Contexte : The Literary Digest --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/The_Literary_Digest})
+\item Contexte : Échantillon biaisé --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89chantillon_biais%C3%A9})
+\item Article : P. Squire, \og{} Why the 1936 Literary Digest poll failed \fg{}, \textit{Public Opinion Quarterly} 52 (1988), 125--133
+\item Article : X.-L. Meng, \og{} Statistical paradises and paradoxes in big data (I) \fg{}, \textit{Annals of Applied Statistics} 12 (2018), 685--726
+\end{refs}
+
+\bigskip
+
+
+\section*{Licence}
+
+\begin{problem}[{Les moindres carrés et les équations normales --- Licence}]
+\textbf{STA-04.} \textbf{Problème.} Étant donné des points $ (x_1, y_1), \dots, (x_n, y_n) $ dont les $ x_i $
+ne sont pas tous égaux, on ajuste une droite $ y = a + bx $ en minimisant
+\[ S(a,b) = \sum_{i=1}^{n} (y_i - a - b x_i)^2 . \]
+\begin{enumerate}
+\item[(a)] Établissez les équations normales en annulant les deux dérivées partielles
+$ \partial S/\partial a $ et $ \partial S/\partial b $, résolvez-les, et démontrez que le point
+critique est l'unique minimum global.
+\item[(b)] Montrez que la droite ajustée passe toujours par le point moyen
+$ (\bar{x}, \bar{y}) $.
+\item[(c)] Sous forme matricielle, $ X $ désignant la matrice de plan $ n \times p $ de rang maximal
+en colonnes, montrez que minimiser $ \lVert y - X\beta \rVert^2 $ conduit aux équations normales
+$ X^{\top} X \beta = X^{\top} y $. Interprétez la solution géométriquement --- le vecteur ajusté
+$ X\hat{\beta} $ est la projection orthogonale de $ y $ sur l'espace des colonnes de $ X $ ---
+et démontrez cette interprétation.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les moindres carrés sont l'algorithme fondateur de la statistique. Legendre les
+publia en 1805 dans un appendice sur les orbites cométaires ; Gauss affirma les employer depuis
+1795 et les relia en 1809 à la loi normale --- la querelle de priorité fut âpre. Le premier triomphe
+de la méthode fut de retrouver l'astéroïde Cérès perdu à partir d'une poignée d'observations. Les
+équations normales que vous établissez ici sont résolues des millions de fois par seconde au cœur
+de tous les systèmes de régression, de prévision et d'apprentissage automatique qui existent.
+
+\begin{refs}
+\item Contexte : Méthode des moindres carrés --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s})
+\item Lecture : G. Casella \& R. L. Berger, \textit{Statistical Inference}, 2e éd., ch. 11--12
+\item Cours : MIT OCW 18.650 Statistics for Applications (\url{https://ocw.mit.edu/courses/18-650-statistics-for-applications-fall-2016/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le maximum de vraisemblance, quatre fois --- Licence}]
+\textbf{STA-05.} \textbf{Problème.} Des observations indépendantes $ x_1, \dots, x_n $ sont tirées de chacun des
+modèles ci-dessous. Pour chacun des cas (a)--(d), écrivez la vraisemblance, établissez l'estimateur
+du maximum de vraisemblance (EMV), et vérifiez que c'est bien un maximum.
+\begin{enumerate}
+\item[(a)] Bernoulli de probabilité de succès $ p $.
+\item[(b)] Poisson d'espérance $ \lambda $.
+\item[(c)] Exponentielle de taux $ \lambda $.
+\item[(d)] Normale $ N(\mu, \sigma^2) $ avec les deux paramètres inconnus.
+\item[(e)] Déterminez, pour chaque estimateur trouvé, s'il est sans biais ; là où il est biaisé, calculez
+le biais exactement.
+\item[(f)] Démontrez la propriété d'invariance : si $ \hat{\theta} $ est un EMV de $ \theta $ et si
+$ g $ est une bijection, alors $ g(\hat{\theta}) $ est un EMV de $ g(\theta) $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le maximum de vraisemblance est la création de R. A. Fisher --- esquissé dans un
+article d'étudiant de 1912 et développé dans son grand mémoire de 1922, qui introduisit aussi les
+mots \og{} paramètre \fg{}, \og{} statistique \fg{}, \og{} exhaustivité \fg{} et \og{} efficacité \fg{} dans leur sens moderne. Le
+principe --- rendre les données aussi probables que possible --- a l'air d'une heuristique, et pourtant
+il produit des estimateurs asymptotiquement optimaux sous des conditions très générales (voir
+STA-14). La partie (e) réserve une petite surprise : l'un des estimateurs les plus naturels de la
+statistique est biaisé, ce qui mène directement au problème suivant.
+
+\begin{refs}
+\item Contexte : Maximum de vraisemblance --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Maximum_de_vraisemblance})
+\item Lecture : G. Casella \& R. L. Berger, \textit{Statistical Inference}, 2e éd., ch. 7
+\item Article : R. A. Fisher, \og{} On the mathematical foundations of theoretical statistics \fg{}, \textit{Philosophical Transactions of the Royal Society A} 222 (1922), 309--368
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Pourquoi diviser par n $-$ 1 ? --- Licence}]
+\textbf{STA-06.} \textbf{Problème.} Soient $ x_1, \dots, x_n $ des tirages indépendants d'une loi quelconque
+d'espérance $ \mu $ et de variance finie $ \sigma^2 $, et soit $ \bar{x} $ la moyenne
+empirique. On définit la variance empirique
+\[ S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2 . \]
+\begin{enumerate}
+\item[(a)] Démontrez l'identité
+\[ \sum_{i=1}^{n} (x_i - \bar{x})^2 = \sum_{i=1}^{n} (x_i - \mu)^2 - n(\bar{x} - \mu)^2 , \]
+et servez-vous-en pour démontrer $ \mathbb{E}[S^2] = \sigma^2 $.
+\item[(b)] Montrez que diviser par $ n $ donne au contraire l'espérance $ \sigma^2 (n-1)/n $, de sorte
+que l'estimateur \og{} naturel \fg{} sous-estime systématiquement la variance. Expliquez avec vos mots
+pourquoi mesurer la dispersion autour de $ \bar{x} $ plutôt qu'autour de $ \mu $ fait perdre
+exactement l'information d'une observation.
+\item[(c)] Montrez que l'absence de biais ne survit pas à la racine carrée : $ S $ n'est \textit{pas} un
+estimateur sans biais de $ \sigma $ (supposez que la loi n'est pas concentrée en un point).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le n $-$ 1 s'appelle la correction de Bessel, d'après l'astronome Friedrich
+Bessel, et c'est la première rencontre honnête de la plupart des étudiants avec la notion de biais.
+L'idée plus profonde --- que les résidus $ x_i - \bar{x} $ vivent dans un espace de dimension
+$ (n-1) $, à l'origine de l'expression \og{} degrés de liberté \fg{} --- fut rendue précise par Fisher dans
+les années 1920. La partie (c) est un avertissement utile : l'absence de biais est une propriété
+d'un paramétrage donné, pas une loi de la nature.
+
+\begin{refs}
+\item Contexte : Correction de Bessel --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Correction_de_Bessel})
+\item Lecture : G. Casella \& R. L. Berger, \textit{Statistical Inference}, 2e éd., ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ce que promet un intervalle de confiance --- Licence}]
+\textbf{STA-07.} \textbf{Problème.} Soient $ x_1, \dots, x_n $ des observations indépendantes
+$ N(\mu, \sigma^2) $ avec $ \sigma $ connu.
+\begin{enumerate}
+\item[(a)] Démontrez l'énoncé de couverture : l'intervalle aléatoire
+$ \bar{x} \pm 1{,}96\,\sigma/\sqrt{n} $ contient $ \mu $ avec probabilité 0,95 --- la
+probabilité portant sur le tirage des données, avant que celles-ci ne soient vues, et cela quelle
+que soit la vraie valeur de $ \mu $.
+\item[(b)] Expliquez précisément pourquoi la phrase \og{} ayant calculé l'intervalle $ [2{,}1 ;\,3{,}4] $,
+le paramètre $ \mu $ s'y trouve avec probabilité 95 \% \fg{} n'est pas autorisée par (a), et quelle
+est la bonne interprétation fréquentiste sur des expériences répétées.
+\item[(c)] Voici maintenant l'exemple d'école qui met en garde. Un paramètre $ \theta $ est inconnu ;
+deux observations indépendantes $ X_1, X_2 $ valent chacune $ \theta - 1 $ ou
+$ \theta + 1 $, chacune avec probabilité $ 1/2 $. On définit l'ensemble de confiance
+$ C $ : si $ X_1 \ne X_2 $, on pose $ C = \{ (X_1 + X_2)/2 \} $ ; si $ X_1 = X_2 $, on pose
+$ C = \{ X_1 - 1 \} $. Démontrez que $ C $ couvre $ \theta $ avec probabilité exactement
+75 \%, et pourtant qu'après avoir vu les données vous êtes soit logiquement certain que
+$ C = \{\theta\} $, soit assuré que la couverture n'est qu'un coup de pile ou face. Que dit cela
+sur le fait d'attacher le niveau de confiance pré-expérimental à un intervalle particulier une fois
+réalisé ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les intervalles de confiance ont été introduits par Jerzy Neyman dans un article
+de 1937 qui mérite encore d'être lu pour sa rigueur philosophique : le niveau de confiance décrit
+la performance à long terme de la \textit{procédure}, pas la probabilité d'un intervalle réalisé
+particulier. L'exemple (c) --- un exemple d'enseignement classique, discuté par Berger, Wolpert,
+Wasserman et d'autres --- montre que les deux choses peuvent diverger spectaculairement. Les énoncés
+sur la probabilité d'un paramètre sachant les données relèvent de l'inférence bayésienne (STA-10),
+qui fait d'autres hypothèses pour se les autoriser.
+
+\begin{refs}
+\item Contexte : Intervalle de confiance --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Intervalle_de_confiance})
+\item Lecture : L. Wasserman, \textit{All of Statistics}, ch. 6
+\item Article : J. Neyman, \og{} Outline of a theory of statistical estimation based on the classical theory of probability \fg{}, \textit{Philosophical Transactions of the Royal Society A} 236 (1937), 333--380
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La logique des valeurs p --- Licence}]
+\textbf{STA-08.} \textbf{Problème.} Soit $ T $ une statistique de test de loi continue sous l'hypothèse nulle
+$ H_0 $, les grandes valeurs comptant contre $ H_0 $, et soit la valeur p
+$ p = P_0(T \ge t_{\mathrm{obs}}) $.
+\begin{enumerate}
+\item[(a)] Démontrez que sous $ H_0 $ la valeur p suit la loi uniforme sur $ (0,1) $, et déduisez-en
+que la règle \og{} rejeter lorsque $ p \le \alpha $ \fg{} a une probabilité d'erreur de première espèce
+exactement égale à $ \alpha $.
+\item[(b)] Expliquez soigneusement pourquoi $ p $ n'est pas la probabilité que $ H_0 $ soit vraie, et
+pourquoi $ 1 - p $ n'est pas la probabilité que l'alternative soit vraie.
+\item[(c)] Construisez un exemple explicite où la preuve empirique paraît accablante et où pourtant
+l'hypothèse nulle survit à un audit bayésien : $ H_0\colon \theta = 0 $ contre
+$ H_1\colon \theta \ne 0 $ pour l'espérance de données $ N(\theta, 1) $, avec une probabilité a
+priori $ 1/2 $ sur $ H_0 $ et, sous $ H_1 $, une loi a priori normale sur $ \theta $.
+Montrez que pour $ n $ grand on peut avoir $ p = 0{,}05 $ alors que la probabilité a posteriori
+de $ H_0 $ dépasse $ 1/2 $. (C'est le paradoxe de Lindley ; le problème consiste à le poser
+précisément.)
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les tests de significativité descendent de Fisher, qui voyait la valeur p comme
+une mesure grossière de la surprise, et de Neyman et Pearson, qui ont refondu le test en une
+décision à taux d'erreur contrôlés ; le rituel moderne du p $\le$ 0,05 est une fusion inconfortable des
+deux qu'aucun n'approuverait. Les mauvaises lectures de (b) sont si répandues que l'American
+Statistical Association a publié une déclaration officielle à leur sujet en 2016. Le paradoxe de
+Lindley (c), publié en 1957, montre que \og{} significatif à 5 \% \fg{} et \og{} probablement vrai \fg{} peuvent
+pointer dans des directions opposées.
+
+\begin{refs}
+\item Contexte : Valeur p --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Valeur_p})
+\item Contexte : Paradoxe de Lindley --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Lindley%27s_paradox})
+\item Lecture : L. Wasserman, \textit{All of Statistics}, ch. 10
+\item Article : R. L. Wasserstein \& N. A. Lazar, \og{} The ASA's statement on p-values \fg{}, \textit{The American Statistician} 70 (2016), 129--133
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le lemme de Neyman-Pearson --- Licence}]
+\textbf{STA-09.} \textbf{Problème.} On teste une hypothèse nulle simple $ H_0 $ : les données ont pour densité
+$ f_0 $, contre une alternative simple $ H_1 $ : densité $ f_1 $.
+\begin{enumerate}
+\item[(a)] Démontrez le lemme de Neyman-Pearson : parmi tous les tests de risque de première espèce au
+plus $ \alpha $, un test qui rejette exactement lorsque $ f_1(x)/f_0(x) >k $ (avec $ k $
+choisi pour que le niveau soit $ \alpha $, en randomisant à la frontière si nécessaire) maximise
+la puissance $ P_1(\text{rejet}) $.
+\item[(b)] Appliquez-le : pour $ n $ observations indépendantes $ N(\theta, 1) $, en testant
+$ \theta = 0 $ contre $ \theta = \theta_1 $ avec $ \theta_1 >0 $ fixé, montrez que le test
+du rapport de vraisemblance est précisément le test z unilatéral \og{} rejeter lorsque
+$ \sqrt{n}\, \bar{x} >z_{\alpha} $ \fg{}, et observez que le même test est le plus puissant pour
+tout $ \theta_1 >0 $ simultanément (un test uniformément le plus puissant).
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'article de 1933 de Neyman et Pearson a transformé le test d'hypothèse d'un
+ensemble d'habitudes en un problème d'optimisation : fixez l'erreur que vous redoutez le plus, puis
+minimisez l'autre. Le lemme est le théorème fondamental de ce point de vue, et sa démonstration
+tient en deux lignes d'idée enveloppées de comptabilité --- le rapport de vraisemblance ordonne les
+points de l'échantillon selon leur rendement probant. Tout, de la théorie de la détection radar à
+la conception des essais cliniques, repose dessus.
+
+\begin{refs}
+\item Contexte : Lemme de Neyman-Pearson --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Neyman-Pearson})
+\item Lecture : E. L. Lehmann \& J. P. Romano, \textit{Testing Statistical Hypotheses}, ch. 3
+\item Article : J. Neyman \& E. S. Pearson, \og{} On the problem of the most efficient tests of statistical hypotheses \fg{}, \textit{Philosophical Transactions of the Royal Society A} 231 (1933), 289--337
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Lois a priori conjuguées et mise à jour bayésienne --- Licence}]
+\textbf{STA-10.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Supposons que la probabilité de succès $ p $ d'une pièce ait une loi a priori
+$ \mathrm{Beta}(a, b) $ et que l'on observe $ n $ lancers indépendants comportant $ s $
+succès. Établissez la loi a posteriori et montrez qu'il s'agit de
+$ \mathrm{Beta}(a + s,\, b + n - s) $.
+\item[(b)] Montrez que l'espérance a posteriori est une moyenne pondérée de l'espérance a priori
+$ a/(a+b) $ et de la proportion observée $ s/n $, et identifiez les poids ; interprétez
+$ a + b $ comme une \og{} taille d'échantillon a priori \fg{}.
+\item[(c)] Établissez les couples conjugués analogues : loi a priori gamma avec des données de Poisson, et
+loi a priori normale avec des données normales de variance connue.
+\item[(d)] Démontrez que la mise à jour bayésienne est cohérente : mettre à jour d'un coup sur tout le jeu
+de données donne la même loi a posteriori que mettre à jour séquentiellement, une observation à la
+fois.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le calcul bêta-Bernoulli est essentiellement celui de l'essai posthume de
+Thomas Bayes de 1763, et Laplace utilisa la même machinerie pour estimer la probabilité du lever du
+soleil et la masse de Saturne. L'expression \og{} loi a priori conjuguée \fg{} vient de Raiffa et Schlaifer
+(1961). La conjugaison est ce qui a rendu l'inférence bayésienne calculable pendant deux siècles,
+avant les méthodes de Monte-Carlo par chaînes de Markov ; la partie (d) est l'expression
+mathématique de la promesse bayésienne selon laquelle l'ordre dans lequel vous apprenez des faits
+ne peut pas compter.
+
+\begin{refs}
+\item Contexte : Loi a priori conjuguée --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Conjugate_prior})
+\item Lecture : A. Gelman et al., \textit{Bayesian Data Analysis}, 3e éd., ch. 2
+\item Lecture : L. Wasserman, \textit{All of Statistics}, ch. 11
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème du char d'assaut allemand --- Licence}]
+\textbf{STA-11.} \textbf{Problème.} Les numéros de série $ 1, 2, \dots, N $ sont estampillés sur $ N $ chars ;
+vous en capturez $ k $, tirés sans remise, tous les sous-ensembles étant équiprobables, et vous
+observez des numéros de série de maximum $ M $.
+\begin{enumerate}
+\item[(a)] Calculez la loi de $ M $ et montrez que l'estimateur du maximum de vraisemblance de $ N $
+est $ M $ lui-même --- et qu'il est biaisé par défaut, toujours.
+\item[(b)] Démontrez que $ \hat{N} = M\left(1 + \frac{1}{k}\right) - 1 $ est un estimateur sans biais de
+$ N $ (\og{} ajoutez l'écart moyen \fg{}).
+\item[(c)] Comparez $ \hat{N} $ à l'estimateur des moments $ 2\bar{x} - 1 $ construit sur la moyenne
+empirique : calculez les deux variances (ou argumentez laquelle est la plus petite), et expliquez
+pourquoi le maximum est ici un meilleur résumé de l'échantillon que la moyenne.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Pendant la Seconde Guerre mondiale, les statisticiens alliés estimèrent la
+production allemande de chars à partir des numéros de série des chars capturés et détruits. Leur
+estimation pour la période juin 1940 -- septembre 1942 tournait autour de 246 chars par mois, tandis
+que le renseignement classique annonçait environ 1400 ; les registres de production capturés
+montrèrent ensuite un chiffre d'environ 245. L'épisode, documenté par Ruggles et Brodie en 1947,
+est la démonstration la plus nette qui soit qu'un bon estimateur bat un grand réseau d'espionnage.
+Le problème est aussi un superbe pendant en population finie de l'estimation de la borne d'une loi
+uniforme.
+
+\begin{refs}
+\item Contexte : Problème du char d'assaut allemand --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_char_d'assaut_allemand})
+\item Article : R. Ruggles \& H. Brodie, \og{} An empirical approach to economic intelligence in World War II \fg{}, \textit{Journal of the American Statistical Association} 42 (1947), 72--91
+\item Cours : MIT OCW 18.650 Statistics for Applications (\url{https://ocw.mit.edu/courses/18-650-statistics-for-applications-fall-2016/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Égaliser les moments --- Licence, short}]
+\textbf{STA-22.} \textbf{Problème.} Soient $ x_1, \dots, x_n $ des tirages indépendants dans la
+famille gamma de densité
+$ f(x) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} $ sur $ x >0 $,
+d'espérance $ \alpha/\beta $ et de variance $ \alpha/\beta^2 $. Établissez les estimateurs des
+moments de $ \alpha $ et $ \beta $ en égalant les deux premiers moments empiriques à leurs
+valeurs théoriques, et démontrez que les deux estimateurs convergent en probabilité vers les vrais
+paramètres, en nommant les deux théorèmes que vous utilisez.
+\end{problem}
+
+\noindent Karl Pearson introduisit la méthode dans son mémoire de 1894 sur l'évolution, où
+il ajustait un mélange de deux lois normales à des mesures de crabes de Naples et dut résoudre une
+équation de degré neuf à la main ; ce fut la première procédure d'estimation à usage général de la
+statistique. Fisher montra plus tard que le maximum de vraisemblance (STA-05) est asymptotiquement
+plus efficace, et le répéta souvent sans ménagement --- mais les estimateurs des moments survivent
+parce qu'ils n'exigent aucune vraisemblance, fournissent d'excellents points de départ pour une
+maximisation numérique et, sous la forme généralisée due à Hansen (1982), sont l'outil standard de
+l'économétrie.
+
+\begin{refs}
+\item Contexte : Méthode des moments (statistiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moments_(statistiques)})
+\item Article : K. Pearson, \og{} Contributions to the mathematical theory of evolution \fg{}, \textit{Philosophical Transactions of the Royal Society A} 185 (1894), 71--110
+\item Lecture : G. Casella \& R. L. Berger, \textit{Statistical Inference}, 2e éd., ch. 7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le coût des questions multiples --- Licence, short}]
+\textbf{STA-23.} \textbf{Problème.} Vous testez $ m $ hypothèses nulles et rejetez $ H_i $
+dès que sa valeur p vérifie $ p_i \le \alpha/m $. Démontrez que le taux d'erreur par famille --- la
+probabilité d'au moins un rejet à tort --- est au plus $ \alpha $ quelle que soit la dépendance
+entre les tests, et démontrez que lorsque les $ m $ hypothèses nulles sont toutes vraies et que
+les valeurs p sont indépendantes et uniformes, ce taux vaut exactement
+$ 1 - (1 - \alpha/m)^m $ ; quantifiez de combien cela reste en dessous de $ \alpha $ pour
+$ m $ grand.
+\end{problem}
+
+\noindent Toute la démonstration se réduit à l'inégalité de Boole, ce qui explique que la
+correction soit indépassable sans hypothèses supplémentaires et, en même temps, bien trop prudente
+lorsque les tests sont positivement liés. Elle porte le nom de Carlo Emilio Bonferroni pour ses
+inégalités de 1936, mais son usage en comparaisons multiples est dû à Olive Jean Dunn (1961), qui
+en mérite davantage le crédit. Les études d'association pangénomique testent environ un million de
+marqueurs et déclarent donc la significativité à $ 5 \times 10^{-8} $ ; le fait que ce seuil
+écarte de vraies découvertes est ce qui a motivé le taux de fausses découvertes de STA-17(b).
+
+\begin{refs}
+\item Contexte : Correction de Bonferroni --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Correction_de_Bonferroni})
+\item Contexte : Taux d'erreur par famille --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Family-wise_error_rate})
+\item Article : O. J. Dunn, \og{} Multiple comparisons among means \fg{}, \textit{Journal of the American Statistical Association} 56 (1961), 52--64
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La pente est-elle réelle ? --- Licence}]
+\textbf{STA-24.} \textbf{Problème.} Prenez le modèle de régression simple normal : les $ x_i $ sont fixés et non
+tous égaux, et
+\[ y_i = a + b x_i + \varepsilon_i , \qquad \varepsilon_1, \dots, \varepsilon_n
+ \ \text{indépendants} \ N(0, \sigma^2), \qquad n \ge 3 . \]
+Notons $ S_{xx} = \sum_i (x_i - \bar{x})^2 $, soient $ \hat{a} $ et $ \hat{b} $ l'ordonnée à
+l'origine et la pente des moindres carrés de STA-04, et soit
+$ \mathrm{RSS} = \sum_i (y_i - \hat{a} - \hat{b}x_i)^2 $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ \hat{b} $ est une fonction linéaire des $ y_i $, donc de loi normale, avec
+$ \mathbb{E}[\hat{b}] = b $ et $ \operatorname{Var}(\hat{b}) = \sigma^2 / S_{xx} $.
+\item[(b)] Démontrez que $ \mathrm{RSS}/\sigma^2 $ suit la loi du khi-deux à $ n-2 $ degrés de liberté
+et est indépendante de $ \hat{b} $. (Décomposez $ \mathbb{R}^n $ en l'espace des colonnes de
+dimension deux de la matrice de plan et son orthogonal, et utilisez l'invariance par rotation de la
+loi normale multivariée --- cette indépendance est un miracle purement gaussien, et c'est le cœur du
+problème.)
+\item[(c)] Déduisez-en qu'avec $ \hat{\sigma}^2 = \mathrm{RSS}/(n-2) $,
+\[ T = \frac{\hat{b} - b}{\hat{\sigma}/\sqrt{S_{xx}}} \]
+suit la loi de Student à $ n-2 $ degrés de liberté, et écrivez le test de niveau $ \alpha $ de
+$ H_0: b = 0 $ qui en résulte ainsi que l'intervalle de confiance à $ 95\% $ pour
+$ b $.
+\item[(d)] Démontrez que la valeur observée de $ T $ sous $ H_0: b = 0 $ vaut
+$ r\sqrt{n-2}\,/\sqrt{1-r^2} $, où $ r $ est la corrélation empirique des $ x $ et des
+$ y $. Expliquez ensuite, en un paragraphe soigneux et avec STA-03 en tête, ce que le rejet de
+$ H_0 $ vous autorise exactement à dire.
+\end{enumerate}
+
+\end{problem}
+
+\noindent William Sealy Gosset, brasseur chez Guinness travaillant sur des échantillons de
+quatre ou cinq, trouva en 1908 la loi qui permet d'utiliser un écart type estimé à la place d'un
+écart type connu ; Guinness interdisant à ses employés de publier, il signa \og{} Student \fg{}. Fisher
+fournit la géométrie rigoureuse en dimension $ n $ --- la décomposition orthogonale de la partie
+(b) --- et l'étendit à la régression, où elle est devenue l'énoncé inférentiel le plus utilisé de
+toute la science : presque toute affirmation publiée de la forme \og{} l'effet était significatif
+(p < 0,05) \fg{} est le calcul que l'on vous demande ici de justifier. La partie (d) rappelle que la
+mathématique certifie une pente, pas une cause.
+
+\begin{refs}
+\item Contexte : Loi de Student --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_de_Student})
+\item Contexte : Régression linéaire simple --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Simple_linear_regression})
+\item Article : Student (W. S. Gosset), \og{} The probable error of a mean \fg{}, \textit{Biometrika} 6 (1908), 1--25
+\item Lecture : G. Casella \& R. L. Berger, \textit{Statistical Inference}, 2e éd., ch. 11
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une seule table pour toutes les lois --- Licence, short}]
+\textbf{STA-33.} \textbf{Problème.} Soient $ X_1, \dots, X_n $ indépendantes de fonction de
+répartition continue $ F $, soit $ \hat{F}_n(x) = \frac{1}{n}\#\{ i : X_i \le x \} $ la
+fonction de répartition empirique, et soit
+$ D_n = \sup_{x \in \mathbb{R}} \big| \hat{F}_n(x) - F(x) \big| $. Démontrez que les variables
+$ U_i = F(X_i) $ sont indépendantes et uniformes sur $ (0,1) $, déduisez-en que la loi de
+$ D_n $ est la même pour toute $ F $ continue, et montrez sur un exemple que la conclusion tombe
+en défaut lorsque $ F $ a un atome.
+\end{problem}
+
+\noindent C'est pour cela que le test de Kolmogorov-Smirnov a pu exister dès 1933 : une
+seule table de valeurs critiques, calculée une fois pour toutes, sert pour toute hypothèse nulle
+continue, parce que la transformation intégrale de probabilité efface tout ce qui concerne $ F $
+hormis sa continuité. Kolmogorov trouva cette année-là la loi limite de $ \sqrt{n}\,D_n $ et
+Smirnov la version à deux échantillons en 1939 ; Doob expliqua en 1949 que la limite est en réalité
+une fonctionnelle du pont brownien, ce que Donsker rendit rigoureux en 1952 --- le processus
+empirique, l'un des piliers de la statistique non paramétrique moderne. Le pendant à échantillon
+fini est l'inégalité de Dvoretzky-Kiefer-Wolfowitz (1956), dont la constante optimale fut fournie
+par Massart en 1990, et qui transforme $ D_n $ en une bande de confiance honnête pour une
+fonction de répartition inconnue.
+
+\begin{refs}
+\item Contexte : Test de Kolmogorov-Smirnov --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Test_de_Kolmogorov-Smirnov})
+\item Contexte : Transformation intégrale de probabilité --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Probability_integral_transform})
+\item Lecture : A. W. van der Vaart, \textit{Asymptotic Statistics}, ch. 19
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les colliders : la corrélation que l'ajustement fabrique --- Licence}]
+\textbf{STA-34.} \textbf{Problème.} Un \textit{collider} est une variable influencée par deux autres. Conditionner
+par un collider est l'image en miroir du conditionnement par un facteur de confusion (STA-03) : au
+lieu de supprimer une association fallacieuse, il en fabrique une.
+\begin{enumerate}
+\item[(a)] La version de Berkson. Soient $ A $ et $ B $ deux événements indépendants avec
+$ 0 < P(A), P(B) < 1 $ --- deux maladies sans lien --- et soit $ H = A \cup B $ l'événement
+\og{} la personne est hospitalisée \fg{}, qui se produit si l'une ou l'autre maladie est présente.
+Démontrez que
+\[ P(A \mid B \cap H) \;<\; P(A \mid H) , \]
+de sorte qu'à l'intérieur de l'hôpital les deux maladies paraissent négativement associées alors
+que dans la population elles sont indépendantes.
+\item[(b)] La version gaussienne. Soient $ X $ et $ Y $ des variables normales standard indépendantes
+et soit $ Z = X + Y + \varepsilon $ avec $ \varepsilon \sim N(0, \sigma^2) $ indépendante des
+deux. Démontrez que la corrélation partielle de $ X $ et $ Y $ sachant $ Z $ vaut
+\[ \rho_{XY \cdot Z} = -\frac{1}{1 + \sigma^2} , \]
+de sorte que \og{} contrôler par $ Z $ \fg{} produit une forte association négative entre deux variables
+qui sont exactement indépendantes.
+\item[(c)] La version régression. Dans le modèle de (b), démontrez que le coefficient théorique des
+moindres carrés porté par $ Y $ dans la régression de $ X $ sur $ (Y, Z) $ est non nul, alors
+que le coefficient porté par $ Y $ dans la régression de $ X $ sur $ Y $ seul est nul.
+Comparez avec le modèle de confusion $ X = Z + U $, $ Y = Z + V $ de STA-03(a), où ajouter
+$ Z $ à la régression est exactement ce qu'il faut faire, et énoncez la règle générale sur les
+variables que l'on peut légitimement ajuster.
+\item[(d)] Quelle part de tout cela les données seules peuvent-elles révéler ? Considérez les trois
+diagrammes causaux sur $ (X, Y, Z) $ : la chaîne $ X \to Z \to Y $, la fourche
+$ X \leftarrow Z \rightarrow Y $ et le collider $ X \to Z \leftarrow Y $. Démontrez que les deux
+premiers impliquent $ X \perp Y \mid Z $ tandis que le troisième implique $ X \perp Y $ et
+généralement pas $ X \perp Y \mid Z $. Concluez que le collider est détectable à partir de la loi
+conjointe des observables mais qu'un facteur de confusion ne peut pas être distingué d'un
+médiateur --- de sorte qu'ajuster par un médiateur détruit un effet réel exactement comme ajuster par
+un collider en invente un faux, et qu'aucune quantité de données ne vous dira lequel des deux vous
+êtes en train de faire.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Joseph Berkson, médecin et statisticien à la Mayo Clinic, publia la partie (a)
+en 1946 pour expliquer pourquoi les associations entre maladies relevées dans les dossiers
+hospitaliers ne sont pas fiables, et David Sackett confirma plus tard l'effet empiriquement sous le
+nom de \og{} biais d'admission \fg{}. Judea Pearl a donné au phénomène son nom moderne et son critère
+graphique, et la partie (d) est la raison pour laquelle ses diagrammes causaux ne sont pas
+décoratifs : les indépendances conditionnelles que les données peuvent révéler ne déterminent pas
+la structure causale, de sorte que le choix des variables à ajuster est une hypothèse, formulée
+avant l'analyse. L'enjeu n'est pas académique --- on a montré en 2020 que les premières études sur la
+gravité du COVID-19 fondées sur des patients hospitalisés ou testés étaient déformées par exactement
+ce mécanisme, et le fameux \og{} paradoxe de l'obésité \fg{} en cardiologie est largement tenu pour un biais
+de collider déguisé.
+
+\begin{refs}
+\item Contexte : Paradoxe de Berkson --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Berkson%27s_paradox})
+\item Contexte : Collisionneur (statistiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Collisionneur_(statistiques)})
+\item Article : J. Berkson, \og{} Limitations of the application of fourfold table analysis to hospital data \fg{}, \textit{Biometrics Bulletin} 2 (1946), 47--53
+\item Article : G. Griffith et al., \og{} Collider bias undermines our understanding of COVID-19 disease risk and severity \fg{}, \textit{Nature Communications} 11 (2020), 5749
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{Pourquoi le bootstrap fonctionne --- et quand il échoue --- Master}]
+\textbf{STA-12.} \textbf{Problème.} Soient $ x_1, \dots, x_n $ des tirages indépendants d'une loi $ F $, et
+soit $ \hat{F}_n $ la loi empirique qui met la masse $ 1/n $ sur chaque observation. Le
+bootstrap estime la loi d'échantillonnage d'une statistique sous $ F $ par sa loi
+d'échantillonnage sous $ \hat{F}_n $, que l'on peut simuler par rééchantillonnage.
+\begin{enumerate}
+\item[(a)] Démontrez que pour chaque $ t $ fixé, $ \hat{F}_n(t) \to F(t) $ presque sûrement, et
+énoncez le théorème de Glivenko-Cantelli qui rend cette convergence uniforme en $ t $. Expliquez,
+en un paragraphe précis, comment le \og{} principe de substitution \fg{} (plug-in) transforme cela en
+justification heuristique du bootstrap.
+\item[(b)] Cassez-le maintenant. Soit $ F $ la loi uniforme sur $ (0, \theta) $ et prenons pour
+statistique le maximum de l'échantillon $ M_n $. Montrez que
+$ P(M_n^* = M_n) = 1 - (1 - 1/n)^n \to 1 - 1/e \approx 0{,}632 $, où $ M_n^* $ est le maximum
+d'un rééchantillon bootstrap --- de sorte que la loi bootstrap du maximum (renormalisé) a un atome de
+masse environ 0,632 en zéro, alors que la vraie loi limite de $ n(\theta - M_n)/\theta $ est une
+loi exponentielle continue. Concluez que le bootstrap est inconsistant pour l'extrême.
+\item[(c)] Expliquez, au niveau des idées, quelle caractéristique des statistiques \og{} régulières \fg{} comme
+les moyennes et les quantiles fait défaut au maximum.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Bradley Efron a introduit le bootstrap dans un article des \textit{Annals of
+Statistics} de 1979 au titre désarmant de modestie, et il est devenu l'un des outils les plus
+utilisés de l'âge informatique : un substitut universel aux calculs analytiques de théorie de
+l'échantillonnage. Mais c'est un théorème, pas de la magie --- les démonstrations de consistance
+(Bickel-Freedman, Singh, 1981) ont des hypothèses, et le maximum de l'échantillon est le
+contre-exemple standard qui montre qu'elles sont nécessaires. Comprendre les deux moitiés de ce
+problème, c'est comprendre le bootstrap.
+
+\begin{refs}
+\item Contexte : Bootstrap (statistiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Bootstrap_(statistiques)})
+\item Lecture : B. Efron \& T. Hastie, \textit{Computer Age Statistical Inference}, ch. 10--11 (PDF gratuit sur le site du livre (\url{https://hastie.su.domains/CASI/}))
+\item Lecture : L. Wasserman, \textit{All of Statistics}, ch. 8
+\item Article : B. Efron, \og{} Bootstrap methods: Another look at the jackknife \fg{}, \textit{Annals of Statistics} 7 (1979), 1--26
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Exhaustivité et Rao-Blackwell --- Master}]
+\textbf{STA-13.} \textbf{Problème.} Une statistique $ T $ est exhaustive pour un paramètre $ \theta $ si la loi
+conditionnelle des données sachant $ T $ ne dépend pas de $ \theta $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de factorisation dans le cas discret : $ T $ est exhaustive si et
+seulement si la vraisemblance se factorise en $ g(T(x), \theta)\, h(x) $. Utilisez-le pour
+montrer que $ \sum_i x_i $ est exhaustive pour des échantillons de Bernoulli et de Poisson.
+\item[(b)] Démontrez le théorème de Rao-Blackwell : si $ W $ est un estimateur sans biais d'une quantité
+$ \tau(\theta) $ et si $ T $ est exhaustive, alors $ W' = \mathbb{E}[W \mid T] $ est une
+véritable statistique (elle ne dépend pas de $ \theta $), est sans biais, et a une variance au
+plus égale à celle de $ W $ --- strictement plus petite sauf si $ W $ était déjà une fonction de
+$ T $.
+\item[(c)] Faites tourner la machine : pour des données de Poisson($ \lambda $), partez de l'estimateur
+sans biais grossier $ \mathbf{1}\{x_1 = 0\} $ de $ e^{-\lambda} = P(X = 0) $, conditionnez par
+$ T = \sum_i x_i $, et établissez l'estimateur amélioré
+$ \left(\frac{n-1}{n}\right)^{T} $. Vérifiez directement qu'il est sans biais.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'exhaustivité est l'idée la plus profonde de Fisher (1920--22) : une statistique
+qui extrait des données jusqu'à la dernière goutte d'information sur $\theta$. Rao (1945) et Blackwell
+(1947) en ont fait indépendamment un dispositif d'amélioration --- conditionnez n'importe quel
+estimateur honnête par une statistique exhaustive et vous ne pouvez que gagner. La partie (c) est
+le tour de passe-passe classique : un estimateur qui ne regarde que la première observation est
+transformé, par pur conditionnement, en un excellent estimateur. Combinée à la complétude
+(Lehmann-Scheffé), cette machine produit les meilleurs estimateurs sans biais.
+
+\begin{refs}
+\item Contexte : Théorème de Rao-Blackwell --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Rao-Blackwell})
+\item Contexte : Statistique exhaustive --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Statistique_exhaustive})
+\item Lecture : G. Casella \& R. L. Berger, \textit{Statistical Inference}, 2e éd., ch. 6--7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Information de Fisher et borne de Cramér-Rao --- Master}]
+\textbf{STA-14.} \textbf{Problème.} Pour un modèle statistique régulier de densité $ f(x; \theta) $, le score est
+la dérivée de la log-vraisemblance en $ \theta $, et l'information de Fisher $ I(\theta) $ est
+la variance du score.
+\begin{enumerate}
+\item[(a)] Sous les conditions de régularité usuelles (dérivation sous le signe intégral), démontrez que
+le score est d'espérance nulle et que $ I(\theta) $ est aussi égale à l'opposé de l'espérance de
+la dérivée seconde de la log-vraisemblance.
+\item[(b)] Démontrez l'inégalité de Cramér-Rao : tout estimateur sans biais $ W $ de $ \theta $ fondé
+sur $ n $ observations indépendantes vérifie
+$ \operatorname{Var}(W) \ge \frac{1}{n\, I(\theta)} $. (Le cœur de la démonstration est
+l'inégalité de Cauchy-Schwarz appliquée à la covariance de $ W $ avec le score.)
+(c) Calculez $ I(\theta) $ pour les modèles Bernoulli($ p $), Poisson($ \lambda $) et
+$ N(\mu, \sigma^2) $ à $ \sigma $ connu, et exhibez dans chaque cas un estimateur sans biais
+atteignant la borne.
+(d) Expliquez (démonstration non exigée) en quel sens l'EMV est asymptotiquement normal de variance
+$ \frac{1}{n\, I(\theta)} $ --- la justification ultime de STA-05.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'information de Fisher, introduite dans les articles de Fisher de 1922--25, est
+la courbure de la vraisemblance : des vraisemblances pointues épinglent le paramètre. La borne
+inférieure fut démontrée par C. R. Rao (1945) et figure dans le traité de Harald Cramér de 1946 ;
+elle marque la frontière exacte de ce que l'estimation sans biais peut atteindre, et l'information
+de Fisher traverse aujourd'hui la statistique, la théorie de l'information et jusqu'à la géométrie
+des familles de lois (géométrie de l'information). Gardez ce problème en tête lorsque vous
+rencontrerez STA-15, qui montre ce qui arrive quand on abandonne l'absence de biais.
+
+\begin{refs}
+\item Contexte : Borne de Cramér-Rao --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Borne_de_Cram%C3%A9r-Rao})
+\item Contexte : Information de Fisher --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Information_de_Fisher})
+\item Lecture : G. Casella \& R. L. Berger, \textit{Statistical Inference}, 2e éd., ch. 7 et 10
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le paradoxe de James-Stein --- Master}]
+\textbf{STA-15.} \textbf{Problème.} On observe un unique $ X = (X_1, \dots, X_p) $ à
+composantes indépendantes $ X_i \sim N(\theta_i, 1) $, et l'on estime le vecteur entier
+$ \theta $ sous la perte quadratique totale. L'estimateur évident est $ X $ lui-même, de risque
+constant $ p $. L'estimateur de James-Stein rétrécit vers l'origine :
+\[ \delta(X) = \left( 1 - \frac{p-2}{\lVert X \rVert^2} \right) X ,
+\qquad \lVert X \rVert^2 = \sum_{i=1}^{p} X_i^2 . \]
+(a) Démontrez l'identité de Stein : pour $ g $ suffisamment régulière avec
+$ \mathbb{E}\left| \partial g/\partial x_i \right| $ finie,
+$ \mathbb{E}[(X_i - \theta_i)\, g(X)] = \mathbb{E}[\partial g/\partial x_i] $.
+(b) Utilisez-la pour calculer le risque de $ \delta $ et démontrez que pour $ p \ge 3 $,
+\[ \mathbb{E}\,\lVert \delta(X) - \theta \rVert^2
+ = p - (p-2)^2\, \mathbb{E}\!\left[ \frac{1}{\lVert X \rVert^2} \right] <p
+\quad \text{pour tout } \theta \]
+--- l'estimateur naturel est inadmissible en dimension trois ou plus.
+(c) Expliquez pourquoi l'argument échoue pour $ p = 2 $, et méditez le scandale : estimer la
+moyenne au bâton d'un joueur en utilisant les moyennes de joueurs sans rapport diminue l'erreur
+totale. Où exactement l'\og{} emprunt de force \fg{} entre-t-il dans la mathématique ?
+\end{problem}
+
+\noindent Charles Stein annonça en 1956 que le vecteur des moyennes empiriques est
+inadmissible en dimension $\ge$ 3, et avec Willard James exhiba en 1961 l'estimateur dominant explicite
+ci-dessus. Cela reste le théorème le plus contre-intuitif de la statistique : ni l'absence de biais
+ni aucun principe d'optimalité n'y survit sans réserve. L'article d'Efron et Morris de 1977 dans
+\textit{Scientific American} l'a rendu célèbre avec des données de baseball, et ses descendants
+intellectuels --- bayésien empirique, rétrécissement, régression ridge, modèles hiérarchiques --- sont
+l'ossature de l'estimation moderne à grande échelle.
+
+\begin{refs}
+\item Contexte : Estimateur de James-Stein --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/James%E2%80%93Stein_estimator})
+\item Lecture : B. Efron \& T. Hastie, \textit{Computer Age Statistical Inference}, ch. 7 (PDF gratuit sur le site du livre (\url{https://hastie.su.domains/CASI/}))
+\item Article : B. Efron \& C. Morris, \og{} Stein's paradox in statistics \fg{}, \textit{Scientific American} 236 (1977), 119--127
+\item Article : W. James \& C. Stein, \og{} Estimation with quadratic loss \fg{}, \textit{Proc. Fourth Berkeley Symposium} (1961), 361--379
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La méthode delta --- Master, short}]
+\textbf{STA-25.} \textbf{Problème.} Supposons que $ \sqrt{n}\,(T_n - \theta) $ converge en loi
+vers $ N(0, \sigma^2) $ et que $ g $ soit dérivable en $ \theta $ avec
+$ g'(\theta) \ne 0 $. Démontrez que
+\[ \sqrt{n}\,\big( g(T_n) - g(\theta) \big) \ \xrightarrow{\ d\ } \
+ N\!\big(0,\; g'(\theta)^2 \sigma^2\big) , \]
+en précisant explicitement où le théorème de Slutsky est utilisé, et appliquez-le pour trouver la
+loi limite de la cote empirique $ \hat{p}/(1-\hat{p}) $ pour des données de Bernoulli($ p $)
+indépendantes avec $ 0 <p <1 $.
+\end{problem}
+
+\noindent C'est le théorème de Taylor faisant de la statistique : une fonction régulière
+d'un estimateur asymptotiquement normal est asymptotiquement normale, avec la variance multipliée
+par le carré de la dérivée. Les physiciens du XIXe siècle connaissaient cela sous le nom
+de propagation des erreurs ; Cramér en donna l'énoncé moderne en 1946. Presque toute erreur type
+que vous lirez sur une sortie d'ordinateur pour un rapport, un log-odds, une corrélation ou une
+probabilité de survie a été produite par cet argument --- et lorsque $ g'(\theta) = 0 $ il échoue
+et la limite devient une loi du khi-deux, ce qui vaut la peine d'être découvert par soi-même.
+
+\begin{refs}
+\item Contexte : Méthode delta --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_delta})
+\item Lecture : A. W. van der Vaart, \textit{Asymptotic Statistics}, ch. 3
+\item Lecture : G. Casella \& R. L. Berger, \textit{Statistical Inference}, 2e éd., ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Biais et variance, en une seule identité --- Master, short}]
+\textbf{STA-26.} \textbf{Problème.} Soit $ Y = f(x) + \varepsilon $ en un point fixé $ x $,
+avec $ \mathbb{E}[\varepsilon] = 0 $ et $ \operatorname{Var}(\varepsilon) = \sigma^2 $, et soit
+$ \hat{f} $ une estimation de $ f $ construite à partir d'un échantillon d'apprentissage
+indépendant de $ \varepsilon $. Démontrez la décomposition
+\[ \mathbb{E}\big[(Y - \hat{f}(x))^2\big] = \sigma^2
+ + \big( \mathbb{E}[\hat{f}(x)] - f(x) \big)^2 + \operatorname{Var}\big(\hat{f}(x)\big) , \]
+et servez-vous-en pour expliquer précisément pourquoi un estimateur biaisé peut avoir une erreur de
+prédiction plus petite que tous les estimateurs sans biais.
+\end{problem}
+
+\noindent Trois lignes de calcul, et elles réorganisent toute une discipline : le premier
+terme est irréductible, le deuxième est ce que vous achetez en simplifiant votre modèle, le
+troisième est ce que vous payez pour la souplesse. L'identité est la justification honnête des
+estimateurs à rétrécissement de STA-15 et de toute pénalité de régularisation en apprentissage
+automatique ; Geman, Bienenstock et Doursat ont baptisé le compromis correspondant \og{} dilemme
+biais-variance \fg{} en 1992. Elle a aussi une variante moderne qui mérite lecture : les modèles très
+surparamétrés présentent une seconde descente de l'erreur de test au-delà du point d'interpolation,
+de sorte que l'image classique en U est un cas particulier plutôt qu'une loi.
+
+\begin{refs}
+\item Contexte : Dilemme biais-variance --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Dilemme_biais-variance})
+\item Article : S. Geman, E. Bienenstock \& R. Doursat, \og{} Neural networks and the bias/variance dilemma \fg{}, \textit{Neural Computation} 4 (1992), 1--58
+\item Lecture : T. Hastie, R. Tibshirani \& J. Friedman, \textit{The Elements of Statistical Learning}, ch. 7 (PDF gratuit sur le site du livre (\url{https://hastie.su.domains/ElemStatLearn/}))
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ce que mesure vraiment une courbe ROC --- Master}]
+\textbf{STA-27.} \textbf{Problème.} Un détecteur attribue à chaque objet un score réel $ s(X) $. Soit $ X_1 $
+un objet tiré au hasard dans la classe positive et $ X_0 $ un objet de la classe négative, et
+pour un seuil $ t $ posons
+\[ \mathrm{TPR}(t) = P\big(s(X_1) \ge t\big), \qquad
+ \mathrm{FPR}(t) = P\big(s(X_0) \ge t\big) . \]
+La courbe ROC est l'ensemble des points $ (\mathrm{FPR}(t), \mathrm{TPR}(t)) $ lorsque $ t $
+parcourt $ \mathbb{R} $, et l'AUC est l'aire sous cette courbe.
+\begin{enumerate}
+\item[(a)] Démontrez que la courbe ROC est inchangée si l'on remplace le score par $ h(s(X)) $ pour
+toute $ h $ strictement croissante --- la courbe ROC ne voit donc que l'ordre des objets, jamais la
+calibration des scores.
+\item[(b)] Démontrez l'identité probabiliste
+\[ \mathrm{AUC} = P\big( s(X_1) >s(X_0) \big) + \tfrac12 P\big( s(X_1) = s(X_0) \big) , \]
+et identifiez sa version empirique comme la statistique U de Mann-Whitney divisée par le produit
+des tailles d'échantillon.
+\item[(c)] Supposons que les deux classes aient les densités $ f_1 $ et $ f_0 $. Démontrez que la
+courbe ROC du score du rapport de vraisemblance $ s^*(x) = f_1(x)/f_0(x) $ est au-dessus ou
+confondue avec la courbe ROC de tout autre score --- c'est le lemme de Neyman-Pearson (STA-09) lu
+comme un énoncé sur des courbes --- et démontrez que cette courbe optimale est concave, sa pente au
+point de fonctionnement valant le seuil de rapport de vraisemblance correspondant.
+\item[(d)] Voici maintenant le piège pratique : démontrez que l'AUC ne change pas lorsque la proportion de
+positifs dans la population change, alors que la précision
+$ P(\text{positif} \mid \text{signalé}) $ change. Construisez deux problèmes de dépistage ayant
+des courbes ROC identiques dont l'un est utile et l'autre déclenche cent fausses alertes par cas
+réel, et énoncez la morale quant à la publication d'un chiffre unique.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La caractéristique de fonctionnement du récepteur est née du radar : pendant la
+Seconde Guerre mondiale, la question était de savoir comment régler le seuil de décision d'un
+opérateur quand un écho peut être un avion ou du bruit, et la théorie fut rédigée par Peterson,
+Birdsall et Fox en 1954. Green et Swets la portèrent en psychologie expérimentale, et l'article de
+Hanley et McNeil de 1982 --- qui a fait connaître l'équivalence de (b) --- l'a rendue standard en
+radiologie puis dans tous les domaines qui évaluent des classifieurs. La mathématique de (c) est un
+théorème centenaire en costume moderne ; l'avertissement de (d) explique que l'AUC soit à la fois le
+nombre le plus rapporté et le plus critiqué de l'apprentissage automatique appliqué.
+
+\begin{refs}
+\item Contexte : Courbe ROC --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Courbe_ROC})
+\item Contexte : Test de Wilcoxon-Mann-Whitney --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Test_de_Wilcoxon-Mann-Whitney})
+\item Article : J. A. Hanley \& B. J. McNeil, \og{} The meaning and use of the area under a receiver operating characteristic (ROC) curve \fg{}, \textit{Radiology} 143 (1982), 29--36
+\item Lecture : D. M. Green \& J. A. Swets, \textit{Signal Detection Theory and Psychophysics} (1966)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Un estimateur minimax pour une pièce --- Master, short}]
+\textbf{STA-35.} \textbf{Problème.} Soit $ X \sim \mathrm{Binomial}(n, p) $ et estimons
+$ p $ sous la perte quadratique, de sorte que le risque d'un estimateur $ \delta $ vaut
+$ R(p, \delta) = E_p\big[ (\delta(X) - p)^2 \big] $. Démontrez qu'un estimateur de Bayes dont la
+fonction de risque est constante en $ p $ est minimax, puis démontrez que l'estimateur de Bayes
+pour la loi a priori $ \mathrm{Beta}(\sqrt{n}/2, \sqrt{n}/2) $,
+\[ \delta^{*}(X) = \frac{X + \sqrt{n}/2}{n + \sqrt{n}} , \]
+a un risque constant et est donc minimax ; comparez enfin $ R(p, \delta^{*}) $ au risque de la
+proportion empirique $ X/n $ et déterminez pour quels $ p $ l'estimateur ordinaire est
+meilleur.
+\end{problem}
+
+\noindent Abraham Wald a bâti la statistique comme un jeu à deux joueurs contre la nature
+dans les années 1940 (\textit{Statistical Decision Functions}, 1950), et la règle minimax est le coup
+du pessimiste : choisir la procédure dont le pire cas est le moins mauvais. Le procédé employé ici ---
+trouver une loi a priori dont la règle de Bayes a un risque plat, et le pire cas n'a alors nulle
+part où se cacher --- est la voie standard vers la minimaxité, et la loi a priori qui fait cela
+s'appelle la moins favorable. Hodges et Lehmann ont traité ce cas et des cas voisins en 1950. La
+comparaison finale est la coda honnête : l'estimateur minimax rétrécit vers $ 1/2 $ et ne bat la
+proportion empirique qu'au voisinage du milieu de l'intervalle, ce qui rappelle que la minimaxité
+est une garantie sur le pire cas et non une recommandation pour tous les cas.
+
+\begin{refs}
+\item Contexte : Estimateur minimax --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Minimax_estimator})
+\item Article : J. L. Hodges \& E. L. Lehmann, \og{} Some problems in minimax point estimation \fg{}, \textit{Annals of Mathematical Statistics} 21 (1950), 182--197
+\item Lecture : E. L. Lehmann \& G. Casella, \textit{Theory of Point Estimation}, 2e éd., ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Pourquoi l'algorithme EM grimpe --- Master}]
+\textbf{STA-36.} \textbf{Problème.} Supposons que les données observées $ y $ soient une fonction de données
+complètes $ (y, z) $ où $ z $ n'est pas observé, et écrivons
+$ \ell(\theta) = \log p(y \mid \theta) $. L'algorithme EM itère les deux étapes
+\[ Q(\theta \mid \theta^{(t)}) = E\big[ \log p(y, z \mid \theta) \,\big|\, y, \theta^{(t)} \big],
+ \qquad
+ \theta^{(t+1)} = \arg\max_{\theta} \, Q(\theta \mid \theta^{(t)}) . \]
+\begin{enumerate}
+\item[(a)] Démontrez la propriété de croissance. Montrez que
+$ \ell(\theta) = Q(\theta \mid \theta') - H(\theta \mid \theta') $ où
+$ H(\theta \mid \theta') = E\big[ \log p(z \mid y, \theta) \mid y, \theta' \big] $, démontrez à
+l'aide de l'inégalité de Jensen que $ H(\theta' \mid \theta') - H(\theta \mid \theta') $ est une
+divergence de Kullback-Leibler, donc positive, et concluez que
+$ \ell(\theta^{(t+1)}) \ge \ell(\theta^{(t)}) $ pour tout $ t $ --- la vraisemblance des données
+observées ne décroît jamais, quel que soit le modèle.
+\item[(b)] Démontrez l'identité d'énergie libre : pour toute loi $ q $ sur la variable latente,
+\[ \ell(\theta) = \underbrace{E_q\big[\log p(y,z \mid \theta)\big] + \mathcal{H}(q)}_{F(q,\theta)}
+ \; + \; \mathrm{KL}\big( q \,\big\|\, p(z \mid y, \theta) \big) , \]
+où $ \mathcal{H}(q) $ est l'entropie de $ q $, et déduisez-en que EM est exactement une montée
+par coordonnées sur $ F $ : l'étape E maximise en $ q $, l'étape M en $ \theta $.
+\item[(c)] Traitez un exemple : pour un mélange gaussien univarié à deux composantes d'espérances,
+variances et poids de mélange inconnus, établissez les responsabilités de l'étape E et montrez que
+l'étape M est un maximum de vraisemblance pondéré ordinaire. Démontrez ensuite que cette
+vraisemblance n'est pas bornée --- envoyez l'espérance d'une composante sur un point de données et sa
+variance vers zéro --- de sorte que \og{} EM converge vers l'estimateur du maximum de vraisemblance \fg{} ne
+peut pas être vrai tel quel.
+\item[(d)] Dites précisément ce qui est vrai. Donnez un exemple à plusieurs maxima locaux où EM converge
+vers des points différents selon le point de départ, énoncez le théorème de Wu de 1983 sur la
+convergence vers un point stationnaire de $ \ell $ sous conditions de régularité, et expliquez ce
+que la propriété de croissance de (a) garantit et ne garantit pas au sujet de la suite
+$ \theta^{(t)} $ elle-même.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Dempster, Laird et Rubin ont nommé l'algorithme et démontré la propriété de
+croissance en 1977, unifiant une douzaine de procédures inventées séparément --- celle de Hartley
+pour les données groupées (1958), l'algorithme de Baum-Welch pour les modèles de Markov cachés
+(1970), l'estimation de fréquences géniques, l'analyse factorielle --- en une seule recette dont le
+seul ingrédient est la capacité de calculer une espérance conditionnelle. C'est l'un des articles
+les plus cités de la statistique. Son argument de convergence n'était toutefois pas étanche :
+C. F. Jeff Wu signala la faille en 1983 et fournit l'énoncé correct, ce qui est l'objet de la partie
+(d) --- une suite croissante de valeurs de la vraisemblance ne dit rien à elle seule sur la
+convergence des paramètres, et encore moins sur leur convergence vers un maximum global. La partie
+(b) est la reformulation de Neal et Hinton de 1998, et c'est la porte d'entrée de l'inférence
+variationnelle : restreignez $ q $ à une famille traitable et la même montée par coordonnées
+devient le cheval de bataille du calcul bayésien moderne.
+
+\begin{refs}
+\item Contexte : Algorithme espérance-maximisation --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_esp%C3%A9rance-maximisation})
+\item Article : A. P. Dempster, N. M. Laird \& D. B. Rubin, \og{} Maximum likelihood from incomplete data via the EM algorithm \fg{}, \textit{Journal of the Royal Statistical Society B} 39 (1977)
+\item Article : C. F. J. Wu, \og{} On the convergence properties of the EM algorithm \fg{}, \textit{Annals of Statistics} 11 (1983)
+\item Lecture : G. McLachlan \& T. Krishnan, \textit{The EM Algorithm and Extensions}, 2e éd.
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Survie, censure et une hypothèse que l'on ne peut pas tester --- Master}]
+\textbf{STA-37.} \textbf{Problème.} Chaque sujet $ i $ possède un temps de survie $ T_i $ et un temps de censure
+$ C_i $ ; on n'observe que $ Y_i = \min(T_i, C_i) $ et l'indicatrice
+$ \delta_i = \mathbf{1}\{ T_i \le C_i \} $. Notons $ S(t) = P(T > t) $ la fonction de survie
+à estimer.
+\begin{enumerate}
+\item[(a)] Supposons $ T_i $ et $ C_i $ indépendants, la loi de $ C_i $ ne dépendant pas des
+paramètres d'intérêt. Démontrez que la vraisemblance se factorise en
+$ \prod_i f(y_i)^{\delta_i} S(y_i)^{1-\delta_i} $ multiplié par un terme ne faisant pas
+intervenir $ S $, de sorte que le mécanisme de censure peut être ignoré. Énoncez exactement ce
+que la censure indépendante affirme au sujet du monde, et expliquez pourquoi c'est une hypothèse
+sur des mécanismes plutôt qu'une propriété des données observées.
+\item[(b)] Établissez l'estimateur de Kaplan-Meier
+\[ \hat{S}(t) = \prod_{j \,:\, t_j \le t} \left( 1 - \frac{d_j}{n_j} \right) , \]
+où $ t_1 < t_2 < \cdots $ sont les instants de défaillance observés distincts, $ d_j $ le
+nombre de défaillances en $ t_j $ et $ n_j $ le nombre de sujets encore à risque juste avant,
+en maximisant la vraisemblance de (a) sur toutes les lois portées par les instants de défaillance
+observés. Établissez ensuite la formule de Greenwood pour la variance de $ \hat{S}(t) $ en
+appliquant la méthode delta (STA-25) à $ \log \hat{S}(t) $.
+\item[(c)] Le modèle de Cox attribue au sujet $ i $ de vecteur de covariables $ x_i $ le risque
+instantané $ \lambda(t \mid x_i) = \lambda_0(t)\, e^{\beta^{\top} x_i} $ où $ \lambda_0 $ est
+une fonction inconnue arbitraire. Établissez la vraisemblance partielle
+\[ L(\beta) = \prod_{i \,:\, \delta_i = 1}
+ \frac{ e^{\beta^{\top} x_i} }{ \sum_{j \in R(t_i)} e^{\beta^{\top} x_j} } , \qquad
+ R(t) = \{ j : Y_j \ge t \} , \]
+démontrez que $ \lambda_0 $ en a entièrement disparu, et démontrez que son score est d'espérance
+nulle en la vraie valeur de $ \beta $. Énoncez ensuite quelle quantité est estimée lorsque
+l'hypothèse de risques proportionnels est fausse.
+\item[(d)] Démontrez ou reconstruisez le théorème de Tsiatis (1975) : pour toute loi conjointe de
+$ (T, C) $ --- avec une dépendance arbitraire --- il existe un modèle où $ T $ et $ C $ sont
+\textit{indépendants} qui produit exactement la même loi des observables $ (Y, \delta) $. Concluez
+que la censure indépendante n'est pas testable à partir des données, et discutez de ce à quoi
+devrait ressembler une analyse de sensibilité pour cette hypothèse.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les tables de mortalité sont plus anciennes que la statistique --- John Graunt a
+dressé celle de Londres en 1662 et Halley celle de Breslau en 1693 --- mais la censure, le fait
+qu'une étude s'achève alors que des sujets sont encore en vie, fut traitée par des recettes
+actuarielles ad hoc jusqu'à ce qu'Edward Kaplan et Paul Meier soumettent indépendamment au
+\textit{JASA} des articles presque identiques ; le rédacteur en chef les obligea à fusionner, et après
+quatre ans de discussions l'article de 1958 parut. Il est parmi les plus cités de l'histoire des
+sciences, tout comme la vraisemblance partielle de David Cox de 1972, si nouvelle que Cox dut écrire
+un second article en 1975 pour expliquer pourquoi on peut traiter une vraisemblance partielle comme
+une vraisemblance. La partie (d) est l'ombre permanente du domaine : l'hypothèse qui fait tout
+fonctionner --- que les gens quittent une étude pour des raisons sans rapport avec leur pronostic --- ne
+peut pas être vérifiée sur les données, seulement argumentée.
+
+\begin{refs}
+\item Contexte : Estimateur de Kaplan-Meier --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Estimateur_de_Kaplan-Meier})
+\item Contexte : Régression de Cox (modèle à risques proportionnels) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/R%C3%A9gression_de_Cox})
+\item Article : E. L. Kaplan \& P. Meier, \og{} Nonparametric estimation from incomplete observations \fg{}, \textit{Journal of the American Statistical Association} 53 (1958), 457--481
+\item Article : D. R. Cox, \og{} Regression models and life-tables \fg{}, \textit{Journal of the Royal Statistical Society B} 34 (1972), 187--202 ; A. Tsiatis, \og{} A nonidentifiability aspect of the problem of competing risks \fg{}, \textit{PNAS} 72 (1975), 20--22
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{AIC et BIC répondent à des questions différentes --- Master}]
+\textbf{STA-38.} \textbf{Problème.} Un modèle à $ k $ paramètres libres est ajusté à $ n $ observations
+indépendantes, donnant la log-vraisemblance maximisée $ \hat{\ell} $. Les deux critères de
+sélection classiques sont
+\[ \mathrm{AIC} = -2\hat{\ell} + 2k , \qquad \mathrm{BIC} = -2\hat{\ell} + k \log n . \]
+Ils ne diffèrent que par une pénalité, et ils sont dérivés de cibles complètement différentes.
+\begin{enumerate}
+\item[(a)] Établissez l'AIC. Prenez pour cible la divergence de Kullback-Leibler moyenne de la vérité au
+modèle ajusté, autrement dit la log-vraisemblance moyenne du modèle ajusté sur une copie
+indépendante des données. Montrez que $ \hat{\ell} $ surestime cette cible, et démontrez sous les
+conditions de régularité usuelles --- un développement quadratique de la log-vraisemblance plus la
+normalité asymptotique de l'estimateur du maximum de vraisemblance (STA-14) --- que le biais vaut
+asymptotiquement $ k $.
+\item[(b)] Établissez le BIC. Appliquez l'approximation de Laplace à la vraisemblance marginale
+$ m(y) = \int p(y \mid \theta)\, \pi(\theta)\, d\theta $ et démontrez que
+\[ \log m(y) = \hat{\ell} - \frac{k}{2}\log n + O(1) , \]
+de sorte que comparer des valeurs de BIC approche la comparaison des probabilités a posteriori des
+modèles ; montrez que la loi a priori $ \pi $ ne contribue qu'au terme $ O(1) $.
+\item[(c)] Voyez la conséquence dans le cas le plus simple. Pour $ n $ observations de
+$ N(\mu, 1) $, comparez les deux critères sur le couple emboîté $ \{\mu = 0\} $ contre
+$ \{\mu \in \mathbb{R}\} $ : démontrez que lorsque $ \mu = 0 $ la règle du BIC choisit le bon
+modèle avec une probabilité tendant vers 1, tandis que la règle de l'AIC choisit le plus grand
+modèle avec une probabilité qui ne s'annule pas, et identifiez la valeur limite de cette
+probabilité. Démontrez ensuite, ou énoncez fidèlement, le résultat de Stone de 1977 selon lequel
+l'AIC est asymptotiquement équivalent à la validation croisée \og{} un contre tous \fg{}.
+\item[(d)] Énoncez précisément le théorème de Yang (2005) : aucune procédure de sélection de modèle ne
+peut être simultanément consistante pour identifier un vrai modèle de dimension finie et optimale
+au sens des vitesses minimax pour estimer la fonction de régression --- les forces du BIC et celles
+de l'AIC ne peuvent pas être combinées. Puis, pour un problème appliqué concret de votre choix,
+dites lequel des deux objectifs est réellement le vôtre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Hirotugu Akaike proposa son critère lors d'un colloque en 1971 et le publia en
+1974, ayant compris que la vraisemblance maximisée est une estimation biaisée de l'ajustement
+prédictif et que le biais vaut, chose remarquable, tout juste le nombre de paramètres. Gideon
+Schwarz établit l'autre pénalité en 1978 par un argument bayésien où la taille de l'échantillon
+entre par le rétrécissement de la loi a posteriori. On s'est ensuite disputé à leur sujet pendant
+quarante ans comme si l'un des deux devait avoir tort, mais la partie (d) tranche le débat de la
+seule façon dont les mathématiques le peuvent : ils optimisent des critères différents, et le
+théorème d'impossibilité de Yuhong Yang démontre qu'aucun critère n'optimise les deux. C'est un bon
+modèle de la manière dont s'achève une controverse méthodologique --- non par un vainqueur, mais par
+un théorème décrivant l'arbitrage qu'aucun des deux camps ne pouvait éviter.
+
+\begin{refs}
+\item Contexte : Critère d'information d'Akaike --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Crit%C3%A8re_d'information_d'Akaike})
+\item Contexte : Critère d'information bayésien --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Crit%C3%A8re_d'information_bay%C3%A9sien})
+\item Article : H. Akaike, \og{} A new look at the statistical model identification \fg{}, \textit{IEEE Transactions on Automatic Control} 19 (1974), 716--723 ; G. Schwarz, \og{} Estimating the dimension of a model \fg{}, \textit{Annals of Statistics} 6 (1978)
+\item Article : Y. Yang, \og{} Can the strengths of AIC and BIC be shared? \fg{}, \textit{Biometrika} 92 (2005), 937--950
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{L'inférence après sélection --- Recherche}]
+\textbf{STA-16.} \textbf{Problème.} La pratique moderne choisit la question après avoir vu les données --- le plus
+grand effet, le meilleur modèle --- puis rapporte l'inférence comme si la question avait été fixée
+d'avance. Rendez les dégâts précis, puis passez les réparations en revue.
+\begin{enumerate}
+\item[(a)] Soient $ X_1, \dots, X_m $ indépendantes $ N(\mu_i, 1) $ et supposons que tous les
+$ \mu_i = 0 $. Vous sélectionnez l'indice du plus grand $ X_i $ et publiez la borne de confiance
+inférieure naïve à 95 \% $ X_{(m)} - 1{,}645 $ pour l'espérance sélectionnée. Démontrez que la
+couverture vaut $ \Phi(1{,}645)^m $, soit environ 0,90 pour $ m = 2 $ et qui s'effondre vers 0
+quand $ m $ croît. Montrez aussi que
+$ \mathbb{E}[\max(X_1, X_2)] = 1/\sqrt{\pi} >0 $, de sorte que l'estimation sélectionnée est
+biaisée par excès alors même que toutes les vraies espérances sont nulles (la malédiction du
+vainqueur).
+\item[(b)] Problème de compréhension : lisez comment on restaure une inférence post-sélection valide ---
+inférence simultanée sur tous les modèles (Berk et al. 2013) et \og{} inférence sélective \fg{}
+conditionnelle exacte pour des procédures comme le lasso (école de Taylor et Tibshirani) --- et
+rédigez une comparaison de ce que chacune garantit, et à quel prix en largeur d'intervalle.
+\textit{État des lieux : domaine de recherche actif depuis 2013 environ ; aucun cadre unique n'est
+encore la pratique standard, et étendre l'inférence sélective exacte au-delà de procédures
+particulières reste un territoire ouvert.}
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le problème est aussi ancien que le tripatouillage des données, mais il est
+devenu aigu quand la sélection de modèle est devenue automatique : le lasso, la régression pas à
+pas et les balayages pangénomiques choisissent tous les hypothèses de façon adaptative. L'article
+de 2013 de Berk, Brown, Buja, Zhang et Zhao a donné la première réponse fréquentiste pleinement
+honnête (\og{} PoSI \fg{}), et l'inférence sélective conditionnelle a suivi rapidement. C'est le domaine où
+la mathématique de la crise de la reproductibilité (STA-17) se répare, une procédure à la fois.
+
+\begin{refs}
+\item Contexte : Data dredging (triturage de données) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Data_dredging})
+\item Article : R. Berk, L. Brown, A. Buja, K. Zhang \& L. Zhao, \og{} Valid post-selection inference \fg{}, \textit{Annals of Statistics} 41 (2013), 802--837
+\item Article : J. Taylor \& R. J. Tibshirani, \og{} Statistical learning and selective inference \fg{}, \textit{PNAS} 112 (2015), 7629--7634
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La crise de la reproductibilité comme statistique mathématique --- Recherche}]
+\textbf{STA-17.} \textbf{Problème.} Vers 2011--2015, il est apparu qu'une large part des résultats publiés en
+psychologie, en médecine et ailleurs ne se reproduisent pas. Traitez cela comme un domaine où l'on
+démontre des théorèmes, pas comme un scandale.
+\begin{enumerate}
+\item[(a)] Un domaine teste de nombreuses hypothèses, dont une fraction $ \pi $ correspond à de vrais
+effets ; les tests ont un niveau $ \alpha $ et une puissance $ 1 - \beta $. Établissez la valeur
+prédictive positive
+\[ \mathrm{PPV} = \frac{\pi (1-\beta)}{\pi (1-\beta) + (1-\pi)\alpha} , \]
+et évaluez-la pour $ \pi = 0{,}1 $, $ \alpha = 0{,}05 $, puissance $ 0{,}8 $. Concluez que des
+résultats \og{} significatifs \fg{} peuvent être faux plus d'une fois sur trois même avec une pratique
+irréprochable --- c'est l'argument d'Ioannidis de 2005 rendu rigoureux.
+\item[(b)] Démontrez que la procédure de Benjamini-Hochberg contrôle le taux de fausses découvertes au
+niveau $ q $ lorsque les valeurs p des vraies hypothèses nulles sont indépendantes et
+uniformes.
+\item[(c)] Démontrez que l'arrêt optionnel détruit la significativité naïve : pour des observations
+indépendantes $ N(\theta, 1) $ avec $ \theta = 0 $, la loi du logarithme itéré implique que la
+statistique z courante $ \sqrt{n}\, \bar{x}_n $ dépasse tout seuil fixé une infinité de fois,
+presque sûrement --- de sorte que \og{} tester après chaque observation et s'arrêter à la significativité \fg{}
+rejette une hypothèse nulle vraie avec probabilité 1.
+\textit{État des lieux : (a)--(c) sont des mathématiques établies ; concevoir une inférence robuste au
+biais de publication, au p-hacking et à l'analyse adaptative est un front de recherche ouvert et
+actif (voir STA-16 et STA-18).}
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'essai d'Ioannidis de 2005 \og{} Why most published research findings are false \fg{}
+et la réplication par l'Open Science Collaboration en 2015 de 100 études de psychologie (39 \% des
+résultats significatifs répliqués) ont défini la crise. Les réponses mathématiques --- taux de fausses
+découvertes (Benjamini-Hochberg 1995), inférence post-sélection, préenregistrement, méthodes
+valides à tout instant --- comptent parmi les statistiques les plus conséquentes que l'on fasse
+aujourd'hui : les théorèmes présentés ici sont la raison pour laquelle la crise a pu être
+diagnostiquée.
+
+\begin{refs}
+\item Contexte : Crise de la reproductibilité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Crise_de_la_reproductibilit%C3%A9})
+\item Article : J. P. A. Ioannidis, \og{} Why most published research findings are false \fg{}, \textit{PLoS Medicine} 2 (2005), e124
+\item Article : Y. Benjamini \& Y. Hochberg, \og{} Controlling the false discovery rate \fg{}, \textit{Journal of the Royal Statistical Society B} 57 (1995), 289--300
+\item Article : Open Science Collaboration, \og{} Estimating the reproducibility of psychological science \fg{}, \textit{Science} 349 (2015), aac4716
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Valeurs e et tests sûrs --- Recherche}]
+\textbf{STA-18.} \textbf{Problème.} Une \textit{variable e} pour une hypothèse nulle $ H_0 $ est une variable
+aléatoire positive $ E $ telle que $ \mathbb{E}_0[E] \le 1 $ sous toute loi de $ H_0 $ ; sa
+valeur réalisée est une valeur e, les grandes valeurs comptant comme preuve contre
+$ H_0 $.
+\begin{enumerate}
+\item[(a)] Démontrez que rejeter lorsque $ E \ge 1/\alpha $ a un risque de première espèce au plus
+$ \alpha $ (inégalité de Markov), et que $ \min(1, 1/E) $ est une valeur p conservatrice.
+\item[(b)] Démontrez que pour une hypothèse nulle simple de densité $ f_0 $, tout rapport de
+vraisemblance $ f_1(X)/f_0(X) $ est une variable e.
+\item[(c)] Voici l'intérêt de tout cela : supposons que des expériences arrivent en séquence et que chaque
+nouvelle variable e $ E_k $ puisse être choisie à partir de toutes les données passées, avec
+$ \mathbb{E}_0[E_k \mid \text{passé}] \le 1 $. Démontrez que le produit courant
+$ M_n = E_1 E_2 \cdots E_n $ est une surmartingale positive sous $ H_0 $, énoncez l'inégalité de
+Ville $ P_0\!\left( \sup_n M_n \ge 1/\alpha \right) \le \alpha $, et concluez que la preuve
+empirique peut être accumulée et surveillée en continu, avec arrêt optionnel et poursuite
+optionnelle, sans rien coûter à la garantie de première espèce --- exactement ce que les valeurs p ne
+peuvent pas faire (STA-17c).
+\item[(d)] Problème de compréhension : lisez la théorie d'optimalité au taux de croissance (GRO) de
+Grünwald, de Heide et Koolen et expliquez ce qui remplace la \og{} puissance \fg{} lorsque les tests se
+mesurent à la croissance de la valeur e.
+\textit{État des lieux : programme de recherche fondationnel, très actif depuis 2019 ; \og{} Safe testing \fg{}
+a paru avec discussion dans JRSS-B en 2024, et les questions ouvertes abondent (valeurs e optimales
+pour des hypothèses nulles composites, valeurs e pour des données complexes dépendantes, le bon
+analogue des intervalles de confiance).}
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les valeurs e renouent le test d'hypothèse avec les martingales et le jeu --- la
+preuve contre l'hypothèse nulle est la fortune d'un joueur qui parie contre elle --- une ligne de
+pensée qui remonte à Ville (1939) et que la probabilité théorie-des-jeux de Shafer et Vovk a
+ravivée. L'essor moderne a commencé avec \og{} Safe testing \fg{} de Grünwald, de Heide et Koolen
+(prépublication 2019, JRSS-B 2024) et les travaux parallèles de Vovk, Wang, Ramdas et Shafer ; le
+domaine se range désormais sous la bannière \og{} statistique théorie-des-jeux et inférence sûre valide
+à tout instant \fg{}. C'est la tentative actuelle la plus sérieuse de refonder le test de sorte que la
+pratique scientifique ordinaire --- jeter un œil aux données, les mettre en commun, poursuivre ---
+devienne mathématiquement légale.
+
+\begin{refs}
+\item Contexte : Valeurs e --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/E-values})
+\item Article : P. Grünwald, R. de Heide \& W. M. Koolen, \og{} Safe testing \fg{}, \textit{Journal of the Royal Statistical Society B} 86 (2024), 1091--1128, arXiv:1906.07801 (\url{https://arxiv.org/abs/1906.07801})
+\item Article : A. Ramdas, P. Grünwald, V. Vovk \& G. Shafer, \og{} Game-theoretic statistics and safe anytime-valid inference \fg{}, \textit{Statistical Science} 38 (2023), 576--601, arXiv:2210.01948 (\url{https://arxiv.org/abs/2210.01948})
+\item Lecture : G. Shafer \& V. Vovk, \textit{Game-Theoretic Foundations for Probability and Finance} (2019)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ce que la prédiction conforme peut et ne peut pas promettre --- Recherche, short}]
+\textbf{STA-28.} \textbf{Problème.} La prédiction conforme par découpage ajuste un prédicteur
+quelconque sur une partie des données, calcule des scores de conformité $ R_1, \dots, R_n $ (par
+exemple des résidus absolus) sur un ensemble de calibration mis de côté, et pour une nouvelle
+entrée renvoie l'ensemble des valeurs dont le score tomberait en dessous du
+$ \lceil (n+1)(1-\alpha) \rceil $-ième plus petit des $ R_i $. Démontrez la garantie de
+couverture marginale à échantillon fini
+$ P\big( Y_{n+1} \in C(X_{n+1}) \big) \ge 1 - \alpha $ en supposant seulement que les $ n+1 $
+couples sont échangeables --- aucune correction du modèle, aucune hypothèse de loi --- puis énoncez
+précisément le théorème d'impossibilité de Barber, Candès, Ramdas et Tibshirani (2021), à savoir
+qu'aucune procédure sans hypothèse de loi ne peut atteindre une couverture non triviale
+conditionnellement à $ X_{n+1} = x $.
+\end{problem}
+
+\noindent La prédiction conforme a été développée par Vovk, Gammerman et Shafer à partir
+de la fin des années 1990 et est devenue, autour de 2019, la façon standard d'attacher une barre
+d'erreur honnête à la sortie d'un modèle boîte noire arbitraire, y compris des réseaux de neurones
+que personne ne sait analyser. La garantie de la première moitié est un argument de permutation en
+trois lignes ; le théorème de la seconde moitié explique pourquoi les praticiens continuent de
+réclamer quelque chose que le cadre ne peut démontrablement pas leur donner gratuitement. État en
+2026 : la couverture marginale sous échangeabilité est une mathématique réglée, tandis que les
+relâchements utiles --- couverture conditionnelle approchée, changement de covariables, données
+dépendantes et séries temporelles --- forment une frontière de recherche active.
+
+\begin{refs}
+\item Contexte : Prédiction conforme --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Conformal_prediction})
+\item Lecture : V. Vovk, A. Gammerman \& G. Shafer, \textit{Algorithmic Learning in a Random World} (2005)
+\item Article : R. F. Barber, E. J. Candès, A. Ramdas \& R. J. Tibshirani, \og{} The limits of distribution-free conditional predictive inference \fg{}, \textit{Information and Inference} 10 (2021), 455--482, arXiv:1903.04684 (\url{https://arxiv.org/abs/1903.04684})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Un écart entre ce qui peut être estimé et ce qui peut être calculé --- Recherche, short}]
+\textbf{STA-29.} \textbf{Problème.} Dans le modèle de covariance à pic, on observe $ n $
+tirages indépendants de $ N(0,\, I_p + \theta vv^{\top}) $, où le vecteur unitaire $ v $ a au
+plus $ k $ coordonnées non nulles, et la tâche est de décider si $ \theta = 0 $ ou
+$ \theta >0 $. Rédigez un compte rendu précis de l'état des lieux : la recherche exhaustive
+sur tous les supports réussit dès que $ n \gtrsim k \log p / \theta^2 $, toute méthode connue en
+temps polynomial exige $ n \gtrsim k^2 / \theta^2 $, et Berthet et Rigollet (2013) ont démontré
+que franchir la seconde frontière résoudrait aussi le problème de la clique plantée --- de sorte que
+l'écart apparent n'est réel que conditionnellement à une hypothèse de difficulté en moyenne qui
+n'est elle-même pas démontrée.
+\end{problem}
+
+\noindent Les écarts calcul-statistique sont l'un des thèmes marquants de la statistique
+du XXIe siècle : la théorie classique demande ce qu'une taille d'échantillon rend
+possible, et ne dit rien de ce qu'un algorithme peut atteindre en temps polynomial. La détection
+d'une composante principale parcimonieuse en est le cas d'école, et les indices en faveur de
+l'écart viennent aujourd'hui de plusieurs directions --- réductions depuis la clique plantée, bornes
+inférieures somme-de-carrés, et l'heuristique des polynômes de bas degré --- dont aucune n'est une
+démonstration inconditionnelle. État en 2026 : l'écart est conjectural ; démontrer
+inconditionnellement qu'un problème d'estimation naturel est difficile en calcul reste hors de
+portée.
+
+\begin{refs}
+\item Contexte : ACP parcimonieuse --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Sparse_PCA})
+\item Article : Q. Berthet \& P. Rigollet, \og{} Complexity theoretic lower bounds for sparse principal component detection \fg{}, \textit{Proceedings of COLT 2013}, PMLR 30, 1046--1066, PMLR (\url{https://proceedings.mlr.press/v30/Berthet13.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Quand un nombre mérite-t-il le nom d'effet ? --- Recherche}]
+\textbf{STA-30.} \textbf{Problème.} Dans le modèle des résultats potentiels, chaque unité $ i $ porte deux
+nombres $ Y_i(1) $ et $ Y_i(0) $ --- sa réponse sous traitement et sous contrôle --- dont seul
+$ Y_i = Y_i(T_i) $ est observé, où $ T_i \in \{0,1\} $ enregistre le traitement effectivement
+reçu. L'estimande est l'effet moyen du traitement
+$ \tau = \mathbb{E}[Y(1) - Y(0)] $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ \tau $ n'est \textit{pas} déterminé par la loi conjointe des observables
+$ (T, Y) $ : exhibez deux populations de mêmes lois observables et de $ \tau $ différents.
+Démontrez ensuite que sous randomisation --- $ T $ indépendant de $ (Y(0), Y(1)) $ --- la différence
+des deux moyennes empiriques est sans biais pour $ \tau $.
+\item[(b)] Supposez plutôt l'absence de confusion sachant des covariables $ X $, c'est-à-dire
+$ T \perp (Y(0), Y(1)) \mid X $, avec la positivité
+$ 0 <P(T=1 \mid X) <1 $ presque sûrement. Démontrez la formule d'ajustement
+\[ \mathbb{E}[Y(1)] = \mathbb{E}_X\big[\, \mathbb{E}[Y \mid T=1, X] \,\big] , \]
+et démontrez le théorème du score de propension de Rosenbaum et Rubin : l'absence de confusion
+sachant $ X $ implique l'absence de confusion sachant le seul nombre
+$ e(X) = P(T = 1 \mid X) $.
+\item[(c)] Énoncez le critère de la porte dérobée (back-door) de Pearl pour un graphe causal et démontrez
+qu'un ensemble le vérifiant justifie la formule d'ajustement de (b). Énoncez ensuite --- sans
+démonstration --- le théorème de complétude du do-calcul (Shpitser-Pearl et Huang-Valtorta, 2006) :
+dès qu'une loi interventionnelle est identifiable à partir du graphe et de la loi observationnelle,
+le do-calcul permet de la dériver.
+\item[(d)] Lisez la frontière et rendez-en compte honnêtement : l'analyse de sensibilité (quelle doit être
+la force d'un facteur de confusion non mesuré pour renverser une conclusion ?), l'interférence entre
+unités (le traitement d'une unité affecte le résultat d'une autre, de sorte que la notation en
+résultats potentiels ci-dessus est déjà fausse), et l'estimation de $ \tau $ lorsque les
+fonctions de nuisance sont ajustées par apprentissage automatique (apprentissage automatique
+double/débiaisé). Pour chacun, dites précisément quelles parties sont des théorèmes et lesquelles
+sont ouvertes.
+\textit{État des lieux : (a)--(c) sont des mathématiques établies datant de 1974--2006 ; les trois sujets
+de (d) sont des domaines de recherche actifs, avec des résultats partiels et aucune théorie générale
+établie.}
+\end{enumerate}
+
+\end{problem}
+
+\noindent Jerzy Neyman écrivit les résultats potentiels pour des expériences agricoles en
+1923 ; Donald Rubin les fit revivre et les généralisa à partir de 1974, et Judea Pearl construisit
+le pendant graphique, ce qui lui valut le prix Turing en 2011. Les deux écoles se sont disputées
+pendant des décennies et sont aujourd'hui comprises comme des formalismes équivalents pour un même
+contenu. Ce qui en fait un problème de recherche plutôt qu'un exercice de manuel, c'est que les
+hypothèses qui font tout le travail --- pas de confusion non mesurée, pas d'interférence --- ne sont pas
+testables à partir des données, de sorte que la mathématique de l'inférence causale est largement
+la mathématique de l'énoncé exact de ce que l'on doit supposer, et de la mesure du tort que l'on
+subit si l'on se trompe.
+
+\begin{refs}
+\item Contexte : Modèle causal de Neyman-Rubin --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mod%C3%A8le_causal_de_Neyman-Rubin})
+\item Contexte : Inférence causale --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Inf%C3%A9rence_causale})
+\item Article : P. R. Rosenbaum \& D. B. Rubin, \og{} The central role of the propensity score in observational studies for causal effects \fg{}, \textit{Biometrika} 70 (1983), 41--55
+\item Lecture : J. Pearl, \textit{Causality}, 2e éd. (2009) ; G. Imbens \& D. Rubin, \textit{Causal Inference for Statistics, Social, and Biomedical Sciences} (2015)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Quand interpoler le bruit est sans danger --- Recherche, short}]
+\textbf{STA-39.} \textbf{Problème.} En régression linéaire avec plus de prédicteurs que
+d'observations, la solution des moindres carrés de norme $ \ell_2 $ minimale ajuste exactement les
+données d'apprentissage --- tous les résidus nuls, bruit compris --- et la théorie classique (STA-26)
+prédit le désastre, alors qu'en pratique de tels estimateurs prédisent souvent bien. Rédigez un
+compte rendu précis de l'état des lieux : énoncez la caractérisation de Bartlett, Long, Lugosi et
+Tsigler (2020) des situations où l'interpolation est bénigne, en termes de rangs effectifs du
+spectre de la covariance, énoncez exactement ce que la courbe de double descente de Belkin, Hsu, Ma
+et Mandal (2019) démontre et ce qu'elle ne démontre pas, et dites honnêtement quelles parties du
+tableau sont des théorèmes sur les modèles linéaires et à noyau et lesquelles restent conjecturales
+pour les réseaux profonds.
+\end{problem}
+
+\noindent Pendant cinquante ans, la courbe en U de STA-26 a été enseignée comme une loi :
+au-delà d'une certaine souplesse, l'erreur de test doit remonter. Vers 2018, les praticiens n'ont
+cessé d'exhiber des modèles ayant plus de paramètres que de points de données, qui interpolaient
+l'ensemble d'apprentissage et généralisaient quand même, et la théorie a dû être reconstruite plutôt
+que défendue. Pour la régression linéaire de norme minimale, la réponse est aujourd'hui
+essentiellement complète et quantitative --- le surajustement bénin se produit exactement lorsque le
+spectre de la covariance possède beaucoup de directions petites pour absorber le bruit tandis que
+quelques grandes portent le signal --- et des résultats analogues existent pour la régression à noyau
+sans crête. État en 2026 : réglé pour la régression linéaire et à noyau de norme minimale sous des
+conditions spectrales explicites ; pour les réseaux profonds entraînés par descente de gradient, le
+phénomène est documenté empiriquement et expliqué seulement dans des régimes restreints.
+
+\begin{refs}
+\item Contexte : Double descente --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Double_descent})
+\item Article : P. L. Bartlett, P. M. Long, G. Lugosi \& A. Tsigler, \og{} Benign overfitting in linear regression \fg{}, \textit{PNAS} 117 (2020), 30063--30070, arXiv:1906.11300 (\url{https://arxiv.org/abs/1906.11300})
+\item Article : M. Belkin, D. Hsu, S. Ma \& S. Mandal, \og{} Reconciling modern machine-learning practice and the classical bias--variance trade-off \fg{}, \textit{PNAS} 116 (2019), 15849--15854
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une inférence qui ne révèle rien sur personne --- Recherche}]
+\textbf{STA-40.} \textbf{Problème.} Un algorithme randomisé $ M $ est $ \varepsilon $-\textit{différentiellement
+confidentiel} si pour tout couple de jeux de données $ D, D' $ différant par l'enregistrement
+d'un seul individu et tout ensemble mesurable $ S $,
+\[ P\big( M(D) \in S \big) \;\le\; e^{\varepsilon}\, P\big( M(D') \in S \big) . \]
+La question de ce problème est de savoir ce qu'une telle contrainte coûte en précision
+statistique.
+\begin{enumerate}
+\item[(a)] Démontrez la boîte à outils de base. Pour une statistique $ f $ de sensibilité globale
+$ \Delta f = \max_{D \sim D'} | f(D) - f(D') | $, démontrez que publier
+$ f(D) + \mathrm{Laplace}(\Delta f / \varepsilon) $ est
+$ \varepsilon $-différentiellement confidentiel ; démontrez que toute fonction d'une sortie
+confidentielle est confidentielle avec le même $ \varepsilon $ (post-traitement) ; et démontrez
+qu'exécuter des mécanismes de paramètres $ \varepsilon_1, \dots, \varepsilon_k $ sur les mêmes
+données est $ (\varepsilon_1 + \cdots + \varepsilon_k) $-confidentiel.
+\item[(b)] Chiffrez la garantie dans le modèle central, où un dépositaire de confiance détient les
+données. Pour la moyenne de $ n $ nombres de $ [0,1] $, calculez la sensibilité, et démontrez
+que l'écart type du bruit de confidentialité est d'ordre $ 1/(n\varepsilon) $ tandis que l'écart
+type d'échantillonnage est d'ordre $ 1/\sqrt{n} $. Concluez précisément pour quelles suites
+$ \varepsilon = \varepsilon_n $ le bruit de confidentialité est asymptotiquement
+négligeable.
+\item[(c)] Chiffrez-la dans le modèle local, où chaque individu randomise avant de publier quoi que ce
+soit. Montrez que la réponse randomisée de Warner (1965) --- répondre sincèrement avec probabilité
+$ p $, sinon inverser la réponse --- est $ \varepsilon $-confidentielle avec
+$ \varepsilon = \log\frac{p}{1-p} $, construisez l'estimateur sans biais de la proportion dans la
+population, et démontrez que sa variance est gonflée d'un facteur d'ordre $ 1/\varepsilon^2 $
+pour $ \varepsilon $ petit. Énoncez ensuite le théorème minimax de Duchi, Jordan et Wainwright :
+sous confidentialité locale, la taille d'échantillon effective est d'ordre $ n\varepsilon^2 $
+plutôt que $ n $, et aucune procédure n'y échappe.
+\item[(d)] Rendez compte de la frontière en séparant les théorèmes des problèmes ouverts. Considérez
+(i) les intervalles de confiance et les tests d'hypothèse à validité exacte en échantillon fini
+sous confidentialité, (ii) le choix de $ \varepsilon $, qui est une décision politique sans
+aucune théorie statistique pour la guider --- le Bureau du recensement des États-Unis a dû en fixer
+un pour le recensement de 2020 et s'est fait attaquer en justice pour les conséquences --- et
+(iii) la confidentialité pour des données dont les enregistrements sont dépendants, comme dans les
+réseaux ou en cas de participation répétée, où la définition même d'un \og{} jeu de données voisin \fg{}
+est contestée. Pour chacun, dites ce qui est démontré et ce qui ne l'est pas.
+\textit{État des lieux : les mécanismes de (a) et les vitesses minimax de (b)--(c) sont des mathématiques
+établies ; l'inférence confidentielle, la sémantique du budget de confidentialité sur la durée de
+vie d'un jeu de données et la confidentialité sous dépendance sont des recherches ouvertes et
+actives.}
+\end{enumerate}
+
+\end{problem}
+
+\noindent La confidentialité différentielle a été définie par Cynthia Dwork, Frank
+McSherry, Kobbi Nissim et Adam Smith en 2006 pour sortir d'un piège : toute notion antérieure
+d'anonymisation avait été brisée par des attaques de réidentification, et le domaine avait besoin
+d'une garantie ne dépendant pas de ce qu'un attaquant savait déjà. La définition offre exactement
+cela --- une borne sur le déplacement que la participation d'une seule personne peut imprimer à la loi
+de la sortie --- et elle a été déployée par Apple, par Google et, de la façon la plus lourde de
+conséquences, par le recensement américain de 2020. Ce déploiement est le lieu où statistique et
+politique publique sont entrées en collision : les démographes objectaient que des effectifs bruités
+à petite échelle déforment précisément les populations que le recensement existe pour compter,
+tandis que le Bureau soutenait que les attaques par reconstruction sur les données de 2010 avaient
+déjà rendu illusoires les anciennes protections. La mathématique de l'arbitrage --- combien de
+précision une promesse de confidentialité doit coûter --- est l'un des domaines les plus actifs de la
+statistique théorique.
+
+\begin{refs}
+\item Contexte : Confidentialité différentielle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Confidentialit%C3%A9_diff%C3%A9rentielle})
+\item Article : S. L. Warner, \og{} Randomized response: a survey technique for eliminating evasive answer bias \fg{}, \textit{Journal of the American Statistical Association} 60 (1965), 63--69
+\item Article : J. C. Duchi, M. I. Jordan \& M. J. Wainwright, \og{} Minimax optimal procedures for locally private estimation \fg{} (2016--17), arXiv:1604.02390 (\url{https://arxiv.org/abs/1604.02390})
+\item Lecture : C. Dwork \& A. Roth, \textit{The Algorithmic Foundations of Differential Privacy} (2014)
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Composer une feuille d'exercices — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"></script>
+<script defer src="problems-data.js"></script>
+<script defer src="worksheet.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Composer une feuille d'exercices</h1>
+<p class="lede">Choisissez combien de problèmes vous voulez et d'où ils doivent venir,
+et n'emportez que ceux-là — en PDF, à imprimer ou à lire hors ligne, ou en source
+LaTeX que vous pouvez compiler et modifier vous-même. Vous pouvez aussi cocher des
+problèmes à la main en parcourant n'importe quelle page du site ; tout ce que vous
+avez coché apparaît ici automatiquement. Aucune réponse n'est incluse, pour la bonne
+raison qu'il n'y en a nulle part sur ce site.</p>
+
+<div id="builder">
+<h2>1. Choisissez vos problèmes</h2>
+
+<p><b>Niveau</b><br>
+<label><input type="checkbox" class="lv" value="Lycée" checked> Lycée</label>
+<label><input type="checkbox" class="lv" value="Licence" checked> Licence</label>
+<label><input type="checkbox" class="lv" value="Master" checked> Master</label>
+<label><input type="checkbox" class="lv" value="Recherche" checked> Recherche</label>
+</p>
+
+<p><b>Longueur</b><br>
+<label><input type="radio" name="kind" value="any" checked> Toutes les longueurs</label>
+<label><input type="radio" name="kind" value="short"> Problèmes courts seulement</label>
+<label><input type="radio" name="kind" value="long"> Problèmes longs seulement</label>
+</p>
+
+<p><b>Domaines</b> — si vous n'en cochez aucun, tous les domaines sont retenus.<br>
+<span id="areas"></span></p>
+
+<p>
+<b>Combien de problèmes ?</b>
+<input type="number" id="count" min="1" max="100" value="10">
+<button class="bigbutton" id="draw">Tirer un ensemble au hasard</button>
+<button class="bigbutton" id="loadticked">Utiliser les problèmes que j'ai cochés</button>
+<button class="bigbutton" id="clear">Effacer</button>
+</p>
+<p class="source-note" id="pool"></p>
+</div>
+
+<hr>
+<h2>2. Emportez-la</h2>
+<p>
+<button class="bigbutton" id="pdf"><b>Enregistrer en PDF</b></button>
+<button class="bigbutton" id="tex">Télécharger la source LaTeX</button>
+<span class="source-note">Le bouton PDF ouvre la boîte de dialogue d'impression de
+votre navigateur — choisissez « Enregistrer au format PDF » comme destination. Le
+fichier LaTeX se compile avec pdflatex, xelatex ou tectonic.</span>
+</p>
+
+<hr>
+<div id="out"></div>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

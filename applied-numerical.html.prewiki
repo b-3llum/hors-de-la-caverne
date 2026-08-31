@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analyse numérique — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Analyse numérique</h1>
+<p class="lede">L'analyse numérique est la mathématique du calcul sur le continu
+avec des machines qui ne retiennent qu'un nombre fini de chiffres : comment approcher
+une intégrale, une racine, la solution d'une équation différentielle ou d'un système
+linéaire — et, surtout, comment <i>démontrer</i> à quel point la réponse peut être
+fausse. La matière est plus ancienne que les ordinateurs (Newton itérait, Euler
+avançait pas à pas, Gauss éliminait et ajustait par moindres carrés), mais elle est
+devenue une discipline dans les années 1940, lorsque von Neumann, Turing et surtout
+James Wilkinson ont demandé ce qu'il advient d'un algorithme quand chacune de ses
+opérations arithmétiques est légèrement fausse. La maîtriser change votre regard sur
+le calcul : derrière chaque courbe et chaque simulation, vous apprenez à demander où
+loge l'erreur, si elle vient de la méthode ou de la machine, et si le problème
+lui-même est assez bien posé pour qu'un algorithme puisse réussir. C'est un domaine
+où une démonstration et un programme se vérifient l'un l'autre.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/applied-numerical.tex" download>source LaTeX</a> · <a href="tex/applied-numerical.pdf" download>PDF compilé</a></p>
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="NUM-01" data-level="Lycée">
+<h3>NUM-01 · Pourquoi 0.1 + 0.2 ≠ 0.3 sur un ordinateur <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Les ordinateurs stockent les nombres réels en virgule
+flottante binaire : un « double » IEEE 754 est un nombre
+\(\pm(1.b_1 b_2 \ldots b_{52})_2 \times 2^{e}\) — un signe, 52 chiffres binaires après
+le 1 initial et un exposant entier — et tout résultat arithmétique est arrondi au
+nombre de cette forme le plus proche.</p>
+<ol class="parts" type="a">
+<li>Démontrez que \(1/10\) n'a pas de développement binaire fini
+(regardez le dénominateur) et montrez que son développement infini vaut
+\((0.0\overline{0011})_2\).</li>
+<li>Montrez que le double le plus proche de \(1/10\) est exactement
+\(3602879701896397/2^{55}\), qui dépasse \(1/10\) d'environ \(5.5 \times 10^{-18}\).</li>
+<li>Trouvez les doubles les plus proches de \(0.2\) et de \(0.3\), effectuez l'addition
+machine des valeurs stockées de \(0.1\) et \(0.2\) (additionnez exactement, puis
+arrondissez) et montrez que le résultat diffère du \(0.3\) stocké d'exactement une
+unité au dernier rang, \(2^{-54}\) — de sorte que l'ordinateur déclare honnêtement
+<code>0.1 + 0.2 == 0.3</code> faux.</li>
+<li>Expliquez pourquoi les programmeurs comparent donc
+\(|a - b| &lt; \text{tolérance}\) plutôt que \(a = b\).</li>
+</ol>
+</div>
+<p class="context">Rien n'est cassé : la machine additionne parfaitement les mauvais
+nombres. La norme IEEE 754 (1985, menée par William Kahan, qui en a reçu le prix
+Turing) a rendu ce comportement d'arrondi précis et universel, ce qui est justement
+ce qui rend possible un raisonnement comme celui de (b)–(c). Tous les langages sur
+tous les processeurs modernes présentent cette fameuse surprise ; la comprendre
+exactement, au lieu de hausser les épaules, est le premier pas de la pensée
+numérique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic">Virgule flottante — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">Format de virgule flottante en double précision — Wikipédia (en anglais)</a></li>
+<li>Article : D. Goldberg, « What Every Computer Scientist Should Know About Floating-Point Arithmetic » (1991), ACM Computing Surveys 23</li>
+<li>Lecture : N. J. Higham, <i>Accuracy and Stability of Numerical Algorithms</i>, ch. 1–2</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-02" data-level="Lycée">
+<h3>NUM-02 · Annulation catastrophique dans la formule du second degré <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez \(x^2 - 10^8 x + 1 = 0\).</p>
+<ol class="parts" type="a">
+<li>Avec une
+arithmétique qui conserve 10 chiffres décimaux significatifs à chaque étape, évaluez
+la formule des manuels \(x = \big(-b - \sqrt{b^2 - 4ac}\big)/(2a)\) pour la plus petite
+racine et montrez que la réponse calculée vaut \(0\) — une erreur relative de 100 % —
+alors que la vraie petite racine vaut environ \(10^{-8}\).</li>
+<li>Diagnostiquez le mal : montrez que
+\(\sqrt{b^2 - 4ac}\) coïncide avec \(|b|\) sur ses premiers chiffres, de sorte que la
+soustraction annule presque tous les chiffres corrects et promeut l'erreur d'arrondi
+au premier rang. C'est l'<i>annulation catastrophique</i>.</li>
+<li>Le remède : démontrez les identités algébriques
+qui fondent l'algorithme stable — calculez d'abord la grande racine (sans annulation),
+puis obtenez la petite par la relation de Viète \(x_1 x_2 = c/a\). Vérifiez qu'il
+retrouve la petite racine presque avec toute la précision, dans la même arithmétique
+à 10 chiffres.</li>
+<li>Montrez que
+\(\sqrt{x+1} - \sqrt{x}\) souffre du même mal pour \(x\) grand, et corrigez-le en
+rationalisant.</li>
+</ol>
+</div>
+<p class="context">L'annulation est la manière classique dont une formule
+mathématiquement exacte devient un algorithme numériquement ruineux : la formule et
+l'algorithme sont deux objets différents, ce qui est l'observation fondatrice du
+domaine. La recette stable du second degré est un savoir commun qui remonte aux
+tout premiers jours du calcul automatique, et la leçon se généralise : réorganisez
+l'algèbre pour ne jamais soustraire deux quantités presque égales que vous avez
+calculées de façon inexacte.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Catastrophic_cancellation">Annulation catastrophique — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Quadratic_equation">Équation du second degré — Wikipédia</a></li>
+<li>Lecture : N. J. Higham, <i>Accuracy and Stability of Numerical Algorithms</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-03" data-level="Lycée">
+<h3>NUM-03 · La racine carrée babylonienne <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Pour calculer \(\sqrt{a}\) avec \(a &gt; 0\),
+itérez la règle antique : faites la moyenne de votre estimation et de \(a\) divisé par
+cette estimation,
+\[ x_{n+1} = \frac{1}{2}\Big( x_n + \frac{a}{x_n} \Big). \]
+(a) Montrez que \(\sqrt{a}\) est l'unique point fixe positif, et que
+\(x_n \ge \sqrt{a}\) pour tout \(n \ge 1\), quelle que soit l'estimation initiale
+\(x_0 &gt; 0\). (b) Démontrez que la suite décroît à partir de \(n = 1\) et converge vers
+\(\sqrt{a}\). (c) Démontrez l'identité d'erreur
+\(x_{n+1} - \sqrt{a} = (x_n - \sqrt{a})^2/(2x_n)\), et concluez que le nombre de
+chiffres corrects <i>double</i> à peu près à chaque étape. (d) En partant de
+\(x_0 = 3/2\), calculez \(\sqrt{2}\) à la main avec six décimales, en comptant le
+nombre d'étapes nécessaires.</p>
+<p class="context">La tablette d'argile babylonienne YBC 7289 (vers 1800–1600 av. J.-C.)
+affiche \(\sqrt{2}\) sous la forme \(1;24,51,10\) en base 60 — exact à environ six
+décimales — presque certainement obtenu par une règle de ce genre, que Héron
+d'Alexandrie a consignée explicitement au premier siècle de notre ère. Le doublement
+des chiffres de (c) est la plus ancienne apparition de la convergence quadratique, et
+la méthode n'est autre que la méthode de Newton (NUM-04) deux mille ans avant Newton,
+appliquée à \(x^2 - a\).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Methods_of_computing_square_roots">Extraction de racine carrée — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/YBC_7289">YBC 7289 — Wikipédia</a></li>
+<li>Lecture : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-20" data-level="Lycée" data-kind="court">
+<h3>NUM-20 · La garantie de la dichotomie <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(f\) continue sur \([a,b]\) avec \(f(a)f(b) &lt; 0\) ; remplacez répétitivement l'intervalle par celle de ses deux moitiés qui présente encore un changement de signe aux extrémités. Démontrez qu'après \(n\) étapes l'intervalle survivant a pour longueur \((b-a)/2^n\) et contient toujours une racine de \(f\), et déterminez combien d'étapes garantissent six décimales correctes pour \(f(x) = x^3 - x - 1\) sur \([1,2]\).</p>
+<p class="context">Bernard Bolzano a employé exactement cet argument de bissection en 1817 pour donner la première démonstration du théorème des valeurs intermédiaires qui ne fasse pas appel à l'intuition géométrique — la méthode est plus ancienne comme calcul que comme théorème. C'est le chercheur de racines le plus lent en usage courant, qui gagne un chiffre binaire par étape là où la méthode de Newton (NUM-04) double les chiffres, et c'est aussi le seul qui ne puisse pas échouer : il ne demande à \(f\) que la continuité et un changement de signe. C'est pourquoi les routines sérieuses des bibliothèques, comme la méthode de Brent, gardent une étape de dichotomie en réserve derrière leurs itérations rapides.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Bisection_method">Méthode de dichotomie — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Intermediate_value_theorem">Théorème des valeurs intermédiaires — Wikipédia</a></li>
+<li>Lecture : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-21" data-level="Lycée" data-kind="court">
+<h3>NUM-21 · L'emboîtement de Horner <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Le schéma de Horner évalue \(p(x) = a_n x^n + \cdots + a_1 x + a_0\) par l'emboîtement
+\[ \big( \cdots ((a_n x + a_{n-1})x + a_{n-2})x + \cdots \big) x + a_0 . \]
+Démontrez par récurrence sur \(n\) qu'il rend bien \(p(x)\), et comptez ses multiplications et ses additions face à celles que demande la formation séparée de chaque puissance \(x^k\).</p>
+<p class="context">La règle porte le nom de William George Horner, qui l'a publiée en 1819, mais Paolo Ruffini la possédait en 1804, Newton l'utilisait vers 1670 et le mathématicien chinois Qin Jiushao l'a exposée en 1247 — une chaîne de redécouvertes typique de ce qui est utile et élémentaire. Le décompte qu'on vous demande, \(n\) multiplications au lieu d'environ \(n^2/2\), n'est pas qu'une économie : V. Pan a démontré en 1966 qu'aucun schéma travaillant à partir des coefficients donnés ne peut évaluer un polynôme général de degré \(n\) avec moins de \(n\) multiplications ; c'est donc l'un des rares algorithmes dont on sait qu'ils sont optimaux.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Horner%27s_method">Méthode de Ruffini-Horner — Wikipédia</a></li>
+<li>Lecture : Knuth, <i>The Art of Computer Programming</i>, vol. 2, §4.6.4</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-22" data-level="Lycée">
+<h3>NUM-22 · Quelle taille doit avoir \(h\) ? <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un ordinateur stocke les nombres avec une erreur relative d'au plus \(\varepsilon \approx 1.1 \times 10^{-16}\) (double précision), de sorte que les valeurs de \(f\) qu'il renvoie ne sont correctes qu'à cette précision relative. Estimez \(f'(x)\) par le quotient de différences
+\[ D_h f(x) = \frac{f(x+h) - f(x)}{h}. \]</p>
+<ol class="parts" type="a">
+<li>À l'aide de la formule de Taylor, montrez que l'erreur en arithmétique exacte (erreur de troncature) vaut environ \(\tfrac{1}{2} h\,|f''(x)|\).</li>
+<li>Montrez que l'erreur d'arrondi apportée par les deux valeurs inexactes de la fonction vaut environ \(2\varepsilon |f(x)| / h\), et remarquez qu'elle <i>croît</i> quand \(h\) diminue.</li>
+<li>Minimisez la somme des deux en \(h\). Concluez que le meilleur \(h\) possible est de taille environ \(\sqrt{\varepsilon}\) et que la meilleure précision atteignable n'est que d'environ \(\sqrt{\varepsilon} \approx 10^{-8}\) — la moitié de vos chiffres est perdue, quel que soit le soin de votre programme.</li>
+<li>Refaites l'analyse pour la différence centrée \(\big(f(x+h) - f(x-h)\big)/(2h)\), dont l'erreur de troncature est en \(O(h^2)\), et montrez que le \(h\) optimal est maintenant de taille \(\varepsilon^{1/3}\), pour une précision d'environ \(\varepsilon^{2/3}\).</li>
+<li>Faites l'essai : avec \(f = \sin\) en \(x = 1\), dressez le tableau de l'erreur de \(D_h f(1)\) pour \(h = 10^{-1}, 10^{-2}, \dots, 10^{-16}\) et trouvez le fond du V.</li>
+</ol>
+</div>
+<p class="context">Tout cours d'analyse enseigne que le quotient de différences tend vers la dérivée quand \(h \to 0\) ; tout calcul numérique découvre que sur une machine réelle il fait le contraire dès que \(h\) devient petit, parce que soustraire deux nombres presque égaux détruit les chiffres qui portaient l'information (l'annulation de NUM-02, cette fois avec de vrais dégâts). La courbe d'erreur en V de (e) est l'image la plus instructive de toute l'analyse numérique élémentaire : la dérivation est une opération mal conditionnée, qui amplifie le bruit qu'on lui donne, tandis que l'intégration le lisse. L'échappatoire moderne consiste à cesser complètement de faire des différences — la dérivation automatique propage les règles exactes de dérivation à côté de l'arithmétique et n'a aucun \(h\) à choisir, ce qui explique que ce soit elle, et non les différences finies, qui entraîne les réseaux de neurones (voir NUM-19).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Numerical_differentiation">Dérivation numérique — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">Dérivation automatique — Wikipédia</a></li>
+<li>Lecture : N. J. Higham, <i>Accuracy and Stability of Numerical Algorithms</i>, ch. 1</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-330-introduction-to-numerical-analysis-spring-2012/">MIT OCW 18.330 Introduction to Numerical Analysis</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-32" data-level="Lycée" data-kind="court">
+<h3>NUM-32 · La variance que l'ordinateur calcule de travers <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> La formule en une passe des manuels pour la variance empirique de \(x_1, \ldots, x_n\),
+\[ s^2 = \frac{1}{n-1}\left( \sum_{i=1}^{n} x_i^2 \;-\; \frac{1}{n}\Big(\sum_{i=1}^{n} x_i\Big)^{\!2} \right), \]
+est algébriquement correcte ; montrez qu'évaluée en double précision IEEE elle renvoie \(0\) pour les quatre nombres \(10^9 + 4,\ 10^9 + 7,\ 10^9 + 13,\ 10^9 + 16\), dont la variance empirique vaut exactement \(30\), et identifiez quelle soustraction a détruit la réponse et quelle était la taille des quantités en présence comparée à celle de leur différence. Démontrez ensuite que les récurrences de Welford
+\[ M_k = M_{k-1} + \frac{x_k - M_{k-1}}{k}, \qquad S_k = S_{k-1} + (x_k - M_{k-1})(x_k - M_k), \]
+issues de \(M_0 = S_0 = 0\), vérifient \(M_k = \tfrac{1}{k}\sum_{i \le k} x_i\) et \(S_k = \sum_{i \le k} (x_i - M_k)^2\) pour tout \(k\), de sorte que \(s^2 = S_n/(n-1)\) s'obtient en une seule passe sans jamais former \(\sum x_i^2\).</p>
+<p class="context">B. P. Welford a publié cette mise à jour dans une note d'une page de <i>Technometrics</i> en 1962, et Knuth l'a mise dans <i>The Art of Computer Programming</i>, d'où elle a gagné toutes les bibliothèques de statistique ; c'est la façon standard dont une base de données, un capteur ou un flux de traitement tient aujourd'hui une variance à jour. La panne qu'elle répare est l'annulation de NUM-02 à l'endroit où elle fait le plus de dégâts en pratique, car la formule naïve est celle qu'impriment la plupart des manuels et elle échoue en silence — les premiers tableurs étaient tristement célèbres pour annoncer des variances négatives, et une variance négative se signale au moins d'elle-même, ce que ne fait pas une variance positive fausse. Notez ce que la forme de Welford fait différemment : elle travaille avec des écarts à la moyenne courante, qui sont petits, plutôt qu'avec des carrés bruts, qui sont énormes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance">Algorithme de calcul de la variance — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Catastrophic_cancellation">Annulation catastrophique — Wikipédia</a></li>
+<li>Article : B. P. Welford, « Note on a method for calculating corrected sums of squares and products » (1962), Technometrics 4</li>
+<li>Lecture : D. E. Knuth, <i>The Art of Computer Programming</i>, vol. 2, §4.2.2</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-33" data-level="Lycée">
+<h3>NUM-33 · La sommation compensée de Kahan <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Additionner une liste de nombres est l'opération la plus courante du calcul scientifique, et la boucle naïve n'est pas la meilleure façon de le faire. Travaillez en virgule flottante binaire avec une unité d'arrondi \(\varepsilon\) (pour les doubles IEEE, \(\varepsilon = 2^{-53} \approx 1.1 \times 10^{-16}\)), où chaque opération obéit à
+\[ \mathrm{fl}(a \pm b) = (a \pm b)(1 + \delta), \qquad |\delta| \le \varepsilon . \]</p>
+<ol class="parts" type="a">
+<li>Montrez que l'addition en virgule flottante n'est pas associative : trouvez trois doubles tels que \((a + b) + c \ne a + (b + c)\) lorsque chaque addition est arrondie. Concluez que la somme d'une liste dépend de l'ordre dans lequel vous l'additionnez.</li>
+<li>Pour la somme naïve de gauche à droite \(\hat{s}\) de \(x_1, \ldots, x_n\), démontrez la majoration de l'erreur
+\[ |\hat{s} - s| \;\le\; (n-1)\,\varepsilon \sum_{i=1}^{n} |x_i| \;+\; O(\varepsilon^2), \]
+et exhibez des données sur lesquelles l'erreur croît réellement avec \(n\).</li>
+<li>Démontrez le lemme de Dekker, le moteur de tout le sujet : si \(|a| \ge |b|\) et \(s = \mathrm{fl}(a + b)\), alors le nombre \((a - s) + b\) est <i>exactement représentable</i> et se calcule exactement en deux opérations flottantes supplémentaires — l'erreur d'arrondi commise par une addition est elle-même un nombre flottant, et vous pouvez la récupérer.</li>
+<li>L'algorithme de Kahan reporte cette erreur récupérée sur l'étape suivante : posez \(s = 0\), \(c = 0\) et, pour chaque \(x\), calculez
+\[ y = x - c, \qquad t = s + y, \qquad c = (t - s) - y, \qquad s = t, \]
+chaque ligne étant arrondie. Déroulez-le à la main sur les trois nombres \(1,\ \varepsilon,\ \varepsilon\) (avec \(\varepsilon = 2^{-53}\) et l'arrondi au plus proche pair) et montrez que la boucle naïve renvoie exactement \(1\) tandis que celle de Kahan renvoie exactement \(1 + 2^{-52}\). Énoncez ensuite, et démontrez autant que vous le pouvez, le théorème de Kahan : la somme compensée vérifie \(|\hat{s} - s| \le \big(2\varepsilon + O(n\varepsilon^2)\big)\sum_i |x_i|\) — le terme dominant ne contient aucun \(n\).</li>
+<li>Comparez une troisième stratégie : la sommation par paires additionne la première moitié, additionne la seconde moitié, puis additionne les deux résultats, récursivement. Démontrez que son erreur est majorée proportionnellement à \(\varepsilon \log_2 n \sum_i |x_i|\), et expliquez pourquoi une bibliothèque pourrait en faire son choix par défaut tout en réservant la boucle de Kahan aux cas qui l'exigent.</li>
+</ol>
+</div>
+<p class="context">William Kahan a publié cela sous forme d'une note d'une demi-page dans les <i>Communications of the ACM</i> en 1965 — une « Pracnique », le nom que la revue donnait aux techniques pratiques — vingt ans avant de diriger la conception d'IEEE 754 (NUM-01) et d'en recevoir le prix Turing. Le résultat de (d) est le plus étonnant : une précision qui ne se dégrade pas quand la liste s'allonge, obtenue avec quatre opérations supplémentaires par élément et sans aucune précision supplémentaire, ce qui fait dire parfois que la sommation compensée achète la double précision au prix d'une erreur d'arrondi. Arnold Neumaier a amélioré l'algorithme en 1974 pour traiter le cas où le nouveau terme est bien plus grand que la somme courante, et les bibliothèques de tableaux modernes utilisent par défaut le schéma par paires de (e). Il y a un avertissement caché dans (a) pour qui écrit du code parallèle : une somme répartie sur un nombre différent de processeurs est un nombre différent, si bien qu'un programme peut ne pas reproduire sa propre réponse.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm">Algorithme de sommation de Kahan — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Machine_epsilon">Epsilon d'une machine — Wikipédia</a></li>
+<li>Article : W. Kahan, « Pracniques: further remarks on reducing truncation errors » (1965), Communications of the ACM 8</li>
+<li>Lecture : N. J. Higham, <i>Accuracy and Stability of Numerical Algorithms</i>, ch. 4 (Summation)</li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="NUM-04" data-level="Licence">
+<h3>NUM-04 · La méthode de Newton : convergence quadratique et un cycle <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La méthode de Newton pour \(f(x) = 0\) itère
+\(x_{n+1} = x_n - f(x_n)/f'(x_n)\).</p>
+<ol class="parts" type="a">
+<li>Retrouvez l'itération géométriquement (suivez
+la tangente jusqu'à son zéro).</li>
+<li>Démontrez la convergence quadratique : si \(f\) est deux
+fois continûment dérivable, \(f(r) = 0\) et \(f'(r) \ne 0\), alors pour \(x_0\)
+assez proche de \(r\) les erreurs vérifient \(|x_{n+1} - r| \le C\,|x_n - r|^2\), avec
+\(C\) voisin de \(|f''(r)/(2f'(r))|\).</li>
+<li>Prenez maintenant \(f(x) = x^3 - 2x + 2\) avec
+\(x_0 = 0\). Montrez que l'itération tourne en rond indéfiniment :
+\(0 \to 1 \to 0 \to 1 \to \cdots\), sans jamais trouver la racine réelle voisine de
+\(-1.77\).</li>
+<li>Démontrez que ce 2-cycle est
+<i>attractif</i> : calculez la dérivée de l'application de Newton itérée deux fois le
+long du cycle et montrez que tout un intervalle de points de départ est piégé.</li>
+</ol>
+</div>
+<p class="context">Newton a décrit l'idée sur les polynômes vers 1669 ; Raphson l'a
+simplifiée en 1690, et la forme moderne avec la dérivée est pour l'essentiel celle
+de Simpson (1740). Le doublement des chiffres corrects en a fait le chercheur de
+racines de référence en science — mais (c) montre que le comportement global est
+délicat. Cayley a demandé en 1879 une description des points de départ qui trouvent
+telle ou telle racine d'une cubique ; la réponse honnête, trouvée dans les années
+1910 par Julia et Fatou puis dessinée par les ordinateurs un siècle après Cayley, est
+une fractale — la méthode de Newton est un système dynamique, et l'une des portes
+d'entrée de la dynamique complexe.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Méthode de Newton — Wikipédia</a></li>
+<li>Lecture : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i>, ch. 1</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-330-introduction-to-numerical-analysis-spring-2012/">MIT OCW 18.330 Introduction to Numerical Analysis</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-05" data-level="Licence">
+<h3>NUM-05 · Points fixes et contractions <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(g : [a,b] \to [a,b]\) vérifiant
+\(|g(x) - g(y)| \le L\,|x - y|\) avec \(L &lt; 1\) (une <i>contraction</i>).
+(a) Démontrez que \(g\) possède exactement un point fixe \(x^*\), que l'itération
+\(x_{n+1} = g(x_n)\) y converge depuis n'importe quel point de départ, et établissez
+les majorations d'erreur
+\[ |x_n - x^*| \le \frac{L^n}{1-L}\,|x_1 - x_0|
+\qquad\text{et}\qquad
+|x_n - x^*| \le \frac{L}{1-L}\,|x_n - x_{n-1}|. \]
+(b) Appliquez cela à \(g(x) = \cos x\) sur \([0,1]\) : vérifiez l'hypothèse de
+contraction et majorez le nombre d'itérations nécessaires pour une erreur inférieure
+à \(10^{-6}\).
+(c) Démontrez le raffinement local : si \(g\) est \(C^1\) avec \(g(x^*) = x^*\) et
+\(|g'(x^*)| &lt; 1\), l'itération converge depuis les points de départ proches, à la
+vitesse linéaire \(|g'(x^*)|\) ; si de plus \(g'(x^*) = 0\), la convergence est au
+moins quadratique.
+(d) Montrez que la méthode de Newton est le cas particulier \(g = x - f/f'\), et
+qu'elle réalise \(g'(x^*) = 0\) aux racines simples — ce qui explique NUM-04(b).</p>
+<p class="context">Le principe de l'application contractante a été distillé par Banach
+en 1922 à partir des arguments d'itération de Picard et d'autres ; c'est l'un de ces
+rares théorèmes qui sont à la fois une preuve d'existence, un algorithme et une
+estimation d'erreur. Chacun devrait une fois appuyer répétitivement sur la touche
+cosinus d'une calculatrice et regarder (b) se produire. Le même principe démontre
+l'existence pour les équations différentielles et sous-tend la théorie de la
+convergence des méthodes itératives dans toute cette page.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Fixed-point_iteration">Itération de point fixe — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Banach_fixed-point_theorem">Théorème du point fixe de Banach — Wikipédia</a></li>
+<li>Lecture : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-06" data-level="Licence">
+<h3>NUM-06 · Interpolation, l'avertissement de Runge, le remède de Tchebychev <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> (a) Démontrez que par \(n+1\) points d'abscisses
+distinctes \(x_0, \ldots, x_n\) passe exactement un polynôme
+\(p_n\) de degré au plus \(n\), et que pour \(f\) possédant \(n+1\) dérivées
+continues l'erreur en chaque \(x\) vaut
+\[ f(x) - p_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\,\prod_{j=0}^{n}(x - x_j)
+\quad\text{pour un certain } \xi. \]
+(b) Le phénomène de Runge : interpolez \(f(x) = 1/(1 + 25x^2)\) sur \([-1,1]\) en des
+nœuds équidistants et calculez la valeur de l'interpolant près de \(x = 0.95\) pour
+\(n\) croissant ; observez la divergence, et expliquez le mécanisme en comparant la
+taille du polynôme nodal \(\prod (x - x_j)\) près des extrémités à sa taille
+près du centre. (c) Le remède : définissez les polynômes de Tchebychev par
+\(T_n(\cos\theta) = \cos n\theta\) et démontrez que \(2^{1-n}T_n\) a le plus petit
+maximum de valeur absolue sur \([-1,1]\) parmi tous les polynômes unitaires de degré
+\(n\) (argument d'équioscillation). Concluez que les nœuds de Tchebychev — les zéros
+de \(T_{n+1}\) — minimisent le pire cas du facteur nodal de (a).
+(d) Cherchez et énoncez le théorème de Faber (1914) : aucun tableau fixe de nœuds ne
+rend l'interpolation polynomiale uniformément convergente pour toute fonction
+continue.</p>
+<p class="context">Carl Runge a publié l'exemple de divergence en 1901 comme un
+avertissement aux praticiens de son temps, qui tabulaient tout à pas constant ; il
+reste la démonstration standard que « davantage de points de données » peut rendre une
+approximation pire. Tchebychev avait trouvé ses polynômes en 1854 en étudiant les
+mécanismes articulés des machines à vapeur. L'interpolation aux points de Tchebychev
+est si bonne — presque la meilleure approximation uniforme — qu'elle alimente les
+méthodes spectrales modernes et le projet logiciel Chebfun.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Runge%27s_phenomenon">Phénomène de Runge — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Chebyshev_nodes">Nœuds de Tchebychev — Wikipédia (en anglais)</a></li>
+<li>Lecture : L. N. Trefethen, <i>Approximation Theory and Approximation Practice</i>, ch. 1–8</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-330-introduction-to-numerical-analysis-spring-2012/">MIT OCW 18.330 Introduction to Numerical Analysis</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-07" data-level="Licence">
+<h3>NUM-07 · Trapèzes contre Simpson : établissez les termes d'erreur <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Pour \(f\) deux fois continûment
+dérivable, démontrez que l'erreur de la méthode des trapèzes sur un intervalle de
+largeur \(h\) vaut \(-\tfrac{h^3}{12} f''(\xi)\), et déduisez-en la majoration
+composite \(-\tfrac{(b-a)h^2}{12} f''(\eta)\).</li>
+<li>Démontrez que la méthode de Simpson (parabole
+passant par trois points équidistants) est exacte pour toutes les cubiques — un degré
+de plus que celui pour lequel elle a été construite — et expliquez la symétrie qui en
+est responsable. Établissez ensuite son erreur sur un panneau
+\(-\tfrac{h^5}{90} f^{(4)}(\xi)\) (panneau \([x_0, x_2]\), pas
+\(h\)) et l'erreur composite \(-\tfrac{(b-a)h^4}{180} f^{(4)}(\eta)\).</li>
+<li>Confirmez numériquement les deux
+ordres sur \(\int_0^1 e^x dx\) en divisant \(h\) par deux et en regardant l'erreur
+diminuer d'un facteur \(4\) puis \(16\).</li>
+<li>Une surprise qui vaut le détour : appliquez la méthode
+composite des trapèzes à une fonction périodique régulière intégrée sur une période
+entière, observez une convergence plus rapide que toute puissance de \(h\), et
+expliquez-la par la formule d'Euler-Maclaurin.</li>
+</ol>
+</div>
+<p class="context">Ce sont les formules de Newton-Cotes : celle des trapèzes est
+antique, et la règle de la parabole porte le nom de Thomas Simpson (1743) bien que
+Cavalieri, Gregory et Kepler — jaugeant des tonneaux de vin en 1615 — en aient connu
+des versions plus tôt. Établir les constantes d'erreur, et pas seulement les ordres,
+voilà le métier : cela transforme « l'erreur est petite » en un critère d'arrêt
+utilisable. La superconvergence périodique de (d) explique que la méthode des
+trapèzes, la plus humble de toutes, soit le moteur de la précision spectrale en
+physique numérique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">Méthode des trapèzes — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Simpson%27s_rule">Méthode de Simpson — Wikipédia</a></li>
+<li>Lecture : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i>, ch. 7</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-08" data-level="Licence">
+<h3>NUM-08 · L'élimination de Gauss exige un pivotage <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Résolvez le système
+\(\varepsilon x + y = 1\), \(x + y = 2\) avec \(\varepsilon = 10^{-20}\) deux fois en
+double précision IEEE : d'abord par élimination de Gauss dans l'ordre donné, puis
+après échange des lignes. Montrez que le premier calcul renvoie \(x = 0\) (gravement
+faux) et le second la bonne réponse, et localisez exactement le lieu du dégât — le
+multiplicateur \(1/\varepsilon\) crée d'énormes nombres intermédiaires qui avalent les
+données.</li>
+<li>Définissez le pivotage partiel (choisir le plus grand pivot de la colonne) et le
+facteur de croissance d'une élimination ; démontrez qu'avec le pivotage partiel tout
+multiplicateur est de valeur absolue au plus \(1\) et que le facteur de croissance est
+au plus \(2^{n-1}\).</li>
+<li>Le pire cas de Wilkinson : pour la matrice \(n \times n\) valant \(1\) sur la
+diagonale, \(-1\) partout en dessous et \(1\) dans la dernière colonne, montrez que le
+pivotage partiel n'effectue aucun échange de lignes et que le coefficient final croît
+jusqu'à exactement \(2^{n-1}\).</li>
+<li>Malgré (c), le pivotage partiel est le choix universel par défaut et n'échoue
+pratiquement jamais en pratique. Expliquez à quoi devrait ressembler une matrice
+comme celle de (c), et pourquoi l'on croit — sans l'avoir entièrement démontré — que
+le pire cas est d'une rareté négligeable.</li>
+</ol>
+</div>
+<p class="context">Savoir si l'on pouvait faire confiance à l'élimination en virgule
+flottante fut une controverse sérieuse à l'aube de l'informatique — Hotelling
+avertissait que les erreurs pouvaient croître comme \(4^n\), von Neumann et Goldstine
+(1947) ont écrit la première analyse moderne, et James Wilkinson a tranché la question
+pratique dans les années 1960 avec l'analyse d'erreur inverse : l'élimination avec
+pivotage partiel résout exactement un problème <i>voisin</i>, le facteur de croissance
+étant le seul coupable. Pourquoi ce coupable ne se montre presque jamais reste mal
+compris — les analyses en moyenne et les analyses lissées (par exemple
+Sankar-Spielman-Teng, 2006) en expliquent une partie — un rare exemple d'algorithme
+d'usage quotidien dont la fiabilité devance la théorie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Gaussian_elimination">Élimination de Gauss — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Pivot_element">Élément pivot — Wikipédia (en anglais)</a></li>
+<li>Lecture : L. N. Trefethen et D. Bau, <i>Numerical Linear Algebra</i>, leçons 20–22</li>
+<li>Lecture : N. J. Higham, <i>Accuracy and Stability of Numerical Algorithms</i>, ch. 9</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-09" data-level="Licence">
+<h3>NUM-09 · Conditionnement et matrice de Hilbert <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour une matrice inversible \(A\), définissez le
+conditionnement \(\kappa(A) = \|A\|\,\|A^{-1}\|\) (pour n'importe quelle norme
+d'opérateur).</p>
+<ol class="parts" type="a">
+<li>Démontrez
+la majoration de perturbation : si \(Ax = b\) et \(A\hat{x} = b + \delta b\), alors
+\[ \frac{\|\hat{x} - x\|}{\|x\|} \;\le\; \kappa(A)\,\frac{\|\delta b\|}{\|b\|}, \]
+et montrez que la borne est atteinte pour un couple \(b, \delta b\) le plus défavorable.
+Interprétez la règle empirique : vous pouvez perdre jusqu'à \(\log_{10}\kappa\)
+chiffres.</li>
+<li>Montrez qu'en
+norme 2, \(\kappa\) vaut le rapport de la plus grande à la plus petite valeur
+singulière, et que \(\kappa \ge 1\) toujours.</li>
+<li>La matrice de Hilbert \(H_n\) a pour coefficients
+\(1/(i + j - 1)\). Démontrez qu'elle est symétrique définie positive en écrivant
+\(x^T H_n x\) comme l'intégrale d'un carré. C'est une matrice célèbre pour son mauvais
+conditionnement — \(\kappa(H_n)\) croît comme \(e^{3.5 n}\), de sorte que pour \(n\)
+autour de \(12\) une résolution en double précision peut perdre pratiquement tous les
+chiffres.</li>
+<li>Expliquez pourquoi \(H_n\) apparaît lorsque l'on ajuste des
+polynômes par moindres carrés dans la base des monômes sur \([0,1]\) — et ce que cela
+dit de la base des monômes.</li>
+</ol>
+</div>
+<p class="context">Le conditionnement, formulé par Turing (1948) puis par von
+Neumann et Goldstine, sépare deux sortes de responsabilités : un <i>problème</i> mal
+conditionné amplifie l'erreur sur les données quel que soit l'algorithme, tandis qu'un
+<i>algorithme</i> instable (NUM-02, NUM-08) ruine un problème bien conditionné.
+Hilbert a introduit sa matrice en 1894 en théorie de l'approximation ; c'est
+aujourd'hui l'exemple d'école de la mise en garde — une petite matrice d'allure
+innocente sur laquelle le calcul naïf échoue spectaculairement, et la raison d'être,
+comme outils de calcul, des polynômes orthogonaux et de la factorisation QR (NUM-12,
+NUM-13).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Condition_number">Conditionnement (analyse numérique) — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Hilbert_matrix">Matrice de Hilbert — Wikipédia</a></li>
+<li>Lecture : L. N. Trefethen et D. Bau, <i>Numerical Linear Algebra</i>, leçons 12–15</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-10" data-level="Licence">
+<h3>NUM-10 · La méthode de la puissance et PageRank <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Soit \(A\) diagonalisable, de
+valeurs propres \(|\lambda_1| &gt; |\lambda_2| \ge \cdots \ge |\lambda_n|\). Démontrez que
+l'itération de la puissance \(v_{k+1} = A v_k / \|A v_k\|\) converge (au signe près)
+vers le vecteur propre dominant pour presque tout départ, à la vitesse linéaire
+\(|\lambda_2/\lambda_1|\).</li>
+<li>Modélisez le web par une matrice : soit \(S\) la
+matrice stochastique en colonnes d'un surfeur aléatoire qui suit les liens
+uniformément, et formez la matrice de Google \(G = \alpha S + (1-\alpha)\tfrac{1}{n}J\),
+où \(J\) est la matrice de tous les uns et \(0 &lt; \alpha &lt; 1\) (en pratique
+\(\alpha = 0.85\)). Montrez que \(G\) est stochastique à coefficients strictement
+positifs, et déduisez du théorème de Perron-Frobenius qu'elle possède un unique
+vecteur stationnaire positif — le PageRank.</li>
+<li>Démontrez que toute valeur propre de \(G\) autre que \(1\) vérifie
+\(|\lambda| \le \alpha\), de sorte que la méthode de la puissance converge à la
+vitesse \(\alpha\) quelle que soit la structure du web.</li>
+<li>Estimez le nombre d'itérations qui donnent le PageRank
+à \(10^{-8}\) près pour \(\alpha = 0.85\).</li>
+</ol>
+</div>
+<p class="context">La méthode de la puissance est le plus ancien algorithme de calcul
+de valeurs propres (Müntz 1913, von Mises 1929), depuis longtemps mis à la retraite
+pour les petites matrices — puis le web en a fait l'algorithme numérique le plus
+exécuté sur Terre : le moteur de recherche de Brin et Page (1998) classe les pages
+par le vecteur stationnaire d'une chaîne de Markov à des milliards d'états, pour
+laquelle on ne peut se permettre que des produits matrice-vecteur. La partie (c), due
+à Haveliwala et Kamvar (2003), explique la constante magique \(0.85\) : elle
+troque la fidélité à la structure des liens contre la vitesse de convergence.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Power_iteration">Méthode de la puissance itérée — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/PageRank">PageRank — Wikipédia</a></li>
+<li>Article : S. Brin, L. Page, « The anatomy of a large-scale hypertextual Web search engine » (1998), Computer Networks and ISDN Systems 30</li>
+<li>Lecture : L. N. Trefethen et D. Bau, <i>Numerical Linear Algebra</i>, leçon 27</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-11" data-level="Licence">
+<h3>NUM-11 · Euler contre Runge-Kutta <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour résoudre \(y' = f(t,y)\), \(y(0) = y_0\),
+Euler avance par \(y_{n+1} = y_n + h f(t_n, y_n)\).</p>
+<ol class="parts" type="a">
+<li>Pour \(f\) lipschitzienne en
+\(y\), démontrez que l'erreur globale sur un intervalle fixé \([0,T]\) est au plus
+\(C h\) (majorez l'erreur locale par \(O(h^2)\), puis propagez-la par un argument de
+Gronwall discret).</li>
+<li>Obtenez une méthode d'ordre deux par identification de Taylor : montrez que la
+règle du point milieu
+\(y_{n+1} = y_n + h f\big(t_n + \tfrac{h}{2},\, y_n + \tfrac{h}{2} f(t_n,y_n)\big)\)
+a une erreur locale en \(O(h^3)\).</li>
+<li>Pour la méthode classique de Runge-Kutta d'ordre quatre
+(le fameux tableau RK4 à quatre étages), démontrez qu'appliquée à \(y' = \lambda y\)
+elle avance du facteur
+\[ R(h\lambda) = 1 + h\lambda + \tfrac{(h\lambda)^2}{2} + \tfrac{(h\lambda)^3}{6}
++ \tfrac{(h\lambda)^4}{24} \]
+— le polynôme de Taylor de \(e^{h\lambda}\) — et qu'elle est donc d'ordre 4 sur cette
+équation ; esquissez ensuite ce qu'exige une démonstration complète de l'ordre 4
+(identifier toutes les différentielles élémentaires, la comptabilité pour laquelle les
+arbres de Butcher ont été inventés).</li>
+<li>Confirmez numériquement les
+ordres : résolvez un problème de solution connue et vérifiez que diviser \(h\) par
+deux divise l'erreur d'Euler par 2 et celle de RK4 par 16.</li>
+</ol>
+</div>
+<p class="context">Euler a écrit sa méthode dans les années 1760 ; Runge (1895), Heun
+(1900) et Kutta (1901) ont découvert que quelques évaluations habilement emboîtées par
+pas achètent une précision énorme, et la théorie algébrique de John Butcher (années
+1960) a transformé la vérification de l'ordre en combinatoire sur les arbres enracinés.
+RK4 est probablement le solveur d'équations différentielles le plus utilisé de
+l'histoire — il a piloté des sondes spatiales et tourne encore dans les moteurs de jeu
+— et l'échange d'un ordre de dérivation contre quatre évaluations de fonction est le
+prototype de toute conception de méthode.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Euler_method">Méthode d'Euler — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Méthodes de Runge-Kutta — Wikipédia</a></li>
+<li>Lecture : A. Iserles, <i>A First Course in the Numerical Analysis of Differential Equations</i>, ch. 1–3</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-330-introduction-to-numerical-analysis-spring-2012/">MIT OCW 18.330 Introduction to Numerical Analysis</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-23" data-level="Licence" data-kind="court">
+<h3>NUM-23 · La méthode de la sécante converge au nombre d'or <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> La méthode de la sécante remplace la tangente de Newton par la droite passant par les deux derniers itérés,
+\[ x_{n+1} = x_n - f(x_n)\,\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}. \]
+Pour \(f\) deux fois continûment dérivable au voisinage d'une racine simple \(r\), démontrez la relation d'erreur \(e_{n+1} \approx \frac{f''(r)}{2f'(r)}\, e_n e_{n-1}\) avec \(e_n = x_n - r\), et déduisez-en que l'ordre de convergence est la racine \(p = (1+\sqrt{5})/2 \approx 1.618\) de \(p^2 = p + 1\).</p>
+<p class="context">L'idée sous-jacente — interpoler linéairement à partir de deux valeurs d'essai et extrapoler jusqu'à zéro — est antique : elle apparaît sous le nom de <i>regula falsi</i> dans l'arithmétique égyptienne, babylonienne, chinoise et arabe médiévale bien avant qu'on ne parle de dérivées. Le nombre d'or n'est pas ici une curiosité mais un verdict : une étape de la sécante coûte une nouvelle évaluation de \(f\), tandis qu'une étape de Newton coûte une évaluation de \(f\) <i>et</i> de \(f'\) ; rapporté à l'évaluation de fonction, l'ordre quadratique de Newton devient \(\sqrt{2} \approx 1.414\), et la méthode plus ancienne et plus modeste l'emporte.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Secant_method">Méthode de la sécante — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Rate_of_convergence">Vitesse de convergence des suites — Wikipédia</a></li>
+<li>Lecture : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-24" data-level="Licence" data-kind="court">
+<h3>NUM-24 · Cholesky, et pourquoi il n'a besoin d'aucun pivotage <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez qu'une matrice réelle \(n \times n\) symétrique définie positive \(A\) admet exactement une factorisation \(A = L L^{\mathsf T}\) avec \(L\) triangulaire inférieure et \(l_{ii} &gt; 0\), et que ses colonnes se calculent directement à partir des équations \(a_{ij} = \sum_{k \le \min(i,j)} l_{ik} l_{jk}\). Montrez que cela coûte environ \(n^3/3\) opérations arithmétiques — la moitié de l'élimination de Gauss — et que l'identité \(\sum_{k} l_{jk}^2 = a_{jj}\) majore d'avance tous les coefficients de \(L\), ce qui explique que l'algorithme soit stable sans aucun pivotage.</p>
+<p class="context">André-Louis Cholesky était un officier d'artillerie et géodésien français qui conçut la méthode vers 1910 pour résoudre les équations normales issues des triangulations de Crète et d'Afrique du Nord ; tombé au combat en 1918, sa méthode fut publiée à titre posthume en 1924 par son camarade officier Benoît. C'est la méthode de référence derrière les moindres carrés (NUM-13), les filtres de Kalman et la régression par processus gaussiens, et en pratique elle sert aussi de test décisif de la définie-positivité : lancez-la et voyez si l'on vous demande jamais la racine carrée d'un nombre négatif ou nul.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Cholesky_decomposition">Factorisation de Cholesky — Wikipédia</a></li>
+<li>Lecture : Trefethen et Bau, <i>Numerical Linear Algebra</i>, leçon 23</li>
+<li>Lecture : Golub et Van Loan, <i>Matrix Computations</i>, ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-25" data-level="Licence">
+<h3>NUM-25 · Splines cubiques : le remède que connaissait un dessinateur <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Étant donné des nœuds \(a = x_0 &lt; x_1 &lt; \cdots &lt; x_n = b\) et des valeurs \(f_0, \dots, f_n\), une <i>spline cubique naturelle</i> est une fonction \(s\) qui est un polynôme de degré 3 sur chaque sous-intervalle, deux fois continûment dérivable sur \([a,b]\), qui vérifie \(s(x_i) = f_i\) et \(s''(a) = s''(b) = 0\).</p>
+<ol class="parts" type="a">
+<li>Montrez que les dérivées secondes inconnues \(M_i = s''(x_i)\) vérifient un système linéaire tridiagonal, démontrez que ce système est à diagonale strictement dominante donc inversible, et concluez que \(s\) existe et est unique.</li>
+<li>Démontrez la propriété de courbure minimale : parmi <i>toutes</i> les fonctions \(g\) deux fois continûment dérivables qui interpolent les mêmes données, la spline cubique naturelle est l'unique minimiseur de \(\int_a^b (g'')^2\). (Intégrez \(\int (g'' - s'')\,s''\) deux fois par parties.)</li>
+<li>Prenez la fonction de Runge \(f(x) = 1/(1+25x^2)\) sur \([-1,1]\) avec 21 nœuds équidistants. Calculez à la fois le polynôme d'interpolation de degré 20 et la spline cubique naturelle, comparez leurs erreurs maximales, et expliquez le contraste avec NUM-06.</li>
+<li>Pour des nœuds équidistants, montrez que l'influence sur \(s\) d'un changement d'une seule valeur \(f_j\) décroît géométriquement quand on s'éloigne de \(x_j\), au taux \(2 - \sqrt{3} \approx 0.268\) par nœud — une spline est donc globale en principe et locale en pratique.</li>
+</ol>
+</div>
+<p class="context">Une spline était une mince latte de bois que les charpentiers de marine et les dessinateurs faisaient passer en la courbant entre des chevilles pour tracer une courbe harmonieuse ; la théorie de l'élasticité dit que la latte se stabilise dans la forme qui minimise son énergie de flexion, laquelle au premier ordre est l'intégrale de (b) — la partie (b) démontre donc que l'objet mathématique fait exactement ce que faisait l'objet physique. Isaac Schoenberg les a nommées et analysées dans deux articles de 1946 écrits au terrain d'essais d'Aberdeen, et Carl de Boor en a fait un logiciel fiable dans les années 1970 avec la base des B-splines, dont la vertu numérique est précisément la localité de (d). La raison pour laquelle ce sont les splines, et non les polynômes de haut degré, qui dessinent toutes les polices de caractères et toutes les carrosseries, c'est la comparaison qu'on vous demande en (c).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Spline_interpolation">Spline (interpolation par splines) — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/B-spline">B-spline — Wikipédia</a></li>
+<li>Article : I. J. Schoenberg, « Contributions to the problem of approximation of equidistant data by analytic functions », Quarterly of Applied Mathematics 4 (1946)</li>
+<li>Lecture : C. de Boor, <i>A Practical Guide to Splines</i></li>
+<li>Lecture : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i>, ch. 11</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-34" data-level="Licence" data-kind="court">
+<h3>NUM-34 · Les disques de Gerschgorin <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour \(A \in \mathbb{C}^{n \times n}\), posez \(R_i = \sum_{j \ne i} |a_{ij}|\) et notez \(D_i\) le disque fermé du plan complexe de centre \(a_{ii}\) et de rayon \(R_i\). Démontrez le théorème de Gerschgorin — toute valeur propre de \(A\) appartient à \(\bigcup_{i=1}^{n} D_i\) —, déduisez-en qu'une matrice à diagonale strictement dominante est inversible, et démontrez le raffinement suivant : si la réunion de \(k\) des disques est disjointe des \(n-k\) autres, elle contient exactement \(k\) valeurs propres comptées avec multiplicité.</p>
+<p class="context">Semyon Gerschgorin a publié le théorème en 1931 à Leningrad, et c'est la chose utile la moins chère que l'on puisse dire des valeurs propres : elle coûte \(n^2\) additions et aucune itération, et elle dit où le spectre <i>ne peut pas</i> être. Olga Taussky-Todd l'a rendu célèbre en 1949 dans une note de l'<i>American Mathematical Monthly</i>, après avoir utilisé pendant la guerre, au National Physical Laboratory, des bornes exactement de ce type pour décider si les matrices issues des calculs de flottement aéroélastique des avions avaient des valeurs propres dans le demi-plan dangereux. Le raffinement de la dernière clause est la partie qui vaut le travail : elle demande un argument de continuité en les coefficients hors diagonale, et c'est elle qui permet aux disques de compter les valeurs propres plutôt que de seulement les piéger. Appliquer le théorème à \(A^{\mathsf T}\), ou à \(D^{-1}AD\) pour \(D\) diagonale, donne toute une famille de bornes à partir d'une seule idée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Gershgorin_circle_theorem">Théorème de Gerschgorin — Wikipédia</a></li>
+<li>Lecture : R. S. Varga, <i>Ger&#353;gorin and His Circles</i> (Springer, 2004)</li>
+<li>Lecture : R. A. Horn et C. R. Johnson, <i>Matrix Analysis</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-35" data-level="Licence">
+<h3>NUM-35 · Quadrature de Gauss : deux degrés achetés par nœud <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une formule de quadrature à \(n\) nœuds approche \(\int_{-1}^{1} f(x)\,w(x)\,dx\) par \(\sum_{i=1}^{n} w_i f(x_i)\), où \(w &gt; 0\) est une fonction de poids fixée. Les formules de Newton-Cotes de NUM-07 fixent les nœuds à l'avance ; ici les nœuds sont eux aussi des inconnues, ce qui double ce que \(n\) évaluations permettent d'acheter.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'aucun choix de \(n\) nœuds et poids n'est exact pour tout polynôme de degré \(2n\) — considérez \(\prod_{i=1}^{n}(x - x_i)^2\) — de sorte que l'exactitude jusqu'au degré \(2n-1\) est le maximum que l'on puisse espérer.</li>
+<li>Soient \(p_0, p_1, p_2, \ldots\) les polynômes orthogonaux pour \(\langle f, g\rangle = \int_{-1}^{1} fg\,w\), avec \(\deg p_k = k\). Démontrez que \(p_n\) a \(n\) racines réelles distinctes, toutes dans \((-1,1)\). Démontrez ensuite qu'en prenant ces racines comme nœuds, avec les poids de la formule interpolatoire, on obtient l'exactitude sur tous les polynômes de degré au plus \(2n-1\) — divisez un polynôme de degré \(2n-1\) par \(p_n\) avec reste et utilisez l'orthogonalité.</li>
+<li>Démontrez que tous les poids sont positifs en appliquant la formule aux carrés des polynômes de la base de Lagrange, et déduisez du théorème d'approximation de Weierstrass que les formules de Gauss convergent pour <i>toute</i> fonction continue \(f\) quand \(n \to \infty\) (Stieltjes, 1884). Comparez avec ce que dit NUM-06 de l'interpolation en des points équidistants.</li>
+<li>Pour \(w \equiv 1\), les \(p_k\) sont les polynômes de Legendre. Établissez de zéro les formules de Gauss-Legendre à deux et trois nœuds, vérifiez qu'elles intègrent exactement les polynômes de degré 3 et 5, et comparez leur précision à celle de la méthode de Simpson sur \(\int_0^1 e^x\,dx\) à nombre égal d'évaluations de fonction.</li>
+<li>Démontrez que les polynômes orthogonaux vérifient une récurrence à trois termes \(p_{k+1}(x) = (x - \alpha_k)p_k(x) - \beta_k p_{k-1}(x)\), et montrez que les nœuds de Gauss sont les valeurs propres de la matrice tridiagonale symétrique construite à partir des \(\alpha_k\) et des \(\sqrt{\beta_k}\), les poids se retrouvant à partir des premières composantes de ses vecteurs propres. C'est l'algorithme de Golub-Welsch. Lisez enfin l'article de Trefethen « Is Gauss quadrature better than Clenshaw–Curtis? » (2008) : la formule de Clenshaw-Curtis utilise les points de Tchebychev, n'est exacte que jusqu'au degré \(n\) environ et coûte \(O(n\log n)\) grâce à une transformation de Fourier rapide (NUM-15) — et pourtant sa précision en pratique égale d'ordinaire celle de Gauss jusqu'à la précision machine. Expliquez comment cela est possible, compte tenu de (a).</li>
+</ol>
+</div>
+<p class="context">Gauss a trouvé ces formules en 1814, par les fractions continues plutôt que par les polynômes orthogonaux, à une époque où chaque évaluation de fonction était un être humain muni d'une table de logarithmes : doubler le degré d'exactitude à nombre d'évaluations égal valait très cher. Jacobi a reformulé la construction en termes de polynômes orthogonaux en 1826 — la forme de (b) — et Christoffel l'a étendue à des poids généraux en 1858. Comme les nœuds sont des nombres algébriques irrationnels, les formules ont vécu dans des tables imprimées pendant un siècle et demi, jusqu'à ce que Golub et Welsch observent en 1969 que les calculer est un problème de valeurs propres pour une matrice tridiagonale, que l'algorithme QR résout en \(O(n^2)\) opérations : un cas classique de problème réglé par sa traduction dans un domaine qui l'avait déjà résolu. Les descendants adaptatifs de Gauss-Kronrod de ces formules siègent dans QUADPACK, et donc dans SciPy, MATLAB et la plupart des intégrales calculées dans le monde.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Gaussian_quadrature">Méthodes de quadrature de Gauss — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Clenshaw%E2%80%93Curtis_quadrature">Méthode de quadrature de Clenshaw-Curtis — Wikipédia</a></li>
+<li>Article : G. H. Golub et J. H. Welsch, « Calculation of Gauss quadrature rules » (1969), Mathematics of Computation 23</li>
+<li>Article : L. N. Trefethen, « Is Gauss quadrature better than Clenshaw–Curtis? » (2008), SIAM Review 50</li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="NUM-12" data-level="Master">
+<h3>NUM-12 · LU et QR : les deux factorisations de référence <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Démontrez qu'une matrice inversible \(A\) admet une
+factorisation \(A = LU\) avec \(L\) triangulaire inférieure unitaire et \(U\)
+triangulaire supérieure si et seulement si tous les mineurs principaux dominants de
+\(A\) sont non nuls, et que la factorisation est alors unique. Exhibez une matrice
+inversible sans factorisation LU.</li>
+<li>Démontrez que pour toute matrice inversible \(A\) il existe une permutation
+\(P\) telle que \(PA = LU\) — le pivotage sauve toujours l'existence.</li>
+<li>Pour un vecteur
+non nul \(v\), construisez le réflecteur de Householder \(H = I - 2ww^T\) (\(w\)
+unitaire) qui envoie \(v\) sur \(\|v\|_2 e_1\) ; démontrez que \(H\) est orthogonale
+et symétrique, puis utilisez une suite de réflecteurs pour démontrer que toute
+\(A \in \mathbb{R}^{m \times n}\) avec \(m \ge n\) admet une factorisation
+\(A = QR\) avec \(Q\) orthogonale et \(R\) triangulaire supérieure.</li>
+<li>Comptez les opérations flottantes : environ \(\tfrac{2}{3}n^3\) pour LU
+et \(2mn^2 - \tfrac{2}{3}n^3\) pour QR par réflecteurs de Householder — le prix de
+l'orthogonalité est à peu près un facteur deux sur les matrices carrées.</li>
+</ol>
+</div>
+<p class="context">Factoriser d'abord, résoudre ensuite : cette réorganisation de
+l'élimination de Gauss — devenue un savoir commun sous forme matricielle depuis les
+années 1940, systématisée par Wilkinson et par les réflecteurs de Householder (1958) —
+est l'architecture de tous les logiciels d'algèbre linéaire dense, de LINPACK à LAPACK
+jusqu'aux bibliothèques sous Python et MATLAB. LU est le solveur général rapide ; QR,
+construite à partir de transformations orthogonales parfaitement conditionnées, est la
+voie stable vers les moindres carrés (NUM-13) et les valeurs propres (l'algorithme QR,
+élu parmi les dix algorithmes majeurs du vingtième siècle).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/LU_decomposition">Décomposition LU — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/QR_decomposition">Décomposition QR — Wikipédia</a></li>
+<li>Lecture : L. N. Trefethen et D. Bau, <i>Numerical Linear Algebra</i>, leçons 7–10 et 20–23</li>
+<li>Lecture : G. H. Golub et C. F. Van Loan, <i>Matrix Computations</i>, ch. 3–5</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-13" data-level="Master">
+<h3>NUM-13 · Moindres carrés : QR contre les équations normales <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(A \in \mathbb{R}^{m \times n}\) de
+rang colonne plein ; on cherche \(x\) minimisant \(\|Ax - b\|_2\).</p>
+<ol class="parts" type="a">
+<li>Démontrez que le
+minimiseur est unique et caractérisé par l'orthogonalité du résidu à l'espace des
+colonnes, c'est-à-dire par les équations normales \(A^T A x = A^T b\) ; de façon
+équivalente \(x = R^{-1} Q^T b\) à partir d'une factorisation QR réduite.</li>
+<li>Démontrez que
+\(\kappa_2(A^T A) = \kappa_2(A)^2\) : former \(A^T A\) élève au carré le
+conditionnement.</li>
+<li>L'exemple de Läuchli : pour
+\[ A = \begin{pmatrix} 1 &amp; 1 \\ \varepsilon &amp; 0 \\ 0 &amp; \varepsilon \end{pmatrix},
+\qquad 0 &lt; \varepsilon &lt; \sqrt{u} \]
+(\(u\) étant l'unité d'arrondi), montrez que \(A^T A\) calculée en virgule flottante
+est <i>exactement singulière</i>, de sorte que les équations normales ne peuvent même
+pas être résolues, tandis que la QR de Householder appliquée à \(A\) n'est nullement
+gênée.</li>
+<li>Énoncez le résultat de stabilité inverse
+pour les moindres carrés par QR de Householder (Golub 1965, analysé par Wilkinson), et
+expliquez dans quels régimes les équations normales perdent environ deux fois plus de
+chiffres qu'une résolution par QR — et pourquoi on les utilise malgré tout quand
+\(m \gg n\).</li>
+</ol>
+</div>
+<p class="context">Les moindres carrés sont le lieu où l'algèbre linéaire numérique
+rencontre les données : Gauss a inventé la méthode (et employé les équations normales)
+pour retrouver l'astéroïde Cérès en 1801. Le verdict de la virgule flottante est venu
+dans les années 1960 : l'algorithme QR de Householder de Gene Golub (1965) a fait de
+l'orthogonalisation le standard stable, et le conditionnement élevé au carré de (b) est
+l'exemple d'école d'une reformulation mathématiquement équivalente et numériquement
+inéquivalente. Toutes les bibliothèques de régression d'aujourd'hui descendent de cette
+analyse.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Linear_least_squares">Moindres carrés linéaires — Wikipédia (en anglais)</a></li>
+<li>Lecture : L. N. Trefethen et D. Bau, <i>Numerical Linear Algebra</i>, leçons 11 et 18–19</li>
+<li>Lecture : N. J. Higham, <i>Accuracy and Stability of Numerical Algorithms</i>, ch. 20</li>
+<li>Article : G. H. Golub, « Numerical methods for solving linear least squares problems » (1965), Numerische Mathematik 7</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-14" data-level="Master">
+<h3>NUM-14 · Équations raides et A-stabilité <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="a">
+<li>Faites connaissance avec la raideur : pour
+\(y' = -1000\,(y - \cos t) - \sin t\), \(y(0) = 1\), la solution exacte est la douce
+\(y = \cos t\) ; montrez pourtant que l'Euler explicite explose à moins que
+\(h &lt; 1/500\) — le pas est dicté par un transitoire déjà amorti, non par la solution
+que l'on suit.</li>
+<li>Appliquez une méthode à un pas à l'équation test
+\(y' = \lambda y\) et écrivez \(y_{n+1} = R(h\lambda)\,y_n\) ; calculez la fonction de
+stabilité \(R\) et esquissez la région \(|R(z)| \le 1\) pour l'Euler explicite
+(\(1 + z\)), l'Euler implicite (\(1/(1-z)\)) et la méthode des trapèzes
+(\((1 + z/2)/(1 - z/2)\)). Appelez une méthode <i>A-stable</i> si sa région contient
+tout le demi-plan gauche \(\operatorname{Re}\, z \le 0\) ; démontrez que l'Euler
+implicite et les trapèzes sont A-stables et que l'Euler explicite ne l'est pas.</li>
+<li>Démontrez qu'<i>aucune</i>
+méthode de Runge-Kutta explicite n'est A-stable : sa fonction de stabilité est un
+polynôme.</li>
+<li>Énoncez la seconde barrière de Dahlquist (1963) : une méthode linéaire à pas
+multiples A-stable est d'ordre au plus \(2\), et parmi elles la méthode des trapèzes
+a la plus petite constante d'erreur. Expliquez la conséquence pratique — les solveurs
+pour problèmes raides sont implicites, et les codes raides d'ordre élevé (BDF, RK
+implicites) doivent relâcher l'A-stabilité ou renoncer aux pas multiples.</li>
+</ol>
+</div>
+<p class="context">Curtiss et Hirschfelder ont nommé la raideur en 1952, en regardant
+ramper les calculs de cinétique chimique : des réactions à échelles de temps rapides et
+lentes forcent les méthodes explicites à prendre des pas absurdement petits pour la
+stabilité, non pour la précision. Germund Dahlquist a fait de la stabilité une théorie
+dans les années 1950-1960, et son théorème de barrière est un véritable résultat
+d'impossibilité — une loi « rien n'est gratuit » pour les solveurs d'équations
+différentielles. La raideur est partout : circuits, combustion, chimie atmosphérique et
+discrétisation par la méthode des lignes de l'équation de la chaleur.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Stiff_equation">Équation différentielle raide — Wikipédia</a></li>
+<li>Lecture : E. Hairer et G. Wanner, <i>Solving Ordinary Differential Equations II: Stiff and Differential-Algebraic Problems</i>, ch. IV</li>
+<li>Article : G. Dahlquist, « A special stability problem for linear multistep methods » (1963), BIT 3</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-15" data-level="Master">
+<h3>NUM-15 · La transformation de Fourier rapide <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La transformée de Fourier discrète de
+\(y_0, \ldots, y_{n-1}\) est \(\hat{y}_k = \sum_{j=0}^{n-1} \omega^{jk} y_j\) avec
+\(\omega = e^{-2\pi i/n}\) ; comme produit matrice-vecteur elle coûte de l'ordre de
+\(n^2\) opérations.</p>
+<ol class="parts" type="a">
+<li>Pour \(n\) pair, démontrez le découpage de Danielson-Lanczos : chaque
+\(\hat{y}_k\) s'obtient à partir des deux TFD de taille moitié portant sur les données
+d'indices pairs et impairs, combinées au moyen d'une seule multiplication par une
+puissance de \(\omega\) (« facteur de rotation ») par sortie.</li>
+<li>Déduisez-en la récurrence
+\(T(n) = 2\,T(n/2) + O(n)\) et démontrez que \(T(n) = O(n \log n)\) pour \(n\) une
+puissance de deux, avec environ \(\tfrac{n}{2}\log_2 n\) multiplications
+complexes.</li>
+<li>Démontrez que la
+matrice de la TFD divisée par \(\sqrt{n}\) est unitaire, et donc que la transformation
+inverse se calcule par le même algorithme en conjuguant \(\omega\).</li>
+<li>Application : montrez que deux polynômes de degré \(&lt; n\) peuvent être multipliés
+en \(O(n \log n)\) opérations en les évaluant aux racines \(2n\)-ièmes de l'unité, en
+multipliant point par point et en interpolant en retour — et démontrez que c'est
+correct.</li>
+</ol>
+</div>
+<p class="context">Cooley et Tukey ont publié l'algorithme en 1965 ; Tukey réfléchissait
+à la détection des essais nucléaires soviétiques à partir de données de sismomètres, où
+l'analyse de Fourier de longues séries devait être réalisable. Il est apparu plus tard
+(Heideman-Johnson-Burrus, 1984) que Gauss avait eu exactement la même idée en 1805, sans
+la publier, pour interpoler des orbites d'astéroïdes — avant même le mémoire de Fourier.
+La TFR figure couramment parmi les algorithmes les plus importants jamais trouvés : c'est
+grâce à elle que le traitement numérique du signal, l'IRM, le JPEG et la multiplication
+rapide d'entiers gigantesques existent à un coût praticable.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Transformation de Fourier rapide — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm">Algorithme de Cooley-Tukey — Wikipédia (en anglais)</a></li>
+<li>Article : J. W. Cooley, J. W. Tukey, « An algorithm for the machine calculation of complex Fourier series » (1965), Mathematics of Computation 19</li>
+<li>Article : M. T. Heideman, D. H. Johnson, C. S. Burrus, « Gauss and the history of the fast Fourier transform » (1984), IEEE ASSP Magazine 1</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-16" data-level="Master">
+<h3>NUM-16 · Monte-Carlo et le fléau de la dimension <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour estimer \(I = \int_{[0,1]^d} f\), tirez
+\(N\) points uniformes indépendants \(X_i\) et faites la moyenne :
+\(\hat{I}_N = \tfrac{1}{N}\sum f(X_i)\).</p>
+<ol class="parts" type="a">
+<li>Démontrez que \(\hat{I}_N\) est sans biais, d'erreur
+quadratique moyenne \(\sigma/\sqrt{N}\), où
+\(\sigma^2 = \int f^2 - I^2\) — une vitesse <i>indépendante de la dimension</i> \(d\).</li>
+<li>Comparez avec une méthode des trapèzes tensorisée utilisant \(N = m^d\) points, dont
+l'erreur pour \(f\) régulière est de l'ordre de \(N^{-2/d}\) : déterminez à partir de
+quel \(d\) le Monte-Carlo brut l'emporte déjà asymptotiquement.</li>
+<li>Quantifiez géométriquement le fléau de la dimension :
+montrez que le volume de la boule unité contenue dans \([-1,1]^d\) tend vers \(0\) plus
+vite qu'exponentiellement en \(d\) (« les coins font tout »), et qu'une grille
+tensorielle à seulement dix points par axe demande \(10^{d}\) évaluations.</li>
+<li>Le hasard n'est pas la seule échappatoire : énoncez l'inégalité de Koksma-Hlawka et
+la discrépance de l'ordre de \((\log N)^d/N\) atteinte par les suites à discrépance
+faible (quasi-Monte-Carlo), et discutez des cas où elles battent \(N^{-1/2}\).</li>
+</ol>
+</div>
+<p class="context">Stanisław Ulam a conçu la méthode en 1946 en jouant à la réussite
+pendant une maladie — en comprenant que l'échantillonnage pouvait estimer ce que la
+combinatoire ne pouvait pas énumérer — et, avec von Neumann et Metropolis, l'a fait
+tourner sur l'ENIAC pour le transport des neutrons ; Metropolis a fourni le nom de
+casino. La vitesse indépendante de la dimension de (a) est tout l'enjeu : l'intégration
+en dimension 100 n'est routinière en physique statistique et en finance que parce que
+l'analyse d'erreur est un théorème central limite, non un développement de Taylor.
+Richard Bellman a forgé l'expression « fléau de la dimension » en 1957 ; le
+quasi-Monte-Carlo est la contre-attaque déterministe.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Monte_Carlo_integration">Méthode de Monte-Carlo — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">Fléau de la dimension — Wikipédia</a></li>
+<li>Article : N. Metropolis, S. Ulam, « The Monte Carlo method » (1949), Journal of the American Statistical Association 44</li>
+<li>Lecture : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i></li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-26" data-level="Master" data-kind="court">
+<h3>NUM-26 · Quand Jacobi et Gauss-Seidel convergent-ils ? <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Décomposez \(A = M - N\) avec \(M\) inversible et itérez \(M x_{k+1} = N x_k + b\) ; Jacobi prend pour \(M\) la diagonale de \(A\), Gauss-Seidel sa partie triangulaire inférieure. Démontrez que l'itération converge vers la solution de \(Ax = b\) depuis tout vecteur de départ si et seulement si le rayon spectral vérifie \(\rho(M^{-1}N) &lt; 1\), et déduisez-en que les deux méthodes convergent dès que \(A\) est à diagonale strictement dominante par lignes.</p>
+<p class="context">Gauss a décrit l'idée dans une lettre à Gerling en 1823, la recommandant comme un travail que l'on peut faire « à moitié endormi » entre deux occupations ; Jacobi a publié sa version en 1845 et Seidel la sienne en 1874, tous à la main, tous pour les équations normales de l'astronomie et de la géodésie. Le critère du rayon spectral est toute la théorie des itérations stationnaires en une ligne, et c'est la raison pour laquelle le sujet ne s'est pas arrêté là : \(\rho\) vaut typiquement \(1 - O(h^2)\) pour une EDP discrétisée, ce qui est une convergence trop lente pour être utilisable, et la recherche de mieux a produit la sur-relaxation successive, le gradient conjugué (NUM-18) et le multigrille.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Jacobi_method">Méthode de Jacobi — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method">Méthode de Gauss-Seidel — Wikipédia</a></li>
+<li>Lecture : Y. Saad, <i>Iterative Methods for Sparse Linear Systems</i>, ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-27" data-level="Master" data-kind="court">
+<h3>NUM-27 · Erreur inverse, erreur directe <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un algorithme calculant \(y = F(x)\) est dit <i>inversement stable</i> si sa sortie est la valeur exacte \(F(\tilde{x})\) pour un certain \(\tilde{x}\) tel que \(\|\tilde{x} - x\| \le c\,\varepsilon\,\|x\|\) ; le conditionnement de \(F\) en \(x\) mesure de combien \(F\) amplifie les perturbations relatives de \(x\). Démontrez l'inégalité directrice — erreur directe relative \(\lesssim\) conditionnement \(\times\) erreur inverse relative — et exhibez un calcul inversement stable qui renvoie néanmoins une réponse sans aucun chiffre correct, en expliquant exactement quel facteur est en cause.</p>
+<p class="context">C'est ce changement de question qui a fait de l'analyse numérique une science plutôt qu'un catalogue d'astuces. Turing a introduit le conditionnement en 1948, et James Wilkinson a passé les années 1950 et 1960 à montrer que ce qu'il faut démontrer d'un algorithme n'est pas « ma réponse est presque juste » mais « ma réponse est exactement juste pour presque mon problème » — un énoncé sur le seul algorithme, proprement séparé de la difficulté du problème. Son illustration favorite était un polynôme de degré 20 dont les racines se déplacent énormément sous une perturbation d'un coefficient au dix-huitième rang binaire ; comparez avec la matrice de Hilbert de NUM-09.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Numerical_stability">Stabilité numérique — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Condition_number">Conditionnement (analyse numérique) — Wikipédia</a></li>
+<li>Article : A. M. Turing, « Rounding-off errors in matrix processes », Quarterly Journal of Mechanics and Applied Mathematics 1 (1948)</li>
+<li>Lecture : N. J. Higham, <i>Accuracy and Stability of Numerical Algorithms</i>, ch. 1–2</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-28" data-level="Master">
+<h3>NUM-28 · Extrapolation de Richardson et table de Romberg <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Supposons qu'une quantité calculable \(A(h)\) approche un \(A_0\) inconnu avec un développement asymptotique en des puissances connues,
+\[ A(h) = A_0 + c_1 h^{p_1} + c_2 h^{p_2} + \cdots, \qquad 0 &lt; p_1 &lt; p_2 &lt; \cdots. \]</p>
+<ol class="parts" type="a">
+<li>Démontrez que la combinaison \(\dfrac{2^{p_1} A(h/2) - A(h)}{2^{p_1} - 1}\) a une erreur en \(O(h^{p_2})\), et décrivez le tableau obtenu en itérant cette élimination.</li>
+<li>Utilisez la formule sommatoire d'Euler-Maclaurin pour démontrer que la méthode composite des trapèzes appliquée à une \(f\) régulière sur \([a,b]\) a un développement d'erreur en puissances <i>paires</i> de \(h\) seulement, et identifiez le coefficient dominant en fonction de \(f'(b) - f'(a)\).</li>
+<li>Appliquez (a) à (b) : montrez qu'une extrapolation de la méthode des trapèzes <i>est</i> la méthode de Simpson (comparez NUM-07), que la suivante est la formule de Boole, et que pour \(f\) analytique la diagonale de la table de Romberg ainsi obtenue converge plus vite que toute puissance fixée de \(h\).</li>
+<li>Montrez comment la différence entre \(A(h)\) et son extrapolation fournit une estimation d'erreur calculable, et servez-vous-en pour concevoir une stratégie de division du pas par deux qui ne raffine que là où l'estimation est grande. Montrez ensuite ce qui se casse pour \(f(x) = \sqrt{x}\) sur \([0,1]\), dont le développement contient des puissances demi-entières, et réparez l'extrapolation dans ce cas.</li>
+</ol>
+</div>
+<p class="context">Lewis Fry Richardson — le météorologue qui tenta en 1922 de prévoir le temps en intégrant à la main les équations du mouvement, et le pacifiste qui appliqua plus tard la statistique aux causes des guerres — appelait cela « l'approche différée de la limite » dans des articles de 1911 et 1927 : calculez mal pour deux pas différents, et laissez la forme connue de l'erreur s'annuler d'elle-même. Werner Romberg a retourné l'idée sur la méthode des trapèzes en 1955, produisant un schéma qui extrait une précision quasi spectrale de la plus grossière des formules de quadrature. La même astuce apparaît partout où figure un paramètre de discrétisation : comme extrapolation de Gragg-Bulirsch-Stoer pour les équations différentielles ordinaires, comme estimateur d'erreur au cœur de tout code de quadrature adaptative et de pas de temps adaptatif (comparez NUM-11), et comme procédé \(\Delta^2\) d'Aitken pour accélérer les suites.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Richardson_extrapolation">Extrapolation de Richardson — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Romberg%27s_method">Méthode de Romberg — Wikipédia</a></li>
+<li>Article : L. F. Richardson et J. A. Gaunt, « The deferred approach to the limit », Philosophical Transactions of the Royal Society A 226 (1927)</li>
+<li>Lecture : Stoer et Bulirsch, <i>Introduction to Numerical Analysis</i>, ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-36" data-level="Master" data-kind="court">
+<h3>NUM-36 · Pourquoi un intégrateur symplectique ne perd jamais d'énergie <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour un hamiltonien séparable \(H(q,p) = T(p) + V(q)\) à un degré de liberté, la méthode d'Euler symplectique effectue le pas
+\[ p_{n+1} = p_n - h\,V'(q_n), \qquad q_{n+1} = q_n + h\,T'(p_{n+1}). \]
+Démontrez que la matrice jacobienne \(M\) de l'application \((q_n,p_n) \mapsto (q_{n+1},p_{n+1})\) vérifie \(M^{\mathsf T} J M = J\) avec \(J = \begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0\end{pmatrix}\), de sorte que la méthode préserve exactement l'aire dans l'espace des phases, et démontrez que pour l'oscillateur harmonique \(H = \tfrac12(p^2 + \omega^2 q^2)\) avec \(h\omega &lt; 2\) elle conserve exactement l'énergie modifiée
+\[ H_h(q,p) = \tfrac12\big(p^2 + \omega^2 q^2\big) - \tfrac{h}{2}\,\omega^2 p q, \]
+dont les lignes de niveau sont des ellipses ; concluez que l'énergie calculée oscille éternellement dans une bande bornée, tandis que celle de l'Euler explicite croît géométriquement et détruit l'orbite.</p>
+<p class="context">Carl Størmer a utilisé ce schéma en 1907 pour calculer les trajectoires de particules chargées dans le champ magnétique terrestre et expliquer les aurores ; Loup Verlet l'a redécouvert en 1967 pour la dynamique moléculaire, et un équivalent apparaît dans les <i>Principia</i> de Newton. L'explication du phénomène, dans la seconde moitié du problème, est l'un des plus jolis arguments de l'analyse numérique : l'analyse d'erreur inverse montre que la trajectoire numérique d'une méthode symplectique est la trajectoire <i>exacte</i> d'un système hamiltonien voisin, à une erreur exponentiellement petite en le pas près, sur des intervalles de temps exponentiellement longs — résultats de Benettin, Giorgilli, Hairer et Lubich dans les années 1990. Voilà pourquoi l'application symplectique de Wisdom et Holman (1991) a pu intégrer le système solaire externe sur des centaines de millions d'années sans que les planètes ne s'échappent en spirale, un calcul auquel aucune précision de Runge-Kutta (NUM-11) n'aurait survécu. L'ordre et la stabilité, les préoccupations de NUM-11 et NUM-14, ne sont pas les seules vertus qu'une méthode puisse avoir ; préserver la structure de l'équation en est une autre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Symplectic_integrator">Intégrateur symplectique — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Verlet_integration">Intégration de Verlet — Wikipédia</a></li>
+<li>Lecture : E. Hairer, C. Lubich et G. Wanner, <i>Geometric Numerical Integration</i> (2<sup>e</sup> éd., Springer 2006), ch. I et IX</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-37" data-level="Master">
+<h3>NUM-37 · Dérivation automatique : mode direct et mode inverse <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(f\) donnée non par une formule mais par un programme : une suite finie de variables intermédiaires \(v_1, \ldots, v_N\), chacune obtenue à partir des précédentes par une opération arithmétique ou une fonction élémentaire dont on connaît la dérivée. La dérivation automatique calcule les dérivées de \(f\) exactement (à l'arrondi près), sans pas de discrétisation et sans développement symbolique.</p>
+<ol class="parts" type="a">
+<li>Mode direct. Définissez les nombres duaux \(\mathbb{R}[\epsilon]/(\epsilon^2)\) : les couples \(a + a'\epsilon\) avec \(\epsilon^2 = 0\). Démontrez que l'arithmétique induite reproduit exactement les règles du produit, du quotient et de la composition, et qu'exécuter le programme sur \(x + 1\cdot\epsilon\) renvoie \(f(x) + f'(x)\,\epsilon\). Notez ce qui a disparu par rapport à NUM-22 : il n'y a plus de \(h\), plus d'erreur de troncature, et plus de perte de la moitié des chiffres.</li>
+<li>Coûts. Pour \(f : \mathbb{R}^n \to \mathbb{R}^m\) de matrice jacobienne \(J\), montrez qu'un balayage direct transportant les parties duales calcule la dérivée directionnelle \(Jv\) pour un \(v\) choisi, de sorte que la jacobienne complète coûte \(n\) balayages ; et montrez que le mode inverse calcule \(w^{\mathsf T}J\) pour un \(w\) choisi en un seul balayage, de sorte qu'un gradient (\(m = 1\)) coûte un unique balayage quel que soit \(n\).</li>
+<li>Établissez le mode inverse. Sur le graphe de calcul, définissez l'adjoint \(\bar{v}_i = \partial f / \partial v_i\), démontrez la récurrence inverse
+\[ \bar{v}_i \;=\; \sum_{j\,:\, i \to j} \bar{v}_j \,\frac{\partial v_j}{\partial v_i}, \]
+et démontrez par récurrence dans l'ordre topologique inverse que la balayer depuis \(\bar{v}_N = 1\) livre les \(n\) dérivées partielles.</li>
+<li>Le principe du gradient bon marché. Énoncez le théorème de Baur-Strassen (1983) : calculer toutes les dérivées partielles d'une fonction rationnelle coûte au plus un facteur constant — trois à quatre environ — fois le coût de son évaluation, indépendamment du nombre de variables. Trouvez ensuite le piège en examinant (c) : le mode inverse doit se souvenir de la trace directe, si bien que la constante en temps s'achète avec une mémoire proportionnelle à la longueur du calcul. Décrivez le point de reprise (<i>checkpointing</i>), qui échange du recalcul contre du stockage, et quantifiez le compromis pour un programme de \(N\) étapes.</li>
+<li>Chiffrez tout cela. Pour \(f(x) = \prod_{i=1}^{n} x_i\), puis pour un petit réseau à propagation avant, comptez les opérations et la précision atteignable pour (i) les différences finies, (ii) le mode direct, (iii) le mode inverse, et expliquez comment l'entraînement d'un modèle à \(10^{11}\) paramètres est arithmétiquement possible.</li>
+</ol>
+</div>
+<p class="context">La dérivation en mode inverse a été découverte au moins quatre fois : dans le mémoire de master de Seppo Linnainmaa à Helsinki en 1970, où elle fut inventée pour propager les erreurs d'arrondi ; dans la thèse de Bert Speelpenning à l'Illinois en 1980 ; dans les méthodes adjointes de la théorie du contrôle et de l'assimilation de données météorologiques ; et, sous le nom de rétropropagation, dans les travaux de Werbos (1974) et de Rumelhart, Hinton et Williams (1986). La distinction faite ici n'a rien d'académique. La dérivation automatique n'est ni la dérivation symbolique, dont les expressions explosent, ni le calcul de différences numériques, qui perd la moitié des chiffres (NUM-22) et exige \(n+1\) évaluations pour un gradient ; c'est une troisième chose, et c'est la bonne. Tout cadriciel moderne d'apprentissage automatique est, en son cœur, une implémentation de la partie (c), et l'asymétrie de la partie (b) — les gradients sont bon marché, les jacobiennes non — est la raison discrète pour laquelle les objectifs que l'on optimise sont scalaires.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">Dérivation automatique — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Backpropagation">Rétropropagation du gradient — Wikipédia</a></li>
+<li>Article : W. Baur et V. Strassen, « The complexity of partial derivatives » (1983), Theoretical Computer Science 22</li>
+<li>Lecture : A. Griewank et A. Walther, <i>Evaluating Derivatives: Principles and Techniques of Algorithmic Differentiation</i> (2<sup>e</sup> éd., SIAM 2008)</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-38" data-level="Master">
+<h3>NUM-38 · GMRES, et pourquoi les valeurs propres ne le prédisent pas <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(A \in \mathbb{R}^{n\times n}\) non symétrique et inversible, \(r_0 = b - Ax_0\), et soit
+\(\mathcal{K}_k = \operatorname{span}\{r_0, Ar_0, \ldots, A^{k-1}r_0\}\) le sous-espace de Krylov. GMRES choisit \(x_k \in x_0 + \mathcal{K}_k\) minimisant \(\|b - Ax_k\|_2\).</p>
+<ol class="parts" type="a">
+<li>Arnoldi. Démontrez que l'orthogonalisation des vecteurs de Krylov produit une matrice orthonormale \(V_k\) et une matrice de Hessenberg supérieure \(\tilde{H}_k\) de taille \((k+1)\times k\) telles que \(A V_k = V_{k+1}\tilde{H}_k\), et déduisez-en que l'étape de GMRES se ramène au petit problème de moindres carrés \(\min_y \big\|\, \|r_0\|_2 e_1 - \tilde{H}_k y \,\big\|_2\), que des rotations de Givens mettent à jour en \(O(k)\) opérations par itération.</li>
+<li>Démontrez que les normes des résidus sont décroissantes au sens large, qu'en arithmétique exacte la méthode se termine sur la solution exacte après au plus \(n\) étapes, et qu'une rupture du procédé d'Arnoldi se produit précisément lorsque la solution appartient déjà au sous-espace courant.</li>
+<li>Démontrez la majoration polynomiale : si \(A = X\Lambda X^{-1}\) est diagonalisable, alors
+\[ \frac{\|r_k\|_2}{\|r_0\|_2} \;\le\; \kappa_2(X)\,\min_{\substack{p \in \mathcal{P}_k \\ p(0) = 1}}\ \max_{1 \le i \le n} |p(\lambda_i)| , \]
+et expliquez ce que vaut cette borne quand la matrice des vecteurs propres est mal conditionnée.</li>
+<li>Voici maintenant l'avertissement. Démontrez, ou reconstituez soigneusement à partir de la littérature, le théorème de Greenbaum, Pták et Strakoš (1996) : étant donné une suite décroissante au sens large \(f_0 \ge f_1 \ge \cdots \ge f_{n-1} &gt; 0\) et \(n\) nombres complexes non nuls quelconques, il existe une matrice ayant exactement ces valeurs propres et un second membre pour lesquels GMRES produit exactement ces normes de résidus. Concluez que pour les matrices non normales le spectre seul ne porte aucune information sur la convergence, et discutez de ce qui en porte — l'image numérique et les pseudospectres.</li>
+<li>Pratique. Expliquez pourquoi GMRES doit stocker les \(k\) vecteurs de base, d'où la variante avec redémarrage GMRES(\(m\)), et exhibez ou trouvez une matrice sur laquelle le redémarrage stagne complètement. Énoncez ensuite le théorème de Faber-Manteuffel (1984) : hormis pour les matrices essentiellement hermitiennes, aucune récurrence courte ne peut engendrer l'itéré de Krylov optimal — le coût en mémoire est donc un théorème, non un manque d'imagination.</li>
+</ol>
+</div>
+<p class="context">Le gradient conjugué (NUM-18) a réglé le cas symétrique défini positif en 1952, et trente ans d'efforts pour porter l'idée aux matrices non symétriques ont produit une ménagerie de méthodes — BiCG, CGS, BiCGSTAB, QMR — avant que l'article de Saad et Schultz (1986) ne dise clairement le prix de l'optimalité sur le sous-espace de Krylov : il faut tout mémoriser. C'est l'un des articles les plus cités du domaine. Le théorème de 1996 de (d) est l'un des résultats négatifs les plus cités de l'algèbre linéaire numérique, car le savoir commun qu'il détruit est universel : <i>regroupez les valeurs propres et la convergence sera rapide</i> est vrai pour les matrices normales et simplement faux en général, alors qu'une grande partie de la conception des préconditionneurs s'en justifiait. Ce qui a remplacé ce savoir commun — les pseudospectres, développés par Trefethen et Embree — fait l'objet d'un livre, et d'un véritable changement dans la façon dont on pense les opérateurs non normaux à travers toutes les mathématiques appliquées.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Generalized_minimal_residual_method">GMRES — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Arnoldi_iteration">Algorithme d'Arnoldi — Wikipédia</a></li>
+<li>Article : Y. Saad et M. H. Schultz, « GMRES: a generalized minimal residual algorithm for solving nonsymmetric linear systems » (1986), SIAM Journal on Scientific and Statistical Computing 7</li>
+<li>Article : A. Greenbaum, V. Pták et Z. Strakoš, « Any nonincreasing convergence curve is possible for GMRES » (1996), SIAM Journal on Matrix Analysis and Applications 17</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-39" data-level="Master">
+<h3>NUM-39 · Le lemme de Céa : pourquoi les éléments finis sont une théorie <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(V\) un espace de Hilbert réel, soit \(a : V \times V \to \mathbb{R}\) bilinéaire vérifiant
+\(|a(u,v)| \le M\|u\|\,\|v\|\) et \(a(v,v) \ge \alpha\|v\|^2\) pour un certain \(\alpha &gt; 0\), et soit \(L\) une forme linéaire bornée. Le problème faible est : trouver \(u \in V\) tel que \(a(u,v) = L(v)\) pour tout \(v \in V\).</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème de Lax-Milgram : le problème faible a exactement une solution, et \(\|u\| \le \|L\|/\alpha\).</li>
+<li>Soit \(V_h \subset V\) un sous-espace de dimension finie et soit \(u_h \in V_h\) solution de \(a(u_h, v_h) = L(v_h)\) pour tout \(v_h \in V_h\). Démontrez que \(u_h\) existe et est unique, démontrez l'orthogonalité de Galerkine \(a(u - u_h, v_h) = 0\) pour tout \(v_h \in V_h\), et déduisez-en le lemme de Céa
+\[ \|u - u_h\| \;\le\; \frac{M}{\alpha}\, \inf_{v_h \in V_h} \|u - v_h\| . \]
+Montrez ensuite que lorsque \(a\) est symétrique la constante s'améliore en \(\sqrt{M/\alpha}\), et que \(u_h\) est exactement la meilleure approximation de \(u\) dans \(V_h\) pour la norme de l'énergie.</li>
+<li>Rendez cela concret. Pour \(-u'' = f\) sur \((0,1)\) avec \(u(0) = u(1) = 0\), prenez \(V = H^1_0(0,1)\) et pour \(V_h\) les fonctions continues affines par morceaux sur un maillage de pas \(h\). Vérifiez les hypothèses de (a), en utilisant l'inégalité de Poincaré pour la coercivité ; démontrez l'estimation d'interpolation \(\|v - I_h v\|_{H^1} \le C h \,|v|_{H^2}\) pour l'interpolant affine par morceaux ; et concluez à la convergence d'ordre un dans \(H^1\). Énoncez ensuite l'argument de dualité d'Aubin-Nitsche qui améliore cela en \(O(h^2)\) dans \(L^2\).</li>
+<li>Calculez la matrice de rigidité dans la base des fonctions chapeaux, montrez qu'elle vaut \(h^{-1}\,\mathrm{tridiag}(-1, 2, -1)\), démontrez qu'elle est symétrique définie positive avec un conditionnement croissant comme \(h^{-2}\), et dites ce que cela coûte au solveur itératif de NUM-26 ou de NUM-18 lorsque le maillage se raffine.</li>
+<li>Dites en un paragraphe ce que (b) a accompli. Identifiez précisément quelles parties d'une démonstration de convergence pour une méthode conforme relèvent de l'analyse fonctionnelle (faite une fois pour toutes, en (b)) et lesquelles relèvent de la théorie de l'approximation et de la régularité elliptique (à refaire pour chaque élément et chaque équation).</li>
+</ol>
+</div>
+<p class="context">La formulation variationnelle remonte à Ritz (1908) et Galerkine (1915), et la conférence de Richard Courant de 1943 sur les méthodes variationnelles contient déjà des fonctions d'essai affines par morceaux sur une triangulation — la méthode des éléments finis, publiée puis ignorée quinze ans durant. Des ingénieurs de Boeing l'ont réinventée en 1956 pour les structures d'avions, et Ray Clough l'a baptisée en 1960. Ce qui a transformé une recette de calcul en mathématiques, c'est le lemme de (b), issu de la thèse de Jean Céa en 1964 : l'erreur de la solution calculée est, à une constante fixée près, l'erreur de la <i>meilleure approximation possible</i> dans l'espace que vous avez choisi, de sorte que toute l'analyse d'une méthode se ramène à une question de théorie de l'approximation. Le livre de Strang et Fix (1973) et les travaux de Babu&#353;ka ont bâti dessus le cadre moderne, et c'est la raison pour laquelle les éléments finis — au contraire de bien des discrétisations — sont accompagnés de théorèmes. Voir aussi <a href="applied-pde.html">Équations aux dérivées partielles</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Finite_element_method">Méthode des éléments finis — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/C%C3%A9a%27s_lemma">Lemme de Céa — Wikipédia</a></li>
+<li>Article : R. Courant, « Variational methods for the solution of problems of equilibrium and vibrations » (1943), Bulletin of the American Mathematical Society 49</li>
+<li>Lecture : S. C. Brenner et L. R. Scott, <i>The Mathematical Theory of Finite Element Methods</i>, ch. 0–5</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="NUM-17" data-level="Recherche">
+<h3>NUM-17 · La multiplication rapide des matrices, en théorie et en pratique <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(\omega\) le plus petit exposant tel
+que deux matrices \(n \times n\) puissent être multipliées en \(O(n^{\omega + \epsilon})\)
+opérations arithmétiques pour tout \(\epsilon &gt; 0\). Porte d'entrée :</p>
+<ol class="parts" type="a">
+<li>vérifiez
+les identités de Strassen (1969) qui calculent un produit par blocs \(2 \times 2\) avec
+7 multiplications de blocs au lieu de 8, et démontrez que la récursion donne
+\(O(n^{\log_2 7}) \approx O(n^{2.807})\). <b>État de l'exposant : ouvert.</b>
+On sait que \(2 \le \omega\), et un demi-siècle de raffinements de la « méthode laser »
+a porté le record à \(\omega &lt; 2.3714\) (Alman, Duan,
+Vassilevska Williams, Xu, Xu, Zhou, 2024) ; savoir si \(\omega = 2\) est un problème
+ouvert central de la complexité algébrique.</li>
+<li>Le problème <i>pratique</i>, lui aussi
+essentiellement ouvert : tout algorithme battant l'exposant de Strassen est
+« galactique » — son avantage ne commence qu'à des tailles qu'aucun ordinateur ne
+contiendra jamais — trouvez donc un algorithme praticable asymptotiquement plus rapide
+que celui de Strassen, ou expliquez pourquoi il n'en existe pas. La recherche assistée
+par machine est entrée en scène : AlphaTensor (2022) a trouvé, entre autres, un schéma
+à 47 multiplications pour les matrices \(4 \times 4\) sur le corps à deux
+éléments, battant les 49 de la récursion de Strassen.</li>
+<li>Une question d'analyste numéricien :
+les algorithmes rapides sacrifient les majorations d'erreur coefficient par coefficient
+de l'algorithme classique — examinez (à la suite de Higham) quelle stabilité en norme
+les algorithmes de type Strassen conservent, et ce que cela implique pour leur usage sur
+des matériels à précision mixte.</li>
+</ol>
+</div>
+<p class="context">L'article de Strassen de 1969, au titre volontairement provocateur
+« Gaussian elimination is not optimal », a fait voler en éclats l'idée que \(n^3\) était
+le coût naturel de l'algèbre linéaire et a fondé la théorie de la complexité algébrique.
+L'histoire qui a suivi — Coppersmith-Winograd atteignant \(2.376\) en 1987, puis un
+filet de centièmes durement gagnés dans les années 2010-2020 — a produit des
+mathématiques profondes (rang tensoriel, lien avec les <i>cap sets</i>) tandis que les
+GPU du monde entier multiplient toujours les matrices à la manière classique, optimisée
+pour les mouvements de mémoire plutôt que pour le nombre de multiplications. L'écart
+entre la théorie de \(\omega\) et la pratique des BLAS est lui-même la frontière de la
+recherche.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Computational_complexity_of_matrix_multiplication">Complexité de la multiplication de matrices — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Strassen_algorithm">Algorithme de Strassen — Wikipédia</a></li>
+<li>Article : J. Alman, R. Duan, V. Vassilevska Williams, Y. Xu, Z. Xu, R. Zhou, « More Asymmetry Yields Faster Matrix Multiplication » (2024), <a href="https://arxiv.org/abs/2404.16349">arXiv:2404.16349</a></li>
+<li>Article : A. Fawzi et al., « Discovering faster matrix multiplication algorithms with reinforcement learning » (2022), Nature 610</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-18" data-level="Recherche">
+<h3>NUM-18 · Préconditionnement optimal et solveurs quasi linéaires <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le gradient conjugué résout un système
+symétrique défini positif \(Ax = b\) en n'utilisant que des produits matrice-vecteur.
+Porte d'entrée :</p>
+<ol class="parts" type="a">
+<li>en admettant l'optimalité du gradient conjugué (son \(k\)-ième itéré minimise la
+norme \(A\) de l'erreur sur le sous-espace de Krylov), utilisez les polynômes de
+Tchebychev pour démontrer la majoration d'erreur
+\[ \|x_k - x\|_A \;\le\; 2\left( \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1} \right)^{k} \|x_0 - x\|_A,
+\qquad \kappa = \kappa_2(A). \]
+Le préconditionnement remplace \(A\) par \(M^{-1}A\) avec \(M\) peu coûteuse à inverser
+et \(\kappa(M^{-1}A)\) petit ; concevoir \(M\) est tout l'art. <b>État de la recherche,
+honnêtement :</b> pour les systèmes de laplaciens de graphes le problème est
+théoriquement résolu — Spielman et Teng (2004) ont donné des solveurs en temps quasi
+linéaire, un jalon rendu praticable depuis par leurs successeurs — mais pour les
+matrices creuses symétriques définies positives générales aucune théorie comparable
+n'existe : Kyng et Zhang (2017) ont démontré que résoudre des systèmes linéaires
+structurés généraux est aussi difficile que d'en résoudre d'arbitraires, et Peng et
+Vempala (2021) ont montré que les systèmes creux peuvent, en théorie, battre le temps de
+la multiplication de matrices. Pendant ce temps la pratique s'appuie sur les
+factorisations incomplètes et le multigrille algébrique, qui fonctionnent
+extraordinairement bien sans garanties générales précises.</li>
+<li>Le problème ouvert : donnez un
+algorithme accompagné d'une démonstration — pour une classe de matrices sensiblement
+plus large que les laplaciens — qui construise un préconditionneur atteignant un temps
+total de résolution prouvablement quasi optimal ; ou démontrez des bornes inférieures
+significatives séparant ce que le préconditionnement en boîte noire peut et ne peut
+pas faire.</li>
+</ol>
+</div>
+<p class="context">« L'art du préconditionnement » est l'endroit où l'algèbre linéaire
+numérique touche à l'informatique théorique : le solveur de Spielman-Teng est né de la
+sparsification de graphes et de la résistance effective, des outils qui ont refaçonné la
+théorie spectrale des graphes et valu un prix Gödel. Demandez pourtant à un scientifique
+du calcul : il vous dira que son préconditionneur multigrille a convergé en huit
+itérations et que personne ne sait démontrer pourquoi sur son maillage. Combler cet
+écart — la théorie rattrapant l'art occulte — est une frontière vivante et lourde de
+conséquences : les résolutions linéaires sont la boucle interne du calcul
+scientifique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Preconditioner">Préconditionneur — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">Méthode du gradient conjugué — Wikipédia</a></li>
+<li>Article : D. A. Spielman, S.-H. Teng, « Nearly-linear time algorithms for graph partitioning, graph sparsification, and solving linear systems » (2004), Proceedings of STOC 2004</li>
+<li>Lecture : L. N. Trefethen et D. Bau, <i>Numerical Linear Algebra</i>, leçons 38–40</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-19" data-level="Recherche">
+<h3>NUM-19 · L'analyse numérique de l'apprentissage profond <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Entraîner un réseau de neurones, c'est de l'analyse
+numérique à l'échelle industrielle — de l'optimisation non convexe en grande dimension,
+menée en arithmétique 16 bits — et une bonne partie n'a pas de théorie. Porte
+d'entrée :</p>
+<ol class="parts" type="a">
+<li>démontrez le
+point de repère classique : pour la descente de gradient \(x_{k+1} = x_k - h\nabla f(x_k)\)
+sur une forme quadratique \(f(x) = \tfrac12 x^T A x - b^T x\) avec \(A\) symétrique
+définie positive, l'itération converge depuis tout point de départ si et seulement si
+\(h &lt; 2/\lambda_{\max}(A)\), à une vitesse régie par
+\(\kappa(A)\). <b>État de la recherche, honnêtement :</b></li>
+<li>les réseaux profonds
+violent empiriquement la prémisse de (a) : entraînés avec le pas \(h\), on observe que
+la plus grande valeur propre de la hessienne de la perte monte jusqu'à environ \(2/h\)
+et s'y maintient (« bord de la stabilité », Cohen et al. 2021), de sorte que
+l'entraînement opère à la frontière que la théorie classique interdit — aucune
+explication générale rigoureuse n'existe.</li>
+<li>La
+limite de largeur infinie est comprise — le noyau tangent neuronal (Jacot, Gabriel,
+Hongler 2018) fait de l'entraînement des réseaux larges une méthode à noyau linéaire —
+mais caractériser de façon démontrable l'apprentissage de représentations des réseaux
+finis réalistes est ouvert.</li>
+<li>La théorie des matrices aléatoires décrit de plus en plus les spectres des matrices
+de poids et de hessiennes des réseaux entraînés, pour l'essentiel comme une
+phénoménologie empirique en attente de théorèmes.</li>
+<li>Les formats de basse précision (bfloat16, fp8) ont ranimé l'analyse classique des
+erreurs d'arrondi sous des hypothèses neuves — arrondi stochastique, précision mixte
+(Higham-Mary 2022). Choisissez l'un des points (b)–(e) et faites avancer la théorie d'un
+pas honnête.</li>
+</ol>
+</div>
+<p class="context">La situation ressemble à celle de l'élimination de Gauss en 1950
+(NUM-08) : un algorithme d'un immense succès pratique — la descente de gradient
+stochastique sur des objectifs non convexes, non réguliers, à des milliards de
+paramètres — utilisé bien au-delà de la portée de sa théorie de convergence, avec une
+fiabilité qui devance l'explication. L'histoire suggère que la résolution ne sera pas un
+théorème unique mais un nouveau genre d'analyse ; l'erreur inverse de Wilkinson fut cela
+pour la crise des années 1950. Qui trouvera l'analogue pour l'apprentissage aura fondé
+un domaine.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Neural_tangent_kernel">Noyau tangent neuronal — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Deep_learning">Apprentissage profond — Wikipédia</a></li>
+<li>Article : A. Jacot, F. Gabriel, C. Hongler, « Neural Tangent Kernel: Convergence and Generalization in Neural Networks » (2018), NeurIPS 2018</li>
+<li>Article : N. J. Higham, T. Mary, « Mixed precision algorithms in numerical linear algebra » (2022), Acta Numerica 31</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-29" data-level="Recherche" data-kind="court">
+<h3>NUM-29 · Le facteur de croissance que personne ne rencontre jamais <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> La majoration d'erreur inverse de Wilkinson pour l'élimination de Gauss est proportionnelle au facteur de croissance
+\[ \rho_n = \frac{\max_{i,j,k} |a^{(k)}_{ij}|}{\max_{i,j} |a_{ij}|}, \]
+le plus grand coefficient apparaissant au cours de l'élimination divisé par le plus grand coefficient de \(A\). Exhibez une matrice pour laquelle le pivotage partiel atteint \(\rho_n = 2^{n-1}\), démontrez que \(2^{n-1}\) est le maximum possible sous pivotage partiel, puis affrontez le fait qu'en soixante ans de calcul aucun problème pratique n'a jamais produit une croissance qui en approche.</p>
+<p class="context">L'écart entre le pire cas exponentiel et une pratique totalement bénigne est la plus ancienne gêne de l'algèbre linéaire numérique : l'algorithme que tout le monde utilise n'a aucune démonstration de stabilité, seulement soixante ans de preuves empiriques écrasantes, et les manuels le signalent depuis longtemps comme le succès inexpliqué majeur de la discipline. Les progrès sont réels mais partiels : Han Huang et Konstantin Tikhomirov ont démontré en 2024 que pour une matrice gaussienne aléatoire le facteur de croissance du pivotage partiel est majoré polynomialement avec une probabilité proche de un, de sorte que le cas moyen est désormais un théorème et non plus un savoir commun, tandis qu'une explication couvrant les matrices structurées issues des applications reste ouverte. Pour le pivotage <i>total</i> la situation est plus crue : Wilkinson conjecturait \(\rho_n \le n\), Gould l'a réfuté en 1991 avec un contre-exemple \(13 \times 13\), et la croissance maximale véritable demeure inconnue à ce jour.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Pivot_element">Élément pivot (et facteur de croissance) — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Numerical_stability">Stabilité numérique — Wikipédia</a></li>
+<li>Article : N. Gould, « On growth in Gaussian elimination with complete pivoting », SIAM Journal on Matrix Analysis and Applications 12 (1991)</li>
+<li>Article : H. Huang et K. Tikhomirov, « Average-case analysis of the Gaussian elimination with partial pivoting », Probability Theory and Related Fields (2024), <a href="https://arxiv.org/abs/2206.01726">arXiv:2206.01726</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-30" data-level="Recherche" data-kind="court">
+<h3>NUM-30 · Le 17<sup>e</sup> problème de Smale <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Le 17<sup>e</sup> problème de Smale demande si un zéro d'un système de \(n\) équations polynomiales complexes à \(n\) inconnues peut être trouvé, approximativement, par un algorithme uniforme s'exécutant en temps polynomial en la taille de l'entrée en moyenne. Définissez le « zéro approché » au sens de Smale — un point depuis lequel la méthode de Newton converge quadratiquement dès la première étape —, démontrez que depuis un tel point le nombre de chiffres corrects double à chaque itération, et rapportez avec exactitude ce qui a été réglé et ce qui ne l'a pas été.</p>
+<p class="context">Steve Smale a posé dix-huit problèmes pour le vingt et unième siècle en 1998, et celui-ci est la contribution de l'analyste numéricien : il réclame une théorie honnête de la complexité d'un calcul que les ingénieurs effectuent quotidiennement. <b>État : résolu dans le cadre complexe en moyenne.</b> Beltrán et Pardo ont donné un algorithme randomisé de continuation par homotopie, Bürgisser et Cucker un algorithme déterministe de coût quasi polynomial en 2011, et Pierre Lairez a complété la réponse affirmative en 2017 en dérandomisant la construction — en utilisant l'aléa déjà présent dans l'entrée. L'analogue réel, et un algorithme véritablement dans le pire cas plutôt qu'en moyenne, restent ouverts ; toute la machinerie repose sur les conditionnements (NUM-09) faisant de la géométrie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Smale%27s_problems">Problèmes de Smale — Wikipédia</a></li>
+<li>Article : P. Lairez, « A deterministic algorithm to compute approximate roots of polynomial systems in polynomial average time », Foundations of Computational Mathematics 17 (2017), <a href="https://arxiv.org/abs/1507.05485">arXiv:1507.05485</a></li>
+<li>Lecture : P. Bürgisser et F. Cucker, <i>Condition: The Geometry of Numerical Algorithms</i> (2013)</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-31" data-level="Recherche">
+<h3>NUM-31 · Quand un calcul est une démonstration <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> En arithmétique d'intervalles, un nombre est remplacé par un intervalle qui le contient, et chaque opération renvoie un intervalle contenant tous les résultats possibles ; le mode d'arrondi du processeur étant dirigé vers l'extérieur, l'encadrement reste valide en virgule flottante.</p>
+<ol class="parts" type="a">
+<li>Définissez les quatre opérations arithmétiques sur les intervalles et démontrez la propriété d'inclusion : l'évaluation par intervalles d'une expression arithmétique contient l'image véritable de la fonction sur les intervalles d'entrée. Montrez ensuite par un exemple que l'encadrement peut être catastrophiquement lâche — évaluez \(X - X\) pour \(X = [0,1]\) — et expliquez ce que coûte la dépendance entre les occurrences d'une variable.</li>
+<li>Démontrez le théorème de Newton par intervalles : pour \(f\) continûment dérivable sur un intervalle \(X\) avec \(0 \notin f'(X)\), si l'image de Newton par intervalles \(N(X) = m - f(m)/f'(X)\) (avec \(m\) le milieu) vérifie \(N(X) \subseteq X\), alors \(f\) a exactement un zéro dans \(X\), et si \(N(X) \cap X = \emptyset\) alors \(f\) n'en a aucun. Notez ce qui vient de se produire : un calcul machine fini a établi un théorème d'existence et d'unicité.</li>
+<li>Étendez l'idée à un solveur rigoureux d'équations différentielles ordinaires : décrivez comment encadrer la solution de \(y' = F(y)\) sur un pas de temps de manière garantie, et identifiez où l'effet d'enveloppement fait grossir les encadrements.</li>
+<li>Étudiez un cas marquant et évaluez-le d'un œil critique : la démonstration assistée par ordinateur de Warwick Tucker (1998) établissant que les équations de Lorenz possèdent bel et bien un attracteur étrange — le 14<sup>e</sup> problème de Smale —, ou la démonstration de Hales-Ferguson de la conjecture de Kepler. Que doit exactement croire le lecteur d'une telle démonstration, et qu'est-ce que la vérification formelle de la preuve de Kepler par le projet Flyspeck en 2014 a changé à cela ?</li>
+</ol>
+</div>
+<p class="context">Ramon Moore a fondé l'analyse par intervalles dans les années 1960 pour rendre automatiques les bornes d'erreur, et pendant trente ans elle fut tenue pour une curiosité pessimiste — les encadrements grossissent, et l'arithmétique est lente. Puis il s'est avéré que c'était l'outil capable de trancher des problèmes ouverts : la thèse de Tucker a démontré l'existence de l'attracteur de Lorenz par une intégration rigoureuse des équations mêmes que Lorenz avait intégrées sans rigueur en 1963, et la technique a servi depuis à démontrer l'existence d'orbites périodiques, la stabilité de dynamiques chaotiques et — dans les travaux de Chen et Hou depuis 2022 sur les équations de Boussinesq et d'Euler — la formation de singularités en temps fini en mécanique des fluides. <b>État : un domaine actif, non achevé.</b> Jusqu'où l'encadrement rigoureux peut être poussé en grande dimension et dans les équations aux dérivées partielles est une question ouverte, et l'est aussi, en un autre sens, celle du point (d) : une démonstration qu'aucun humain ne peut lire reste un objet d'un genre nouveau, et la réponse de la communauté a jusqu'ici consisté à faire vérifier les ordinateurs par des ordinateurs.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Interval_arithmetic">Arithmétique d'intervalles — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Computer-assisted_proof">Preuve assistée par ordinateur — Wikipédia</a></li>
+<li>Article : W. Tucker, « A rigorous ODE solver and Smale's 14th problem », Foundations of Computational Mathematics 2 (2002)</li>
+<li>Lecture : W. Tucker, <i>Validated Numerics: A Short Introduction to Rigorous Computations</i> (2011)</li>
+<li>Lecture : R. E. Moore, R. B. Kearfott et M. J. Cloud, <i>Introduction to Interval Analysis</i> (2009)</li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="NUM-40" data-level="Recherche" data-kind="court">
+<h3>NUM-40 · L'algorithme QR avec décalage converge-t-il toujours ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> L'algorithme QR avec décalage factorise \(A_k - \mu_k I = Q_k R_k\) et pose \(A_{k+1} = R_k Q_k + \mu_k I\) ; partant d'une matrice de Hessenberg supérieure il conserve cette forme, et avec une bonne stratégie de décalage il pousse vers zéro le dernier coefficient sous-diagonal, dégonflant une valeur propre à la fois. Démontrez que chaque étape est une similitude unitaire, démontrez que pour les matrices symétriques tridiagonales le décalage de Wilkinson — la valeur propre du bloc \(2\times2\) terminal la plus proche de \(a_{nn}\) — donne une convergence asymptotique cubique, exhibez la matrice de Hessenberg supérieure non réduite
+\[ A = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix} \]
+sur laquelle ce décalage vaut \(0\) et l'itération est exactement stationnaire à jamais, puis rapportez honnêtement ce que l'on sait et ne sait pas de la convergence globale dans le cas non symétrique.</p>
+<p class="context">John Francis, employé d'une petite société informatique londonienne, et Vera Koublanovskaïa à Leningrad ont trouvé l'algorithme indépendamment en 1961 ; il a été plus tard désigné comme l'un des dix algorithmes du vingtième siècle, et pratiquement toute valeur propre calculée aujourd'hui où que ce soit en sort. <b>État : partiellement ouvert.</b> Wilkinson a démontré la convergence globale pour les matrices symétriques tridiagonales avec son décalage en 1968, et ce cas est clos. Pour les matrices de Hessenberg générales, aucun théorème de ce type : l'exemple stationnaire ci-dessus montre qu'une réparation est nécessaire, et toute bibliothèque de production, LAPACK compris, insère des <i>décalages exceptionnels</i> après quelques itérations improductives — un correctif justifié par soixante ans d'expérience plutôt que par une démonstration, exactement comme l'est le facteur de croissance de NUM-29. Un progrès réel n'est arrivé que récemment : Banks, Garza-Vargas et Srivastava (2021-2023) ont conçu de nouvelles stratégies de décalage, à décalages de degré supérieur et randomisés, pour lesquelles une convergence globale rapide <i>peut</i> être démontrée pour les matrices de Hessenberg dont le conditionnement des vecteurs propres est borné — d'abord en arithmétique exacte, puis en virgule flottante. Que la stratégie effectivement en service dans les bibliothèques du monde entier converge toujours reste non démontré.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/QR_algorithm">Algorithme QR — Wikipédia</a></li>
+<li>Article : J. H. Wilkinson, « Global convergence of tridiagonal QR algorithm with origin shifts » (1968), Linear Algebra and its Applications 1</li>
+<li>Article : J. Banks, J. Garza-Vargas et N. Srivastava, « Global convergence of Hessenberg shifted QR I: exact arithmetic » (2021), <a href="https://arxiv.org/abs/2111.07976">arXiv:2111.07976</a></li>
+<li>Lecture : L. N. Trefethen et D. Bau, <i>Numerical Linear Algebra</i>, leçons 28–29</li>
+</ul>
+</section>
+
+<section class="problem" id="NUM-41" data-level="Recherche">
+<h3>NUM-41 · Approximation rationnelle, et un algorithme que nul ne sait justifier <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour \(f\) continue sur \([-1,1]\), notez \(E_{mn}(f)\) la plus petite valeur possible de \(\max_{|x|\le 1}|f(x) - r(x)|\) sur les fractions rationnelles \(r = p/q\) avec \(\deg p \le m\), \(\deg q \le n\). Les polynômes sont le cas \(n = 0\) ; autoriser un dénominateur change complètement le sujet.</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème d'équioscillation de Tchebychev dans le cas polynomial : \(p^*\) de degré au plus \(m\) est une meilleure approximation de \(f\) si et seulement si \(f - p^*\) atteint son module maximal avec des signes alternés en au moins \(m+2\) points ; déduisez-en l'unicité. Énoncez l'analogue rationnel, dans lequel le compte \(m + n + 2\) est diminué du défaut de l'approximant, et décrivez comment l'algorithme d'échange de Remez transforme cette caractérisation en un calcul.</li>
+<li>Le phénomène. Bernstein a démontré en 1913 que la meilleure approximation polynomiale de \(|x|\) sur \([-1,1]\) ne décroît que comme \(\beta/m\) avec \(\beta \approx 0.2802\). Donald Newman a démontré en 1964 que les fractions rationnelles font incomparablement mieux : \(\tfrac12 e^{-9\sqrt{n}} \le E_{nn}(|x|) \le 3e^{-\sqrt{n}}\). Démontrez la borne supérieure par la construction de Newman — posez \(\xi = e^{-1/\sqrt{n}}\), \(p(x) = \prod_{k=0}^{n-1}(x + \xi^k)\), et considérez la fraction rationnelle impaire
+\[ r(x) \;=\; x\,\frac{p(x) - p(-x)}{p(x) + p(-x)} \]
+— et expliquez, avec vos propres mots, comment des pôles placés hors de l'intervalle mais agglutinés vers la singularité achètent une précision exponentielle en racine. Herbert Stahl a démontré plus tard la vitesse exacte : \(E_{nn}(|x|) \sim 8 e^{-\pi\sqrt{n}}\).</li>
+<li>Les problèmes de Zolotarev (1877). Décrivez sa meilleure approximation rationnelle en forme close de \(\operatorname{sign}(x)\) sur \([-1,-\alpha]\cup[\alpha,1]\), écrite avec des fonctions elliptiques, et expliquez pourquoi ce n'est pas une pièce de musée : c'est l'outil le plus précis dont on dispose pour la fonction signe matricielle, et donc pour les solveurs de valeurs propres par division spectrale et pour les calculs de théorie des champs sur réseau.</li>
+<li><b>Le problème de recherche.</b> La pratique moderne calcule les approximations rationnelles avec l'algorithme AAA de Nakatsukasa, Sète et Trefethen (2018) : gardez l'approximant sous forme barycentrique, ajoutez gloutonnement comme point de support suivant l'endroit où l'erreur courante est la plus grande, et résolvez à chaque étape un petit problème de moindres carrés pour les poids barycentriques. Il est rapide, il est robuste en pratique, on l'utilise désormais partout, de la réduction de modèles à la représentation conforme — et il n'a pour ainsi dire aucune théorie de la convergence. Nul ne sait démontrer que sa sortie converge vers la meilleure approximation, ni même qu'elle converge tout court ; on peut le faire échouer, et les échecs ne sont pas compris. Formulez une classe de fonctions et un théorème de convergence précis que l'on pourrait espérer démontrer, ou construisez des contre-exemples instructifs. <b>État : ouvert.</b> Tout aussi ouverts, et étroitement liés : les vitesses de convergence exactes pour l'approximation rationnelle des fonctions à points de branchement, et une explication théorique des solveurs dits « éclair », dont les pôles exponentiellement agglutinés près d'un coin donnent en pratique une convergence exponentielle en racine pour les problèmes de Laplace, et sur le papier seulement des théorèmes partiels.</li>
+</ol>
+</div>
+<p class="context">Tchebychev a créé la théorie de l'approximation dans les années 1850 en concevant des mécanismes articulés pour machines à vapeur, et il savait déjà que les fractions rationnelles atteignent ce que les polynômes ne peuvent atteindre ; son élève Zolotarev a résolu à la main, avec des fonctions elliptiques, des problèmes dont les bibliothèques modernes appellent encore les réponses. L'article de deux pages de Newman (1964) est l'une des grandes surprises de la discipline — pour égaler une approximation rationnelle de degré \(n\) de \(|x|\), un polynôme a besoin d'un degré de l'ordre de \(e^{\sqrt{n}}\) — et la constante exacte a demandé trente ans de plus. Ce qui a changé depuis 2010, c'est que l'approximation rationnelle est devenue <i>praticable</i> : les représentations barycentriques et la sélection gloutonne l'ont rendue numériquement stable, Chebfun et AAA l'ont mise entre toutes les mains, et c'est aujourd'hui la méthode de choix pour les fonctions à singularités. La théorie n'a pas suivi. Cet écart entre un algorithme qui marche et une démonstration qu'il marche a la même forme que dans NUM-18 et NUM-19 : c'est à cela que ressemble vraiment un domaine vivant de l'analyse numérique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Equioscillation_theorem">Théorème d'équioscillation — Wikipédia (en anglais)</a></li>
+<li>Article : Y. Nakatsukasa, O. Sète et L. N. Trefethen, « The AAA algorithm for rational approximation » (2018), SIAM Journal on Scientific Computing 40</li>
+<li>Article : H. Stahl, « Best uniform rational approximation of \(x^{\alpha}\) on \([0,1]\) » (2003), Acta Mathematica 190</li>
+<li>Lecture : L. N. Trefethen, <i>Approximation Theory and Approximation Practice</i>, ch. 10 et 23–25</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-330-introduction-to-numerical-analysis-spring-2012/">MIT OCW 18.330 Introduction to Numerical Analysis</a> ;
+<a href="https://ocw.mit.edu/courses/18-335j-introduction-to-numerical-methods-spring-2019/">MIT OCW 18.335J Introduction to Numerical Methods</a> (niveau master, enseigné à partir de Trefethen et Bau).</li>
+<li>Livres : E. Süli et D. F. Mayers, <i>An Introduction to Numerical Analysis</i> (commencez ici) ;
+L. N. Trefethen et D. Bau, <i>Numerical Linear Algebra</i> (le manuel de master le plus aimé du domaine) ;
+N. J. Higham, <i>Accuracy and Stability of Numerical Algorithms</i> (la bible de l'analyse des erreurs d'arrondi) ;
+G. H. Golub et C. F. Van Loan, <i>Matrix Computations</i> (la référence).</li>
+<li>Articles et essais : J. W. Cooley et J. W. Tukey, « An algorithm for the machine calculation of complex Fourier series » (1965),
+Mathematics of Computation 19 ; D. Goldberg, « What Every Computer Scientist Should Know About Floating-Point Arithmetic » (1991),
+ACM Computing Surveys 23 ; L. N. Trefethen, « The definition of numerical analysis » (1992), SIAM News 25.</li>
+</ul>
+<p>Voir aussi : <a href="applied-pde.html">Équations aux dérivées partielles</a>, <a href="open-problems.html">Problèmes ouverts</a>, <a href="proofs.html">L'art de la démonstration</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

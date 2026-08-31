@@ -1,0 +1,1523 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Topologie}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Lycée}
+
+\begin{problem}[{Les ponts de Königsberg --- Lycée}]
+\textbf{TOP-01.} \textbf{Problème.} La ville de Königsberg comptait sept ponts reliant deux îles fluviales aux deux
+rives de la Pregel : la plus grande île était reliée par deux ponts à chaque rive et par un pont à la
+plus petite île, elle-même reliée par un pont à chaque rive. Les habitants se demandaient si l'on
+pouvait faire une promenade traversant chaque pont exactement une fois.
+\begin{enumerate}
+\item[(a)] Démontrez qu'aucune telle promenade n'existe.
+\item[(b)] Modélisez la situation par un graphe --- les masses de terre comme sommets, les ponts comme arêtes
+--- et déterminez, avec démonstration, exactement quels graphes connexes admettent une promenade
+empruntant chaque arête une fois : en fonction du nombre de sommets rencontrant un nombre impair
+d'arêtes, quand une telle promenade existe-t-elle, et quand peut-elle en outre revenir à son point de
+départ ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler a réglé la question en 1736 dans un article qu'il décrivait comme relevant de
+la \og{} géométrie de position \fg{} --- une géométrie sans aucune longueur ni aucun angle, rien que des
+connexions. C'est la date de naissance conventionnelle de la théorie des graphes autant que de la
+topologie. Euler a démontré la nécessité de sa condition ; la moitié \og{} suffisance \fg{} de la question (b)
+n'a été rédigée soigneusement que par Carl Hierholzer en 1873. Le problème récompense ce que la
+topologie récompense toujours : trouver la seule quantité qui ne peut pas changer.
+
+\begin{refs}
+\item Contexte : Problème des sept ponts de Königsberg --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_des_sept_ponts_de_K%C3%B6nigsberg})
+\item Contexte : Graphe eulérien (chemin eulérien) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Graphe_eul%C3%A9rien})
+\item Lecture : M. A. Armstrong, \textit{Basic Topology}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La formule des polyèdres d'Euler et les cinq solides de Platon --- Lycée}]
+\textbf{TOP-02.} \textbf{Problème.} Soit un polyèdre convexe à $ V $ sommets, $ E $ arêtes et $ F $
+faces.
+\begin{enumerate}
+\item[(a)] Démontrez la formule d'Euler
+\[ V - E + F = 2 . \]
+(Une voie honnête : aplatissez le polyèdre en un réseau plan connexe et raisonnez par récurrence sur
+le nombre d'arêtes.)
+\item[(b)] Un solide de Platon est un polyèdre convexe dont les faces sont des $ p $-gones réguliers
+congruents, avec le même nombre $ q $ de faces se rencontrant en chaque sommet. À l'aide de (a),
+démontrez que $ (p, q) $ doit vérifier $ \frac{1}{p} + \frac{1}{q} > \frac{1}{2} $, et
+déduisez-en qu'exactement cinq couples sont possibles.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler a annoncé la formule dans une lettre à Goldbach en 1750, en avouant qu'il ne
+savait pas encore la démontrer ; Legendre en a donné une démonstration en 1794 et Cauchy une autre en
+1813, et la longue querelle sur ce qui compte exactement comme un \og{} polyèdre \fg{} est devenue le sujet du
+dialogue classique de Lakatos, \textit{Proofs and Refutations}. Les cinq solides eux-mêmes closent les
+\textit{Éléments} d'Euclide (livre XIII). La quantité $ V - E + F $ est la caractéristique d'Euler --- le
+tout premier invariant topologique découvert, et l'ancêtre de tout ce que l'on trouve en TOP-19 et
+TOP-20.
+
+\begin{refs}
+\item Contexte : Caractéristique d'Euler --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Caract%C3%A9ristique_d'Euler})
+\item Contexte : Graphe planaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Graphe_planaire})
+\item Lecture : M. A. Armstrong, \textit{Basic Topology}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Expériences avec un ruban de Möbius, rendues rigoureuses --- Lycée}]
+\textbf{TOP-03.} \textbf{Problème.} Fabriquez un ruban de Möbius : donnez un demi-tour à une bande de papier et collez
+les extrémités. Modélisez-le mathématiquement par le carré $ [0,1] \times [0,1] $ dont les bords
+gauche et droit sont recollés par $ (0, y) \sim (1, 1-y) $.
+\begin{enumerate}
+\item[(a)] Démontrez que le bord du ruban de Möbius est une seule courbe fermée (le cylindre ordinaire en a
+deux).
+\item[(b)] Prédisez ce que l'on obtient en coupant le long de la ligne médiane $ y = \tfrac12 $ ;
+démontrez-le ensuite : montrez que la bande coupée est connexe, et déterminez le nombre de demi-tours
+qu'elle porte.
+\item[(c)] Faites de même pour la coupe le long de la ligne $ y = \tfrac13 $ : démontrez que le résultat a
+exactement deux morceaux et décrivez, avec démonstration à partir du modèle de recollement, comment
+ils sont joints.
+\item[(d)] Montrez qu'une fourmi qui fait un tour complet le long de la ligne médiane revient inversée comme
+dans un miroir --- précisez, à l'aide de la règle de recollement, ce que signifie \og{} le ruban n'a qu'une
+seule face \fg{}.
+\end{enumerate}
+
+\end{problem}
+
+\noindent August Möbius et Johann Listing ont découvert le ruban indépendamment en 1858
+(Listing, qui a aussi forgé le mot \og{} topologie \fg{}, a publié le premier). C'est la plus simple des
+surfaces non orientables, et les expériences aux ciseaux --- familières des spectacles de magie ---
+deviennent des théorèmes dès que le modèle de papier est remplacé par le carré recollé, technique même
+qui construit le tore et la bouteille de Klein en TOP-09. La non-orientabilité, rencontrée ici pour la
+première fois, est l'un des deux invariants qui classifient toutes les surfaces (TOP-19).
+
+\begin{refs}
+\item Contexte : Ruban de Möbius --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ruban_de_M%C3%B6bius})
+\item Lecture : M. A. Armstrong, \textit{Basic Topology}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Antipodes sur l'équateur --- Lycée}]
+\textbf{TOP-04.} \textbf{Problème.} Supposez que la température varie continûment le long de
+l'équateur terrestre. Démontrez qu'à tout instant donné il existe deux points diamétralement opposés
+(antipodaux) sur l'équateur ayant exactement la même température. Formellement : si
+$ f : [0, 2\pi] \to \mathbb{R} $ est continue avec $ f(0) = f(2\pi) $, montrez qu'il existe
+$ t $ tel que $ f(t) = f(t + \pi) $ (les angles étant pris modulo $ 2\pi $). Vous pouvez
+utiliser le théorème des valeurs intermédiaires : une fonction continue qui change de signe sur un
+intervalle y admet un zéro.
+\end{problem}
+
+\noindent C'est le cas unidimensionnel du théorème de Borsuk--Ulam (TOP-16), et c'est
+l'illustration la plus nette possible de la façon dont la topologie démontre l'existence : aucune
+formule ne localise jamais les deux points, et pourtant un argument de deux lignes montre qu'ils sont
+forcément là. Le théorème des valeurs intermédiaires lui-même a été démontré rigoureusement pour la
+première fois par Bolzano en 1817, dans un article explicitement consacré au remplacement de l'évidence
+géométrique par la démonstration --- le geste fondateur de l'analyse comme de la topologie
+ensembliste.
+
+\begin{refs}
+\item Contexte : Théorème des valeurs intermédiaires --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_valeurs_interm%C3%A9diaires})
+\item Contexte : Théorème de Borsuk-Ulam --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Borsuk-Ulam})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Un point fixe sur l'intervalle --- Lycée, short}]
+\textbf{TOP-25.} \textbf{Problème.} Soit $ f : [0,1] \to [0,1] $ continue. Démontrez qu'il existe
+$ x \in [0,1] $ tel que $ f(x) = x $.
+\end{problem}
+
+\noindent C'est le théorème du point fixe de Brouwer en dimension un, et toute la
+démonstration tient en une ligne dès que l'on regarde $ g(x) = f(x) - x $ aux deux extrémités.
+Brouwer a démontré le cas général vers 1910 ; l'énoncé en dimension supérieure (TOP-14) demande de la
+machinerie, mais le cas de l'intervalle ne demande que le théorème des valeurs intermédiaires de
+Bolzano --- un bon endroit pour sentir comment une hypothèse purement qualitative force un objet à
+exister.
+
+\begin{refs}
+\item Contexte : Théorème du point fixe de Brouwer --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_point_fixe_de_Brouwer})
+\item Contexte : Théorème des valeurs intermédiaires --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_valeurs_interm%C3%A9diaires})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Dedans et dehors, comptés par parité --- Lycée, short}]
+\textbf{TOP-26.} \textbf{Problème.} Soit $ P $ un polygone simple fermé du plan (un nombre fini de
+segments, se rencontrant seulement en des extrémités communes, sans auto-intersection) et soit $ q $
+un point hors de $ P $. Démontrez que le nombre de fois qu'une demi-droite issue de $ q $ traverse
+$ P $ est pair pour toute telle demi-droite, ou impair pour toute telle demi-droite --- la parité ne
+dépend pas de la demi-droite que vous lancez, pourvu qu'elle ne passe par aucun sommet de
+$ P $.
+\end{problem}
+
+\noindent Cette parité est exactement ce que signifie \og{} dedans \fg{} pour un polygone, et la
+démontrer est le noyau polygonal honnête du théorème de Jordan : Camille Jordan a énoncé le théorème
+général en 1887, et Oswald Veblen en a donné en 1905 une démonstration largement tenue pour la première
+complète. Le même argument, sous le nom de lancer de rayon, est ce qu'un moteur graphique exécute chaque
+fois qu'il décide si votre curseur est à l'intérieur d'une forme.
+
+\begin{refs}
+\item Contexte : Théorème de Jordan --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Jordan})
+\item Contexte : Point dans un polygone --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Point_in_polygon})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Eau, gaz, électricité --- Lycée}]
+\textbf{TOP-27.} \textbf{Problème.} Trois maisons doivent chacune être reliées à trois services --- eau, gaz,
+électricité --- par des conduites tracées dans le plan, sans qu'aucune ne se croise. On note
+$ K_{3,3} $ ce graphe et $ K_5 $ le graphe à cinq sommets muni de ses dix arêtes. Vous pouvez
+utiliser la formule d'Euler $ V - E + F = 2 $ pour un graphe connexe tracé dans le plan sans
+croisement, $ F $ comptant la région extérieure.
+\begin{enumerate}
+\item[(a)] Démontrez qu'un graphe simple connexe planaire avec $ V \ge 3 $ vérifie
+\[ E \le 3V - 6 , \]
+en comptant les incidences arête--face, et déduisez-en que $ K_5 $ ne peut pas être tracé dans le
+plan sans croisement.
+\item[(b)] Démontrez que si un tel graphe ne contient de plus aucun triangle, alors $ E \le 2V - 4 $, et
+déduisez-en que $ K_{3,3} $ ne peut pas non plus être tracé --- l'énigme n'a pas de solution.
+\item[(c)] Tracez $ K_5 $ et $ K_{3,3} $ sur la surface d'un beignet (un tore) sans croisement, et dites
+exactement quelle étape de votre argument de comptage y échoue.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Henry Dudeney a publié l'énigme \og{} eau, gaz et électricité \fg{} en 1917 et la disait déjà
+ancienne ; des générations de solveurs ont cherché le tracé astucieux qui n'existe pas. La démonstration
+qu'il n'existe pas est un petit chef-d'œuvre de la méthode topologique : rien sur les conduites, un
+simple décompte de sommets, d'arêtes et de régions. Kuratowski a démontré en 1930 que $ K_5 $ et
+$ K_{3,3} $ sont les \textit{seules} obstructions --- un graphe est planaire exactement quand il ne
+contient de subdivision ni de l'un ni de l'autre --- et la question (c) est le premier indice que
+\og{} planaire \fg{} n'a jamais concerné le graphe seul, mais la surface sur laquelle on le trace, dont la
+caractéristique d'Euler (TOP-02) fait le vrai travail.
+
+\begin{refs}
+\item Contexte : Énigme des trois maisons --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89nigme_des_trois_maisons})
+\item Contexte : Graphe planaire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Graphe_planaire}), Théorème de Kuratowski --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Kuratowski%27s_theorem})
+\item Lecture : R. Diestel, \textit{Graph Theory}, ch. 4
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Deux alpinistes, une seule altitude --- Lycée}]
+\textbf{TOP-37.} \textbf{Problème.} Deux profils de montagne sont donnés par des fonctions continues
+$ f, g : [0,1] \to [0,1] $ avec $ f(0) = g(0) = 0 $, $ f(1) = g(1) = 1 $ et
+$ 0 < f(x), g(x) < 1 $ pour $ 0 < x < 1 $. Un alpiniste parcourt le profil $ f $ et
+l'autre le profil $ g $ ; une \textit{traversée conjointe} est un couple d'horaires continus
+$ x_1, x_2 : [0,1] \to [0,1] $ avec $ x_1(0) = x_2(0) = 0 $, $ x_1(1) = x_2(1) = 1 $, et
+\[ f\big(x_1(u)\big) = g\big(x_2(u)\big) \quad \text{pour tout } u \in [0,1] , \]
+de sorte que les deux sont à la même altitude à chaque instant.
+\begin{enumerate}
+\item[(a)] Esquissez deux profils pour lesquels aucune traversée conjointe ne permet aux deux alpinistes de
+n'aller que vers l'est --- à un moment donné, l'un d'eux doit redescendre.
+\item[(b)] Supposez maintenant $ f $ et $ g $ affines par morceaux, avec un nombre fini de sommets et de
+creux, et telles qu'aucune valeur de maximum ou de minimum local de $ f $ n'égale une valeur de
+maximum ou de minimum local de $ g $. Posons
+\[ S = \{ (x,y) \in [0,1] \times [0,1] : f(x) = g(y) \} . \]
+Démontrez que $ S $ est une réunion finie de segments de droite qui s'assemblent en un nombre fini
+d'arcs et de boucles fermées, et que les seules extrémités d'arcs sont les deux coins $ (0,0) $ et
+$ (1,1) $.
+\item[(c)] Déduisez-en que le morceau de $ S $ contenant $ (0,0) $ est un arc aboutissant à
+$ (1,1) $, et lisez une traversée conjointe sur un paramétrage de cet arc --- les alpinistes peuvent
+donc toujours le faire.
+\item[(d)] Montrez que la continuité seule ne suffit pas : décrivez des profils pour lesquels $ f $ est
+constante sur un intervalle tandis que $ g $ oscille une infinité de fois à cette même hauteur, et
+expliquez pourquoi le second alpiniste devrait osciller indéfiniment.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Tatsuo Homma a résolu une version de ce problème en 1952 et James Whittaker l'a nommé
+et posé sous sa forme actuelle en 1966 ; John Philip Huneke a démontré en 1969 qu'une traversée existe
+dès qu'aucun des deux profils n'est constant sur un intervalle, et le contre-exemple esquissé en (d)
+montre que cette hypothèse ne peut pas être simplement abandonnée. L'exposé de Goodman, Pach et Yap de
+1989 a reçu le prix Lester R. Ford de la Mathematical Association of America et a relié l'énigme à la
+planification de mouvement des robots et au problème du carré inscrit. La méthode est celle que la
+topologie emploie partout : cessez de raisonner sur les alpinistes et raisonnez sur la forme de
+l'ensemble de toutes les positions licites.
+
+\begin{refs}
+\item Contexte : Problème de l'escalade en montagne --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Mountain_climbing_problem})
+\item Contexte : Connexité (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Connexit%C3%A9_(math%C3%A9matiques)})
+\item Article : J. E. Goodman, J. Pach, C.-K. Yap, \og{} Mountain climbing, ladder moving, and the ring-width of a polygon \fg{} (1989), \textit{American Mathematical Monthly} 96, 494--510
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le polyèdre qui casse la formule d'Euler --- Lycée, short}]
+\textbf{TOP-38.} \textbf{Problème.} Construisez un cadre de tableau polyédrique --- un bloc
+rectangulaire percé de part en part d'un trou rectangulaire --- découpé de sorte que chaque face soit un
+polygone plat sans trou, puis comptez $ V $, $ E $ et $ F $ et vérifiez que
+\[ V - E + F = 0 , \quad \text{et non } 2 . \]
+Identifiez exactement quelle étape de la démonstration usuelle de la formule d'Euler (TOP-02) échoue
+pour ce solide, et dites ce que le nombre $ V - E + F $ mesure à la place.
+\end{problem}
+
+\noindent Simon L'Huilier a publié précisément de telles exceptions en 1812--13, montrant qu'un
+solide percé de $ g $ tunnels vérifie $ V - E + F = 2 - 2g $ ; Hessel a ajouté d'autres \og{} monstres \fg{}
+en 1832. Imre Lakatos a transformé cette longue querelle --- sur la question de savoir si de tels objets
+sont des polyèdres, ou si la définition doit être réparée pour les exclure --- en
+\textit{Proofs and Refutations}, le meilleur livre jamais écrit sur la manière dont les mathématiques se
+développent réellement. Notez que si vous autorisez le dessus et le dessous à être des faces annulaires
+d'un seul tenant, vous retrouvez $ 2 $, et c'est exactement le genre d'échappatoire dont on discutait
+au dix-neuvième siècle.
+
+\begin{refs}
+\item Contexte : Polyèdre toroïdal --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Toroidal_polyhedron})
+\item Contexte : Caractéristique d'Euler --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Caract%C3%A9ristique_d'Euler})
+\item Lecture : I. Lakatos, \textit{Proofs and Refutations}
+\end{refs}
+
+\bigskip
+
+
+\section*{Licence}
+
+\begin{problem}[{Des distances aux topologies --- Licence}]
+\textbf{TOP-05.} \textbf{Problème.} Une distance sur un ensemble $ X $ est une fonction
+$ d : X \times X \to [0,\infty) $ nulle exactement sur la diagonale, symétrique et vérifiant
+l'inégalité triangulaire ; une topologie sur $ X $ est une collection de parties dites \og{} ouvertes \fg{}
+contenant $ \varnothing $ et $ X $ et stable par réunion quelconque et par intersection
+finie.
+\begin{enumerate}
+\item[(a)] Démontrez que les parties engendrées par les boules ouvertes d'un espace métrique forment une
+topologie.
+\item[(b)] Montrez que la distance euclidienne, la distance du taxi
+$ d_1(x,y) = |x_1 - y_1| + |x_2 - y_2| $ et la distance du max sur $ \mathbb{R}^2 $ engendrent
+toutes la même topologie, tandis que la distance discrète (distance $ 1 $ entre points distincts) en
+engendre une autre.
+\item[(c)] Montrez que $ d'(x,y) = \frac{|x-y|}{1+|x-y|} $ est une distance sur $\mathbb{R}$ engendrant la topologie
+usuelle, bien que $ d' $ soit bornée --- la distance porte donc strictement plus d'information que la
+topologie.
+\item[(d)] Donnez un exemple d'espace topologique dont la topologie ne provient d'aucune distance, avec
+démonstration. (Réfléchissez au nombre de points qu'un espace métrique peut échouer à séparer.)
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les axiomes d'espace topologique ont été distillés par Hausdorff dans ses
+\textit{Grundzüge der Mengenlehre} (1914) à partir de la théorie des espaces métriques de Fréchet (1906),
+en gardant exactement ce qu'il faut pour parler de limites et de continuité et en jetant la distance. Ce
+problème est le franchissement rituel de ce seuil : voir quelles distinctions (la bornitude, les
+distances précises) s'évaporent, et quels phénomènes nouveaux (les espaces non métrisables) apparaissent
+de l'autre côté.
+
+\begin{refs}
+\item Contexte : Espace métrique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_m%C3%A9trique})
+\item Contexte : Espace topologique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_topologique})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 2
+\item Cours : MIT OCW 18.901 Introduction to Topology (en anglais) (\url{https://ocw.mit.edu/courses/18-901-introduction-to-topology-fall-2004/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ouvert, fermé, les deux, ni l'un ni l'autre --- et les quatorze ensembles de Kuratowski --- Licence}]
+\textbf{TOP-06.} \textbf{Problème.} \og{} Ouvert \fg{} et \og{} fermé \fg{} ne sont pas des contraires ; ce problème calibre les deux
+mots.
+\begin{enumerate}
+\item[(a)] Dans $\mathbb{R}$ muni de la topologie usuelle, donnez des exemples de parties ouvertes et non fermées,
+fermées et non ouvertes, à la fois ouvertes et fermées, et ni l'une ni l'autre ; démontrez que $\mathbb{Q}$ n'est
+ni l'un ni l'autre.
+\item[(b)] L'ouverture est relative : montrez que $ [0, \tfrac12) $ est ouvert dans le sous-espace
+$ [0,1] $ mais pas dans $\mathbb{R}$, et formulez précisément ce que signifie \og{} ouvert dans un
+sous-espace \fg{}.
+\item[(c)] Le problème adhérence--complémentaire de Kuratowski : démontrez qu'en partant d'une seule partie
+d'un espace topologique et en appliquant l'adhérence et le passage au complémentaire dans n'importe
+quel ordre, on ne peut jamais produire plus de $ 14 $ ensembles distincts --- et exhibez une partie de
+$\mathbb{R}$ qui atteint les $ 14 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La question (c) a été publiée par Kazimierz Kuratowski en 1922, dans l'article même
+qui axiomatisait la topologie via l'opérateur d'adhérence, et c'est un rite de passage adoré depuis : la
+borne vient d'un petit monoïde d'opérateurs, l'exemple vient de savoir exactement à quel point une partie
+de $\mathbb{R}$ peut être pathologique. Les questions (a) et (b) s'attaquent aux deux idées fausses les plus
+répandues chez les débutants du domaine --- que \og{} non ouvert \fg{} devrait signifier \og{} fermé \fg{}, et que
+l'ouverture est une propriété d'un ensemble plutôt que d'un ensemble dans un espace.
+
+\begin{refs}
+\item Contexte : Ouvert (topologie) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ouvert_(topologie)}), Fermé (topologie) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ferm%C3%A9_(topologie)})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Compacité : Borel--Lebesgue et ses limites --- Licence}]
+\textbf{TOP-07.} \textbf{Problème.} Un espace est \textit{compact} si tout recouvrement par des ouverts admet un
+sous-recouvrement fini, et \textit{séquentiellement compact} si toute suite admet une sous-suite
+convergente.
+\begin{enumerate}
+\item[(a)] Démontrez directement à partir de la définition par recouvrements que $ [0,1] $ est
+compact.
+\item[(b)] Démontrez le théorème de Borel--Lebesgue (Heine--Borel) : une partie de $ \mathbb{R}^n $ est
+compacte si et seulement si elle est fermée et bornée.
+\item[(c)] Démontrez que dans un espace métrique, compacité et compacité séquentielle sont
+équivalentes.
+\item[(d)] Montrez que la boule unité fermée de l'espace de suites $ \ell^2 $ est fermée et bornée mais non
+compacte --- Borel--Lebesgue échoue en dimension infinie.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La compacité est le substitut de la finitude chez le topologue, et il a fallu un
+demi-siècle pour trouver la bonne définition : Borel a démontré l'énoncé pour les recouvrements
+dénombrables en 1895, Lebesgue et d'autres l'ont généralisé, et la formulation par recouvrements ouverts
+a été consacrée par Alexandroff et Urysohn dans les années 1920. La question (d) est le fait qui fait de
+l'analyse fonctionnelle une discipline différente de l'analyse en dimension finie --- dans les espaces de
+fonctions, les parties fermées bornées ne portent aucune compacité, et il faut inventer des substituts
+(équicontinuité, topologies faibles). L'équivalence de la question (c) échoue réellement hors des espaces
+métriques : voir TOP-13.
+
+\begin{refs}
+\item Contexte : Compacité (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Compacit%C3%A9_(math%C3%A9matiques)})
+\item Contexte : Théorème de Borel-Lebesgue (Heine--Borel) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Borel-Lebesgue})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 3
+\item Cours : MIT OCW 18.901 Introduction to Topology (en anglais) (\url{https://ocw.mit.edu/courses/18-901-introduction-to-topology-fall-2004/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Connexité et la courbe sinus du topologue --- Licence}]
+\textbf{TOP-08.} \textbf{Problème.} Un espace est \textit{connexe} s'il n'est pas la réunion de deux ouverts disjoints
+non vides, et \textit{connexe par arcs} si deux points quelconques sont joints par un chemin
+continu.
+\begin{enumerate}
+\item[(a)] Démontrez que les images continues d'espaces connexes sont connexes, et déduisez-en le théorème
+des valeurs intermédiaires.
+\item[(b)] Démontrez que les espaces connexes par arcs sont connexes.
+\item[(c)] Soit $ S = \{ (x, \sin(1/x)) : 0 < x \le 1 \} \cup (\{0\} \times [-1,1]) $, la courbe sinus
+du topologue. Démontrez que $ S $ est connexe mais non connexe par arcs.
+\item[(d)] Utilisez la connexité pour démontrer que $\mathbb{R}$ et $ \mathbb{R}^2 $ ne sont pas
+homéomorphes.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La connexité semble aller de soi jusqu'à ce que des exemples comme (c) --- un ensemble
+que l'on peut dessiner mais dans lequel on ne peut pas marcher --- écartent les deux définitions rivales.
+La notion rigoureuse a émergé des travaux de Jordan et de Schoenflies et a reçu sa forme moderne de Riesz
+et de Hausdorff ; la courbe sinus est devenue la mise en garde standard au début du vingtième siècle. La
+question (d) est le premier cas du problème de l'invariance de la dimension, dont la solution générale
+par Brouwer en 1911 (via les outils de TOP-20) a créé le premier triomphe de la topologie
+algébrique.
+
+\begin{refs}
+\item Contexte : Connexité (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Connexit%C3%A9_(math%C3%A9matiques)})
+\item Contexte : Courbe sinus du topologue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Courbe_sinus_du_topologue})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Recollements : tore, bouteille de Klein, plan projectif --- Licence}]
+\textbf{TOP-09.} \textbf{Problème.} Le quotient d'un espace par une identification porte la topologie la plus fine
+rendant la projection continue. Prenez le carré $ [0,1] \times [0,1] $ et recollez : (i)
+$ (0,y) \sim (1,y) $ et $ (x,0) \sim (x,1) $ --- le tore $ T^2 $ ; (ii)
+$ (0,y) \sim (1, 1-y) $ et $ (x,0) \sim (x,1) $ --- la bouteille de Klein $ K $ ; (iii) toutes les
+identifications du bord $ (x, 0) \sim (1-x, 1) $ et $ (0, y) \sim (1, 1-y) $ --- le plan projectif
+réel $ \mathbb{RP}^2 $, autrement dit la sphère dont on identifie les points antipodaux.
+\begin{enumerate}
+\item[(a)] Démontrez que le quotient tore est homéomorphe à $ S^1 \times S^1 $.
+\item[(b)] Démontrez que $ \mathbb{RP}^2 $ tel que défini à partir du carré est homéomorphe au quotient
+antipodal de $ S^2 $, et que les deux sont compacts.
+\item[(c)] Montrez que la bouteille de Klein est la réunion de deux rubans de Möbius recollés le long de
+leurs cercles de bord.
+\item[(d)] Calculez $ V - E + F $ pour chaque surface à partir de sa présentation carrée, et vérifiez les
+valeurs $ 0, 0, 1 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les constructions par quotient sont la façon dont la topologie bâtit des espaces
+invisibles dans $ \mathbb{R}^3 $ : Klein a décrit sa bouteille en 1882 (il lui faut quatre dimensions
+pour éviter l'auto-intersection), et le plan projectif descend de la géométrie projective des peintres de
+la Renaissance en passant par Möbius. La notation \og{} carré fléché \fg{} est la comptabilité standard de
+TOP-19, où toute surface compacte sera présentée ainsi. Rendre (a) et (b) pleinement rigoureux --- les
+bijections continues d'un compact vers un séparé sont des homéomorphismes --- est l'objet de
+l'exercice.
+
+\begin{refs}
+\item Contexte : Espace quotient (topologie) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_quotient_(topologie)})
+\item Contexte : Bouteille de Klein --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Bouteille_de_Klein}), Plan projectif réel --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Plan_projectif_r%C3%A9el})
+\item Lecture : M. A. Armstrong, \textit{Basic Topology}, ch. 4
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Distinguer les espaces --- Licence}]
+\textbf{TOP-10.} \textbf{Problème.} Un \textit{invariant topologique} est une propriété préservée par tout
+homéomorphisme.
+\begin{enumerate}
+\item[(a)] Démontrez que la compacité et la connexité sont des invariants topologiques.
+\item[(b)] Un \textit{point de coupure} d'un espace connexe est un point dont le retrait le déconnecte.
+Démontrez que les homéomorphismes envoient les points de coupure sur des points de coupure.
+\item[(c)] À l'aide de (a) et (b), démontrez que parmi les quatre espaces suivants, aucun couple n'est formé
+d'espaces homéomorphes : l'intervalle fermé $ [0,1] $, le cercle $ S^1 $, la droite réelle $\mathbb{R}$ et le
+huit (deux cercles joints en un point).
+\item[(d)] Expliquez pourquoi les arguments de type \og{} nombre de points de coupure \fg{} ne peuvent jamais
+distinguer $ \mathbb{R}^2 $ de $ \mathbb{R}^3 $, et nommez l'invariant qui, lui, le fait.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est le jeu fondamental de la topologie --- pour démontrer que deux espaces sont
+\textit{différents} il faut produire un invariant, puisque aucune quantité d'échecs à trouver un
+homéomorphisme ne démontre qu'il n'en existe pas. Les arguments par points de coupure sont les invariants
+les plus anciens et les plus élémentaires ; leur insuffisance pour la question (d), comprise vers 1900,
+est précisément ce qui a poussé Poincaré à attacher des groupes aux espaces (TOP-12) et Brouwer à
+développer la théorie du degré. Les quatre espaces de (c) reviendront tout au long de cette page comme cas
+de test de base.
+
+\begin{refs}
+\item Contexte : Propriété topologique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Propri%C3%A9t%C3%A9_topologique})
+\item Contexte : Homéomorphisme --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Hom%C3%A9omorphisme})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le lemme de Sperner et un point fixe --- Licence}]
+\textbf{TOP-11.} \textbf{Problème.} Subdivisez un triangle $ ABC $ en petits triangles, et coloriez chaque sommet de
+la subdivision avec l'une de trois couleurs, de sorte que $ A, B, C $ reçoivent trois couleurs
+différentes et que tout sommet situé sur un côté de $ ABC $ n'utilise que les deux couleurs des
+extrémités de ce côté.
+\begin{enumerate}
+\item[(a)] Démontrez le lemme de Sperner : un petit triangle porte les trois couleurs à ses sommets (et même,
+il y en a un nombre impair).
+\item[(b)] Utilisez (a) pour démontrer le théorème du point fixe de Brouwer en dimension deux : toute
+application continue d'un triangle fermé (autrement dit du disque fermé $ D^2 $) dans lui-même admet
+un point fixe.
+\item[(c)] Démontrez le cas unidimensionnel --- toute application continue $ f : [0,1] \to [0,1] $ admet un
+point fixe --- directement à partir du théorème des valeurs intermédiaires.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Emanuel Sperner a démontré son lemme combinatoire en 1928, et en moins d'un an
+Knaster, Kuratowski et Mazurkiewicz en avaient déduit le théorème de Brouwer (démontré à l'origine en
+1911 avec de lourdes machineries) --- l'une des toutes premières démonstrations qu'un comptage discret peut
+porter des conséquences continues. Le lemme est aujourd'hui le moteur des algorithmes de partage équitable
+en économie et du calcul des équilibres économiques de Scarf. TOP-14 donne la démonstration par lacets et
+les corollaires classiques du théorème.
+
+\begin{refs}
+\item Contexte : Lemme de Sperner --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Sperner})
+\item Contexte : Théorème du point fixe de Brouwer --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_point_fixe_de_Brouwer})
+\item Lecture : M. A. Armstrong, \textit{Basic Topology}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le groupe fondamental, et le lacet qui compte --- Licence}]
+\textbf{TOP-12.} \textbf{Problème.} Pour un espace $ X $ muni d'un point base $ x_0 $, soit
+$ \pi_1(X, x_0) $ l'ensemble des classes d'homotopie de lacets en $ x_0 $, muni de la composition
+donnée par la concaténation.
+\begin{enumerate}
+\item[(a)] Démontrez que c'est un groupe.
+\item[(b)] Démontrez qu'une application continue $ f : X \to Y $ induit un morphisme
+$ f_* : \pi_1(X, x_0) \to \pi_1(Y, f(x_0)) $, et que des espaces homéomorphes connexes par arcs ont
+des groupes fondamentaux isomorphes.
+\item[(c)] Démontrez que $ \pi_1 $ d'une partie convexe de $ \mathbb{R}^n $ est trivial.
+\item[(d)] Démontrez le premier vrai calcul : $ \pi_1(S^1) \cong \mathbb{Z} $. Utilisez l'application
+$ p(t) = (\cos 2\pi t, \sin 2\pi t) $ de $\mathbb{R}$ vers le cercle : montrez que tout lacet se relève de
+manière unique en un chemin de $\mathbb{R}$, que les homotopies se relèvent également, et que l'extrémité du
+relèvement --- l'indice --- est un isomorphisme bien défini sur $\mathbb{Z}$.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Poincaré a introduit le groupe fondamental dans \textit{Analysis Situs} (1895),
+l'article qui a fondé la topologie algébrique ; c'était la première fois qu'un groupe était attaché à un
+espace. Le calcul de la question (d) est le prototype de la théorie des revêtements (TOP-17) et le moteur
+derrière le théorème de non-rétraction, le théorème de Brouwer et Borsuk--Ulam en dimension deux.
+Comprendre cette seule démonstration à fond --- ce qui se relève, pourquoi les relèvements sont uniques, où
+intervient la complétude de $\mathbb{R}$ --- vaut un semestre de lecture passive.
+
+\begin{refs}
+\item Contexte : Groupe fondamental --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Groupe_fondamental}), Homotopie --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Homotopie})
+\item Contexte : Indice d'un lacet --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Indice_(analyse_complexe)})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 1 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 9
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une application quotient qui n'est ni ouverte ni fermée --- Licence, short}]
+\textbf{TOP-28.} \textbf{Problème.} Une surjection $ q : X \to Y $ est une \textit{application
+quotient} si une partie $ U \subseteq Y $ est ouverte exactement quand $ q^{-1}(U) $ est ouverte
+dans $ X $. Produisez une application quotient qui n'est ni ouverte ni fermée, et démontrez les trois
+affirmations à propos de votre exemple.
+\end{problem}
+
+\noindent Les applications quotients sont la façon dont tout espace recollé de cette page est
+construit --- le tore, la bouteille de Klein, le plan projectif de TOP-09 --- aussi importe-t-il que la
+définition soit un énoncé sur les parties ouvertes en aval, et non une promesse que les images d'ouverts
+sont ouvertes. Les étudiants supposent couramment cette promesse ; l'objet de cet exercice est de rompre
+l'habitude une bonne fois, un exemple en main.
+
+\begin{refs}
+\item Contexte : Espace quotient (topologie) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_quotient_(topologie)})
+\item Lecture : J. R. Munkres, \textit{Topology}, \S{}22
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le lemme du nombre de Lebesgue --- Licence, short}]
+\textbf{TOP-29.} \textbf{Problème.} Soit $ (X,d) $ un espace métrique compact et soit
+$ \mathcal{U} $ un recouvrement ouvert de $ X $. Démontrez qu'il existe $ \delta > 0 $ --- un
+\textit{nombre de Lebesgue} pour $ \mathcal{U} $ --- tel que toute partie de $ X $ de diamètre
+strictement inférieur à $ \delta $ soit contenue dans un seul membre de $ \mathcal{U} $.
+\end{problem}
+
+\noindent Nommé d'après Henri Lebesgue, ce petit lemme est la charnière sur laquelle tourne une
+quantité surprenante de choses : il donne la démonstration en une ligne du fait qu'une fonction continue
+sur un espace métrique compact est uniformément continue, et c'est lui qui permet de découper un chemin
+ou un carré d'homotopie en morceaux assez petits pour tenir dans un seul ouvert --- le premier geste des
+démonstrations du théorème de relèvement des chemins (TOP-17) et de Seifert--van Kampen (TOP-18).
+
+\begin{refs}
+\item Contexte : Nombre de Lebesgue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Nombre_de_Lebesgue})
+\item Lecture : J. R. Munkres, \textit{Topology}, \S{}27
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Topologie produit contre topologie des boîtes --- Licence}]
+\textbf{TOP-30.} \textbf{Problème.} Sur un produit infini $ \prod_{\alpha \in A} X_\alpha $ il existe deux topologies
+naturelles candidates. La topologie \textit{des boîtes} a pour base tous les produits
+$ \prod_\alpha U_\alpha $ avec chaque $ U_\alpha $ ouvert ; la topologie \textit{produit} ne retient
+que les boîtes pour lesquelles $ U_\alpha = X_\alpha $ sauf pour un nombre fini de $ \alpha $. On
+note $ \mathbb{R}^\omega $ le produit d'une infinité dénombrable de copies de $\mathbb{R}$.
+\begin{enumerate}
+\item[(a)] Montrez que sur $ \mathbb{R}^\omega $ la topologie des boîtes est strictement plus fine que la
+topologie produit.
+\item[(b)] Démontrez qu'une application $ f : Z \to \prod_\alpha X_\alpha $ est continue pour la topologie
+produit si et seulement si chaque fonction coordonnée $ \pi_\alpha \circ f $ est continue, et montrez
+que cela échoue pour la topologie des boîtes en examinant $ t \mapsto (t, t, t, \ldots) $ de $\mathbb{R}$ vers
+$ \mathbb{R}^\omega $.
+\item[(c)] Démontrez que $ \mathbb{R}^\omega $ est connexe pour la topologie produit mais pas pour la
+topologie des boîtes.
+\item[(d)] Montrez que $ \{0,1\}^\omega $ porte la topologie discrète pour la topologie des boîtes, et
+concluez que le théorème de Tykhonov (TOP-13) est faux pour les boîtes. Énoncez et démontrez ensuite la
+propriété universelle qui singularise la topologie produit : c'est la topologie la moins fine rendant
+continue chaque projection $ \pi_\alpha $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Quand Tykhonov a introduit les produits infinis en 1930 il a dû choisir, et le choix
+paraît d'abord pervers --- pourquoi refuser d'appeler ouverte une boîte manifeste ? La question (b) est la
+réponse : seule la topologie la moins fine rend les applications \textit{vers} un produit aussi faciles à
+construire que les coordonnées le suggèrent, ce qui est précisément la propriété universelle qu'un produit
+catégorique doit avoir, et seule la topologie la moins fine conserve la compacité. La topologie des boîtes
+survit comme contre-exemple standard, le lieu où meurt discrètement tout théorème commode sur les
+produits.
+
+\begin{refs}
+\item Contexte : Topologie produit --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Topologie_produit})
+\item Contexte : Topologie des boîtes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Topologie_des_bo%C3%AEtes})
+\item Lecture : J. R. Munkres, \textit{Topology}, \S{}19--20
+\item Cours : MIT OCW 18.901 Introduction to Topology (en anglais) (\url{https://ocw.mit.edu/courses/18-901-introduction-to-topology-fall-2004/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une courbe qui remplit un carré --- Licence}]
+\textbf{TOP-39.} \textbf{Problème.} Une \textit{courbe remplissante} est une surjection continue
+$ f : [0,1] \to [0,1] \times [0,1] $. Construisez-en une, puis voyez ce qu'elle ne peut pas
+être.
+\begin{enumerate}
+\item[(a)] Construisez la courbe de Hilbert comme limite : définissez récursivement des applications
+polygonales $ f_n : [0,1] \to [0,1]^2 $, chacune visitant tour à tour les quatre quadrants du carré,
+et démontrez que $ (f_n) $ converge uniformément, de sorte que la limite $ f $ est continue.
+\item[(b)] Démontrez que $ f $ est surjective. (L'image d'un compact est compacte, donc fermée ; il suffit
+donc de montrer que l'image est dense.)
+\item[(c)] Démontrez qu'aucune courbe remplissante ne peut être injective : montrez qu'une bijection continue
+d'un compact sur un espace séparé est un homéomorphisme, puis que $ [0,1] $ et $ [0,1]^2 $ ne sont
+pas homéomorphes (TOP-10 fournit l'invariant).
+\item[(d)] Expliquez pourquoi (a) et (c) réunies ne contredisent pas l'invariance de la dimension de Brouwer,
+et dites précisément quelle hypothèse de ce théorème la courbe met en défaut.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cantor a montré en 1878 que $ [0,1] $ et $ [0,1]^2 $ ont le même cardinal, ce qui
+était déjà un scandale ; Netto a démontré la même année qu'aucune telle bijection ne peut être continue.
+Cela laissait une question ouverte, et Peano y a répondu en 1890 par une construction purement
+arithmétique --- son article ne contient aucune figure --- d'une courbe continue passant par tout point d'un
+carré ; Hilbert en a donné la version géométrique un an plus tard, et c'est celle que tout le monde
+dessine. La morale est que \og{} courbe \fg{}, définie comme \og{} image continue d'un intervalle \fg{}, est une
+définition beaucoup trop généreuse, et la réparer a occupé les topologues pendant des décennies. Ces mêmes
+courbes indexent aujourd'hui des bases de données et des tuiles d'images, parce que des points proches sur
+la droite restent proches dans le carré.
+
+\begin{refs}
+\item Contexte : Courbe remplissante --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Courbe_remplissante})
+\item Contexte : Courbe de Hilbert --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Courbe_de_Hilbert}), Courbe de Peano --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Courbe_de_Peano})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 7
+\item Lecture : H. Sagan, \textit{Space-Filling Curves} (Springer, 1994)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Même type d'homotopie, espace différent --- Licence, short}]
+\textbf{TOP-40.} \textbf{Problème.} Démontrez que le ruban de Möbius se rétracte par déformation sur
+son cercle central, de sorte qu'il est homotopiquement équivalent à $ S^1 $ et que son groupe
+fondamental est $ \mathbb{Z} $. Démontrez ensuite que le ruban n'est néanmoins \textit{pas} homéomorphe
+à $ S^1 $.
+\end{problem}
+
+\noindent L'équivalence d'homotopie, isolée dans les années 1930 dans les travaux de Borsuk et
+de Hurewicz, est la relation plus grossière que voient réellement tous les invariants algébriques de cette
+page : le groupe fondamental de TOP-12 et l'homologie de TOP-20 ne peuvent pas distinguer le ruban de son
+cercle central, parce que rien de bâti sur la déformation continue ne le peut. Les distinguer demande un
+invariant véritablement topologique, et l'invariant élémentaire de TOP-10 le fait en une ligne. Savoir à
+quelles questions votre invariant est aveugle, c'est la moitié de son usage.
+
+\begin{refs}
+\item Contexte : Homotopie --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Homotopie}), Rétraction (topologie) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/R%C3%A9traction})
+\item Contexte : Ruban de Möbius --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ruban_de_M%C3%B6bius})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 0 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Construire des espaces avec des cellules --- Licence}]
+\textbf{TOP-41.} \textbf{Problème.} Un \textit{CW-complexe} fini se construit à partir d'un ensemble fini de points en
+attachant des cellules : à l'étape $ n $ on recolle des $ n $-boules fermées sur la partie déjà
+bâtie, le long d'applications continues de leurs sphères de bord. Si $ c_n $ est le nombre de
+$ n $-cellules, la caractéristique d'Euler est
+\[ \chi(X) = \sum_{n \ge 0} (-1)^n c_n . \]
+\begin{enumerate}
+\item[(a)] Donnez des structures CW ayant le moins de cellules possible sur : la sphère $ S^n $ (deux
+cellules suffisent) ; le tore $ T^2 $ ; le bouquet de $ k $ cercles ; la surface fermée orientable
+de genre $ g $ ; et $ \mathbb{RP}^n $ (une cellule en chaque dimension $ 0, 1, \ldots, n $). Dans
+chaque cas, dites exactement quelles sont les applications d'attachement.
+\item[(b)] Démontrez qu'une partie compacte d'un CW-complexe ne rencontre qu'un nombre fini de cellules
+ouvertes, et déduisez-en qu'un CW-complexe est compact exactement quand il a un nombre fini de
+cellules.
+\item[(c)] Calculez $ \chi $ pour tous les espaces de (a). Vérifiez $ \chi = 2 - 2g $ pour la surface de
+genre $ g $, et que $ \chi(\mathbb{RP}^n) $ vaut $ 1 $ pour $ n $ pair et $ 0 $ pour $ n $
+impair.
+\item[(d)] Démontrez que pour les CW-complexes finis
+\[ \chi(X \vee Y) = \chi(X) + \chi(Y) - 1 , \qquad \chi(X \times Y) = \chi(X)\,\chi(Y) , \]
+et utilisez ces formules pour calculer $ \chi $ du tore de dimension $ n $, $ (S^1)^n $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent J. H. C. Whitehead a introduit les CW-complexes dans \og{} Combinatorial homotopy I \fg{}
+(1949) --- les lettres signifient \textit{closure-finite} (fermeture finie) avec la topologie \textit{weak}
+(faible) --- et ils ont supplanté presque aussitôt les complexes simpliciaux comme catégorie de travail de
+la topologie algébrique. La raison en est l'économie, visible dès (a) : la sphère $ S^n $ exige au moins
+$ n + 2 $ sommets comme complexe simplicial mais seulement deux cellules ici, et $ \mathbb{RP}^n $
+devient un objet à une cellule par dimension dont on lit presque directement l'homologie. Tout ce qui suit
+sur cette page --- les calculs de Mayer--Vietoris de TOP-43, la théorie de Lefschetz de TOP-44, la propre
+question ouverte de Whitehead en TOP-34 --- est énoncé pour des espaces construits ainsi.
+
+\begin{refs}
+\item Contexte : CW-complexe --- Wikipédia (\url{https://fr.wikipedia.org/wiki/CW-complexe})
+\item Contexte : J. H. C. Whitehead --- Wikipédia (\url{https://fr.wikipedia.org/wiki/J._H._C._Whitehead})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 0 et appendice --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\item Cours : MIT OCW 18.905 Algebraic Topology I (en anglais) (\url{https://ocw.mit.edu/courses/18-905-algebraic-topology-i-fall-2016/})
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{La compacité au-delà des espaces métriques --- Master}]
+\textbf{TOP-13.} \textbf{Problème.} TOP-07 a montré que compacité par recouvrements et compacité séquentielle
+coïncident dans les espaces métriques. Montrez qu'en général elles sont indépendantes :
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Tykhonov pour un produit quelconque de copies de $ [0,1] $ (tout produit
+d'espaces compacts est compact pour la topologie produit), et utilisez-le pour montrer que le cube
+$ [0,1]^{[0,1]} $ --- toutes les applications de $ [0,1] $ dans lui-même, avec la convergence
+ponctuelle --- est compact mais \textit{non} séquentiellement compact.
+\item[(b)] Démontrez que l'espace des ordinaux dénombrables $ [0, \omega_1) $ muni de la topologie de
+l'ordre est séquentiellement compact mais non compact.
+\item[(c)] Localisez l'échec dans chaque direction : quelle étape de la démonstration valable en espace
+métrique se casse, et pourquoi ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Tykhonov a démontré son théorème en 1930 pour les cubes et énoncé le cas général en
+1935 ; Kakutani et d'autres ont montré plus tard qu'il équivaut à l'axiome du choix, et Kelley l'a appelé
+\og{} probablement le plus important théorème isolé de la topologie générale \fg{} --- il sous-tend le théorème de
+Banach--Alaoglu et le théorème de compacité de la logique. Les deux contre-exemples de (a) et (b) sont les
+témoins standard du fait que les suites ne suffisent pas à détecter la topologie en général, ce qui est la
+raison de l'invention des filtres et des suites généralisées (Moore--Smith 1922, Cartan 1937).
+
+\begin{refs}
+\item Contexte : Théorème de Tykhonov --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Tykhonov})
+\item Contexte : Compacité séquentielle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Compacit%C3%A9_s%C3%A9quentielle}), Topologie produit --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Topologie_produit})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 5
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Pas de rétraction, points fixes, et le théorème fondamental de l'algèbre --- Master}]
+\textbf{TOP-14.} \textbf{Problème.} On admet le calcul $ \pi_1(S^1) \cong \mathbb{Z} $ de TOP-12.
+\begin{enumerate}
+\item[(a)] À l'aide de $ \pi_1(S^1) \cong \mathbb{Z} $ (TOP-12), démontrez le théorème de non-rétraction :
+il n'existe pas d'application continue $ r : D^2 \to S^1 $ se restreignant à l'identité sur le cercle
+de bord.
+\item[(b)] Déduisez-en le théorème du point fixe de Brouwer pour $ D^2 $, et démontrez réciproquement que le
+théorème du point fixe entraîne la non-rétraction --- les deux énoncés sont équivalents.
+\item[(c)] Utilisez les indices de lacets pour démontrer le théorème fondamental de l'algèbre : tout polynôme
+complexe non constant a une racine dans $\mathbb{C}$.
+\item[(d)] Énoncez les théorèmes de non-rétraction et de point fixe pour $ D^n $, $ n \ge 3 $, et
+expliquez précisément pourquoi $ \pi_1 $ ne peut pas les démontrer --- identifiez quelle propriété de
+$ S^{n-1} $ fait défaut, et quel invariant (TOP-20) s'impose à la place.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Brouwer a démontré son théorème du point fixe en 1911, dans la même salve de travaux
+qui a établi l'invariance de la dimension ; l'équivalence avec la non-rétraction est l'exemple le plus net
+du geste caractéristique de la topologie, qui convertit un énoncé sur toutes les applications en un énoncé
+sur l'existence d'une seule. La démonstration du théorème fondamental de l'algèbre en (c) est pour
+l'essentiel la première démonstration de Gauss (1799) rendue rigoureuse --- l'indice fournit exactement
+l'argument de continuité sur lequel Gauss passait la main.
+
+\begin{refs}
+\item Contexte : Théorème du point fixe de Brouwer --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_point_fixe_de_Brouwer})
+\item Contexte : Rétraction (topologie) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/R%C3%A9traction})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 1 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de la boule chevelue --- Master}]
+\textbf{TOP-15.} \textbf{Problème.} Un champ de vecteurs tangent sur la sphère $ S^2 $ associe continûment à chaque
+point $ x $ un vecteur $ v(x) $ perpendiculaire à $ x $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de la boule chevelue : tout champ de vecteurs tangent continu sur $ S^2 $
+s'annule quelque part. (Une voie : montrez qu'un champ ne s'annulant nulle part fournirait une homotopie
+entre l'identité de $ S^2 $ et l'application antipodale, et démontrez que celles-ci ne peuvent pas
+être homotopes en comparant les degrés.)
+\item[(b)] Montrez par une construction explicite que le théorème échoue sur le tore : exhibez un champ
+tangent continu ne s'annulant nulle part.
+\item[(c)] Déduisez-en qu'à tout instant il existe un point de la Terre où la vitesse horizontale du vent est
+nulle, et démontrez honnêtement ce corollaire météorologique à partir de (a).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Poincaré a démontré le cas de dimension deux en 1885 dans le cadre de son théorème de
+l'indice pour les champs de vecteurs sur les surfaces --- l'indice total égale la caractéristique d'Euler,
+ce qui explique que le tore ($ \chi = 0 $) y échappe ; Brouwer a étendu l'énoncé à toutes les sphères de
+dimension paire en 1912. La démonstration analytique d'une page de Milnor (1978) est une démonstration
+célèbre du fait que même des théorèmes centenaires peuvent être redémontrés à partir de rien. Le résultat
+sème toute la théorie des classes caractéristiques : des obstructions aux champs et aux sections mesurées
+par la topologie.
+
+\begin{refs}
+\item Contexte : Théorème de la boule chevelue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_la_boule_chevelue})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 2 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\item Article : J. Milnor, \og{} Analytic proofs of the `hairy ball theorem' and the Brouwer fixed point theorem \fg{} (1978), \textit{American Mathematical Monthly} 85
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Borsuk--Ulam et le sandwich au jambon --- Master}]
+\textbf{TOP-16.} \textbf{Problème.} Ce que toute application de la sphère vers le plan doit faire subir à un couple de
+points antipodaux.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Borsuk--Ulam en dimension deux : toute application continue
+$ f : S^2 \to \mathbb{R}^2 $ envoie un couple de points antipodaux sur la même valeur,
+$ f(x) = f(-x) $. (Une voie standard utilise la technologie de relèvement des lacets de TOP-12
+appliquée à l'équateur.)
+\item[(b)] Déduisez-en qu'aucune application continue $ S^2 \to S^1 $ ne commute avec les applications
+antipodales, et que $ S^2 $ ne peut pas se plonger dans $ \mathbb{R}^2 $.
+\item[(c)] Déduisez-en le théorème du sandwich au jambon : pour trois solides mesurables bornés quelconques de
+$ \mathbb{R}^3 $ (pain, jambon, pain), un même plan coupe les trois exactement en deux parts de volume
+égal.
+\item[(d)] Déduisez-en également la vedette météorologique : à tout instant il existe deux points antipodaux
+de la Terre ayant la même température \textit{et} la même pression.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Stanisław Ulam a posé la conjecture et Karol Borsuk l'a démontrée en 1933 ; le
+corollaire du sandwich au jambon avait été posé par Steinhaus et a été démontré via Borsuk--Ulam par Stone
+et Tukey en 1942 dans toute sa généralité ($ n $ solides dans $ \mathbb{R}^n $). Le théorème est
+strictement plus fort que le théorème du point fixe de Brouwer, et il est devenu ces dernières décennies
+un cheval de trait de la combinatoire : la démonstration par Lovász de la conjecture de Kneser (1978) et
+le théorème du partage de collier en découlent tous deux, histoire magnifiquement racontée dans le
+\textit{Using the Borsuk--Ulam Theorem} de Matoušek.
+
+\begin{refs}
+\item Contexte : Théorème de Borsuk-Ulam --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Borsuk-Ulam})
+\item Contexte : Théorème du sandwich au jambon --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_sandwich_au_jambon})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 1 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Revêtements --- Master}]
+\textbf{TOP-17.} \textbf{Problème.} Un revêtement $ p : \tilde{X} \to X $ est une surjection continue dont chaque
+fibre admet un voisinage uniformément recouvert --- un voisinage dont la préimage est une réunion
+disjointe de copies de lui.
+\begin{enumerate}
+\item[(a)] Démontrez les propriétés de relèvement des chemins et des homotopies pour les
+revêtements.
+\item[(b)] Déterminez tous les revêtements connexes du cercle, avec démonstration.
+\item[(c)] Montrez que $ \mathbb{R}^2 \to T^2 $ (quotient par $ \mathbb{Z}^2 $) et
+$ S^2 \to \mathbb{RP}^2 $ (quotient antipodal) sont des revêtements universels --- des revêtements
+simplement connexes --- et utilisez le second pour démontrer que
+$ \pi_1(\mathbb{RP}^2) \cong \mathbb{Z}/2 $.
+\item[(d)] Construisez le revêtement universel du huit, montrez que c'est un arbre $ 4 $-valent infini, et
+déduisez-en que $ \pi_1 $ du huit est le groupe libre à deux générateurs.
+\item[(e)] Démontrez que pour un revêtement universel, le groupe des automorphismes de revêtement --- les
+homéomorphismes de $ \tilde{X} $ commutant avec $ p $ --- est isomorphe à $ \pi_1(X) $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les revêtements descendent des surfaces de Riemann pour les fonctions multiformes
+(1851) et du revêtement universel implicite dans les travaux d'uniformisation de Poincaré ; la
+correspondance moderne, à la Galois, entre sous-groupes de $ \pi_1 $ et revêtements a été systématisée
+dans les années 1920--30. La question (d) est un petit miracle --- un fait purement algébrique sur les
+groupes libres (les sous-groupes d'un groupe libre sont libres, théorème de Nielsen--Schreier) devient
+transparent lu à travers la topologie des arbres, un aperçu précoce de la théorie géométrique des
+groupes.
+
+\begin{refs}
+\item Contexte : Revêtement (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Rev%C3%AAtement_(math%C3%A9matiques)})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 1 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 13
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Van Kampen et les groupes de surfaces --- Master}]
+\textbf{TOP-18.} \textbf{Problème.} Le théorème de Seifert--Van Kampen calcule $ \pi_1(U \cup V) $ à partir de
+$ \pi_1(U) $, $ \pi_1(V) $ et $ \pi_1(U \cap V) $ lorsque $ U, V $ sont ouverts et connexes par
+arcs, d'intersection connexe par arcs.
+\begin{enumerate}
+\item[(a)] Utilisez-le pour montrer que $ \pi_1 $ d'un bouquet de $ n $ cercles est libre à $ n $
+générateurs.
+\item[(b)] À partir des présentations carrées de TOP-09, calculez les présentations
+\[ \pi_1(T^2) = \langle a, b \mid aba^{-1}b^{-1} \rangle, \quad
+\pi_1(K) = \langle a, b \mid abab^{-1} \rangle, \quad
+\pi_1(\mathbb{RP}^2) = \langle a \mid a^2 \rangle \cong \mathbb{Z}/2 , \]
+de sorte qu'en particulier le groupe du tore est $ \mathbb{Z}^2 $.
+\item[(c)] Calculez les abélianisés des groupes fondamentaux de toutes les surfaces compactes (orientables de
+genre $ g $, non orientables à $ k $ bonnets croisés) et concluez qu'aucune paire de surfaces de la
+liste de classification de TOP-19 n'est formée de surfaces homéomorphes --- achevant ainsi la moitié
+\og{} distinction \fg{} de ce théorème.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Seifert (1931) et van Kampen (1933) ont démontré indépendamment des versions du
+théorème de recollement ; c'est le principal moteur de calcul du groupe fondamental, convertissant
+directement les présentations par découpage-collage des surfaces en générateurs et relations. La question
+(c) boucle une boucle : les invariants abélianisés sont exactement les premiers groupes d'homologie de
+Poincaré, si bien que le problème redécouvre discrètement l'homologie une page avant que TOP-20 ne la
+définisse comme il faut. Les groupes de surfaces eux-mêmes ont connu une seconde vie comme objets
+fondamentaux de la théorie géométrique des groupes.
+
+\begin{refs}
+\item Contexte : Théorème de Seifert--Van Kampen --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_van_Kampen})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 1 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 11
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La classification des surfaces compactes --- Master}]
+\textbf{TOP-19.} \textbf{Problème.} Démontrez le théorème de classification : toute surface compacte connexe (variété
+de dimension 2 sans bord, supposée triangulable) est homéomorphe à exactement l'une des surfaces
+suivantes --- la sphère, une somme connexe de $ g \ge 1 $ tores, ou une somme connexe de $ k \ge 1 $
+plans projectifs. Suivez la voie classique :
+\begin{enumerate}
+\item[(a)] montrez que toute surface compacte triangulée admet une présentation polygonale (un seul polygone
+dont les arêtes sont identifiées deux à deux) ;
+\item[(b)] ramenez une telle présentation à une forme normale par des mouvements de découpage-collage ;
+\item[(c)] vérifiez les caractéristiques d'Euler $ \chi = 2 - 2g $ et $ \chi = 2 - k $, et démontrez que
+la caractéristique d'Euler jointe à l'orientabilité distingue toutes les formes normales (TOP-18(c)
+fournit la moitié théorie des groupes).
+\end{enumerate}
+
+\end{problem}
+
+\noindent La classification est la première réponse complète de la topologie à une question du
+type \og{} dressez la liste de tous les espaces \fg{}. Möbius a classifié les surfaces orientables en 1863 ; Dyck
+et d'autres ont traité le cas non orientable ; des démonstrations pleinement rigoureuses sont venues avec
+Dehn et Heegaard (1907) et avec le théorème de Radó de 1925 selon lequel toute surface est triangulable.
+La complétude à deux invariants du théorème --- genre et orientabilité suffisent --- a fixé le modèle de toute
+classification rêvée depuis, et l'absence de toute liste comparable en dimension trois est exactement ce
+qui a rendu la conjecture de Poincaré (voir la bande Recherche) si difficile.
+
+\begin{refs}
+\item Contexte : Classification des surfaces --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Classification_des_surfaces})
+\item Contexte : Genre (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Genre_(math%C3%A9matiques)})
+\item Lecture : M. A. Armstrong, \textit{Basic Topology}, ch. 7
+\item Lecture : J. R. Munkres, \textit{Topology}, ch. 12
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Premiers pas en homologie simpliciale --- Master}]
+\textbf{TOP-20.} \textbf{Problème.} Pour un complexe simplicial, le $ n $-ième groupe de chaînes est le groupe
+abélien libre sur les $ n $-simplexes ; les applications de bord $ \partial_n $ envoient un simplexe
+sur la somme alternée de ses faces ; l'homologie est
+\[ H_n = \ker \partial_n / \operatorname{im} \partial_{n+1} . \]
+\begin{enumerate}
+\item[(a)] Démontrez que $ \partial_{n} \circ \partial_{n+1} = 0 $, de sorte que la définition ait un
+sens.
+\item[(b)] Calculez tous les groupes d'homologie du cercle, de la sphère $ S^2 $, du tore, de la bouteille
+de Klein et de $ \mathbb{RP}^2 $ à partir de triangulations explicites (ou de structures de
+$\Delta$-complexes), et confrontez les réponses à l'intuition : $ H_0 $ compte les composantes, $ H_1 $
+compte les lacets indépendants, $ H_2 $ détecte le volume enclos et l'orientabilité.
+\item[(c)] Démontrez la formule d'Euler--Poincaré : la somme alternée des rangs des groupes d'homologie vaut
+$ V - E + F $ pour toute triangulation --- la caractéristique d'Euler de TOP-02 est donc indépendante
+de la triangulation.
+\item[(d)] Expliquez comment l'homologie en dimension $ n - 1 $ démontre le théorème de non-rétraction pour
+$ D^n $, achevant TOP-14(d).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Poincaré a introduit la machinerie (sous forme de nombres de Betti et de coefficients
+de torsion) dans \textit{Analysis Situs} ; Emmy Noether a observé dans les années 1920 que ces nombres
+étaient les ombres de groupes abéliens, et la forme moderne est due à son entourage. L'homologie est plus
+difficile à définir que le groupe fondamental mais bien plus facile à calculer --- un échange que démontre la
+question (b) --- et elle fonctionne en toute dimension, ce qu'exploite la question (d). Cette porte ouvre
+sur l'homologie singulière, la cohomologie et la topologie algébrique des chapitres 2 et 3 de
+Hatcher.
+
+\begin{refs}
+\item Contexte : Homologie simpliciale --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Simplicial_homology})
+\item Contexte : Complexe simplicial --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Complexe_simplicial}), Homologie (mathématiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Homologie_(math%C3%A9matiques)})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, ch. 2 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\item Cours : MIT OCW 18.905 Algebraic Topology I (en anglais) (\url{https://ocw.mit.edu/courses/18-905-algebraic-topology-i-fall-2016/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le nœud de trèfle est vraiment noué --- Master}]
+\textbf{TOP-21.} \textbf{Problème.} Un nœud est un cercle plongé dans $ \mathbb{R}^3 $, étudié à travers ses
+diagrammes ; deux diagrammes représentent le même nœud exactement lorsqu'ils sont reliés par des
+déformations planes et les trois mouvements de Reidemeister. On dit qu'un diagramme est
+\textit{tricoloriable} si chaque arc peut être colorié avec l'une de trois couleurs de sorte qu'à chaque
+croisement les trois arcs qui se rencontrent aient toutes les couleurs identiques ou toutes différentes,
+et qu'au moins deux couleurs soient employées.
+\begin{enumerate}
+\item[(a)] Démontrez que la tricoloriabilité est préservée par chacun des trois mouvements de Reidemeister ---
+c'est un invariant de nœud.
+\item[(b)] Montrez que le diagramme standard du nœud de trèfle est tricoloriable et que le diagramme rond du
+nœud trivial ne l'est pas, et concluez que le trèfle ne peut pas être dénoué.
+\item[(c)] Montrez que le nœud de huit n'est \textit{pas} tricoloriable, et expliquez ce que cela vous apprend
+et ce que cela ne vous apprend pas.
+\item[(d)] Généralisez : définissez la $ p $-coloriabilité pour un nombre premier impair $ p $, démontrez
+l'invariance, et trouvez un $ p $ qui distingue le nœud de huit du nœud trivial.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La théorie des nœuds a commencé avec la spéculation de Kelvin en 1867 selon laquelle
+les atomes seraient des tubes de tourbillon noués, ce qui a lancé Tait dans la tabulation des nœuds ; les
+mathématiques ont survécu à la physique. Reidemeister a démontré en 1927 que ses mouvements suffisent,
+rendant l'équivalence de nœuds combinatoire, et l'astuce du tricoloriage --- avatar des représentations du
+groupe du nœud, introduit par Ralph Fox vers 1956 --- est la démonstration honnête la plus simple qu'un nœud
+est non trivial. La question (d) ouvre la porte à l'industrie moderne des invariants de nœuds : Alexander,
+Jones et au-delà (voir TOP-23 et TOP-24).
+
+\begin{refs}
+\item Contexte : Tricolorabilité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Tricolorabilit%C3%A9})
+\item Contexte : Nœud de trèfle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/N%C5%93ud_de_tr%C3%A8fle}), Mouvements de Reidemeister --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mouvements_de_Reidemeister})
+\item Lecture : C. C. Adams, \textit{The Knot Book}, ch. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ajouter un point à l'infini --- Master, short}]
+\textbf{TOP-31.} \textbf{Problème.} Pour un espace localement compact séparé $ X $, soit
+$ X^* = X \cup \{\infty\} $ muni de la topologie dont les ouverts sont les ouverts de $ X $ ainsi
+que les ensembles $ X^* \setminus K $ pour $ K \subseteq X $ compact et fermé. Démontrez que
+$ X^* $ est compact séparé et que $ (\mathbb{R}^n)^* $ est homéomorphe à la sphère
+$ S^n $.
+\end{problem}
+
+\noindent Pavel Alexandroff a introduit cette construction en 1924 : un point de plus, et un
+espace qui filait à l'infini devient compact. L'homéomorphisme de la seconde moitié est la projection
+stéréographique lue à l'envers, et c'est la raison pour laquelle $ \mathbb{C} \cup \{\infty\} $
+s'appelle la sphère de Riemann --- l'image la plus utile de toute l'analyse complexe.
+
+\begin{refs}
+\item Contexte : Compactifié d'Alexandrov --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Compactifi%C3%A9_d'Alexandrov})
+\item Lecture : J. R. Munkres, \textit{Topology}, \S{}29
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une application qui rate un point est de degré zéro --- Master, short}]
+\textbf{TOP-32.} \textbf{Problème.} Soit $ f : S^n \to S^n $ continue et non surjective. Démontrez
+que $ f $ est homotope à une application constante, et concluez que $ \deg f = 0 $.
+\end{problem}
+
+\noindent Le degré d'une application de la sphère dans elle-même --- l'entier par lequel $ f $
+multiplie la classe d'homologie de tête --- est l'invariant de Brouwer, datant des environs de 1910, et ce
+lemme de deux lignes est le levier qui le transforme en géométrie. C'est l'étape qui fait fonctionner les
+démonstrations standard du théorème de la boule chevelue (TOP-15) et du théorème du point fixe de Brouwer
+(TOP-14) : une application sans point fixe rate quelque chose, et une application qui rate quelque chose ne
+peut pas être de degré $ (-1)^{n+1} $.
+
+\begin{refs}
+\item Contexte : Degré d'une application continue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Degr%C3%A9_d'une_application})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, \S{}2.2 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le lemme d'Urysohn, et ce qu'achète la séparation --- Master}]
+\textbf{TOP-33.} \textbf{Problème.} On dit qu'un espace topologique $ X $ est \textit{normal} si les singletons sont
+fermés et si deux fermés disjoints quelconques admettent des voisinages ouverts disjoints. Rien dans
+cette hypothèse ne mentionne les nombres réels.
+\begin{enumerate}
+\item[(a)] Démontrez le lemme d'Urysohn : si $ A $ et $ B $ sont des fermés disjoints d'un espace normal
+$ X $, il existe une application continue $ f : X \to [0,1] $ avec $ f \equiv 0 $ sur $ A $ et
+$ f \equiv 1 $ sur $ B $. (Construisez une famille d'ouverts indexée par les rationnels dyadiques de
+$ [0,1] $, emboîtés de sorte que les adhérences respectent l'ordre, et lisez $ f $ sur la
+famille.)
+\item[(b)] Montrez que dans un espace métrique la fonction
+\[ f(x) = \frac{d(x,A)}{d(x,A) + d(x,B)} \]
+fait immédiatement l'affaire, et expliquez ce qui manque à un espace normal général et rend la question
+(a) tellement plus longue.
+\item[(c)] Déduisez-en le théorème de prolongement de Tietze : une fonction continue à valeurs réelles sur un
+sous-espace fermé d'un espace normal se prolonge en une fonction continue sur l'espace entier.
+\item[(d)] Démontrez le théorème de métrisation d'Urysohn : tout espace régulier à base dénombrable se plonge
+dans le cube de Hilbert $ [0,1]^{\mathbb{N}} $, et est donc métrisable --- bouclant la boucle ouverte
+par TOP-05(d).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Pavel Urysohn s'est noyé en 1924 en nageant au large de la Bretagne, à 26 ans ; le
+lemme a paru à titre posthume, édité par Alexandroff, et c'est le moment où la topologie générale cesse
+d'être de la comptabilité. Munkres l'appelle le premier théorème profond de son livre, et la raison est la
+question (b) : les axiomes de séparation sont de pures hypothèses ensemblistes sur les ouverts, et pourtant
+ils fabriquent une fonction continue à valeurs réelles à partir de rien. Tout ce qui permet à la topologie
+de parler à l'analyse --- partitions de l'unité, plongements dans des cubes, théorèmes de prolongement ---
+passe par cette construction.
+
+\begin{refs}
+\item Contexte : Lemme d'Urysohn --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_d'Urysohn})
+\item Contexte : Théorème de prolongement de Tietze --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_prolongement_de_Tietze}), Espace métrisable (théorème de métrisation d'Urysohn) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_m%C3%A9trisable})
+\item Lecture : J. R. Munkres, \textit{Topology}, \S{}33--34, \S{}40
+\item Cours : MIT OCW 18.901 Introduction to Topology (en anglais) (\url{https://ocw.mit.edu/courses/18-901-introduction-to-topology-fall-2004/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'application de Hopf est essentielle --- Master, short}]
+\textbf{TOP-42.} \textbf{Problème.} Soit $ h : S^3 \to S^2 $ l'application de Hopf, définie sur les
+vecteurs unitaires $ (z_1, z_2) \in \mathbb{C}^2 $ par
+\[ h(z_1, z_2) = [\, z_1 : z_2 \,] \in \mathbb{CP}^1 \cong S^2 . \]
+Démontrez que $ h $ n'est pas homotope à une application constante, et concluez que
+$ \pi_3(S^2) \neq 0 $.
+\end{problem}
+
+\noindent Heinz Hopf a publié cette application en 1931, et elle a renversé l'attente régnante :
+l'homologie d'une sphère s'annule au-dessus de sa propre dimension, si bien que tout le monde supposait
+qu'il en irait de même pour l'homotopie. Il n'en est rien. Chaque fibre $ h^{-1}(p) $ est un grand
+cercle, deux fibres quelconques sont enlacées exactement une fois, et ce nombre d'enlacement ---
+l'invariant de Hopf --- est ce qui obstrue l'homotopie nulle ; la même application présente $ S^3 $ comme
+un fibré de fibre $ S^1 $ au-dessus de $ S^2 $. La réponse complète est
+$ \pi_3(S^2) \cong \mathbb{Z} $, engendré par $ h $, et le calcul de $ \pi_{n+k}(S^n) $ en général
+reste l'un des grands chantiers inachevés de la topologie.
+
+\begin{refs}
+\item Contexte : Fibration de Hopf --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fibration_de_Hopf})
+\item Contexte : Groupes d'homotopie des sphères --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Groupes_d'homotopie_des_sph%C3%A8res}), Fibré --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fibr%C3%A9})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, \S{}4.2 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Couper les espaces en deux : Mayer--Vietoris --- Master}]
+\textbf{TOP-43.} \textbf{Problème.} Soit $ X = A \cup B $ avec $ A, B $ ouverts (ou une paire CW avec les
+ajustements évidents). La suite de Mayer--Vietoris est la suite exacte longue
+\[ \cdots \to H_n(A \cap B) \to H_n(A) \oplus H_n(B) \to H_n(X)
+\xrightarrow{\ \partial\ } H_{n-1}(A \cap B) \to \cdots \]
+\begin{enumerate}
+\item[(a)] Établissez-la : écrivez la suite exacte courte de complexes de chaînes dont elle provient,
+expliquez pourquoi le terme du milieu peut être remplacé par des chaînes petites relativement au
+recouvrement (c'est là qu'interviennent la subdivision barycentrique et le lemme du nombre de Lebesgue
+de TOP-29), et appliquez le lemme du serpent.
+\item[(b)] Calculez $ H_*(S^n) $ pour tout $ n $ par récurrence, en recouvrant la sphère par deux ouverts
+contractiles dont l'intersection se rétracte par déformation sur $ S^{n-1} $.
+\item[(c)] Calculez l'homologie de la surface fermée orientable $ \Sigma_g $ de genre $ g $ en la coupant
+en un disque et un voisinage d'un bouquet de $ 2g $ cercles, obtenant les nombres de Betti
+$ 1, 2g, 1 $. Faites de même pour la surface non orientable à $ k $ bonnets croisés et trouvez où
+apparaît la torsion.
+\item[(d)] Soit $ K \subseteq S^3 $ un nœud de voisinage tubulaire $ N $. Appliquez la suite à
+$ A = N $ et $ B = S^3 \setminus K $ --- leur intersection est un tore --- et démontrez que
+$ H_1(S^3 \setminus K) \cong \mathbb{Z} $ pour \textit{tout} nœud. Concluez que l'homologie seule ne peut
+jamais distinguer le trèfle du nœud trivial, et dites ce que TOP-21 utilise à la place.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Walther Mayer a traité un cas particulier en 1929 et Leopold Vietoris le cas général
+peu après --- Vietoris, un Autrichien qui publiait encore à plus de quatre-vingt-dix ans, a vécu jusqu'à
+110 ans. Leur suite est le cheval de trait calculatoire de l'homologie : elle transforme le geste
+géométrique consistant à couper un espace en deux morceaux en une recette algébrique, exactement comme
+Seifert--van Kampen (TOP-18) le fait pour le groupe fondamental. La question (d) est le cas le plus simple
+de la dualité d'Alexander, et sa conclusion négative est la raison pour laquelle la théorie des nœuds a dû
+inventer des invariants plus fins que l'homologie.
+
+\begin{refs}
+\item Contexte : Suite de Mayer--Vietoris --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Suite_de_Mayer-Vietoris})
+\item Contexte : Nombre de Betti --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Nombre_de_Betti}), Dualité d'Alexander --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Dualit%C3%A9_d'Alexander})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, \S{}2.2 --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\item Cours : MIT OCW 18.905 Algebraic Topology I (en anglais) (\url{https://ocw.mit.edu/courses/18-905-algebraic-topology-i-fall-2016/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Compter les points fixes avec le nombre de Lefschetz --- Master}]
+\textbf{TOP-44.} \textbf{Problème.} Pour un CW-complexe fini $ X $ (TOP-41) et une application continue
+$ f : X \to X $, on définit le nombre de Lefschetz
+\[ \Lambda(f) = \sum_{n \ge 0} (-1)^n \operatorname{tr}\Big( f_* : H_n(X;\mathbb{Q}) \to H_n(X;\mathbb{Q}) \Big) . \]
+Le théorème du point fixe de Lefschetz affirme que si $ \Lambda(f) \neq 0 $ alors $ f $ a un point
+fixe. On admet le théorème à partir de la question (b).
+\begin{enumerate}
+\item[(a)] Démontrez que $ \Lambda(\mathrm{id}_X) = \chi(X) $, et déduisez-en que sur un espace de
+caractéristique d'Euler non nulle toute application homotope à l'identité a un point fixe.
+\item[(b)] Démontrez qu'un CW-complexe fini dont l'homologie rationnelle est celle d'un point a la propriété
+du point fixe, et déduisez-en le théorème du point fixe de Brouwer pour $ D^n $ --- une seconde voie
+vers TOP-14(d).
+\item[(c)] Pour $ f : S^n \to S^n $ de degré $ d $, calculez $ \Lambda(f) $. Déduisez-en qu'une
+application de $ S^n $ dans elle-même sans point fixe est de degré $ (-1)^{n+1} $, et utilisez cela
+pour démontrer le théorème de la boule chevelue (TOP-15) pour toute sphère de dimension paire.
+\item[(d)] Démontrez que toute application continue de $ \mathbb{RP}^{2n} $ dans lui-même a un point fixe,
+et montrez que cela échoue en dimension impaire en exhibant une application de
+$ \mathbb{RP}^{2n+1} $ dans lui-même sans point fixe.
+\item[(e)] Montrez que le théorème ne donne aucune information dans l'autre sens : exhibez une application
+avec $ \Lambda(f) = 0 $ qui a des points fixes, et une avec $ \Lambda(f) = 0 $ qui n'en a
+pas.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Solomon Lefschetz a démontré sa formule en 1926, et Hopf l'a bientôt étendue à tous les
+complexes finis ; c'est le théorème qui a rendu calculables les questions de points fixes, puisque
+$ \Lambda $ ne dépend que des applications induites en homologie, lesquelles ne dépendent que de la
+classe d'homotopie de $ f $. Le théorème de Brouwer est le cas particulier où l'espace n'a pour ainsi
+dire pas d'homologie. L'idée ne s'est pas arrêtée là : le théorème du point fixe d'Atiyah et Bott (1966)
+est le même énoncé pour les complexes elliptiques, et la démonstration des conjectures de Weil par
+Grothendieck compte les points d'une variété sur un corps fini comme les points fixes de Lefschetz du
+morphisme de Frobenius.
+
+\begin{refs}
+\item Contexte : Théorème du point fixe de Lefschetz --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_point_fixe_de_Lefschetz})
+\item Contexte : Degré d'une application continue --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Degr%C3%A9_d'une_application})
+\item Lecture : A. Hatcher, \textit{Algebraic Topology}, \S{}2.C --- gratuit sur la page de l'auteur (en anglais) (\url{https://pi.math.cornell.edu/\textasciitilde{}hatcher/AT/ATpage.html})
+\item Cours : MIT OCW 18.905 Algebraic Topology I (en anglais) (\url{https://ocw.mit.edu/courses/18-905-algebraic-topology-i-fall-2016/})
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{La conjecture de Poincaré lisse en dimension quatre --- Recherche}]
+\textbf{TOP-22.} \textbf{Problème.} (Ouvert.) La question de Poincaré lisse dans la seule dimension où elle tient
+encore.
+\begin{enumerate}
+\item[(a)] Toute variété lisse de dimension $ 4 $ homotopiquement équivalente à la sphère $ 4 $-dimensionnelle
+est-elle réellement \textit{difféomorphe} à $ S^4 $ ? De manière équivalente : $ S^4 $ admet-elle une
+structure lisse exotique --- une variété lisse qui lui est homéomorphe mais non difféomorphe ?
+\item[(b)] Une tâche d'entrée abordable : rédigez un panorama soigné expliquant pourquoi la dimension quatre
+est différente, en exposant ce que l'on sait dans toutes les autres dimensions et où les outils standard
+de dimension supérieure (théorème du h-cobordisme, astuce de Whitney) s'effondrent en dimension
+quatre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La conjecture de Poincaré topologique est réglée en toute dimension : Smale a démontré
+les dimensions $ \ge 5 $ (1961), Freedman la dimension quatre (1982) et Perelman la dimension trois
+(2003, via le flot de Ricci --- le cas du prix du millénaire, traité sur notre page Problèmes ouverts). La
+question \textit{lisse} en dimension quatre est la dernière debout, et en 2026 elle est ouverte. La dimension
+quatre est réellement étrange : les travaux de Freedman et de Donaldson ont ensemble produit des structures
+lisses exotiques sur $ \mathbb{R}^4 $ --- sur aucun autre $ \mathbb{R}^n $ il n'en existe --- et de
+nombreuses candidates $ 4 $-sphères exotiques (sphères de Cappell--Shaneson, torsions de Gluck) ont été
+proposées, de grandes familles s'avérant ensuite standard (Akbulut 2010, Gompf). Les approches par la
+théorie des nœuds (Freedman--Gompf--Morrison--Walker 2010 ; Manolescu--Piccirillo 2021) restent actives ; des
+démonstrations périodiquement annoncées n'ont jusqu'ici pas résisté à l'examen, et il n'existe ni
+démonstration consensuelle ni contre-exemple.
+
+\begin{refs}
+\item Contexte : Conjecture de Poincaré généralisée --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Generalized_Poincar%C3%A9_conjecture})
+\item Contexte : Variété de dimension 4 --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/4-manifold}), R4 exotique --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Exotic_R4})
+\item Article : M. Freedman, \og{} The topology of four-dimensional manifolds \fg{} (1982), \textit{Journal of Differential Geometry} 17
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture bordant-ruban --- Recherche}]
+\textbf{TOP-23.} \textbf{Problème.} (Ouvert.) Un nœud de $ S^3 = \partial B^4 $ est \textit{bordant} (slice) s'il borde
+un disque lissement plongé dans la boule de dimension quatre $ B^4 $, et \textit{ruban} s'il borde un
+disque immergé dans $ S^3 $ dont les seules auto-intersections sont des singularités en ruban --- des
+arcs où une nappe traverse proprement une autre. La conjecture bordant-ruban de Fox affirme que ces deux
+notions coïncident.
+\begin{enumerate}
+\item[(a)] Démontrez que tout nœud ruban est bordant.
+\item[(b)] Montrez que la somme connexe d'un nœud quelconque avec son image miroir inversée est ruban (les
+nœuds bordants sont donc abondants).
+\item[(c)] Étudiez pourquoi le caractère bordant est véritablement quadridimensionnel.
+\item[(d)] La conjecture elle-même : démontrez que tout nœud bordant est ruban, ou trouvez un
+contre-exemple.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Ralph Fox a posé la question en 1962, et elle est devenue un problème organisateur
+central de la théorie des nœuds en dimension quatre, situé juste sous TOP-22 --- le caractère bordant de
+nœuds particuliers est intimement lié à la recherche de sphères de dimension quatre exotiques. La
+conjecture est démontrée pour de grandes familles : nœuds à deux ponts (Lisca 2007, via une théorie de
+jauge à la Donaldson), nœuds pretzel à trois brins (Greene--Jabuka 2011), et d'autres ; des
+contre-exemples potentiels sont régulièrement proposés puis écartés. En 2026 la conjecture générale est
+ouverte dans les deux directions --- ni démonstration, ni contre-exemple.
+
+\begin{refs}
+\item Contexte : Nœud bordant --- Wikipédia (\url{https://fr.wikipedia.org/wiki/N%C5%93ud_bordant}), Nœud ruban --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Ribbon_knot})
+\item Article : P. Lisca, \og{} Lens spaces, rational balls and the ribbon conjecture \fg{} (2007), \textit{Geometry \& Topology} 11
+\item Article : J. Greene et S. Jabuka, \og{} The slice-ribbon conjecture for 3-stranded pretzel knots \fg{} (2011), arXiv:0706.3398 (\url{https://arxiv.org/abs/0706.3398})
+\item Lecture : C. C. Adams, \textit{The Knot Book}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Reconnaître le nœud trivial : à quel prix ? --- Recherche}]
+\textbf{TOP-24.} \textbf{Problème.} (Partiellement résolu ; la question centrale est ouverte.) RECONNAISSANCE DU NŒUD
+TRIVIAL est le problème de décision suivant : étant donné un diagramme de nœud à $ n $ croisements,
+est-ce un diagramme du nœud trivial ?
+\begin{enumerate}
+\item[(a)] Montrez que le problème est décidable en principe à partir des mouvements de Reidemeister
+\textit{si l'on dispose} d'une borne supérieure sur le nombre de mouvements nécessaires, et expliquez
+pourquoi aucune telle borne n'est évidente.
+\item[(b)] Parcourez la raison pour laquelle la théorie des surfaces normales de Haken fournit un
+algorithme.
+\item[(c)] La question centrale : déterminez la complexité algorithmique du problème --- en particulier, s'il
+existe un algorithme en temps polynomial.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Haken a donné le premier algorithme en 1961 via les surfaces normales. Hass, Lagarias
+et Pippenger ont démontré en 1999 que le problème est dans NP ; Kuperberg (2014) a montré l'appartenance à
+co-NP en supposant l'hypothèse de Riemann généralisée, et Lackenby (2016, publié en 2021) a retiré cette
+hypothèse, de sorte que la trivialité admet des certificats courts dans les deux directions --- indice fort,
+au vu des croyances standard en complexité, que le problème n'est pas NP-complet. En 2021 Lackenby a
+annoncé un algorithme de reconnaissance du nœud trivial s'exécutant en temps quasi polynomial
+$ n^{O(\log n)} $. En 2026, aucun algorithme en temps polynomial n'est connu et aucun n'est démontré
+impossible ; savoir si RECONNAISSANCE DU NŒUD TRIVIAL est dans P est un problème authentiquement ouvert, à
+cheval sur la topologie et l'informatique.
+
+\begin{refs}
+\item Contexte : Problème de reconnaissance du nœud trivial --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Unknotting_problem})
+\item Article : J. Hass, J. C. Lagarias, N. Pippenger, \og{} The computational complexity of knot and link problems \fg{} (1999), \textit{Journal of the ACM} 46
+\item Article : M. Lackenby, \og{} The efficient certification of knottedness and Thurston norm \fg{} (2021), \textit{Advances in Mathematics}, arXiv:1604.00290 (\url{https://arxiv.org/abs/1604.00290})
+\item Article : M. Lackenby, \og{} Unknot recognition in quasi-polynomial time \fg{} (annoncé en 2021), diapositives d'exposé, Oxford (en anglais) (\url{https://people.maths.ox.ac.uk/lackenby/quasipolynomial-talk-oxford-compressed.pdf})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La question d'asphéricité de Whitehead --- Recherche, short}]
+\textbf{TOP-34.} \textbf{Problème.} (Ouvert.) On dit qu'un CW-complexe connexe est \textit{asphérique} si
+$ \pi_n = 0 $ pour tout $ n \ge 2 $, autrement dit si son revêtement universel est contractile.
+Tranchez la question posée par J. H. C. Whitehead en 1941 : tout sous-complexe connexe d'un CW-complexe
+asphérique de dimension deux est-il lui-même asphérique ?
+\end{problem}
+
+\noindent Whitehead a soulevé la question à la fin d'un article sur l'ajout de relations aux
+groupes d'homotopie, et elle résiste depuis --- un rare problème ouvert dont l'énoncé n'exige rien de plus
+qu'un premier cours de topologie algébrique. James Howie l'a réduite dans les années 1980 à deux
+configurations particulières, et elle est connue pour de larges classes de complexes (par exemple ceux dont
+le groupe fondamental est de présentation finie et localement indicable), mais en 2026 ni démonstration ni
+contre-exemple n'est connu ; un contre-exemple réglerait aussi des questions voisines en théorie
+combinatoire des groupes.
+
+\begin{refs}
+\item Contexte : Conjecture de Whitehead --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Whitehead_conjecture}), Espace asphérique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_asph%C3%A9rique})
+\item Article : J. H. C. Whitehead, \og{} On adding relations to homotopy groups \fg{} (1941), \textit{Annals of Mathematics} 42
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture d'effondrement de Zeeman --- Recherche, short}]
+\textbf{TOP-35.} \textbf{Problème.} (Ouvert.) Un polyèdre fini \textit{s'effondre} s'il peut être réduit
+à un point en supprimant à répétition une face libre avec l'unique cellule qui la contient. Tranchez la
+conjecture de Zeeman : pour tout polyèdre contractile $ K $ de dimension deux, le produit
+$ K \times I $ est-il effondrable, où $ I = [0,1] $ ?
+\end{problem}
+
+\noindent Contractile n'implique pas effondrable --- le bonnet d'âne de Zeeman lui-même (1964), un
+triangle dont les trois arêtes sont recollées selon un cycle mal appareillé, en est le témoin standard, et
+pourtant le bonnet d'âne multiplié par un intervalle, lui, s'effondre. Zeeman a conjecturé qu'il en va
+toujours ainsi ; sa conjecture implique à la fois la conjecture de Poincaré (réglée par Perelman en 2003)
+et la conjecture d'Andrews--Curtis (toujours ouverte), ce qui donne une juste mesure de sa difficulté. Des
+résultats partiels sont connus --- le produit d'un 2-polyèdre contractile par un cube d'assez grande
+dimension s'effondre --- mais en 2026 la conjecture elle-même est ouverte.
+
+\begin{refs}
+\item Contexte : Conjecture de Zeeman --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Zeeman_conjecture}), Bonnet d'âne (topologie) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Dunce_hat_(topology)})
+\item Article : E. C. Zeeman, \og{} On the dunce hat \fg{} (1964), \textit{Topology} 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de Novikov --- Recherche}]
+\textbf{TOP-36.} \textbf{Problème.} (Ouvert.) Soit $ M $ une variété lisse close orientée de groupe fondamental
+$ \pi $, soit $ L(M) $ sa $ L $-classe de Hirzebruch, et soit $ u : M \to B\pi $ l'application
+classifiant le revêtement universel. Les \textit{signatures supérieures} de $ M $ sont les nombres
+rationnels
+\[ \sigma_x(M) \;=\; \big\langle\, L(M) \smile u^*(x),\; [M] \,\big\rangle , \qquad
+x \in H^*(B\pi; \mathbb{Q}) . \]
+\begin{enumerate}
+\item[(a)] Prenez $ \dim M = 4k $, de sorte que la signature de la forme d'intersection sur
+$ H^{2k}(M;\mathbb{R}) $ soit définie. Vérifiez que pour $ \pi $ trivial la seule signature
+supérieure est $ \langle L(M), [M] \rangle $, et énoncez le théorème de la signature de Hirzebruch,
+selon lequel ce nombre est exactement cette signature.
+\item[(b)] Démontrez que la signature elle-même est un invariant d'équivalence d'homotopie orientée, en
+utilisant seulement qu'elle est déterminée par la forme cup-produit sur la cohomologie de dimension
+médiane.
+\item[(c)] Expliquez pourquoi la conjecture n'est pas une formalité : les classes de Pontryagin rationnelles,
+et donc $ L(M) $, ne sont \textit{pas} des invariants d'homotopie en général, bien que Novikov ait
+démontré en 1965 que ce sont des invariants topologiques.
+\item[(d)] La conjecture : démontrez que toute signature supérieure est un invariant d'équivalence d'homotopie
+orientée, pour tout groupe $ \pi $ --- ou exhibez un groupe et une équivalence d'homotopie pour
+lesquels un $ \sigma_x $ change.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Sergueï Novikov a formulé la conjecture au milieu des années 1960, et elle est devenue
+le point de rencontre de la théorie de la chirurgie, de la théorie géométrique des groupes et des algèbres
+d'opérateurs : les attaques standard passent par l'application d'assemblage du tableau de Baum--Connes
+plutôt que par les variétés. C'est un théorème pour d'énormes classes de groupes --- Lusztig pour les groupes
+abéliens libres, Mishchenko et Kasparov pour les sous-groupes discrets de groupes de Lie, Connes et
+Moscovici pour les groupes hyperboliques au sens des mots (1990), Higson--Kasparov pour les groupes ayant la
+propriété de Haagerup, et Guoliang Yu (2000) pour tout groupe qui se plonge grossièrement dans un espace de
+Hilbert. Les groupes aléatoires de Gromov ont montré que tous les groupes ne se plongent pas ainsi, si bien
+que la voie de Yu n'achève pas le travail. En 2026 la conjecture est ouverte en général et aucun
+contre-exemple n'est connu.
+
+\begin{refs}
+\item Contexte : Conjecture de Novikov --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Novikov_conjecture}), Signature (topologie) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Signature_(topology)})
+\item Article : A. Connes et H. Moscovici, \og{} Cyclic cohomology, the Novikov conjecture and hyperbolic groups \fg{} (1990), \textit{Topology} 29
+\item Article : G. Yu, \og{} The coarse Baum--Connes conjecture for spaces which admit a uniform embedding into Hilbert space \fg{} (2000), \textit{Inventiones Mathematicae} 139
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le dernier invariant de Kervaire --- Recherche, short}]
+\textbf{TOP-45.} \textbf{Problème.} (Résolu très récemment --- voir la note.) Une variété lisse close
+parallélisée de dimension $ n = 4k+2 $ porte un invariant de Kervaire dans $ \mathbb{Z}/2 $, construit
+comme l'invariant d'Arf d'un raffinement quadratique de la forme d'intersection en dimension médiane.
+Déterminez tous les $ n $ pour lesquels la valeur $ 1 $ se produit effectivement, et rédigez un exposé
+honnête de la façon dont la réponse a été assemblée et de ce qui repose encore sur des travaux très
+récents.
+\end{problem}
+
+\noindent Kervaire s'est servi de l'invariant en 1960 pour construire une variété de dimension
+$ 10 $ ne portant aucune structure lisse. Browder a démontré en 1969 que la valeur $ 1 $ ne peut se
+produire qu'en dimensions $ 2^{j} - 2 $, et des constructions étaient connues en dimensions
+$ 2, 6, 14, 30 $ puis --- après les travaux de Barratt, Jones et Mahowald dans les années 1980 ---
+$ 62 $. Hill, Hopkins et Ravenel ont ensuite démontré (annonce en 2009 ;
+\textit{Annals of Mathematics} 184, 2016) qu'elle ne se produit jamais en dimension $ 254 $ ou au-delà,
+laissant exactement un cas non tranché : $ 126 $. En décembre 2024 Lin, Wang et Xu ont déposé une
+démonstration que la dimension $ 126 $ contient bien une classe d'invariant de Kervaire un, complétant la
+liste --- un calcul de la suite spectrale d'Adams mené avec une assistance machine substantielle. En 2026 cet
+argument est accepté par les spécialistes et a passé la relecture par les pairs, mais il est jeune ;
+énoncez-le comme réglé et dites qui l'a réglé.
+
+\begin{refs}
+\item Contexte : Invariant de Kervaire --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Kervaire_invariant}), Suite spectrale d'Adams --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Adams_spectral_sequence})
+\item Article : M. A. Hill, M. J. Hopkins, D. C. Ravenel, \og{} On the non-existence of elements of Kervaire invariant one \fg{} (2016), \textit{Annals of Mathematics} 184, arXiv:0908.3724 (\url{https://arxiv.org/abs/0908.3724})
+\item Article : W. Lin, G. Wang, Z. Xu, \og{} On the Last Kervaire Invariant Problem \fg{} (2024), arXiv:2412.10879 (\url{https://arxiv.org/abs/2412.10879})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de Borel --- Recherche}]
+\textbf{TOP-46.} \textbf{Problème.} (Ouvert.) Une variété close est \textit{asphérique} si son revêtement universel est
+contractile --- autrement dit si $ \pi_n = 0 $ pour tout $ n \ge 2 $. La conjecture de Borel affirme
+qu'une telle variété est déterminée à homéomorphisme près par son seul groupe fondamental : toute
+équivalence d'homotopie entre variétés closes asphériques est homotope à un homéomorphisme.
+\begin{enumerate}
+\item[(a)] Démontrez la moitié facile de la correspondance : deux variétés closes asphériques de groupes
+fondamentaux isomorphes sont homotopiquement équivalentes. (Les applications vers un CW-complexe
+asphérique sont déterminées à homotopie près par ce qu'elles font à $ \pi_1 $.)
+\item[(b)] Réglez la dimension deux à la main : à l'aide de la classification des surfaces (TOP-19) et des
+groupes de surfaces abélianisés de TOP-18(c), démontrez que deux surfaces closes asphériques de groupes
+fondamentaux isomorphes sont homéomorphes. Lisez ensuite pourquoi l'énoncé de rigidité plus fort vaut
+également pour les surfaces, par le théorème de Dehn--Nielsen--Baer.
+\item[(c)] Montrez que l'analogue lisse est faux : si $ \Sigma $ est une sphère exotique, la somme connexe
+$ M \# \Sigma $ est homéomorphe à $ M $ mais n'a pas besoin de lui être difféomorphe. Expliquez
+pourquoi cela fait d'\og{} homéomorphisme \fg{}, et non de \og{} difféomorphisme \fg{}, le bon mot dans la
+conjecture.
+\item[(d)] La conjecture elle-même : démontrez que toute équivalence d'homotopie de variétés closes
+asphériques est homotope à un homéomorphisme, ou produisez un contre-exemple. Comme voie d'entrée,
+rédigez un panorama du programme de Farrell--Jones et de la question de savoir exactement quelles classes
+de groupes fondamentaux il couvre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Armand Borel a formulé la conjecture vers 1953, dans sa correspondance avec Serre,
+après avoir vu la rigidité à la Mostow pour les espaces localement symétriques et s'être demandé si la
+géométrie était vraiment nécessaire. On en sait beaucoup : les dimensions au plus trois découlent de la
+géométrisation (Perelman, 2003) ; Farrell et Jones l'ont démontrée en 1989--93 pour les variétés
+riemanniennes closes à courbure négative ou nulle de dimension au moins cinq ; et Bartels et Lück ont
+démontré la conjecture de Farrell--Jones en $ K $- et $ L $-théorie pour les groupes hyperboliques au
+sens des mots et pour les groupes CAT(0) (\textit{Annals of Mathematics} 175, 2012), ce qui donne Borel en
+dimension au moins cinq pour tous ces groupes fondamentaux. La même machinerie d'applications d'assemblage
+livre aussi la conjecture de Novikov (TOP-36), et c'est pourquoi les deux problèmes font route ensemble. En
+2026 la conjecture générale est ouverte et aucun contre-exemple n'est connu.
+
+\begin{refs}
+\item Contexte : Conjecture de Borel --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Borel_conjecture}), Espace asphérique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_asph%C3%A9rique})
+\item Contexte : Conjecture de Farrell--Jones --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Farrell%E2%80%93Jones_conjecture})
+\item Article : A. Bartels et W. Lück, \og{} The Borel Conjecture for hyperbolic and CAT(0)-groups \fg{} (2012), \textit{Annals of Mathematics} 175, arXiv:0901.0442 (\url{https://arxiv.org/abs/0901.0442})
+\item Lecture : A. Ranicki, \textit{Algebraic and Geometric Surgery}, Oxford University Press
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}

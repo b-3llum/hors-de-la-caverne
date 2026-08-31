@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analyse — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Analyse</h1>
+<p class="lede">L'analyse est la mathématique du changement et de l'accumulation : elle transforme
+les idées glissantes de « vitesse instantanée » et d'« aire sous une courbe » en
+théorèmes. Archimède calculait des aires par exhaustion vers 250&nbsp;av. J.-C. ; Fermat et Descartes
+trouvaient des tangentes par l'algèbre ; Newton et Leibniz, dans les années 1660&ndash;80, ont vu que les deux
+problèmes sont inverses l'un de l'autre et ont bâti une machine à calculer sur ce fait.
+Il a ensuite fallu encore 150 ans — Cauchy, Riemann, Weierstrass — pour dire précisément ce qu'est une
+limite, et transformer ainsi la machine en mathématiques. Cette page est la principale voie
+d'entrée du site : les problèmes commencent là où s'arrête un bon cours de lycée, et chaque règle qu'on
+vous a demandé d'apprendre par cœur y apparaît comme quelque chose à <i>démontrer</i>. Maîtriser l'analyse
+donne l'impression qu'on vous confie les commandes : les formules cessent d'être des formules magiques et deviennent des conséquences.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/applied-calculus.tex" download>source LaTeX</a> · <a href="tex/applied-calculus.pdf" download>PDF compilé</a></p>
+<!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="CAL-01" data-level="Lycée">
+<h3>CAL-01 · La limite, à partir des premiers principes <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Calculez
+\( \lim_{x\to 1} \frac{x^2-1}{x-1} \),
+en expliquant pourquoi la réponse n'est pas « \(0/0\) » et pourquoi simplifier par \( x-1 \) est
+légitime bien que la fonction ne soit pas définie en \( x=1 \). Énoncez ensuite la définition
+ε–δ de \( \lim_{x\to a} f(x)=L \), et démontrez directement à partir d'elle :</p>
+<ol class="parts" type="i">
+<li>que la limite que vous
+avez calculée est correcte ;</li>
+<li>la loi de la somme
+\( \lim (f+g) = \lim f + \lim g \) et la loi du produit pour les limites — les deux lois que
+tout calcul ultérieur de cette page utilise en silence.</li>
+</ol>
+</div>
+<p class="context">Newton et Leibniz calculaient avec des quantités « infiniment petites »
+et furent moqués pour cela — Berkeley (1734) appelait leurs accroissements évanouissants
+« les fantômes de quantités défuntes ». La réponse moderne a demandé 150 ans : le
+<i>Cours d'analyse</i> de Cauchy (1821) a placé la limite au fondement, et la formulation
+ε–δ de Weierstrass (cours berlinois des années 1860) l'a rendue inattaquable. Démontrer les lois
+des limites une fois pour toutes est le droit d'entrée à tout ce qui suit.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Limite_%28math%C3%A9matiques_%C3%A9l%C3%A9mentaires%29">Limite d'une fonction — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, ch. 5 (les limites)</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a></li>
+<li>Vidéo : <a href="https://www.3blue1brown.com/lessons/essence-of-calculus/">3Blue1Brown, Essence of Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-02" data-level="Lycée">
+<h3>CAL-02 · La dérivée est une limite <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Posez
+\[ f'(a) = \lim_{h\to 0} \frac{f(a+h)-f(a)}{h}. \]
+Travaillez uniquement à partir de cette définition — aucune règle.</p>
+<ol class="parts" type="a">
+<li>Calculez les dérivées de \( f(x)=x^2 \), \( f(x)=\sqrt{x} \) et
+\( f(x)=1/x \).</li>
+<li>Démontrez la règle du produit \( (fg)' = f'g + fg' \) directement à partir de la définition, en précisant
+exactement quelles lois des limites de CAL-01 vous invoquez.</li>
+<li>Démontrez que la dérivabilité de \( f \) en un point y entraîne sa continuité —
+la partie (b) en a besoin.</li>
+</ol>
+</div>
+<p class="context">Les premiers manuscrits privés de Leibniz (1675) ont brièvement supposé que
+\( d(uv) = du \cdot dv \) avant qu'il ne se corrige — la règle du produit est bel et bien un
+théorème, non une trivialité de notation. Newton appelait les dérivées des « fluxions » de
+« fluentes » ; la définition par le taux d'accroissement ci-dessus est celle de Cauchy. Faire
+ces calculs honnêtement, une fois, est ce qui sépare le fait de savoir l'analyse du fait de s'en souvenir.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9riv%C3%A9e">Dérivée — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, ch. 9–10</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a></li>
+<li>Vidéo : <a href="https://www.3blue1brown.com/lessons/essence-of-calculus/">3Blue1Brown, Essence of Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-03" data-level="Lycée">
+<h3>CAL-03 · Les tangentes avant l'analyse <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Travaillez uniquement avec de l'algèbre — ni limites, ni dérivées.</p>
+<ol class="parts" type="a">
+<li>Trouvez la tangente à la parabole \( y=x^2 \) au point \( (a, a^2) \) : exigez
+que la droite \( y = mx + c \) rencontre la parabole en une racine double en \( x=a \), et résolvez
+en \( m \) et \( c \).</li>
+<li>Faites de même pour \( y=x^3 \) en \( (a, a^3) \).</li>
+<li>Vérifiez que les deux réponses s'accordent avec la dérivée, puis expliquez précisément pourquoi
+la méthode de la racine double fonctionne pour les polynômes mais ne peut pas définir la tangente à
+\( y=\sin x \).</li>
+</ol>
+</div>
+<p class="context">C'est ainsi que l'on trouvait les tangentes avant l'existence de l'analyse. La
+méthode des normales de Descartes (<i>La Géométrie</i>, 1637) et l'<i>adégalité</i> de Fermat (diffusée
+dans les années 1630) résolvaient des problèmes de tangente et d'extremum pour les courbes algébriques une génération avant que
+Newton ne naisse ; leur limitation aux courbes algébriques est exactement ce que la notion de limite
+a levé. La méthode de Fermat anticipe la dérivée d'assez près pour que Lagrange lui en ait attribué
+l'invention.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ad%C3%A9galit%C3%A9">Adégalité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Tangente_%28g%C3%A9om%C3%A9trie%29">Tangente — Wikipédia</a></li>
+<li>Lecture : Carl B. Boyer, <i>The History of the Calculus and Its Conceptual Development</i></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-04" data-level="Lycée">
+<h3>CAL-04 · Le plus grand champ qu'une clôture puisse enfermer <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Vous disposez de \( L \) mètres de clôture.</p>
+<ol class="parts" type="i">
+<li>Démontrez que
+parmi tous les rectangles de périmètre \( L \), le carré enferme la plus grande aire — deux fois :
+une fois avec l'analyse, et une fois sans analyse du tout, à l'aide de l'inégalité arithmético-géométrique
+\( \sqrt{xy} \le \frac{x+y}{2} \) (démontrez-la également).</li>
+<li>Cette fois la clôture ferme un
+champ rectangulaire contre le long mur droit d'une grange, de sorte que seuls trois côtés sont à clôturer :
+trouvez les proportions optimales, avec démonstration.</li>
+<li>Expliquez pourquoi trouver un point où
+\( f'=0 \) n'est <i>pas</i> à soi seul une démonstration d'optimalité, et complétez la justification
+dans les deux cas (comportement au bord, dérivée seconde, ou concavité).</li>
+</ol>
+</div>
+<p class="context">L'optimisation est la plus ancienne publicité pour l'analyse. L'intuition
+isopérimétrique — plus c'est symétrique, plus cela contient — remonte à l'Antiquité (le problème de Didon dans
+l'<i>Énéide</i> de Virgile ; Zénodore, vers 180 av. J.-C.), et la <i>Nova stereometria
+doliorum vinariorum</i> de Kepler (1615) optimisait les proportions des tonneaux avant l'existence des dérivées.
+La partie (iii) est l'âme du problème : un point critique est un suspect, pas un verdict.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_isop%C3%A9rim%C3%A9trique">Théorème isopérimétrique — Wikipédia</a></li>
+<li>Lecture : James Stewart, <i>Calculus</i>, ch. 4 (applications de la dérivation)</li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, ch. 11</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-05" data-level="Lycée">
+<h3>CAL-05 · La boîte de conserve la plus économique <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Une boîte cylindrique fermée doit contenir un volume fixé
+\( V \). Démontrez que l'aire totale de sa surface (le côté plus les deux couvercles) est minimale exactement lorsque
+la hauteur égale le diamètre, \( h = 2r \). Justifiez que votre point critique est un véritable
+minimum global sur \( (0,\infty) \) — examinez ce qu'il advient de l'aire lorsque \( r\to 0^+ \)
+puis lorsque \( r\to\infty \). Mesurez ensuite une vraie boîte de votre cuisine et déterminez à quelle distance
+de l'optimum elle se trouve ; suggérez, en une phrase, quels coûts autres que la matière pourraient expliquer
+l'écart.</p>
+<p class="context">Le problème de la boîte est l'optimisation sous contrainte classique à une variable :
+une contrainte (le volume) élimine une variable et laisse une honnête minimisation à une
+variable. Les vraies boîtes sont nettement plus hautes que l'optimum mathématique — une leçon précoce :
+un modèle démontre des théorèmes sur lui-même, et l'étape de modélisation est une responsabilité
+distincte.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Optimisation_%28math%C3%A9matiques%29">Optimisation (mathématiques) — Wikipédia</a></li>
+<li>Lecture : James Stewart, <i>Calculus</i>, ch. 4.7 (problèmes d'optimisation)</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-06" data-level="Lycée">
+<h3>CAL-06 · Les taux liés, honnêtement <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une échelle de 5&nbsp;m est appuyée contre un mur ; son pied
+glisse en s'éloignant à 1&nbsp;m/s.</p>
+<ol class="parts" type="i">
+<li>Trouvez la vitesse du sommet lorsque le pied est à 3&nbsp;m
+du mur, en précisant exactement l'étape de dérivation des fonctions composées que votre calcul utilise et le théorème qui
+l'autorise.</li>
+<li>Montrez que lorsque le pied s'approche de 5&nbsp;m du mur, votre formule
+prédit que la vitesse du sommet tend vers l'infini ; expliquez ce que cela démontre au sujet du modèle
+(le sommet d'une vraie échelle reste-t-il contre le mur ?).</li>
+<li>De l'eau s'écoule d'un
+cône renversé de demi-angle 30° : reliez \( dV/dt \) au taux de variation de la hauteur d'eau,
+en dérivant — et non en citant — la relation de la formule du volume \( V = \tfrac{1}{3}\pi r^2 h \)
+que vous utilisez.</li>
+</ol>
+</div>
+<p class="context">Les problèmes de taux liés sont un classique depuis les manuels britanniques du
+dix-neuvième siècle issus de la tradition des « mathématiques mixtes ». Le paradoxe de l'échelle
+qui tombe, en (ii), est un échec véritablement instructif : la mathématique est correcte, c'est la
+prémisse (le sommet collé au mur) qui cède — et l'analyse elle-même détecte le moment
+où elle doit céder.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Related_rates">Taux liés — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_d%C3%A9rivation_des_fonctions_compos%C3%A9es">Dérivation des fonctions composées — Wikipédia</a></li>
+<li>Lecture : James Stewart, <i>Calculus</i>, ch. 3.9 (taux liés)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-07" data-level="Lycée">
+<h3>CAL-07 · Le théorème du compteur de vitesse <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Une voiture passe un premier péage à midi et un second,
+90&nbsp;km plus loin, à 13&nbsp;h. Démontrez qu'à un certain instant son compteur indiquait
+exactement 90&nbsp;km/h. Pour le faire correctement : énoncez le théorème de Rolle ; déduisez-en le
+théorème des accroissements finis — pour \( f \) convenable il existe \( c\in(a,b) \) tel que
+\( f'(c) = \frac{f(b)-f(a)}{b-a} \) — et énoncez les hypothèses de modélisation sur la fonction
+position dont votre démonstration a besoin. Utilisez ensuite ce théorème pour démontrer qu'une fonction dont la dérivée
+s'annule sur un intervalle y est constante, et expliquez en un paragraphe pourquoi toute la
+théorie des primitives (le « \( +\,C \) ») repose sur ce fait d'apparence anodine.</p>
+<p class="context">Michel Rolle a énoncé son théorème pour les polynômes en 1691 — tout en étant
+l'un des critiques les plus acérés de l'analyse ; il la traitait de recueil de sophismes ingénieux.
+Cauchy a fait du théorème des accroissements finis le moteur de l'analyse rigoureuse : c'est le pont qui mène de
+l'information locale (la dérivée en chaque point) aux conclusions globales (ce que la fonction
+a fait sur tout l'intervalle). Presque tous les théorèmes de cette bande traversent ce pont.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_accroissements_finis">Théorème des accroissements finis — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Rolle">Théorème de Rolle — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, ch. 11</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-08" data-level="Lycée">
+<h3>CAL-08 · L'aire à partir des premiers principes <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> En utilisant la définition de l'intégrale comme limite de
+sommes de Riemann, calculez \( \int_0^1 x^2\,dx \) directement : découpez \( [0,1] \) en \( n \)
+morceaux égaux, écrivez les sommes supérieures et inférieures, évaluez-les à l'aide de l'identité
+\[ 1^2 + 2^2 + \cdots + n^2 = \frac{n(n+1)(2n+1)}{6} \]
+(démontrez-la par récurrence), et montrez que les deux sommes convergent vers la même limite. Calculez ensuite
+\( \int_0^b x^k\,dx \) pour tout entier \( k \ge 1 \) par l'astuce de Fermat : découpez
+\( [0,b] \) non pas régulièrement mais aux points géométriques \( b, br, br^2, \dots \) avec
+\( r&lt;1 \), sommez les rectangles obtenus comme une série géométrique, et faites tendre \( r\to 1 \).</p>
+<p class="context">Archimède a obtenu l'aire sous une parabole vers 250 av. J.-C. par la
+méthode d'exhaustion — la même réponse, deux millénaires avant que les limites ne soient définies. L'astuce
+du découpage géométrique de Fermat (années 1630) a quadraturé toutes les courbes \( y=x^k \) d'un coup, encore
+sans aucun théorème fondamental : l'intégration est plus ancienne que la dérivation, et la pratiquer
+une fois à la dure est ce qui vous fait sentir ce que le théorème fondamental (CAL-09) épargne réellement.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Somme_de_Riemann">Somme de Riemann — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/La_Quadrature_de_la_parabole_%28Archim%C3%A8de%29">La Quadrature de la parabole — Wikipédia</a></li>
+<li>Lecture : Tom M. Apostol, <i>Calculus</i>, vol. 1, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-09" data-level="Lycée">
+<h3>CAL-09 · Pourquoi le théorème fondamental est un théorème <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Énoncez précisément les deux parties du théorème fondamental
+de l'analyse, avec leurs hypothèses.</p>
+<ol class="parts" type="i">
+<li>Démontrez la partie 1 : si \( f \) est continue sur
+\( [a,b] \) et \( F(x) = \int_a^x f(t)\,dt \), alors \( F'(x) = f(x) \) — servez-vous de la continuité
+de \( f \) et encadrez le taux d'accroissement entre le minimum et le maximum de \( f \)
+sur un intervalle qui rétrécit.</li>
+<li>Déduisez-en la partie 2, la règle d'évaluation
+\( \int_a^b f = F(b) - F(a) \) pour toute primitive \( F \), en utilisant le théorème
+de constance de CAL-07.</li>
+<li>Voyez maintenant pourquoi les hypothèses gagnent leur salaire : posez
+\( F(x) = x^2 \sin(1/x^2) \) pour \( x\ne 0 \) et \( F(0)=0 \). Montrez que \( F \) est
+dérivable partout, et pourtant que \( F' \) n'est pas bornée sur \( (0,1] \), de sorte que
+\( \int_0^1 F' \) n'existe pas comme intégrale de Riemann — la partie 2 peut être en défaut pour une dérivée
+qui n'est pas intégrable.</li>
+</ol>
+</div>
+<p class="context">Que le problème de la tangente et le problème de l'aire soient inverses l'un de l'autre
+est une <i>découverte</i>, entrevue géométriquement par Barrow et exploitée systématiquement par
+Newton et Leibniz ; la première démonstration rigoureuse pour des intégrandes continues est celle de Cauchy
+(1823). La partie (iii) montre que le théorème est véritablement conditionnel — et la quête de la
+« bonne » intégrale qui le répare mène à Lebesgue (voir CAL-21 et
+<a href="pure-real-analysis.html">Analyse réelle</a>).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_fondamental_de_l%27analyse">Théorème fondamental de l'analyse — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, ch. 14</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a></li>
+<li>Vidéo : <a href="https://www.3blue1brown.com/lessons/essence-of-calculus/">3Blue1Brown, Essence of Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-10" data-level="Lycée">
+<h3>CAL-10 · La longueur d'arc, avec sa mise en place démontrée <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Définissez la longueur d'une courbe comme la borne supérieure des
+longueurs des lignes polygonales inscrites.</p>
+<ol class="parts" type="i">
+<li>Pour \( f \) continûment dérivable, démontrez
+la formule
+\[ L = \int_a^b \sqrt{1 + f'(x)^2}\,dx \]
+à partir de cette définition — appliquez le théorème des accroissements finis sur chaque sous-intervalle d'une subdivision et
+reconnaissez la somme de Riemann obtenue.</li>
+<li>Servez-vous-en pour calculer la longueur exacte de
+\( y = \tfrac{2}{3}x^{3/2} \) de \( x=0 \) à \( x=3 \).</li>
+<li>Défi : calculez la
+longueur d'arc de la parabole \( y = x^2/2 \) de \( x=0 \) à \( x=1 \) (l'intégrande
+\( \sqrt{1+x^2} \) vous donnera du fil à retordre).</li>
+</ol>
+</div>
+<p class="context">Descartes pensait que le rapport entre lignes courbes et lignes droites ne pourrait
+jamais être connu exactement. Il avait tort : en 1657 William Neile a rectifié la parabole
+semi-cubique \( y^2 = x^3 \) — essentiellement la courbe de (ii), la première courbe algébrique dont la longueur
+fut trouvée exactement — et Wren a rectifié la cycloïde peu après. L'étape du théorème des accroissements finis en (i) est
+le cœur du problème : la formule est habituellement affirmée avec un geste de la main vers des
+« triangles rectangles infinitésimaux », et vous transformez ici ce geste en démonstration.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Longueur_d%27un_arc">Longueur d'un arc — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Parabole_semi-cubique">Parabole semi-cubique — Wikipédia</a></li>
+<li>Lecture : James Stewart, <i>Calculus</i>, ch. 8.1</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-11" data-level="Lycée">
+<h3>CAL-11 · La série harmonique diverge <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Démontrez que
+\( 1 + \frac12 + \frac13 + \frac14 + \cdots \) diverge, deux fois :</p>
+<ol class="parts" type="i">
+<li>par le
+groupement des termes d'Oresme en blocs dépassant chacun \( \frac12 \) ;</li>
+<li>en comparant la somme
+partielle \( H_n = \sum_{k=1}^n \frac1k \) avec \( \int_1^n \frac{dx}{x} \). Démontrez ensuite que
+\( \sum \frac{1}{n^2} \) <i>converge</i> par comparaison avec la série télescopique
+\( \sum \frac{1}{n(n-1)} \). Enfin, à partir de vos encadrements de (ii), démontrez que
+\( H_n - \ln n \) est décroissante et minorée, donc convergente. Sa limite est un nombre
+\( \gamma \approx 0{,}5772 \) — retenez-le : il revient en CAL-22 avec un problème ouvert
+attaché.</li>
+</ol>
+</div>
+<p class="context">Nicole Oresme a démontré la divergence vers 1350 ; la démonstration fut oubliée
+puis redécouverte par Mengoli et les Bernoulli trois siècles plus tard. La série diverge
+si lentement (les \( 10^{43} \) premiers termes n'atteignent pas 100) qu'aucune expérience n'aurait jamais
+pu en révéler la vérité — un pur triomphe de la démonstration sur l'évidence. La valeur de
+\( \sum 1/n^2 \) est le problème de Bâle, dont l'histoire vit sur
+<a href="proofs.html">L'art de la démonstration</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/S%C3%A9rie_harmonique">Série harmonique — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, chapitres sur les séries infinies</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-12" data-level="Lycée">
+<h3>CAL-12 · Les critères de convergence sont des théorèmes <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Énoncez et démontrez :</p>
+<ol class="parts" type="i">
+<li>le critère de comparaison ;</li>
+<li>la
+règle de d'Alembert (par comparaison avec une série géométrique) ;</li>
+<li>le critère des séries alternées,
+avec la majoration de l'erreur \( |S - S_n| \le a_{n+1} \) ;</li>
+<li>le test de condensation
+de Cauchy : pour \( a_n \ge 0 \) décroissante, \( \sum a_n \) converge si et seulement si
+\( \sum 2^k a_{2^k} \) converge. Décidez ensuite, avec démonstration, de la convergence de
+\[ \sum_{n\ge 1} \frac{n!}{n^n}, \qquad \sum_{n\ge 1} \frac{(-1)^n}{\sqrt{n}},
+\qquad \sum_{n\ge 2} \frac{1}{n \ln n}. \]</li>
+</ol>
+</div>
+<p class="context">Les critères ont été assemblés pièce à pièce — la règle du rapport par d'Alembert,
+le critère des séries alternées par Leibniz dans sa correspondance, la condensation par Cauchy, dont le
+<i>Cours d'analyse</i> (1821) a traité la convergence systématiquement pour la première fois, après un siècle
+de manipulations confiantes de séries divergentes qui avaient produit merveilles et absurdités.
+Chaque critère est une petite machine ; ici vous ouvrez le boîtier et voyez l'argument de comparaison
+à l'intérieur de chacun.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/R%C3%A8gle_de_d%27Alembert">Règle de d'Alembert — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8re_de_convergence_des_s%C3%A9ries_altern%C3%A9es">Critère de convergence des séries alternées — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Test_de_condensation_de_Cauchy">Test de condensation de Cauchy — Wikipédia</a></li>
+<li>Lecture : Tom M. Apostol, <i>Calculus</i>, vol. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-13" data-level="Lycée">
+<h3>CAL-13 · Approcher e, avec un certificat <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Énoncez le théorème de Taylor avec le reste sous forme de
+Lagrange :
+\[ f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(0)}{k!}x^k + \frac{f^{(n+1)}(c)}{(n+1)!}x^{n+1}
+\quad\text{pour un certain } c \text{ entre } 0 \text{ et } x. \]
+(i) Démontrez d'abord, par comparaison avec une série géométrique, que \( e &lt; 3 \). (ii) À l'aide
+du polynôme de Taylor de \( e^x \) en \( x=1 \), trouvez le plus petit \( n \) pour lequel vous
+pouvez <i>démontrer</i> que l'erreur d'approximation est inférieure à \( 10^{-3} \), et calculez \( e \) avec
+cette précision à la main — l'enjeu n'est pas les décimales mais la majoration certifiée de l'erreur.
+(iii) Défi : poussez le même développement plus loin et démontrez que \( e \) est irrationnel
+(supposez \( e = p/q \) et multipliez par \( q! \)).</p>
+<p class="context">Brook Taylor a publié sa série en 1715 ; Lagrange a fourni le
+reste qui transforme une série formelle en garantie numérique. Euler a calculé \( e \) avec
+de nombreuses décimales exactement par la méthode de (ii). La démonstration d'irrationalité de (iii) est celle de Fourier
+(1815) et c'est l'un des plus beaux arguments en deux lignes des mathématiques une fois trouvé —
+le trouver est le problème.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Taylor">Théorème de Taylor — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/E_%28nombre%29">e (constante mathématique) — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, ch. 20 (approximation par des fonctions polynomiales)</li>
+<li>Vidéo : <a href="https://www.3blue1brown.com/lessons/taylor-series-geometric-view/">3Blue1Brown, les séries de Taylor</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-14" data-level="Lycée">
+<h3>CAL-14 · L'Hôpital, justifié <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Énoncez et démontrez le théorème des accroissements
+finis généralisé de Cauchy : pour \( f, g \) continues sur \( [a,b] \) et dérivables sur \( (a,b) \),
+il existe \( c \) tel que \( (f(b)-f(a))\,g'(c) = (g(b)-g(a))\,f'(c) \).</li>
+<li>Servez-vous-en pour démontrer
+la règle de L'Hôpital dans le cas \( 0/0 \) lorsque \( x\to a \), avec des
+hypothèses soignées.</li>
+<li>Calculez \( \lim_{x\to 0} \frac{1-\cos x}{x^2} \) avec la règle, puis
+de nouveau sans elle.</li>
+<li>Montrez que la règle est à sens unique : exhibez \( f, g \) tels que
+\( \lim_{x\to\infty} f(x)/g(x) \) existe alors que \( \lim f'(x)/g'(x) \) n'existe pas (essayez
+\( f(x) = x + \sin x \), \( g(x) = x \)).</li>
+<li>Expliquez pourquoi appliquer la règle à
+\( \lim_{x\to 0} \frac{\sin x}{x} \) est circulaire si vous dérivez \( \sin \) de la
+manière habituelle.</li>
+</ol>
+</div>
+<p class="context">La règle est apparue dans le tout premier manuel d'analyse imprimé —
+l'<i>Analyse des infiniment petits</i> de L'Hôpital (1696) — mais elle avait été découverte par
+Jean Bernoulli, que le marquis s'était attaché par contrat pour l'exclusivité de ses
+découvertes mathématiques. Bernoulli s'en est plaint amèrement après la mort de L'Hôpital ;
+la correspondance a survécu et tranche l'affaire. Le contenu mathématique du
+problème est le point (i) : le théorème des accroissements finis de Cauchy est le moteur honnête sous le raccourci populaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/R%C3%A8gle_de_L%27H%C3%B4pital">Règle de L'Hôpital — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, ch. 11 et exercices</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-15" data-level="Lycée">
+<h3>CAL-15 · L'aire sous la courbe en cloche — un défi <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que
+\[ \int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}. \]
+Démontrez d'abord que l'intégrale impropre converge (comparez \( e^{-x^2} \) avec
+\( e^{-|x|} \) pour \( |x|\ge 1 \)). Évaluez-la ensuite. Avertissement loyal, qui relève du contexte et
+non de l'indice : \( e^{-x^2} \) n'a pas de primitive élémentaire (c'est un théorème — voir
+CAL-23), de sorte qu'aucune chasse à la primitive ne peut aboutir ; il faut quelque chose de
+structurellement différent.</p>
+<p class="context">Cette intégrale est l'aire totale sous la courbe normale, la raison pour laquelle le
+facteur √π hante les probabilités. De Moivre a rencontré la courbe en 1733 en approchant des
+comptages de pile ou face ; Laplace a évalué l'intégrale le premier (années 1770), et Gauss a attaché son nom à la
+loi en 1809. Lord Kelvin aurait dit à une classe qu'un mathématicien est quelqu'un
+pour qui cette identité est aussi évidente que deux fois deux font quatre. Elle n'est pas évidente. Elle est
+en revanche trouvable — et inoubliable une fois trouvée. Sa signification probabiliste est reprise dans
+<a href="applied-probability.html">Probabilités</a> (PRB-14).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Int%C3%A9grale_de_Gauss">Intégrale de Gauss — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Loi_normale">Loi normale — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i> (intégrales impropres)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-25" data-level="Lycée" data-kind="court">
+<h3>CAL-25 · Une limite sans rien à simplifier <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez, directement à partir de la définition de la dérivée, que la dérivée de \( f(x) = \sqrt{x} \) en un point \( a > 0 \) vaut \( 1/(2\sqrt{a}) \). Précisez exactement où vous utilisez que \( a \neq 0 \).</p>
+<p class="context">Le taux d'accroissement d'une racine carrée ne se simplifie pas par factorisation ; il faut multiplier par la quantité conjuguée, une astuce qui revient constamment en analyse. La seconde phrase est le véritable contenu — une formule de dérivée qui échoue silencieusement en une extrémité est le genre de chose qui devient plus tard une erreur sérieuse.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Difference_quotient">Taux d'accroissement — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-26" data-level="Lycée" data-kind="court">
+<h3>CAL-26 · Une série qui se télescope <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que
+\[ \sum_{n=1}^{\infty} \frac{1}{n(n+1)} = 1 \]
+en trouvant une formule pour la somme partielle \( \sum_{n=1}^{N} \frac{1}{n(n+1)} \) puis en passant à la limite. Justifiez le passage à la limite.</p>
+<p class="context">Le télescopage est la seule technique de sommation qui donne une réponse exacte sans aucune machinerie, et voici son cas le plus net. Comparez-le à la série harmonique, qui lui ressemble et diverge : remarquer pourquoi l'une s'effondre et l'autre non, c'est commencer à comprendre la convergence.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Somme_t%C3%A9lescopique">Somme télescopique — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-27" data-level="Lycée" data-kind="court">
+<h3>CAL-27 · La boîte de conserve la plus économe <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Une boîte cylindrique doit contenir un volume fixé \( V \). Déterminez, en démontrant que votre réponse est bien un minimum et non un simple point critique, le rayon et la hauteur qui minimisent l'aire totale de sa surface.</p>
+<p class="context">C'est le problème d'optimisation classique, et presque tous ceux qui le résolvent s'arrêtent après avoir annulé la dérivée. L'obligation de démonstration est justement le cœur du sujet : une dérivée qui s'annule repère des candidats, et il faut quelque chose de plus — la dérivée seconde, une étude de signe, ou un argument de compacité — avant que le mot « minimum » soit honnête.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Optimisation_%28math%C3%A9matiques%29">Optimisation (mathématiques) — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus</i>, ch. 11</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-34" data-level="Lycée">
+<h3>CAL-34 · Le changement de variable, démontré <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La règle de substitution dit que si \( g \) est continûment dérivable sur
+\( [a,b] \) et si \( f \) est continue sur un intervalle contenant les valeurs de \( g \), alors
+\[ \int_a^b f\big(g(x)\big)\,g'(x)\,dx \;=\; \int_{g(a)}^{g(b)} f(u)\,du. \]</p>
+<ol class="parts" type="a">
+<li>Démontrez-la à partir de la dérivation des fonctions composées et du théorème fondamental de l'analyse, et dites exactement où
+chaque hypothèse sert. Notez que \( g \) n'est <i>pas</i> supposée injective, et expliquez
+pourquoi le théorème y survit.</li>
+<li>Servez-vous-en pour évaluer \( \int_0^{\pi} \sin^3 x \,dx \) et \( \int_0^1 x\sqrt{1-x^2}\,dx \),
+et vérifiez la seconde réponse indépendamment en interprétant l'intégrale comme une aire.</li>
+<li>Voici maintenant le sens qui, lui, exige l'injectivité : énoncez et démontrez la formule de changement
+de variable sous la forme \( \int_c^d f(u)\,du = \int_{g^{-1}(c)}^{g^{-1}(d)} f(g(x))g'(x)\,dx \),
+et exhibez un \( g \) non monotone pour lequel cette lecture inverse est en défaut.</li>
+<li>Deux pièges. Premièrement, dans \( \int_{-1}^{1} \frac{dx}{1+x^2} \) substituez \( x = 1/u \) ; vous
+obtiendrez l'équation \( I = -I \), donc \( I = 0 \), pour l'intégrale d'une fonction strictement
+positive. Deuxièmement, appliquez la substitution en tangente de l'arc moitié \( t = \tan(x/2) \) à
+\( \int_0^{2\pi} \frac{dx}{2+\cos x} \) et regardez-la renvoyer \( 0 \) elle aussi. Dans chaque cas, trouvez
+l'hypothèse de (a) qui a été violée, et réparez le calcul.</li>
+</ol>
+</div>
+<p class="context">La notation \( dx \) de Leibniz a été conçue pour que le changement de variable ait l'air
+d'une simplification de symboles, et c'est la principale raison pour laquelle sa notation l'a emporté sur celle de Newton. Mais la
+simplification est un théorème, et la partie (d) montre ce qui arrive quand on lui fait confiance comme à une comptabilité :
+les deux sophismes sont de vieux favoris des salles de classe, et tous deux viennent d'une substitution qui n'est pas
+dérivable — voire pas même définie — quelque part à l'intérieur de l'intervalle. La substitution en arc moitié
+de (d) est habituellement appelée substitution de Weierstrass, une attribution que personne n'a
+jamais su documenter ; elle apparaît chez Euler.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Int%C3%A9gration_par_changement_de_variable">Intégration par changement de variable — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Tangent_half-angle_substitution">Substitution en tangente de l'arc moitié — Wikipédia (en anglais)</a></li>
+<li>Lecture : Tom M. Apostol, <i>Calculus</i>, vol. 1 (le théorème de substitution)</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-35" data-level="Lycée">
+<h3>CAL-35 · Aires en polaires et arche de la cycloïde <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une courbe peut être donnée sous forme polaire \( r = r(\theta) \), ou paramétriquement par
+\( \big(x(t), y(t)\big) \).</p>
+<ol class="parts" type="a">
+<li>Démontrez la formule de l'aire en polaires
+\[ A \;=\; \frac{1}{2}\int_{\alpha}^{\beta} r(\theta)^2 \, d\theta \]
+pour \( r \ge 0 \) continue : approchez par des secteurs circulaires plutôt que par des rectangles, écrivez
+les sommes supérieures et inférieures, et montrez qu'elles convergent vers la même limite.</li>
+<li>Calculez, avec démonstration, l'aire enfermée par la cardioïde \( r = 1+\cos\theta \) et l'aire
+d'un pétale de la rosace \( r = \cos 3\theta \) ; expliquez ensuite pourquoi cette rosace a trois pétales
+tandis que \( r = \cos 2\theta \) en a quatre.</li>
+<li>Calculez l'aire balayée par la spirale d'Archimède \( r = \theta \) pour
+\( 0 \le \theta \le 2\pi \), et comparez-la à l'aire du cercle \( r = 2\pi \) — la
+comparaison qu'Archimède a démontrée dans <i>Des spirales</i> sans aucune intégrale.</li>
+<li>Démontrez la formule de longueur d'arc en paramétriques
+\( L = \int_{t_0}^{t_1} \sqrt{x'(t)^2 + y'(t)^2}\,dt \) pour \( x, y \) continûment
+dérivables, et servez-vous-en, avec la formule de l'aire
+\( A = \int y \, dx \), pour trouver la longueur d'une arche de la cycloïde
+\( x = r(t-\sin t) \), \( y = r(1-\cos t) \), \( 0 \le t \le 2\pi \), et l'aire entre cette
+arche et le sol.</li>
+<li>L'arche possède un point de rebroussement : montrez que \( x'(0) = y'(0) = 0 \), de sorte que la courbe n'y a pas
+de direction tangente, et expliquez pourquoi la formule de longueur d'arc de (d) reste néanmoins valable.</li>
+</ol>
+</div>
+<p class="context">Jacob Bernoulli a publié le premier usage systématique des coordonnées polaires dans les
+<i>Acta Eruditorum</i> en 1691 ; les rosaces ont été nommées et étudiées par Guido Grandi dans les
+années 1720. La cycloïde fut l'obsession du dix-septième siècle — « l'Hélène des
+géomètres », ainsi nommée pour les querelles qu'elle a provoquées. Roberval a trouvé l'aire sous une arche en
+1634, Christopher Wren a rectifié l'arche exactement en 1658, Huygens a découvert en 1659 qu'elle est
+la tautochrone et a bâti des horloges à pendule sur ce fait, et le défi lancé par Jean Bernoulli en 1696
+l'a révélée brachistochrone, la courbe de descente la plus rapide. Tout cela a été fait
+avec la machinerie que vous démontrez ici, ou avec moins.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Coordonn%C3%A9es_polaires">Coordonnées polaires — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cyclo%C3%AFde">Cycloïde — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Courbe_tautochrone">Courbe tautochrone — Wikipédia</a></li>
+<li>Lecture : James Stewart, <i>Calculus</i>, ch. 10 (équations paramétriques et coordonnées polaires)</li>
+<li>Lecture : E. Hairer &amp; G. Wanner, <i>Analysis by Its History</i> (Springer)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-36" data-level="Lycée" data-kind="court">
+<h3>CAL-36 · Les fonctions qui mesurent une chaîne suspendue <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Posez
+\( \cosh x = \frac{e^x + e^{-x}}{2} \) et \( \sinh x = \frac{e^x - e^{-x}}{2} \). Démontrez que
+\( \cosh^2 x - \sinh^2 x = 1 \), que \( \frac{d}{dx}\cosh x = \sinh x \), et que la longueur
+d'arc de la courbe \( y = \cosh x \) de \( x = 0 \) à \( x = a \) vaut exactement
+\( \sinh a \).</p>
+<p class="context">Vincenzo Riccati a introduit ces combinaisons dans les années 1760 et Lambert
+les a fait entrer dans l'usage courant ; l'identité de la première tâche est la raison pour laquelle on les dit hyperboliques
+— le point \( (\cosh t, \sinh t) \) parcourt l'hyperbole \( x^2 - y^2 = 1 \) exactement comme
+\( (\cos t, \sin t) \) parcourt le cercle. La dernière tâche est le petit miracle derrière CAL-37 :
+l'unique courbe dont l'intégrale de longueur d'arc s'effondre est celle selon laquelle une chaîne pend réellement.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_hyperbolique">Fonction hyperbolique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cha%C3%AEnette">Chaînette — Wikipédia</a></li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="CAL-16" data-level="Licence">
+<h3>CAL-16 · Les multiplicateurs de Lagrange, avec justification <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Utilisez les multiplicateurs de Lagrange pour démontrer que parmi tous les
+pavés rectangles d'aire totale fixée, le cube a le plus grand volume.</li>
+<li>Démontrez le théorème que vous avez utilisé : si \( f \) et \( g \) sont \( C^1 \), si \( a \) est un
+extremum local de \( f \) restreinte à la ligne de niveau \( \{g = c\} \), et si
+\( \nabla g(a) \ne 0 \), alors \( \nabla f(a) = \lambda \nabla g(a) \) pour un certain
+\( \lambda\in\mathbb{R} \). (Dérivez \( f \) le long de courbes tracées dans la ligne de niveau,
+et expliquez — via le théorème des fonctions implicites — pourquoi il existe assez de telles courbes.)
+(iii) Montrez que l'hypothèse \( \nabla g \ne 0 \) n'est pas décorative : minimisez
+\( f(x,y) = x \) sur la courbe \( x^3 = y^2 \) et vérifiez qu'aucun \( \lambda \) ne convient au
+point minimisant.</li>
+</ol>
+</div>
+<p class="context">Lagrange a introduit les multiplicateurs dans la <i>Mécanique analytique</i>
+(1788) pour traiter les équilibres sous contrainte sans éliminer de variables. La méthode est
+enseignée partout et justifiée presque nulle part ; le point de rebroussement de (iii), où l'ensemble de
+contrainte n'a pas de direction tangente, est la mise en garde standard, et le multiplicateur lui-même
+prend une vie propre en économie (les prix implicites) et en physique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Multiplicateur_de_Lagrange">Multiplicateur de Lagrange — Wikipédia</a></li>
+<li>Lecture : Tom M. Apostol, <i>Calculus</i>, vol. 2</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/">MIT OCW 18.02SC Multivariable Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-17" data-level="Licence">
+<h3>CAL-17 · Le théorème de Green à l'œuvre <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Énoncez le théorème de Green pour une courbe fermée simple
+\( C \), orientée positivement et de classe \( C^1 \) par morceaux, bordant un domaine \( D \) :
+\[ \oint_C P\,dx + Q\,dy \;=\; \iint_D \Big( \frac{\partial Q}{\partial x} -
+\frac{\partial P}{\partial y} \Big)\,dA. \]
+(i) Démontrez-le pour les domaines qui sont simultanément de type I et de type II (graphes dans les deux
+directions), en ramenant chaque intégrale double au théorème fondamental de l'analyse.
+(ii) Déduisez-en la formule de l'aire \( \mathrm{Aire}(D) = \tfrac12 \oint_C (x\,dy - y\,dx) \).
+(iii) À partir de (ii), établissez la formule du lacet pour l'aire d'un polygone de sommets
+\( (x_1,y_1),\dots,(x_n,y_n) \). (iv) Expliquez, la formule en main, comment un
+planimètre — un bras mécanique articulé — mesure l'aire d'un domaine quelconque en se contentant d'en
+parcourir le bord.</p>
+<p class="context">George Green était le fils autodidacte d'un meunier de Nottingham ; il a
+publié par souscription, en 1828, l'essai contenant le cercle d'idées du théorème,
+devant un public d'une cinquantaine de personnes ; Kelvin a redécouvert et défendu ce travail en 1846, quatre
+ans après la mort de Green. Le théorème est le cas plan du théorème de Stokes, la
+grande unification des théorèmes fondamentaux en dimension un et en dimension supérieure.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Green">Théorème de Green — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Planim%C3%A8tre">Planimètre — Wikipédia</a></li>
+<li>Lecture : Tom M. Apostol, <i>Calculus</i>, vol. 2</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/">MIT OCW 18.02SC Multivariable Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-18" data-level="Licence">
+<h3>CAL-18 · Quand les dérivées partielles croisées commutent <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> (i) Démontrez le théorème de Schwarz : si les dérivées partielles
+secondes croisées \( f_{xy} \) et \( f_{yx} \) existent et sont continues au voisinage d'un point, elles y sont
+égales. (Appliquez deux fois le théorème des accroissements finis à la différence seconde
+\( f(x+h,y+k) - f(x+h,y) - f(x,y+k) + f(x,y) \).) (ii) Calculez ensuite les deux dérivées partielles croisées
+à l'origine pour
+\[ f(x,y) = \frac{xy(x^2-y^2)}{x^2+y^2}, \qquad f(0,0)=0, \]
+et montrez qu'elles existent mais ne sont <i>pas</i> égales — localisez exactement quelle hypothèse de (i)
+tombe en défaut.</p>
+<p class="context">Euler et Clairaut utilisaient librement cette symétrie dans les années 1730-40 ; la démonstration
+publiée par Clairaut était erronée, et la première démonstration correcte sous des hypothèses propres est
+celle de H. A. Schwarz (1873). Le contre-exemple de (ii) est celui de Peano (1884). La morale
+traverse toute l'analyse : intervertir deux passages à la limite est un théorème à chaque
+fois, jamais un réflexe — un thème poursuivi sur
+<a href="pure-real-analysis.html">Analyse réelle</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Schwarz">Symétrie des dérivées secondes — Wikipédia</a></li>
+<li>Lecture : Tom M. Apostol, <i>Calculus</i>, vol. 2</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/">MIT OCW 18.02SC Multivariable Calculus</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-19" data-level="Licence">
+<h3>CAL-19 · Dériver sous le signe intégral <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> (i) Démontrez la règle de Leibniz : si \( f(x,t) \) et
+\( \partial f/\partial t \) sont continues sur \( [a,b]\times[c,d] \), alors
+\( F(t) = \int_a^b f(x,t)\,dx \) est dérivable et
+\( F'(t) = \int_a^b \frac{\partial f}{\partial t}(x,t)\,dx \). (Utilisez la continuité uniforme de
+\( \partial f/\partial t \) sur le rectangle compact.) (ii) Servez-vous de la technique pour évaluer
+\[ \int_0^1 \frac{x^b - 1}{\ln x}\,dx \;(b&gt;0) \qquad\text{et}\qquad
+\int_0^\infty e^{-x}\,\frac{\sin x}{x}\,dx ; \]
+dans le cas impropre, énoncez et justifiez l'hypothèse supplémentaire dont vous avez besoin. (iii) Trouvez, ou
+construisez, un exemple où l'interversion aveugle de \( d/dt \) et de \( \int \) donne une réponse
+fausse, et identifiez l'hypothèse en défaut.</p>
+<p class="context">Feynman a appris l'astuce, comme chacun sait, dans l'<i>Advanced
+Calculus</i> de Woods au lycée et « s'est servi encore et encore de ce fichu outil »,
+résolvant des intégrales qui bloquaient des collègues formés aux seules méthodes de contour. C'est un parfait
+spécimen du thème de l'interversion des limites : fabuleusement efficace, et valide seulement parce
+qu'un théorème le soutient.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule">Dérivation sous le signe intégral — Wikipédia (en anglais)</a></li>
+<li>Lecture : Richard P. Feynman, <i>Surely You're Joking, Mr. Feynman!</i>, « A Different Box of Tools »</li>
+<li>Lecture : Tom M. Apostol, <i>Calculus</i>, vol. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-28" data-level="Licence" data-kind="court">
+<h3>CAL-28 · Des dérivées partielles croisées qui refusent de commuter <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour
+\[ f(x,y) = \frac{xy(x^2 - y^2)}{x^2 + y^2} \quad (x,y) \neq (0,0), \qquad f(0,0) = 0, \]
+montrez que \( f_{xy}(0,0) \neq f_{yx}(0,0) \), et identifiez précisément quelle hypothèse du théorème de Clairaut tombe en défaut.</p>
+<p class="context">Tout cours de calcul différentiel à plusieurs variables énonce que les dérivées partielles croisées commutent, et la plupart des étudiants ne rencontrent jamais le contre-exemple, ce qui donne au théorème des allures de formalité plutôt que de résultat au contenu réel. Localiser l'hypothèse en défaut — la continuité des dérivées partielles secondes au voisinage de l'origine — est ce qui convertit une règle apprise par cœur en connaissance.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Schwarz">Symétrie des dérivées secondes — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-29" data-level="Licence" data-kind="court">
+<h3>CAL-29 · Un critère intégral qu'il faut justifier <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Déterminez pour quels réels \( p \) la série \( \sum_{n=2}^{\infty} \frac{1}{n (\log n)^{p}} \) converge, et démontrez votre réponse à l'aide de la comparaison série-intégrale — en énonçant les hypothèses de ce critère et en vérifiant que chacune est satisfaite ici.</p>
+<p class="context">Cette famille se situe exactement à la frontière où les critères de comparaison plus simples ne donnent aucune information, ce qui en fait le terrain d'essai standard de la comparaison série-intégrale. La consigne de vérifier les hypothèses est délibérée : la monotonie tombe en défaut pour les petits \( n \), et remarquer que le critère s'applique tout de même à partir d'un certain rang fait partie de l'exercice.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Comparaison_s%C3%A9rie-int%C3%A9grale">Comparaison série-intégrale — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-37" data-level="Licence">
+<h3>CAL-37 · Pourquoi une chaîne suspendue n'est pas une parabole <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une chaîne parfaitement souple et inextensible, de masse linéique constante
+\( \rho \), pend en équilibre sous la gravité \( g \), soutenue à ses deux extrémités. Soit \( y(x) \)
+sa forme et soit \( T_0 \) la composante horizontale de la tension, qui est la même en
+tout point.</p>
+<ol class="parts" type="a">
+<li>Équilibrez les forces sur le morceau de chaîne compris entre le point le plus bas et un point général, et
+établissez
+\[ y'' \;=\; \frac{\rho g}{T_0}\,\sqrt{1 + (y')^2}. \]
+Dites en une phrase ce que la racine carrée fait là, et en quoi l'équation différerait si
+le poids était réparti uniformément le long de l'<i>horizontale</i> au lieu de l'être le long de la chaîne.</li>
+<li>Résolvez l'équation : substituez \( p = y' \), séparez les variables, et démontrez que toute
+solution est de la forme \( y = a\cosh\frac{x-c}{a} + d \) avec \( a = T_0/(\rho g) \). Démontrez ensuite
+que les constantes sont déterminées par les deux points d'appui et la longueur de la chaîne.</li>
+<li>Démontrez que le câble d'un pont suspendu, qui porte un tablier de poids constant par
+mètre horizontal et dont le poids propre est négligeable, pend au contraire selon une parabole. Comparez ensuite
+quantitativement les deux courbes pour une portée dont la flèche vaut un dixième de la largeur, et décidez si
+la différence est visible.</li>
+<li>Démontrez que la chaîne minimise l'énergie potentielle : parmi toutes les courbes de longueur fixée joignant
+deux points fixés, celle dont le centre de masse est le plus bas satisfait l'équation de (a). Posez le
+problème comme la minimisation de \( \int y\sqrt{1+(y')^2}\,dx \) sous la contrainte
+\( \int \sqrt{1+(y')^2}\,dx = L \), introduisez un multiplicateur de Lagrange, et établissez
+l'équation d'Euler&ndash;Lagrange.</li>
+</ol>
+</div>
+<p class="context">Galilée a affirmé dans les <i>Discorsi</i> (1638) qu'une chaîne suspendue prend la
+forme d'une parabole ; Joachim Jungius a montré qu'il n'en est rien, dans un travail publié en 1669. Jakob
+Bernoulli a lancé le problème comme défi public dans les <i>Acta Eruditorum</i> en 1690, et en 1691
+trois solutions sont arrivées — de son frère Johann, de Leibniz, et de Huygens, qui a forgé le
+nom de <i>catenaria</i>. Johann n'a jamais cessé de savourer que Jakob ait échoué à résoudre son propre
+problème. Le bénéfice pour l'ingénierie est venu de Robert Hooke, qui a publié en 1675 sous forme d'anagramme le
+principe selon lequel une arche doit être une chaîne renversée ; Gaudí suspendait des ficelles lestées à l'envers pour
+concevoir la Sagrada Família, et la Gateway Arch de Saint-Louis est une chaînette aplatie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cha%C3%AEnette">Chaînette — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Calcul_des_variations">Calcul des variations — Wikipédia</a></li>
+<li>Lecture : E. Hairer &amp; G. Wanner, <i>Analysis by Its History</i> (Springer)</li>
+<li>Voir aussi : <a href="applied-ode.html">Équations différentielles</a>, <a href="applied-physics.html">Physique mathématique</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-38" data-level="Licence">
+<h3>CAL-38 · Le produit de Wallis, et la constante de la formule de Stirling <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( I_n = \int_0^{\pi/2} \sin^n x \, dx \) pour les entiers \( n \ge 0 \).</p>
+<ol class="parts" type="a">
+<li>Démontrez par intégration par parties la formule de réduction \( I_n = \frac{n-1}{n} I_{n-2} \) pour
+\( n \ge 2 \), et écrivez des expressions closes de \( I_{2m} \) et \( I_{2m+1} \) en termes
+de factorielles.</li>
+<li>Démontrez que \( (I_n) \) est strictement décroissante et que \( I_{n}/I_{n-2} \to 1 \). Déduisez
+de l'encadrement \( I_{2m+1} \le I_{2m} \le I_{2m-1} \) le produit de Wallis
+\[ \frac{\pi}{2} \;=\; \prod_{n=1}^{\infty} \frac{4n^2}{4n^2-1}
+\;=\; \frac{2}{1}\cdot\frac{2}{3}\cdot\frac{4}{3}\cdot\frac{4}{5}\cdot\frac{6}{5}\cdot\frac{6}{7}\cdots \]
+en énonçant soigneusement ce que signifie la convergence d'un produit infini.</li>
+<li>Démontrez qu'il existe une constante \( C &gt; 0 \) telle que
+\( n! = C\, n^{n+1/2} e^{-n} \big(1 + o(1)\big) \). (Comparez \( \ln n! = \sum_{k\le n} \ln k \)
+avec \( \int_1^n \ln x \, dx \), et montrez que les termes d'erreur forment une série convergente.) Servez-vous ensuite
+de (b) pour identifier \( C \) exactement.</li>
+<li>Appliquez le résultat au coefficient binomial central \( \binom{2n}{n} \), et démontrez que la
+probabilité d'obtenir exactement \( n \) faces en \( 2n \) lancers d'une pièce équilibrée est équivalente à
+\( 1/\sqrt{\pi n} \).</li>
+</ol>
+</div>
+<p class="context">John Wallis a obtenu son produit dans l'<i>Arithmetica Infinitorum</i> (1656) par une
+audacieuse interpolation entre exposants entiers — un raisonnement que Newton a lu étudiant et transformé
+en série du binôme. La partie (c) respecte l'ordre historique des événements : Abraham de Moivre
+a trouvé la forme de l'asymptotique de la factorielle en étudiant le jeu de pile ou face dans les années 1730 mais n'a
+pas su fixer la constante multiplicative, et c'est James Stirling qui l'a identifiée comme
+\( \sqrt{2\pi} \), par un argument exactement de ce type. La partie (d) est la graine du théorème central
+limite : √π apparaît dans une question sur des pièces parce qu'il est apparu dans une question sur
+\( \sin^n \).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_de_Wallis">Produit de Wallis — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Formule_de_Stirling">Formule de Stirling — Wikipédia</a></li>
+<li>Lecture : Tom M. Apostol, <i>Calculus</i>, vol. 1</li>
+<li>Voir aussi : <a href="applied-probability.html">Probabilités</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-39" data-level="Licence" data-kind="court">
+<h3>CAL-39 · Quelles intégrales impropres convergent <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Déterminez, avec démonstration, exactement quels couples de réels
+\( (a,b) \) rendent
+\[ \int_0^{\infty} \frac{x^{a}}{1+x^{b}}\,dx \]
+convergente. Traitez séparément le comportement en \( 0 \) et en \( \infty \), et justifiez chaque
+comparaison que vous employez en énonçant le critère de comparaison pour les intégrales impropres et en vérifiant ses
+hypothèses.</p>
+<p class="context">Presque toute question de convergence sur une intégrale impropre se ramène, après
+une estimation, à la famille \( \int x^{p} \) au voisinage d'un mauvais point — de sorte que ce seul problème à deux
+paramètres contient l'essentiel des exemples d'un premier cours. L'intégrale est aussi une
+fonction Bêta déguisée, et c'est ainsi qu'Euler l'a rencontrée dans les années 1730 ; découper le domaine en
+\( x = 1 \) et comparer sur chaque moitié constitue toute la méthode.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Int%C3%A9grale_impropre">Intégrale impropre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/S%C3%A9rie_convergente">Règles de comparaison — Wikipédia</a></li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="CAL-20" data-level="Master">
+<h3>CAL-20 · Un monstre : continue partout, dérivable nulle part <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> Construisez une fonction \( f:\mathbb{R}\to\mathbb{R} \)
+continue en tout point et dérivable en aucun, et démontrez les deux propriétés.
+Deux voies standard, l'une ou l'autre acceptable : celle de Weierstrass,
+\( f(x) = \sum_{n=0}^{\infty} a^n \cos(b^n \pi x) \) avec \( 0&lt;a&lt;1 \) et \( ab \)
+assez grand ; ou la construction de van der Waerden–Takagi
+\( \sum_{n=0}^{\infty} 2^{-n}\,\mathrm{dist}(2^n x, \mathbb{Z}) \), dont l'argument de
+non-dérivabilité est plus élémentaire. Dans les deux cas, énoncez et
+démontrez d'abord le critère M de Weierstrass, qui donne la continuité de la somme. Bonus : cherchez et
+comprenez (énoncé seulement) le résultat de Banach de 1931 selon lequel, au sens de la catégorie
+de Baire, <i>presque toutes</i> les fonctions continues sur \( [0,1] \) sont dérivables nulle part.</p>
+<p class="context">Weierstrass a présenté son exemple à l'Académie de Berlin en 1872,
+démolissant le consensus de l'époque selon lequel une fonction continue doit être dérivable
+sauf en des points isolés (Bolzano avait une construction analogue vers 1830, non publiée).
+Hermite a écrit qu'il se détournait « avec effroi et horreur de cette plaie lamentable des
+fonctions sans dérivée ». Le monstre marque la porte qui mène de l'analyse élémentaire à l'analyse
+réelle ; toute la théorie qui le sous-tend vit sur
+<a href="pure-real-analysis.html">Analyse réelle</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_de_Weierstrass">Fonction de Weierstrass — Wikipédia</a></li>
+<li>Lecture : Stephen Abbott, <i>Understanding Analysis</i>, ch. 5</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/">MIT OCW 18.100A Real Analysis</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-21" data-level="Master">
+<h3>CAL-21 · Quelles fonctions sont intégrables au sens de Riemann ? <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>La fonction de Thomae vaut \( 1/q \) en chaque
+rationnel \( p/q \) écrit sous forme irréductible et \( 0 \) en chaque irrationnel. Démontrez qu'elle est continue
+exactement aux irrationnels, et intégrable au sens de Riemann sur \( [0,1] \) d'intégrale \( 0 \).</li>
+<li>Démontrez que la fonction de Dirichlet (\( 1 \) sur \( \mathbb{Q} \), \( 0 \) ailleurs)
+n'est continue nulle part et n'est pas intégrable au sens de Riemann.</li>
+<li>Définissez ce que signifie, pour un ensemble de
+réels, être de mesure nulle. Énoncez le critère de Lebesgue — une fonction bornée sur
+\( [a,b] \) est intégrable au sens de Riemann si et seulement si son ensemble de points de discontinuité est de mesure
+nulle — confrontez-le à vos verdicts en (i) et (ii), et démontrez la moitié facile :
+les ensembles dénombrables sont de mesure nulle.</li>
+<li>Bonus : montrez qu'aucune fonction
+\( \mathbb{R}\to\mathbb{R} \) ne peut être continue exactement aux rationnels.</li>
+</ol>
+</div>
+<p class="context">Riemann a défini son intégrale dans sa leçon d'habilitation de 1854 en partie pour
+poser précisément cette question : à quel point une fonction intégrable peut-elle être discontinue ? L'exemple de
+Thomae (1875) et celui de Dirichlet balisent le territoire, et la thèse de Lebesgue de 1902
+a répondu complètement — en chemin vers une nouvelle intégrale qui répare le défaut trouvé en
+CAL-09(iii). Ce problème est le passeport de l'étudiant d'analyse élémentaire vers
+<a href="pure-real-analysis.html">Analyse réelle</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_de_Thomae">Fonction de Thomae — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Int%C3%A9grale_de_Riemann">Intégrale de Riemann — Wikipédia</a></li>
+<li>Lecture : Stephen Abbott, <i>Understanding Analysis</i></li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/">MIT OCW 18.100A Real Analysis</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-30" data-level="Master" data-kind="court">
+<h3>CAL-30 · Un théorème qui contient tous les autres <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Énoncez le théorème de Stokes généralisé pour une
+\( k \)-forme lisse \( \omega \) sur une variété orientée à bord,
+\[ \int_{M} d\omega = \int_{\partial M} \omega , \]
+puis montrez que le théorème fondamental de l'analyse, le théorème de Green et le théorème
+de la divergence en sont chacun le cas particulier pour un \( M \) et un \( \omega \) donnés.</p>
+<p class="context">Quatre théorèmes enseignés en quatre semaines différentes, avec quatre
+démonstrations différentes et quatre notations différentes, se révèlent être un seul énoncé sur la façon dont
+dérivation et bords échangent leurs places. Le reconnaître est le moment où l'analyse cesse
+d'être une liste de techniques et devient une discipline — et c'est pourquoi les formes différentielles, qui
+ressemblent à une abstraction gratuite quand on les introduit, gagnent immédiatement leur salaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Stokes">Théorème de Stokes généralisé — Wikipédia</a></li>
+<li>Lecture : Michael Spivak, <i>Calculus on Manifolds</i> — le classique court traitement</li>
+<li>Voir aussi : <a href="pure-topology.html">Topologie</a>, <a href="applied-physics.html">Physique mathématique</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-31" data-level="Master" data-kind="court">
+<h3>CAL-31 · Là où les séries de Taylor ne disent la vérité sur rien <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( f(x) = e^{-1/x^2} \) pour \( x \neq 0 \) et \( f(0) = 0 \). Démontrez que \( f \) est indéfiniment dérivable sur \( \mathbb{R} \) avec \( f^{(n)}(0) = 0 \) pour tout \( n \), et déduisez-en que sa série de Taylor en \( 0 \) converge partout mais ne représente \( f \) nulle part sauf à l'origine.</p>
+<p class="context">Ce seul exemple sépare le lisse de l'analytique et explique pourquoi l'analyse complexe est une discipline différente de l'analyse réelle : sur \( \mathbb{C} \) aucune fonction de ce genre ne peut exister. C'est aussi la graine des fonctions plateau et des partitions de l'unité, et c'est ainsi que l'exemple gagne sa place en géométrie différentielle au lieu de rester une curiosité.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_r%C3%A9guli%C3%A8re_non_analytique">Fonction régulière non analytique — Wikipédia</a></li>
+<li>Voir aussi : <a href="pure-complex-analysis.html">Analyse complexe</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-40" data-level="Master">
+<h3>CAL-40 · La fonction exponentielle, définie de quatre manières <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez quatre définitions candidates de la fonction exponentielle sur
+\( \mathbb{R} \) :
+\[ E(x) = \sum_{n=0}^{\infty} \frac{x^n}{n!}, \qquad
+y' = y \text{ avec } y(0)=1, \qquad
+L^{-1} \text{ où } L(x) = \int_1^{x} \frac{dt}{t}, \qquad
+P(x) = \lim_{n\to\infty}\Big(1+\frac{x}{n}\Big)^n . \]</p>
+<ol class="parts" type="a">
+<li>Démontrez que la série converge pour tout réel \( x \), qu'elle peut être dérivée terme
+à terme (énoncez et démontrez le théorème qui l'autorise), et que \( E' = E \). Démontrez la
+loi d'addition \( E(x+y) = E(x)E(y) \) à partir du produit de Cauchy de deux séries absolument
+convergentes.</li>
+<li>Démontrez que le problème de Cauchy a exactement une solution — considérez
+\( \frac{d}{dx}\big( y(x) E(-x) \big) \) — de sorte que les définitions un et deux coïncident.</li>
+<li>Démontrez que \( L \) est strictement croissante sur \( (0,\infty) \), satisfait
+\( L(uv) = L(u)+L(v) \), et envoie \( (0,\infty) \) sur \( \mathbb{R} \) tout entier ; concluez que
+\( L^{-1} \) existe, et démontrez qu'elle est égale à \( E \).</li>
+<li>Démontrez que \( P(x) \) existe pour tout \( x \) et vaut \( E(x) \), la convergence étant
+uniforme sur les bornés.</li>
+<li>Comparez maintenant les quatre voies en tant qu'outils. Laquelle donne la loi d'addition le plus à bon compte ? Laquelle
+démontre \( 2 &lt; e &lt; 3 \) avec le moins de travail ? Lesquelles s'étendent mot pour mot aux arguments
+complexes, et lesquelles s'étendent aux matrices carrées ? Répondez à chaque question par une démonstration ou une
+obstruction précise.</li>
+</ol>
+</div>
+<p class="context">Euler a traité l'exponentielle et le logarithme par des procédés infinis dans
+l'<i>Introductio in analysin infinitorum</i> (1748), passant de la limite du produit à la
+série sans se soucier de savoir laquelle était la définition ; la limite du produit est de lui. L'habitude
+moderne de choisir une définition et d'en déduire les autres est une discipline du dix-neuvième siècle, et elle
+mérite d'être pratiquée une fois complètement, parce que chaque cours d'analyse ultérieur en choisit silencieusement une différente.
+Rudin ouvre <i>Real and Complex Analysis</i> par un prologue consacré à cette seule fonction,
+qu'il appelle la plus importante des mathématiques.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Characterizations_of_the_exponential_function">Caractérisations de la fonction exponentielle — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_exponentielle">Fonction exponentielle — Wikipédia</a></li>
+<li>Lecture : Walter Rudin, <i>Real and Complex Analysis</i>, prologue : la fonction exponentielle</li>
+<li>Lecture : Walter Rudin, <i>Principles of Mathematical Analysis</i>, ch. 8</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-41" data-level="Master" data-kind="court">
+<h3>CAL-41 · La sommation par parties, et le théorème d'Abel <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez le théorème d'Abel : si \( \sum_{n\ge0} a_n \)
+converge, alors la série entière \( f(x) = \sum_{n\ge 0} a_n x^n \) converge pour
+\( 0 \le x &lt; 1 \) et
+\[ \lim_{x\to 1^{-}} f(x) \;=\; \sum_{n=0}^{\infty} a_n . \]
+Énoncez et démontrez d'abord l'identité de sommation par parties et servez-vous-en comme moteur ; déduisez-en ensuite les
+sommes de la série harmonique alternée et de la série de Leibniz
+\( 1 - \frac13 + \frac15 - \cdots \) à partir des séries entières de \( \log(1+x) \) et de
+\( \arctan x \).</p>
+<p class="context">Niels Henrik Abel a démontré ce résultat dans son mémoire de 1826 sur la série du binôme, l'année
+même où il écrivait à Holmboe que les séries divergentes sont « une invention du diable »
+et qu'il est honteux de fonder une démonstration sur elles. Le théorème est le permis d'une manœuvre
+exécutée constamment et d'ordinaire sans commentaire — évaluer une série au bord de son disque de
+convergence. La réciproque est fausse, et chercher des hypothèses sous lesquelles elle devient vraie a lancé
+toute la théorie des théorèmes taubériens, à commencer par Tauber en 1897 et Littlewood en
+1911.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Abel_%28analyse%29">Théorème d'Abel — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sommation_par_parties">Sommation par parties — Wikipédia</a></li>
+<li>Lecture : Walter Rudin, <i>Principles of Mathematical Analysis</i>, ch. 8</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="CAL-22" data-level="Recherche">
+<h3>CAL-22 · La constante d'Euler est-elle irrationnelle ? <span class="level">[Recherche — ouvert]</span></h3>
+<p class="statement"><b>Problème.</b> La constante d'Euler est
+\[ \gamma = \lim_{n\to\infty}\Big( 1 + \frac12 + \cdots + \frac1n - \ln n \Big)
+\approx 0{,}57721, \]
+dont vous avez démontré l'existence en CAL-11. <b>Ouvert :</b> γ est-elle irrationnelle ? Est-elle transcendante ?
+Personne ne le sait — on ne sait même pas que γ ∉ ℚ. Sous-problèmes accessibles : vérifiez à partir de la
+définition la représentation intégrale
+\( \gamma = \int_0^1 \big( \frac{1}{1-x} + \frac{1}{\ln x} \big)\,dx \) ; lisez ensuite ce que l'on
+sait <i>vraiment</i> : les calculs de fractions continues montrent que si \( \gamma = p/q \) alors
+\( q \) est astronomiquement grand (plus de \( 10^{240000} \)), et Rivoal a démontré (2012)
+qu'au moins l'une des deux constantes γ et la constante d'Euler–Gompertz
+\( \delta = \int_0^\infty \frac{e^{-x}}{1+x}\,dx \) est transcendante — sans décider
+laquelle.</p>
+<p class="context">La constante est celle d'Euler (1734) ; elle traverse la fonction Gamma,
+la fonction zêta et la théorie analytique des nombres. Hilbert qualifiait son irrationalité
+d'« inabordable » ; Conway et Guy ont écrit qu'ils étaient prêts à parier qu'elle est
+transcendante mais qu'ils n'espéraient pas de démonstration de leur vivant. Statut en 2026 : entièrement
+ouvert, et parmi les problèmes ouverts les plus célèbres portant sur un nombre donné. Voir aussi
+<a href="open-problems.html">Problèmes ouverts</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Constante_d%27Euler-Mascheroni">Constante d'Euler-Mascheroni — Wikipédia</a></li>
+<li>Lecture : Julian Havil, <i>Gamma: Exploring Euler's Constant</i></li>
+<li>Article : J. C. Lagarias, « Euler's constant: Euler's work and modern developments », Bull. AMS 50 (2013), <a href="https://arxiv.org/abs/1303.1856">arXiv:1303.1856</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-23" data-level="Recherche">
+<h3>CAL-23 · L'intégration en termes finis <span class="level">[Recherche — frontière]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pourquoi \( \int e^{-x^2}dx \) n'a-t-elle pas de formule ? Rendez
+la question précise et attaquez-la :</p>
+<ol class="parts" type="i">
+<li>définissez les fonctions élémentaires (le corps
+engendré à partir des fractions rationnelles par les exponentielles, les logarithmes et les opérations algébriques) ;</li>
+<li>énoncez le théorème de Liouville sur la forme que doit prendre une primitive élémentaire ;</li>
+<li>servez-vous-en pour démontrer que \( e^{x^2} \) n'a pas de primitive élémentaire, en montrant que
+l'équation différentielle requise \( R' + 2xR = 1 \) n'a pas de solution en fractions rationnelles
+\( R \). Parcourez ensuite la frontière : l'algorithme de Risch (1969) décide de
+l'intégrabilité élémentaire pour de larges classes d'intégrandes, mais une implémentation complète couvrant le
+cas général mixte algébrique–transcendant n'a jamais été achevée — le second volume que
+Bronstein projetait n'était pas écrit à sa mort en 2005, et les systèmes de calcul formel
+font encore tourner des versions partielles.</li>
+</ol>
+</div>
+<p class="context">Liouville a démontré les premiers théorèmes d'impossibilité de ce type dans les années 1830 —
+l'analogue, pour l'intégration, de l'insolubilité de la quintique. Risch a transformé la question
+en procédure de décision un siècle plus tard, un jalon précoce du calcul formel. Statut :
+la théorie est décidable en principe pour les intégrandes élémentaires ; rendre l'algorithme pleinement
+explicite et l'implémenter reste une frontière mathématique et technique active, non une
+conjecture ouverte.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_Risch">Algorithme de Risch — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Liouville_%28alg%C3%A8bre_diff%C3%A9rentielle%29">Théorème de Liouville (algèbre différentielle) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Int%C3%A9grale_non_%C3%A9l%C3%A9mentaire">Intégrale non élémentaire — Wikipédia</a></li>
+<li>Lecture : Manuel Bronstein, <i>Symbolic Integration I</i> (Springer)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-24" data-level="Recherche">
+<h3>CAL-24 · Les périodes : les nombres que fabrique l'intégration <span class="level">[Recherche — ouvert]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une <i>période</i> est un nombre complexe dont les parties réelle et
+imaginaire sont des valeurs d'intégrales absolument convergentes de fractions rationnelles à
+coefficients rationnels, sur des domaines de \( \mathbb{R}^n \) découpés par des inégalités
+polynomiales à coefficients rationnels.</p>
+<ol class="parts" type="i">
+<li>Montrez que \( \sqrt{2} \), \( \ln 2 \), π
+et \( \zeta(2) \) sont des périodes — pour π, intégrez \( 1 \) sur
+\( \{x^2+y^2\le 1\} \).</li>
+<li>Montrez que les périodes forment un anneau dénombrable contenant tous les
+nombres algébriques — de sorte qu'une infinité non dénombrable de réels ne sont pas des périodes, mais démontrer qu'un
+nombre <i>donné</i> naturel n'est pas une période est une tout autre affaire.
+<b>Ouvert :</b> la conjecture de Kontsevich–Zagier — deux représentations intégrales quelconques d'une
+même période sont reliées par une chaîne de mouvements élémentaires (additivité, changement de variables,
+Newton–Leibniz) — est ouverte ; on conjecture, sans l'avoir démontré, que \( e \) et \( 1/\pi \)
+ne sont pas des périodes ; et savoir si γ (CAL-22) est une période est de même inconnu.</li>
+</ol>
+</div>
+<p class="context">Kontsevich et Zagier ont introduit l'anneau des périodes dans leur essai de 2001
+comme « la classe de nombres la plus importante entre les nombres algébriques et tous les nombres
+complexes » — les nombres que l'analyse produit réellement. La conjecture rendrait l'égalité
+de périodes vérifiable algorithmiquement en principe et engloberait les énoncés classiques de
+transcendance ; statut en 2026 : grand ouvert, avec de profondes connexions aux motifs
+en géométrie algébrique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Alg%C3%A8bre_des_p%C3%A9riodes">Période (théorie des nombres) — Wikipédia</a></li>
+<li>Article : M. Kontsevich &amp; D. Zagier, « Periods », dans <i>Mathematics Unlimited — 2001 and Beyond</i>, Springer (2001)</li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="CAL-32" data-level="Recherche" data-kind="court">
+<h3>CAL-32 · \( \pi + e \) est-il irrationnel ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> On sait que \( \pi \) et \( e \) sont tous deux
+transcendants, et pourtant on <b>ne sait pas</b> si \( \pi + e \) est irrationnel — ni
+si \( \pi e \), \( \pi/e \) ou \( \pi^{e} \) le sont. Démontrez la seule chose facile qui
+<i>puisse</i> se dire : au moins l'un des deux nombres \( \pi + e \) et \( \pi e \) est transcendant.</p>
+<p class="context">La démonstration du fait énoncé tient en trois lignes — considérez le polynôme
+dont les racines sont \( \pi \) et \( e \), et utilisez que les nombres algébriques forment
+un corps — et le contraste avec les questions ouvertes est la leçon. Les démonstrations de transcendance sont
+délicates et essentiellement uniques : celle de Lindemann pour \( \pi \) en 1882 et celle d'Hermite pour
+\( e \) en 1873 sont des jalons, et plus d'un siècle plus tard la somme de ces deux nombres
+nous met en échec. La conjecture de Schanuel réglerait tout cela d'un coup, ce qui donne une bonne
+mesure de ce qui repose sur elle.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_transcendant">Nombre transcendant — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Schanuel">Conjecture de Schanuel — Wikipédia</a></li>
+<li>Voir aussi : <a href="open-problems.html">Problèmes ouverts</a>, <a href="pure-number-theory.html">Théorie des nombres</a></li>
+
+<li>Voir aussi : <a href="open-problems.html#OPEN-64">OPEN-64</a> — la page Problèmes ouverts, où il figure parmi les questions classiques non résolues.</li></ul>
+</section>
+
+<section class="problem" id="CAL-33" data-level="Recherche" data-kind="court">
+<h3>CAL-33 · La série de Flint Hills <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Déterminez si
+\[ \sum_{n=1}^{\infty} \frac{1}{n^{3} \sin^{2} n} \]
+converge. Statut : <b>ouvert</b>. Montrez que la convergence découlerait d'une majoration suffisamment
+forte de la finesse avec laquelle \( \pi \) peut être approché par des rationnels — c'est-à-dire de la
+mesure d'irrationalité de \( \pi \) — et énoncez la meilleure borne connue à ce jour.</p>
+<p class="context">Chaque terme est fini, mais \( \sin n \) s'approche arbitrairement près de zéro
+dès que \( n \) est proche d'un multiple de \( \pi \), de sorte que la série vit ou meurt selon la qualité avec
+laquelle \( \pi \) peut être approché par des fractions. C'est ce qui fait d'une innocente
+question de convergence, du genre de celles posées en première année d'analyse, l'équivalent d'un problème ouvert
+difficile d'approximation diophantienne. C'est la démonstration la plus nette de ce site que
+« cette série converge-t-elle ? » n'est pas toujours un exercice de routine.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Flint_Hills_series">Série de Flint Hills — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Irrationality_measure">Mesure d'irrationalité — Wikipédia (en anglais)</a></li>
+<li>Voir aussi : <a href="pure-real-analysis.html">Analyse réelle</a>, <a href="open-problems.html">Problèmes ouverts</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-42" data-level="Recherche">
+<h3>CAL-42 · Une intégrale qui intègre toute dérivée <span class="level">[Recherche — frontière]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> CAL-09(iii) produit une fonction dérivable en tout point de \( [0,1] \)
+dont la dérivée n'est pas intégrable au sens de Riemann, et l'intégrale de Lebesgue ne répare pas cela :
+\( F(x) = x^2\sin(1/x^2) \), \( F(0)=0 \), est partout dérivable avec
+\( \int_0^1 |F'| = \infty \). Une intégrale, elle, répare la chose. Étant donné une fonction strictement positive
+\( \delta \) sur \( [a,b] \) — une <i>jauge</i> — on dit qu'une subdivision pointée
+\( a = x_0 &lt; \cdots &lt; x_n = b \) de points marqués \( t_i \in [x_{i-1},x_i] \) est <i>\( \delta \)-fine</i>
+si \( [x_{i-1},x_i] \subset (t_i-\delta(t_i),\, t_i+\delta(t_i)) \) pour tout \( i \) ; alors \( f \)
+est intégrable au sens de Henstock&ndash;Kurzweil d'intégrale \( I \) si pour tout \( \varepsilon &gt; 0 \)
+il existe une jauge \( \delta \) telle que toute subdivision pointée \( \delta \)-fine ait une somme de Riemann
+à moins de \( \varepsilon \) de \( I \).</p>
+<ol class="parts" type="a">
+<li>Démontrez le lemme de Cousin : pour toute jauge \( \delta \) sur \( [a,b] \) il existe une subdivision
+pointée \( \delta \)-fine. (Dichotomisez, et utilisez la complétude.) Sans cela la définition serait
+vide.</li>
+<li>Démontrez le théorème fondamental sous sa forme parfaite : si \( F \) est dérivable en tout
+point de \( [a,b] \), alors \( F' \) est intégrable au sens de Henstock&ndash;Kurzweil et
+\( \int_a^b F' = F(b)-F(a) \) — sans aucune hypothèse d'intégrabilité sur \( F' \).</li>
+<li>Démontrez que toute fonction intégrable au sens de Lebesgue est intégrable au sens de Henstock&ndash;Kurzweil avec la
+même valeur, et que \( f \) est intégrable au sens de Lebesgue si et seulement si \( f \) et \( |f| \) sont toutes deux
+intégrables au sens de Henstock&ndash;Kurzweil. Concluez que cette intégrale est strictement plus générale et n'est
+pas une intégrale absolue, et exhibez une fonction qu'elle n'intègre que de façon conditionnelle.</li>
+<li>La frontière. Formulez le problème en dimension \( n \) : trouver une intégrale pour laquelle le
+théorème de la divergence \( \int_{\Omega} \mathrm{div}\, v = \int_{\partial\Omega} v\cdot n \) vaille pour
+tout champ de vecteurs ponctuellement dérivable sur tout ensemble borné de périmètre fini. Lisez
+l'exposé de Pfeffer sur ce qui a été accompli, et rédigez une appréciation des raisons pour lesquelles l'intégrale
+de jauge n'a jamais supplanté celle de Lebesgue en pratique — ce qu'il advient des théorèmes de
+convergence, de Fubini, et de la mesure sous-jacente.</li>
+</ol>
+</div>
+<p class="context">La théorie en dimension un est réglée et magnifique : Arnaud Denjoy a construit en 1912, par
+récursion transfinie, une intégrale inversant toute dérivée, Perron en a donné une équivalente
+en 1914 au moyen de fonctions majorantes et minorantes, et toutes deux ont été jugées d'une technicité rebutante jusqu'à ce que
+Jaroslav Kurzweil (1957) et Ralph Henstock (1961) découvrent que remplacer le \( \delta \) constant
+de la définition de Riemann par une fonction du point marqué donne exactement la même classe
+de fonctions intégrables, avec une définition qu'un étudiant de première année peut lire. <b>Statut :</b> les parties
+(a)&ndash;(c) sont des théorèmes ; la partie (d) est un véritable domaine de recherche — les intégrales descriptives et
+de jauge multidimensionnelles de Jarník, Kurzweil, Mařík, Pfeffer et De Pauw démontrent bien des théorèmes de la
+divergence très généraux, mais la théorie est technique, non canonique et encore en développement, et
+la question pédagogique de savoir si l'intégrale de jauge devrait remplacer celle de Lebesgue dans l'enseignement
+reste un débat vivant plutôt qu'une affaire réglée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Int%C3%A9grale_de_Kurzweil-Henstock">Intégrale de Kurzweil&ndash;Henstock — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_la_divergence">Théorème de la divergence — Wikipédia</a></li>
+<li>Lecture : Robert G. Bartle, <i>A Modern Theory of Integration</i>, AMS Graduate Studies in Mathematics 32 (2001)</li>
+<li>Lecture : Washek F. Pfeffer, <i>Derivation and Integration</i>, Cambridge Tracts in Mathematics (2001)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAL-43" data-level="Recherche" data-kind="court">
+<h3>CAL-43 · Reconnaître zéro <span class="level">[Recherche — ouvert]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Richardson a démontré en 1968 qu'il n'existe aucun algorithme qui,
+étant donné une expression construite à partir des nombres rationnels, de \( \pi \), de \( \ln 2 \) et d'une variable
+\( x \) à l'aide de \( +,-,\times \), de la composition et des fonctions \( \sin \), \( \exp \) et
+\( |\cdot| \), décide si cette expression s'annule identiquement sur \( \mathbb{R} \) — lisez la
+démonstration et sachez esquisser comment un problème diophantien y est encodé. Attaquez ensuite le
+problème des <i>constantes</i>, qui reste ouvert : énoncez précisément ce que serait un algorithme de reconnaissance de zéro
+pour les constantes élémentaires, démontrez ce que l'argument de Richardson de 1997 vous donne si l'on
+admet la conjecture de Schanuel, et déterminez ce que l'on sait inconditionnellement.</p>
+<p class="context">C'est l'ombre portée de CAL-23 : l'algorithme de Risch pour l'intégration symbolique
+a besoin, comme sous-programme, de savoir décider si une constante qu'il a construite est nulle, de sorte que
+son statut d'algorithme dépend exactement de cette question. Décider la nullité paraît la chose la plus
+élémentaire que l'on puisse demander d'une formule, et en présence de \( \sin \) c'est prouvablement
+impossible ; ôtez les fonctions trigonométriques et le problème devient conjecturalement
+décidable, reposant sur la conjecture de Schanuel — la même conjecture de transcendance qui
+réglerait la question de l'irrationalité de \( \pi + e \) (CAL-32). <b>Statut :</b> indécidable pour
+la classe de Richardson ; ouvert, et conditionnellement décidable, pour les constantes élémentaires.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Richardson">Théorème de Richardson — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Constant_problem">Problème des constantes — Wikipédia (en anglais)</a></li>
+<li>Article : D. Richardson, « How to recognize zero », <i>Journal of Symbolic Computation</i> 24 (1997), 627&ndash;645</li>
+<li>Article : D. Richardson, « Some undecidable problems involving elementary functions of a real variable », <i>Journal of Symbolic Logic</i> 33 (1968), 514&ndash;520</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">MIT OCW 18.01SC Single Variable Calculus</a>,
+<a href="https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/">MIT OCW 18.02SC Multivariable Calculus</a>,
+<a href="https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/">MIT OCW 18.100A Real Analysis</a>,
+et <a href="https://www.3blue1brown.com/lessons/essence-of-calculus/">Essence of Calculus de 3Blue1Brown</a> comme compagnon visuel.</li>
+<li>Livres : James Stewart, <i>Calculus</i> (aisance calculatoire) ;
+Michael Spivak, <i>Calculus</i> (l'analyse traitée comme démonstration — la colonne vertébrale de cette page) ;
+Tom M. Apostol, <i>Calculus</i>, vol. 1–2 (l'intégration d'abord, avec algèbre linéaire et plusieurs variables) ;
+Stephen Abbott, <i>Understanding Analysis</i> (le pont vers l'analyse réelle).</li>
+<li>Articles &amp; essais : J. C. Lagarias, « Euler's constant » (Bull. AMS, 2013), <a href="https://arxiv.org/abs/1303.1856">arXiv:1303.1856</a> ;
+M. Kontsevich &amp; D. Zagier, « Periods » (2001).</li>
+</ul>
+<p>Voir aussi : <a href="applied-probability.html">Probabilités</a>, <a href="pure-real-analysis.html">Analyse réelle</a>, <a href="proofs.html">L'art de la démonstration</a>, <a href="open-problems.html">Problèmes ouverts</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

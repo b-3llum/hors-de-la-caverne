@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Théorie des catégories — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Théorie des catégories</h1>
+<p class="lede">La théorie des catégories est la mathématique de la composition : elle oublie de
+quoi les objets sont faits et ne retient que la manière dont les applications entre eux se
+composent. Eilenberg et Mac Lane l'ont inventée en 1945, au beau milieu de calculs ardus de
+topologie algébrique, parce qu'ils avaient besoin de dire précisément ce que signifie, pour une
+construction, être « naturelle » — et l'échafaudage bâti pour ce seul mot est devenu une langue
+commune à l'algèbre, à la topologie, à la logique et, finalement, à l'informatique. La maîtriser
+donne l'impression de changer de vue : on cesse de regarder à l'intérieur des objets pour lire
+les flèches qui les entourent, et des théorèmes démontrés séparément dans cinq disciplines se
+réduisent à un seul. Cette page n'a pas de bande Lycée — le sujet ne prend sens qu'une fois
+rencontrés des groupes, des espaces et des espaces vectoriels qui valent la peine d'être
+comparés.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/pure-category-theory.tex" download>source LaTeX</a> · <a href="tex/pure-category-theory.pdf" download>PDF compilé</a></p>
+<!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
+<hr>
+
+<h2>Licence</h2>
+
+<section class="problem" id="CAT-01" data-level="Licence">
+<h3>CAT-01 · Est-ce une catégorie ? <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une catégorie est constituée d'objets, de morphismes munis d'une
+source et d'un but, d'une composition associative, et d'un morphisme identité sur chaque objet.</p>
+<ol class="parts" type="a">
+<li>Vérifiez les axiomes pour : les ensembles avec les applications (\( \mathbf{Set} \)) ; les
+groupes avec les homomorphismes (\( \mathbf{Grp} \)) ; un ensemble partiellement ordonné
+\( (P, \le) \) avec exactement un morphisme \( p \to q \) lorsque \( p \le q \) et aucun sinon ;
+un monoïde unique vu comme une catégorie à un seul objet.</li>
+<li>Démontrez que le morphisme identité d'un objet est unique.</li>
+<li>On appelle
+\( f\colon A \to B \) un <i>monomorphisme</i> si \( f \circ g = f \circ h \) entraîne
+\( g = h \), et un <i>épimorphisme</i> si \( g \circ f = h \circ f \) entraîne \( g = h \).
+Démontrez que dans \( \mathbf{Set} \) les monomorphismes sont exactement les injections et les
+épimorphismes exactement les surjections.</li>
+<li>Montrez que dans la catégorie des anneaux l'inclusion
+\( \mathbb{Z} \hookrightarrow \mathbb{Q} \) est un épimorphisme qui n'est pas surjectif.</li>
+</ol>
+</div>
+<p class="context">Les catégories ont été introduites par Samuel Eilenberg et Saunders Mac Lane
+dans leur article de 1945 « General theory of natural equivalences » — le nom emprunté à Kant,
+comme « foncteur » l'était à Carnap. Ils insistaient sur le fait que ces définitions n'étaient
+qu'une comptabilité au service du véritable but : la naturalité (CAT-05). La partie (d) est
+l'avertissement classique que les notions définies par les flèches peuvent diverger de leurs
+modèles ensemblistes : « surjectif » n'est pas un concept que toute catégorie sait voir.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_des_cat%C3%A9gories">Théorie des catégories — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Monomorphisme">Monomorphisme — Wikipédia</a> et <a href="https://fr.wikipedia.org/wiki/%C3%89pimorphisme">Épimorphisme — Wikipédia</a></li>
+<li>Lecture : Tom Leinster, <i>Basic Category Theory</i>, ch. 1 (librement accessible sur <a href="https://arxiv.org/abs/1612.09375">arXiv:1612.09375</a>)</li>
+<li>Article : S. Eilenberg et S. Mac Lane, « General theory of natural equivalences » (1945), Trans. Amer. Math. Soc. 58</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-02" data-level="Licence">
+<h3>CAT-02 · Ce que préservent les foncteurs <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un foncteur \( F\colon \mathcal{C} \to \mathcal{D} \)
+associe des objets à des objets et des morphismes à des morphismes, en préservant sources, buts,
+composition et identités.</p>
+<ol class="parts" type="a">
+<li>Vérifiez que chacune des constructions suivantes est un foncteur : le foncteur d'oubli
+\( U\colon \mathbf{Grp} \to \mathbf{Set} \) ; le foncteur parties
+\( \mathcal{P}\colon \mathbf{Set} \to \mathbf{Set} \) avec \( \mathcal{P}(f)(S) = f[S] \) ;
+l'abélianisation \( G \mapsto G/[G,G] \) de \( \mathbf{Grp} \) vers \( \mathbf{Ab} \).</li>
+<li>Démontrez que tout foncteur préserve les isomorphismes, et concluez-en le principe
+contraposé : si \( F(X) \not\cong F(Y) \) alors \( X \not\cong Y \).</li>
+<li>Démontrez qu'il n'existe
+<i>aucun</i> foncteur \( \mathbf{Grp} \to \mathbf{Grp} \) envoyant chaque groupe sur son centre.</li>
+</ol>
+</div>
+<p class="context">La partie (b) est la licence qui autorise tout invariant en mathématiques — le
+groupe fondamental, l'homologie, les déterminants : calculez l'image, distinguez les objets. La
+partie (c), exercice favori du livre de Riehl, est la leçon la plus tranchante qui soit sur le
+fait qu'une « construction sur les objets » n'est pas encore une construction : la fonctorialité
+est une contrainte véritable, et le centre — si naturel qu'il paraisse — ne la satisfait pas.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Foncteur">Foncteur — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Forgetful_functor">Foncteur d'oubli — Wikipédia (en anglais)</a></li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 1 (librement accessible sur <a href="https://emilyriehl.github.io/files/context.pdf">emilyriehl.github.io/files/context.pdf</a>)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-03" data-level="Licence">
+<h3>CAT-03 · Produits et coproduits comme propriétés universelles <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un <i>produit</i> des objets \( A \) et \( B \) est un
+objet \( P \) muni de morphismes \( \pi_1\colon P \to A \), \( \pi_2\colon P \to B \) tels que
+pour tout objet \( X \) muni de morphismes \( f\colon X \to A \), \( g\colon X \to B \) il existe
+un unique \( h\colon X \to P \) avec \( \pi_1 \circ h = f \) et \( \pi_2 \circ h = g \). Un
+<i>coproduit</i> est la notion duale, toutes les flèches étant renversées.</p>
+<ol class="parts" type="a">
+<li>Démontrez que deux
+produits quelconques de \( A \) et \( B \) sont isomorphes par un unique isomorphisme compatible
+avec les projections.</li>
+<li>Identifiez, avec démonstration, le produit et le coproduit dans : \( \mathbf{Set} \)
+(produit cartésien ; réunion disjointe) ; \( \mathbf{Grp} \) (produit direct ; produit libre — en
+particulier, vérifiez que \( \mathbb{Z} * \mathbb{Z} \), le groupe libre à deux générateurs,
+satisfait la propriété du coproduit) ; \( \mathbf{Ab} \) (produit direct ; somme directe) ; un
+ensemble ordonné vu comme une catégorie (borne inférieure ; borne supérieure).</li>
+<li>Exhibez une catégorie dans laquelle un certain couple d'objets n'a
+pas de produit, et démontrez-le.</li>
+</ol>
+</div>
+<p class="context">Définir un objet par sa propriété universelle — par la manière dont tout le
+reste s'envoie vers lui, plutôt que par ce qu'il contient — est le geste signature de la théorie
+des catégories. L'article de Mac Lane « Duality for groups » (1950) fut le premier à caractériser
+ainsi les produits directs et à observer qu'en renversant les flèches on obtient le produit libre :
+une définition, deux théorèmes. L'exemple des ensembles ordonnés montre le même schéma régissant
+la théorie de l'ordre : les produits y sont des bornes inférieures.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_%28cat%C3%A9gorie%29">Produit (catégorie) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Somme_%28cat%C3%A9gorie%29">Somme, ou coproduit (catégorie) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Propri%C3%A9t%C3%A9_universelle">Propriété universelle — Wikipédia</a></li>
+<li>Article : S. Mac Lane, « Duality for groups » (1950), Bull. Amer. Math. Soc. 56</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-04" data-level="Licence">
+<h3>CAT-04 · Objet initial, objet final, et la puissance de la dualité <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un objet est <i>initial</i> s'il existe exactement un
+morphisme de lui vers chaque objet, et <i>final</i> s'il existe exactement un morphisme vers lui
+depuis chaque objet.</p>
+<ol class="parts" type="a">
+<li>Démontrez que deux objets initiaux quelconques sont isomorphes par un unique
+isomorphisme.</li>
+<li>Identifiez, avec démonstration, les objets initiaux et finaux (ou montrez qu'il n'en existe
+pas) dans : \( \mathbf{Set} \) ; \( \mathbf{Grp} \) ; la catégorie des anneaux unitaires ; la
+catégorie des corps ; un ensemble ordonné vu comme une catégorie.</li>
+<li>La <i>catégorie opposée</i>
+\( \mathcal{C}^{\mathrm{op}} \) a les mêmes objets et les morphismes renversés. Expliquez
+rigoureusement comment (a) fournit, sans travail supplémentaire, le théorème d'unicité
+correspondant pour les objets finaux — et pourquoi tout théorème catégorique arrive accompagné
+d'un dual gratuit.</li>
+</ol>
+</div>
+<p class="context">Le principe de dualité est l'offre « deux pour le prix d'un » de la théorie des
+catégories, héritée de la dualité entre points et droites en géométrie projective. Il explique un
+air de famille qui traverse toutes les mathématiques : noyaux et conoyaux, limites et colimites,
+produits et coproduits sont des théorèmes uniques portant deux costumes. La catégorie des corps,
+qui n'a ni objet initial, ni objet final, ni produits, est le contre-exemple permanent qui
+maintient le sujet honnête.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Objet_initial_et_objet_final">Objet initial et objet final — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_oppos%C3%A9e">Catégorie opposée — Wikipédia</a></li>
+<li>Lecture : Steve Awodey, <i>Category Theory</i>, ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-05" data-level="Licence">
+<h3>CAT-05 · Transformations naturelles <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une <i>transformation naturelle</i> \( \eta \) entre
+foncteurs \( F, G\colon \mathcal{C} \to \mathcal{D} \) associe à chaque objet \( A \) un
+morphisme \( \eta_A\colon F(A) \to G(A) \) tel que \( G(f) \circ \eta_A = \eta_B \circ F(f) \)
+pour tout \( f\colon A \to B \). Travaillez dans la catégorie des espaces vectoriels sur un corps \( k \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que les applications d'évaluation \( \eta_V\colon V \to V^{**} \), \( \eta_V(v)(\varphi) =
+\varphi(v) \), forment une transformation naturelle du foncteur identité vers le foncteur
+bidual.</li>
+<li>La dualité simple \( V \mapsto V^{*} \) est contravariante, si bien que l'énoncé
+« isomorphisme naturel \( V \cong V^{*} \) » demande de la précaution. Sur la catégorie dont les
+objets sont les espaces de dimension finie et dont les morphismes sont seulement les
+isomorphismes, \( V \mapsto V^{*} \), \( f \mapsto (f^{-1})^{*} \) est un foncteur covariant.
+Démontrez que pour \( k = \mathbb{R} \) toute transformation naturelle de l'identité vers ce
+foncteur est identiquement nulle — donc qu'aucun isomorphisme naturel \( V \cong V^{*} \)
+n'existe, même là.</li>
+<li>Démontrez que les foncteurs
+\( \mathcal{C} \to \mathcal{D} \) et les transformations naturelles entre eux forment une
+catégorie.</li>
+</ol>
+</div>
+<p class="context">Ce problème est la raison d'être de la théorie des catégories : l'article de
+1945 d'Eilenberg et Mac Lane fut écrit pour donner un foyer précis à l'intuition du praticien
+selon laquelle \( V \cong V^{**} \) est canonique tandis que \( V \cong V^{*} \) exige un choix
+arbitraire de base. Leur formule — les catégories ont été définies pour pouvoir définir les
+foncteurs, et les foncteurs pour pouvoir définir les transformations naturelles — est
+historiquement littérale.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Transformation_naturelle">Transformation naturelle — Wikipédia</a></li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 1</li>
+<li>Article : S. Eilenberg et S. Mac Lane, « General theory of natural equivalences » (1945), Trans. Amer. Math. Soc. 58</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-06" data-level="Licence">
+<h3>CAT-06 · Isomorphisme contre équivalence de catégories <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Les catégories \( \mathcal{C} \) et \( \mathcal{D} \) sont
+<i>isomorphes</i> s'il existe des foncteurs \( F\colon \mathcal{C} \to \mathcal{D} \) et
+\( G\colon \mathcal{D} \to \mathcal{C} \) avec \( GF = \mathrm{id} \) et
+\( FG = \mathrm{id} \) ; elles sont <i>équivalentes</i> si l'on a plutôt \( GF \cong \mathrm{id} \) et
+\( FG \cong \mathrm{id} \) via des isomorphismes naturels.</p>
+<ol class="parts" type="a">
+<li>Démontrez que \( F \) est une moitié d'une
+équivalence si et seulement si \( F \) est plein, fidèle et essentiellement surjectif (tout
+objet de \( \mathcal{D} \) est isomorphe à un \( F(A) \)) — et repérez où votre démonstration
+utilise l'axiome du choix.</li>
+<li>Soit \( \mathbf{Mat}_k \) la catégorie dont les objets sont les
+entiers naturels et dont les morphismes \( m \to n \) sont les matrices \( n \times m \) sur
+\( k \), composées par multiplication matricielle. Démontrez que \( \mathbf{Mat}_k \) est
+équivalente, mais non isomorphe, à la catégorie des \( k \)-espaces vectoriels de dimension finie.</li>
+</ol>
+</div>
+<p class="context">L'équivalence, et non l'isomorphisme, est la bonne notion de « même catégorie » —
+l'une des premières leçons durement acquises du sujet, puisqu'elle impose d'abandonner l'égalité
+des objets au profit de l'isomorphisme partout. La partie (b) rend exacte la devise la plus
+profonde de l'algèbre linéaire : choisir des bases transforme toute l'algèbre linéaire de
+dimension finie en arithmétique matricielle, et la catégorie des matrices est un <i>squelette</i> —
+une catégorie équivalente sans objets redondants.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quivalence_de_cat%C3%A9gories">Équivalence de catégories — Wikipédia</a></li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 1</li>
+<li>Lecture : Tom Leinster, <i>Basic Category Theory</i>, ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-16" data-level="Licence" data-kind="court">
+<h3>CAT-16 · Tout égaliseur est un monomorphisme <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un <i>égaliseur</i> de \( f, g\colon A \to B \) est un morphisme
+\( e\colon E \to A \) avec \( f \circ e = g \circ e \) qui est universel parmi de tels morphismes.
+Démontrez que tout égaliseur est un monomorphisme, et que dans \( \mathbf{Set} \) l'égaliseur de
+\( f \) et \( g \) est l'inclusion de \( \{\, a \in A : f(a) = g(a) \,\} \).</p>
+<p class="context">Les égaliseurs sont le mot catégorique pour « ensemble des solutions d'une
+équation », et la propriété de monomorphisme est le résidu, en termes de flèches, du fait qu'un
+ensemble de solutions est un sous-ensemble. L'énoncé dual — tout coégaliseur est un épimorphisme —
+est offert par la dualité de CAT-04, et les coégaliseurs sont la manière dont les quotients par
+une relation entrent dans une catégorie qui n'a aucun élément à identifier.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89galiseur_%28math%C3%A9matiques%29">Égaliseur (mathématiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Coequalizer">Coégaliseur — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-17" data-level="Licence" data-kind="court">
+<h3>CAT-17 · Trancher une catégorie au-dessus d'un objet <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour un ensemble \( B \), soit \( \mathbf{Set}/B \) la catégorie
+dont les objets sont les applications \( p\colon X \to B \) et dont les morphismes \( p \to q \) sont
+les applications \( h \) telles que \( q \circ h = p \). Démontrez que \( \mathbf{Set}/B \) est
+équivalente à la catégorie de foncteurs \( \mathbf{Set}^{B} \), où \( B \) est vu comme une catégorie
+discrète — c'est-à-dire à la catégorie des familles d'ensembles indexées par \( B \).</p>
+<p class="context">Un sens prend les fibres, \( p \mapsto (p^{-1}(b))_{b \in B} \) ; l'autre prend
+les réunions disjointes. Cette équivalence explique pourquoi « une famille d'ensembles » et « un
+ensemble s'envoyant sur un ensemble d'indices » sont employés indifféremment, et sous sa forme
+faisceautique — espaces au-dessus de \( B \) contre faisceaux sur \( B \) — elle devient la
+construction de l'espace étalé.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Comma_category">Catégorie virgule — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_de_foncteurs">Catégorie de foncteurs — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-18" data-level="Licence">
+<h3>CAT-18 · Catégories virgules <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Étant donné des foncteurs \( F\colon \mathcal{A} \to \mathcal{C} \) et
+\( G\colon \mathcal{B} \to \mathcal{C} \), la <i>catégorie virgule</i>
+\( (F \downarrow G) \) a pour objets les triplets \( (A, B, f) \) avec \( A \) dans
+\( \mathcal{A} \), \( B \) dans \( \mathcal{B} \) et \( f\colon F(A) \to G(B) \), et pour
+morphismes \( (A, B, f) \to (A', B', f') \) les couples \( (a\colon A \to A',\ b\colon B \to B') \)
+tels que \( G(b) \circ f = f' \circ F(a) \).</p>
+<ol class="parts" type="a">
+<li>Vérifiez que \( (F \downarrow G) \) est une catégorie et que les deux projections vers
+\( \mathcal{A} \) et \( \mathcal{B} \) sont des foncteurs.</li>
+<li>Identifiez comme catégories virgules : la tranche \( \mathcal{C}/C \) au-dessus d'un objet
+\( C \) ; la cotranche \( C/\mathcal{C} \) ; et la catégorie des flèches, dont les objets sont
+tous les morphismes de \( \mathcal{C} \).</li>
+<li>Démontrez que \( \mathrm{id}_C \) est l'objet final de \( \mathcal{C}/C \), et qu'un produit
+binaire dans \( \mathcal{C}/C \) est exactement un produit fibré dans \( \mathcal{C} \).</li>
+<li>On appelle \( u\colon C \to G(B_0) \) une <i>flèche universelle</i> de \( C \) vers \( G \) si
+c'est un objet initial de \( (C \downarrow G) \). Démontrez que \( G \) admet un adjoint à gauche
+si et seulement si un tel objet initial existe pour tout \( C \), et confrontez l'énoncé à
+l'adjonction du groupe libre de CAT-09.</li>
+<li>Supposez que \( \mathcal{C} \) possède les produits fibrés. Démontrez que pour
+\( f\colon C \to D \) le foncteur image réciproque
+\( f^{*}\colon \mathcal{C}/D \to \mathcal{C}/C \) est adjoint à droite de la composition avec
+\( f \).</li>
+</ol>
+</div>
+<p class="context">Les catégories virgules ont été introduites par F. William Lawvere dans sa thèse
+de 1963 à Columbia, <i>Functorial Semantics of Algebraic Theories</i> ; ce nom étrange garde la
+trace de la notation originale \( (F, G) \), une virgule entre deux foncteurs. Ce sont elles qui
+transforment une propriété universelle en un banal objet initial, et c'est pourquoi la partie (d)
+réduit toute la théorie des adjonctions à une question portant sur un seul objet d'une seule
+catégorie — et pourquoi le théorème du foncteur adjoint (CAT-21) se démontre en chassant les
+objets initiaux. La partie (e) est le début de la théorie des types dépendants lue
+catégoriquement : la substitution est un produit fibré.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Comma_category">Catégorie virgule — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Propri%C3%A9t%C3%A9_universelle">Propriété universelle — Wikipédia</a></li>
+<li>Lecture : Saunders Mac Lane, <i>Categories for the Working Mathematician</i>, ch. II §6 et ch. IV</li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-26" data-level="Licence">
+<h3>CAT-26 · Correspondances de Galois : des adjonctions que l'on voit <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soient \( (P, \le) \) et \( (Q, \le) \) des ensembles ordonnés, chacun vu
+comme une catégorie ayant exactement un morphisme \( p \to p' \) lorsque \( p \le p' \) et aucun
+sinon. Une <i>correspondance de Galois</i> (monotone) est un couple d'applications croissantes
+\( F \colon P \to Q \) et \( G \colon Q \to P \) telles que
+\[ F(p) \le q \quad \Longleftrightarrow \quad p \le G(q) \qquad \text{pour tous } p \in P,\ q \in Q. \]</p>
+<ol class="parts" type="a">
+<li>Démontrez que c'est exactement une adjonction \( F \dashv G \) entre les catégories
+associées, et que l'unité et la counité de CAT-09 deviennent les deux inégalités
+\( p \le G(F(p)) \) et \( F(G(q)) \le q \). Démontrez que chacune de \( F, G \) détermine
+l'autre de manière unique.</li>
+<li>Démontrez que \( F \) préserve toute borne supérieure existant dans \( P \) et \( G \) toute
+borne inférieure existant dans \( Q \) — l'ombre, sur les ensembles ordonnés, de « les adjoints à
+gauche préservent les colimites, les adjoints à droite les limites » (CAT-10). Montrez par un
+exemple que la réciproque est fausse sans hypothèse de complétude, et énoncez le théorème du
+foncteur adjoint pour les treillis complets que cette hypothèse achète.</li>
+<li>Démontrez que \( GF \) est un opérateur de fermeture sur \( P \) (extensif, croissant,
+idempotent) et \( FG \) un opérateur d'intérieur sur \( Q \), et que \( F \) et \( G \) se
+restreignent en des isomorphismes d'ordre mutuellement inverses entre les éléments
+\( GF \)-fermés de \( P \) et les éléments \( FG \)-fermés de \( Q \).</li>
+<li>Identifiez chacune des situations suivantes comme une correspondance de Galois et décrivez
+ses points fixes : les sous-groupes de \( \mathrm{Gal}(L/K) \) face aux corps intermédiaires
+d'une extension galoisienne ; les parties de l'espace affine de dimension \( n \) face aux idéaux
+de \( k[x_1, \dots, x_n] \), via \( V \) et \( I \) ; et, pour une application
+\( f \colon X \to Y \), la chaîne \( f_{!} \dashv f^{-1} \dashv f_{*} \) entre ensembles de
+parties, où \( f_{!} \) est l'image directe et
+\( f_{*}(A) = \{\, y \in Y : f^{-1}(y) \subseteq A \,\} \). Remarquez que les deux premières sont
+<i>décroissantes</i>, et dites précisément comment les présenter comme des correspondances
+monotones ; puis expliquez la lecture que Lawvere fait de la troisième,
+\( \exists \dashv \text{substitution} \dashv \forall \).</li>
+</ol>
+</div>
+<p class="context">Øystein Ore a nommé et généralisé la notion dans « Galois connexions » (1944),
+en abstrayant la correspondance que Galois avait utilisée en 1830 entre sous-groupes et
+sous-corps, et les théoriciens des treillis l'ont ensuite trouvée partout — opérateurs de
+fermeture, analyse formelle de concepts, syntaxe contre sémantique. La théorie des catégories a
+absorbé tout le sujet en une ligne : une correspondance de Galois est une adjonction entre
+ensembles ordonnés, et tout phénomène propre aux adjonctions y est visible sans la comptabilité
+des 2-cellules, puisqu'un ensemble ordonné n'a aucune 2-cellule non triviale à suivre. Lawvere a
+ensuite renversé le sens de l'enseignement dans « Adjointness in Foundations » (1969), en lisant
+les quantificateurs de la logique comme des adjoints de la substitution — et c'est là que
+commencent le traitement catégorique de la logique et le langage interne d'un topos (CAT-31).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Correspondance_de_Galois">Correspondance de Galois — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Closure_operator">Opérateur de fermeture — Wikipédia (en anglais)</a></li>
+<li>Article : O. Ore, « Galois connexions » (1944), Trans. Amer. Math. Soc. 55</li>
+<li>Lecture : Tom Leinster, <i>Basic Category Theory</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-27" data-level="Licence">
+<h3>CAT-27 · Algèbres initiales : le lemme de Lambek et les entiers naturels <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour un endofoncteur \( F \colon \mathcal{C} \to \mathcal{C} \), une
+<i>\( F \)-algèbre</i> est un couple \( (A, \alpha) \) avec \( \alpha \colon F(A) \to A \), et
+un morphisme \( (A, \alpha) \to (B, \beta) \) est une application \( h \colon A \to B \) telle que
+\( h \circ \alpha = \beta \circ F(h) \).</p>
+<ol class="parts" type="a">
+<li>Vérifiez que les \( F \)-algèbres et ces morphismes forment une catégorie, et démontrez le
+<i>lemme de Lambek</i> : si \( (A, \alpha) \) est une \( F \)-algèbre initiale alors \( \alpha \)
+est un isomorphisme, de sorte que \( A \) est un point fixe de \( F \).</li>
+<li>Prenez \( \mathcal{C} = \mathbf{Set} \) et \( F(X) = 1 + X \), la réunion disjointe avec un
+singleton. Démontrez que \( \mathbb{N} \), muni de l'application \( 1 + \mathbb{N} \to \mathbb{N} \)
+donnée par zéro et le successeur, est une \( F \)-algèbre initiale, et démontrez que l'initialité
+est exactement le principe de définition par récursion primitive : pour tout ensemble \( B \),
+tout élément \( b \in B \) et toute application \( u \colon B \to B \) il existe une unique
+\( f \colon \mathbb{N} \to B \) avec \( f(0) = b \) et \( f(n+1) = u(f(n)) \).</li>
+<li>Démontrez que l'algèbre initiale de \( F(X) = 1 + A \times X \) est l'ensemble \( A^{*} \) des
+listes finies d'éléments de \( A \), et identifiez les uniques morphismes d'algèbres issus d'elle
+au fold familier. Démontrez ensuite que le foncteur parties covariant \( \mathcal{P} \) sur
+\( \mathbf{Set} \) n'a aucune algèbre initiale — et même aucune algèbre dont l'application de
+structure soit un isomorphisme.</li>
+<li>Compréhension : énoncez la construction d'Adámek — lorsque \( \mathcal{C} \) possède un objet
+initial \( 0 \) et les colimites de \( \omega \)-chaînes, et que \( F \) les préserve, l'algèbre
+initiale est la colimite de \( 0 \to F(0) \to F^2(0) \to \cdots \) — et expliquez pourquoi la
+notion duale, une <i>coalgèbre</i> finale \( A \to F(A) \), est le bon foyer pour les flux infinis
+et les autres objets spécifiés par ce que l'on peut en observer plutôt que par la manière dont on
+les construit.</li>
+</ol>
+</div>
+<p class="context">Joachim Lambek a démontré le lemme du point fixe dans « A fixpoint theorem for
+complete categories » (1968), en cherchant un foyer catégorique aux définitions récursives. Le
+cercle qu'il referme est l'un des plus jolis du sujet : l'objet des entiers naturels de Lawvere,
+en 1964, est précisément l'algèbre initiale de \( X \mapsto 1 + X \), si bien que récurrence et
+récursion cessent d'être des axiomes sur les nombres pour devenir une propriété universelle qu'une
+catégorie possède ou non — et la partie (c) exhibe un foncteur pour lequel aucun tel objet ne peut
+exister, le théorème de Cantor déguisé. Les langages de programmation ont repris l'idée telle
+quelle : un type de données algébrique est une algèbre initiale, <code>fold</code> est l'unique
+morphisme qui en sort, et les codonnées des flux et des processus racontent l'histoire duale des
+coalgèbres finales.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Initial_algebra">Algèbre initiale — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/F-algebra">F-algèbre — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Objet_nombres_naturels">Objet nombres naturels — Wikipédia</a></li>
+<li>Article : J. Lambek, « A fixpoint theorem for complete categories » (1968), Mathematische Zeitschrift 103</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-28" data-level="Licence" data-kind="court">
+<h3>CAT-28 · Le lemme de recollement pour les produits fibrés <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient
+\[ \begin{array}{ccccc}
+A &amp; \longrightarrow &amp; B &amp; \longrightarrow &amp; C \\
+\downarrow &amp; &amp; \downarrow &amp; &amp; \downarrow \\
+D &amp; \longrightarrow &amp; E &amp; \longrightarrow &amp; F
+\end{array} \]
+deux carrés commutatifs dans une catégorie, partageant l'arête verticale du milieu. Démontrez que
+si le carré de droite est cartésien, alors le carré de gauche est cartésien si et seulement si le
+rectangle extérieur l'est, et donnez un exemple montrant que l'hypothèse sur le carré de droite ne
+peut pas être supprimée.</p>
+<p class="context">C'est le premier véritable outil de la chasse au diagramme : il permet
+d'assembler de grands produits fibrés à partir de petits et de reconnaître les petits à
+l'intérieur des grands, et on l'emploie constamment en théorie de la descente, en théorie des
+fibrations et en sémantique catégorique, où substituer dans une formule revient à prendre un
+produit fibré le long d'une application (CAT-18(e)). L'énoncé dual pour les sommes amalgamées est
+ce qui fait fonctionner les arguments de recollement à la van Kampen.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_fibr%C3%A9">Produit fibré — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Limite_%28th%C3%A9orie_des_cat%C3%A9gories%29">Limite (théorie des catégories) — Wikipédia</a></li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="CAT-07" data-level="Master">
+<h3>CAT-07 · Foncteurs représentables : un échauffement pour Yoneda <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un foncteur \( F\colon \mathcal{C} \to \mathbf{Set} \) est
+<i>représentable</i> s'il est naturellement isomorphe à \( \mathrm{Hom}(A, -) \) pour un certain
+objet \( A \), l'<i>objet représentant</i>.</p>
+<ol class="parts" type="a">
+<li>Démontrez que le foncteur d'oubli
+\( \mathbf{Grp} \to \mathbf{Set} \) est représenté par \( \mathbb{Z} \), le foncteur d'oubli
+\( \mathbf{Ring} \to \mathbf{Set} \) par l'anneau de polynômes \( \mathbb{Z}[x] \), et le
+foncteur d'oubli \( \mathbf{Top} \to \mathbf{Set} \) par l'espace à un point.</li>
+<li>Démontrez
+que le foncteur parties contravariant \( \mathcal{P}\colon \mathbf{Set}^{\mathrm{op}} \to
+\mathbf{Set} \) est représenté par un ensemble à deux éléments.</li>
+<li>Démontrez le théorème de Cayley — tout
+groupe se plonge dans un groupe symétrique — et expliquez en quoi votre démonstration est le cas
+à un objet d'un énoncé général sur les foncteurs \( \mathrm{Hom} \).</li>
+</ol>
+</div>
+<p class="context">La représentabilité est le pont entre « une construction » et « un objet » :
+l'objet représentant porte un élément universel à partir duquel le foncteur tout entier peut être
+reconstitué. Grothendieck a bâti la géométrie algébrique moderne sur cette idée — un schéma
+s'étudie à travers son foncteur des points \( \mathrm{Hom}(-, X) \). La partie (c) est un piège
+délibérément tendu un siècle trop tôt : le théorème de Cayley de 1854 est le lemme de Yoneda
+(CAT-08) vu par le trou d'une serrure à un seul objet.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Foncteur_repr%C3%A9sentable">Foncteur représentable — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cayley">Théorème de Cayley — Wikipédia</a></li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-08" data-level="Master">
+<h3>CAT-08 · Le lemme de Yoneda <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( \mathcal{C} \) une catégorie localement petite.</p>
+<ol class="parts" type="a">
+<li>Démontrez le lemme de Yoneda : pour tout foncteur \( F\colon \mathcal{C} \to \mathbf{Set} \) et
+tout objet \( A \), l'application envoyant une transformation naturelle
+\( \alpha\colon \mathrm{Hom}(A,-) \Rightarrow F \) sur l'élément
+\( \alpha_A(\mathrm{id}_A) \in F(A) \) est une bijection
+\[ \mathrm{Nat}(\mathrm{Hom}(A,-),\, F) \;\cong\; F(A), \]
+naturelle en \( A \) comme en \( F \).</li>
+<li>Déduisez-en que le plongement de Yoneda \( A \mapsto
+\mathrm{Hom}(-, A) \) est un foncteur plein et fidèle de \( \mathcal{C} \) vers la
+catégorie des foncteurs contravariants à valeurs ensemblistes sur \( \mathcal{C} \).</li>
+<li>Déduisez-en que si
+\( \mathrm{Hom}(A,-) \cong \mathrm{Hom}(B,-) \) naturellement, alors \( A \cong B \) — et
+concluez que les objets définis par des propriétés universelles (CAT-03, CAT-04) sont déterminés
+à isomorphisme près par le foncteur qu'ils représentent.</li>
+</ol>
+</div>
+<p class="context">Le lemme est né d'une conversation parisienne de 1954 entre Nobuo Yoneda et
+Saunders Mac Lane, qui y attacha plus tard le nom de Yoneda ; il apparaît pleinement formé dans
+les séminaires de Grothendieck peu après. Son contenu est une philosophie accompagnée d'une
+démonstration : un objet est exactement le système de toutes les applications qui vont vers lui —
+la version mathématique du fait de connaître une chose par ses relations. Presque tout ce qui
+suit sur cette page (adjonctions, limites, monades) est le lemme de Yoneda en tenue de travail.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_Yoneda">Lemme de Yoneda — Wikipédia</a></li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 2</li>
+<li>Lecture : Saunders Mac Lane, <i>Categories for the Working Mathematician</i>, ch. III</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-09" data-level="Master">
+<h3>CAT-09 · Adjonctions : libre ⊣ oubli <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Des foncteurs \( F\colon \mathcal{C} \to \mathcal{D} \) et
+\( G\colon \mathcal{D} \to \mathcal{C} \) forment une adjonction \( F \dashv G \) s'il existe une
+bijection \( \mathrm{Hom}_{\mathcal{D}}(F A, B) \cong \mathrm{Hom}_{\mathcal{C}}(A, G B) \),
+naturelle en \( A \) et en \( B \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que cette définition équivaut à la donnée de
+transformations naturelles \( \eta\colon \mathrm{id} \Rightarrow GF \) (l'unité) et
+\( \varepsilon\colon FG \Rightarrow \mathrm{id} \) (la counité) satisfaisant les deux identités
+triangulaires.</li>
+<li>Vérifiez les adjonctions : groupe libre \( \dashv \) oubli
+\( \mathbf{Grp} \to \mathbf{Set} \) ; \( k \)-espace vectoriel libre \( \dashv \) oubli ; et la
+chaîne discret \( \dashv \) oubli \( \dashv \) grossier pour les espaces topologiques.</li>
+<li>À l'aide du lemme de Yoneda, démontrez qu'un adjoint à gauche d'un foncteur donné, lorsqu'il
+existe, est unique à isomorphisme naturel près.</li>
+</ol>
+</div>
+<p class="context">Daniel Kan a isolé les foncteurs adjoints en 1958, en abstrayant la relation
+tenseur–hom de l'algèbre et son propre travail en homotopie simpliciale ; en moins de dix ans Mac
+Lane pouvait écrire la devise de son manuel : « Adjoint functors arise everywhere » (les foncteurs
+adjoints surgissent partout). Les couples libre/oubli de (b) en sont le modèle — toute
+construction « libre » en algèbre est un adjoint à gauche, et sa propriété universelle est l'unité
+de l'adjonction.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Foncteur_adjoint">Foncteur adjoint — Wikipédia</a></li>
+<li>Article : D. M. Kan, « Adjoint functors » (1958), Trans. Amer. Math. Soc. 87</li>
+<li>Lecture : Saunders Mac Lane, <i>Categories for the Working Mathematician</i>, ch. IV</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-10" data-level="Master">
+<h3>CAT-10 · Limites, colimites, et ce que préservent les adjoints <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une <i>limite</i> d'un diagramme \( D\colon \mathcal{J} \to
+\mathcal{C} \) (avec \( \mathcal{J} \) petite) est un objet final parmi les cônes au-dessus de
+\( D \) ; une <i>colimite</i> est la notion duale.</p>
+<ol class="parts" type="a">
+<li>Montrez que les produits, les égaliseurs, les produits fibrés et les objets finaux sont des
+limites sur des diagrammes de formes convenables, et démontrez qu'une catégorie possédant tous les
+petits produits et tous les égaliseurs possède toutes les petites limites.</li>
+<li>Démontrez que pour tout objet \( A \) le
+foncteur \( \mathrm{Hom}(A, -)\colon \mathcal{C} \to \mathbf{Set} \) préserve toutes les limites.</li>
+<li>Démontrez que les adjoints à droite préservent les limites et, dualement, que les adjoints à
+gauche préservent les colimites.</li>
+<li>Appliquez (c) par contraposition : le foncteur d'oubli \( U\colon \mathbf{Grp} \to
+\mathbf{Set} \) envoie le coproduit \( \mathbb{Z} * \mathbb{Z} \) (CAT-03) sur un ensemble bien
+plus grand que la réunion disjointe de deux copies de \( \mathbb{Z} \) ; concluez que \( U \) n'a
+aucun adjoint à droite.</li>
+</ol>
+</div>
+<p class="context">Les limites et colimites, en toute généralité, sont dues au même cercle — encore
+l'article de Kan de 1958 — et la partie (c), « RAPL » en anglais, est le cheval de trait quotidien
+du sujet : elle explique en une ligne pourquoi les constructions libres malmènent les produits,
+pourquoi les ensembles sous-jacents des produits sont des produits, et (sous sa forme raffinée,
+les théorèmes du foncteur adjoint de Freyd) quand un foncteur préservant les limites doit avoir un
+adjoint. La partie (b) est le point de vue de Yoneda sur les limites : elles se calculent point par
+point, sous le regard de chaque objet.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Limite_%28th%C3%A9orie_des_cat%C3%A9gories%29">Limite (théorie des catégories) — Wikipédia</a></li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 3–4</li>
+<li>Lecture : Saunders Mac Lane, <i>Categories for the Working Mathematician</i>, ch. V</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-11" data-level="Master">
+<h3>CAT-11 · Des monades à partir des adjonctions <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une <i>monade</i> sur \( \mathcal{C} \) est un foncteur
+\( T\colon \mathcal{C} \to \mathcal{C} \) muni de transformations naturelles
+\( \eta\colon \mathrm{id} \Rightarrow T \) et \( \mu\colon T^2 \Rightarrow T \) satisfaisant
+l'associativité \( \mu \circ T\mu = \mu \circ \mu T \) et les lois d'unité
+\( \mu \circ T\eta = \mu \circ \eta T = \mathrm{id} \).</p>
+<ol class="parts" type="a">
+<li>Étant donné une adjonction
+\( F \dashv G \) d'unité \( \eta \) et de counité \( \varepsilon \), démontrez que
+\( T = GF \), avec l'unité \( \eta \) et la multiplication \( \mu = G \varepsilon F \), est une
+monade.</li>
+<li>Identifiez la monade sur \( \mathbf{Set} \) induite par l'adjonction du monoïde libre —
+montrez que \( T(X) = X^{*} \), l'ensemble des mots finis sur \( X \) — et vérifiez directement
+que le foncteur parties, avec l'unité \( x \mapsto \{x\} \) et la multiplication donnée par la
+réunion, est une monade.</li>
+<li>Démontrez la réciproque de (a) : toute monade provient d'une adjonction, en construisant
+la catégorie de Kleisli \( \mathcal{C}_T \) et en exhibant l'adjonction qui induit
+\( T \).</li>
+</ol>
+</div>
+<p class="context">Les monades ont été distillées par Godement (1958, sous le nom de
+« constructions standard ») pour les résolutions faisceautiques ; Kleisli, et Eilenberg avec
+Moore, ont répondu en 1965 à la question « toute monade ? » par deux adjonctions canoniques
+différentes. Trente ans plus tard, Moggi remarquait que les effets computationnels — exceptions,
+état, non-déterminisme, entrées/sorties — sont des monades, et le concept passait dans la pratique
+de la programmation ; la monade des listes de (b) tient en une ligne de définition en Haskell. Peu
+d'abstractions ont voyagé aussi loin.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Monade_%28th%C3%A9orie_des_cat%C3%A9gories%29">Monade (théorie des catégories) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Monade_%28informatique%29">Monade (informatique) — Wikipédia</a></li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 5</li>
+<li>Article : E. Moggi, « Notions of computation and monads » (1991), Information and Computation 93</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-12" data-level="Master">
+<h3>CAT-12 · Catégories cartésiennes fermées et λ-calcul <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une catégorie à produits finis est <i>cartésienne
+fermée</i> (une CCC) si pour tous objets \( A, B \) il existe un objet exponentiel \( B^A \)
+muni d'une évaluation \( \mathrm{ev}\colon B^A \times A \to B \) telle que tout
+\( f\colon C \times A \to B \) se factorise en \( f = \mathrm{ev} \circ (\lambda f \times
+\mathrm{id}_A) \) pour un unique \( \lambda f\colon C \to B^A \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que
+\( \mathbf{Set} \) est cartésienne fermée, et que la propriété universelle revient à la bijection
+de curryfication \( \mathrm{Hom}(C \times A,\, B) \cong \mathrm{Hom}(C,\, B^A) \).</li>
+<li>Démontrez que \( \mathbf{Grp} \) n'est pas cartésienne fermée.</li>
+<li>Le λ-calcul simplement typé
+a des types construits à partir de types de base par \( \times \) et \( \to \), et des termes
+construits par appariement, projection, application et λ-abstraction. Vérifiez soigneusement que
+les types-comme-objets et les termes-modulo-\( \beta\eta \)-équivalence-comme-morphismes
+fournissent une catégorie cartésienne fermée, la λ-abstraction réalisant la propriété universelle
+de (a).</li>
+</ol>
+</div>
+<p class="context">La partie (c) est un tiers de la correspondance de Curry–Howard–Lambek : les
+démonstrations en logique intuitionniste, les programmes en λ-calcul typé et les morphismes des
+catégories cartésiennes fermées sont trois notations pour les mêmes objets. Lambek a établi le
+pied catégorique vers 1980 ; Lawvere s'était déjà servi des CCC pour reformuler la logique dans
+les années 1960. Ce triangle est l'ossature théorique des langages fonctionnels typés et des
+assistants de preuve qui apparaissent dans la bande Recherche.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_cart%C3%A9sienne_ferm%C3%A9e">Catégorie cartésienne fermée — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Correspondance_de_Curry-Howard">Correspondance de Curry–Howard — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lambda-calcul_simplement_typ%C3%A9">Lambda-calcul simplement typé — Wikipédia</a></li>
+<li>Article : J. Lambek, « From λ-calculus to cartesian closed categories » (1980), dans <i>To H. B. Curry: Essays on Combinatory Logic, Lambda Calculus and Formalism</i></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-19" data-level="Master" data-kind="court">
+<h3>CAT-19 · Les limites dans une catégorie de foncteurs se calculent point par point <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( \mathcal{C} \) petite et soit \( \mathcal{D} \)
+possédant toutes les petites limites. Démontrez que la catégorie de foncteurs
+\( [\mathcal{C}, \mathcal{D}] \) possède toutes les petites limites, et qu'elles se calculent
+objet par objet : pour un diagramme \( F\colon \mathcal{J} \to [\mathcal{C}, \mathcal{D}] \) et
+tout objet \( c \) de \( \mathcal{C} \),
+\[ \left( \lim_{\mathcal{J}} F \right)(c) \;\cong\; \lim_{\mathcal{J}} \big( F(-)(c) \big). \]</p>
+<p class="context">C'est le cheval de trait derrière tout argument du type « calculons objet par
+objet » : noyaux de transformations naturelles, limites de préfaisceaux, limites de diagrammes de
+modules. L'énoncé dual vaut pour les colimites, et l'asymétrie qui rend le sujet intéressant
+apparaît un étage plus haut — les extensions de Kan <i>à gauche</i> et les réalisations
+géométriques ne se calculent pas point par point en ce sens naïf.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_de_foncteurs">Catégorie de foncteurs — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Limite_%28th%C3%A9orie_des_cat%C3%A9gories%29">Limite (théorie des catégories) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-20" data-level="Master" data-kind="court">
+<h3>CAT-20 · Tout préfaisceau est une colimite de représentables <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \( \mathcal{C} \) une petite catégorie, soit
+\( X\colon \mathcal{C}^{\mathrm{op}} \to \mathbf{Set} \) un préfaisceau, et soit \( \int X \) sa
+<i>catégorie des éléments</i>, dont les objets sont les couples \( (c, x) \) avec \( x \in X(c) \)
+et dont les morphismes \( (c, x) \to (c', x') \) sont les applications \( u\colon c \to c' \) avec
+\( X(u)(x') = x \). Démontrez que \( X \) est la colimite du diagramme
+\( \int X \to [\mathcal{C}^{\mathrm{op}}, \mathbf{Set}] \) envoyant \( (c, x) \) sur le
+préfaisceau représentable \( \mathrm{Hom}(-, c) \).</p>
+<p class="context">Le théorème de densité dit que le plongement de Yoneda est aussi généreux que
+possible : les représentables engendrent tout par colimites, si bien qu'un foncteur préservant les
+colimites et défini sur les préfaisceaux est déterminé par ses valeurs sur \( \mathcal{C} \).
+C'est le moteur de la devise de la « cocomplétion libre » et de la recette standard pour construire
+des réalisations géométriques — les ensembles simpliciaux sont des colimites de simplexes, et tout
+choix de « ce que signifie un simplexe » s'étend de manière unique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pr%C3%A9faisceau_%28th%C3%A9orie_des_cat%C3%A9gories%29">Préfaisceau (théorie des catégories) — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Category_of_elements">Catégorie des éléments — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-21" data-level="Master">
+<h3>CAT-21 · Le théorème du foncteur adjoint <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> D'après CAT-10, un foncteur admettant un adjoint à gauche préserve les
+limites. Les théorèmes du foncteur adjoint demandent quand la réciproque est vraie. On dit que
+\( G\colon \mathcal{D} \to \mathcal{C} \) satisfait la <i>condition d'ensemble solution</i> en un
+objet \( C \) s'il existe un <b>ensemble</b> de morphismes \( f_i\colon C \to G(D_i) \) par
+lesquels tout morphisme \( C \to G(D) \) se factorise sous la forme \( G(h) \circ f_i \) pour un
+certain \( i \) et un certain \( h\colon D_i \to D \).</p>
+<ol class="parts" type="a">
+<li>Démontrez le théorème général du foncteur adjoint : si \( \mathcal{D} \) est petitement
+complète et localement petite, et si \( G \) préserve les petites limites et satisfait la
+condition d'ensemble solution en tout objet, alors \( G \) admet un adjoint à gauche. (Suivant
+CAT-18(d), il suffit de produire un objet initial dans chaque catégorie virgule
+\( (C \downarrow G) \) ; construisez-le comme une limite convenable et servez-vous d'un argument
+d'« absence d'endomorphisme propre ».)</li>
+<li>Vérifiez les hypothèses pour le foncteur d'oubli \( \mathbf{Grp} \to \mathbf{Set} \) en
+exhibant un ensemble solution explicite, et retrouvez l'existence des groupes libres sans
+construire un seul mot.</li>
+<li>Montrez que la préservation des limites ne suffit pas : le foncteur d'oubli de la catégorie
+des algèbres de Boole complètes et de leurs homomorphismes complets vers \( \mathbf{Set} \)
+préserve toutes les petites limites, et pourtant n'a aucun adjoint à gauche, parce qu'il n'existe
+pas d'algèbre de Boole complète libre sur une infinité dénombrable de générateurs. Localisez
+précisément où la condition d'ensemble solution échoue.</li>
+<li>Énoncez le théorème spécial du foncteur adjoint (ajoutez le caractère bien puissant et un
+petit ensemble cogénérateur, supprimez la condition d'ensemble solution) et servez-vous-en pour
+démontrer que l'inclusion des espaces compacts séparés dans les espaces topologiques admet un
+adjoint à gauche — la compactification de Stone–Čech.</li>
+</ol>
+</div>
+<p class="context">Peter Freyd a démontré ces théorèmes au début des années 1960 et les a publiés
+dans <i>Abelian Categories</i> (1964) ; ils sont la réponse professionnelle à la question « cette
+construction existe-t-elle ? », remplaçant les constructions au cas par cas par une vérification
+sur les limites accompagnée d'une condition de taille. Le contre-exemple de (c) est celui qui
+montre que la condition de taille n'a rien de bureaucratique : Hales et Gaifman ont montré
+indépendamment en 1964 que les algèbres de Boole complètes libres sur une infinité de générateurs
+n'existent pas, de sorte que les hypothèses du théorème sont la frontière honnête de la méthode.
+La partie (d) explique pourquoi Stone–Čech est un adjoint à gauche et préserve donc les coproduits
+qu'elle est par ailleurs célèbre pour malmener en tout autre sens.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Foncteur_adjoint">Foncteur adjoint — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Complete_Boolean_algebra">Algèbre de Boole complète — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Compactification_de_Stone-%C4%8Cech">Compactification de Stone–Čech — Wikipédia</a></li>
+<li>Lecture : Saunders Mac Lane, <i>Categories for the Working Mathematician</i>, ch. V §6</li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-22" data-level="Master">
+<h3>CAT-22 · Catégories monoïdales, cohérence et diagrammes de cordes <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une <i>catégorie monoïdale</i> est une catégorie \( \mathcal{V} \) munie d'un
+foncteur \( \otimes\colon \mathcal{V} \times \mathcal{V} \to \mathcal{V} \), d'un objet unité
+\( I \), et d'isomorphismes naturels
+\( \alpha_{A,B,C}\colon (A \otimes B) \otimes C \to A \otimes (B \otimes C) \),
+\( \lambda_A\colon I \otimes A \to A \), \( \rho_A\colon A \otimes I \to A \) soumis aux axiomes
+du pentagone et du triangle de Mac Lane.</p>
+<ol class="parts" type="a">
+<li>Vérifiez que \( (\mathbf{Set}, \times, \{*\}) \), \( (\mathrm{Vect}_k, \otimes, k) \), et
+les endofoncteurs d'une catégorie fixée munis de la composition sont monoïdales, la dernière
+strictement.</li>
+<li>Un <i>monoïde</i> dans \( \mathcal{V} \) est un objet \( M \) muni de
+\( \mu\colon M \otimes M \to M \) et \( \eta\colon I \to M \) satisfaisant l'associativité et les
+lois d'unité. Démontrez qu'un monoïde dans \( (\mathbf{Set}, \times) \) est un monoïde ordinaire,
+qu'un monoïde dans
+\( (\mathbf{Ab}, \otimes_{\mathbb{Z}}, \mathbb{Z}) \) est un anneau, et qu'un monoïde dans la
+catégorie des endofoncteurs est exactement une monade (CAT-11).</li>
+<li>Démontrez à partir des axiomes que \( \lambda_I = \rho_I\colon I \otimes I \to I \).</li>
+<li>Problème de compréhension : lisez le théorème de cohérence de Mac Lane sous la forme « toute
+catégorie monoïdale est monoïdalement équivalente à une catégorie stricte », apprenez le calcul
+des diagrammes de cordes de Joyal et Street, et servez-vous-en pour démontrer qu'un objet dual —
+un objet \( A^{*} \) muni d'une unité \( I \to A \otimes A^{*} \) et d'une counité
+\( A^{*} \otimes A \to I \) satisfaisant les deux identités en zigzag — est précisément une
+adjonction dans la 2-catégorie à un objet déterminée par \( \mathcal{V} \).</li>
+</ol>
+</div>
+<p class="context">Mac Lane a écrit le pentagone en 1963 (Bénabou indépendamment), en se demandant
+ce qu'il fallait supposer pour que « tous les diagrammes raisonnables commutent » — le premier
+théorème de cohérence, et le modèle de tous ceux qui ont suivi en théorie des catégories
+supérieures. Les diagrammes de cordes transforment ces diagrammes commutatifs en topologie : les
+morphismes deviennent des boîtes sur des fils, les axiomes deviennent la liberté de faire glisser
+les boîtes, et une démonstration devient une isotopie. Penrose a inventé la notation pour le
+calcul tensoriel vers 1971 et Joyal et Street en ont fait un théorème en 1991 ; c'est aujourd'hui
+la notation de travail de l'algèbre quantique, de la théorie topologique des champs (CAT-25) et du
+ZX-calcul de l'informatique quantique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_mono%C3%AFdale">Catégorie monoïdale — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Coherence_theorem">Théorème de cohérence — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/String_diagram">Diagramme de cordes — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Dual_object">Objet dual — Wikipédia (en anglais)</a></li>
+<li>Article : S. Mac Lane, « Natural associativity and commutativity » (1963), Rice University Studies 49</li>
+<li>Article : A. Joyal et R. Street, « The geometry of tensor calculus, I » (1991), Advances in Mathematics 88</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-29" data-level="Master">
+<h3>CAT-29 · Extensions de Kan <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soient \( K \colon \mathcal{A} \to \mathcal{B} \) et
+\( F \colon \mathcal{A} \to \mathcal{C} \) des foncteurs. Une <i>extension de Kan à gauche</i> de
+\( F \) le long de \( K \) est un foncteur \( \mathrm{Lan}_K F \colon \mathcal{B} \to \mathcal{C} \)
+accompagné d'une transformation naturelle \( \eta \colon F \Rightarrow (\mathrm{Lan}_K F) \circ K \)
+universelle parmi de tels couples ; l'extension de Kan à droite \( \mathrm{Ran}_K F \) est la
+notion duale.</p>
+<ol class="parts" type="a">
+<li>Démontrez que si les extensions de Kan à gauche le long de \( K \) existent pour tout \( F \),
+elles s'assemblent en un foncteur adjoint à gauche de la restriction
+\( K^{*} \colon [\mathcal{B}, \mathcal{C}] \to [\mathcal{A}, \mathcal{C}] \), et démontrez la
+réciproque.</li>
+<li>Démontrez la formule ponctuelle : si \( \mathcal{A} \) est petite et \( \mathcal{C} \) est
+cocomplète, alors
+\[ (\mathrm{Lan}_K F)(b) \;\cong\; \operatorname*{colim}\, \bigl( (K \downarrow b) \to
+\mathcal{A} \xrightarrow{\ F\ } \mathcal{C} \bigr), \]
+la colimite sur la catégorie virgule de CAT-18 dont les objets sont les couples
+\( (a, K(a) \to b) \), et identifiez le \( \eta \) universel.</li>
+<li>Récoltez la devise « tous les concepts sont des extensions de Kan ». Montrez qu'une colimite de
+\( F \colon \mathcal{A} \to \mathcal{C} \) est \( \mathrm{Lan}_K F \) pour \( K \) l'unique
+foncteur vers la catégorie finale ; que pour une adjonction \( F \dashv G \) on a
+\( G \cong \mathrm{Ran}_F(\mathrm{id}) \), et déterminez en quel sens cette extension de Kan est
+<i>absolue</i> — préservée par absolument tout foncteur ; et que pour \( \mathcal{E} \)
+cocomplète, l'extension de Kan à gauche le long du plongement de Yoneda envoie un foncteur
+\( \mathcal{C} \to \mathcal{E} \) sur l'unique foncteur préservant les colimites
+\( [\mathcal{C}^{\mathrm{op}}, \mathbf{Set}] \to \mathcal{E} \) qui le prolonge, ce qui est
+l'énoncé de cocomplétion libre derrière CAT-20.</li>
+<li>Calculez l'exemple qui a rendu la notion indispensable. Soit \( \Delta \) la catégorie des
+simplexes et soit \( r \colon \Delta \to \mathbf{Top} \) envoyant \( [n] \) sur le
+\( n \)-simplexe topologique standard. Démontrez que l'extension de Kan à gauche de \( r \) le long
+du plongement de Yoneda \( \Delta \to \mathbf{sSet} \) est la réalisation géométrique, qu'elle est
+adjointe à gauche du foncteur complexe singulier, et que c'est l'adjonction nerf–réalisation
+générale produite par (c).</li>
+</ol>
+</div>
+<p class="context">Daniel Kan a introduit ces extensions dans l'article même de 1958 qui a nommé les
+foncteurs adjoints, parce qu'il en avait besoin pour construire des objets en théorie de
+l'homotopie simpliciale. Mac Lane a consacré le dernier chapitre de <i>Categories for the Working
+Mathematician</i> à ces extensions et a donné à sa section finale le titre délibérément provocateur
+« All concepts are Kan extensions » — ce qui est le contenu de la partie (c), où limites, adjoints
+et cocomplétion libre découlent tous d'une seule propriété universelle. L'adjonction
+nerf–réalisation de la partie (d) est la charnière entre combinatoire et topologie, et sous sa
+forme moderne c'est ainsi que les ∞-catégories de la bande Recherche sont définies tout court.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Extension_de_Kan">Extension de Kan — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ensemble_simplicial">Ensemble simplicial — Wikipédia</a></li>
+<li>Lecture : Saunders Mac Lane, <i>Categories for the Working Mathematician</i>, ch. X</li>
+<li>Lecture : Emily Riehl, <i>Category Theory in Context</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-30" data-level="Master">
+<h3>CAT-30 · Algèbres sur une monade et théorème de Beck <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( (T, \eta, \mu) \) une monade sur \( \mathcal{C} \) (CAT-11). Une
+<i>algèbre d'Eilenberg–Moore</i> est un objet \( A \) muni d'une application \( a \colon T(A) \to A \)
+satisfaisant \( a \circ \eta_A = \mathrm{id}_A \) et \( a \circ \mu_A = a \circ T(a) \) ;
+avec les morphismes évidents, elles forment une catégorie \( \mathcal{C}^{T} \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que le foncteur d'oubli \( U^{T} \colon \mathcal{C}^{T} \to \mathcal{C} \) admet
+un adjoint à gauche dont la monade induite est de nouveau \( T \) — une deuxième réponse
+canonique, à côté de la construction de Kleisli de CAT-11(c), à la question de savoir quelles
+adjonctions produisent une monade donnée. Démontrez que \( \mathcal{C}^{T} \) est <i>finale</i>
+parmi toutes les adjonctions induisant \( T \), tandis que la catégorie de Kleisli est initiale.</li>
+<li>Calculez. Montrez que les algèbres de la monade du monoïde libre sur \( \mathbf{Set} \) sont
+exactement les monoïdes et leurs homomorphismes, celles de la monade du groupe libre exactement
+les groupes, et celles de la monade des parties exactement les demi-treillis complets pour la
+borne supérieure, avec les applications qui la préservent.</li>
+<li>On appelle une adjonction \( F \dashv G \) avec \( G \colon \mathcal{D} \to \mathcal{C} \)
+<i>monadique</i> si le foncteur de comparaison \( \mathcal{D} \to \mathcal{C}^{GF} \) est une
+équivalence. Énoncez le théorème de monadicité de Beck — \( G \) est monadique si et seulement
+s'il admet un adjoint à gauche, réfléchit les isomorphismes, et que \( \mathcal{D} \) possède et
+\( G \) préserve les coégaliseurs des couples \( G \)-scindés — et démontrez la direction facile,
+à savoir qu'un foncteur monadique possède ces trois propriétés.</li>
+<li>Utilisez le théorème deux fois. Démontrez que le foncteur d'oubli des espaces compacts séparés
+vers \( \mathbf{Set} \) est monadique, sa monade étant la monade des ultrafiltres, de sorte que
+« compact séparé » est une théorie algébrique dont l'unique opération infinitaire associe à chaque
+ultrafiltre de points sa limite. Montrez ensuite que le foncteur d'oubli
+\( \mathbf{Top} \to \mathbf{Set} \) n'est <i>pas</i> monadique, en exhibant une bijection continue
+qui n'est pas un homéomorphisme et en identifiant exactement l'hypothèse du théorème de Beck
+qu'elle détruit.</li>
+</ol>
+</div>
+<p class="context">En 1965 Eilenberg et Moore, et indépendamment Kleisli, ont montré que toute
+monade provient d'une adjonction, de deux manières extrémales ; la thèse de 1967 de Jon Beck à
+Columbia a ensuite répondu à la question plus fine : quand une catégorie de structures au-dessus
+d'une autre n'est-elle <i>rien d'autre</i> que les algèbres d'une monade ? Ce qui rend la réponse
+remarquable, c'est ce qu'elle ne mentionne pas : ni signature, ni équations, seulement une
+condition sur certains coégaliseurs. La partie (d) est le dividende le plus célèbre du théorème,
+la découverte par Ernest Manes que compacité plus séparation est une théorie algébrique dont les
+opérations envoient les ultrafiltres de points sur des points — ce qu'aucune dose de topologie
+générale ne laisse deviner, et le début de la vision catégorique de la topologie comme algèbre
+au-dessus de \( \mathbf{Set} \).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Beck%27s_monadicity_theorem">Théorème de monadicité de Beck — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Monade_%28th%C3%A9orie_des_cat%C3%A9gories%29">Monade (théorie des catégories) — Wikipédia</a></li>
+<li>Article : S. Eilenberg et J. C. Moore, « Adjoint functors and triples » (1965), Illinois J. Math. 9</li>
+<li>Lecture : Saunders Mac Lane, <i>Categories for the Working Mathematician</i>, ch. VI</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-31" data-level="Master">
+<h3>CAT-31 · Topos, classificateurs de sous-objets et condition de faisceau <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un <i>topos élémentaire</i> est une catégorie possédant les limites finies, les
+exponentielles (CAT-12) et un <i>classificateur de sous-objets</i> : un monomorphisme
+\( \top \colon 1 \to \Omega \) tel que pour tout monomorphisme \( m \colon S \to X \) il existe un
+unique \( \chi_m \colon X \to \Omega \) faisant du carré
+\[ \begin{array}{ccc}
+S &amp; \longrightarrow &amp; 1 \\
+\downarrow &amp; &amp; \downarrow \\
+X &amp; \longrightarrow &amp; \Omega
+\end{array} \]
+— d'arête gauche \( m \), d'arête droite \( \top \) et d'arête inférieure \( \chi_m \) — un carré
+cartésien.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'un ensemble à deux éléments muni de l'application désignant l'un de ses éléments
+est un classificateur de sous-objets pour \( \mathbf{Set} \), et qu'un classificateur de
+sous-objets, lorsqu'il existe, est unique à isomorphisme canonique près. Démontrez que dans tout
+topos \( X \mapsto \mathrm{Sub}(X) \) est un foncteur
+\( \mathcal{E}^{\mathrm{op}} \to \mathbf{Set} \) représenté par \( \Omega \).</li>
+<li>Démontrez que les préfaisceaux forment un topos. Pour \( \mathcal{C} \) petite, appelez
+<i>crible</i> sur \( c \) un ensemble \( S \) de morphismes de but \( c \) stable par
+précomposition ; montrez que \( \Omega(c) = \{ \text{cribles sur } c \} \), la restriction le long
+de \( u \colon c' \to c \) étant donnée par l'image réciproque des cribles, est un classificateur
+de sous-objets pour \( [\mathcal{C}^{\mathrm{op}}, \mathbf{Set}] \).</li>
+<li>Démontrez que \( \mathrm{Sub}(X) \) est une algèbre de Heyting : elle possède les bornes
+inférieures et supérieures finies et une opération \( \Rightarrow \) telle que
+\( U \wedge V \le W \) si et seulement si \( U \le (V \Rightarrow W) \) — une adjonction au sens
+de CAT-26 — mais elle ne satisfait pas nécessairement \( U \vee \neg U = 1 \). Exhibez un topos de
+préfaisceaux dans lequel le tiers exclu est en défaut, et concluez que la logique interne d'un
+topos est intuitionniste.</li>
+<li>Compréhension : un préfaisceau \( F \) sur un espace topologique est un <i>faisceau</i>
+lorsque, pour tout ouvert \( U \) et tout recouvrement ouvert \( \{ U_i \} \) de \( U \),
+l'ensemble \( F(U) \) est l'égaliseur des deux applications évidentes
+\( \prod_i F(U_i) \rightrightarrows \prod_{i,j} F(U_i \cap U_j) \). Démontrez que cette unique
+condition de limite est exactement la séparation jointe au recollement, démontrez que les
+faisceaux forment une sous-catégorie pleine des préfaisceaux stable par limites, et énoncez le
+théorème de Lawvere et Tierney selon lequel les faisceaux pour une topologie sur un topos
+quelconque forment encore un topos.</li>
+</ol>
+</div>
+<p class="context">L'école de Grothendieck a introduit les topos vers 1963, dans SGA 4, comme des
+espaces généralisés : des catégories de faisceaux dans lesquelles on pouvait faire de la
+cohomologie pour la topologie étale, là où l'« espace » sous-jacent a trop peu d'ouverts pour être
+utile. Puis, en 1970, Lawvere et Tierney ont trouvé les axiomes de la partie (a) — limites finies,
+exponentielles et un unique objet \( \Omega \) représentant les sous-objets — une description au
+premier ordre de ce qu'est une catégorie de faisceaux, sans site ni espace en vue. La conséquence
+de la partie (c) est ce qui a changé la logique : tout topos porte un langage interne dont la
+logique est intuitionniste, si bien qu'un topos est à la fois un espace généralisé et un univers
+mathématique, et que la démonstration par forcing de l'indépendance de l'hypothèse du continu,
+due à Cohen, réapparaît comme la construction d'un topos convenable. La page
+<a href="pure-foundations.html">Fondements</a> poursuit du côté logique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Topos_%28math%C3%A9matiques%29">Topos (mathématiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Subobject_classifier">Classificateur de sous-objets — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Alg%C3%A8bre_de_Heyting">Algèbre de Heyting — Wikipédia</a></li>
+<li>Lecture : S. Mac Lane et I. Moerdijk, <i>Sheaves in Geometry and Logic: A First Introduction to Topos Theory</i></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-32" data-level="Master" data-kind="court">
+<h3>CAT-32 · Le nerf d'une catégorie <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Le <i>nerf</i> d'une petite catégorie \( \mathcal{C} \)
+est l'ensemble simplicial \( N(\mathcal{C}) \) dont les \( n \)-simplexes sont les foncteurs
+\( [n] \to \mathcal{C} \), où \( [n] \) est l'ensemble ordonné \( 0 \le 1 \le \cdots \le n \) — de
+sorte qu'un \( n \)-simplexe est une chaîne de \( n \) morphismes composables. Démontrez que
+\( N \) est un foncteur plein et fidèle de \( \mathbf{Cat} \) vers les ensembles simpliciaux, et
+qu'un ensemble simplicial est isomorphe à un nerf si et seulement si toute corne interne
+\( \Lambda^{n}_{k} \to X \) avec \( 0 &lt; k &lt; n \) admet un remplissage <i>unique</i>.</p>
+<p class="context">Le nerf transforme une catégorie en objet combinatoire et un foncteur en
+application simpliciale, de sorte que l'espace classifiant d'une catégorie peut être formé et
+toute la machinerie de la théorie de l'homotopie lui être appliquée — la construction derrière la
+K-théorie algébrique supérieure de Quillen et derrière l'identification de la cohomologie des
+groupes avec la cohomologie d'un espace. Sa caractérisation ci-dessus est aussi la porte d'entrée
+de la théorie des catégories supérieures : supprimez le mot « unique » de la condition de
+remplissage des cornes, en n'exigeant plus que l'existence, et l'on obtient les complexes de Kan
+faibles de Boardman et Vogt, rebaptisés quasi-catégories par Joyal, qui sont les ∞-catégories de
+CAT-13 et CAT-25.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nerf_%28th%C3%A9orie_des_cat%C3%A9gories%29">Nerf (théorie des catégories) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ensemble_simplicial">Ensemble simplicial — Wikipédia</a></li>
+<li>Lecture : Emily Riehl, <i>Categorical Homotopy Theory</i> (Cambridge, 2014)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-33" data-level="Master" data-kind="court">
+<h3>CAT-33 · Les transformations naturelles comme une fin <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour des foncteurs \( F, G \colon \mathcal{C} \to \mathcal{D} \)
+avec \( \mathcal{C} \) petite et \( \mathcal{D} \) localement petite, démontrez que l'ensemble des
+transformations naturelles de \( F \) vers \( G \) est la fin
+\[ \mathrm{Nat}(F, G) \;\cong\; \int_{c \in \mathcal{C}} \mathrm{Hom}_{\mathcal{D}}\bigl(F c,\, G c\bigr), \]
+c'est-à-dire l'égaliseur des deux applications évidentes
+\( \prod_{c} \mathrm{Hom}(Fc, Gc) \rightrightarrows \prod_{u \colon c \to c'} \mathrm{Hom}(Fc, Gc') \).
+Déduisez-en la forme « fin » du lemme de Yoneda (CAT-08) :
+\( \int_{c} \mathrm{Hom}\bigl( \mathrm{Hom}(a, c),\, F c \bigr) \cong F(a) \).</p>
+<p class="context">La construction remonte à l'article de Yoneda de 1960 sur Ext, et Mac Lane lui
+a donné la notation intégrale — justifiée par un théorème de Fubini qui permet d'échanger des fins
+itérées exactement comme on échange des intégrales itérées. La formule démontrée ici est la raison
+pour laquelle ce calcul mérite d'être appris : les énoncés de naturalité deviennent des égalités
+entre intégrales. La cofin duale \( \int^{c} \) fournit l'autre moitié, en réécrivant le théorème
+de densité de CAT-20 sous la forme \( X \cong \int^{c} X(c) \cdot \mathrm{Hom}(-, c) \) et en
+donnant aux extensions de Kan de CAT-29 des formules closes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fin_%28th%C3%A9orie_des_cat%C3%A9gories%29">Fin (théorie des catégories) — Wikipédia</a></li>
+<li>Lecture : Saunders Mac Lane, <i>Categories for the Working Mathematician</i>, ch. IX</li>
+<li>Lecture : Fosco Loregian, <i>(Co)end Calculus</i> (Cambridge University Press, 2021)</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="CAT-13" data-level="Recherche">
+<h3>CAT-13 · Théorie synthétique et vérifiée par machine des ∞-catégories <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La théorie classique (« analytique ») des ∞-catégories, telle que développée
+par Joyal et Lurie, construit les (∞,1)-catégories à partir des quasi-catégories — des ensembles
+simpliciaux soumis à des conditions de remplissage de cornes — au prix d'une combinatoire
+redoutable. Le programme <i>synthétique</i> (Riehl–Shulman, 2017) travaille au contraire dans une
+extension dirigée de la théorie homotopique des types dont les objets de base se comportent comme
+des ∞-catégories, et en 2024 Kudasov, Riehl et Weinberger ont fait vérifier par machine le lemme
+de Yoneda ∞-catégorique dans l'assistant de preuve Rzk.</p>
+<ol class="parts" type="a">
+<li>Comme point d'entrée, formalisez le lemme de Yoneda 1-catégorique (CAT-08) dans un assistant
+de preuve de votre choix et comparez votre développement, ligne à ligne, avec le développement
+∞-catégorique cité.</li>
+<li>La direction de recherche : déterminez quelle part de la théorie des ∞-catégories — limites et
+colimites, l'équivalence straightening/unstraightening, les catégories présentables — peut être
+développée synthétiquement et formalisée, et si les démonstrations synthétiques peuvent être
+transportées de façon correcte vers tous les modèles.</li>
+</ol>
+<p><i>Statut : ouvert et actif ; le lemme de Yoneda et des parties de la théorie élémentaire sont
+formalisés, tandis que l'essentiel de la théorie à l'échelle de Lurie ne l'est pas.</i></p>
+</div>
+<p class="context">La formalisation est passée cette décennie du statut de curiosité à celui de
+méthode de travail — de larges pans des mathématiques modernes vivent désormais dans le Mathlib de
+Lean — et la théorie des catégories en est naturellement une adoptante précoce, puisque ses
+démonstrations sont des chasses au diagramme qu'une machine sait vérifier et que ses fondements
+mettent la théorie des ensembles à rude épreuve. L'approche synthétique porte un rêve catégorique
+classique : que le bon langage rende faciles les théorèmes difficiles, la difficulté étant
+remboursée lorsque les résultats s'appliquent d'un coup à tous les modèles.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_des_cat%C3%A9gories_sup%C3%A9rieures">Théorie des catégories supérieures — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lean_%28assistant_de_preuve%29">Lean (assistant de preuve) — Wikipédia</a></li>
+<li>Article : N. Kudasov, E. Riehl et J. Weinberger, « Formalizing the ∞-categorical Yoneda lemma » (CPP 2024), <a href="https://arxiv.org/abs/2309.08340">arXiv:2309.08340</a></li>
+<li>Article : E. Riehl et M. Shulman, « A type theory for synthetic ∞-categories » (2017), <a href="https://arxiv.org/abs/1705.07442">arXiv:1705.07442</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-14" data-level="Recherche">
+<h3>CAT-14 · Le problème des types semi-simpliciaux <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> En théorie homotopique des types (HoTT) — le fondement dans lequel les types
+se comportent comme des types d'homotopie et l'égalité comme des chemins — Voevodsky a demandé,
+pendant l'année Univalent Foundations 2012-2013 à l'IAS, si le type des <i>types
+semi-simpliciaux</i> peut être défini de manière interne : une famille
+\( X_0, X_1, X_2, \ldots \) où \( X_0 \) est un type, \( X_1 \) une famille de types au-dessus des
+couples issus de \( X_0 \), \( X_2 \) une famille au-dessus des triangles, et ainsi de suite,
+toutes les compatibilités de faces valant de manière cohérente.</p>
+<ol class="parts" type="a">
+<li>Construisez les trois premiers niveaux à la main à l'intérieur de HoTT.</li>
+<li>Identifiez exactement l'obstruction de cohérence qui bloque une définition uniforme de la tour
+infinie.</li>
+</ol>
+<p><i>Statut : la définissabilité interne des types semi-simpliciaux dans le HoTT du livre est
+ouverte — c'est un problème ouvert central du domaine. Kolomatskaia et Shulman (2023-2024) ont
+donné une construction en « théorie des types affichée », une extension de HoTT à traits modaux ;
+savoir si le HoTT ordinaire suffit reste inconnu.</i></p>
+</div>
+<p class="context">Le problème a l'air d'une trivialité comptable et n'en est pas une du tout :
+écrire « toutes les cohérences supérieures » est précisément ce qu'un langage dont l'égalité est
+homotopique ne sait pas manifestement faire à son propre sujet. Il conditionne l'objectif plus
+large de faire de la théorie des catégories supérieures (CAT-13) nativement à l'intérieur de HoTT.
+Voevodsky l'a jugé assez sérieux pour concevoir un système étendu (HTS) autour de lui, au prix de
+ses propriétés calculatoires ; l'avancée récente de la théorie des types affichée retrouve une
+définition tout en conservant un meilleur comportement, au prix d'un fondement non standard.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_homotopique_des_types">Théorie homotopique des types — Wikipédia</a></li>
+<li>Contexte : <a href="https://ncatlab.org/nlab/show/open+problems+in+homotopy+type+theory">Problèmes ouverts en théorie homotopique des types — nLab (en anglais)</a></li>
+<li>Article : A. Kolomatskaia et M. Shulman, « Displayed type theory and semi-simplicial types » (2023), <a href="https://arxiv.org/abs/2311.18781">arXiv:2311.18781</a></li>
+<li>Lecture : The Univalent Foundations Program, <i>Homotopy Type Theory: Univalent Foundations of Mathematics</i> (2013, librement accessible sur <a href="https://homotopytypetheory.org/book/">homotopytypetheory.org/book</a>)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-15" data-level="Recherche">
+<h3>CAT-15 · Univers univalents dans tout (∞,1)-topos <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'axiome d'univalence de Voevodsky affirme que pour des types
+\( A, B \) d'un univers, l'application canonique du type d'identité \( A = B \) vers le type
+des équivalences \( A \simeq B \) est elle-même une équivalence — « les choses isomorphes sont
+égales ». La conjecture sémantique (Awodey, Joyal et d'autres, au début des années 2010) était que
+la théorie homotopique des types à univers univalents admet des modèles dans tout
+(∞,1)-topos de Grothendieck, faisant de HoTT un langage interne pour la théorie des topos
+supérieurs.</p>
+<ol class="parts" type="a">
+<li>Traitez le premier cas non trivial : dans le modèle groupoïdal de Hofmann–Streicher de la
+théorie des types, vérifiez que l'univers des ensembles (les groupoïdes discrets) satisfait
+l'univalence.</li>
+<li>Étudiez l'énoncé général et sa démonstration.
+<i>Statut : résolu pour les (∞,1)-topos de Grothendieck — démontré par Shulman en 2019 au moyen de
+structures de modèles injectives et d'univers univalents stricts. L'énoncé analogue pour les
+(∞,1)-topos élémentaires reste ouvert, ainsi que la recherche d'une définition pleinement
+satisfaisante d'« (∞,1)-topos élémentaire » elle-même.</i></li>
+</ol>
+</div>
+<p class="context">Ce théorème est le mur porteur du programme univalent : il garantit qu'un
+théorème démontré dans HoTT est simultanément un théorème sur les espaces, sur les faisceaux
+d'espaces, sur les espaces équivariants et sur tout autre (∞,1)-topos de Grothendieck. Le modèle
+groupoïdal de 1998 de Hofmann et Streicher, construit bien avant que l'univalence ne soit nommée,
+contient l'idée entière en miniature — c'est pourquoi la partie (a) est une préparation honnête à
+la partie (b), une démonstration qui traverse de la sérieuse théorie des catégories de modèles.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fondements_univalents">Fondements univalents — Wikipédia</a></li>
+<li>Article : M. Shulman, « All (∞,1)-toposes have strict univalent universes » (2019), <a href="https://arxiv.org/abs/1904.07004">arXiv:1904.07004</a></li>
+<li>Lecture : The Univalent Foundations Program, <i>Homotopy Type Theory: Univalent Foundations of Mathematics</i> (2013)</li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-23" data-level="Recherche" data-kind="court">
+<h3>CAT-23 · L'hypothèse d'homotopie de Grothendieck <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans <i>Pursuing Stacks</i> (1983), Grothendieck a donné une
+définition purement algébrique de l'∞-groupoïde faible et a prédit que la construction de
+l'∞-groupoïde fondamental induit une équivalence entre la théorie de l'homotopie des espaces
+topologiques et la théorie de l'homotopie des ∞-groupoïdes de Grothendieck. Démontrez ou réfutez
+cette hypothèse d'homotopie pour la définition propre à Grothendieck.</p>
+<p class="context"><b>Statut : ouvert</b> pour les ∞-groupoïdes algébriques de Grothendieck. Pour
+des modèles combinatoires comme les complexes de Kan, la correspondance est vraie essentiellement
+par construction, de sorte que le contenu du problème est de savoir si un ∞-groupoïde défini
+algébriquement — opérations de composition et cohérences engendrées par une théorie globulaire —
+capture exactement le type d'homotopie d'un espace. Kapranov et Voevodsky ont publié en 1991 une
+démonstration d'une version de l'énoncé ; l'argument s'est révélé plus tard erroné, et la forme
+affinée de ce qu'ils affirmaient est aujourd'hui la conjecture de Simpson de CAT-24. C'est
+l'article de foi fondateur de la théorie des catégories supérieures, et c'est encore une
+conjecture.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Homotopy_hypothesis">Hypothèse d'homotopie — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Infinity-groupoid">∞-groupoïde — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://ncatlab.org/nlab/show/homotopy+hypothesis">Hypothèse d'homotopie — nLab (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-24" data-level="Recherche" data-kind="court">
+<h3>CAT-24 · À quel point une <i>n</i>-catégorie faible peut-elle être stricte ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Gordon, Power et Street ont démontré en 1995 que toute
+tricatégorie est tri-équivalente à une Gray-catégorie — associativité stricte, échange faible —
+mais non, en général, à une 3-catégorie stricte. Tranchez la question analogue de
+semi-strictification en dimension quatre et au-delà : la conjecture de Simpson, selon laquelle
+toute \( n \)-catégorie faible est équivalente à une autre dans laquelle tout est
+strict sauf les unités.</p>
+<p class="context"><b>Statut : théorème en dimension trois, ouvert en général.</b> Simpson a montré
+en 1998 que les 3-groupoïdes stricts ne peuvent pas modéliser tous les 3-types d'homotopie — le
+produit de Whitehead sur \( S^2 \) est l'obstruction — de sorte qu'une part de faiblesse est
+réellement nécessaire, et sa conjecture en isole le minimum : gardez les unités faibles,
+strictifiez tout le reste. La question est le visage pratique de l'hypothèse d'homotopie
+(CAT-23) : toute définition praticable de \( n \)-catégorie faible paie la cohérence quelque part,
+et la semi-strictification demande à quel point ce paiement peut être réduit.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/3-category">3-catégorie (tricatégories) — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_des_cat%C3%A9gories_sup%C3%A9rieures">Théorie des catégories supérieures — Wikipédia</a></li>
+<li>Lecture : R. Gordon, A. J. Power et R. Street, « Coherence for tricategories » (1995), Memoirs of the American Mathematical Society 117</li>
+<li>Article : C. Simpson, « Homotopy types of strict 3-groupoids » (1998), <a href="https://arxiv.org/abs/math/9810059">arXiv:math/9810059</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-25" data-level="Recherche">
+<h3>CAT-25 · L'hypothèse du cobordisme <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une théorie topologique des champs de dimension \( n \) est un foncteur
+monoïdal symétrique défini sur une catégorie de bordismes ; la version <i>étendue</i> permet de
+découper les variétés jusqu'aux points, produisant une \( (\infty, n) \)-catégorie monoïdale
+symétrique \( \mathrm{Bord}_n^{\mathrm{fr}} \) de bordismes framés. Baez et Dolan ont conjecturé en
+1995 que cette catégorie est la \( (\infty, n) \)-catégorie monoïdale symétrique libre avec duaux
+sur un unique générateur — de sorte qu'une théorie des champs framée étendue est déterminée par
+l'unique objet qu'elle attribue à un point, lequel peut être n'importe quel objet
+<i>pleinement dualisable</i> de la cible.</p>
+<ol class="parts" type="a">
+<li>Traitez les cas de basse dimension à la main : démontrez qu'un foncteur monoïdal symétrique
+\( \mathrm{Bord}_1 \to \mathrm{Vect}_k \) force l'espace vectoriel attaché à un point à être de
+dimension finie, les bordismes en zigzag réalisant la dualité, et que la théorie en est
+déterminée.</li>
+<li>Démontrez la classification des théories topologiques des champs (non étendues) de dimension
+deux : elles correspondent aux algèbres de Frobenius commutatives, le pantalon fournissant la
+multiplication et le disque la trace.</li>
+<li>Énoncez précisément l'hypothèse du cobordisme comme une équivalence entre l'espace des théories
+des champs et l'espace des objets pleinement dualisables, ainsi que sa version pour les variétés à
+\( G \)-structure tangentielle, et parcourez la stratégie de démonstration : théorie de Morse et
+décompositions en anses du côté géométrique, données de dualisabilité du côté algébrique.</li>
+</ol>
+<p><i>Statut : largement admise, mais sa vérification écrite est encore en train de se stabiliser.
+Lurie a publié en 2009 une esquisse détaillée que le domaine utilise quotidiennement ; des
+démonstrations complètes suivant d'autres voies ont été proposées depuis (Ayala–Francis, 2017 ;
+Grady–Pavlov, 2021), et tous les détails de l'approche propre à Lurie ne sont pas parus. Traitez-la
+comme un théorème dont la comptabilité reste une tâche de recherche vivante.</i></p>
+</div>
+<p class="context">C'est ici que l'abstraction de cette page touche la physique. Atiyah et Segal
+ont axiomatisé les théories des champs comme des foncteurs à la fin des années 1980 ; Baez et Dolan
+ont ensuite proposé que les variétés elles-mêmes forment une catégorie supérieure libre, si bien
+qu'une théorie des champs étendue tout entière se comprime en un unique objet dualisable — une
+version catégorifiée du fait qu'une représentation d'un groupe libre n'est qu'un choix de matrices.
+L'énoncé est aussi la meilleure publicité existante pour la théorie des catégories supérieures : il
+dit qu'une question subtile sur les variétés lisses, en toutes dimensions, se règle par une
+propriété universelle.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Cobordism_hypothesis">Hypothèse du cobordisme — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Topological_quantum_field_theory">Théorie quantique topologique des champs — Wikipédia (en anglais)</a></li>
+<li>Article : J. Baez et J. Dolan, « Higher-dimensional algebra and topological quantum field theory » (1995), J. Math. Phys. 36</li>
+<li>Article : J. Lurie, « On the classification of topological field theories » (2009), <a href="https://arxiv.org/abs/0905.0465">arXiv:0905.0465</a></li>
+<li>Article : D. Ayala et J. Francis, « The cobordism hypothesis » (2017), <a href="https://arxiv.org/abs/1705.02240">arXiv:1705.02240</a></li>
+<li>Lecture : Joachim Kock, <i>Frobenius Algebras and 2D Topological Quantum Field Theories</i> (Cambridge University Press, LMS Student Texts 59)</li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="CAT-34" data-level="Recherche">
+<h3>CAT-34 · Catégories triangulées sans modèle <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une <i>catégorie triangulée</i> est une catégorie additive munie d'un
+automorphisme de décalage \( X \mapsto X[1] \) et d'une classe de triangles distingués
+\( X \to Y \to Z \to X[1] \) satisfaisant les axiomes de Verdier ; la catégorie dérivée d'un
+anneau ou d'un espace en est l'exemple motivant. Les axiomes sont notoirement déficients sur un
+point : le troisième sommet \( Z \) d'un triangle bâti sur un morphisme donné n'est déterminé qu'à
+isomorphisme non canonique près.</p>
+<ol class="parts" type="a">
+<li>Rendez le défaut précis. Démontrez à partir des axiomes que le cône d'un morphisme est unique à
+isomorphisme près, puis exhibez un carré commutatif dont le morphisme de cônes induit n'est pas
+déterminé de manière unique — de sorte que « cône » ne peut pas être rendu fonctoriel sur la
+catégorie des flèches.</li>
+<li>Comprenez la réparation. Un <i>enrichissement</i> d'une catégorie triangulée est une
+dg-catégorie ou une ∞-catégorie stable dont elle est la catégorie homotopique ; dans un
+enrichissement, les cônes sont d'authentiques colimites et sont donc fonctoriels. Vérifiez que la
+catégorie homotopique d'une ∞-catégorie stable est triangulée, et identifiez lequel des axiomes de
+Verdier — l'axiome de l'octaèdre en particulier — devient un théorème plutôt qu'une hypothèse.</li>
+<li>Lisez les deux théorèmes négatifs et localisez l'obstruction que chacun exploite. Muro,
+Schwede et Strickland (2007) ont construit une catégorie triangulée qui n'est la catégorie
+homotopique d'aucune catégorie de modèles stable ; Rizzardo et Van den Bergh (2018) en ont
+construit une qui est de plus \( k \)-linéaire sur un corps, le cas que l'exemple antérieur
+n'atteignait pas, au moyen d'une théorie de l'obstruction bâtie sur la cohomologie de Hochschild.</li>
+<li>La question de recherche : caractérisez les catégories triangulées qui admettent un
+enrichissement, et celles dont l'enrichissement est unique. Lunts et Orlov (J. Amer. Math. Soc. 23,
+2010) ont démontré l'unicité pour les catégories dérivées d'une large classe de schémas, et l'on
+connaît des exemples à enrichissement non unique ; aucun critère général n'existe.</li>
+</ol>
+<p><i>Statut : (a)–(c) relèvent de la théorie établie ; (d) est ouvert. L'existence et l'unicité
+des enrichissements sont établies dans de nombreux cas particuliers et fausses dans d'autres, sans
+aucune caractérisation générale connue.</i></p>
+</div>
+<p class="context">Jean-Louis Verdier a introduit les catégories triangulées dans sa thèse de 1963
+sous la direction de Grothendieck, pour donner à la catégorie dérivée d'une catégorie abélienne une
+vie axiomatique propre. Les axiomes consignent ce qui survit d'une théorie de l'homotopie une fois
+passé aux classes d'homotopie d'applications ; la partie (a) dit ce qui est perdu. Pendant quarante
+ans on ignora si cette perte était jamais fatale — si toute catégorie triangulée est l'ombre de
+quelque chose de mieux élevé. Muro, Schwede et Strickland ont répondu non en 2007, et Rizzardo et
+Van den Bergh ont levé le doute restant pour les catégories \( k \)-linéaires en 2018. La réponse
+pratique a été de cesser de travailler dans l'ombre : dg-catégories et ∞-catégories stables, où un
+cône est une colimite et la fonctorialité est gratuite, ce qui est la principale raison pour
+laquelle les ∞-catégories sont devenues la langue de travail de l'algèbre homologique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_triangul%C3%A9e">Catégorie triangulée — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_d%C3%A9riv%C3%A9e">Catégorie dérivée — Wikipédia</a></li>
+<li>Article : F. Muro, S. Schwede et N. Strickland, « Triangulated categories without models », Inventiones Mathematicae 170 (2007), <a href="https://arxiv.org/abs/0704.1378">arXiv:0704.1378</a></li>
+<li>Article : A. Rizzardo et M. Van den Bergh, « A k-linear triangulated category without a model » (2018), <a href="https://arxiv.org/abs/1801.06344">arXiv:1801.06344</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CAT-35" data-level="Recherche" data-kind="court">
+<h3>CAT-35 · Localisation, orthogonalité et grands cardinaux <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Le principe de Vopěnka — l'axiome de grand cardinal
+affirmant que dans toute classe propre de graphes il existe deux membres distincts reliés par un
+homomorphisme de l'un vers l'autre — entraîne à la fois que toute sous-catégorie pleine d'une
+catégorie localement présentable stable par limites est réflexive, et que des foncteurs de
+localisation homotopique existent pour toute théorie cohomologique. Déterminez lesquelles de ces
+conséquences sont démontrables dans ZFC seul, et cernez la force exacte en grands cardinaux de
+chacune.</p>
+<p class="context"><b>Statut : partiellement réglé, partiellement ouvert.</b> Adámek et Rosický ont
+fait de ce cercle d'idées un chapitre de <i>Locally Presentable and Accessible Categories</i>
+(1994) : réflexivité des sous-catégories stables par limites, petitesse des classes
+d'orthogonalité et principe de Vopěnka se révèlent être presque le même énoncé, de sorte qu'une
+question toute simple sur l'existence d'une construction devient une question sur la taille de
+l'univers ensembliste. On sait que l'énoncé de réflexivité porte une force de grand cardinal et
+n'est donc pas démontrable dans ZFC ; la force exacte de la forme faible du principe de Vopěnka
+fait l'objet de travaux continus. Casacuberta, Scevenels et Smith ont porté le lien en théorie de
+l'homotopie en 2005, en montrant que sous le principe de Vopěnka tout foncteur homotopiquement
+idempotent sur les espaces est une localisation par rapport à une unique application — alors que
+l'énoncé correspondant pour les spectres avait été démontré sans détour par Bousfield en 1979,
+sans aucun grand cardinal. Bagaria, Casacuberta, Mathias et Rosický ont montré plus tard que pour
+les classes <i>définissables</i> les cardinaux requis chutent radicalement. La théorie des
+catégories rencontre rarement la théorie des ensembles aussi directement : ici, la réponse à
+« cette localisation existe-t-elle ? » dépend des axiomes sur lesquels on se tient.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Vop%C4%9Bnka%27s_principle">Principe de Vopěnka — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Accessible_category">Catégorie accessible — Wikipédia (en anglais)</a></li>
+<li>Lecture : J. Adámek et J. Rosický, <i>Locally Presentable and Accessible Categories</i> (Cambridge, LMS Lecture Note Series 189, 1994), ch. 6</li>
+<li>Article : C. Casacuberta, D. Scevenels et J. H. Smith, « Implications of large-cardinal principles in homotopical localization », Advances in Mathematics 197 (2005), 120–139</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-s097-applied-category-theory-january-iap-2019/">MIT OCW 18.S097 Applied Category Theory (IAP 2019)</a>,
+<a href="https://ocw.mit.edu/courses/18-s996-category-theory-for-scientists-spring-2013/">MIT OCW 18.S996 Category Theory for Scientists (printemps 2013)</a>.</li>
+<li>Livres : Tom Leinster, <i>Basic Category Theory</i> (libre : <a href="https://arxiv.org/abs/1612.09375">arXiv:1612.09375</a>) ;
+Emily Riehl, <i>Category Theory in Context</i> (libre : <a href="https://emilyriehl.github.io/files/context.pdf">emilyriehl.github.io/files/context.pdf</a>) ;
+Steve Awodey, <i>Category Theory</i> ; Brendan Fong et David Spivak, <i>An Invitation to
+Applied Category Theory: Seven Sketches in Compositionality</i> (libre : <a href="https://arxiv.org/abs/1803.05316">arXiv:1803.05316</a>) ;
+Saunders Mac Lane, <i>Categories for the Working Mathematician</i>.</li>
+<li>Articles &amp; essais : S. Eilenberg et S. Mac Lane, « General theory of natural
+equivalences » (1945) ; F. W. Lawvere, « An elementary theory of the category of sets » (1964),
+Proc. Nat. Acad. Sci. USA 52 ; The Univalent Foundations Program, <i>Homotopy Type Theory</i>
+(2013).</li>
+</ul>
+<p>Voir aussi : <a href="pure-foundations.html">Logique, théorie des ensembles &amp; fondements</a>, <a href="pure-algebra.html">Algèbre</a>, <a href="open-problems.html">Problèmes ouverts</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

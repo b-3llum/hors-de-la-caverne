@@ -1,0 +1,1618 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Équations aux dérivées partielles}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Licence}
+
+\begin{problem}[{Les ondes progressives résolvent l'équation des ondes --- Licence}]
+\textbf{PDE-01.} \textbf{Problème.} Soit $c > 0$ et soient $f, g : \mathbb{R} \to \mathbb{R}$
+deux fois dérivables.
+\begin{enumerate}
+\item[(a)] Montrer que $u(x,t) = f(x-ct) + g(x+ct)$ satisfait l'équation
+des ondes $u_{tt} = c^2 u_{xx}$ : toute onde se propageant vers la gauche ou vers la droite à
+la vitesse $c$, quelle qu'en soit la forme, est une solution.
+\item[(b)] Vérifier que $u(x,t) = e^{-kt}\sin x$ satisfait
+l'équation de la chaleur $u_t = k u_{xx}$.
+\item[(c)] Déterminer tous les couples de constantes $(a,b)$ pour
+lesquels $e^{at}\sin(bx)$ résout l'équation de la chaleur, et tous ceux pour lesquels il résout
+l'équation des ondes.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est la porte d'entrée : rien de plus que la règle de dérivation composée à
+plusieurs variables n'est requis, et pourtant la partie (a) est essentiellement la découverte de
+d'Alembert en 1747, à savoir que la solution générale de l'équation de la corde est une
+superposition de deux ondes progressives. Vérifier qu'une fonction donnée résout une EDP est la
+première compétence du métier --- la seconde, bien plus difficile, est d'aller dans l'autre
+sens.
+
+\begin{refs}
+\item Contexte : Équation des ondes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_des_ondes})
+\item Contexte : Équation de la chaleur --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_de_la_chaleur})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 1--2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Premières rencontres avec les fonctions harmoniques --- Licence}]
+\textbf{PDE-02.} \textbf{Problème.} Une fonction $u$ à dérivées secondes continues est
+\textit{harmonique} si $\Delta u = u_{xx} + u_{yy} = 0$.
+\begin{enumerate}
+\item[(a)] Vérifier que
+$u(x,y) = \log(x^2+y^2)$ est harmonique sur le plan privé de l'origine.
+\item[(b)] Vérifier
+que $x^2 - y^2$ et $x^3 - 3xy^2$ sont harmoniques, et démontrer que pour tout
+$n \ge 1$ la partie réelle et la partie imaginaire de $(x+iy)^n$ sont harmoniques.
+\item[(c)] Calculer la valeur moyenne de $x^2 - y^2$ sur le cercle unité centré à l'origine et la
+comparer à la valeur au centre. Formuler une conjecture.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'équation de Laplace $\Delta u = 0$ régit les potentiels gravitationnels et
+électrostatiques dans le vide, la chaleur en régime stationnaire et les écoulements
+incompressibles irrotationnels ; Euler et Laplace l'ont rencontrée dans les années 1780 et elle est
+depuis lors le carrefour de l'analyse. La partie (b) est le premier aperçu du mariage entre
+fonctions harmoniques et analyse complexe, et la partie (c) annonce la propriété de la moyenne
+(PDE-08), le fait le plus utile qui soit à propos des fonctions harmoniques.
+
+\begin{refs}
+\item Contexte : Fonction harmonique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_harmonique})
+\item Contexte : Équation de Laplace --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_de_Laplace})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 6
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'équation de transport et ses caractéristiques --- Licence}]
+\textbf{PDE-03.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Soit $c$ une constante. Montrer que toute solution
+$C^1$ de $u_t + c u_x = 0$ est constante le long de chaque droite
+$x - ct = \text{const}$, et en déduire que la solution vérifiant $u(x,0) = \varphi(x)$
+est $u(x,t) = \varphi(x - ct)$.
+\item[(b)] Résoudre l'équation à coefficient variable
+$u_t + x u_x = 0$ avec $u(x,0) = \varphi(x)$ : trouver les courbes le long desquelles $u$
+est constante, et écrire explicitement la solution.
+\item[(c)] Démontrer la vitesse de propagation finie
+pour (a) : si $\varphi$ est nulle hors de $[-M, M]$, alors $u(\cdot,t)$ est nulle
+hors de $[-M - |c|t,\ M + |c|t]$.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'équation de transport (advection) est la plus simple EDP qui ne soit pas une
+équation différentielle ordinaire déguisée, et elle contient déjà l'idée centrale des équations
+hyperboliques : l'information voyage le long de courbes particulières appelées
+\textit{caractéristiques}, et le long d'elles l'EDP se réduit à une équation différentielle
+ordinaire. La méthode remonte à Euler, Monge et Cauchy ; poussée plus loin, elle résout les
+équations du premier ordre pleinement non linéaires (PDE-12) et explique pourquoi les solutions de
+l'équation de Burgers se brisent (PDE-13).
+
+\begin{refs}
+\item Contexte : Méthode des caractéristiques --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_des_caract%C3%A9ristiques})
+\item Contexte : Advection --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Advection})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 1--2
+\item Cours : MIT OCW 18.303 Linear Partial Differential Equations: Analysis and Numerics (\url{https://ocw.mit.edu/courses/18-303-linear-partial-differential-equations-analysis-and-numerics-fall-2014/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Établir l'équation de la chaleur --- Licence}]
+\textbf{PDE-04.} \textbf{Problème.} Une barre mince et homogène a pour température $u(x,t)$,
+pour chaleur massique $c$, pour masse volumique $\rho$ et pour conductivité thermique
+$K_0$, toutes constantes. On prend deux postulats physiques : l'énergie thermique d'un segment
+$[a,b]$ vaut $\int_a^b c\rho u\,dx$ (conservation de l'énergie), et la chaleur s'écoule du
+chaud vers le froid à un taux proportionnel au gradient de température, avec un flux
+$q = -K_0 u_x$ (loi de Fourier).
+\begin{enumerate}
+\item[(a)] En écrivant le taux de variation de l'énergie dans un segment \textit{arbitraire}
+$[a,b]$ comme le flux à travers ses extrémités, et en utilisant l'arbitraire de $a$
+et $b$, établir $u_t = k u_{xx}$ avec $k = K_0/(c\rho)$. Justifier soigneusement le
+passage de \og{} l'intégrale sur tout $[a,b]$ est nulle \fg{} à \og{} la fonction intégrée est
+nulle \fg{}.
+\item[(b)] Recommencer en trois dimensions avec le théorème de la divergence pour obtenir
+$u_t = k\Delta u$.
+\item[(c)] Modifier la dérivation pour inclure une source de chaleur interne
+$Q(x,t)$ par unité de volume.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Fourier a mené essentiellement cette dérivation dans son mémoire de 1807 à
+l'Académie de Paris, développé ensuite dans la \textit{Théorie analytique de la chaleur}
+(1822). Le schéma --- une loi de conservation plus une loi de comportement (flux proportionnel
+à un gradient) donne une équation de diffusion --- se retrouve partout : la loi de Fick donne la
+diffusion chimique, la loi d'Ohm donne le courant électrique, et le même argument en génétique des
+populations et en finance donne les équations de Fisher et de Black--Scholes.
+Apprendre à établir une EDP, et pas seulement à en résoudre une, c'est la moitié du sujet.
+
+\begin{refs}
+\item Contexte : Équation de la chaleur --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_de_la_chaleur})
+\item Contexte : Conduction thermique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Conduction_thermique})
+\item Lecture : R. Haberman, \textit{Applied Partial Differential Equations with Fourier Series and Boundary Value Problems}, chap. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Séparation des variables sur un intervalle --- Licence}]
+\textbf{PDE-05.} \textbf{Problème.} On considère $u_t = k u_{xx}$ sur $0 < x < L$
+avec $u(0,t) = u(L,t) = 0$ et $u(x,0) = \varphi(x)$.
+\begin{enumerate}
+\item[(a)] Trouver toutes les solutions
+de la forme $u = X(x)T(t)$ satisfaisant les conditions au bord, obtenant les modes
+$\sin(n\pi x/L)\,e^{-k(n\pi/L)^2 t}$.
+\item[(b)] Les superposer et identifier les
+coefficients $b_n$ comme les coefficients de Fourier en sinus de $\varphi$.
+\item[(c)] Supposer
+$\varphi$ bornée et intégrable. Démontrer que pour tout $t > 0$ la série
+converge, peut être dérivée terme à terme, et résout l'équation --- la solution est donc
+infiniment régulière pour $t > 0$ même si $\varphi$ est irrégulière.
+\item[(d)] Montrer que la solution décroît vers $0$ comme $e^{-k(\pi/L)^2 t}$ : le mode le plus lent
+l'emporte.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est la méthode de Fourier lui-même, de 1807. Lagrange et le comité de
+l'Académie ont regimbé devant l'affirmation qu'une température initiale arbitraire puisse se
+développer en sinus --- un doute de haute lignée (voir PDE-06) --- et le prix qu'ils ont fini par
+décerner à Fourier en 1812 s'accompagnait d'une mention notant un manque de rigueur. Rendre (c)
+précis est exactement le genre de travail qui a transformé le doute en théorèmes, et la valeur
+propre qui apparaît en (d) revient en héroïne de PDE-17.
+
+\begin{refs}
+\item Contexte : Séparation des variables --- Wikipédia (\url{https://fr.wikipedia.org/wiki/S%C3%A9paration_des_variables})
+\item Lecture : R. Haberman, \textit{Applied Partial Differential Equations with Fourier Series and Boundary Value Problems}, chap. 2--3
+\item Cours : MIT OCW 18.303 Linear Partial Differential Equations: Analysis and Numerics (\url{https://ocw.mit.edu/courses/18-303-linear-partial-differential-equations-analysis-and-numerics-fall-2014/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La corde vibrante et la formule de d'Alembert --- Licence}]
+\textbf{PDE-06.} \textbf{Problème.} (a) En factorisant l'opérateur des ondes en
+$(\partial_t - c\,\partial_x)(\partial_t + c\,\partial_x)$, établir la formule de d'Alembert
+pour $u_{tt} = c^2 u_{xx}$ sur toute la droite avec $u(x,0) = \varphi(x)$
+et $u_t(x,0) = \psi(x)$ :
+\[ u(x,t) = \tfrac{1}{2}\big[\varphi(x-ct) + \varphi(x+ct)\big]
++ \frac{1}{2c}\int_{x-ct}^{x+ct} \psi(s)\,ds. \]
+(b) Résoudre le cas de la corde pincée : une corde fixée en $x = 0$ et $x = L$, lâchée sans
+vitesse initiale dans une forme triangulaire, en prolongeant les données à la droite entière en
+fonctions impaires $2L$-périodiques. Décrire géométriquement le mouvement. (c) Le $\varphi$
+triangulaire n'est pas deux fois dérivable ; en quel sens (b) \og{} résout \fg{}-elle donc l'équation des
+ondes ? Proposer un sens précis et le défendre.
+\end{problem}
+
+\noindent D'Alembert a publié l'équation des ondes et cette solution en 1747 --- et a
+aussitôt restreint les formes initiales à celles données par une seule expression analytique.
+Euler a objecté (1748) : une corde pincée a un coin, et la physique se moque de savoir si la forme
+possède une formule. Daniel Bernoulli (1753) a affirmé au contraire que tout mouvement est une
+superposition de modes sinusoïdaux, ce que d'Alembert comme Euler jugeaient absurde pour des
+formes générales. Tous trois avaient partiellement raison, et la bataille sur le sens des mots
+\og{} fonction \fg{} et \og{} solution \fg{} a couvé soixante ans, jusqu'à ce que Fourier prenne le parti de
+Bernoulli avec une méthode (PDE-05), que Dirichlet fasse de la convergence un théorème, et que le
+concept moderne de fonction émerge. La partie (c) est la porte des solutions faibles
+(PDE-14) --- la réponse du XXe siècle à l'objection d'Euler.
+
+\begin{refs}
+\item Contexte : Équation de d'Alembert (et sa formule) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_de_d%27Alembert})
+\item Contexte : Onde sur une corde vibrante --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Onde_sur_une_corde_vibrante})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 2 et 4
+\item Cours : MIT OCW 18.152 Introduction to Partial Differential Equations (\url{https://ocw.mit.edu/courses/18-152-introduction-to-partial-differential-equations-fall-2011/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Séries de Fourier et phénomène de Gibbs --- Licence}]
+\textbf{PDE-07.} \textbf{Problème.} Soit $f$ le signal carré : $f(x) = 1$ pour
+$0 < x < \pi$ et $f(x) = -1$ pour $-\pi < x < 0$.
+\begin{enumerate}
+\item[(a)] Calculer sa
+série de Fourier
+\[ \frac{4}{\pi}\Big(\sin x + \frac{\sin 3x}{3} + \frac{\sin 5x}{5} + \cdots\Big) \]
+et déterminer, avec démonstration, sa limite ponctuelle en tout $x$, points de saut
+compris.
+\item[(b)] Soit $S_N$ la somme partielle jusqu'à la fréquence $N$. Montrer que
+$S_N$ a un maximum local près de $x = \pi/N$ et démontrer que
+\[ S_N(\pi/N) \;\longrightarrow\; \frac{2}{\pi}\int_0^{\pi} \frac{\sin t}{t}\,dt
+\qquad (N \to \infty). \]
+Évaluer ce nombre numériquement et en conclure que les sommes partielles dépassent le saut
+d'environ 9 \% de sa hauteur --- une erreur qui se rapproche du saut mais ne diminue jamais.
+\item[(c)] En déduire que la convergence n'est uniforme sur aucun intervalle contenant
+$0$, et expliquer pourquoi cela ne contredit pas (a).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le dépassement a été trouvé par Henry Wilbraham en 1848 puis oublié ; il a
+refait surface en 1898 lorsque l'analyseur harmonique d'Albert Michelson --- une machine qui
+sommait 80 modes de Fourier --- n'a cessé de dessiner de petites cornes aux sauts, et que Michelson
+a écrit à \textit{Nature} en soupçonnant un défaut. J. Willard Gibbs a expliqué en 1899 que ces
+cornes sont mathématiques, non mécaniques. Le phénomène est une leçon permanente sur la différence
+entre convergence simple et convergence uniforme, et il compte encore : c'est l'artefact de
+sonnerie aux bords francs en traitement du signal et de l'image.
+
+\begin{refs}
+\item Contexte : Phénomène de Gibbs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ph%C3%A9nom%C3%A8ne_de_Gibbs})
+\item Contexte : Convergence des séries de Fourier --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Convergence_of_Fourier_series})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 5
+\item Lecture : T. W. Körner, \textit{Fourier Analysis}, Cambridge University Press
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La propriété de la moyenne --- Licence}]
+\textbf{PDE-08.} \textbf{Problème.} Soit $u$ une fonction harmonique sur un ouvert
+$\Omega \subset \mathbb{R}^2$.
+\begin{enumerate}
+\item[(a)] Démontrer la propriété de la moyenne : pour tout disque
+fermé de $\Omega$ de centre $p$ et de rayon $r$, la moyenne de $u$ sur le
+cercle frontière vaut $u(p)$.
+\item[(b)] En déduire que la moyenne sur le disque plein
+vaut également $u(p)$.
+\item[(c)] Démontrer la réciproque : si $u$ est continue sur $\Omega$
+et vérifie la propriété de la moyenne sur les cercles en tout point et pour tout petit rayon,
+alors $u$ est harmonique.
+\item[(d)] Utiliser (a) pour démontrer le théorème de Liouville dans le plan : une
+fonction harmonique sur tout $\mathbb{R}^2$ et bornée supérieurement et inférieurement est
+constante.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Gauss connaissait la propriété de la moyenne dans les années 1840, dans ses
+travaux sur la théorie du potentiel. C'est la définition de l'équité selon l'analyste : une
+fonction harmonique prend en chaque point exactement la moyenne des valeurs de ses voisines, ce
+qui explique pourquoi les fonctions harmoniques décrivent des équilibres --- et pourquoi le gain
+espéré d'un marcheur aléatoire est harmonique, un pont entre EDP et probabilités. Presque tout ce
+qu'il y a de profond sur les fonctions harmoniques (principes du maximum, régularité, inégalités
+de Harnack) découle de cette seule propriété.
+
+\begin{refs}
+\item Contexte : Fonction harmonique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_harmonique})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 2
+\item Cours : MIT OCW 18.152 Introduction to Partial Differential Equations (\url{https://ocw.mit.edu/courses/18-152-introduction-to-partial-differential-equations-fall-2011/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La brachistochrone --- Licence}]
+\textbf{PDE-09.} \textbf{Problème.} Jean Bernoulli, \textit{Acta Eruditorum},
+juin 1696, s'adressant \og{} aux mathématiciens les plus perspicaces du monde entier \fg{} :
+\textit{étant donné deux points A et B dans un plan vertical, trouver la courbe le long de laquelle
+une particule, partant du repos en A et glissant sous l'effet de la pesanteur sans frottement,
+atteint B en un temps minimal.} (a) En utilisant la conservation de l'énergie (vitesse
+$\sqrt{2gy}$ après une chute de hauteur $y$), exprimer le temps de parcours comme la
+fonctionnelle
+\[ T[y] = \int_0^{x_1} \sqrt{\frac{1 + y'(x)^2}{2g\,y(x)}}\;dx. \]
+(b) Établir l'équation d'Euler--Lagrange pour une fonctionnelle $\int F(y,y')\,dx$, et
+montrer que lorsque $F$ ne fait pas intervenir $x$ explicitement elle admet l'intégrale
+première $F - y'\,\partial F/\partial y' = \text{const}$ (identité de Beltrami).
+(c) En conclure que la courbe minimisante vérifie $y\,(1 + y'^2) = \text{const}$,
+et vérifier que la cycloïde --- le chemin $x = R(\theta - \sin\theta)$,
+$y = R(1 - \cos\theta)$ tracé par un point d'un cercle qui roule --- satisfait cette
+équation. (d) Montrer que la réponse n'est ni la droite ni un arc de cercle.
+\end{problem}
+
+\noindent C'est le problème qui a créé le calcul des variations.
+Des solutions sont venues de Leibniz, de l'Hôpital, de Jacques Bernoulli, de Jean lui-même --- et une
+anonyme de Newton, composée dit-on en une nuit après une journée à la Monnaie ;
+Jean en a reconnu l'auteur \og{} comme le lion à sa griffe \fg{}. Galilée avait deviné un
+arc de cercle en 1638 et se trompait. Euler (1744) et Lagrange (1755) ont transformé
+l'astuce en méthode générale, et l'idée que la nature minimise une intégrale ---
+action, énergie, temps --- est devenue l'un des principes organisateurs de la physique et de
+la théorie des EDP elle-même (voir PDE-16).
+
+\begin{refs}
+\item Contexte : Courbe brachistochrone --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Courbe_brachistochrone})
+\item Contexte : Calcul des variations --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Calcul_des_variations})
+\item Lecture : I. M. Gelfand et S. V. Fomin, \textit{Calculus of Variations}, chap. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les trois espèces d'équation du second ordre --- Licence, short}]
+\textbf{PDE-21.} \textbf{Problème.} Pour l'équation à coefficients constants
+$a\,u_{xx} + 2b\,u_{xy} + c\,u_{yy} + (\text{termes du premier ordre}) = 0$, démontrer qu'un
+changement de variables linéaire réel réduit la partie principale à exactement l'une des formes
+$u_{\xi\xi} + u_{\eta\eta}$, $u_{\xi\xi} - u_{\eta\eta}$ ou $u_{\xi\xi}$,
+selon le signe du discriminant $b^2 - ac$, et que ce signe est
+inchangé par toute substitution de ce type. En conclure que l'équation de Laplace, l'équation
+des ondes et l'équation de la chaleur sont les trois formes normales --- elliptique, hyperbolique,
+parabolique --- et qu'aucun changement de coordonnées ne transforme l'une en l'autre.
+\end{problem}
+
+\noindent Le vocabulaire est emprunté aux coniques, où le même
+discriminant sépare ellipse, hyperbole et parabole ; le transfert aux
+équations différentielles date du XIXe siècle et a été rendu décisif par
+Hadamard, qui a montré que le type dicte quelles conditions annexes sont légitimes.
+Une équation elliptique veut des données tout autour d'un bord, une équation hyperbolique veut
+position et vitesse initiales, et une équation parabolique ne s'écoule que dans un seul sens du
+temps. Demander à une équation hyperbolique de résoudre un problème de Dirichlet n'est pas
+seulement difficile --- c'est mal posé.
+
+\begin{refs}
+\item Contexte : Équation aux dérivées partielles elliptique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_aux_d%C3%A9riv%C3%A9es_partielles_elliptique})
+\item Contexte : Équation aux dérivées partielles hyperbolique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_aux_d%C3%A9riv%C3%A9es_partielles_hyperbolique})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'unicité par l'énergie --- Licence, short}]
+\textbf{PDE-22.} \textbf{Problème.} Pour l'équation des ondes $u_{tt} = c^2 u_{xx}$
+sur $0 \le x \le L$ avec $u(0,t) = u(L,t) = 0$, démontrer que
+\[ E(t) = \frac12\int_0^L \bigl(u_t^2 + c^2 u_x^2\bigr)\,dx \]
+est indépendante de $t$, et en déduire que le problème mixte a au plus une solution
+$C^2$. Démontrer le même énoncé d'unicité pour les conditions de Neumann
+$u_x(0,t) = u_x(L,t) = 0$, et expliquer où les conditions au bord
+sont utilisées.
+\end{problem}
+
+\noindent C'est la méthode de l'énergie sous sa forme la plus pure : dériver une
+quantité quadratique, intégrer par parties, voir les termes de bord s'annuler, et obtenir
+l'unicité sans jamais écrire une solution. À comparer avec l'unicité qui
+découle de la formule de d'Alembert (PDE-06) --- la formule n'est disponible que dans des
+géométries particulières, tandis que l'argument d'énergie survit aux coefficients variables,
+aux dimensions supérieures et aux problèmes non linéaires, où il devient le premier
+outil standard du sujet.
+
+\begin{refs}
+\item Contexte : Équation des ondes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_des_ondes})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 2
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le principe de Duhamel --- Licence}]
+\textbf{PDE-23.} \textbf{Problème.} Le principe de Duhamel affirme qu'une équation d'évolution linéaire
+forcée, à données nulles, se résout en superposant les évolutions libres du
+forçage, traité comme un flux d'impulsions instantanées. Rendre cela précis dans trois
+cadres.
+\begin{enumerate}
+\item[(a)] Démontrer le prototype pour les équations différentielles ordinaires : si $A$ est une
+matrice constante, l'unique solution de
+$u'(t) - Au(t) = f(t)$, $u(0) = 0$, est
+\[ u(t) = \int_0^t e^{(t-s)A} f(s)\,ds. \]
+Expliquer pourquoi la fonction intégrée est \og{} l'évolution libre, pendant le temps restant
+$t-s$, du forçage délivré à l'instant $s$ \fg{}.
+\item[(b)] Soit $\Phi(x,t)$ le noyau de la chaleur de PDE-11. Démontrer que
+\[ u(x,t) = \int_0^t \int_{\mathbb{R}} \Phi(x-y,\,t-s)\,f(y,s)\,dy\,ds \]
+résout $u_t - k u_{xx} = f$ sur $\mathbb{R}\times(0,\infty)$ avec $u(x,0)=0$,
+pour $f$ lisse à support compact. Attention : la dérivation naïve
+sous le signe intégral échoue en $s = t$, et réparer cette étape est le cœur de la
+démonstration.
+\item[(c)] Démontrer la version pour l'équation des ondes : la solution de $u_{tt} - c^2 u_{xx} = f$
+avec $u(x,0) = u_t(x,0) = 0$ est
+\[ u(x,t) = \frac{1}{2c}\int_0^t \int_{x-c(t-s)}^{x+c(t-s)} f(y,s)\,dy\,ds, \]
+en appliquant la formule de d'Alembert aux problèmes auxiliaires à données impulsionnelles.
+\item[(d)] Utiliser (c) avec la séparation des variables pour étudier une corde de longueur $L$
+excitée par $f(x,t) = \sin(n\pi x/L)\sin(\omega t)$. Montrer que la réponse reste
+bornée lorsque $\omega \ne n\pi c/L$ mais croît linéairement en $t$ lorsque la fréquence
+d'excitation coïncide avec une fréquence propre --- la résonance, établie et non affirmée.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Jean-Marie Duhamel a introduit l'idée vers 1830 en étudiant
+la conduction de la chaleur dans un corps dont la température de surface varie dans le temps : il
+a remplacé la condition au bord variant continûment par une somme de petits sauts brusques, résolu
+chacun, et additionné. Le geste est si naturel qu'il ressemble aujourd'hui à une définition, mais
+il encode un vrai théorème --- que l'opérateur solution d'une équation linéaire autonome forme un
+semi-groupe, et que le problème forcé en est la convolution avec le forçage. Au
+XXe siècle la même formule est devenue la \textit{solution mild} des équations
+d'évolution abstraites, et c'est le point de départ standard pour démontrer qu'une EDP non
+linéaire est localement bien posée : mettre la non-linéarité dans le rôle de $f$, et
+chercher un point fixe.
+
+\begin{refs}
+\item Contexte : Principe de Duhamel --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Duhamel%27s_principle})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 3
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le tambour rectangulaire --- Licence}]
+\textbf{PDE-24.} \textbf{Problème.} Une membrane occupe le rectangle
+$R = [0,a]\times[0,b]$, est encastrée le long de son bord et vibre selon
+$u_{tt} = c^2\,\Delta u$ avec $u = 0$ sur $\partial R$.
+\begin{enumerate}
+\item[(a)] Par séparation des variables, montrer que le problème aux valeurs propres
+$-\Delta \varphi = \lambda\varphi$ avec $\varphi = 0$ sur $\partial R$ a pour
+solutions $\varphi_{mn}(x,y) = \sin\frac{m\pi x}{a}\sin\frac{n\pi y}{b}$ pour des
+entiers $m,n \ge 1$, avec
+\[ \lambda_{mn} = \pi^2\Bigl(\frac{m^2}{a^2} + \frac{n^2}{b^2}\Bigr), \]
+de sorte que les fréquences du tambour sont $c\sqrt{\lambda_{mn}}$.
+\item[(b)] Démontrer que les $\varphi_{mn}$ sont deux à deux orthogonales dans $L^2(R)$, et
+écrire la solution de données initiales $u(\cdot,0) = g$, $u_t(\cdot,0) = h$ comme une
+série double de Fourier en sinus, en donnant explicitement les coefficients.
+\item[(c)] Montrer que, contrairement à la corde de PDE-06, les fréquences ne sont en général pas des
+multiples entiers de la plus basse : exhiber deux d'entre elles dont le rapport est irrationnel.
+C'est le sens précis dans lequel un tambour rend un son sans hauteur définie.
+\item[(d)] Prendre le carré, $a = b$. Montrer que $\lambda_{mn}$ est dégénérée --- l'espace propre
+est de dimension supérieure à un --- exactement lorsque $m^2 + n^2$ admet plus
+d'une représentation comme somme ordonnée de deux carrés positifs, et en donner un
+exemple. Décrire comment l'ensemble nodal de $\alpha\varphi_{mn} + \beta\varphi_{nm}$
+change quand $(\alpha,\beta)$ parcourt un espace propre dégénéré.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La partie (d) est l'endroit où un fait d'arithmétique --- quels entiers sont
+sommes de deux carrés, et de combien de façons --- devient audible et visible.
+Ernst Chladni avait déjà rendu les ensembles nodaux visibles en 1787 en frottant à l'archet des
+plaques métalliques saupoudrées de sable ; ses figures ont tant impressionné Napoléon que
+l'Académie de Paris a mis un prix au concours pour les expliquer, remporté après trois tentatives
+par Sophie Germain en 1816. Le dénombrement des valeurs propres dans cet exemple,
+$\#\{\lambda_{mn} \le \Lambda\} \sim \frac{|R|}{4\pi}\Lambda$, est le premier cas de la loi de
+Weyl, et il dit que le tambour connaît sa propre aire --- ce qui est exactement le fil repris dans
+PDE-17.
+
+\begin{refs}
+\item Contexte : Équation de Helmholtz --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_de_Helmholtz})
+\item Contexte : Loi de Weyl --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Weyl_law})
+\item Contexte : Ernst Chladni (et ses figures) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ernst_Chladni})
+\item Lecture : R. Haberman, \textit{Applied Partial Differential Equations}, chap. 7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le tambour circulaire et les fonctions de Bessel --- Licence}]
+\textbf{PDE-31.} \textbf{Problème.} Une membrane couvre le disque de rayon $a$, est encastrée le long de son
+bord, et obéit à $u_{tt} = c^2 \Delta u$ avec $u = 0$ sur la frontière. En coordonnées
+polaires
+\[ \Delta u = u_{rr} + \frac{1}{r}\,u_r + \frac{1}{r^2}\,u_{\theta\theta}. \]
+\begin{enumerate}
+\item[(a)] Séparer les variables, $u = R(r)\,\Theta(\theta)\,T(t)$. Montrer que l'uniformité en
+$\theta$ impose $\Theta(\theta) = \cos n\theta$ ou $\sin n\theta$ avec $n$ entier
+positif ou nul, et que $R$ vérifie
+\[ r^2 R'' + r R' + (k^2 r^2 - n^2)\,R = 0, \]
+qui devient l'équation de Bessel d'ordre $n$ dans la variable $s = kr$. Expliquer quel
+principe permet d'écarter la seconde fonction de Bessel et de garder $R(r) = J_n(kr)$.
+\item[(b)] Imposer le bord encastré : montrer que $k a$ doit être un zéro positif $j_{n,m}$ de
+$J_n$, de sorte que les fréquences sont $c\,j_{n,m}/a$. Démontrer que les fonctions propres
+obtenues sont deux à deux orthogonales dans le $L^2$ du disque muni de l'élément d'aire
+$r\,dr\,d\theta$ --- mettre d'abord l'équation radiale sous la forme auto-adjointe
+$\bigl(r R'\bigr)' + \bigl(k^2 r - n^2/r\bigr) R = 0$ --- et écrire la solution de déplacement et
+de vitesse initiaux donnés comme une série double.
+\item[(c)] Démontrer que le tambour est sans hauteur définie. À partir de $J_0' = -J_1$ et
+$(x J_1)' = x J_0$, montrer que les zéros positifs de $J_0$ et $J_1$ s'entrelacent
+strictement. Puis, avec $j_{0,1} \approx 2.405$ et $j_{1,1} \approx 3.832$, montrer que la
+deuxième fréquence n'est pas un multiple entier de la première --- contrairement à la corde de
+PDE-06, dont les harmoniques sont des multiples exacts du fondamental --- et expliquer ce que cela
+signifie pour l'oreille.
+\item[(d)] Décrire l'ensemble nodal du mode $(n,m)$ : montrer qu'il est constitué de $n$ diamètres
+et de $m-1$ cercles concentriques, et identifier ces courbes aux lignes le long desquelles le
+sable s'accumule sur une plaque circulaire frottée à l'archet. Régler ensuite les dégénérescences :
+montrer que toute valeur propre avec $n \ge 1$ est de multiplicité au moins deux, et démontrer
+que l'hypothèse de Bourget --- que $J_n$ et $J_{n+m}$ n'ont aucun zéro positif commun, établie
+par Carl Ludwig Siegel en 1929 --- implique qu'il n'y en a pas d'autres. Comparer au tambour carré
+de PDE-24, où les dégénérescences abondent.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Euler a traité la membrane circulaire vibrante en coordonnées cylindriques
+vers 1780 et a introduit pour cela les séries entières que nous appelons aujourd'hui $J_n$ ; le
+mémoire de Bessel de 1824 sur les perturbations planétaires a donné à ces fonctions leur première
+étude systématique et leur nom, et la \textit{Theory of Sound} de Rayleigh (1877) en a fait l'outil
+de travail de l'acoustique. Ernst Chladni avait déjà rendu la partie (d) visible en 1787 en
+promenant un archet le long du bord d'une plaque couverte de sable. Le contraste avec le rectangle
+est tout l'objet du problème : la même équation, un bord changé, et l'arithmétique du spectre est
+entièrement différente --- ce qui est exactement pourquoi le spectre peut encoder la géométrie
+(PDE-17).
+
+\begin{refs}
+\item Contexte : Vibration d'une membrane circulaire --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Vibration_of_a_circular_membrane})
+\item Contexte : Fonction de Bessel --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_de_Bessel})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 10
+\item Lecture : R. Haberman, \textit{Applied Partial Differential Equations}, chap. 7
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Séparer l'équation de Laplace sur la boule --- Licence, short}]
+\textbf{PDE-32.} \textbf{Problème.} Écrire l'équation de Laplace en coordonnées sphériques et
+la séparer sous la forme $u(r,\theta,\phi) = R(r)\,Y(\theta,\phi)$ ; démontrer que la constante
+de séparation doit valoir $n(n+1)$ pour un entier naturel $n$ si $Y$ doit être lisse sur toute
+la sphère --- ramener l'équation en $\theta$ à l'équation de Legendre dans la variable
+$\cos\theta$ --- que le facteur radial est alors une combinaison de $r^{n}$ et $r^{-n-1}$, et
+donc que la solution du problème de Dirichlet sur la boule unité avec pour donnée au bord une
+harmonique sphérique $Y_n$ est $u = r^{n} Y_n(\theta,\phi)$. En déduire que $r^n Y_n$ est un
+polynôme harmonique homogène de degré $n$, et que pour de telles données la valeur au centre est
+égale à la moyenne des valeurs au bord --- la propriété de la moyenne de PDE-08, retrouvée en
+dimension trois.
+\end{problem}
+
+\noindent Legendre (1782) et Laplace (1785) ont inventé ces fonctions pour calculer
+l'attraction gravitationnelle d'une planète quasi sphérique, et pendant un siècle on les a
+appelées coefficients de Laplace ; le \textit{Treatise on Natural Philosophy} de Kelvin et Tait en a
+fait l'équipement standard des physiciens. Elles restent les coordonnées dans lesquelles le monde
+rond se rapporte : les coefficients multipolaires du fond diffus cosmologique, le modèle harmonique
+du champ de gravité terrestre et la partie angulaire de toute orbitale atomique sont des
+harmoniques sphériques. La séparation menée ici est aussi la source de l'équation de Legendre
+elle-même --- la sphère est son lieu d'origine, non un exercice arbitraire sur les séries.
+
+\begin{refs}
+\item Contexte : Harmonique sphérique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Harmonique_sph%C3%A9rique})
+\item Contexte : Équation de Laplace --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_de_Laplace})
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 10
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Théorie de Sturm--Liouville : pourquoi la séparation des variables fonctionne --- Licence}]
+\textbf{PDE-33.} \textbf{Problème.} Un \textit{problème de Sturm--Liouville régulier} sur $[a,b]$ est
+\[ -\bigl(p(x)\,u'\bigr)' + q(x)\,u = \lambda\,w(x)\,u, \]
+avec $p \in C^1$, $q, w$ continues, $p > 0$ et $w > 0$ sur $[a,b]$, assorti de
+conditions au bord séparées $\alpha_1 u(a) + \alpha_2 u'(a) = 0$ et
+$\beta_1 u(b) + \beta_2 u'(b) = 0$, où $(\alpha_1,\alpha_2)$ et $(\beta_1,\beta_2)$
+sont non nuls.
+\begin{enumerate}
+\item[(a)] Démontrer l'identité de Lagrange : avec $Lu = (p u')' - q u$, l'expression $v\,Lu - u\,Lv$
+est la dérivée de $p\,(u'v - u v')$. Intégrer pour obtenir la formule de Green, et démontrer que
+les termes de bord s'annulent pour deux fonctions quelconques satisfaisant les conditions séparées
+--- l'opérateur est symétrique.
+\item[(b)] En déduire les trois faits fondamentaux : toute valeur propre est réelle ; les fonctions
+propres associées à des valeurs propres distinctes sont orthogonales pour le poids $w$ ; et
+chaque valeur propre est simple. (Pour ce dernier point, utiliser l'unicité pour le problème de
+Cauchy en $x = a$.)
+\item[(c)] Établir le quotient de Rayleigh : si $u$ est une fonction propre de valeur propre
+$\lambda$, exprimer $\lambda$ comme le rapport de $\int_a^b \bigl(p (u')^2 + q u^2\bigr)\,dx$
+plus des termes de bord à $\int_a^b w u^2\,dx$. En déduire une minoration du spectre lorsque
+$q \ge 0$ et que les conditions au bord sont $u(a) = u(b) = 0$, et démontrer la
+caractérisation variationnelle de la plus petite valeur propre comme minimum du quotient.
+\item[(d)] Reconnaître votre propre travail passé. Identifier $p, q, w$ et l'intervalle pour : la corde
+vibrante de PDE-05 ; l'équation radiale du tambour circulaire de PDE-31, où
+$p(r) = w(r) = r$ s'annule en $r = 0$ ; et l'équation de Legendre sur $[-1,1]$, où
+$p = 1-x^2$ s'annule aux deux extrémités. Énoncer le théorème de complétude pour le problème
+régulier --- les fonctions propres forment une base orthogonale de l'espace $L^2$ à poids --- et
+expliquer ce qui change dans les deux cas \textit{singuliers}, en particulier pourquoi une exigence
+de bornitude y remplace une condition au bord.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Charles-François Sturm et Joseph Liouville, amis et codirecteurs du
+\textit{Journal de Mathématiques Pures et Appliquées}, ont publié en 1836--1837 une série d'articles
+liés qui ont fondé la théorie spectrale des opérateurs différentiels : une infinité de valeurs
+propres réelles s'en allant vers l'infini, des théorèmes d'oscillation et de comparaison pour les
+fonctions propres, et un théorème de développement --- soixante-dix ans avant que Hilbert n'en
+fournisse le cadre général. C'est le théorème qui fait de la séparation des variables autre chose
+qu'un tour heureux : les modes qu'elle produit sont des fonctions propres d'un opérateur
+symétrique, donc elles sont orthogonales, les coefficients se calculent par intégration, et le
+développement d'un état initial arbitraire est garanti convergent. Tout ce qu'on a reproché à
+Fourier d'avoir supposé en 1807 (PDE-05) est démontré ici.
+
+\begin{refs}
+\item Contexte : Théorie de Sturm-Liouville --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_Sturm-Liouville})
+\item Contexte : Quotient de Rayleigh --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Quotient_de_Rayleigh})
+\item Lecture : R. Haberman, \textit{Applied Partial Differential Equations}, chap. 5
+\item Lecture : R. Courant \& D. Hilbert, \textit{Methods of Mathematical Physics}, vol. 1
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{Principes du maximum et unicité --- Master}]
+\textbf{PDE-10.} \textbf{Problème.} (a) Démontrer le principe du maximum faible : une
+fonction harmonique sur un domaine borné $\Omega$ et continue sur son adhérence
+atteint son maximum sur la frontière $\partial\Omega$. (Considérer
+$u + \varepsilon|x|^2$ pour $\varepsilon > 0$ petit.) (b) Démontrer la version
+parabolique : une solution de l'équation de la chaleur sur un rectangle espace-temps atteint son
+maximum sur la frontière parabolique (bas et côtés). (c) Utiliser (a) pour démontrer que le
+problème de Dirichlet $\Delta u = f$ dans $\Omega$, $u = g$ sur $\partial\Omega$
+a au plus une solution, et utiliser (b) pour démontrer l'unicité et la dépendance continue
+en les données pour le problème mixte de l'équation de la chaleur. (d) Démontrer le
+principe du maximum fort pour les fonctions harmoniques via la propriété de la moyenne : si
+$u$ atteint son maximum en un point intérieur d'un domaine connexe, alors $u$ est
+constante.
+\end{problem}
+
+\noindent Les principes du maximum sont la bête de somme de l'elliptique et du
+parabolique : des démonstrations d'unicité, de stabilité et de comparaison qui n'exigent aucune
+formule explicite de solution. Physiquement, ils disent qu'un corps sans source interne de chaleur
+ne peut développer un point chaud. La technique va de ces énoncés classiques jusqu'au lemme de
+Hopf (1927) et à l'analyse géométrique du XXIe siècle --- les arguments de flot de Ricci
+de Hamilton et de Perelman sont, au fond, des principes du maximum sophistiqués.
+
+\begin{refs}
+\item Contexte : Principe du maximum --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_du_maximum_(%C3%A9quations_aux_d%C3%A9riv%C3%A9es_partielles)})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 2
+\item Lecture : M. H. Protter et H. F. Weinberger, \textit{Maximum Principles in Differential Equations}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le noyau de la chaleur --- Master}]
+\textbf{PDE-11.} \textbf{Problème.} (a) Montrer que si $u(x,t)$ résout
+$u_t = k u_{xx}$, alors $u(\lambda x, \lambda^2 t)$ aussi, pour tout $\lambda$.
+Chercher une solution de la forme $t^{-1/2}F(x/\sqrt{t})$ d'intégrale totale $1$,
+établir l'équation différentielle ordinaire vérifiée par $F$, et la résoudre pour obtenir le
+noyau de la chaleur
+\[ \Phi(x,t) = \frac{1}{\sqrt{4\pi k t}}\; e^{-x^2/(4kt)}. \]
+(b) Démontrer que pour $\varphi$ continue bornée, la convolution
+$u(x,t) = \int_{\mathbb{R}} \Phi(x-y,t)\,\varphi(y)\,dy$ résout l'équation de la chaleur
+pour $t > 0$ et $u(x,t) \to \varphi(x_0)$ quand $(x,t) \to (x_0, 0^+)$.
+(c) Montrer que si $\varphi \ge 0$ n'est pas identiquement nulle et s'annule hors d'un
+ensemble borné, alors $u(x,t) > 0$ pour tout $x$ et tout $t > 0$ : la chaleur
+se propage à vitesse infinie. (d) Montrer que $u(\cdot,t)$ est infiniment dérivable
+pour tout $t > 0$, et énoncer le noyau en dimension $n$. Comparer (c) et (d)
+à la vitesse finie et à la conservation des singularités de l'équation des ondes.
+\end{problem}
+
+\noindent Le noyau de la chaleur est la \textit{solution élémentaire} : la réponse
+à une unité de chaleur concentrée en un point, à partir de laquelle toute solution se construit
+par superposition --- l'idée introduite par George Green pour l'électrostatique en 1828. La
+même gaussienne est la densité de transition du mouvement brownien (Einstein 1905, Wiener
+1923), ce qui fait du noyau de la chaleur la charnière entre EDP et probabilités ; en géométrie
+moderne, son comportement en temps court encode la courbure et même la topologie (la
+démonstration du théorème de l'indice d'Atiyah--Singer par le noyau de la chaleur).
+
+\begin{refs}
+\item Contexte : Noyau de la chaleur --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Noyau_de_la_chaleur})
+\item Contexte : Solution élémentaire --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Fundamental_solution})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Caractéristiques pour les équations non linéaires du premier ordre --- Master}]
+\textbf{PDE-12.} \textbf{Problème.} On considère une équation du premier ordre pleinement
+non linéaire $F(\nabla u, u, x) = 0$ sur un domaine de $\mathbb{R}^n$.
+\begin{enumerate}
+\item[(a)] Établir le
+système caractéristique : en écrivant $p = \nabla u$ le long d'une courbe $x(s)$, montrer que
+si $u$ est une solution lisse on peut choisir $x(s)$ de sorte que $x$, $z = u(x(s))$
+et $p$ satisfassent le système fermé d'équations différentielles ordinaires
+\[ \dot{x} = \nabla_p F, \qquad \dot{z} = p \cdot \nabla_p F, \qquad
+\dot{p} = -\nabla_x F - p\,\frac{\partial F}{\partial z}, \]
+de sorte que l'EDP se résout en intégrant des équations différentielles ordinaires à partir des
+données au bord.
+\item[(b)] Vérifier que pour les
+équations quasi linéaires le système se réduit aux caractéristiques de PDE-03 et
+PDE-13.
+\item[(c)] L'appliquer à l'équation eikonale $|\nabla u| = 1$ avec $u = 0$ sur
+la frontière d'un domaine borné régulier : montrer que les caractéristiques sont des rayons
+rectilignes normaux à la frontière et que, près de la frontière, $u(x)$ est la distance à
+celle-ci.
+\item[(d)] Montrer par un exemple (un domaine non convexe, ou une composante de bord
+intérieure) que les rayons finissent par se croiser, et qu'aucune solution $C^1$ ne peut exister
+au-delà du croisement --- la régularité meurt là où les caractéristiques se percutent.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les équations différentielles caractéristiques des équations non linéaires ont
+été trouvées par Lagrange, Monge et Charpit dans les années 1770--1780 et perfectionnées par Cauchy.
+Hamilton a refondu l'optique géométrique de cette manière dans les années 1830 : les rayons
+lumineux sont les caractéristiques de l'équation eikonale, et les fronts d'onde ses lignes de
+niveau --- et la même structure, appliquée à la mécanique, est devenue l'équation de
+Hamilton--Jacobi. Le croisement des rayons en (d) est une caustique, la courbe brillante dans votre
+tasse de café, et l'échec des solutions classiques en ce lieu est ce que les solutions de
+viscosité (Crandall--Lions, 1983) ont été inventées pour réparer.
+
+\begin{refs}
+\item Contexte : Méthode des caractéristiques --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_des_caract%C3%A9ristiques})
+\item Contexte : Équation eikonale --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_eikonale})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 3
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'équation de Burgers : les solutions régulières se brisent --- Master}]
+\textbf{PDE-13.} \textbf{Problème.} On considère $u_t + u u_x = 0$ avec une donnée
+initiale régulière bornée $u(x,0) = \varphi(x)$.
+\begin{enumerate}
+\item[(a)] Montrer que les caractéristiques sont des
+droites de pente déterminée par $\varphi$, et que toute solution $C^1$
+satisfait l'équation implicite $u = \varphi(x - ut)$.
+\item[(b)] Démontrer : si
+$\varphi' \ge 0$ partout, une solution $C^1$ globale existe.
+\item[(c)] Démontrer : si
+$\varphi'(x_0) < 0$ pour un certain $x_0$, la solution $C^1$ existe exactement jusqu'au
+temps $T^* = 1/\sup(-\varphi')$, et $\sup|u_x| \to \infty$ quand $t \to T^*$.
+(Suivre $w = u_x$ le long d'une caractéristique ; elle vérifie $\dot{w} = -w^2$.)
+(d) Calculer $T^*$ pour $\varphi(x) = e^{-x^2}$, et décrire géométriquement ce que
+fait le graphe de $u(\cdot,t)$ quand $t \to T^*$.
+\end{enumerate}
+
+\end{problem}
+
+\noindent C'est la catastrophe du gradient : une onde dont les parties hautes voyagent
+plus vite que les parties basses se redresse jusqu'à ce que la pente soit verticale --- après quoi
+il n'existe plus aucune solution classique. Riemann a compris le mécanisme en dynamique des gaz
+en 1860 ; l'équation porte le nom de Jan Burgers, qui l'a employée dans les années 1940 comme
+modèle de turbulence. La rupture n'est pas un défaut du modèle --- les gaz réels forment des ondes
+de choc --- c'est un défaut de la notion classique de solution, et la réparer est l'affaire de
+PDE-14.
+
+\begin{refs}
+\item Contexte : Équation de Burgers --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_de_Burgers})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 3
+\item Lecture : G. B. Whitham, \textit{Linear and Nonlinear Waves}, chap. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Solutions faibles, chocs et entropie --- Master}]
+\textbf{PDE-14.} \textbf{Problème.} Écrire l'équation de Burgers sous forme conservative
+$u_t + (u^2/2)_x = 0$ et appeler $u$ \textit{solution faible} si
+\[ \int_0^\infty\!\!\int_{\mathbb{R}} \Big( u\,\phi_t + \frac{u^2}{2}\,\phi_x \Big)\,dx\,dt
++ \int_{\mathbb{R}} u(x,0)\,\phi(x,0)\,dx = 0 \]
+pour toute fonction test $\phi$ lisse à support compact --- une définition qui ne réclame
+aucune dérivée de $u$.
+\begin{enumerate}
+\item[(a)] Montrer que les solutions classiques sont des solutions
+faibles, et qu'une solution faible régulière par morceaux présentant un saut le long d'une courbe
+$x = \xi(t)$ doit satisfaire la relation de Rankine--Hugoniot : la vitesse du choc
+$\xi'$ est égale au saut de $u^2/2$ divisé par le saut de $u$ --- ici, la
+moyenne $(u_- + u_+)/2$ des deux côtés.
+\item[(b)] Résoudre le problème de Riemann avec
+$u = 0$ à gauche de l'origine et $u = 1$ à droite, deux fois : une fois avec un
+choc voyageant à la vitesse $1/2$, une fois avec un éventail de détente $u = x/t$ remplissant
+le secteur. Vérifier que \textit{les deux} sont des solutions faibles des mêmes données ---
+l'unicité est perdue.
+\item[(c)] Énoncer la condition d'entropie de Lax (les caractéristiques doivent entrer dans un
+choc, non en sortir) et déterminer laquelle des solutions de (b) elle admet et laquelle
+elle interdit.
+\item[(d)] Montrer que pour les données inversées ($1$ à gauche, $0$ à
+droite) le choc satisfait bien la condition d'entropie. Expliquer le nom : laquelle de
+ces solutions survivrait à l'ajout d'un petit terme de viscosité ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les solutions faibles répondent à la crise de PDE-13 et, enfin, au camp d'Euler
+dans la querelle de la corde de 1747 : une \og{} solution \fg{} n'a pas besoin d'être dérivable, seulement
+d'être correcte face à tout observateur lisse. La relation de saut est due à Rankine (1870)
+et Hugoniot (1887), travaillant sur la dynamique des gaz ; la non-unicité de (b) fut le
+scandale que les conditions d'entropie (Lax 1957, Oleïnik, Kroujkov) ont résolu, restaurant
+une unique solution physiquement pertinente. Ce cercle d'idées --- intégrer contre des
+fonctions test, puis se battre pour retrouver l'unicité --- est le modèle de bien des EDP
+modernes, des distributions au problème de Navier--Stokes (PDE-18).
+
+\begin{refs}
+\item Contexte : Formulation faible (solution faible) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formulation_faible})
+\item Contexte : Relations de Rankine-Hugoniot --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Relations_de_Rankine-Hugoniot})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 3 et 11
+\item Article : P. D. Lax, \og{} Hyperbolic systems of conservation laws II \fg{} (1957), Communications on Pure and Applied Mathematics 10
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une porte d'entrée vers les espaces de Sobolev --- Master}]
+\textbf{PDE-15.} \textbf{Problème.} On dit que $v$ est la \textit{dérivée faible} de
+$u$ sur $(0,1)$ si $\int u\varphi' = -\int v\varphi$ pour toute $\varphi$ lisse à
+support compact, et l'on note $H^1(0,1)$ l'espace des $u$ de carré intégrable
+à dérivée faible de carré intégrable, muni de la norme
+$\|u\|^2 = \int u^2 + \int (u')^2$.
+\begin{enumerate}
+\item[(a)] Montrer que la dérivée faible est unique (lorsqu'elle
+existe) et la calculer pour $u(x) = |x - \tfrac12|$.
+\item[(b)] Démontrer l'injection
+de Sobolev en dimension un : toute $u \in H^1(0,1)$ admet un représentant
+continu, et $|u(x) - u(y)| \le \|u'\|_{L^2}\,|x-y|^{1/2}$.
+\item[(c)] Démontrer
+l'inégalité de Poincaré pour $u \in H^1(0,1)$ avec $u(0) = u(1) = 0$ :
+$\|u\|_{L^2} \le C\,\|u'\|_{L^2}$, et déterminer la meilleure constante $C$.
+(La comparer à la première valeur propre de PDE-05(d).) (d) Montrer que l'injection dans les
+fonctions continues échoue en dimension deux : vérifier que
+$u(x) = \log\log(1 + 1/|x|)$ sur le disque unité est de norme $H^1$ finie mais
+non bornée.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les espaces de Sobolev (S. L. Sobolev, années 1930) sont l'habitat naturel des
+solutions faibles : des espaces complets où \og{} l'énergie \fg{} est la norme, de sorte que les arguments
+de compacité et de passage à la limite qui échouent dans les espaces de fonctions régulières
+réussissent. Que la meilleure constante de (c) soit une valeur propre n'a rien d'un hasard --- c'est
+la caractérisation variationnelle du spectre, et toute la théorie moderne de l'existence pour les
+équations elliptiques (Lax--Milgram, Galerkine, méthodes directes) tourne sur des inégalités comme
+(b) et (c). La partie (d) marque la frontière où la dimension commence à compter, le seuil des
+théorèmes d'injection de Sobolev.
+
+\begin{refs}
+\item Contexte : Espace de Sobolev --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Espace_de_Sobolev})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 5
+\item Lecture : H. Brezis, \textit{Functional Analysis, Sobolev Spaces and Partial Differential Equations}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le principe de Dirichlet et l'objection de Weierstrass --- Master}]
+\textbf{PDE-16.} \textbf{Problème.} Le principe de Dirichlet affirme que la
+solution de $\Delta u = 0$ dans $\Omega$ avec $u = g$ sur $\partial\Omega$ est
+le minimiseur de l'énergie de Dirichlet $E[w] = \int_\Omega |\nabla w|^2$ parmi toutes les
+$w$ égales à $g$ sur la frontière. (a) Démontrer un sens : si une fonction $C^2$
+$u$ minimise $E$ parmi les concurrentes $C^2$ de mêmes valeurs au bord,
+alors $\Delta u = 0$ dans $\Omega$. (Calculer la variation première
+$\frac{d}{d\varepsilon} E[u + \varepsilon\varphi]$.) (b) Démontrer la réciproque : une
+fonction harmonique ayant les valeurs au bord données minimise $E$. (c) Voici maintenant
+l'objection de Weierstrass --- le minimum pourrait ne pas exister. Étudier
+\[ J[y] = \int_{-1}^{1} x^2\,y'(x)^2\,dx \]
+sur les fonctions $y$ de classe $C^1$ par morceaux avec $y(-1) = -1$ et $y(1) = 1$.
+Démontrer que la borne inférieure de $J$ vaut $0$ (construire une suite minimisante
+explicite) et qu'aucune fonction admissible ne l'atteint. (d) Expliquer précisément quelle étape
+du raisonnement \og{} $E$ est minorée, donc elle a un minimiseur \fg{} est fautive, et pourquoi (a)
+seule ne démontre donc rien sur l'existence pour le problème de Dirichlet.
+\end{problem}
+
+\noindent Green, Gauss, Thomson et surtout Riemann --- qui a donné au principe le nom de
+son maître Dirichlet et a bâti sur lui son analyse complexe --- tenaient tous l'existence d'un
+minimiseur pour évidente : l'énergie est positive, donc quelque chose doit bien atteindre sa plus
+petite valeur. Le contre-exemple de Weierstrass en 1870 (la partie (c) est le sien) a montré que
+l'argument est un sophisme, et pendant trente ans le théorème de représentation conforme de
+Riemann est resté en suspens. Hilbert a réhabilité le principe vers 1900--1904 en démontrant
+honnêtement l'existence --- la \og{} méthode directe \fg{} --- un sauvetage qui a exigé d'inventer les bons
+espaces de fonctions et les bons arguments de compacité, c'est-à-dire une grande part de l'analyse
+moderne. La morale, qu'une borne inférieure n'est pas un minimum tant qu'on n'a pas démontré
+qu'elle est atteinte, est l'une des leçons les plus tranchantes des mathématiques.
+
+\begin{refs}
+\item Contexte : Principe de Dirichlet --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_de_Dirichlet})
+\item Contexte : Méthode directe du calcul des variations --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Direct_method_in_the_calculus_of_variations})
+\item Lecture : R. Courant, \textit{Dirichlet's Principle, Conformal Mapping, and Minimal Surfaces}
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 8
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Peut-on entendre la forme d'un tambour ? --- Master}]
+\textbf{PDE-17.} \textbf{Problème.} Les valeurs propres de Dirichlet d'un domaine plan
+$\Omega$ sont les nombres $\lambda$ pour lesquels $\Delta u + \lambda u = 0$ a une
+solution non nulle s'annulant sur $\partial\Omega$ --- physiquement, les carrés des
+fréquences d'une peau de tambour de la forme de $\Omega$.
+\begin{enumerate}
+\item[(a)] Calculer les valeurs propres et
+les fonctions propres du rectangle $[0,a] \times [0,b]$.
+\item[(b)] Démontrer la loi de Weyl pour
+les rectangles : le nombre $N(\lambda)$ de valeurs propres $\le \lambda$ vérifie
+$N(\lambda)/\lambda \to ab/(4\pi)$ quand $\lambda \to \infty$. (Compter les points du
+réseau dans un quart d'ellipse.) En conclure qu'un auditeur qui entend toutes les
+fréquences d'un tambour rectangulaire peut en retrouver l'aire.
+\item[(c)] L'inégalité de
+Faber--Krahn (1923--1925, démontrant une conjecture de Rayleigh) affirme que parmi les domaines
+d'aire donnée, le disque a la plus petite première valeur propre, et qu'il est le seul
+minimiseur. En l'admettant, démontrer qu'un domaine plan ayant exactement le même spectre de
+Dirichlet qu'un certain disque doit être ce disque --- on \textit{peut} entendre la forme d'un
+tambour circulaire.
+\item[(d)] La question de Kac en 1966 demande si deux domaines plans non congruents peuvent partager
+tout leur spectre. Énoncer précisément ce que Gordon, Webb et Wolpert ont démontré en
+1992, et le concilier avec (b) et (c).
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'article de Mark Kac \og{} Can one hear the shape of a drum? \fg{} (1966,
+dont le titre reprend un mot d'esprit de Lipman Bers) a rendu célèbre la géométrie spectrale.
+Milnor avait déjà trouvé des tores isospectraux non isométriques en dimension 16 (1964), mais le
+plan a résisté jusqu'à ce que Carolyn Gordon, David Webb et Scott Wolpert produisent deux
+polygones non congruents --- en forme d'hélice, constructibles en papier --- de spectres
+identiques : en général, on ne peut pas entendre la forme d'un tambour. Pourtant le spectre
+détermine bien l'aire (Weyl 1911), le périmètre (Pleijel), et le fait que le tambour soit un
+disque ; savoir si l'on peut entendre la forme d'un tambour \textit{lisse et convexe} est encore
+ouvert.
+
+\begin{refs}
+\item Contexte : Entendre la forme d'un tambour --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Hearing_the_shape_of_a_drum})
+\item Contexte : Loi de Weyl --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Weyl_law})
+\item Article : M. Kac, \og{} Can One Hear the Shape of a Drum? \fg{} (1966), American Mathematical Monthly 73
+\item Article : C. Gordon, D. Webb, S. Wolpert, \og{} One cannot hear the shape of a drum \fg{} (1992), Bulletin of the American Mathematical Society 27
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le noyau de Poisson sur le disque --- Master, short}]
+\textbf{PDE-25.} \textbf{Problème.} Démontrer que pour toute fonction $g$ continue sur le
+cercle unité, la fonction
+\[ u(re^{i\theta}) \;=\; \frac{1}{2\pi}\int_{-\pi}^{\pi}
+\frac{1-r^2}{1 - 2r\cos(\theta-\phi) + r^2}\;g(\phi)\,d\phi, \qquad 0 \le r < 1, \]
+est harmonique sur le disque unité ouvert et se prolonge continûment au disque fermé avec pour
+valeurs au bord $g$, de sorte que le problème de Dirichlet sur le disque est résolu par une
+formule explicite. En déduire l'inégalité de Harnack : toute fonction harmonique positive $u$
+sur le disque vérifie $\frac{1-r}{1+r}\,u(0) \le u(re^{i\theta}) \le \frac{1+r}{1-r}\,u(0)$.
+\end{problem}
+
+\noindent Poisson a écrit le noyau dans les années 1820 ; Schwarz en a fait
+la démonstration d'existence moderne. Deux choses en font plus qu'une formule. D'abord, le
+noyau est une approximation de l'unité --- il se concentre en $\phi = \theta$ quand
+$r \to 1$ --- ce qui explique pourquoi les valeurs au bord sont atteintes, et le même mécanisme
+revient partout en analyse. Ensuite, l'inégalité de Harnack est un principe du maximum
+quantitatif : elle dit qu'une fonction harmonique positive ne peut être grande quelque part et
+minuscule tout à côté, et sous cette forme elle se propage jusqu'à la théorie de la régularité de
+De Giorgi--Nash--Moser et aux travaux de Perelman sur le flot de Ricci. Du point de vue
+probabiliste, le noyau est la loi de sortie d'un mouvement brownien parti de
+$re^{i\theta}$.
+
+\begin{refs}
+\item Contexte : Noyau de Poisson --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Noyau_de_Poisson})
+\item Contexte : Inégalité de Harnack --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Harnack})
+\item Lecture : L. V. Ahlfors, \textit{Complex Analysis}, chap. 4
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La dispersion pour l'équation de Schrödinger libre --- Master, short}]
+\textbf{PDE-26.} \textbf{Problème.} Pour l'équation de Schrödinger libre
+$i\,u_t = -\Delta u$ sur $\mathbb{R}^n$, démontrer que le flot préserve exactement la
+norme $L^2$ tout en obéissant à l'estimation dispersive
+\[ \|u(\cdot,t)\|_{L^\infty(\mathbb{R}^n)} \;\le\; \frac{1}{(4\pi|t|)^{n/2}}\;
+\|u_0\|_{L^1(\mathbb{R}^n)}, \qquad t \ne 0. \]
+Expliquer comment les deux peuvent tenir à la fois --- rien n'est perdu, et pourtant la solution
+s'aplatit partout --- et vérifier sur une donnée initiale gaussienne explicite que le taux
+$|t|^{-n/2}$ ne peut être amélioré.
+\end{problem}
+
+\noindent Les deux énoncés réunis expliquent pourquoi l'équation est dite
+dispersive plutôt que dissipative : la masse $L^2$ est conservée mais s'étale,
+parce que les ondes planes $e^{i(x\cdot\xi - |\xi|^2 t)}$ de fréquences différentes voyagent
+à des vitesses de groupe différentes $2\xi$. La démonstration est un calcul de phase stationnaire
+avec le noyau $(4\pi i t)^{-n/2} e^{i|x|^2/4t}$, obtenu à partir du noyau de la chaleur par la
+substitution formelle $t \mapsto it$. Les estimations de ce type, affinées par
+Strichartz en 1977 en bornes espace-temps, sont ce qui permet de traiter les équations de
+Schrödinger non linéaires par des arguments de point fixe, et elles sous-tendent
+l'analyse derrière PDE-20.
+
+\begin{refs}
+\item Contexte : Équation de Schrödinger --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_de_Schr%C3%B6dinger})
+\item Contexte : Relation de dispersion --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Relation_de_dispersion})
+\item Lecture : T. Tao, \textit{Nonlinear Dispersive Equations: Local and Global Analysis}, chap. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Fisher--KPP et la vitesse d'avance d'un gène --- Master}]
+\textbf{PDE-27.} \textbf{Problème.} On considère l'équation de Fisher--KPP sur la droite,
+\[ u_t = u_{xx} + u(1-u), \qquad 0 \le u \le 1, \]
+où $u$ est la fréquence d'un gène avantageux, ou la densité d'une population
+envahissante : elle diffuse et croît logistiquement.
+\begin{enumerate}
+\item[(a)] Chercher un front progressif $u(x,t) = U(x-ct)$ avec $U(-\infty)=1$,
+$U(+\infty)=0$. Établir l'équation différentielle $U'' + cU' + U(1-U) = 0$, l'écrire comme
+système plan, et classer les points d'équilibre $(1,0)$ et $(0,0)$ ; montrer que
+$(0,0)$ est un nœud stable quand $c \ge 2$ et un foyer stable quand $0 < c < 2$.
+\item[(b)] En déduire qu'un front avec $U \ge 0$ existe pour tout $c \ge c_* = 2$ et pour
+aucun $c$ plus petit, parce qu'une approche en spirale force $U$ à devenir négative --- ce que
+la biologie interdit.
+\item[(c)] Donner l'argument de détermination linéaire pour le même nombre : linéariser en
+$u = 0$ pour obtenir $u_t = u_{xx} + u$, substituer $e^{-\lambda(x-ct)}$, obtenir
+$c = \lambda + 1/\lambda$, et minimiser en $\lambda > 0$. Expliquer pourquoi il n'est pas
+évident que la vitesse sélectionnée par l'équation non linéaire doive être égale à celle
+prédite par sa linéarisation au front d'attaque.
+\item[(d)] Énoncer le théorème de Kolmogorov, Petrovski et Piskounov : pour une donnée initiale en
+échelon, la solution converge en forme vers le front critique. Puis lire le raffinement de
+Bramson, selon lequel la position du front est $m(t) = 2t - \tfrac32\log t + O(1)$, et
+expliquer ce que signifie le retard logarithmique.
+\end{enumerate}
+
+\end{problem}
+
+\noindent En 1937 R. A. Fisher, se demandant à quelle vitesse un allèle favorable se
+répand dans une population étalée le long d'un habitat, a écrit cette équation et calculé
+la vitesse $2\sqrt{rD}$ ; la même année, Kolmogorov, Petrovski et Piskounov
+publiaient pour elle un théorème de convergence rigoureux --- l'un des premiers travaux sérieux
+d'analyse des EDP non linéaires, et un cas frappant de deux traditions très différentes
+aboutissant à une même équation. La question de la sélection du front qu'ils ont ouverte est
+toujours vivante : quelles non-linéarités sont \og{} tirées \fg{} (vitesse fixée par la linéarisation au
+front d'attaque, comme ici) et lesquelles sont \og{} poussées \fg{}. La correction logarithmique de
+(d) a été trouvée par Bramson en 1978 en traduisant le problème en mouvement brownien branchant,
+et elle reste l'un des ponts les plus cités entre EDP et probabilités.
+
+\begin{refs}
+\item Contexte : Équation KPP-Fisher --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_KPP-Fisher})
+\item Contexte : Système de réaction-diffusion --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_r%C3%A9action-diffusion})
+\item Article : R. A. Fisher, \og{} The wave of advance of advantageous genes \fg{} (1937), Annals of Eugenics 7 ; A. Kolmogorov, I. Petrovsky, N. Piskunov, \og{} Étude de l'équation de la diffusion\dots{} \fg{} (1937), Bulletin de l'Université d'État à Moscou
+\item Lecture : J. D. Murray, \textit{Mathematical Biology I: An Introduction}, chap. 13
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La fonction de Green du laplacien --- Master}]
+\textbf{PDE-34.} \textbf{Problème.} Soit $\Phi$ la solution élémentaire du laplacien : une fonction radiale,
+harmonique hors de l'origine, normalisée de sorte que $-\Delta \Phi = \delta_0$ --- explicitement
+un multiple de $\log|x|$ quand $n = 2$ et de $|x|^{2-n}$ quand $n \ge 3$.
+\begin{enumerate}
+\item[(a)] Vérifier que $\Phi$ est harmonique sur $\mathbb{R}^n \setminus \{0\}$ et localement
+intégrable, et fixer la constante de normalisation. Démontrer ensuite la formule de représentation
+de Green pour $u \in C^2(\overline{\Omega})$ sur un domaine borné à frontière régulière :
+appliquer la seconde identité de Green sur $\Omega$ privé d'une petite boule autour de $x$ et
+faire tendre le rayon vers zéro, obtenant $u(x)$ en fonction de $\Delta u$ dans $\Omega$ et
+des valeurs au bord de $u$ et de $\partial u/\partial \nu$.
+\item[(b)] La formule n'est pas encore une solution du problème de Dirichlet, car elle utilise des
+données au bord dont on ne dispose pas. La réparer : définir la fonction de Green
+$G(x,y) = \Phi(y-x) - h^x(y)$, où $h^x$ est harmonique dans $\Omega$ et coïncide avec
+$\Phi(\cdot - x)$ sur $\partial\Omega$. Démontrer que $G$ est unique, que
+$G(x,y) = G(y,x)$, et que la dérivée normale de $G$ donne une formule de solution explicite
+pour $\Delta u = 0$ dans $\Omega$, $u = g$ sur $\partial\Omega$.
+\item[(c)] Calculer $G$ dans les deux cas classiques : pour le demi-espace $\{x_n > 0\}$ en
+réfléchissant la source à travers la frontière, et pour la boule par l'inversion de Kelvin
+$y \mapsto y/|y|^2$ avec un poids adéquat. Retrouver à partir du second calcul le noyau de
+Poisson de PDE-25.
+\item[(d)] Enfin, résoudre l'équation de Poisson sur tout $\mathbb{R}^n$ : démontrer que
+$u = \Phi * f$ satisfait $-\Delta u = f$ pour $f$ deux fois continûment dérivable à support
+compact. Expliquer exactement pourquoi dériver deux fois sous le signe intégral est illégitime, et
+comment le transfert des dérivées sur $f$ répare l'argument --- la même manœuvre qu'exige la
+formule de Duhamel en PDE-23(b). Commenter ce que l'on sait tomber en défaut si $f$ est
+seulement continue.
+\end{enumerate}
+
+\end{problem}
+
+\noindent George Green, meunier de Nottingham ayant reçu environ une année de scolarité
+formelle, a publié son \textit{Essay on the Application of Mathematical Analysis to the Theories of
+Electricity and Magnetism} en 1828 par souscription privée --- cinquante et un exemplaires. Il y
+introduisait le mot \og{} potentiel \fg{}, les identités qui portent aujourd'hui son nom, et le procédé sur
+lequel repose ce problème : résoudre une fois pour une source ponctuelle, puis superposer. L'Essay
+est resté ignoré jusqu'à ce que William Thomson, futur lord Kelvin, le découvre en 1845 et le fasse
+réimprimer ; Kelvin a aussi fourni la méthode des images et l'inversion utilisée en (c). Le procédé
+est l'idée la plus transposable des EDP linéaires --- c'est le noyau de la chaleur de PDE-11, la
+réponse impulsionnelle que mesure un ingénieur, et le propagateur de la théorie quantique des
+champs.
+
+\begin{refs}
+\item Contexte : Fonction de Green --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_de_Green})
+\item Contexte : Méthode des charges images --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Method_of_image_charges})
+\item Contexte : Transformation de Kelvin --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Kelvin_transform})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le principe de Huygens et pourquoi les dimensions impaires sont particulières --- Master}]
+\textbf{PDE-35.} \textbf{Problème.} Résoudre $u_{tt} = \Delta u$ avec les données $u(\cdot,0) = g$,
+$u_t(\cdot,0) = h$, lisses et à support compact, et comparer la réponse selon les
+dimensions.
+\begin{enumerate}
+\item[(a)] En dimension trois, soit $U(x;r,t)$ la moyenne de $u(\cdot,t)$ sur la sphère de
+rayon $r$ centrée en $x$. Démontrer l'équation d'Euler--Poisson--Darboux
+$U_{tt} = U_{rr} + \frac{2}{r}U_r$, montrer que $rU$ résout l'équation des ondes
+unidimensionnelle en $(r,t)$, et en déduire la formule de Kirchhoff exprimant $u(x,t)$ au
+moyen des seules moyennes de $g$, $\nabla g$ et $h$ sur la sphère $|y - x| = t$.
+\item[(b)] Descendre en dimension deux : considérer une solution dans le plan comme une solution dans
+l'espace ne dépendant pas de la troisième coordonnée, et mener la méthode de descente de Hadamard
+pour obtenir la formule de Poisson. Observer que l'intégrale obtenue est prise sur tout le disque
+plein $|y-x| \le t$, et non sur le cercle qui le borde.
+\item[(c)] En conclure le principe de Huygens fort et son échec. En dimension trois, la valeur en
+$(x,t)$ ne dépend que des données sur une sphère, si bien qu'une impulsion brève produit un écho
+bref puis le silence ; en dimension deux, le disque entier contribue, si bien que toute
+perturbation laisse une traîne qui décroît mais ne s'arrête jamais. Énoncer le résultat général ---
+le principe fort vaut pour l'équation des ondes en dimension d'espace impaire $n \ge 3$ et
+échoue en dimension paire ainsi qu'en dimension un --- et en donner la lecture physique : un étang
+continue de résonner, l'air non.
+\item[(d)] Problème de compréhension. Expliquer pourquoi la parole et la musique sont possibles dans un
+espace de dimension trois et seraient une bouillie brouillée en dimension deux, puis se documenter
+sur le problème de Hadamard --- la classification des opérateurs hyperboliques du second ordre qui
+satisfont le principe de Huygens fort. Rapporter ce qui est connu, et noter honnêtement que la
+classification est généralement décrite comme incomplète.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Huygens a bâti l'optique dans son \textit{Traité de la lumière} (1690) à partir
+d'ondelettes secondaires émises par chaque point d'un front d'onde --- un argument qui suppose
+silencieusement la propagation sans traîne, nettement localisée, que seules les dimensions impaires
+fournissent. La formule de Kirchhoff de 1882 en a fait un calcul, et les \textit{Lectures on Cauchy's
+Problem} de Hadamard (1923) en ont fait un théorème et ont nommé la méthode de descente. La
+morale est répétée par tous les manuels depuis Hadamard : que nous puissions nous entendre les uns
+les autres est un fait sur la dimension de l'espace, et le contraste avec la vitesse de propagation
+infinie et le lissage instantané de l'équation de la chaleur (PDE-11) est l'illustration la plus
+tranchante de cette page de la façon dont le type d'une équation contrôle profondément son
+comportement.
+
+\begin{refs}
+\item Contexte : Principe de Huygens-Fresnel --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_de_Huygens-Fresnel})
+\item Contexte : Méthode de descente de Hadamard --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Hadamard%27s_method_of_descent})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 2
+\item Lecture : W. A. Strauss, \textit{Partial Differential Equations: An Introduction}, chap. 9
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'alternative de Fredholm pour un problème aux limites --- Master, short}]
+\textbf{PDE-36.} \textbf{Problème.} Pour $f$ continue, démontrer que le problème de Neumann
+$-u'' = f$ sur $(0,1)$ avec $u'(0) = u'(1) = 0$ a une solution si et seulement si
+$\int_0^1 f\,dx = 0$, et que la solution est alors unique à une constante additive près.
+Démontrer l'énoncé analogue pour $-u'' - \pi^2 u = f$ avec $u(0) = u(1) = 0$ --- résoluble
+exactement lorsque $\int_0^1 f(x)\sin(\pi x)\,dx = 0$, les solutions étant uniques à des
+multiples de $\sin \pi x$ près --- et formuler ce que ces deux exemples illustrent : la
+résolubilité vaut précisément lorsque la donnée est orthogonale à toute solution du problème
+adjoint homogène, et l'ensemble des solutions est alors une classe latérale de l'espace des
+solutions homogènes.
+\end{problem}
+
+\noindent Le mémoire d'Ivar Fredholm de 1903 dans \textit{Acta Mathematica} sur les
+équations intégrales a produit l'alternative sous sa forme générale --- soit le problème
+inhomogène est uniquement résoluble pour toute donnée, soit le problème homogène a un nombre fini
+de solutions indépendantes et la résolubilité coûte exactement autant de conditions
+d'orthogonalité. C'est le descendant en dimension infinie du théorème du rang ; Hilbert a bâti la
+théorie spectrale sur elle, et Riesz et Schauder l'ont refondue en un énoncé sur les opérateurs
+compacts. En pratique, c'est la comptabilité de la résonance : la condition d'orthogonalité est ce
+qui échoue à une fréquence propre, produisant la croissance linéaire en temps de PDE-23(d), et dans
+tout développement perturbatif c'est la condition qui fixe le terme d'ordre suivant.
+
+\begin{refs}
+\item Contexte : Alternative de Fredholm --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Alternative_de_Fredholm})
+\item Contexte : Condition aux limites de Neumann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Condition_aux_limites_de_Neumann})
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 6
+\item Lecture : H. Brezis, \textit{Functional Analysis, Sobolev Spaces and Partial Differential Equations}, chap. 6
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Cauchy--Kowalevski, et l'équation de Lewy sans solution --- Master, short}]
+\textbf{PDE-37.} \textbf{Problème.} Énoncer le théorème de Cauchy--Kowalevski --- un problème de
+Cauchy analytique à données analytiques sur une surface non caractéristique admet une unique
+solution analytique au voisinage de cette surface --- puis montrer qu'il ne peut être renforcé en un
+énoncé de bonne position : pour $u_{xx} + u_{yy} = 0$ avec $u(x,0) = 0$ et
+$u_y(x,0) = k^{-1}\sin(kx)$, vérifier que $u(x,y) = k^{-2}\sin(kx)\sinh(ky)$, et en conclure
+que des données tendant uniformément vers zéro quand $k \to \infty$ produisent des solutions qui
+explosent pour tout $y > 0$ fixé. Étudier ensuite l'opérateur de Hans Lewy
+\[ Lu = u_{x_1} + i\,u_{x_2} - 2i\,(x_1 + i x_2)\,u_{x_3}, \]
+énoncer précisément ce qu'il a démontré en 1957 --- il existe une fonction $f$ lisse pour laquelle
+$Lu = f$ n'a de solution dans aucun ouvert --- et expliquer pourquoi cela fait de l'existence dans
+la catégorie lisse une question complètement différente de l'existence dans la catégorie
+analytique.
+\end{problem}
+
+\noindent Sofia Kovalevskaïa a démontré le théorème dans la généralité qui porte son nom
+dans sa thèse de 1875, écrite sous la direction de Weierstrass et affinant un résultat de Cauchy de
+1842 ; elle fut la première femme d'Europe moderne à recevoir un doctorat en mathématiques, et la
+même thèse contient l'exemple montrant que le problème de Cauchy pour l'équation de la chaleur ne
+peut être résolu dans les classes analytiques pour des données analytiques arbitraires. Pendant un
+demi-siècle, le théorème a paru clore la question de l'existence. L'exemple de Hadamard --- une
+partie de ce problème --- a montré que l'analyticité achète l'existence sans la stabilité, de sorte
+que le problème de Cauchy pour une équation elliptique est mal posé et qu'aucun schéma numérique ne
+peut le sauver ; et la note de trois pages de Lewy dans les \textit{Annals}, qui fut un véritable
+choc, a montré que dans la catégorie lisse un opérateur d'apparence parfaitement innocente à
+coefficients polynomiaux peut n'avoir aucune solution. De là est née la théorie de la résolubilité
+locale, des conditions nécessaires de Hörmander à la condition de Nirenberg--Treves.
+
+\begin{refs}
+\item Contexte : Théorème de Cauchy-Kowalevski --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cauchy-Kowalevski})
+\item Contexte : Exemple de Lewy --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Exemple_de_Lewy})
+\item Article : H. Lewy, \og{} An example of a smooth linear partial differential equation without solution \fg{}, \textit{Annals of Mathematics} 66 (1957), 155--158
+\item Lecture : L. C. Evans, \textit{Partial Differential Equations}, chap. 4
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{La régularité de Navier--Stokes --- Recherche}]
+\textbf{PDE-18.} \textbf{Problème.} Les équations de Navier--Stokes incompressibles
+régissent un fluide visqueux :
+\[ u_t + (u \cdot \nabla)u = \nu\,\Delta u - \nabla p, \qquad \nabla \cdot u = 0. \]
+La question du prix du millénaire : étant données des conditions initiales lisses à décroissance
+rapide dans $\mathbb{R}^3$, une solution lisse existe-t-elle pour tout temps --- ou peut-elle
+exploser ? \textbf{Statut : ouvert.} Une porte d'entrée vers le pourquoi :
+\begin{enumerate}
+\item[(a)] démontrer l'identité d'énergie pour les solutions lisses
+décroissantes,
+\[ \frac{d}{dt}\,\frac{1}{2}\int |u|^2\,dx = -\,\nu \int |\nabla u|^2\,dx, \]
+de sorte que l'énergie cinétique totale ne peut que décroître.
+\item[(b)] Montrer que les équations ont la
+symétrie d'échelle $u_\lambda(x,t) = \lambda\,u(\lambda x, \lambda^2 t)$, et
+calculer comment l'énergie de $u_\lambda$ se transforme en dimensions $2$ et $3$.
+En conclure qu'en 2-D l'énergie conservée est exactement invariante d'échelle (critique)
+tandis qu'en 3-D elle s'affaiblit quand on zoome (surcritique) --- les bornes a priori connues
+vivent à la mauvaise échelle pour empêcher une explosion aux petites échelles. Cet écart d'échelle
+est l'explication communément admise de la difficulté du problème.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Leray a démontré en 1934 que des solutions \textit{faibles} globales existent en
+3-D (le concept de PDE-14, inventé exactement à cette fin), mais leur régularité et leur unicité
+restent inconnues ; en 2-D, la régularité globale est un théorème (Leray, Ladyjenskaïa). Le
+meilleur résultat partiel en 3-D, Caffarelli--Kohn--Nirenberg (1982), montre que l'ensemble des
+points singuliers possibles est très petit. Le traitement approfondi de ce problème du prix du
+millénaire se trouve sur la page Problèmes ouverts (\url{open-problems.html}).
+
+\begin{refs}
+\item Contexte : Solutions des équations de Navier-Stokes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Solutions_des_%C3%A9quations_de_Navier-Stokes})
+\item Article : C. L. Fefferman, \og{} Existence and smoothness of the Navier--Stokes equation \fg{} (2000), description du problème du prix du millénaire, Clay Mathematics Institute
+\item Article : J. Leray, \og{} Sur le mouvement d'un liquide visqueux emplissant l'espace \fg{} (1934), Acta Mathematica 63
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'explosion pour les équations d'Euler incompressibles --- Recherche}]
+\textbf{PDE-19.} \textbf{Problème.} Supprimons la viscosité : les équations d'Euler
+incompressibles sont $u_t + (u \cdot \nabla)u = -\nabla p$, $\nabla \cdot u = 0$. Des
+données initiales lisses et localisées sur $\mathbb{R}^3$ restent-elles lisses pour toujours ?
+\textbf{Statut : ouvert sur $\mathbb{R}^3$ pour des données lisses --- mais récemment résolu dans des
+cadres voisins, dans le sens de l'explosion.} Elgindi (Annals of Mathematics,
+2021) a démontré la formation de singularités en temps fini pour des vitesses de classe
+$C^{1,\alpha}$ (une fois dérivables, à dérivée höldérienne --- juste en dessous de la
+régularité lisse). Chen et Hou ont ensuite donné une démonstration assistée par ordinateur d'une
+explosion en temps fini à partir de données \textit{lisses} dans un domaine cylindrique avec bord,
+confirmant rigoureusement le scénario numérique de Luo--Hou (2014) d'un effondrement auto-similaire
+au bord ; l'analyse paraît dans un travail en deux parties (2022--2025) et dans les Proceedings
+of the National Academy of Sciences (2025). Porte d'entrée :
+\begin{enumerate}
+\item[(a)] établir l'équation de la
+vorticité
+\[ \omega_t + (u \cdot \nabla)\,\omega = (\omega \cdot \nabla)\,u, \]
+en identifiant $(\omega \cdot \nabla)u$ comme le terme d'étirement des tourbillons.
+\item[(b)] Montrer qu'en
+2-D le terme d'étirement s'annule identiquement, de sorte que la vorticité est simplement
+transportée et que son maximum est conservé --- le mécanisme derrière la régularité globale en
+2-D.
+\item[(c)] Énoncer le critère de Beale--Kato--Majda (1984) : l'explosion se produit au temps $T$ si
+et seulement si $\int_0^T \sup_x |\omega(x,t)|\,dt = \infty$. Expliquer pourquoi tous les
+scénarios d'explosion connus sont par conséquent des chasses à la croissance non bornée de la
+vorticité.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Savoir si un fluide parfait peut spontanément former une singularité est
+l'une des plus anciennes questions de la physique mathématique --- les équations sont celles
+d'Euler, de 1757. Les années 2020 l'ont fait passer d'une chasse purement numérique à des
+théorèmes : la singularité d'Elgindi est entièrement analytique mais exige des données peu
+régulières ; celle de Chen--Hou exige un bord mais accepte des données lisses, et sa vérification
+rigoureuse par arithmétique d'intervalles est un jalon pour la démonstration assistée par
+ordinateur en EDP. Le cas phare --- données lisses, sans bord, tout $\mathbb{R}^3$ --- reste ouvert,
+et il est intimement lié à Navier--Stokes (PDE-18) et à l'apparition de la turbulence.
+
+\begin{refs}
+\item Contexte : Équations d'Euler (mécanique des fluides) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quations_d%27Euler})
+\item Article : T. M. Elgindi, \og{} Finite-time singularity formation for $C^{1,\alpha}$ solutions to the incompressible Euler equations on $\mathbb{R}^3$ \fg{} (2021), Annals of Mathematics 194, arXiv:1904.04795 (\url{https://arxiv.org/abs/1904.04795})
+\item Article : J. Chen, T. Y. Hou, \og{} Stable nearly self-similar blowup of the 2D Boussinesq and 3D Euler equations with smooth data \fg{} (2022--2025), arXiv:2210.07191 (\url{https://arxiv.org/abs/2210.07191}) ; voir aussi leur \og{} Singularity formation in 3D Euler equations with smooth initial data and boundary \fg{}, PNAS 122 (2025)
+\item Article : J. T. Beale, T. Kato, A. Majda, \og{} Remarks on the breakdown of smooth solutions for the 3-D Euler equations \fg{} (1984), Communications in Mathematical Physics 94
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Rendre rigoureuse la turbulence d'ondes --- Recherche}]
+\textbf{PDE-20.} \textbf{Problème.} La théorie de la turbulence d'ondes prédit qu'une mer
+d'ondes dispersives faiblement en interaction --- houle de surface, ondes de plasma, ondes de
+l'équation de Schrödinger non linéaire --- a un spectre d'énergie moyen $n(k,t)$
+évoluant selon une \textit{équation cinétique des ondes}, analogue de l'équation de Boltzmann.
+Pour l'équation de Schrödinger non linéaire cubique de dispersion $\omega(k) = |k|^2$, elle
+s'écrit
+\[ \partial_t n = \iiint \delta(k + k_1 - k_2 - k_3)\,
+\delta(\omega + \omega_1 - \omega_2 - \omega_3)\;
+n\,n_1 n_2 n_3 \Big( \frac{1}{n} + \frac{1}{n_1} - \frac{1}{n_2} - \frac{1}{n_3} \Big)
+\,dk_1\,dk_2\,dk_3, \]
+avec $n_i = n(k_i)$, $\omega_i = \omega(k_i)$ : des quadruplets de nombres d'onde
+échangent de l'énergie lorsqu'ils satisfont les conditions de résonance
+$k + k_1 = k_2 + k_3$ et $\omega + \omega_1 = \omega_2 + \omega_3$. La
+dérivation physique (Peierls 1929 ; Hasselmann 1962 ; Zakharov dans les années 1960) est
+heuristique.
+\textbf{Statut : rigoureusement justifiée dans un cas modèle central ; ouverte en général.}
+Deng et Hani (Inventiones Mathematicae, 2023) ont démontré la dérivation complète de cette
+équation à partir de l'équation de Schrödinger non linéaire cubique à données initiales
+aléatoires, jusqu'à l'échelle de temps cinétique --- l'analogue ondulatoire du théorème de Lanford
+pour Boltzmann. Restent ouverts : les cas physiquement premiers (ondes de gravité et de
+capillarité à la surface de l'eau, dont l'équation cinétique sous-tend la prévision quotidienne
+des états de mer), le comportement au-delà du temps cinétique, et le statut rigoureux des spectres
+en cascade de Kolmogorov--Zakharov. Porte d'entrée :
+\begin{enumerate}
+\item[(a)] pour $\omega(k) = |k|^2$, décrire géométriquement les quadruplets
+résonnants.
+\item[(b)] Démontrer que les équilibres de Rayleigh--Jeans
+$n(k) = T/(\omega(k) + \mu)$ annulent ponctuellement la fonction sous l'intégrale de collision
+sur l'ensemble de résonance.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'intuition de Zakharov (honorée par la médaille Dirac) fut que les
+équations cinétiques pour les ondes admettent des états stationnaires en loi de puissance --- des
+cascades turbulentes --- à côté des équilibres de (b). Faire de tout cela des mathématiques fut un
+rêve pendant cinquante ans ; la démonstration de Deng--Hani, appuyée sur des outils venus des EDP
+dispersives, des probabilités et même de la combinatoire des diagrammes de Feynman, a ouvert le
+domaine. Étendre la rigueur aux ondes de surface, où l'équation de Hasselmann est exploitée
+opérationnellement chaque jour par les agences météorologiques, est l'un des défis majeurs les
+plus nets à la frontière entre analyse et physique.
+
+\begin{refs}
+\item Contexte : Turbulence d'ondes --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Wave_turbulence})
+\item Article : Y. Deng, Z. Hani, \og{} Full derivation of the wave kinetic equation \fg{} (2023), Inventiones Mathematicae 233, arXiv:2104.11204 (\url{https://arxiv.org/abs/2104.11204})
+\item Lecture : S. Nazarenko, \textit{Wave Turbulence}, Springer Lecture Notes in Physics
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'exposant un tiers d'Onsager --- Recherche, short}]
+\textbf{PDE-28.} \textbf{Problème.} Onsager a conjecturé en 1949 qu'une solution
+faible des équations d'Euler incompressibles conserve l'énergie cinétique si elle est
+höldérienne d'exposant $\alpha > 1/3$, et qu'il existe des solutions faibles dissipant
+l'énergie pour tout $\alpha < 1/3$. \textbf{Statut : réglé} --- la moitié
+\og{} conservation \fg{} a été démontrée par Constantin, E et Titi (1994) et la moitié
+\og{} construction \fg{} par Isett (2018) ; énoncer les deux moitiés précisément, démontrer la moitié
+\og{} conservation \fg{}, et expliquer pourquoi $1/3$ est exactement l'exposant que prédit le
+scaling de Kolmogorov de 1941, $\delta u(\ell) \sim (\varepsilon\ell)^{1/3}$.
+\end{problem}
+
+\noindent Onsager a mis cela dans un unique paragraphe d'un article de 1949 sur
+l'hydrodynamique statistique, et cela est resté à peu près non lu pendant quarante ans. L'énoncé
+dit quelque chose dont les physiciens avaient besoin : les fluides turbulents dissipent de
+l'énergie à un taux qui ne s'annule pas quand la viscosité tend vers zéro, si bien que
+l'écoulement non visqueux limite doit être assez irrégulier pour dissiper tout seul. La moitié
+\og{} construction \fg{} a fini par être atteinte par intégration convexe, une technique descendant du
+théorème de plongement isométrique $C^1$ de Nash et adaptée aux fluides par De Lellis et
+Székelyhidi --- la machinerie même qui produit les résultats de non-unicité qui hantent PDE-18.
+Noter ce qui n'est \textit{pas} réglé : savoir si les solutions de Navier--Stokes présentent
+effectivement une dissipation anomale dans la limite de viscosité évanescente, ce qui est
+l'énoncé physique visé par Onsager.
+
+\begin{refs}
+\item Contexte : Équations d'Euler (mécanique des fluides) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quations_d%27Euler})
+\item Contexte : Turbulence --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Turbulence})
+\item Article : P. Isett, \og{} A proof of Onsager's conjecture \fg{} (2018), Annals of Mathematics 188, arXiv:1608.08301 (\url{https://arxiv.org/abs/1608.08301})
+\item Article : P. Constantin, W. E, E. S. Titi, \og{} Onsager's conjecture on the energy conservation for solutions of Euler's equation \fg{} (1994), Communications in Mathematical Physics 165
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Où se trouve le point le plus chaud ? --- Recherche, short}]
+\textbf{PDE-29.} \textbf{Problème.} La conjecture des points chauds de Rauch (1974) affirme
+que pour un domaine borné, la seconde fonction propre de Neumann du laplacien --- c'est-à-dire
+le profil de température en temps long d'un corps parfaitement isolé --- atteint son
+maximum et son minimum uniquement sur la frontière, de sorte que le point le plus chaud finit par
+migrer vers le bord. \textbf{Statut : fausse en général, ouverte dans les cas qui comptent} ---
+des contre-exemples sont connus pour des domaines plans à trous (Burdzy--Werner 1999 ;
+Burdzy 2005) et pour des domaines convexes en dimension suffisamment grande
+(de Dios Pont, 2024), tandis que la conjecture est un théorème pour tout triangle
+euclidien (Judge--Mondal 2020, avec un rectificatif de 2022) ; elle reste ouverte pour les domaines
+plans simplement connexes et pour les domaines plans convexes, et votre tâche est d'énoncer
+la conjecture assez précisément pour que toutes ces affirmations soient véritablement
+distinctes.
+\end{problem}
+
+\noindent La conjecture a une jumelle probabiliste : la fonction propre gouverne
+l'endroit où un mouvement brownien réfléchi a des chances de se trouver aux grands temps,
+ce qui explique pourquoi ce sont les probabilistes qui ont produit à la fois les contre-exemples et
+l'essentiel de la théorie positive. C'est un bon exemple d'un énoncé que tout le monde juge évident
+et qui reste néanmoins largement non démontré --- un projet Polymath a attaqué le cas du triangle
+acutangle en 2012 sans le trancher, et le théorème complet sur les triangles a demandé huit années
+de plus et un argument long et délicat.
+
+\begin{refs}
+\item Contexte : Condition aux limites de Neumann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Condition_aux_limites_de_Neumann})
+\item Contexte : Géométrie spectrale --- Wikipédia (\url{https://fr.wikipedia.org/wiki/G%C3%A9om%C3%A9trie_spectrale})
+\item Article : C. Judge, S. Mondal, \og{} Euclidean triangles have no hot spots \fg{} (2020), Annals of Mathematics 191 ; rectificatif, Annals of Mathematics 195 (2022), arXiv:1802.01800 (\url{https://arxiv.org/abs/1802.01800})
+\item Article : K. Burdzy, W. Werner, \og{} A counterexample to the `hot spots' conjecture \fg{} (1999), Annals of Mathematics 149 ; J. de Dios Pont, \og{} Convex sets can have interior hot spots \fg{} (2024), arXiv:2412.06344 (\url{https://arxiv.org/abs/2412.06344})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'écoulement quasi-géostrophique de surface surcritique --- Recherche}]
+\textbf{PDE-30.} \textbf{Problème.} L'équation quasi-géostrophique de surface (SQG) pour un scalaire
+$\theta(x,t)$ sur $\mathbb{R}^2$ est
+\[ \theta_t + u\cdot\nabla\theta + \kappa(-\Delta)^{\gamma}\theta = 0, \qquad
+u = \nabla^{\perp}(-\Delta)^{-1/2}\theta, \]
+de sorte que la vitesse est une transformée intégrale singulière d'ordre zéro de la quantité
+transportée --- exactement la relation structurelle qu'entretient la vorticité avec la vitesse dans
+l'écoulement d'Euler tridimensionnel, mais avec une dimension de moins.
+\textbf{Statut :} pour $\gamma > 1/2$ (sous-critique) la régularité globale est classique ;
+pour $\gamma = 1/2$ (critique) elle a été démontrée en 2007, indépendamment et par des méthodes
+complètement différentes, par Kiselev--Nazarov--Volberg et par
+Caffarelli--Vasseur ; pour $0 < \gamma < 1/2$ (surcritique) et pour le cas non visqueux
+$\kappa = 0$, \textbf{la régularité globale pour des données lisses est ouverte}. Y travailler
+comme suit.
+\begin{enumerate}
+\item[(a)] Montrer que si $\theta$ résout l'équation, alors
+$\theta_\lambda(x,t) = \lambda^{2\gamma-1}\theta(\lambda x, \lambda^{2\gamma}t)$ aussi,
+et en déduire que $\gamma = 1/2$ est précisément l'exposant pour lequel le changement d'échelle
+laisse la norme $L^\infty$ invariante. Expliquer pourquoi cela rend $\gamma = 1/2$
+critique, étant donné que $L^\infty$ est la norme la plus forte que l'équation soit connue pour
+contrôler.
+\item[(b)] Démontrer le principe du maximum $L^p$ : pour $\kappa \ge 0$ et tout
+$p \in [1,\infty]$, $\|\theta(\cdot,t)\|_{L^p}$ est décroissante en $t$.
+\item[(c)] Démontrer le critère d'explosion de Constantin--Majda--Tabak pour SQG non visqueuse : une
+solution lisse persiste sur $[0,T]$ pourvu que
+$\int_0^T \|\nabla^{\perp}\theta(\cdot,t)\|_{L^\infty}\,dt < \infty$. Le comparer
+ligne à ligne avec le critère de Beale--Kato--Majda pour l'écoulement d'Euler tridimensionnel
+et dire ce qui y joue le rôle de la vorticité.
+\item[(d)] Étudier les deux démonstrations du cas critique --- l'argument non local de module de
+continuité et l'itération de De Giorgi --- et identifier exactement
+quelle inégalité échoue dans chacune lorsque $\gamma < 1/2$.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Constantin, Majda et Tabak ont proposé SQG en 1994 comme
+laboratoire bidimensionnel du problème d'explosion d'Euler en dimension trois de
+PDE-19 : l'analogie avec l'étirement de la vorticité n'est pas vague mais formelle, terme à terme,
+et une singularité ici serait une indication forte sur ce qui se passe là-bas. C'est aussi de la
+vraie physique --- l'équation régit les fronts de température à la surface d'un fluide stratifié en
+rotation rapide, c'est-à-dire les fronts météorologiques d'une carte synoptique.
+La double résolution du cas critique en 2007 est l'un des meilleurs cas d'étude, dans l'analyse
+moderne, de deux routes indépendantes vers un même théorème, et la plage surcritique est là où se
+mène le combat actuel.
+
+\begin{refs}
+\item Contexte : Approximation quasi-géostrophique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Approximation_quasi-g%C3%A9ostrophique})
+\item Article : P. Constantin, A. J. Majda, E. Tabak, \og{} Formation of strong fronts in the 2-D quasigeostrophic thermal active scalar \fg{} (1994), Nonlinearity 7
+\item Article : A. Kiselev, F. Nazarov, A. Volberg, \og{} Global well-posedness for the critical 2D dissipative quasi-geostrophic equation \fg{} (2007), Inventiones Mathematicae 167, arXiv:math/0604185 (\url{https://arxiv.org/abs/math/0604185})
+\item Article : L. Caffarelli, A. Vasseur, \og{} Drift diffusion equations with fractional diffusion and the quasi-geostrophic equation \fg{} (2010), Annals of Mathematics 171, arXiv:math/0608447 (\url{https://arxiv.org/abs/math/0608447})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de De Giorgi pour l'équation d'Allen--Cahn --- Recherche}]
+\textbf{PDE-38.} \textbf{Problème.} On considère les solutions bornées de l'équation d'Allen--Cahn
+\[ \Delta u + u - u^3 = 0 \quad \text{sur } \mathbb{R}^n, \qquad |u| \le 1, \qquad
+\frac{\partial u}{\partial x_n} > 0 . \]
+De Giorgi a conjecturé en 1978 que toute solution de ce type est unidimensionnelle --- c'est-à-dire
+$u(x) = g(x \cdot e + b)$ pour un certain vecteur unitaire $e$ --- au moins lorsque
+$n \le 8$.
+\begin{enumerate}
+\item[(a)] Traiter complètement le cas unidimensionnel. Démontrer que les solutions bornées de
+$u'' = u^3 - u$ sur $\mathbb{R}$ avec $u(\pm\infty) = \pm 1$ sont exactement les translatées
+de $\tanh(x/\sqrt{2})$, en établissant l'intégrale première
+$\tfrac{1}{2}(u')^2 = \tfrac{1}{4}(1-u^2)^2$ et en l'intégrant. Vérifier ensuite que
+$u(x) = \tanh\bigl((x\cdot e + b)/\sqrt{2}\bigr)$ résout l'équation en toute
+dimension.
+\item[(b)] Identifier la structure variationnelle : montrer que l'équation est l'équation
+d'Euler--Lagrange de
+\[ E(u) = \int \Bigl( \tfrac{1}{2}|\nabla u|^2 + \tfrac{1}{4}(1-u^2)^2 \Bigr) dx , \]
+et décrire le théorème de Modica et Mortola : après changement d'échelle, ces énergies convergent
+(au sens de la $\Gamma$-convergence) vers une constante fois l'aire de l'interface entre les
+phases $u = 1$ et $u = -1$. Expliquer pourquoi cela fait que les lignes de niveau d'une
+solution se comportent comme une surface minimale, et pourquoi la conjecture est donc un énoncé
+déguisé sur la rigidité des surfaces minimales.
+\item[(c)] Rendre l'analogie exacte. Énoncer le problème de Bernstein --- un graphe minimal entier sur
+$\mathbb{R}^m$ est un hyperplan exactement lorsque $m \le 7$, le contre-exemple pour
+$m \ge 8$ étant construit par Bombieri, De Giorgi et Giusti (1969) à partir du cône de Simons ---
+et expliquer pourquoi le seuil $m \le 7$ là-bas correspond à $n \le 8$ ici.
+\item[(d)] Rendre compte du statut, précisément. La conjecture est un théorème pour $n = 2$
+(Ghoussoub--Gui, 1998) et $n = 3$ (Ambrosio--Cabré, 2000) ; Savin l'a démontrée pour
+$4 \le n \le 8$ sous l'hypothèse supplémentaire que $u(x', x_n) \to \pm 1$ ponctuellement quand
+$x_n \to \pm\infty$ (2009) ; et del Pino, Kowalczyk et Wei ont construit un contre-exemple pour
+tout $n \ge 9$ (2011) en recollant le profil de la partie (a) le long du graphe de
+Bombieri--De Giorgi--Giusti. Expliquer ce que l'hypothèse supplémentaire du théorème de Savin exclut,
+et pourquoi la supprimer est difficile.
+\textit{Statut : ouvert pour $4 \le n \le 8$ sans l'hypothèse de limite ; réglé sinon --- vrai pour
+$n \le 3$, faux pour $n \ge 9$.}
+\end{enumerate}
+
+\end{problem}
+
+\noindent Ennio De Giorgi a proposé cela en 1978, et il était la bonne personne pour le
+faire : il avait démontré en 1957 la régularité höldérienne qui a réglé le dix-neuvième problème de
+Hilbert, et il avait construit, avec Bombieri et Giusti, le contre-exemple de graphe minimal
+même qui marque aujourd'hui la limite de sa propre conjecture. Que les deux seuils dimensionnels
+s'alignent --- le cône de Simons apparaît en dimension huit, la transition de phase ploie en
+dimension neuf --- est l'une des correspondances les plus frappantes de l'analyse, et c'est la raison
+pour laquelle la conjecture est vue comme le miroir, côté transition de phase, du problème de
+Bernstein. Le contre-exemple de del Pino--Kowalczyk--Wei mérite d'être étudié comme construction en
+soi : prendre un objet géométrique, recoller le profil unidimensionnel le long de celui-ci, puis
+corriger l'erreur en une solution exacte.
+
+\begin{refs}
+\item Contexte : Équation d'Allen-Cahn --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quation_d%27Allen-Cahn})
+\item Contexte : Problème de Bernstein --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Bernstein})
+\item Article : O. Savin, \og{} Regularity of flat level sets in phase transitions \fg{}, \textit{Annals of Mathematics} 169 (2009), 41--78
+\item Article : M. del Pino, M. Kowalczyk \& J. Wei, \og{} On De Giorgi's conjecture in dimension $N \ge 9$ \fg{}, \textit{Annals of Mathematics} 174 (2011), 1485--1569, arXiv:0806.3141 (\url{https://arxiv.org/abs/0806.3141})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Quelle est la longueur d'un ensemble nodal ? La conjecture de Yau --- Recherche}]
+\textbf{PDE-39.} \textbf{Problème.} Soit $(M,g)$ une variété riemannienne lisse fermée de dimension $n$ et
+soit $\varphi_\lambda$ vérifiant $\Delta \varphi_\lambda + \lambda \varphi_\lambda = 0$. Son
+\textit{ensemble nodal} est $Z = \{\varphi_\lambda = 0\}$, le motif d'onde stationnaire que
+Chladni a rendu visible avec du sable. Yau a conjecturé que
+\[ c\,\sqrt{\lambda} \;\le\; \mathcal{H}^{n-1}(Z) \;\le\; C\,\sqrt{\lambda}, \]
+avec des constantes ne dépendant que de $(M,g)$.
+\begin{enumerate}
+\item[(a)] Vérifier la conjecture là où le calcul est possible. Sur le tore plat
+$\mathbb{R}^2/(2\pi\mathbb{Z})^2$, prendre $\varphi = \sin(mx)\sin(ny)$, avec
+$\lambda = m^2 + n^2$ ; décrire l'ensemble nodal, calculer exactement sa longueur totale, et
+vérifier qu'elle est encadrée par des multiples constants de $\sqrt{\lambda}$. Faire le même
+décompte qualitatif pour une harmonique sphérique de degré $\ell$ sur la sphère ronde, où
+$\lambda = \ell(\ell+1)$.
+\item[(b)] Démontrer la moitié élémentaire de l'intuition. Montrer qu'une solution de l'équation de
+Helmholtz oscille à l'échelle de longueur $\lambda^{-1/2}$, énoncer le théorème des domaines
+nodaux de Courant (la $k$-ième fonction propre a au plus $k$ domaines nodaux) et le démontrer
+dans le cas unidimensionnel de Sturm--Liouville, et le combiner avec l'inégalité de Faber--Krahn
+pour montrer que tout domaine nodal a un volume au moins $c\lambda^{-n/2}$. Expliquer pourquoi
+cela rend plausible une minoration de l'ensemble nodal sans pour autant la démontrer.
+\item[(c)] Étudier le cas analytique. Énoncer le théorème de Donnelly et Fefferman (1988) : les deux
+bornes valent lorsque la métrique $g$ est réelle-analytique. Décrire l'instrument qui rend ce
+cas abordable --- l'indice de doublement, ou fonction de fréquence, d'Almgren puis de Garofalo et
+Lin --- et expliquer ce qu'il mesure.
+\item[(d)] Rendre compte du statut moderne. Alexander Logunov a démontré la minoration
+$c\sqrt{\lambda}$ pour les métriques lisses, et dans un article compagnon une majoration
+$\mathcal{H}^{n-1}(Z) \le C\lambda^{\alpha}$ pour un certain exposant $\alpha(n) > 1/2$ ;
+expliquer pourquoi la majoration est la moitié la plus difficile, et ce qu'une démonstration de
+l'exposant optimal devrait contrôler.
+\textit{Statut : la minoration de la conjecture de Yau est un théorème pour les métriques lisses
+(Logunov, Annals of Mathematics, 2018) ; la majoration optimale $C\sqrt{\lambda}$ est ouverte en
+toute dimension $n \ge 2$ pour les métriques lisses --- en dimension deux, les meilleures bornes
+connues sont de la forme $C\lambda^{3/4}$, avec de légères améliorations depuis --- tandis que
+pour les métriques réelles-analytiques les deux bornes ont été réglées en 1988.}
+\end{enumerate}
+
+\end{problem}
+
+\noindent Yau a inclus cette question dans sa liste de problèmes ouverts de géométrie de
+1982, et c'est la question quantitative la plus grossière que l'on puisse poser sur les images de
+cette page : quelle quantité d'ensemble nodal y a-t-il ? La réponse est forcément d'ordre
+$\sqrt{\lambda}$ parce qu'une fonction propre oscille à l'échelle $\lambda^{-1/2}$, et pourtant
+transformer cette heuristique en théorème pour des métriques lisses générales a demandé
+trente-cinq ans. La démonstration de Logunov, mise au point avec Eugenia Malinnikova, propage
+l'indice de doublement à travers les échelles par un argument combinatoire élémentaire dans ses
+ingrédients et redoutable dans sa comptabilité ; elle a depuis été adaptée à plusieurs autres
+problèmes d'analyse des fonctions propres. Le sujet se relie directement au reste de cette page ---
+les motifs nodaux de PDE-24 et PDE-31, la géométrie spectrale de PDE-17, et les fonctions propres
+de Neumann de PDE-29.
+
+\begin{refs}
+\item Contexte : Géométrie spectrale --- Wikipédia (\url{https://fr.wikipedia.org/wiki/G%C3%A9om%C3%A9trie_spectrale})
+\item Article : H. Donnelly \& C. Fefferman, \og{} Nodal sets of eigenfunctions on Riemannian manifolds \fg{}, \textit{Inventiones Mathematicae} 93 (1988), 161--183
+\item Article : A. Logunov, \og{} Nodal sets of Laplace eigenfunctions: proof of Nadirashvili's conjecture and of the lower bound in Yau's conjecture \fg{}, \textit{Annals of Mathematics} 187 (2018), 241--262, arXiv:1605.02589 (\url{https://arxiv.org/abs/1605.02589})
+\item Article : A. Logunov, \og{} Nodal sets of Laplace eigenfunctions: polynomial upper estimates of the Hausdorff measure \fg{}, \textit{Annals of Mathematics} 187 (2018), 221--239, arXiv:1605.02587 (\url{https://arxiv.org/abs/1605.02587})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La conjecture de Schiffer : quel tambour est un disque ? --- Recherche, short}]
+\textbf{PDE-40.} \textbf{Problème.} La conjecture de Schiffer affirme que si un domaine borné
+$\Omega \subset \mathbb{R}^n$ à frontière lipschitzienne connexe admet une solution non
+constante de $\Delta u + \lambda u = 0$ avec $\lambda > 0$ satisfaisant \textit{à la fois}
+$\partial u/\partial\nu = 0$ et $u = \text{const}$ sur $\partial\Omega$, alors $\Omega$ est
+une boule. Démontrer que le disque admet bien une telle fonction --- prendre $u(r) = J_0(kr)$ avec
+$ka$ un zéro de $J_1$, et utiliser le fait que $J_0$ et $J_1$ n'ont aucun zéro positif
+commun (hypothèse de Bourget, démontrée par Siegel en 1929) pour voir que $u$ est une constante
+non nulle sur le bord --- puis énoncer la formulation équivalente en termes du problème de Pompeiu
+et rendre compte honnêtement de ce qui est connu et de ce qui ne l'est pas.
+\end{problem}
+
+\noindent Dimitrie Pompeiu a demandé en 1929 si un domaine plan dont les intégrales sur
+tous ses déplacements annulent une fonction continue force cette fonction à être nulle ; les
+domaines où cela échoue sont les domaines exceptionnels, et le disque est exceptionnel. S. A.
+Williams a montré en 1976 qu'un domaine exceptionnel doit porter exactement la fonction propre de
+Neumann surdéterminée ci-dessus, ce qui relie la question de Pompeiu en géométrie intégrale à une
+question d'EDP attribuée à Menahem Schiffer. Le contraste instructif est avec le théorème de Serrin
+de 1971 : pour $\Delta u = -1$ avec $u = 0$ et $\partial u/\partial \nu$ constante sur la
+frontière, le domaine \textit{doit} être une boule, ce qui se démontre par la méthode du plan mobile
+d'Alexandrov --- mais cet argument a besoin d'un signe, et une équation aux valeurs propres n'en a
+pas. \textit{Statut : ouvert. Des résultats partiels sont connus sous des hypothèses supplémentaires de
+régularité, de symétrie ou de convexité, et le problème compte parmi les problèmes ouverts
+surdéterminés les plus connus des EDP elliptiques.}
+
+\begin{refs}
+\item Contexte : Problème de Pompeiu (et conjecture de Schiffer) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Pompeiu})
+\item Article : S. A. Williams, \og{} A partial solution of the Pompeiu problem \fg{}, \textit{Mathematische Annalen} 223 (1976), 183--190
+\item Article : J. Serrin, \og{} A symmetry problem in potential theory \fg{}, \textit{Archive for Rational Mechanics and Analysis} 43 (1971), 304--318
+\item Lecture : L. E. Fraenkel, \textit{An Introduction to Maximum Principles and Symmetry in Elliptic Problems}
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}

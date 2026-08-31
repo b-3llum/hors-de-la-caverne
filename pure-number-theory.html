@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Théorie des nombres — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Théorie des nombres</h1>
+<p class="lede">La théorie des nombres est l'étude des nombres entiers — divisibilité, nombres
+premiers, congruences, et les équations dont on cherche les solutions entières. C'est la plus
+ancienne branche vivante des mathématiques : un scribe babylonien tabulait des triplets
+pythagoriciens vers 1800 av. J.-C., Euclide démontrait vers 300 av. J.-C. qu'il existe une infinité
+de nombres premiers, et les mêmes questions, à peine reformulées, animent la recherche
+d'aujourd'hui. Gauss appelait les mathématiques la reine des sciences et la théorie des nombres la
+reine des mathématiques ; pendant l'essentiel de son histoire, on l'a cultivée pour sa seule beauté,
+jusqu'à ce que les années 1970 fassent de la difficulté de la factorisation le fondement de la
+cryptographie. Cette page accorde un poids particulier à la <i>primalité</i> — comment on reconnaît
+effectivement un nombre premier, de la lettre de Fermat de 1640 à la découverte, en 2002, que la
+primalité se décide en temps polynomial — et à la provenance de chaque idée, car en théorie des
+nombres l'histoire n'est pas un ornement : les problèmes eux-mêmes sont l'héritage. Travailler ici
+ressemble à de l'archéologie à l'envers — les objets sont tous en surface, faciles à énoncer à un
+enfant, et c'est en creusant qu'on traverse les siècles d'idées nécessaires pour les atteindre.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/pure-number-theory.tex" download>source LaTeX</a> · <a href="tex/pure-number-theory.pdf" download>PDF compilé</a></p>
+<!-- site.js insère automatiquement ici la barre de filtre par niveau et de recherche. Ne pas en construire une. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="NT-01" data-level="Lycée">
+<h3>NT-01 · Irrationalité de √2 <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer que \(\sqrt{2}\) est irrationnel : il n'existe pas
+d'entiers strictement positifs \(p, q\) tels que \(p^2 = 2q^2\). Déterminer ensuite, avec
+démonstration, exactement quels entiers strictement positifs \(n\) ont \(\sqrt{n}\) irrationnel.</p>
+<p class="context">Voici la découverte qui brisa le credo pythagoricien selon lequel tout est nombre
+entier et rapport : la diagonale d'un carré est incommensurable avec son côté. La légende —
+rapportée des siècles plus tard et dont il ne faut pas croire le détail — veut que le découvreur,
+parfois nommé Hippase de Métaponte (V<sup>e</sup> siècle av. J.-C.), ait été noyé en mer pour l'avoir
+révélée. Théodore de Cyrène démontra plus tard l'irrationalité de \(\sqrt{3}, \sqrt{5}, \ldots\)
+jusqu'à \(\sqrt{17}\), et les <i>Éléments</i> d'Euclide conservent l'argument classique. C'est
+l'archétype du raisonnement par l'absurde et le premier théorème de ce que nous appelons aujourd'hui
+la théorie des nombres.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Racine_carr%C3%A9e_de_deux">Racine carrée de deux — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_irrationnel">Nombre irrationnel — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-02" data-level="Lycée">
+<h3>NT-02 · Euclide : une infinité de nombres premiers <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer qu'il existe une infinité de nombres premiers.
+Examiner ensuite les nombres \(N_k = p_1 p_2 \cdots p_k + 1\), où
+\(p_1 &lt; p_2 &lt; \cdots &lt; p_k\) sont les \(k\) premiers nombres premiers : \(N_k\) doit-il
+lui-même être premier ? Trancher la question par une démonstration ou par le plus petit
+contre-exemple.</p>
+<p class="context">Proposition 20 du livre IX des <i>Éléments</i> d'Euclide (v. 300 av. J.-C.) :
+« les nombres premiers sont plus nombreux que toute multitude assignée de nombres premiers ».
+L'argument d'Euclide lui-même est direct et n'est pas — contrairement à ce qu'on retient souvent —
+un raisonnement par l'absurde, et on le cite couramment comme le modèle de ce que doit être une
+démonstration. La seconde partie prémunit contre le contresens le plus répandu sur cet argument. On
+connaît aujourd'hui des dizaines d'autres démonstrations — par les nombres de Fermat (Goldbach), par
+la topologie (Furstenberg), par la divergence de \(\sum 1/p\) (Euler) — et les comparer est une
+leçon sur le nombre de portes que peut avoir une seule vérité.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euclide_sur_les_nombres_premiers">Théorème d'Euclide sur les nombres premiers — Wikipédia</a></li>
+<li>Lecture : M. Aigner et G. M. Ziegler, <i>Proofs from THE BOOK</i>, ch. 1 (six démonstrations)</li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 1–2</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-03" data-level="Lycée">
+<h3>NT-03 · L'algorithme d'Euclide et le théorème de Bachet-Bézout <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer que l'algorithme d'Euclide — qui remplace
+répétitivement le couple \((a, b)\) par \((b,\ a \bmod b)\) — termine et calcule \(\gcd(a, b)\).
+Démontrer l'identité de Bézout : \(\gcd(a, b)\) est le plus petit entier strictement positif qui
+s'exprime sous la forme \(ax + by\) avec \(x, y\) entiers. En déduire le lemme d'Euclide — si un
+nombre premier \(p\) divise \(ab\) alors \(p\) divise \(a\) ou \(p\) divise \(b\) — et, de là,
+l'unicité de la décomposition en facteurs premiers.</p>
+<p class="context">L'algorithme figure au livre VII des <i>Éléments</i> et on l'appelle souvent le
+plus ancien algorithme non trivial encore d'usage quotidien. L'identité porte le nom d'Étienne
+Bézout, qui démontra l'analogue polynomial au XVIII<sup>e</sup> siècle ; pour les entiers, elle fut
+publiée par Bachet de Méziriac en 1624. La chaîne de déductions demandée ici — algorithme, identité,
+lemme, factorisation unique — est la colonne vertébrale logique de la théorie élémentaire des
+nombres, bien que le théorème fondamental de l'arithmétique n'ait été énoncé et démontré avec toute
+la rigueur voulue que par Gauss dans les <i>Disquisitiones Arithmeticae</i> (1801).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide">Algorithme d'Euclide — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bachet-B%C3%A9zout">Théorème de Bachet-Bézout — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_fondamental_de_l%27arithm%C3%A9tique">Théorème fondamental de l'arithmétique — Wikipédia</a></li>
+<li>Lecture : J. H. Silverman, <i>A Friendly Introduction to Number Theory</i>, ch. 5–7</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-04" data-level="Lycée">
+<h3>NT-04 · Congruences et preuve par neuf <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Pour des entiers \(a, b\) et \(m \ge 1\), on écrit
+\(a \equiv b \pmod{m}\) lorsque \(m\) divise \(a - b\). Démontrer que la congruence respecte
+l'addition et la multiplication. En déduire les critères classiques sur les chiffres : \(9\) divise
+\(n\) exactement lorsque \(9\) divise la somme des chiffres de \(n\), et \(11\) divise \(n\)
+exactement lorsque \(11\) divise la somme alternée des chiffres. Expliquer précisément quelles
+erreurs de calcul la vérification médiévale de la « preuve par neuf » détecte, et en exhiber une
+qu'elle laisse passer.</p>
+<p class="context">L'arithmétique modulo m se pratiquait bien avant d'être nommée : la preuve par
+neuf apparaît dans l'arithmétique indienne et islamique il y a plus de mille ans, comme contrôle de
+comptable sur un calcul à la main. La notation moderne et la théorie systématique ouvrent les
+<i>Disquisitiones Arithmeticae</i> de Gauss (1801), écrites alors qu'il n'avait qu'une vingtaine
+d'années ; son signe de congruence ≡ transforma des astuces éparses sur les chiffres en un calcul.
+Presque tout ce qui figure sur cette page parle cette langue.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arithm%C3%A9tique_modulaire">Arithmétique modulaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Preuve_par_neuf">Preuve par neuf — Wikipédia</a></li>
+<li>Lecture : H. Davenport, <i>The Higher Arithmetic</i>, ch. II</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-05" data-level="Lycée">
+<h3>NT-05 · Les premiers ≡ 3 (mod 4), et pourquoi 1 (mod 4) est plus difficile <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer que tout entier \(n \equiv 3 \pmod 4\) possède un
+facteur premier \(\equiv 3 \pmod 4\). En déduire une adaptation de l'argument d'Euclide — considérer
+\(4p_1 p_2 \cdots p_k - 1\) — et démontrer qu'il existe une infinité de nombres premiers
+\(\equiv 3 \pmod 4\). Essayer ensuite de mener le même argument pour les premiers
+\(\equiv 1 \pmod 4\), et identifier précisément l'étape où il s'effondre.</p>
+<p class="context">Premier avant-goût des nombres premiers en progression arithmétique. L'astuce
+d'Euclide se généralise à quelques progressions puis cale, et ce blocage est instructif : un produit
+de nombres \(\equiv 1 \pmod 4\) est encore \(\equiv 1 \pmod 4\), donc rien ne force l'apparition d'un
+facteur premier de la bonne espèce. La classe résiduelle 1 (mod 4) exige véritablement une idée
+nouvelle — les résidus quadratiques — et le problème NT-12 achève cette histoire. Le théorème
+complet, selon lequel toute progression \(a, a+m, a+2m, \ldots\) avec \(\gcd(a, m) = 1\) contient
+une infinité de nombres premiers, fut démontré par Dirichlet en 1837, qui inventa pour cela la
+théorie analytique des nombres.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_la_progression_arithm%C3%A9tique">Théorème de la progression arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euclide_sur_les_nombres_premiers">Théorème d'Euclide sur les nombres premiers — Wikipédia</a></li>
+<li>Lecture : H. Davenport, <i>The Higher Arithmetic</i>, ch. I–II</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-06" data-level="Lycée">
+<h3>NT-06 · Le petit théorème de Fermat <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(p\) un nombre premier. Démontrer que
+\(a^p \equiv a \pmod p\) pour tout entier \(a\), et donc que
+\(a^{p-1} \equiv 1 \pmod p\) lorsque \(p\) ne divise pas \(a\). Donner deux démonstrations
+différentes : l'une par récurrence sur \(a\) à l'aide de la formule du binôme, l'autre en montrant
+que la multiplication par \(a\) permute les résidus non nuls modulo \(p\). En guise d'application
+d'échauffement, trouver le reste de \(3^{1000}\) dans la division par \(101\).</p>
+<p class="context">Fermat énonça le théorème dans une lettre à Frénicle de Bessy datée du
+18 octobre 1640, en ajoutant qu'il en enverrait la démonstration « si je ne craignais d'être trop
+long ». Euler publia la première démonstration en 1736 (Leibniz en avait une plus tôt, non publiée).
+Le théorème est le moteur de presque tous les tests de primalité modernes — les problèmes NT-19,
+NT-21 et NT-23 ci-dessous en sont les descendants — et, via sa généralisation par Euler (NT-11), il
+fonde le cryptosystème RSA. Une petite congruence à très longue portée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Petit_th%C3%A9or%C3%A8me_de_Fermat">Petit théorème de Fermat — Wikipédia</a></li>
+<li>Lecture : J. H. Silverman, <i>A Friendly Introduction to Number Theory</i>, ch. 9</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/">MIT OCW 18.781 Theory of Numbers (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-07" data-level="Lycée">
+<h3>NT-07 · Les triplets pythagoriciens <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Un triplet pythagoricien \((a, b, c)\) d'entiers strictement
+positifs vérifie \(a^2 + b^2 = c^2\), et il est primitif si \(\gcd(a, b, c) = 1\).
+Démontrer la paramétrisation d'Euclide : les triplets primitifs sont exactement
+\((m^2 - n^2,\ 2mn,\ m^2 + n^2)\) avec \(m &gt; n \ge 1\) premiers entre eux et de parités
+opposées, à l'échange de \(a\) et \(b\) près. Démontrer ensuite que dans tout triplet pythagoricien,
+\(3\) divise l'un des côtés de l'angle droit, \(4\) divise l'un d'eux, et \(5\) divise l'un des
+côtés.</p>
+<p class="context">La tablette babylonienne Plimpton 322 (v. 1800 av. J.-C.) énumère des nombres que
+la plupart des spécialistes lisent comme des triplets pythagoriciens, compilés plus d'un millénaire
+avant Pythagore. La paramétrisation figure au livre X des <i>Éléments</i> d'Euclide. C'est la
+première équation diophantienne résolue de façon non triviale, et le modèle de toutes celles qui
+suivirent : Fermat griffonna son grand théorème dans la marge, à côté exactement de ce problème,
+dans son exemplaire de Diophante, et le problème des nombres congruents (NT-29) commence par les
+triangles rationnels construits à partir de ces triplets.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Triplet_pythagoricien">Triplet pythagoricien — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Plimpton_322">Plimpton 322 — Wikipédia</a></li>
+<li>Lecture : J. H. Silverman, <i>A Friendly Introduction to Number Theory</i>, ch. 2–3</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-08" data-level="Lycée">
+<h3>NT-08 · La fraction continue de √2 <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Montrer que
+\[ \sqrt{2} \;=\; 1 + \cfrac{1}{2 + \cfrac{1}{2 + \cfrac{1}{2 + \cdots}}}, \]
+la fraction continue infinie dont tous les quotients partiels valent \(2\) après le premier.
+Calculer les premières réduites
+\(1,\ \tfrac{3}{2},\ \tfrac{7}{5},\ \tfrac{17}{12},\ \tfrac{41}{29}, \ldots\) et démontrer
+que toute réduite \(p/q\) vérifie \(p^2 - 2q^2 = \pm 1\) — les réduites fournissent donc une
+infinité de solutions approchées oscillant autour de \(\sqrt{2}\).</p>
+<p class="context">Les Grecs connaissaient ces fractions sous le nom de « nombres latéraux et
+diagonaux » (Théon de Smyrne, II<sup>e</sup> siècle de notre ère) : la récurrence qui les engendre
+était leur façon d'approcher par des rapports la diagonale incommensurable de NT-01. La théorie
+systématique des fractions continues vint avec Euler et Lagrange au XVIII<sup>e</sup> siècle, et
+l'identité \(p^2 - 2q^2 = \pm 1\) est la porte d'entrée de l'équation de Pell (NT-14). Les fractions
+continues reviennent deux fois plus bas : pour le nombre e (NT-26) et comme moteur de la
+transcendance (NT-25).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fraction_continue">Fraction continue — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Suite_de_Pell">Suite de Pell — Wikipédia</a></li>
+<li>Lecture : H. Davenport, <i>The Higher Arithmetic</i>, ch. IV</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-36" data-level="Lycée" data-kind="court">
+<h3>NT-36 · Le dernier chiffre d'une tour <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Déterminer le dernier chiffre de \( 7^{100} \), et démontrer votre réponse sans calculer le nombre.</p>
+<p class="context">Le dernier chiffre d'une puissance est son résidu modulo \( 10 \), et les puissances de \( 7 \) sont cycliques de période quatre — toute la question se ramène donc à \( 100 \bmod 4 \). C'est le plus petit avant-goût possible de l'ordre d'un élément dans un groupe, une idée qui deviendra plus tard le théorème de Lagrange et le théorème d'Euler.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arithm%C3%A9tique_modulaire">Arithmétique modulaire — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-37" data-level="Lycée" data-kind="court">
+<h3>NT-37 · Pourquoi la preuve par neuf fonctionne <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer qu'un entier strictement positif est divisible par \( 9 \) si et seulement si la somme de ses chiffres décimaux est divisible par \( 9 \). Énoncer et démontrer ensuite la règle analogue pour \( 11 \).</p>
+<p class="context">On enseigne cette règle à tous les écoliers et on n'en montre presque à aucun la raison ; la démonstration tient en trois lignes dès qu'on écrit le nombre sous la forme \( \sum d_k 10^k \) et qu'on remarque que \( 10 \equiv 1 \pmod 9 \). Le cas \( 11 \) oblige à traiter \( 10 \equiv -1 \), ce qui explique l'alternance des signes des chiffres — une petite mais authentique surprise.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8re_de_divisibilit%C3%A9">Critère de divisibilité — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-44" data-level="Lycée" data-kind="court">
+<h3>NT-44 · Une infinité de premiers ≡ 5 (mod 6) <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer que tout entier \( n \equiv 5 \pmod 6 \) possède un
+facteur premier \( \equiv 5 \pmod 6 \). En déduire, à la manière d'Euclide, qu'il existe une infinité
+de nombres premiers congrus à \( 5 \) modulo \( 6 \).</p>
+<p class="context">C'est le pendant de NT-05, et il fonctionne pour la même raison : la classe
+résiduelle \( 5 \pmod 6 \) n'est stable par rien d'utile, si bien qu'un nombre qui s'y trouve est
+contraint d'exposer un premier de sa propre espèce. L'astuce d'Euclide atteint ainsi une poignée de
+progressions puis s'arrête ; l'énoncé général — toute progression \( a, a+m, a+2m, \ldots \) avec
+\( \gcd(a,m)=1 \) contient une infinité de nombres premiers — est le théorème de Dirichlet de 1837,
+et NT-50 plus bas montre ce qu'il en coûte de le démontrer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_la_progression_arithm%C3%A9tique">Théorème de la progression arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euclide_sur_les_nombres_premiers">Théorème d'Euclide sur les nombres premiers — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-45" data-level="Lycée">
+<h3>NT-45 · La conjecture de Catalan, et ce qui l'a suivie <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Appelons \( m \) une <i>puissance parfaite</i> si \( m = a^k \) pour des entiers
+\( a \ge 2 \) et \( k \ge 2 \). En 1844, Eugène Catalan conjectura que \( 8 \) et \( 9 \)
+sont les deux seules puissances parfaites consécutives.</p>
+<ol class="parts" type="a">
+<li>Trouver, avec démonstration, toutes les solutions en entiers positifs ou nuls de
+\[ \left| 2^{a} - 3^{b} \right| = 1 . \]
+(Travailler modulo de petits nombres ; \( 8 \) et \( 9 \) constituent l'une des solutions, et il faut
+montrer qu'il n'y en a pas d'autres.)</li>
+<li>Démontrer que pour chaque \( k \ge 2 \) fixé, deux puissances \( k \)-ièmes distinctes d'entiers
+strictement positifs ne diffèrent jamais de \( 1 \) ; en particulier \( x^2 - y^2 = 1 \) n'a pas de
+solution avec \( x &gt; y \ge 1 \).</li>
+<li>Énoncer précisément le théorème de Mihăilescu, puis énoncer la conjecture de Pillai — selon
+laquelle tout entier strictement positif n'apparaît qu'un nombre fini de fois comme différence de
+deux puissances parfaites. Dire exactement lequel des deux est un théorème et lequel est ouvert.</li>
+<li>Rechercher l'énoncé du théorème de Tijdeman de 1976 sur l'équation de Catalan et expliquer, avec
+vos propres mots, précisément ce qu'il a établi et précisément ce qu'il a laissé à faire à
+Mihăilescu.</li>
+</ol>
+</div>
+<p class="context">Catalan posa la question dans une note au journal de Crelle en 1844 et n'y revint
+jamais. Le premier progrès véritable est bien plus ancien : Lévi ben Gerson (Gersonide), écrivant en
+Provence en 1343, démontra exactement la partie (a) — que \( 8 \) et \( 9 \) sont les seules
+puissances consécutives de \( 2 \) et de \( 3 \) — à la demande, dit-on, d'un musicien qui voulait
+savoir pourquoi les rapports \( 9/8 \) et \( 3/2 \) se comportent comme ils le font. Lebesgue régla
+le cas \( x^p - y^2 = 1 \) en 1850 ; Tijdeman démontra en 1976 qu'il n'y a en tout qu'un nombre fini
+de solutions, mais avec une borne beaucoup trop grande pour être vérifiée ; et en avril 2002 Preda
+Mihăilescu combla l'écart par un argument dans les corps cyclotomiques, publié au journal de Crelle
+en 2004 — 158 ans après que la question fut posée. La généralisation, la conjecture de Pillai de
+1931, est toujours ouverte, et découlerait de la conjecture abc (NT-35) : on croit que les écarts
+entre puissances parfaites consécutives croissent, et personne ne sait le démontrer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Catalan">Conjecture de Catalan — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Puissance_parfaite">Puissance parfaite — Wikipédia</a></li>
+<li>Article : R. Tijdeman, « On the equation of Catalan », <i>Acta Arithmetica</i> 29 (1976), 197–209</li>
+<li>Article : P. Mihăilescu, « Primary cyclotomic units and a proof of Catalan's conjecture », <i>Journal für die reine und angewandte Mathematik</i> (2004)</li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="NT-09" data-level="Licence">
+<h3>NT-09 · Le théorème de Wilson <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer le théorème de Wilson : si \(p\) est premier alors
+\((p - 1)! \equiv -1 \pmod p\). Démontrer la réciproque : si \(n &gt; 1\) et
+\((n - 1)! \equiv -1 \pmod n\), alors \(n\) est premier. Ensemble, ces énoncés donnent un critère
+exact de primalité — expliquer soigneusement pourquoi il est néanmoins inutilisable comme test de
+primalité en pratique.</p>
+<p class="context">L'énoncé était connu d'Ibn al-Haytham vers l'an 1000. En Europe, il refit
+surface avec John Wilson, étudiant d'Edward Waring, qui le publia sans démonstration en 1770 —
+Waring remarqua que des théorèmes de ce genre seraient très difficiles à démontrer faute d'une
+notation pour les nombres premiers, plainte à laquelle Gauss répondit plus tard sèchement : ce qu'il
+faut, ce sont des notions, non des notations. Lagrange donna la première démonstration en 1771. Le
+dard du problème est dans sa queue : un critère exact de primalité inutilisable est le bon
+échauffement pour la série sur la primalité (NT-19 à NT-23), où les tests que l'on <i>peut</i>
+utiliser sont inexacts de manières intéressantes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Wilson">Théorème de Wilson — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 6</li>
+<li>Lecture : K. Ireland et M. Rosen, <i>A Classical Introduction to Modern Number Theory</i>, ch. 3–4</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-10" data-level="Licence">
+<h3>NT-10 · Le théorème des restes chinois <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer le théorème des restes chinois : si
+\(m_1, \ldots, m_k\) sont deux à deux premiers entre eux, alors pour des résidus quelconques
+\(a_1, \ldots, a_k\) le système \(x \equiv a_i \pmod{m_i}\) admet une solution, unique modulo
+\(m_1 m_2 \cdots m_k\). Résoudre l'énigme originale de Sunzi — trouver les nombres laissant le reste
+\(2\) dans la division par \(3\), le reste \(3\) par \(5\) et le reste \(2\) par \(7\) — et
+reformuler le théorème structurellement :
+\(\mathbb{Z}/mn\mathbb{Z} \cong \mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/n\mathbb{Z}\)
+lorsque \(\gcd(m, n) = 1\).</p>
+<p class="context">L'énigme figure dans le <i>Sunzi Suanjing</i>, manuel chinois du III<sup>e</sup>
+au V<sup>e</sup> siècle de notre ère : « il y a certaines choses dont le nombre est inconnu… ». Qin
+Jiushao donna une méthode générale en 1247. Le théorème est le principe « diviser pour régner » de
+la théorie des nombres — il ramène les questions modulo n à des questions modulo des puissances de
+nombres premiers — et c'est une infrastructure bien réelle du monde moderne : les implémentations de
+RSA s'en servent pour accélérer le déchiffrement d'un facteur quatre. C'est aussi la raison pour
+laquelle les nombres de Carmichael (NT-19) peuvent exister.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois">Théorème des restes chinois — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sunzi_Suanjing">Sunzi Suanjing — Wikipédia</a></li>
+<li>Lecture : K. Ireland et M. Rosen, <i>A Classical Introduction to Modern Number Theory</i>, ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-11" data-level="Licence">
+<h3>NT-11 · L'indicatrice φ d'Euler et le théorème d'Euler <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(\varphi(n)\) le nombre d'entiers de
+\(\{1, \ldots, n\}\) premiers avec \(n\). Démontrer que \(\varphi\) est multiplicative —
+\(\varphi(mn) = \varphi(m)\varphi(n)\) lorsque \(\gcd(m, n) = 1\) — et en déduire la formule
+\(\varphi(n) = n \prod_{p \mid n} (1 - 1/p)\). Démontrer le théorème d'Euler :
+\(a^{\varphi(n)} \equiv 1 \pmod n\) dès que \(\gcd(a, n) = 1\). Démontrer enfin l'élégante
+identité \(\sum_{d \mid n} \varphi(d) = n\).</p>
+<p class="context">Euler introduisit la fonction dans les années 1760 précisément pour étendre le
+petit théorème de Fermat des modules premiers à tous les modules ; la lettre φ est due à Gauss. Le
+théorème est le fait mathématique qui fait que RSA (1977) déchiffre correctement : élever à la
+puissance e puis à la puissance d rend le message parce que \(ed \equiv 1 \pmod{\varphi(n)}\).
+L'identité finale \(\sum_{d\mid n}\varphi(d) = n\) récompense une démonstration par dénombrement de
+fractions — l'un des petits arguments parfaits du domaine.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Indicatrice_d%27Euler">Indicatrice d'Euler — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euler_%28arithm%C3%A9tique%29">Théorème d'Euler (arithmétique) — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 5</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/">MIT OCW 18.781 Theory of Numbers (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-12" data-level="Licence">
+<h3>NT-12 · Résidus quadratiques et −1 : la fin de l'histoire du 1 (mod 4) <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(p\) un nombre premier impair. Un résidu non nul \(a\)
+est un résidu quadratique modulo \(p\) si \(a \equiv x^2 \pmod p\) pour un certain \(x\). Démontrer
+qu'exactement \((p - 1)/2\) des résidus non nuls sont des résidus quadratiques. Démontrer le critère
+d'Euler : \(a^{(p-1)/2} \equiv \pm 1 \pmod p\), avec \(+1\) exactement lorsque \(a\) est un résidu
+quadratique. En déduire que \(-1\) est un résidu quadratique modulo \(p\) si et seulement si
+\(p \equiv 1 \pmod 4\). En conclure que tout facteur premier impair de \(n^2 + 1\) est
+\(\equiv 1 \pmod 4\), et utiliser \(N = (2 p_1 \cdots p_k)^2 + 1\) pour démontrer qu'il existe une
+infinité de nombres premiers \(\equiv 1 \pmod 4\) — la démonstration que NT-05 ne pouvait
+atteindre.</p>
+<p class="context">Fermat savait quels nombres premiers divisent les nombres de la forme
+\(n^2 + 1\) ; Euler fournit le critère et les démonstrations au milieu du XVIII<sup>e</sup> siècle.
+Ce problème est l'aboutissement de l'arc commencé en NT-05 : la progression 1 (mod 4) est plus
+difficile parce qu'elle exige le caractère quadratique de −1, et pas seulement une comptabilité de
+restes. C'est aussi le coup d'ouverture du théorème le plus profond de la théorie élémentaire des
+nombres, la réciprocité quadratique (NT-13), et le secret derrière la question de savoir quels
+nombres premiers sont sommes de deux carrés (NT-15).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/R%C3%A9sidu_quadratique">Résidu quadratique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8re_d%27Euler">Critère d'Euler — Wikipédia</a></li>
+<li>Lecture : K. Ireland et M. Rosen, <i>A Classical Introduction to Modern Number Theory</i>, ch. 5</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-13" data-level="Licence">
+<h3>NT-13 · Symboles de Legendre et réciprocité quadratique <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour un nombre premier impair \(p\) et \(a\) premier avec \(p\),
+le symbole de Legendre \(\left(\frac{a}{p}\right)\) vaut \(+1\) si \(a\) est un résidu
+quadratique modulo \(p\) et \(-1\) sinon.</p>
+<ol class="parts" type="i">
+<li>Démontrer que le symbole est complètement
+multiplicatif en \(a\).</li>
+<li>À l'aide du lemme de Gauss ou du critère d'Euler, calculer à la main
+\(\left(\frac{-1}{17}\right)\), \(\left(\frac{2}{17}\right)\) et
+\(\left(\frac{3}{17}\right)\), et démontrer la seconde loi complémentaire :
+\(\left(\frac{2}{p}\right) = 1\) exactement lorsque \(p \equiv \pm 1 \pmod 8\).</li>
+<li>La loi
+de réciprocité quadratique affirme que pour des nombres premiers impairs distincts \(p\) et \(q\),
+\[ \left(\frac{p}{q}\right)\left(\frac{q}{p}\right) = (-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}. \]
+L'admettre un instant et s'en servir pour décider si \(219\) est un résidu quadratique modulo
+\(383\).</li>
+<li>La mériter maintenant : travailler et présenter une démonstration complète — la
+démonstration d'Eisenstein par dénombrement de points d'un réseau est un bon choix.</li>
+</ol>
+</div>
+<p class="context">Euler conjectura la loi à partir de tables d'observations numériques ; Legendre
+baptisa le symbole et publia des démonstrations incomplètes ; Gauss donna la première démonstration
+complète en 1796, à dix-huit ans, l'appela le <i>theorema aureum</i> — le théorème d'or — et revint y
+publier six démonstrations différentes au cours de sa vie. On en catalogue aujourd'hui des
+centaines. Sa profondeur est réelle : la réciprocité relie les mondes multiplicatifs modulo deux
+nombres premiers sans rapport entre eux, et ses généralisations (réciprocité d'Artin, programme de
+Langlands) forment le courant principal de la théorie moderne des nombres. La montée en puissance de
+ce problème — calculer d'abord, croire ensuite, démontrer en dernier — est la façon dont le domaine
+s'est réellement développé.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Symbole_de_Legendre">Symbole de Legendre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Loi_de_r%C3%A9ciprocit%C3%A9_quadratique">Loi de réciprocité quadratique — Wikipédia</a></li>
+<li>Lecture : K. Ireland et M. Rosen, <i>A Classical Introduction to Modern Number Theory</i>, ch. 5</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/">MIT OCW 18.781 Theory of Numbers (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-14" data-level="Licence">
+<h3>NT-14 · L'équation de Pell <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(d\) un entier strictement positif qui n'est pas un
+carré parfait. Démontrer que \(x^2 - dy^2 = 1\) admet une solution en entiers strictement positifs.
+Démontrer que toutes les solutions s'engendrent à partir de la plus petite (la solution
+fondamentale) par la loi de composition issue de \((x + y\sqrt{d})(x' + y'\sqrt{d})\), de sorte que
+les solutions forment un groupe cyclique infini. Utiliser ensuite la fraction continue de
+\(\sqrt{61}\) pour trouver la solution fondamentale de \(x^2 - 61y^2 = 1\), et s'émerveiller de sa
+taille.</p>
+<p class="context">L'équation est mal nommée : Euler l'attribua à John Pell, qui n'y était pour
+presque rien. Brahmagupta découvrit la loi de composition (<i>samasa</i>) en 628 de notre ère ; la
+méthode cyclique <i>chakravala</i>, perfectionnée par Bhaskara II vers 1150, résolut le cas
+\(d = 61\) — dont la solution fondamentale est \(x = 1766319049\), \(y = 226153980\) — cinq siècles
+avant que Fermat, manifestement conscient que ce cas était redoutable, ne pose exactement ce \(d\)
+comme défi aux mathématiciens anglais en 1657. Lagrange donna la première démonstration d'existence
+pour tout \(d\) en 1768 au moyen des fractions continues. Le problème des bœufs d'Archimède, s'il est
+lu à la lettre, est une équation de Pell dont la plus petite solution compte des centaines de
+milliers de chiffres : l'équation est la démonstration standard que de minuscules questions peuvent
+avoir des réponses de taille astronomique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_de_Pell-Fermat">Équation de Pell-Fermat — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_chakravala">Méthode chakravala — Wikipédia</a></li>
+<li>Lecture : H. Davenport, <i>The Higher Arithmetic</i>, ch. IV</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-15" data-level="Licence">
+<h3>NT-15 · Le théorème des deux carrés de Fermat <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer que tout nombre premier \(p \equiv 1 \pmod 4\) est
+somme de deux carrés, et que la représentation est unique à l'ordre et aux signes près.
+(Voies possibles : la descente de Fermat ; le lemme des tiroirs de Thue combiné à NT-12 ; ou les
+entiers de Gauss \(\mathbb{Z}[i]\).) Caractériser ensuite, avec démonstration, exactement quels
+entiers strictement positifs sont sommes de deux carrés.</p>
+<p class="context">Albert Girard énonça le résultat en 1625 ; Fermat l'annonça — avec sa méthode de
+descente infinie — dans une lettre à Mersenne datée du 25 décembre 1640, ce pourquoi on l'appelle
+parfois le théorème de Noël de Fermat. Euler trouva la première démonstration conservée en 1749
+après, de son propre aveu, sept années d'efforts. Le théorème n'en finit pas d'être redémontré : Don
+Zagier publia en 1990 une célèbre démonstration en une phrase, un argument d'involution qui tient sur
+une carte postale et récompense encore une semaine de réflexion. Sa vraie demeure est l'arithmétique
+de \(\mathbb{Z}[i]\), où il dit quels nombres premiers se décomposent — le premier pas vers la
+théorie algébrique des nombres.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_deux_carr%C3%A9s_de_Fermat">Théorème des deux carrés de Fermat — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 20</li>
+<li>Article : D. Zagier, « A one-sentence proof that every prime p ≡ 1 (mod 4) is a sum of two squares », <i>American Mathematical Monthly</i> 97 (1990), p. 144</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-16" data-level="Licence">
+<h3>NT-16 · Le théorème des quatre carrés de Lagrange <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer que tout entier naturel est somme de quatre carrés
+d'entiers. (La voie classique : l'identité des quatre carrés d'Euler ramène le problème aux nombres
+premiers ; une descente sur le plus petit \(m\) tel que \(mp\) soit somme de quatre carrés
+l'achève.) Montrer ensuite que trois carrés ne suffisent pas : aucun entier de la forme
+\(4^a(8b + 7)\) n'est somme de trois carrés.</p>
+<p class="context">Diophante le supposait, Bachet l'énonça et le vérifia jusqu'à 325 en 1621, Fermat
+revendiqua une démonstration par descente que personne ne vit jamais. Euler y travailla quarante ans
+et apporta l'identité des quatre carrés (1748) sur laquelle repose encore toute démonstration ;
+Lagrange franchit la ligne d'arrivée en 1770. Jacobi compta plus tard exactement les représentations,
+les formes modulaires attendant en coulisses. L'obstruction à trois carrés (Legendre, Gauss) montre
+que le théorème est optimal, et tout ce cercle d'idées — quelles formes quadratiques représentent
+quels entiers — est devenu un domaine dont le jalon moderne est le théorème des 290 de
+Bhargava–Hanke.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_quatre_carr%C3%A9s_de_Lagrange">Théorème des quatre carrés de Lagrange — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 20</li>
+<li>Lecture : K. Ireland et M. Rosen, <i>A Classical Introduction to Modern Number Theory</i></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-17" data-level="Licence">
+<h3>NT-17 · La formule de Legendre et les valuations p-adiques de n! <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Notons \(v_p(m)\) l'exposant du nombre premier
+\(p\) dans \(m\) (la valuation p-adique). Démontrer la formule de Legendre :
+\[ v_p(n!) \;=\; \left\lfloor \frac{n}{p} \right\rfloor + \left\lfloor \frac{n}{p^2} \right\rfloor + \left\lfloor \frac{n}{p^3} \right\rfloor + \cdots \;=\; \frac{n - s_p(n)}{p - 1}, \]
+où \(s_p(n)\) est la somme des chiffres de \(n\) en base \(p\). S'en servir pour (i) trouver le
+nombre de zéros terminaux de \(1000!\), (ii) démontrer que \(2^n\) ne divise jamais \(n!\), et
+(iii) démontrer le théorème de Kummer : \(v_p\binom{m+n}{m}\) est égal au nombre de retenues
+lorsqu'on additionne \(m\) et \(n\) en base \(p\).</p>
+<p class="context">Legendre démontra la formule dans son <i>Essai sur la théorie des nombres</i>
+(édition de 1808) ; le théorème des retenues de Kummer suivit en 1852. Ce sont les outils de base
+pour demander « à quel point est-ce divisible » plutôt que « est-ce divisible ou non » — le point de
+vue p-adique dont Hensel ferait plus tard un système de nombres à part entière. Ce sont aussi des
+machines de travail : les estimations de Tchebychev et d'Erdős sur les nombres premiers (NT-20,
+NT-24) fonctionnent exactement sur ces valuations des coefficients binomiaux centraux.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Formule_de_Legendre">Formule de Legendre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Kummer_%28coefficients_binomiaux%29">Théorème de Kummer — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Valuation_p-adique">Valuation p-adique — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-18" data-level="Licence">
+<h3>NT-18 · L'irrationalité de e <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> À l'aide de la série \(e = \sum_{n \ge 0} 1/n!\),
+démontrer que \(e\) est irrationnel. (Supposer \(e = p/q\) et examiner \(q!\,e\) moins sa partie
+entière.) Puis aller plus loin : démontrer que \(e\) n'est pas un irrationnel quadratique — aucun
+triplet d'entiers \(a, b, c\), non tous nuls, ne vérifie \(ae^2 + be + c = 0\).</p>
+<p class="context">Euler établit l'irrationalité de e en 1737 par sa fraction continue (voir
+NT-26) ; le court argument par les séries demandé ici est attribué à Fourier (v. 1815) et constitue
+sans doute la démonstration d'irrationalité la plus pédagogique après celle de √2. Le renforcement
+quadratique est dû à Liouville (1840), dont le nom revient en NT-25 lorsque l'irrationalité
+s'approfondit en transcendance. C'est un étalonnage utile : comparez la facilité du cas de e avec la
+difficulté de l'énoncé correspondant pour π (Lambert, 1761), et remarquez que « à quel point un
+nombre est bien approché par des rationnels » est en train de devenir le vrai sujet.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Proof_that_e_is_irrational">Démonstration de l'irrationalité de e — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/E_%28nombre%29">e (nombre) — Wikipédia</a></li>
+<li>Lecture : M. Aigner et G. M. Ziegler, <i>Proofs from THE BOOK</i></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-19" data-level="Licence">
+<h3>NT-19 · Le test de Fermat et les nombres de Carmichael <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le petit théorème de Fermat fournit un test de
+composition : si \(a^{n-1} \not\equiv 1 \pmod n\) pour un certain \(a\) premier avec \(n\), alors
+\(n\) est composé.</p>
+<ol class="parts" type="i">
+<li>Montrer que \(2^{340} \equiv 1 \pmod{341}\) bien que
+\(341 = 11 \times 31\) — la réciproque de Fermat est donc fausse — et trouver une base qui démasque
+\(341\).</li>
+<li>Démontrer le critère de Korselt : un entier composé \(n\) vérifie
+\(a^{n-1} \equiv 1 \pmod n\) pour <i>tout</i> \(a\) premier avec \(n\) exactement lorsque
+\(n\) est sans facteur carré et que \(p - 1\) divise \(n - 1\) pour tout nombre premier \(p\)
+divisant \(n\).</li>
+<li>Démontrer que \(561\) est un tel nombre — un nombre de Carmichael — et que
+c'est le plus petit.</li>
+</ol>
+</div>
+<p class="context">Une vieille et séduisante affirmation folklorique — que n est premier si et
+seulement si n divise \(2^n - 2\) — survécut jusqu'à ce que 341 soit exhibé comme contre-exemple en
+1819. Korselt trouva le bon critère en 1899 mais aucun exemple ; Robert Carmichael trouva 561 en
+1910. Les nombres de Carmichael sont la raison pour laquelle le test de Fermat ne peut être réparé
+en essayant davantage de bases, et la raison pour laquelle Miller–Rabin (NT-21) renforce le test au
+lieu de le répéter. L'existence d'une infinité de nombres de Carmichael resta ouverte jusqu'à ce
+qu'Alford, Granville et Pomerance la règlent par l'affirmative en 1994.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_de_Fermat">Test de primalité de Fermat — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Carmichael">Nombre de Carmichael — Wikipédia</a></li>
+<li>Lecture : R. Crandall et C. Pomerance, <i>Prime Numbers: A Computational Perspective</i>, ch. 3</li>
+<li>Article : W. R. Alford, A. Granville, C. Pomerance, « There are infinitely many Carmichael numbers », <i>Annals of Mathematics</i> 139 (1994), 703–722</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-20" data-level="Licence">
+<h3>NT-20 · Le postulat de Bertrand, d'après Erdős <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer le postulat de Bertrand : pour tout \(n \ge 1\)
+il existe un nombre premier \(p\) tel que \(n &lt; p \le 2n\). Suivre la voie élémentaire d'Erdős :
+minorer le coefficient binomial central \(\binom{2n}{n}\) ; utiliser la formule de Legendre
+(NT-17) pour majorer la contribution de chaque puissance de nombre premier ; démontrer la borne
+primorielle \(\prod_{p \le x} p &lt; 4^x\) ; et en dériver une contradiction si aucun nombre premier
+ne se trouve dans \((n, 2n]\) pour \(n\) grand, les petits \(n\) étant vérifiés à la main.</p>
+<p class="context">Joseph Bertrand conjectura cela en 1845, l'ayant vérifié jusqu'à trois millions
+parce que ses travaux sur les groupes de permutations en avaient besoin. Tchebychev le démontra en
+1852 par de difficiles estimations analytiques ; Ramanujan en donna une courte démonstration en
+1919 ; et en 1932 Erdős, âgé de dix-neuf ans, ouvrit son premier article par la démonstration
+élémentaire que ce problème parcourt. NT-24 transforme la même machinerie en bornes générales de
+Tchebychev sur π(x). Le distique tardif d'Erdős fait partie du folklore : « Tchebychev l'a dit, et je
+le redis : il y a toujours un nombre premier entre n et 2n ».</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Postulat_de_Bertrand">Postulat de Bertrand — Wikipédia</a></li>
+<li>Lecture : M. Aigner et G. M. Ziegler, <i>Proofs from THE BOOK</i>, ch. 2</li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 22</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-38" data-level="Licence" data-kind="court">
+<h3>NT-38 · Un ordre divise ce qu'il doit <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \( p \) un nombre premier et \( a \) un entier non divisible par \( p \). Démontrer que l'ordre multiplicatif de \( a \) modulo \( p \) divise \( p - 1 \), et s'en servir pour montrer que tout diviseur premier de \( 2^{q} - 1 \), avec \( q \) premier, est congru à \( 1 \) modulo \( q \).</p>
+<p class="context">La première partie est le théorème de Lagrange dans son cas concret le plus simple ; la seconde est l'outil qui rend praticable la recherche de facteurs des nombres de Mersenne, puisqu'elle restreint les diviseurs candidats à une mince progression arithmétique. C'est la théorie des nombres versant un dividende computationnel immédiat.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ordre_multiplicatif">Ordre multiplicatif — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Mersenne_premier">Nombre de Mersenne premier — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-39" data-level="Licence" data-kind="court">
+<h3>NT-39 · Wilson, et rien que Wilson <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer qu'un entier \( n > 1 \) est premier si et seulement si \( (n-1)! \equiv -1 \pmod n \). Expliquer ensuite en deux phrases pourquoi ce critère de primalité parfait est inutilisable comme test de primalité en pratique.</p>
+<p class="context">Le théorème de Wilson est la seule caractérisation élémentaire de la primalité qui soit à la fois nécessaire et suffisante, ce qui rend son inutilité pratique instructive : calculer \( (n-1)! \bmod n \) demande environ \( n \) multiplications, bien pire que la division d'essai. L'écart entre un critère correct et un algorithme utilisable est tout le sujet de la théorie algorithmique des nombres.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Wilson">Théorème de Wilson — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-46" data-level="Licence">
+<h3>NT-46 · Les entiers de Gauss, et la fréquence à laquelle \( n \) est somme de deux carrés <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( \mathbb{Z}[i] = \{ a + bi : a, b \in \mathbb{Z} \} \) et définissons la
+norme \( N(a + bi) = a^2 + b^2 \).</p>
+<ol class="parts" type="a">
+<li>Démontrer que \( N \) est multiplicative et que les unités de \( \mathbb{Z}[i] \) sont exactement
+\( 1, -1, i, -i \).</li>
+<li>Démontrer que \( \mathbb{Z}[i] \) est un anneau euclidien pour \( N \) : pour
+\( \alpha, \beta \in \mathbb{Z}[i] \) avec \( \beta \ne 0 \) il existe \( q, r \) tels que
+\( \alpha = q\beta + r \) et \( N(r) &lt; N(\beta) \). En déduire la factorisation unique.</li>
+<li>Classifier les premiers de Gauss : démontrer qu'à unités près ce sont \( 1 + i \) ; les nombres
+premiers rationnels \( p \equiv 3 \pmod 4 \) ; et les couples conjugués \( \pi, \bar{\pi} \) avec
+\( \pi \bar{\pi} = p \) pour chaque nombre premier rationnel \( p \equiv 1 \pmod 4 \). (NT-12 et
+NT-15 fournissent ce dont vous avez besoin sur le fait que \( -1 \) est un carré.)</li>
+<li>Soit \( r_2(n) \) le nombre de couples ordonnés \( (a,b) \in \mathbb{Z}^2 \) tels que
+\( a^2 + b^2 = n \), signes et ordre distingués. À l'aide de (c), démontrer la formule des deux
+carrés de Jacobi
+\[ r_2(n) \;=\; 4\left( d_1(n) - d_3(n) \right), \]
+où \( d_1(n) \) et \( d_3(n) \) comptent les diviseurs de \( n \) congrus à \( 1 \) et à
+\( 3 \) modulo \( 4 \).</li>
+</ol>
+</div>
+<p class="context">Gauss introduisit ces nombres dans son second mémoire sur la réciprocité
+biquadratique (1832), et ce geste est l'un des grands paris stratégiques des mathématiques : pour
+comprendre les entiers ordinaires, il faut les agrandir. Une fois cela fait, le théorème des deux
+carrés de Fermat (NT-15) cesse d'être une curiosité sur les sommes et devient un énoncé sur les
+nombres premiers rationnels qui se décomposent dans \( \mathbb{Z}[i] \) — le premier cas des lois de
+décomposition qui organisent toute la théorie algébrique des nombres. La partie (d) transforme un
+théorème d'existence en un décompte exact, ce qui est précisément ce qui rend les moyennes
+possibles : sommer \( r_2(n) \) est exactement le problème du cercle de Gauss (NT-27). La formule
+elle-même est de Jacobi, lue sur des identités de fonctions thêta, et c'est un bon avertissement
+précoce que l'analyse et l'arithmétique ne sont pas des matières séparées.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Entier_de_Gauss">Entier de Gauss — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Sum_of_squares_function">Fonction somme de carrés — Wikipédia (en anglais)</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i> (les chapitres sur \( \mathbb{Z}[i] \))</li>
+<li>Lecture : K. Ireland et M. Rosen, <i>A Classical Introduction to Modern Number Theory</i></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-47" data-level="Licence">
+<h3>NT-47 · Le théorème des nombres pentagonaux d'Euler <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( p(n) \) le nombre de partitions de \( n \) — le nombre de façons
+d'écrire \( n \) comme somme d'entiers strictement positifs, l'ordre étant ignoré — avec
+\( p(0) = 1 \).</p>
+<ol class="parts" type="a">
+<li>Démontrer, en tant qu'identité de séries formelles, que
+\[ \sum_{n \ge 0} p(n)\, x^n \;=\; \prod_{k \ge 1} \frac{1}{1 - x^k} . \]</li>
+<li>Démontrer le théorème des nombres pentagonaux d'Euler :
+\[ \prod_{n \ge 1} (1 - x^n) \;=\; 1 + \sum_{k \ge 1} (-1)^k \left( x^{k(3k-1)/2} + x^{k(3k+1)/2} \right). \]
+(L'involution de Franklin sur les partitions en parts distinctes est la voie combinatoire classique :
+apparier presque toutes ces partitions de sorte que les survivantes soient comptées par les exposants
+pentagonaux.)</li>
+<li>En déduire la récurrence
+\[ p(n) \;=\; \sum_{k \ge 1} (-1)^{k-1}\left( p\!\left(n - \tfrac{k(3k-1)}{2}\right) + p\!\left(n - \tfrac{k(3k+1)}{2}\right) \right), \]
+avec la convention \( p(m) = 0 \) pour \( m &lt; 0 \), et s'en servir pour calculer \( p(n) \) à la
+main pour tout \( n \le 20 \).</li>
+<li>Énoncer les trois congruences de Ramanujan \( p(5n+4) \equiv 0 \pmod 5 \),
+\( p(7n+5) \equiv 0 \pmod 7 \), \( p(11n+6) \equiv 0 \pmod{11} \), et les vérifier sur votre table
+de (c). Énoncer ensuite la formule asymptotique de Hardy–Ramanujan pour \( p(n) \) et comparer
+sa prédiction en \( n = 20 \) à la valeur exacte.</li>
+</ol>
+</div>
+<p class="context">Euler trouva l'identité dans les années 1740 et resta des années sans pouvoir la
+démontrer — il la décrivit à Goldbach comme une observation qu'il croyait vraie sans pouvoir la
+justifier, aveu rare de sa part — et en publia une démonstration une dizaine d'années plus tard. Sa
+puissance tient à ce qu'un produit infini où tous les exposants sont présents s'effondre en une série
+presque entièrement faite de zéros, ce qui fait passer la fonction de partition d'un décompte
+intraitable à une récurrence rapide : Percy MacMahon s'en servit pour tabuler \( p(n) \) jusqu'à
+\( n = 200 \) à la main, et ce sont ces tables qui permirent à Hardy et Ramanujan de deviner leur
+formule asymptotique de 1918 et à Ramanujan de repérer les congruences de la partie (d), publiées en
+1919. La démonstration bijective de Franklin (1881) est le modèle de l'argument d'involution
+combinatoire. Les congruences se révélèrent ne pas être isolées : Ken Ono démontra en 2000 qu'il
+existe des congruences de ce type modulo tout entier premier avec \( 6 \).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_nombres_pentagonaux">Théorème des nombres pentagonaux — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Partition_d%27un_entier">Partition d'un entier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Congruences_de_Ramanujan">Congruences de Ramanujan — Wikipédia</a></li>
+<li>Lecture : G. E. Andrews et K. Eriksson, <i>Integer Partitions</i> (Cambridge, 2004)</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-48" data-level="Licence" data-kind="court">
+<h3>NT-48 · Les coefficients binomiaux en base \( p \) <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \( p \) un nombre premier et \( m = \sum_i m_i p^i \)
+et \( n = \sum_i n_i p^i \) les écritures en base \( p \). Démontrer le théorème de Lucas,
+\( \binom{m}{n} \equiv \prod_i \binom{m_i}{n_i} \pmod p \), et en déduire que \( \binom{m}{n} \)
+est impair exactement lorsque chaque chiffre binaire de \( n \) est au plus le chiffre correspondant
+de \( m \).</p>
+<p class="context">Édouard Lucas publia cela en 1878, et la démonstration la plus nette tient en une
+ligne de fonctions génératrices : \( (1+x)^{p} \equiv 1 + x^{p} \) modulo \( p \), appliqué de façon
+répétée. Le corollaire sur les coefficients binomiaux impairs est la raison pour laquelle le triangle
+de Pascal réduit modulo \( 2 \) dessine le triangle de Sierpiński. Le théorème de Lucas donne le
+résidu de \( \binom{m}{n} \) modulo \( p \) ; le théorème de Kummer (NT-17) donne la puissance exacte
+de \( p \) qui le divise, et les deux ensemble constituent toute l'histoire élémentaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Lucas">Théorème de Lucas — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Kummer_%28coefficients_binomiaux%29">Théorème de Kummer — Wikipédia</a></li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="NT-21" data-level="Master">
+<h3>NT-21 · Correction de Miller–Rabin <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(n\) impair, \(n - 1 = 2^s d\) avec \(d\)
+impair. On dit qu'une base \(a\) est un <i>menteur fort</i> pour \(n\) composé si
+\(a^d \equiv 1 \pmod n\) ou \(a^{2^r d} \equiv -1 \pmod n\) pour un certain
+\(0 \le r &lt; s\).</p>
+<ol class="parts" type="i">
+<li>Démontrer que si \(n\) est un nombre premier impair, toute base \(a\) première
+avec \(n\) passe ce test — le test ne rejette donc jamais un nombre premier.</li>
+<li>Démontrer qu'il
+n'existe pas de « nombre de Carmichael fort » : tout \(n\) composé impair admet un témoin.</li>
+<li>Démontrer la
+borne de Monier–Rabin : pour tout entier composé impair \(n &gt; 9\), au plus un quart des bases de
+\(\{1, \ldots, n - 1\}\) sont des menteurs forts — d'où \(k\) tours aléatoires indépendants qui se
+trompent avec probabilité au plus \(4^{-k}\).</li>
+<li>Expliquer pourquoi les menteurs peuvent ne pas former un
+sous-groupe, ce qui est ce qui rend (iii) plus difficile que le fait analogue pour le test de
+Fermat.</li>
+</ol>
+</div>
+<p class="context">Gary Miller introduisit le test fort en 1976 et le démontra
+déterministe et polynomial en supposant l'hypothèse de Riemann généralisée ; Michael
+Rabin ôta l'hypothèse non démontrée en 1980 en la payant par de l'aléa, et Louis
+Monier démontra indépendamment la borne 1/4 la même année. C'est le test de primalité que
+le monde exécute réellement — chaque poignée de main TLS qui engendre une clé RSA fait confiance à
+(iii). C'est aussi un jalon dans la philosophie du calcul : une garantie mathématiquement rigoureuse
+de la forme « faux avec probabilité au plus \(4^{-100}\) », que la pratique accepte
+et dont NT-23 montre qu'on peut en principe se passer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_de_Miller-Rabin">Test de primalité de Miller-Rabin — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Strong_pseudoprime">Nombre pseudo-premier fort — Wikipédia (en anglais)</a></li>
+<li>Lecture : R. Crandall et C. Pomerance, <i>Prime Numbers: A Computational Perspective</i>, ch. 3</li>
+<li>Article : M. O. Rabin, « Probabilistic algorithm for testing primality », <i>Journal of Number Theory</i> 12 (1980), 128–138</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-22" data-level="Master">
+<h3>NT-22 · Le test de Lucas–Lehmer pour les nombres de Mersenne premiers <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> Posons \(s_0 = 4\) et \(s_{k+1} = s_k^2 - 2\).
+Démontrer le critère de Lucas–Lehmer : pour un nombre premier impair \(p\), le nombre de Mersenne
+\(M_p = 2^p - 1\) est premier si et seulement si \(M_p\) divise \(s_{p-2}\). (Une voie
+standard travaille avec \(\omega = 2 + \sqrt{3}\) dans l'anneau \(\mathbb{Z}[\sqrt{3}]\) modulo
+\(M_p\), en montrant que \(s_k = \omega^{2^k} + \omega^{-2^k}\) et en analysant l'ordre de
+\(\omega\).) Vérifier le critère à la main pour \(M_7 = 127\).</p>
+<p class="context">Édouard Lucas conçut son test en 1876 et s'en servit pour démontrer que
+\(2^{127} - 1\) est premier — un nombre de 39 chiffres, encore aujourd'hui le plus grand nombre
+premier jamais certifié par un calcul à la main sans assistance. Derrick Lehmer donna au test sa
+forme moderne vers 1930. Parce que le test est exact, déterministe, et consiste en \(p - 2\) mises au
+carré modulo \(M_p\), pratiquement tout nombre premier record depuis l'ère informatique est un
+nombre de Mersenne premier : la Great Internet Mersenne Prime Search (GIMPS) l'exécute de façon
+distribuée depuis 1996, et le record actuel, \(2^{136279841} - 1\) à 41 024 320 chiffres, fut
+trouvé en octobre 2024 — le premier record trouvé sur des GPU. Notez la clause en petits caractères
+que les journaux omettent : le test ne dit rien des nombres qui ne sont pas de la forme de Mersenne,
+et savoir s'il existe une infinité de nombres de Mersenne premiers est grand ouvert.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_de_Lucas-Lehmer_pour_les_nombres_de_Mersenne">Test de primalité de Lucas-Lehmer pour les nombres de Mersenne — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Mersenne_premier">Nombre de Mersenne premier — Wikipédia</a></li>
+<li>Lecture : R. Crandall et C. Pomerance, <i>Prime Numbers: A Computational Perspective</i>, ch. 4</li>
+<li>Cours : <a href="https://www.mersenne.org/">GIMPS — Great Internet Mersenne Prime Search (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-23" data-level="Master">
+<h3>NT-23 · Lire l'article : PRIMES is in P <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Lire « PRIMES is in P » d'Agrawal, Kayal et Saxena.</p>
+<ol class="parts" type="i">
+<li>En guise d'échauffement, démontrer l'identité sur laquelle tout repose : pour
+\(\gcd(a, n) = 1\), \(n\) est premier si et seulement si
+\((X + a)^n \equiv X^n + a\) dans l'anneau de polynômes \((\mathbb{Z}/n\mathbb{Z})[X]\).</li>
+<li>Expliquer pourquoi ce critère, testé littéralement, demande un temps exponentiel, et comment
+l'article restaure le temps polynomial en ne vérifiant la congruence que modulo
+\((n,\ X^r - 1)\) pour un unique petit \(r\) bien choisi et une petite plage de valeurs \(a\).</li>
+<li>Reconstruire l'argument d'« introspection » qui borne le groupe engendré par les
+congruences obtenues, et expliquer où la taille de \(r\) intervient dans l'exposant final du temps
+d'exécution.</li>
+<li>Expliquer honnêtement pourquoi, vingt ans plus tard, personne n'utilise AKS en
+pratique.</li>
+</ol>
+</div>
+<p class="context">En août 2002, Manindra Agrawal et ses étudiants Neeraj Kayal et
+Nitin Saxena — ces deux derniers fraîchement diplômés de leur licence à l'IIT Kanpur —
+annoncèrent un algorithme déterministe inconditionnel en temps polynomial pour la primalité,
+résolvant une question ouverte depuis que la notion de temps polynomial avait été formulée.
+La démonstration n'a besoin de rien au-delà d'une algèbre élémentaire bien choisie, ce qui stupéfia
+les spécialistes autant que le résultat. Publié aux <i>Annals of Mathematics</i> en 2004, il valut
+les prix Gödel et Fulkerson en 2006. En pratique, Miller–Rabin (NT-21) et les méthodes par courbes
+elliptiques restent plus rapides ; le rôle d'AKS est philosophique — la primalité est véritablement,
+démontrablement facile — et c'est l'un des articles marquants les plus lisibles des mathématiques :
+treize pages, autonomes, et à la portée d'un bon étudiant de licence.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_AKS">Test de primalité AKS — Wikipédia</a></li>
+<li>Article : M. Agrawal, N. Kayal, N. Saxena, « PRIMES is in P », <i>Annals of Mathematics</i> 160 (2004), 781–793 — <a href="https://annals.math.princeton.edu/2004/160-2/p12">annals.math.princeton.edu</a></li>
+<li>Article : A. Granville, « It is easy to determine whether a given integer is prime », <i>Bulletin of the AMS</i> 42 (2005), 3–38 (exposé de synthèse)</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-24" data-level="Master">
+<h3>NT-24 · Le produit eulérien, les bornes de Tchebychev et l'énoncé du théorème des nombres premiers <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Démontrer le produit eulérien : pour \(s &gt; 1\) réel,
+\[ \zeta(s) \;=\; \sum_{n \ge 1} \frac{1}{n^s} \;=\; \prod_{p \text{ premier}} \left(1 - \frac{1}{p^s}\right)^{-1} \]
+— « le théorème fondamental de l'arithmétique, encodé analytiquement ». En déduire le théorème
+d'Euler de 1737 selon lequel \(\sum_p 1/p\) diverge.</li>
+<li>Démontrer les bornes de Tchebychev : il existe des constantes explicites
+\(0 &lt; c &lt; C\) telles que \(c\,x/\log x \le \pi(x) \le C\,x/\log x\) pour tout
+\(x\) grand, où \(\pi(x)\) compte les nombres premiers jusqu'à \(x\).</li>
+<li>Montrer que le théorème
+des nombres premiers, \(\pi(x) \sim x/\log x\), équivaut à
+\(\theta(x) = \sum_{p \le x} \log p \sim x\).</li>
+<li>Énoncer précisément — aucune démonstration demandée —
+la forme plus forte \(\pi(x) \sim \operatorname{Li}(x)\) et ce que l'hypothèse de Riemann
+affirme sur l'erreur.</li>
+</ol>
+</div>
+<p class="context">Gauss, à quinze ans, conjectura d'après des tables de nombres premiers que leur
+densité près de x est 1/log x ; Legendre publia une conjecture semblable en 1798. Le mémoire de 1852
+de Tchebychev approcha à un facteur constant près et démontra que si \(\pi(x)\log x / x\) a une
+limite, cette limite est 1. Le mémoire de huit pages de Riemann, en 1859, relia les nombres premiers
+aux zéros complexes de ζ(s), et Hadamard et de la Vallée Poussin achevèrent indépendamment la
+démonstration du théorème des nombres premiers en 1896 — l'analyse remboursant, avec un siècle
+d'intérêts, la dette que la théorie des nombres avait contractée avec le produit eulérien. Ce
+problème demande tout ce qui est atteignable sans analyse complexe, plus une compréhension précise
+des énoncés qui se trouvent au-delà ; l'hypothèse de Riemann elle-même est traitée sur la page
+<a href="open-problems.html">Problèmes ouverts</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_nombres_premiers">Théorème des nombres premiers — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_eul%C3%A9rien">Produit eulérien — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_z%C3%AAta_de_Riemann">Fonction zêta de Riemann — Wikipédia</a></li>
+<li>Lecture : T. M. Apostol, <i>Introduction to Analytic Number Theory</i>, ch. 4 et 11</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-25" data-level="Master">
+<h3>NT-25 · Les nombres de Liouville et le premier transcendant <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Démontrer le théorème d'approximation de Liouville : si
+\(\alpha\) est un nombre algébrique réel de degré \(d \ge 2\), il existe une constante
+\(c(\alpha) &gt; 0\) telle que
+\(\left|\alpha - \frac{p}{q}\right| &gt; \frac{c(\alpha)}{q^d}\) pour tout rationnel
+\(p/q\).</li>
+<li>On dit que \(\alpha\) est un nombre de Liouville si pour tout \(n\) il existe un rationnel
+\(p/q\) avec \(q \ge 2\) et \(\left|\alpha - \frac{p}{q}\right| &lt; q^{-n}\). En déduire
+que tout nombre de Liouville est transcendant, et démontrer que
+\(L = \sum_{k \ge 1} 10^{-k!}\) en est un.</li>
+<li>Montrer que l'ensemble des nombres de Liouville est
+non dénombrable et dense, tout en étant de mesure de Lebesgue nulle.</li>
+</ol>
+</div>
+<p class="context">En 1844, Liouville produisit les premiers nombres démontrés transcendants —
+en montrant que les nombres algébriques ne peuvent pas être trop bien approchés, puis en écrivant des
+nombres approchés absurdement bien. Trente ans plus tard, l'argument de dénombrement de Cantor
+montra que presque tous les nombres sont transcendants sans en exhiber un seul ; le contraste entre
+les deux démonstrations est une leçon permanente sur ce que peut signifier « existence ». Démontrer
+la transcendance de constantes naturelles est bien plus difficile : Hermite traita e en 1873,
+Lindemann π en 1882 (tuant la quadrature du cercle), et le théorème de Roth (1955, médaille Fields)
+montra que l'exposant \(d\) de l'inégalité de Liouville peut être remplacé par
+\(2 + \varepsilon\) — tandis que la transcendance de e + π reste ouverte aujourd'hui.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Liouville">Nombre de Liouville — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_transcendant">Nombre transcendant — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i>, ch. 11</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-26" data-level="Master">
+<h3>NT-26 · La fraction continue de e <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> Démontrer le développement en fraction continue d'Euler
+\[ e = [2;\, 1, 2, 1,\, 1, 4, 1,\, 1, 6, 1,\, 1, 8, \ldots], \]
+où, après le \(2\) initial, les quotients partiels défilent selon \(1, 2k, 1\) pour
+\(k = 1, 2, 3, \ldots\). (Une voie moderne propre : définir des intégrales convenables de la forme
+\(\int_0^1 \frac{x^n (x-1)^n}{n!}\, e^x \, dx\), en dériver des récurrences à trois termes, et les
+confronter aux réduites.) En conclure, une fois de plus, que \(e\) est irrationnel — et expliquer
+pourquoi, à la lumière de NT-25 et de l'inégalité de Liouville, le caractère borné de ces quotients
+partiels montre que \(e\) n'est <i>pas</i> un nombre de Liouville.</p>
+<p class="context">Euler trouva le développement dans son essai de 1737 <i>De fractionibus
+continuis</i> — l'article fondateur de la théorie des fractions continues — et lut l'irrationalité de
+e directement sur son caractère infini, un siècle avant que la démonstration par les séries de NT-18
+ne devienne standard. La régularité du motif est saisissante : presque tous les nombres réels ont des
+quotients partiels statistiquement chaotiques (Khintchine), et voici la constante la plus naturelle
+de l'analyse avec des quotients partiels en progression arithmétique. Les intégrales d'Hermite, qui
+allègent la démonstration, sont les mêmes que celles qui donnèrent naissance à sa démonstration de
+1873 de la transcendance de e.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fraction_continue">Fraction continue — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/E_%28nombre%29">e (nombre) — Wikipédia</a></li>
+<li>Article : C. D. Olds, « The simple continued fraction expansion of e », <i>American Mathematical Monthly</i> 77 (1970), 968–974</li>
+<li>Article : H. Cohn, « A short proof of the simple continued fraction expansion of e », <i>American Mathematical Monthly</i> 113 (2006), 57–62</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-27" data-level="Master">
+<h3>NT-27 · Le problème du cercle de Gauss <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(N(r)\) le nombre de points \((a, b)\) du
+réseau des entiers vérifiant \(a^2 + b^2 \le r^2\).</p>
+<ol class="parts" type="i">
+<li>Démontrer l'estimation de Gauss :
+\(N(r) = \pi r^2 + E(r)\) avec \(|E(r)| \le C r\).</li>
+<li>Montrer que
+\(N(r) = \sum_{n \le r^2} r_2(n)\), où \(r_2(n)\) compte les représentations de \(n\) comme
+somme de deux carrés — c'est donc la version <i>moyennée</i> de NT-15.</li>
+<li>Améliorer
+l'erreur jusqu'à \(O(r^{2/3})\) (l'exposant de Sierpiński, atteignable par des estimations
+élémentaires sur des sommes de parties fractionnaires).</li>
+<li>Énoncer ce qui est connu et ce qui est conjecturé : on s'attend à ce que la vérité soit
+\(O(r^{1/2 + \varepsilon})\), Hardy et Landau ont démontré que l'erreur n'est <i>pas</i>
+\(O(r^{1/2})\), et le meilleur exposant publié, dû à Huxley (2003), est
+\(131/208\).</li>
+</ol>
+</div>
+<p class="context">Gauss démontra (i) vers 1834 par l'argument que le problème suggère :
+chaque point du réseau possède un carré unité, et l'écart vit dans un anneau près du
+bord. Tout ce qui suit est une lutte contre le bord : l'exposant 2/3 de Sierpiński, en 1906, vint de
+la méthode de Voronoï, un siècle de technologie des sommes exponentielles n'a fait passer l'exposant
+que de 0,6667 à 0,6298, et le \(1/2 + \varepsilon\) conjecturé demeure l'un des problèmes ouverts les
+plus nets de la théorie analytique des nombres — une simple question de géométrie qui engloutit tous
+les outils qu'on lui lance.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_cercle_de_Gauss">Problème du cercle de Gauss — Wikipédia</a></li>
+<li>Lecture : G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i></li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-785-number-theory-i-fall-2021/">MIT OCW 18.785 Number Theory I (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-28" data-level="Master">
+<h3>NT-28 · L'équation de Mordell y² = x³ + k pour de petits k <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> (i) Trouver toutes les solutions entières de
+\(y^2 = x^3 - 2\), avec démonstration. (Travailler dans \(\mathbb{Z}[\sqrt{-2}]\), en démontrant
+d'abord qu'il y a factorisation unique.) (ii) Démontrer que \(y^2 = x^3 + 7\) n'a absolument aucune
+solution entière. (Montrer que \(x\) doit être impair, écrire
+\(y^2 + 1 = (x + 2)(x^2 - 2x + 4)\), et produire un nombre premier \(\equiv 3 \pmod 4\) divisant
+\(y^2 + 1\) — contradiction par NT-12.) (iii) Énoncer le théorème de Mordell selon lequel
+\(y^2 = x^3 + k\) n'a qu'un nombre fini de solutions entières pour chaque \(k \ne 0\), et
+expliquer — énoncé seulement — comment les bornes de Baker des années 1960 sur les formes linéaires
+de logarithmes ont rendu cette finitude effective.</p>
+<p class="context">Bachet étudia \(x^3 - 2 = y^2\) en 1621 ; Fermat mit les Anglais au défi de
+démontrer que \((3, \pm 5)\) sont ses seuls points entiers, et l'argument dans
+\(\mathbb{Z}[\sqrt{-2}]\) dans l'esprit demandé ici est essentiellement celui d'Euler.
+Mordell démontra la finitude générale dans les années 1920, ce pourquoi les courbes portent son
+nom. L'équation est la première rencontre standard avec une courbe elliptique, et ses leçons sont
+celles du domaine en miniature : la factorisation unique dans les anneaux quadratiques est un cadeau
+qui n'est pas toujours accordé (essayez \(k = -26\) pour la voir échouer), les obstructions de
+congruence peuvent tout tuer, et derrière les points entiers siège le groupe des points rationnels —
+le sujet de NT-29 et, en fin de compte, de la conjecture de Birch et Swinnerton-Dyer sur la page
+<a href="open-problems.html">Problèmes ouverts</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Mordell_curve">Courbe de Mordell — Wikipédia (en anglais)</a></li>
+<li>Lecture : K. Ireland et M. Rosen, <i>A Classical Introduction to Modern Number Theory</i></li>
+<li>Lecture : J. H. Silverman, <i>A Friendly Introduction to Number Theory</i> (chapitres sur les courbes cubiques)</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-29" data-level="Master">
+<h3>NT-29 · Le problème des nombres congruents <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un entier strictement positif \(n\) est <i>congruent</i> s'il
+est l'aire d'un triangle rectangle dont les trois côtés sont rationnels.</p>
+<ol class="parts" type="i">
+<li>Montrer que \(6\) est
+congruent, et que \(5\) l'est aussi (il existe un triangle de côtés de l'angle droit \(3/2\) et
+\(20/3\)).</li>
+<li>Démontrer que \(1\) n'est pas congruent — de façon équivalente, mener la descente
+infinie de Fermat montrant que \(x^4 - y^4 = z^2\) n'a pas de solution en entiers strictement
+positifs.</li>
+<li>Démontrer le dictionnaire : les triangles rectangles rationnels d'aire \(n\)
+correspondent aux points rationnels \((x, y)\) avec \(y \ne 0\) sur la courbe elliptique
+\(y^2 = x^3 - n^2 x\).</li>
+<li>Énoncer le théorème de Tunnell (1983), qui décide la congruence en
+comptant les points d'un réseau dans deux ensembles finis, et énoncer précisément laquelle de ses
+implications reste conditionnée à la conjecture de Birch–Swinnerton-Dyer.</li>
+</ol>
+</div>
+<p class="context">Le problème apparaît dans des manuscrits arabes du X<sup>e</sup> siècle et dans le
+<i>Liber Quadratorum</i> de Fibonacci (1225), où 5 et 7 sont montrés congruents et la
+non-congruence de 1 est affirmée sans démonstration ; l'argument de descente de Fermat pour (ii) —
+qui démontre aussi le cas de l'exposant 4 de son grand théorème — est la première démonstration par
+descente de l'histoire. La partie (iii) est la porte classique entre l'Antiquité diophantienne et les
+courbes elliptiques, où la question « n est-il congruent ? » devient « cette courbe est-elle de rang
+strictement positif ? ». Le critère de Tunnell s'exécute en quelques millisecondes, mais sa
+complétude repose sur BSD : un problème millénaire est désormais exactement aussi ouvert qu'un
+problème du prix du millénaire. Zagier calcula le plus simple triangle rationnel d'aire 157 ; le
+numérateur de son hypoténuse compte 46 chiffres — un avertissement que les « petits » nombres
+congruents n'ont pas de petits témoins.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_congruent">Nombre congruent — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Tunnell%27s_theorem">Théorème de Tunnell — Wikipédia (en anglais)</a></li>
+<li>Lecture : N. Koblitz, <i>Introduction to Elliptic Curves and Modular Forms</i>, ch. I</li>
+<li>Article : J. B. Tunnell, « A classical Diophantine problem and modular forms of weight 3/2 », <i>Inventiones Mathematicae</i> 72 (1983), 323–334</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-40" data-level="Master" data-kind="court">
+<h3>NT-40 · Un symbole de Legendre par réciprocité <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> À l'aide de la réciprocité quadratique et de ses lois complémentaires, évaluer le symbole de Legendre \( \left( \frac{1001}{9973} \right) \), en montrant chaque étape de réduction ; \( 9973 \) est premier.</p>
+<p class="context">La réciprocité transforme une question sur les carrés modulo un grand nombre premier en une courte descente à la manière d'Euclide, et en faire une à la main est le seul moyen de sentir pourquoi Gauss l'appelait le <i>theorema aureum</i> et y revint avec huit démonstrations différentes. Remarquez que vous n'avez jamais besoin de savoir quels nombres sont effectivement des carrés.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Loi_de_r%C3%A9ciprocit%C3%A9_quadratique">Loi de réciprocité quadratique — Wikipédia</a></li>
+<li>Lecture : Kenneth Ireland &amp; Michael Rosen, <i>A Classical Introduction to Modern Number Theory</i>, ch. 5</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-41" data-level="Master" data-kind="court">
+<h3>NT-41 · Relever une racine \( p \)-adiquement <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Énoncer le lemme de Hensel, et s'en servir pour démontrer que \( x^2 \equiv 2 \) admet une solution dans les entiers \( 7 \)-adiques \( \mathbb{Z}_7 \) mais que \( x^2 \equiv 2 \) n'en admet aucune dans \( \mathbb{Z}_5 \).</p>
+<p class="context">Le lemme de Hensel est la méthode de Newton transplantée dans l'arithmétique : une racine simple modulo \( p \) se relève de manière unique en une racine modulo toute puissance de \( p \), et donc en une racine \( p \)-adique. Voir l'analogie avec la méthode de Newton — même condition sur la dérivée, même convergence quadratique — est tout l'intérêt de l'exercice.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_Hensel">Lemme de Hensel — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_p-adique">Nombre p-adique — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-49" data-level="Master">
+<h3>NT-49 · Le symbole de Jacobi et le test de Solovay–Strassen <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour un entier impair strictement positif \( n = \prod_i p_i^{e_i} \) et un
+entier \( a \), le symbole de Jacobi se définit à partir des symboles de Legendre de NT-13 par
+\[ \left(\frac{a}{n}\right) \;=\; \prod_i \left(\frac{a}{p_i}\right)^{e_i}. \]</p>
+<ol class="parts" type="a">
+<li>Démontrer que le symbole de Jacobi est complètement multiplicatif en chaque argument, et dériver
+de la réciprocité quadratique sa propre loi de réciprocité : pour \( m, n \) impairs strictement
+positifs et premiers entre eux,
+\[ \left(\frac{m}{n}\right)\left(\frac{n}{m}\right) = (-1)^{\frac{m-1}{2}\cdot\frac{n-1}{2}}, \]
+ainsi que les deux lois complémentaires pour \( \left(\frac{-1}{n}\right) \) et
+\( \left(\frac{2}{n}\right) \).</li>
+<li>Montrer que \( \left(\frac{a}{n}\right) = 1 \) n'implique <i>pas</i> que \( a \) soit un
+résidu quadratique modulo \( n \), et exhiber le plus petit contre-exemple. Démontrer toutefois
+que \( \left(\frac{a}{n}\right) = -1 \) implique bien que \( a \) est un non-résidu.</li>
+<li>Donner un algorithme qui calcule \( \left(\frac{a}{n}\right) \) en \( O(\log^2 n) \) opérations
+binaires, en retirant alternativement des facteurs \( 2 \) et en appliquant la réciprocité, et
+observer ce qu'il a de remarquable : il ne factorise jamais \( n \), alors que la définition le
+fait.</li>
+<li>On dit que \( a \) est un <i>menteur d'Euler</i> pour \( n \) composé impair si \( \gcd(a,n) = 1 \) et
+\( a^{(n-1)/2} \equiv \left(\frac{a}{n}\right) \pmod n \). Démontrer que les menteurs d'Euler forment
+un sous-groupe propre de \( (\mathbb{Z}/n\mathbb{Z})^{\times} \), donc qu'au plus la moitié des bases
+mentent, et en déduire la borne d'erreur \( 2^{-k} \) pour \( k \) tours du test de
+Solovay–Strassen.</li>
+</ol>
+</div>
+<p class="context">Jacobi introduisit le symbole en 1837 exactement pour la raison qu'expose la
+partie (c) : la réciprocité, énoncée pour les nombres premiers, ne devient un <i>algorithme</i> qu'une
+fois le symbole défini pour des arguments inférieurs composés, car alors la descente euclidienne n'a
+jamais à s'interrompre pour factoriser. C'est un motif récurrent — une définition qui perd de
+l'information (partie (b)) mais gagne en calculabilité. En 1977, Robert Solovay et Volker Strassen
+transformèrent l'observation en le premier test de primalité randomisé largement utilisé, l'un des
+articles qui rendirent les algorithmes randomisés respectables. Il fut vite supplanté : tout menteur
+fort au sens de NT-21 est un menteur d'Euler, donc Miller–Rabin est au moins aussi fort, et sa borne
+en \( 4^{-k} \) bat le \( 2^{-k} \) d'ici. Le symbole de Jacobi, lui, n'a jamais disparu — il est à
+l'intérieur de toute implémentation moderne de la factorisation par crible quadratique et de
+l'arithmétique des courbes elliptiques.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Symbole_de_Jacobi">Symbole de Jacobi — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_de_Solovay-Strassen">Test de primalité de Solovay-Strassen — Wikipédia</a></li>
+<li>Lecture : R. Crandall et C. Pomerance, <i>Prime Numbers: A Computational Perspective</i>, ch. 2–3</li>
+<li>Article : R. Solovay et V. Strassen, « A fast Monte-Carlo test for primality », <i>SIAM Journal on Computing</i> 6 (1977), 84–85</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-50" data-level="Master">
+<h3>NT-50 · Le théorème de Dirichlet : les cas élémentaires et la machine analytique <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Théorème de Dirichlet : si \( \gcd(a, m) = 1 \) alors la progression
+\( a,\ a+m,\ a+2m,\ \ldots \) contient une infinité de nombres premiers.</p>
+<ol class="parts" type="a">
+<li>Démontrer élémentairement le cas \( a = 1 \), pour tout \( m \). Soit \( \Phi_m \) le
+\( m \)-ième polynôme cyclotomique ; démontrer que si un nombre premier \( q \) divise
+\( \Phi_m(N) \) pour un certain entier \( N \) et que \( q \nmid m \), alors l'ordre de \( N \)
+modulo \( q \) vaut exactement \( m \), d'où \( q \equiv 1 \pmod m \). Mener ensuite l'argument
+d'Euclide.</li>
+<li>Expliquer précisément pourquoi cette construction atteint la classe \( a \equiv 1 \) et pas
+au-delà : identifier la propriété de cette classe résiduelle qu'utilise l'argument, et dire ce
+qu'une démonstration à la Euclide devrait produire pour un \( a \) général.</li>
+<li>Mettre en place la démonstration de Dirichlet. Définir les caractères de Dirichlet modulo
+\( m \) comme les homomorphismes
+\( \chi : (\mathbb{Z}/m\mathbb{Z})^{\times} \to \mathbb{C}^{\times} \), démontrer les relations
+d'orthogonalité, et démontrer le produit eulérien
+\[ L(s, \chi) \;=\; \sum_{n \ge 1} \frac{\chi(n)}{n^{s}} \;=\; \prod_{p} \left( 1 - \frac{\chi(p)}{p^{s}} \right)^{-1} \quad (\operatorname{Re} s &gt; 1). \]
+Montrer que le théorème se ramène à démontrer \( L(1, \chi) \ne 0 \) pour tout \( \chi \) non
+principal.</li>
+<li>Démontrer \( L(1,\chi) \ne 0 \) lorsque \( \chi \) est complexe — c'est-à-dire lorsque \( \chi \)
+n'est pas à valeurs réelles — par un argument de dénombrement sur \( \prod_\chi L(s,\chi) \).
+Expliquer ensuite pourquoi les caractères réels (quadratiques) sont le cas véritablement difficile,
+et ce que la formule du nombre de classes de Dirichlet y apporte.</li>
+</ol>
+</div>
+<p class="context">Legendre s'est contenté de supposer le théorème dans sa tentative de démonstration
+de la réciprocité quadratique, ce qui est l'une des raisons de l'échec de sa démonstration. Dirichlet
+le démontra en 1837, et pour y parvenir il inventa purement et simplement la théorie analytique des
+nombres : les caractères pour isoler une classe résiduelle, les séries \( L \) pour rendre les
+nombres premiers visibles à l'analyse, et la formule du nombre de classes pour sauver le seul cas que
+l'argument souple manque. L'asymétrie de la partie (d) n'a jamais disparu — l'éventuel « zéro de
+Siegel » d'un caractère réel près de \( s = 1 \) reste l'obstruction standard à des bornes effectives
+sur le plus petit nombre premier d'une progression. Notez aussi le véritable objet de la partie (b) :
+les progressions accessibles à l'argument d'Euclide sont exactement celles qui ont assez de rigidité
+multiplicative pour forcer un nombre premier de la bonne espèce, et les autres exigent une idée
+véritablement différente. Selberg donna une démonstration élémentaire (quoique non simple) en
+1949.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_la_progression_arithm%C3%A9tique">Théorème de la progression arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyn%C3%B4me_cyclotomique">Polynôme cyclotomique — Wikipédia</a></li>
+<li>Lecture : J.-P. Serre, <i>Cours d'arithmétique</i>, ch. VI</li>
+<li>Lecture : T. M. Apostol, <i>Introduction to Analytic Number Theory</i>, ch. 6–7</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-51" data-level="Master" data-kind="court">
+<h3>NT-51 · Le théorème de Zsigmondy et ses trois exceptions <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Énoncer le théorème de Zsigmondy pour \( a^n - b^n \) en
+entier, y compris tous ses cas exceptionnels, et vérifier à la main que \( a = 2 \), \( b = 1 \),
+\( n = 6 \) en est bien un. En déduire ensuite du théorème qu'une infinité de nombres premiers
+distincts divisent les nombres de Mersenne \( 2^n - 1 \).</p>
+<p class="context">Un <i>diviseur premier primitif</i> de \( a^n - b^n \) est un nombre premier qui
+le divise mais qui ne divise aucun \( a^k - b^k \) avec \( k &lt; n \) ; Zsigmondy démontra en 1892
+qu'il en existe toujours un, hormis trois accidents explicitement listés, généralisant un théorème de
+Bang de 1886 pour \( b = 1 \). Les exceptions sont tout l'intérêt de l'exercice — un théorème
+comportant une liste finie de contre-exemples est en général un théorème dont on peut sentir la
+démonstration. Le résultat est un cheval de trait bien au-delà de la théorie des nombres :
+l'existence de nombres premiers de Zsigmondy est utilisée à plusieurs reprises dans la classification
+des groupes simples finis, où elle fournit des éléments d'ordre prescrit dans un groupe linéaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Zsigmondy">Théorème de Zsigmondy — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Mersenne_premier">Nombre de Mersenne premier — Wikipédia</a></li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="NT-30" data-level="Recherche">
+<h3>NT-30 · La conjecture de Goldbach — forte ouverte, faible résolue <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Conjecture (forte) de Goldbach : tout entier pair
+\(\ge 4\) est somme de deux nombres premiers. <b>Statut : ouvert.</b> La version faible (ternaire) —
+tout entier impair \(\ge 7\) est somme de trois nombres premiers — <b>a été démontrée par Harald
+Helfgott en 2013</b>. Tâches pour le lecteur :</p>
+<ol class="parts" type="i">
+<li>démontrer que la conjecture forte
+implique la faible ;</li>
+<li>apprendre la méthode du cercle assez bien pour expliquer pourquoi les sommes de
+<i>trois</i> nombres premiers sont abordables alors que celles de deux ne le sont pas ;</li>
+<li>lire l'énoncé
+du théorème de Chen (1973) : tout grand nombre pair s'écrit \(p + q\) avec \(p\) premier et
+\(q\) premier ou produit de deux nombres premiers — et repérer exactement ce qui l'éloigne de
+Goldbach.</li>
+</ol>
+</div>
+<p class="context">Goldbach proposa l'idée dans une lettre de 1742 à Euler, qui la réduisit
+à la forme moderne à deux nombres premiers. Elle a été vérifiée par ordinateur pour tous les nombres
+pairs jusqu'à \(4 \times 10^{18}\) (Oliveira e Silva, Herzog et Pardi, 2014). La méthode du cercle de
+Hardy et Littlewood (années 1920) et le théorème de Vinogradov de 1937 traitèrent les grands nombres
+impairs ; la démonstration de Helfgott combla l'écart entre « suffisamment grand » et 7 en
+combinant des estimations analytiques affinées et un calcul rigoureux à grande échelle — un jalon de
+la théorie analytique des nombres assistée par ordinateur. On s'attend à ce que la conjecture forte
+soit vraie avec une marge énorme (le décompte heuristique des représentations croît comme
+\(n/\log^2 n\)), ce qui rend sa résistance d'autant plus instructive. Traitement approfondi sur la
+page <a href="open-problems.html">Problèmes ouverts</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Goldbach">Conjecture de Goldbach — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_faible_de_Goldbach">Conjecture faible de Goldbach — Wikipédia</a></li>
+<li>Article : H. A. Helfgott, « The ternary Goldbach conjecture is true » (2013), <a href="https://arxiv.org/abs/1312.7748">arXiv:1312.7748</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-31" data-level="Recherche">
+<h3>NT-31 · Nombres premiers jumeaux et écarts bornés <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La conjecture des nombres premiers jumeaux — une infinité de nombres premiers
+\(p\) tels que \(p + 2\) soit premier — est <b>ouverte</b>. Ce qui est démontré : une infinité de
+nombres premiers consécutifs diffèrent d'au plus \(246\). Tâches :</p>
+<ol class="parts" type="i">
+<li>montrer que le triplet
+\(\{0, 2, 4\}\) n'est pas admissible (l'un de \(n, n+2, n+4\) est toujours divisible par 3)
+et formuler la notion générale de \(k\)-uplet admissible ;</li>
+<li>énoncer la
+conjecture des \(k\)-uplets de nombres premiers de Hardy–Littlewood, dont les nombres premiers
+jumeaux sont le cas le plus simple ;</li>
+<li>lire la percée de Zhang de 2013 et le crible de Maynard–Tao qui l'a suivie, et
+expliquer ce que chacun apporte ;</li>
+<li>expliquer le problème de parité de la théorie des cribles — la
+raison structurelle connue pour laquelle ces méthodes s'arrêtent avant l'écart \(2\).</li>
+</ol>
+</div>
+<p class="context">La conjecture est implicite chez de Polignac (1849) et quantifiée par
+Hardy–Littlewood (1923). Pendant quatre-vingt-dix ans, personne ne sut démontrer <i>aucune</i> borne
+finie sur les écarts se produisant une infinité de fois ; puis, en avril 2013, Yitang Zhang — jusqu'à
+cet instant inconnu, longtemps hors du monde universitaire — démontra la borne 70 000 000, publiée
+aux <i>Annals</i> en 2014. En quelques mois, James Maynard (et indépendamment Terence Tao)
+trouvèrent un crible multidimensionnel plus simple et plus fort donnant 600, et la collaboration en
+ligne Polymath8b porta le record à 246, où il se tient depuis 2014 ; sous la conjecture
+d'Elliott–Halberstam généralisée la méthode atteint 6, et 2 lui est démontrablement hors d'atteinte.
+L'épisode — un outsider solitaire, puis une vaste collaboration ouverte — est l'une des grandes
+histoires mathématiques du siècle jusqu'ici. Voir aussi la page
+<a href="open-problems.html">Problèmes ouverts</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombres_premiers_jumeaux">Nombres premiers jumeaux — Wikipédia</a></li>
+<li>Article : Y. Zhang, « Bounded gaps between primes », <i>Annals of Mathematics</i> 179 (2014), 1121–1174 — <a href="https://annals.math.princeton.edu/2014/179-3/p07">annals.math.princeton.edu</a></li>
+<li>Article : J. Maynard, « Small gaps between primes », <i>Annals of Mathematics</i> 181 (2015), 383–413, <a href="https://arxiv.org/abs/1311.4600">arXiv:1311.4600</a></li>
+<li>Article : D. H. J. Polymath, « The 'bounded gaps between primes' Polymath project — a retrospective » (2014), <a href="https://arxiv.org/abs/1409.8361">arXiv:1409.8361</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-32" data-level="Recherche">
+<h3>NT-32 · La conjecture de Legendre <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Y a-t-il toujours un nombre premier entre \(n^2\) et
+\((n + 1)^2\) ? <b>Statut : ouvert.</b> Tâches qui calibrent la difficulté :</p>
+<ol class="parts" type="i">
+<li>montrer que
+le théorème des nombres premiers donne un nombre premier dans \((x, (1 + \varepsilon)x)\) pour tout
+\(\varepsilon &gt; 0\) et \(x\) grand, et expliquer pourquoi des intervalles de longueur environ
+\(2\sqrt{x}\) sont très en dessous de sa résolution ;</li>
+<li>montrer que même l'hypothèse de
+Riemann, qui fournit des écarts \(O(\sqrt{x} \log x)\) entre nombres premiers consécutifs,
+manque la conjecture d'un facteur \(\log x\) ;</li>
+<li>lire ce qui est effectivement démontré :
+il existe des nombres premiers dans les intervalles \((x - x^{0.525},\, x]\) pour \(x\) grand
+(Baker–Harman–Pintz, 2001), et il y a un nombre premier entre \(n^3\) et \((n + 1)^3\) pour
+tout \(n\) grand (méthodes d'Ingham).</li>
+</ol>
+</div>
+<p class="context">Legendre formula la conjecture vers 1800 ; Landau la rangea en 1912
+parmi ses quatre problèmes « inattaquables » sur les nombres premiers — avec Goldbach (NT-30), les
+nombres premiers jumeaux (NT-31) et l'infinitude des nombres premiers de la forme \(n^2 + 1\) — et
+tous les quatre restent ouverts. Elle se situe exactement à la frontière où les estimations de
+densité de zéros pour ζ échouent : tout le monde croit bien davantage (le modèle probabiliste de
+Cramér prédit des écarts maximaux de l'ordre de \(\log^2 p\)), et pourtant aucune hypothèse en deçà
+d'une force démesurée ne livre un nombre premier dans chaque intervalle de longueur
+\(2\sqrt{x}\). Une mesure brutale du retard de notre connaissance des nombres premiers sur nos
+convictions.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Legendre">Conjecture de Legendre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8mes_de_Landau">Problèmes de Landau — Wikipédia</a></li>
+<li>Article : R. C. Baker, G. Harman, J. Pintz, « The difference between consecutive primes, II », <i>Proceedings of the London Mathematical Society</i> 83 (2001), 532–562</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-33" data-level="Recherche">
+<h3>NT-33 · Les nombres parfaits impairs <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un nombre est parfait s'il est égal à la somme de ses
+diviseurs propres, comme \(6 = 1 + 2 + 3\) et \(28 = 1 + 2 + 4 + 7 + 14\). Existe-t-il un nombre
+parfait <i>impair</i> ? <b>Statut : ouvert</b> — vraisemblablement le plus ancien problème non résolu
+des mathématiques. Jalons démontrables :</p>
+<ol class="parts" type="i">
+<li>démontrer le théorème d'Euclide-Euler : les
+nombres parfaits pairs sont exactement les \(2^{p-1}(2^p - 1)\) avec \(2^p - 1\) un nombre de
+Mersenne premier (NT-22 est donc aussi une chasse aux nombres parfaits) ;</li>
+<li>démontrer le théorème de structure d'Euler : un
+nombre parfait impair doit être de la forme \(q^{\alpha} m^2\) avec \(q\) premier,
+\(q \nmid m\), et \(q \equiv \alpha \equiv 1 \pmod 4\) ;</li>
+<li>démontrer qu'un nombre
+parfait impair ne peut pas être une puissance d'un nombre premier ;</li>
+<li>faire le tour du réseau moderne de contraintes —
+tout exemple dépasse \(10^{1500}\) (Ochem–Rao, 2012), possède au moins dix facteurs premiers
+distincts, et satisfait des dizaines d'autres conditions de congruence et de taille.</li>
+</ol>
+</div>
+<p class="context">Euclide construisit les exemples pairs v. 300 av. J.-C. (<i>Éléments</i> IX.36) ;
+Euler démontra (i) et (ii) deux millénaires plus tard, et le cas impair a désormais résisté à
+toutes les époques des mathématiques. Les contraintes accumulées sont si serrées que la plupart des
+théoriciens des nombres croient qu'aucun nombre parfait impair n'existe — Sylvester parlait déjà en
+1888 du « réseau complexe de conditions » auquel tout candidat doit échapper — et pourtant rien qui
+ressemble à une démonstration de non-existence n'est en vue, et le problème continue d'engendrer
+d'honnêtes mathématiques sur la fonction somme des diviseurs \(\sigma(n)\) comme sous-produit.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_parfait">Nombre parfait — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euclide-Euler">Théorème d'Euclide-Euler — Wikipédia</a></li>
+<li>Article : P. Ochem, M. Rao, « Odd perfect numbers are greater than 10^1500 », <i>Mathematics of Computation</i> 81 (2012), 1869–1877</li>
+<li>Lecture : R. K. Guy, <i>Unsolved Problems in Number Theory</i>, §B1</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-34" data-level="Recherche">
+<h3>NT-34 · La conjecture d'Erdős–Straus <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Erdős et Straus ont conjecturé (1948) : pour tout
+entier \(n \ge 2\) il existe des entiers strictement positifs \(x, y, z\) (pas nécessairement
+distincts) tels que
+\[ \frac{4}{n} = \frac{1}{x} + \frac{1}{y} + \frac{1}{z}. \]
+<b>Statut : ouvert.</b> Jalons démontrables :</p>
+<ol class="parts" type="i">
+<li>démontrer la conjecture pour tout \(n\) pair ;</li>
+<li>la démontrer pour tout \(n \equiv 3 \pmod 4\) ;</li>
+<li>démontrer qu'un contre-exemple minimal
+doit être premier ;</li>
+<li>étudier l'approche par congruences couvrantes (Mordell), qui règle
+tout \(n\) hors d'une poignée de classes résiduelles modulo \(840\) — et expliquer la raison
+structurelle pour laquelle des classes comme \(n \equiv 1 \pmod 4\) y résistent.</li>
+</ol>
+</div>
+<p class="context">Les fractions unitaires sont la plus ancienne théorie des nombres qui existe — le
+papyrus Rhind (v. 1650 av. J.-C.) ne calcule qu'avec elles — et cette conjecture en est le vestige
+moderne récalcitrant : \(3/n\) se décompose gloutonnement, mais \(4/n\) nous met déjà en échec.
+Erdős, fidèle à lui-même, transforma une notation antique en un problème ouvert précis. Le calcul
+l'a vérifiée pour tout \(n\) jusqu'à \(10^{17}\) (Salez, 2014), et la densité des contre-exemples
+potentiels est démontrablement mince, mais l'énoncé complet reste hors d'atteinte — un rappel qu'en
+théorie des nombres, « élémentaire à énoncer » et « élémentaire » sont deux langues différentes.
+C'est un excellent premier problème ouvert à attaquer sérieusement : de vrais résultats partiels sont
+à la portée d'un étudiant de licence.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_d%27Erd%C5%91s-Straus">Conjecture d'Erdős-Straus — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fraction_%C3%A9gyptienne">Fraction égyptienne — Wikipédia</a></li>
+<li>Article : S. E. Salez, « The Erdős–Straus conjecture: new modular equations and checking up to N = 10^17 » (2014), <a href="https://arxiv.org/abs/1406.6307">arXiv:1406.6307</a></li>
+<li>Lecture : R. K. Guy, <i>Unsolved Problems in Number Theory</i>, §D11</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-35" data-level="Recherche">
+<h3>NT-35 · La conjecture abc <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour un entier strictement positif \(n\), soit
+\(\operatorname{rad}(n)\) le produit de ses facteurs premiers distincts. La conjecture abc
+(Oesterlé–Masser, 1985) : pour tout \(\varepsilon &gt; 0\) il n'existe qu'un nombre fini de
+triplets d'entiers strictement positifs premiers entre eux avec \(a + b = c\) et
+\(c &gt; \operatorname{rad}(abc)^{1+\varepsilon}\). Tâches :</p>
+<ol class="parts" type="i">
+<li>montrer que \(\varepsilon\)
+ne peut pas être supprimé : construire une infinité de triplets premiers entre eux avec
+\(c &gt; \operatorname{rad}(abc)\), par exemple à partir de \(a = 1\),
+\(b = 3^{2^k} - 1\) ;</li>
+<li>en admettant abc, démontrer le « Fermat asymptotique » :
+\(x^n + y^n = z^n\) n'a pas de solution en entiers premiers entre eux dès que \(n\) est grand ;</li>
+<li>faire le tour de ce qu'elle implique par ailleurs — Mordell effectif (Elkies), la conjecture de
+Szpiro, et davantage.
+<b>Statut : ouvert de l'avis de la majeure partie de la communauté mathématique</b> — voir
+ci-dessous.</li>
+</ol>
+</div>
+<p class="context">La conjecture distille une idée radicale : l'addition et la multiplication
+ne peuvent pas conspirer — des nombres très divisibles s'additionnent rarement en des nombres très
+divisibles. Son statut est la controverse la plus vive des mathématiques modernes. En 2012, Shinichi
+Mochizuki diffusa une démonstration revendiquée s'étendant sur quelque 500 pages de sa théorie de
+Teichmüller inter-universelle, développée par lui seul. En 2018, Peter Scholze et Jakob Stix, après
+une semaine de discussions avec Mochizuki à Kyoto, publièrent « Why abc is still a conjecture », en y
+identifiant ce qu'ils tiennent pour une lacune irréparable au corollaire 3.12 du troisième article ;
+Mochizuki soutient que l'objection repose sur un malentendu. Les articles ont néanmoins été
+publiés en 2021 dans PRIMS — une revue éditée dans l'institut même de Mochizuki, qui l'a récusé de la
+procédure — et la communauté demeure divisée à ce jour : la démonstration est acceptée à Kyoto et
+rejetée ou laissée de côté par la plupart des spécialistes ailleurs, les tentatives ultérieures
+(notamment de Kirti Joshi, 2024–25) de réconcilier les deux camps n'ayant pas non plus emporté le
+consensus. Quelle qu'en soit l'issue, l'épisode est une étude de cas vivante sur ce que signifie,
+pour les mathématiques, accepter une démonstration. Voir aussi la page
+<a href="open-problems.html">Problèmes ouverts</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_abc">Conjecture abc — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Inter-universal_Teichm%C3%BCller_theory">Théorie de Teichmüller inter-universelle — Wikipédia (en anglais)</a></li>
+<li>Article : A. Granville, T. J. Tucker, « It's as easy as abc », <i>Notices of the AMS</i> 49 (2002), 1224–1231 (exposé de synthèse)</li>
+<li>Article : P. Scholze, J. Stix, « Why abc is still a conjecture » (2018), <a href="https://www.math.uni-bonn.de/people/scholze/WhyABCisStillaConjecture.pdf">manuscrit</a></li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="NT-42" data-level="Recherche" data-kind="court">
+<h3>NT-42 · Énoncer précisément ce que l'on sait de la conjecture d'Artin <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Artin conjectura en 1927 que tout entier \( a \) qui n'est ni \( -1 \) ni un carré parfait est racine primitive modulo une infinité de nombres premiers. Rédiger un compte rendu précis de son statut : la conjecture est ouverte inconditionnellement, Hooley l'a démontrée en 1967 en supposant l'hypothèse de Riemann généralisée, et Heath-Brown a démontré inconditionnellement qu'au plus deux valeurs exceptionnelles peuvent échouer — de sorte qu'au moins l'un des nombres \( 2, 3, 5 \) est racine primitive pour une infinité de nombres premiers, sans que personne puisse dire lequel.</p>
+<p class="context">Le résultat de Heath-Brown est un beau morceau de comédie mathématique : on sait démontrer que la conjecture vaut pour toutes les valeurs sauf au plus deux, sans pouvoir exhiber une seule valeur pour laquelle elle vaut démontrablement. Rédiger l'énoncé avec soin est un exercice dans la précision qu'exigent les affirmations de niveau recherche.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_d%27Artin_sur_les_racines_primitives">Conjecture d'Artin sur les racines primitives — Wikipédia</a></li>
+<li>Voir aussi : <a href="open-problems.html">Problèmes ouverts</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-43" data-level="Recherche" data-kind="court">
+<h3>NT-43 · Jusqu'où Goldbach a-t-elle été vérifiée ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Vérifier à la main la conjecture de Goldbach pour tout nombre pair de \( 4 \) à \( 100 \), en notant pour chacun une représentation en somme de deux nombres premiers. Expliquer ensuite, en un paragraphe, pourquoi étendre votre table jusqu'à \( 4 \times 10^{18} \) — comme cela a effectivement été fait — ne constitue absolument aucun progrès vers une démonstration.</p>
+<p class="context">Le calcul à la main prend vingt minutes et donne un sens viscéral de la raison pour laquelle tout le monde croit à la conjecture : les représentations deviennent plus abondantes, et non plus rares, à mesure que les nombres croissent. La seconde moitié est la leçon — en théorie additive des nombres, la vérité se décide à l'infini, et toute vérification finie n'en dit rien.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Goldbach">Conjecture de Goldbach — Wikipédia</a></li>
+<li>Voir aussi : <a href="open-problems.html">Problèmes ouverts</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-52" data-level="Recherche">
+<h3>NT-52 · Le théorème de Roth, et la version effective manquante <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le théorème de Thue–Siegel–Roth : si \( \alpha \) est un nombre algébrique
+irrationnel et \( \varepsilon &gt; 0 \), alors
+\[ \left| \alpha - \frac{p}{q} \right| \;&lt;\; \frac{1}{q^{2+\varepsilon}} \]
+n'a qu'un nombre fini de solutions en entiers premiers entre eux \( p, q \) avec \( q \ge 1 \).
+<b>Statut : démontré par Klaus Roth en 1955</b> (médaille Fields 1958) ; la forme effective demandée
+en (d) est <b>ouverte</b>.</p>
+<ol class="parts" type="a">
+<li>Démontrer le théorème d'approximation de Dirichlet — pour \( \alpha \) irrationnel il existe une
+infinité de \( p/q \) tels que \( \left| \alpha - p/q \right| &lt; 1/q^2 \) — et en conclure que
+l'exposant \( 2 \) du théorème de Roth ne peut pas être abaissé, de sorte que le théorème est
+optimal.</li>
+<li>En admettant le théorème de Roth, en déduire le théorème de finitude de Thue : si \( F(x,y) \) est
+une forme binaire homogène de degré \( d \ge 3 \), irréductible sur \( \mathbb{Q} \), et si
+\( m \ne 0 \) est un entier, alors \( F(x, y) = m \) n'a qu'un nombre fini de solutions
+entières.</li>
+<li>Expliquer précisément en quel sens la démonstration de Roth est <i>ineffective</i> : localiser
+l'étape qui suppose deux très bonnes approximations indépendantes et en dérive une contradiction, et
+expliquer pourquoi cette forme d'argument borne le <i>nombre</i> de \( p/q \) exceptionnels
+(Davenport–Roth) sans borner leur taille.</li>
+<li>Le problème de recherche : produire un théorème de Roth effectif — une borne \( Q(\alpha,
+\varepsilon) \), calculable à partir de \( \alpha \) et de \( \varepsilon \), au-delà de laquelle
+aucune solution n'apparaît. Faire le tour de ce qui est disponible à la place : la théorie de Baker
+des formes linéaires de logarithmes fournit des mesures d'irrationalité pleinement effectives pour
+des nombres algébriques particuliers, mais avec des exposants strictement moins bons que
+\( 2 + \varepsilon \). Expliquer ce qu'apporterait un théorème de Roth effectif — en particulier des
+bornes effectives sur les solutions des équations de Thue et de Mordell
+(NT-28).</li>
+</ol>
+</div>
+<p class="context">L'exposant est descendu par étapes, chacune un jalon : Liouville
+\( d \) (1844, NT-25), Thue \( d/2 + 1 + \varepsilon \) (1909), Siegel (1921), Dyson et
+Gelfond indépendamment (1947), et enfin le \( 2 + \varepsilon \) optimal de Roth en 1955. L'étape de
+Thue avait déjà changé le sujet — elle rendait des familles entières d'équations diophantiennes
+démontrablement finies — et celle de Roth l'a achevée. Ce qu'aucune d'elles n'a changé, c'est
+l'ineffectivité, et c'est là l'instance la plus tranchée en mathématiques de l'écart entre savoir
+qu'un ensemble est fini et savoir l'écrire : le théorème de Roth vous dit qu'il n'y a qu'un nombre
+fini d'approximations rationnelles exceptionnellement bonnes de \( \sqrt[3]{2} \) et ne vous donne
+strictement aucun moyen de les trouver. Les travaux de Baker des années 1960 apportent l'effectivité
+par une voie entièrement différente et la paient en force. Un théorème de Roth effectif demeure l'un
+des résultats les plus recherchés en approximation diophantienne, et la conjecture abc (NT-35), si
+elle était effective, en impliquerait une bonne part.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Roth">Théorème de Roth — Wikipédia</a></li>
+<li>Article : K. F. Roth, « Rational approximations to algebraic numbers », <i>Mathematika</i> 2 (1955), 1–20</li>
+<li>Lecture : A. Baker, <i>Transcendental Number Theory</i> (Cambridge, 1975)</li>
+<li>Lecture : E. Bombieri et W. Gubler, <i>Heights in Diophantine Geometry</i> (Cambridge, 2006)</li>
+</ul>
+</section>
+
+<section class="problem" id="NT-53" data-level="Recherche" data-kind="court">
+<h3>NT-53 · La conjecture de Pillai <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> (<b>Ouvert.</b>) S. S. Pillai conjectura en 1931 que tout
+entier strictement positif n'apparaît qu'un nombre fini de fois comme différence de deux puissances
+parfaites — de façon équivalente, que les écarts entre puissances parfaites consécutives tendent vers
+l'infini. Rédiger un compte rendu précis de son statut : la différence \( 1 \) est le théorème de
+Mihăilescu (NT-45), chaque couple d'exposants fixé est réglé effectivement par la méthode de Baker,
+la conjecture abc (NT-35) implique l'énoncé tout entier, et aucune démonstration inconditionnelle
+n'est connue pour un seul \( k \ge 2 \) lorsque l'on autorise les exposants à varier.</p>
+<p class="context">La conjecture de Pillai est la forme que prend le problème de Catalan une fois
+qu'on cesse de s'intéresser au nombre \( 1 \), et c'est une illustration nette de l'endroit où la
+difficulté réside réellement : fixer les exposants fait du problème une réunion finie d'équations de
+type Thue, que les bornes de Baker traitent ; laisser les exposants libres retire toutes les prises à
+la fois. La liste des différences connues est courte et la suite des puissances parfaites est mince,
+si bien que personne ne doute de la réponse — ce qui est exactement la situation où écrire le statut
+avec précision, théorème par théorème, est plus instructif qu'une heuristique de plus.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Catalan">Conjecture de Catalan — Wikipédia</a> (la conjecture de Pillai y est énoncée)</li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Puissance_parfaite">Puissance parfaite — Wikipédia</a></li>
+<li>Lecture : R. K. Guy, <i>Unsolved Problems in Number Theory</i> (la section sur les différences de puissances)</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/">MIT OCW 18.781 Theory of Numbers (en anglais)</a> (élémentaire, sans prérequis) et <a href="https://ocw.mit.edu/courses/18-785-number-theory-i-fall-2021/">MIT OCW 18.785 Number Theory I (en anglais)</a> (niveau master, algébrique et analytique).</li>
+<li>Livres : J. H. Silverman, <i>A Friendly Introduction to Number Theory</i> (commencer ici) ; H. Davenport, <i>The Higher Arithmetic</i> ; G. H. Hardy et E. M. Wright, <i>An Introduction to the Theory of Numbers</i> ; K. Ireland et M. Rosen, <i>A Classical Introduction to Modern Number Theory</i> ; T. M. Apostol, <i>Introduction to Analytic Number Theory</i>.</li>
+<li>Articles et essais : Agrawal–Kayal–Saxena, « PRIMES is in P » (<i>Annals</i> 2004) — à lire en entier ; Y. Zhang, « Bounded gaps between primes » (<i>Annals</i> 2014) ; A. Granville et T. J. Tucker, « It's as easy as abc » (<i>Notices AMS</i> 2002).</li>
+</ul>
+<p>Voir aussi : <a href="proofs.html">L'art de la démonstration</a>, <a href="open-problems.html">Problèmes ouverts</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

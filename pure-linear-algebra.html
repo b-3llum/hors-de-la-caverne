@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algèbre linéaire — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Algèbre linéaire</h1>
+<p class="lede">L'algèbre linéaire est la mathématique des objets plats : droites, plans et leurs
+parents en dimension supérieure, avec les applications qui préservent cette platitude. Elle est née
+de l'humble métier de résoudre des systèmes d'équations — les anciens <i>Neuf Chapitres</i> chinois
+éliminent déjà les inconnues à partir de tableaux rectangulaires — et il a fallu attendre les
+dix-neuvième et vingtième siècles pour que les objets cachés derrière les calculs se laissent voir :
+espaces vectoriels, applications linéaires, valeurs propres, sous-espaces invariants. C'est le seul
+domaine des mathématiques dont se sert quotidiennement à peu près tout scientifique et tout
+ingénieur vivant, et c'est en même temps un terrain d'essai pour l'abstraction pure — le premier
+endroit où l'étudiant rencontre une théorie dont les théorèmes se démontrent une fois, en général,
+et valent ensuite aussi bien pour des flèches que pour des polynômes, des fonctions ou des états
+quantiques. La maîtriser, c'est acquérir une vision aux rayons X : les matrices cessent d'être des
+grilles de nombres et deviennent une géométrie que l'on voit par transparence.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/pure-linear-algebra.tex" download>source LaTeX</a> · <a href="tex/pure-linear-algebra.pdf" download>PDF compilé</a></p>
+<!-- site.js insère automatiquement ici la barre de filtre par niveau et de recherche. Ne pas en construire une. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="LIN-01" data-level="Lycée">
+<h3>LIN-01 · Deux droites, une réponse — le plus souvent <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérons le système de deux équations
+\(ax + by = e\), \(cx + dy = f\), où \(a, b, c, d, e, f\) sont des nombres réels donnés.</p>
+<ol class="parts" type="i">
+<li>Démontrer que le système possède exactement une solution \((x, y)\) si et seulement si
+\(ad - bc \ne 0\).</li>
+<li>Lorsque \(ad - bc = 0\), déterminer — avec démonstration — précisément quand le système
+n'a aucune solution et quand il en a une infinité.</li>
+<li>Interpréter géométriquement chaque cas comme un
+énoncé portant sur deux droites du plan.</li>
+</ol>
+</div>
+<p class="context">Résoudre des systèmes d'équations est plus ancien que l'algèbre elle-même : le
+chapitre 8 du classique chinois <i>Les Neuf Chapitres sur l'art mathématique</i> (compilé au
+I<sup>er</sup> siècle de notre ère) résout de tels systèmes en manipulant le tableau des
+coefficients — le pivot de Gauss, dix-huit siècles avant Gauss, qui le réinventa en 1809 pour
+suivre l'astéroïde Cérès. La quantité \(ad - bc\) qui fait sa première apparition en (i) est le
+déterminant, dont cette page suit la longue carrière.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27%C3%A9quations_lin%C3%A9aires">Système d'équations linéaires — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Les_Neuf_Chapitres_sur_l%27art_math%C3%A9matique">Les Neuf Chapitres sur l'art mathématique — Wikipédia</a></li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 1–2</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-02" data-level="Lycée">
+<h3>LIN-02 · Les rotations vues comme des matrices <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Montrer que la rotation du plan autour de l'origine d'un angle
+\(\theta\) envoie le point \((x, y)\) sur
+\((x \cos\theta - y \sin\theta, \; x \sin\theta + y \cos\theta)\).</li>
+<li>Démontrer qu'effectuer
+la rotation d'angle \(\alpha\) puis la rotation d'angle \(\beta\) donne la rotation d'angle
+\(\alpha + \beta\), et en déduire les formules d'addition du sinus et du cosinus.</li>
+<li>Une réflexion
+du plan par rapport à une droite passant par l'origine déplace elle aussi les points linéairement.
+Trouver sa formule en fonction de l'angle de la droite, et démontrer que la composée de deux
+réflexions est une rotation.</li>
+</ol>
+</div>
+<p class="context">Voici la porte par laquelle la géométrie entre dans l'algèbre : les transformations
+deviennent des tableaux de nombres, et la composition devient une multiplication. La notation
+matricielle et la règle de multiplication ont été fixées par Cayley dans son <i>Memoir on the Theory
+of Matrices</i> de 1858, précisément pour rendre automatique une comptabilité comme celle de (ii).
+La surprise agréable que les identités trigonométriques soient des théorèmes <i>sur les matrices</i>
+est, pour bien des étudiants, le premier indice qu'une notation peut penser à votre place.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_de_rotation">Matrice de rotation — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_d%27une_application_lin%C3%A9aire">Matrice d'une application linéaire — Wikipédia</a></li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-03" data-level="Lycée">
+<h3>LIN-03 · Le déterminant est une aire <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soient \(u = (a, b)\) et \(v = (c, d)\) deux vecteurs du
+plan.</p>
+<ol class="parts" type="i">
+<li>Démontrer que l'aire du parallélogramme de côtés \(u\) et \(v\) vaut
+\(|ad - bc|\).</li>
+<li>Montrer que le signe de \(ad - bc\) enregistre l'orientation : il est positif
+exactement lorsque le plus court tour de \(u\) vers \(v\) se fait dans le sens direct.</li>
+<li>Utiliser (i) et (ii)
+pour démontrer la « formule du lacet » : l'aire d'un polygone de sommets
+\((x_1, y_1), \dots, (x_n, y_n)\), énumérés dans le sens direct, vaut
+\(\frac{1}{2} \sum_{i=1}^{n} (x_i y_{i+1} - x_{i+1} y_i)\), les indices étant pris modulo \(n\).</li>
+</ol>
+</div>
+<p class="context">Les déterminants précèdent les matrices : Seki Takakazu au Japon et Leibniz en
+Europe les rencontrèrent tous deux en 1683, comme conditions de compatibilité d'un système
+d'équations. Que la même expression mesure une aire — et, en dimension supérieure, un volume — est
+l'âme géométrique de la théorie, développée par Lagrange et Cauchy. La formule du lacet, outil de
+base des arpenteurs, est habituellement attribuée à Meister (1769) et à Gauss ; c'est le déterminant
+faisant honnêtement du travail de plein air.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9terminant_%28math%C3%A9matiques%29">Déterminant (mathématiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Shoelace_formula">Formule du lacet — Wikipédia (en anglais)</a></li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 5</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-22" data-level="Lycée" data-kind="court">
+<h3>LIN-22 · Trace et déterminant cachés dans un polynôme <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour la matrice
+\(A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\), démontrer que
+\[ \det(A - \lambda I) = \lambda^2 - (a + d)\lambda + (ad - bc). \]
+En déduire que si \(A\) possède deux valeurs propres réelles, leur somme est la trace \(a + d\) et
+leur produit le déterminant \(ad - bc\).</p>
+<p class="context">Les deux nombres que tout le monde apprend à calculer pour une matrice
+\(2 \times 2\) se révèlent être les seuls coefficients de son polynôme caractéristique — ce sont donc
+exactement les données qu'une valeur propre peut voir. Cayley et Sylvester, qui baptisèrent la trace
+et le déterminant dans les années 1850, cherchaient précisément de telles quantités : des expressions
+des coefficients qui ne changent pas lorsque la matrice est réécrite dans une autre base. En
+dimension \(n\), le même polynôme a \(n\) coefficients, et ce sont les fonctions symétriques
+élémentaires des valeurs propres.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyn%C3%B4me_caract%C3%A9ristique">Polynôme caractéristique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Trace_%28alg%C3%A8bre%29">Trace (algèbre) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-23" data-level="Lycée" data-kind="court">
+<h3>LIN-23 · Des matrices dont le carré est nul <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Déterminer, avec démonstration, toutes les matrices réelles
+\(2 \times 2\) \(N\) vérifiant \(N^2 = 0\). Montrer qu'une telle matrice \(N\) non nulle écrase le
+plan tout entier sur une droite passant par l'origine, puis écrase cette droite sur l'origine.</p>
+<p class="context">Un nombre non nul ne peut avoir un carré nul, mais une matrice non nulle le peut —
+premier signe que les matrices sont une arithmétique véritablement neuve plutôt que des nombres
+déguisés. De telles matrices sont dites <i>nilpotentes</i> ; le plus petit exemple,
+\(\begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\), est le cisaillement qui pousse le plan de
+côté, et c'est l'unique brique élémentaire dont est assemblée la réduction de Jordan de LIN-14.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_nilpotente">Matrice nilpotente — Wikipédia</a></li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-24" data-level="Lycée">
+<h3>LIN-24 · Combien y a-t-il de carrés magiques, vraiment ? <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Appelons <i>carré magique</i> un tableau \(3 \times 3\) de nombres réels dont les
+trois sommes par ligne, les trois sommes par colonne et les deux sommes diagonales sont toutes égales
+à un même nombre \(S\), la somme magique. Les coefficients peuvent être des réels quelconques,
+positifs ou non.</p>
+<ol class="parts" type="i">
+<li>Démontrer que l'ensemble \(M\) de tous les carrés magiques \(3 \times 3\) est un espace
+vectoriel : une somme de carrés magiques est magique, et tout multiple scalaire aussi.</li>
+<li>Démontrer que le coefficient central d'un carré magique vaut toujours \(S/3\).</li>
+<li>Déterminer \(\dim M\), avec démonstration, et écrire explicitement une base. (De façon
+équivalente : combien de coefficients peut-on choisir librement avant que les autres soient
+imposés ?)</li>
+<li>Démontrer que tout carré magique dont les neuf coefficients sont exactement les entiers
+\(1, 2, \dots, 9\) s'obtient à partir du carré Lo Shu
+\(\begin{pmatrix} 4 &amp; 9 &amp; 2 \\ 3 &amp; 5 &amp; 7 \\ 8 &amp; 1 &amp; 6 \end{pmatrix}\)
+par rotation ou réflexion de la grille — il y en a donc exactement huit.</li>
+</ol>
+</div>
+<p class="context">Les carrés magiques sont anciens — le motif Lo Shu apparaît dans des textes chinois
+vieux de plus de deux mille ans, et Dürer en plaça un \(4 \times 4\) dans <i>Melencolia I</i> (1514),
+datant la gravure dans sa dernière ligne. Pendant presque toute cette histoire, on les a traités
+comme des curiosités. La lecture par l'algèbre linéaire change entièrement la question : les huit
+conditions magiques sont des équations linéaires homogènes, donc les carrés magiques forment le
+noyau d'une application linéaire, et demander « combien y en a-t-il » revient à demander une
+dimension. La partie (iv) est le dénombrement classique, et il est frappant que la réponse soit huit
+plutôt que huit mille.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_%28math%C3%A9matiques%29">Carré magique (mathématiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Noyau_%28alg%C3%A8bre%29">Noyau (algèbre) — Wikipédia</a></li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-34" data-level="Lycée">
+<h3>LIN-34 · Le produit vectoriel, et le volume qu'il mesure <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour des vecteurs \(u = (u_1, u_2, u_3)\) et \(v = (v_1, v_2, v_3)\) de l'espace, on pose
+\[ u \times v = (u_2 v_3 - u_3 v_2,\; u_3 v_1 - u_1 v_3,\; u_1 v_2 - u_2 v_1). \]</p>
+<ol class="parts" type="a">
+<li>Démontrer que \(u \times v\) est orthogonal à la fois à \(u\) et à \(v\), et démontrer l'identité
+de Lagrange
+\[ |u \times v|^2 = |u|^2 |v|^2 - (u \cdot v)^2 . \]
+En déduire que \(|u \times v| = |u|\,|v| \sin\theta\), l'aire du parallélogramme engendré par \(u\)
+et \(v\), et que \(u \times v = 0\) exactement lorsque \(u\) et \(v\) sont colinéaires.</li>
+<li>Démontrer que le produit mixte \(u \cdot (v \times w)\) est égal au déterminant de la matrice
+\(3 \times 3\) de lignes \(u, v, w\), que sa valeur absolue est le volume du parallélépipède qu'ils
+engendrent, et qu'il change de signe lorsqu'on échange deux des trois vecteurs.</li>
+<li>Démontrer que le produit vectoriel n'est pas associatif, en trouvant \(u, v, w\) tels que
+\((u \times v) \times w \ne u \times (v \times w)\). Démontrer ensuite le développement
+\(u \times (v \times w) = v\,(u \cdot w) - w\,(u \cdot v)\) et l'identité de Jacobi
+\[ u \times (v \times w) + v \times (w \times u) + w \times (u \times v) = 0 . \]</li>
+<li>En déduire que trois vecteurs appartiennent à un même plan passant par l'origine si et seulement
+si leur produit mixte est nul, et donner une explication purement géométrique de la raison pour
+laquelle le déterminant de la partie (b) devait être un volume.</li>
+</ol>
+</div>
+<p class="context">Le produit vectoriel est un fragment d'une structure plus vaste. En 1843, Hamilton
+inventa les quaternions et, avec eux, les mots <i>vecteur</i> et <i>scalaire</i> ; multiplier deux
+quaternions « purs » produit à la fois le produit scalaire et le produit vectoriel, l'un comme partie
+scalaire et l'autre comme partie vectorielle. Grassmann disposait dès 1844 d'un produit plus général,
+et fut ignoré. Ce sont Gibbs, dans des notes de cours imprimées à compte d'auteur en 1881, et
+Heaviside indépendamment, qui scindèrent le produit de Hamilton en les deux opérations familières —
+provoquant une querelle publique d'une décennie avec les quaternionistes — et c'est E. B. Wilson,
+étudiant de Gibbs, qui transforma ces notes en le manuel <i>Vector Analysis</i> de 1901, lequel fixa
+la notation encore en usage aujourd'hui. Une curiosité qui mérite d'être connue : un produit
+bilinéaire de deux vecteurs obéissant aux règles de (a) n'existe qu'en dimensions trois et sept,
+celui de dimension sept provenant des octonions.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_vectoriel">Produit vectoriel — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_mixte">Produit mixte — Wikipédia</a></li>
+<li>Lecture : E. B. Wilson, <i>Vector Analysis</i> (1901), d'après les cours de J. W. Gibbs, ch. 2</li>
+<li>Lecture : M. J. Crowe, <i>A History of Vector Analysis</i></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-35" data-level="Lycée" data-kind="court">
+<h3>LIN-35 · Des lignes dont la somme vaut un <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(P\) une matrice \(n \times n\) à coefficients positifs
+ou nuls dont chaque ligne a pour somme \(1\). Démontrer que le vecteur dont toutes les coordonnées
+valent un est vecteur propre de \(P\) pour la valeur propre \(1\), et démontrer que toute valeur
+propre réelle \(\lambda\) de \(P\) vérifie \(|\lambda| \le 1\).</p>
+<p class="context">Une telle matrice est la table de transition d'une marche aléatoire : le
+coefficient \((i,j)\) est la probabilité de sauter de l'état \(i\) à l'état \(j\). Andreï Markov
+introduisit ces chaînes en 1906 pour montrer que la loi des grands nombres survit à la dépendance
+entre les épreuves, et il éprouva sa théorie en comptant l'alternance des voyelles et des consonnes
+dans <i>Eugène Onéguine</i> de Pouchkine. La valeur propre \(1\) que vous trouvez ici est la raison
+pour laquelle une longue marche aléatoire finit par se stabiliser sur une distribution fixe, et la
+version renforcée de cet énoncé — Perron–Frobenius — est ce qui classe les pages web en LIN-15.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_stochastique">Matrice stochastique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cha%C3%AEne_de_Markov">Chaîne de Markov — Wikipédia</a></li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="LIN-04" data-level="Licence">
+<h3>LIN-04 · Pourquoi la dimension a un sens <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Des vecteurs \(v_1, \dots, v_k\) d'un espace vectoriel sont
+<i>linéairement indépendants</i> si \(c_1 v_1 + \cdots + c_k v_k = 0\) force tous les \(c_i = 0\) ;
+ils sont <i>générateurs</i> si tout vecteur est une telle combinaison ; une <i>base</i> est les
+deux à la fois.</p>
+<ol class="parts" type="i">
+<li>Démontrer le
+lemme d'échange de Steinitz : si \(v_1, \dots, v_m\) sont indépendants et si \(w_1, \dots, w_n\)
+engendrent, alors \(m \le n\).</li>
+<li>En conclure que deux bases quelconques d'un espace vectoriel
+de type fini ont le même cardinal — la <i>dimension</i> est donc bien définie.</li>
+<li>Démontrer que toute famille libre
+s'étend en une base, et que toute famille génératrice en contient une.</li>
+<li>Montrer que les nombres réels forment
+un espace vectoriel de dimension infinie sur \(\mathbb{Q}\).</li>
+</ol>
+</div>
+<p class="context">On a employé le mot « dimension » avec assurance pendant un siècle avant que
+quiconque démontre qu'il était bien défini ; le lemme d'échange qui règle la question remonte à
+l'<i>Ausdehnungslehre</i> (1844) de Grassmann, restée négligée, et fut formalisé par Steinitz vers
+1910. Le livre de Grassmann — ignoré de son vivant, son auteur réduit à écrire sur le sanskrit —
+contenait cinquante ans à l'avance l'essentiel de l'algèbre linéaire abstraite. L'espace vectoriel
+axiomatique lui-même est dû à Peano (1888).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ind%C3%A9pendance_lin%C3%A9aire">Indépendance linéaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_Steinitz">Lemme de Steinitz — Wikipédia</a></li>
+<li>Lecture : S. Axler, <i>Linear Algebra Done Right</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-05" data-level="Licence">
+<h3>LIN-05 · Le théorème du rang <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(T : V \to W\) une application linéaire entre
+espaces vectoriels de dimension finie.</p>
+<ol class="parts" type="i">
+<li>Démontrer le théorème du rang :
+\(\dim V = \dim \ker T + \dim \operatorname{im} T\).</li>
+<li>En déduire qu'un système homogène de
+\(m\) équations linéaires à \(n &gt; m\) inconnues admet toujours une solution non nulle.</li>
+<li>En déduire
+que, pour une matrice carrée, injectivité, surjectivité et inversibilité sont équivalentes.</li>
+<li>Démontrer que le rang par lignes est égal au rang par colonnes, pour toute matrice.</li>
+</ol>
+</div>
+<p class="context">Le théorème du rang est la loi de conservation de l'algèbre linéaire : les
+dimensions ne sont jamais créées ni détruites, seulement redistribuées entre noyau et image. Ses
+ancêtres sont les arguments de dénombrement d'Euler et la théorie des « diviseurs élémentaires » de
+Frobenius dans les années 1870 ; l'énoncé net en termes d'applications est du vingtième siècle,
+popularisé par les traités axiomatiques de l'école de Noether. La partie (iv) — que personne ne
+trouve évidente à première vue — a été appelée par Strang « le premier grand théorème de l'algèbre
+linéaire ».</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_rang">Théorème du rang — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Rang_%28alg%C3%A8bre_lin%C3%A9aire%29">Rang (algèbre linéaire) — Wikipédia</a></li>
+<li>Lecture : S. Axler, <i>Linear Algebra Done Right</i>, ch. 3</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT OCW 18.06 Linear Algebra (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-06" data-level="Licence">
+<h3>LIN-06 · Le déterminant, axiomatiquement <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Démontrer qu'il existe exactement une fonction \(\det\) sur les
+matrices réelles \(n \times n\) qui soit linéaire en chaque ligne séparément, change de signe
+lorsqu'on échange deux lignes, et vérifie \(\det I = 1\).</li>
+<li>À partir de ces seuls axiomes, démontrer
+\(\det(AB) = \det A \cdot \det B\) et \(\det A^{\mathsf{T}} = \det A\).</li>
+<li>Démontrer la
+signification géométrique : une application linéaire \(T\) de \(\mathbb{R}^n\) multiplie le volume de
+tout pavé par \(|\det T|\).</li>
+<li>Expliquer, avec démonstration, pourquoi une matrice est inversible exactement lorsque son
+déterminant est non nul.</li>
+</ol>
+</div>
+<p class="context">Dès 1812, Cauchy avait organisé les déterminants en une théorie ; vers 1900, ils
+dominaient si complètement les manuels que les espaces vectoriels n'y étaient plus qu'une
+arrière-pensée. La caractérisation axiomatique de (i), due pour l'essentiel à Weierstrass et
+popularisée par les belles notes de cours d'Artin <i>Galois Theory</i> ainsi que par Strang, explique
+pourquoi une seule et même formule ne cesse de reparaître dans les questions de volume,
+d'orientation et d'inversibilité : il n'existe qu'une fonction possible. Le manuel d'Axler bannit
+fameusement les déterminants au dernier chapitre pour prouver quelque chose ; ce problème est
+l'argument inverse.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9terminant_%28math%C3%A9matiques%29">Déterminant (mathématiques) — Wikipédia</a></li>
+<li>Lecture : M. Artin, <i>Algebra</i>, ch. 1</li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 5</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT OCW 18.06 Linear Algebra (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-07" data-level="Licence">
+<h3>LIN-07 · Valeurs propres, vecteurs propres et Fibonacci <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un vecteur non nul \(v\) est <i>vecteur propre</i> de la
+matrice carrée \(A\) pour la <i>valeur propre</i> \(\lambda\) si \(Av = \lambda v\).</p>
+<ol class="parts" type="i">
+<li>Démontrer que
+les valeurs propres de \(A\) sont exactement les racines du polynôme caractéristique
+\(\det(A - \lambda I)\).</li>
+<li>Démontrer que des vecteurs propres associés à des valeurs propres distinctes sont
+linéairement indépendants.</li>
+<li>Les nombres de Fibonacci vérifient
+\(\begin{pmatrix} F_{n+1} \\ F_n \end{pmatrix} = A \begin{pmatrix} F_n \\ F_{n-1} \end{pmatrix}\)
+pour la matrice \(A = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\). Diagonaliser \(A\)
+et en déduire une formule close pour \(F_n\) en fonction du nombre d'or.</li>
+</ol>
+</div>
+<p class="context">Les valeurs propres n'ont pas été trouvées dans les matrices mais dans le ciel :
+étudiant les perturbations séculaires des orbites planétaires, Lagrange et Laplace (années 1770–80)
+rencontrèrent l'équation caractéristique et eurent besoin que ses racines soient réelles pour la
+stabilité du système solaire. Les mots <i>eigenwert</i> et <i>eigenvektor</i> sont de Hilbert (1904).
+La partie (iii) — la formule de Binet, en réalité connue de de Moivre dès 1730 — reste la plus nette
+des premières démonstrations que la diagonalisation transforme une dynamique en arithmétique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Valeur_propre%2C_vecteur_propre_et_espace_propre">Valeur propre, vecteur propre et espace propre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyn%C3%B4me_caract%C3%A9ristique">Polynôme caractéristique — Wikipédia</a></li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 6</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT OCW 18.06 Linear Algebra (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-08" data-level="Licence">
+<h3>LIN-08 · Quand une matrice est-elle diagonalisable ? <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une matrice carrée est <i>diagonalisable</i> si elle est semblable
+à une matrice diagonale, c'est-à-dire \(A = PDP^{-1}\).</p>
+<ol class="parts" type="i">
+<li>Démontrer que \(A\) (sur \(\mathbb{C}\)) est
+diagonalisable si et seulement si son polynôme minimal — le polynôme unitaire de plus bas degré
+\(m\) tel que \(m(A) = 0\) — n'a pas de racine multiple.</li>
+<li>Montrer que
+\(\begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix}\) n'est pas diagonalisable, et décrire
+géométriquement ce qu'elle fait à la place.</li>
+<li>Démontrer que toute famille commutative de matrices
+diagonalisables est <i>simultanément</i> diagonalisable.</li>
+<li>Montrer que les matrices diagonalisables sont
+denses : toute matrice carrée complexe est limite de matrices diagonalisables.</li>
+</ol>
+</div>
+<p class="context">Savoir si une matrice est diagonalisable, c'est toute la question de savoir à quel
+point une application linéaire peut être rendue simple, et les cas d'échec de (ii) ne sont pas des
+pathologies mais des cisaillements — ils apparaissent dans tout calcul de déformations. Le critère
+(i) descend de la théorie des diviseurs élémentaires de Weierstrass et Frobenius (années 1870). La
+partie (iii) a un poids physique : en mécanique quantique, les observables qui commutent sont
+exactement celles que l'on peut mesurer simultanément. La partie (iv) est l'astuce préférée de
+l'analyste pour démontrer des identités matricielles « d'abord dans le cas générique ».</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_diagonalisable">Matrice diagonalisable — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyn%C3%B4me_minimal_d%27un_endomorphisme">Polynôme minimal d'un endomorphisme — Wikipédia</a></li>
+<li>Lecture : S. Axler, <i>Linear Algebra Done Right</i>, ch. 5</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-09" data-level="Licence">
+<h3>LIN-09 · Cayley–Hamilton, honnêtement <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(p(\lambda) = \det(\lambda I - A)\) le
+polynôme caractéristique d'une matrice \(n \times n\) \(A\).</p>
+<ol class="parts" type="i">
+<li>Le théorème de Cayley–Hamilton
+affirme que \(p(A) = 0\). Expliquer précisément pourquoi la tentante « démonstration » en une ligne
+— substituer \(\lambda = A\) dans \(\det(\lambda I - A)\) pour obtenir \(\det(A - A) = 0\) — n'a
+aucun sens.</li>
+<li>Donner une démonstration correcte, sur \(\mathbb{C}\). (Une voie : la démontrer pour les matrices
+diagonalisables et utiliser leur densité, LIN-08(iv) ; une autre : l'identité de la comatrice.)
+(iii) En déduire que, pour \(A\) inversible, l'inverse \(A^{-1}\) est un polynôme en \(A\) de degré au
+plus \(n - 1\). (iv) Le théorème vaut-il sur un anneau commutatif quelconque ? Démontrer ou
+réfuter.</li>
+</ol>
+</div>
+<p class="context">Cayley énonça le théorème dans son mémoire de 1858, le vérifia pour les matrices
+\(2 \times 2\) et \(3 \times 3\), et écrivit — dans l'un des grands haussements d'épaules des
+mathématiques — qu'il n'avait « pas jugé nécessaire d'entreprendre le labeur d'une démonstration
+formelle […] dans le cas général ». Hamilton avait vérifié sa propre version pour les quaternions ;
+la première démonstration générale est celle de Frobenius (1878). L'argument fallacieux de (i) a
+piégé des générations d'étudiants, ce qui est exactement pourquoi il vaut la peine d'être disséqué :
+comprendre pourquoi il échoue apprend ce qu'est vraiment un polynôme d'une matrice.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cayley-Hamilton">Théorème de Cayley-Hamilton — Wikipédia</a></li>
+<li>Lecture : S. Axler, <i>Linear Algebra Done Right</i>, ch. 8</li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-10" data-level="Licence">
+<h3>LIN-10 · Le théorème spectral pour les matrices symétriques <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(A\) une matrice réelle symétrique \(n \times n\)
+(\(A = A^{\mathsf{T}}\)). Démontrer :</p>
+<ol class="parts" type="i">
+<li>toute valeur propre de \(A\) est réelle ;</li>
+<li>des vecteurs propres associés à des
+valeurs propres distinctes sont orthogonaux ;</li>
+<li>\(\mathbb{R}^n\) admet une base orthonormée de
+vecteurs propres de \(A\), c'est-à-dire \(A = Q \Lambda Q^{\mathsf{T}}\) avec \(Q\) orthogonale et
+\(\Lambda\) diagonale.</li>
+<li>En déduire le théorème des axes principaux : toute forme quadratique
+\(q(x) = x^{\mathsf{T}} A x\) devient une somme pondérée de carrés
+\(\lambda_1 y_1^2 + \cdots + \lambda_n y_n^2\) dans des coordonnées convenablement tournées, et toute
+ellipse ou hyperbole \(q(x) = 1\) a des axes perpendiculaires.</li>
+</ol>
+</div>
+<p class="context">Cauchy démontra en 1829 le théorème sur la réalité des valeurs propres, motivé
+exactement par (iv) : les axes principaux des quadriques et la stabilité des corps en rotation. C'est
+le théorème le plus utilisé du domaine — la statistique (analyse en composantes principales), la
+mécanique (modes propres), la théorie quantique (observables) reposent toutes dessus — et son
+extension en dimension infinie, portée par Hilbert et von Neumann, a créé l'analyse fonctionnelle.
+Toute démonstration doit quelque part utiliser deux fois la symétrie ; trouver où fait partie de
+l'exercice.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_spectral">Théorème spectral — Wikipédia</a></li>
+<li>Lecture : S. Axler, <i>Linear Algebra Done Right</i>, ch. 7</li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 6</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT OCW 18.06 Linear Algebra (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-11" data-level="Licence">
+<h3>LIN-11 · Quatre visages de la définie-positivité <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une matrice réelle symétrique \(A\) est <i>définie positive</i>
+si \(x^{\mathsf{T}} A x &gt; 0\) pour tout vecteur non nul \(x\). Démontrer que les assertions
+suivantes sont équivalentes :</p>
+<ol class="parts" type="a">
+<li>\(A\) est définie positive ;</li>
+<li>toutes les valeurs propres de \(A\) sont strictement positives ;</li>
+<li>critère de Sylvester : les \(n\) mineurs principaux dominants (déterminants des blocs
+\(k \times k\) en haut à gauche) sont tous strictement positifs ;</li>
+<li>\(A = B^{\mathsf{T}} B\) pour une matrice inversible
+\(B\) — de façon équivalente, \(A\) admet une factorisation de Cholesky \(A = LL^{\mathsf{T}}\) avec
+\(L\) triangulaire inférieure à diagonale strictement positive. Exhiber ensuite une matrice symétrique
+dont tous les coefficients diagonaux sont strictement positifs et qui n'est <i>pas</i> définie
+positive.</li>
+</ol>
+</div>
+<p class="context">La définie-positivité est le lieu où l'algèbre linéaire rencontre la notion
+physique d'énergie : \(x^{\mathsf{T}} A x\) est l'énergie emmagasinée dans une configuration, et (d)
+dit que toute énergie de ce type est une somme de carrés. Le critère de Sylvester date de la théorie
+des formes quadratiques des années 1850 ; la factorisation de Cholesky fut conçue par un officier
+d'artillerie français pour des levés géodésiques et ne fut publiée qu'après sa mort pendant la
+Première Guerre mondiale. Tester la définie-positivité est aujourd'hui une primitive de base de
+l'optimisation — la définie-positivité d'une hessienne, c'est ce que signifie le « test de la dérivée
+seconde » en dimension \(n\).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_d%C3%A9finie_positive">Matrice définie positive — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_d%C3%A9finie_positive#Crit%C3%A8re_de_Sylvester">Critère de Sylvester — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Factorisation_de_Cholesky">Factorisation de Cholesky — Wikipédia</a></li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 7</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-12" data-level="Licence">
+<h3>LIN-12 · L'exponentielle d'une matrice <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour une matrice carrée \(A\), on pose
+\(e^{A} = \sum_{k=0}^{\infty} A^k / k!\).</p>
+<ol class="parts" type="i">
+<li>Démontrer que la série converge pour toute \(A\).</li>
+<li>Démontrer que si \(AB = BA\) alors \(e^{A+B} = e^A e^B\), et trouver deux matrices pour lesquelles
+\(e^{A+B} \ne e^A e^B\).</li>
+<li>Démontrer \(\det e^A = e^{\operatorname{tr} A}\).</li>
+<li>Montrer que
+\(x(t) = e^{tA} x_0\) est l'unique solution de l'équation différentielle \(x' = Ax\) avec
+\(x(0) = x_0\), et calculer explicitement \(e^{tA}\) lorsque \(A = \begin{pmatrix} 0 &amp; -1 \\
+1 &amp; 0 \end{pmatrix}\). Quelles fonctions familières apparaissent, et pourquoi le devaient-elles ?</li>
+</ol>
+</div>
+<p class="context">L'exponentielle de matrice est la façon dont l'algèbre linéaire parle à l'analyse :
+elle convertit une matrice statique en un flot, et elle sous-tend toute équation différentielle à
+coefficients constants, tout semi-groupe de Markov, et l'ensemble de la théorie des groupes de Lie
+(où l'échec de (ii) pour des matrices non commutantes n'est pas un défaut mais le début de
+l'histoire). La calculer de façon fiable est notoirement délicat — l'article de synthèse de Moler et
+Van Loan, « Nineteen Dubious Ways to Compute the Exponential of a Matrix », est un classique
+précisément parce que les dix-neuf méthodes peuvent toutes échouer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Exponentielle_d%27une_matrice">Exponentielle d'une matrice — Wikipédia</a></li>
+<li>Lecture : G. Strang, <i>Introduction to Linear Algebra</i>, ch. 6</li>
+<li>Article : C. Moler &amp; C. Van Loan, « Nineteen Dubious Ways to Compute the Exponential of a Matrix, Twenty-Five Years Later » (2003), SIAM Review 45, 3–49</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-13" data-level="Licence">
+<h3>LIN-13 · La décomposition en valeurs singulières <span class="level">[Licence]</span></h3>
+<p class="statement"><b>Problème.</b> (i) Démontrer que toute matrice réelle \(m \times n\) \(A\) peut
+s'écrire \(A = U \Sigma V^{\mathsf{T}}\), où \(U\) et \(V\) sont orthogonales et \(\Sigma\)
+est diagonale à coefficients positifs ou nuls \(\sigma_1 \ge \sigma_2 \ge \cdots \ge 0\) (les
+<i>valeurs singulières</i>). (Indication pour l'existence : appliquer le théorème spectral, LIN-10, à
+\(A^{\mathsf{T}} A\).) (ii) Montrer que, géométriquement, \(A\) envoie la sphère unité sur un
+ellipsoïde dont les demi-axes ont pour longueurs les \(\sigma_i\). (iii) Démontrer le théorème
+d'Eckart–Young : parmi toutes les matrices de rang au plus \(k\), la troncature
+\(A_k = \sum_{i \le k} \sigma_i u_i v_i^{\mathsf{T}}\) est la plus proche de \(A\) pour la norme
+spectrale, avec une erreur \(\sigma_{k+1}\).</p>
+<p class="context">La décomposition en valeurs singulières fut découverte par Beltrami (1873) et
+Camille Jordan (1874) comme forme canonique des formes bilinéaires, puis refondée comme outil de
+calcul par Golub et Kahan en 1965. La partie (iii), démontrée par Eckart et Young en 1936 dans une
+revue de psychométrie, est sans doute le théorème le plus rentable du vingtième siècle :
+l'approximation optimale de rang faible est le moteur mathématique de la compression d'images, des
+systèmes de recommandation, du filtrage du bruit et de l'analyse en composantes principales.
+Trefethen et Bau ouvrent leur ouvrage de référence par la décomposition en valeurs singulières, et
+non par le déterminant.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9composition_en_valeurs_singuli%C3%A8res">Décomposition en valeurs singulières — Wikipédia</a></li>
+<li>Lecture : L. Trefethen &amp; D. Bau, <i>Numerical Linear Algebra</i>, leçons 4–5</li>
+<li>Article : C. Eckart &amp; G. Young, « The approximation of one matrix by another of lower rank » (1936), Psychometrika 1, 211–218</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/">MIT OCW 18.065 Matrix Methods in Data Analysis (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-25" data-level="Licence" data-kind="court">
+<h3>LIN-25 · Gram–Schmidt est une factorisation <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(A\) une matrice réelle \(m \times n\) avec \(m \ge n\)
+dont les colonnes sont linéairement indépendantes. Démontrer que \(A = QR\) où \(Q\) est
+\(m \times n\) à colonnes orthonormées et \(R\) est \(n \times n\) triangulaire supérieure à
+coefficients diagonaux strictement positifs, et démontrer que \(Q\) et \(R\) sont uniquement
+déterminées par \(A\).</p>
+<p class="context">Gram–Schmidt s'enseigne d'ordinaire comme une procédure — orthogonaliser chaque
+colonne contre les précédentes — et l'intérêt de ce problème est que la comptabilité de cette
+procédure <i>est</i> une factorisation matricielle, \(R\) enregistrant chaque coefficient utilisé. Le
+procédé porte le nom de Jørgen Gram (1883) et d'Erhard Schmidt (1907), bien que Laplace l'eût employé
+presque un siècle plus tôt. En pratique numérique, l'algorithme classique perd gravement
+l'orthogonalité, et l'on calcule \(QR\) à la place par réflexions de Householder ; la factorisation
+obtenue sous-tend à la fois les moindres carrés (LIN-27) et l'algorithme QR pour les valeurs
+propres.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9composition_QR">Décomposition QR — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_Gram-Schmidt">Algorithme de Gram-Schmidt — Wikipédia</a></li>
+<li>Lecture : L. Trefethen &amp; D. Bau, <i>Numerical Linear Algebra</i>, leçons 7–10</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-26" data-level="Licence" data-kind="court">
+<h3>LIN-26 · Le quotient de Rayleigh est pris au piège <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(A\) une matrice réelle symétrique \(n \times n\) de plus
+grande valeur propre \(\lambda_{\max}\) et de plus petite valeur propre \(\lambda_{\min}\). Démontrer
+que, pour tout \(x \in \mathbb{R}^n\) non nul,
+\[ \lambda_{\min} \;\le\; \frac{x^{\mathsf{T}} A x}{x^{\mathsf{T}} x} \;\le\; \lambda_{\max}, \]
+et que l'égalité de part ou d'autre a lieu exactement lorsque \(x\) est vecteur propre pour la valeur
+propre correspondante.</p>
+<p class="context">Lord Rayleigh introduisit ce quotient dans <i>The Theory of Sound</i> (1877)
+pour estimer les fréquences d'un corps vibrant : devinez une forme, calculez le quotient, et vous
+tenez une borne supérieure de la note la plus grave. Le problème convertit une question algébrique —
+les racines d'un polynôme — en une optimisation, ce qui explique pourquoi les valeurs propres des
+matrices symétriques sont stables et calculables ; l'énoncé général pour la \(k\)-ième valeur propre
+est le théorème de Courant–Fischer de LIN-16.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Quotient_de_Rayleigh">Quotient de Rayleigh — Wikipédia</a></li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-27" data-level="Licence">
+<h3>LIN-27 · Les moindres carrés sont une ombre <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soient \(A\) une matrice réelle \(m \times n\) et \(b \in \mathbb{R}^m\). Le
+problème des moindres carrés consiste à minimiser \(\|Ax - b\|\) sur tous les \(x \in \mathbb{R}^n\),
+où \(\|\cdot\|\) est la norme euclidienne.</p>
+<ol class="parts" type="i">
+<li>Démontrer que \(x\) minimise \(\|Ax - b\|\) si et seulement si \(Ax\) est la projection orthogonale
+de \(b\) sur l'espace des colonnes de \(A\), et que cela a lieu si et seulement si \(x\) résout les
+équations normales
+\[ A^{\mathsf{T}} A x = A^{\mathsf{T}} b. \]
+En conclure qu'un minimiseur existe toujours, quels que soient \(A\) et \(b\).</li>
+<li>Démontrer que le minimiseur est unique exactement lorsque les colonnes de \(A\) sont indépendantes,
+et que dans ce cas la projection sur l'espace des colonnes est
+\(P = A (A^{\mathsf{T}} A)^{-1} A^{\mathsf{T}}\). Vérifier \(P^{\mathsf{T}} = P\) et \(P^2 = P\),
+et montrer que \(I - P\) est la projection orthogonale sur \(\ker A^{\mathsf{T}}\).</li>
+<li>Démontrer la réciproque de (ii) : toute matrice symétrique idempotente est la projection orthogonale
+sur son propre espace des colonnes.</li>
+<li>À l'aide de la factorisation \(A = QR\) de LIN-25, montrer que les équations normales deviennent
+\(Rx = Q^{\mathsf{T}} b\), un système triangulaire. Expliquer pourquoi former \(A^{\mathsf{T}} A\)
+élève au carré le conditionnement de \(A\), et donc pourquoi c'est cette voie-ci que les analystes
+numériciens empruntent réellement.</li>
+</ol>
+</div>
+<p class="context">Legendre publia la méthode des moindres carrés en 1805, dans un appendice sur la
+détermination des orbites cométaires, et lui donna son nom ; Gauss répliqua qu'il l'employait depuis
+1795 et qu'il s'en était servi en 1801 pour prédire où reparaîtrait l'astéroïde perdu Cérès — ce
+qu'il fit. La querelle de priorité qui s'ensuivit fut âpre, et les mathématiques lui ont survécu : le
+théorème de Gauss–Markov fait des moindres carrés le meilleur estimateur linéaire sans biais, et
+aujourd'hui les mêmes équations normales siègent au cœur de la régression, du positionnement GPS et
+de l'ajustement de presque tout modèle empirique. Le contenu géométrique tient en une phrase — la
+meilleure approximation est une ombre perpendiculaire — et tout le reste est comptabilité.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">Méthode des moindres carrés — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Projecteur_%28math%C3%A9matiques%29">Projecteur (mathématiques) — Wikipédia</a></li>
+<li>Lecture : L. Trefethen &amp; D. Bau, <i>Numerical Linear Algebra</i>, leçons 11 et 18–19</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT OCW 18.06 Linear Algebra (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-36" data-level="Licence">
+<h3>LIN-36 · Quand a-t-on \(A = LU\) ? <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Exécuter le pivot de Gauss sur une matrice carrée \(A\) sans échange de lignes,
+en enregistrant les multiplicateurs, revient à écrire \(A = LU\) avec \(L\) triangulaire inférieure
+unitaire (des uns sur la diagonale) et \(U\) triangulaire supérieure.</p>
+<ol class="parts" type="a">
+<li>Démontrer qu'une matrice inversible \(A\) admet une telle factorisation si et seulement si ses
+\(n\) mineurs principaux dominants — les déterminants des blocs \(k \times k\) en haut à gauche —
+sont tous non nuls, et démontrer que \(L\) et \(U\) sont alors uniques.</li>
+<li>Exhiber une matrice inversible sans factorisation \(LU\). Démontrer ensuite que pour toute matrice
+carrée \(A\) il existe une matrice de permutation \(P\) telle que \(PA = LU\) : les échanges de lignes
+sauvent toujours l'algorithme.</li>
+<li>Démontrer qu'une matrice symétrique définie positive (LIN-11) n'a jamais besoin d'échange de
+lignes, et qu'elle admet une unique factorisation \(A = L L^{\mathsf{T}}\) avec \(L\) triangulaire
+inférieure à diagonale strictement positive — la factorisation de Cholesky, qui coûte environ la
+moitié des opérations du cas général.</li>
+<li>On définit le facteur de croissance de l'élimination comme le plus grand coefficient en valeur
+absolue apparaissant à un moment quelconque du processus, divisé par le plus grand coefficient en
+valeur absolue de \(A\). Démontrer que même avec pivotage partiel — en choisissant toujours le plus
+grand pivot disponible dans la colonne courante — le facteur de croissance pour une matrice
+\(n \times n\) peut atteindre \(2^{\,n-1}\), en construisant une matrice qui l'atteint. Expliquer
+pourquoi cela ne rend l'algorithme standard que conditionnellement stable, et pourquoi il est
+néanmoins utilisé partout.</li>
+</ol>
+</div>
+<p class="context">L'élimination est ancienne — le chapitre 8 des <i>Neuf Chapitres</i> la pratique —
+mais y voir une <i>factorisation</i> est moderne : l'astronome polonais Tadeusz Banachiewicz écrivit
+l'élimination comme un produit de matrices triangulaires en 1938, et Alan Turing, dans son article de
+1948 « Rounding-off errors in matrix processes », donna la notation \(LU\) et introduisit le
+conditionnement pour expliquer quand on pouvait faire confiance au procédé. L'analyse d'erreur
+inverse de Wilkinson dans les années 1960 acheva le tableau. La partie (d) est l'embarras le plus
+honnête du domaine : le pire cas est exponentiel, quasiment personne ne l'a jamais rencontré en
+pratique, et aucune explication satisfaisante de cet écart n'est connue. Notez aussi à quoi sert la
+factorisation : une fois \(A = LU\) en main, chaque nouveau second membre coûte \(O(n^2)\) plutôt que
+\(O(n^3)\), et c'est pourquoi personne ne calcule \(A^{-1}\).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9composition_LU">Décomposition LU — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Factorisation_de_Cholesky">Factorisation de Cholesky — Wikipédia</a></li>
+<li>Lecture : L. Trefethen &amp; D. Bau, <i>Numerical Linear Algebra</i>, leçons 20–23</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT OCW 18.06 Linear Algebra (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-37" data-level="Licence">
+<h3>LIN-37 · La pseudo-inverse et la plus petite solution <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(A\) une matrice réelle \(m \times n\). On dit qu'une matrice
+\(n \times m\) \(X\) est une <i>inverse de Moore–Penrose</i> de \(A\) si
+\[ AXA = A, \qquad XAX = X, \qquad (AX)^{\mathsf{T}} = AX, \qquad (XA)^{\mathsf{T}} = XA . \]</p>
+<ol class="parts" type="a">
+<li>Démontrer qu'une telle \(X\) existe pour toute \(A\) et qu'elle est unique ; on la note \(A^{+}\).</li>
+<li>Démontrer que si \(A = U \Sigma V^{\mathsf{T}}\) est une décomposition en valeurs singulières
+(LIN-13), alors \(A^{+} = V \Sigma^{+} U^{\mathsf{T}}\), où \(\Sigma^{+}\) s'obtient à partir de
+\(\Sigma\) en inversant les valeurs singulières non nulles et en transposant. En déduire que
+\(A^{+} = (A^{\mathsf{T}}A)^{-1}A^{\mathsf{T}}\) lorsque les colonnes de \(A\) sont indépendantes, et
+\(A^{+} = A^{-1}\) lorsque \(A\) est inversible.</li>
+<li>Démontrer que parmi tous les vecteurs minimisant \(\|Ax - b\|\) (LIN-27), le vecteur \(x = A^{+}b\)
+est l'unique de plus petite norme euclidienne — la pseudo-inverse résout donc le problème des moindres
+carrés même lorsque celui-ci n'a pas de solution unique.</li>
+<li>Démontrer que \(A \mapsto A^{+}\) n'est pas continue, en exhibant des matrices
+\(A_\varepsilon \to A\) avec \(\|A_\varepsilon^{+}\|\) non bornée. Montrer aussi que
+\((AB)^{+} = B^{+}A^{+}\) peut être mise en défaut. Expliquer ce que ces deux faits signifient pour
+quiconque calcule une pseudo-inverse en virgule flottante.</li>
+</ol>
+</div>
+<p class="context">E. H. Moore définit une « réciproque générale » de toute matrice en 1920, dans un
+résumé destiné à l'American Mathematical Society rédigé dans une notation personnelle que presque
+personne ne lut ; Arne Bjerhammar la redécouvrit vers 1951 en géodésie ; et en 1955 Roger Penrose —
+une décennie avant ses travaux sur les trous noirs — donna la caractérisation par les quatre
+conditions ci-dessus, qui reste la définition employée. La pseudo-inverse est ce que les logiciels
+statistiques et d'ingénierie calculent silencieusement lorsqu'un système est de rang déficient. La
+partie (d) est la raison pour laquelle ces logiciels exigent une tolérance : le rang n'est pas une
+fonction continue des coefficients, de sorte qu'une matrice presque de rang déficient a une
+pseudo-inverse énorme, et la « solution de norme minimale » peut sauter de façon discontinue lorsque
+les données bougent.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pseudo-inverse">Pseudo-inverse — Wikipédia</a></li>
+<li>Article : R. Penrose, « A generalized inverse for matrices » (1955), Proceedings of the Cambridge Philosophical Society 51, 406–413</li>
+<li>Lecture : G. Golub &amp; C. Van Loan, <i>Matrix Computations</i>, ch. 5</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/">MIT OCW 18.065 Matrix Methods in Data Analysis (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-38" data-level="Licence" data-kind="court">
+<h3>LIN-38 · Une matrice construite sur mesure <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour un polynôme unitaire
+\(p(x) = x^n + c_{n-1}x^{n-1} + \cdots + c_1 x + c_0\) sur un corps, soit \(C(p)\) sa matrice
+compagnon : des uns sur la sous-diagonale, les coefficients \(-c_0, -c_1, \dots, -c_{n-1}\) le long de
+la dernière colonne, et des zéros ailleurs. Démontrer que le polynôme caractéristique et le polynôme
+minimal de \(C(p)\) sont tous deux égaux à \(p\), et en déduire qu'une matrice carrée est semblable à
+une matrice compagnon si et seulement si ses polynômes minimal et caractéristique coïncident.</p>
+<p class="context">Le corollaire immédiat est que <i>tout</i> polynôme unitaire est le polynôme
+caractéristique de quelqu'un, si bien que le problème des valeurs propres et celui de la recherche
+des racines ne sont qu'un seul problème sous deux chapeaux. Cela a une conséquence tranchante :
+puisqu'il n'existe pas de formule par radicaux pour les racines d'une quintique générale (ALG-21), il
+ne peut exister d'algorithme exact fini pour les valeurs propres d'une matrice \(5 \times 5\)
+générale, et toute routine de calcul de valeurs propres jamais écrite est donc itérative. Le trafic
+circule dans les deux sens — les bibliothèques numériques calculent les racines d'un polynôme comme
+les valeurs propres de la matrice compagnon — et empiler des blocs compagnons donne la forme
+canonique rationnelle de Frobenius, cousine indépendante du corps de la réduction de Jordan de
+LIN-14.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_compagnon">Matrice compagnon — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9composition_de_Frobenius">Décomposition de Frobenius — Wikipédia</a></li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 3</li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="LIN-14" data-level="Master">
+<h3>LIN-14 · Pourquoi la réduction de Jordan existe <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(T\) un endomorphisme d'un espace vectoriel
+complexe de dimension finie \(V\).</p>
+<ol class="parts" type="i">
+<li>Démontrer que \(V\) est la somme directe des <i>sous-espaces
+caractéristiques</i> \(\ker (T - \lambda I)^n\), un pour chaque valeur propre \(\lambda\).</li>
+<li>Démontrer
+que tout endomorphisme nilpotent \(N\) (une de ses puissances est nulle) admet une base dans laquelle
+sa matrice est une somme directe de « blocs de décalage » — des zéros partout sauf des uns juste
+au-dessus de la diagonale — et que le multiensemble des tailles de blocs est uniquement déterminé par
+\(N\).</li>
+<li>Combiner (i) et (ii) pour
+démontrer le théorème de la réduction de Jordan : \(T\) admet une base dans laquelle sa matrice est
+une somme directe de blocs de Jordan \(\lambda I + \text{décalage}\), unique à l'ordre près.</li>
+<li>En conclure que deux matrices
+complexes sont semblables si et seulement si elles ont la même réduite de Jordan, et exhiber deux
+matrices ayant les mêmes polynômes caractéristique <i>et</i> minimal qui ne sont pas semblables.</li>
+</ol>
+</div>
+<p class="context">Camille Jordan démontra la forme canonique dans son <i>Traité des
+substitutions</i> de 1870 — pour des matrices sur les corps finis, chose remarquable, le cas complexe
+suivant — en s'appuyant sur la théorie des diviseurs élémentaires de Weierstrass (1868). C'est la
+réponse définitive à la question « à quoi ressemblent les applications linéaires ? » : tout
+endomorphisme est diagonal-plus-nilpotent, et la partie nilpotente relève de la combinatoire (une
+partition pour chaque valeur propre). La partie (iv) explique pourquoi le théorème est réellement
+nécessaire : aucune liste d'invariants polynomiaux en deçà des données complètes de blocs ne classifie
+la similitude.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/R%C3%A9duction_de_Jordan">Réduction de Jordan — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sous-espace_caract%C3%A9ristique">Sous-espace caractéristique — Wikipédia</a></li>
+<li>Lecture : S. Axler, <i>Linear Algebra Done Right</i>, ch. 8</li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-15" data-level="Master">
+<h3>LIN-15 · Perron–Frobenius et le vecteur propre à 25 000 000 000 de dollars <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Démontrer le théorème de Perron : une matrice carrée à
+coefficients strictement positifs possède une valeur propre réelle \(r &gt; 0\) qui est simple,
+strictement plus grande en valeur absolue que toute autre valeur propre, et qui possède un vecteur
+propre à coefficients strictement positifs — et aucune autre valeur propre n'a de vecteur propre à
+coefficients positifs ou nuls.</li>
+<li>Expliquer par un exemple ce qui peut échouer
+lorsque les coefficients sont seulement positifs ou nuls, et énoncer le raffinement de Frobenius pour
+les matrices irréductibles.</li>
+<li>PageRank modélise un internaute qui, depuis une page, suit un lien sortant au hasard avec
+probabilité \(\alpha\) (disons 0,85) et saute sinon vers une page uniformément aléatoire ; le vecteur
+de classement est la distribution stationnaire. Formuler la « matrice de Google » \(G\), démontrer via
+(i) que le classement existe et est unique, et démontrer que la méthode de la puissance itérée y
+converge à une vitesse géométrique gouvernée par \(\alpha\).</li>
+</ol>
+</div>
+<p class="context">Perron démontra son théorème en 1907, Frobenius l'étendit aux matrices positives
+irréductibles en 1912, et pendant quatre-vingt-dix ans il fonctionna discrètement à l'intérieur des
+modèles de population, de l'économie entrées-sorties (le prix Nobel de Leontief) et de la théorie des
+chaînes de Markov. Puis Brin et Page bâtirent dessus un moteur de recherche. Le titre de l'essai de
+Bryan et Leise dans SIAM Review — « The $25,000,000,000 eigenvector » — chiffrait le théorème à
+l'introduction en bourse de Google en 2004 ; l'estimation n'a vieilli que dans un seul sens.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Perron-Frobenius">Théorème de Perron-Frobenius — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/PageRank">PageRank — Wikipédia</a></li>
+<li>Article : S. Brin &amp; L. Page, « The Anatomy of a Large-Scale Hypertextual Web Search Engine » (1998), Computer Networks and ISDN Systems 30, 107–117</li>
+<li>Article : K. Bryan &amp; T. Leise, « The $25,000,000,000 Eigenvector: The Linear Algebra behind Google » (2006), SIAM Review 48, 569–581</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-16" data-level="Master">
+<h3>LIN-16 · Courant–Fischer et l'entrelacement des valeurs propres <span class="level">[Master]</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(A\) une matrice réelle symétrique \(n \times n\) de
+valeurs propres \(\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_n\). (i) Démontrer le théorème
+min–max de Courant–Fischer :
+\[ \lambda_k = \max_{\dim U = k} \; \min_{0 \ne x \in U} \; \frac{x^{\mathsf{T}} A x}{x^{\mathsf{T}} x}. \]
+(ii) En déduire le théorème d'entrelacement de Cauchy : si \(B\) s'obtient à partir de \(A\) en
+supprimant une ligne et la colonne correspondante, ses valeurs propres
+\(\mu_1 \ge \cdots \ge \mu_{n-1}\) vérifient
+\(\lambda_1 \ge \mu_1 \ge \lambda_2 \ge \mu_2 \ge \cdots \ge \mu_{n-1} \ge \lambda_n\).
+(iii) En déduire l'inégalité de perturbation de Weyl : pour \(A\) et \(E\) symétriques, les
+\(k\)-ièmes valeurs propres de \(A\) et de \(A + E\) diffèrent d'au plus la plus grande valeur propre
+en valeur absolue de \(E\). Expliquer pourquoi cela fait des valeurs propres des matrices symétriques
+des objets « stables », en net contraste avec les valeurs propres des matrices générales — et trouver
+un exemple frappant de ce contraste.</p>
+<p class="context">L'image variationnelle des valeurs propres — comme solutions de problèmes
+d'optimisation plutôt que comme racines de polynômes — descend des travaux de Rayleigh sur les
+vibrations (années 1870) via Fischer (1905) et Courant (1920), et c'est sous cette forme que la
+théorie spectrale fait un travail réel : l'entrelacement alimente tout, des suites de Sturm à la
+théorie spectrale des graphes, et l'inégalité de Weyl est la raison pour laquelle des fréquences
+mesurées signifient quelque chose malgré l'imperfection des appareils. En 2013, les familles
+entrelaçantes de polynômes — une descendante de (ii) — ont résolu le problème de Kadison–Singer,
+vieux de plusieurs décennies (Marcus, Spielman, Srivastava).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_min-max_de_Courant-Fischer">Théorème min-max de Courant-Fischer — Wikipédia</a></li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 4</li>
+<li>Lecture : L. Trefethen &amp; D. Bau, <i>Numerical Linear Algebra</i>, partie V</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-17" data-level="Master">
+<h3>LIN-17 · Strassen : multiplier les matrices plus vite qu'on ne vous l'a appris <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Montrer que des matrices \(2 \times 2\) sur un anneau commutatif
+quelconque peuvent être multipliées en n'utilisant que 7 multiplications d'éléments de l'anneau (au
+lieu des 8 évidentes), au prix d'additions supplémentaires.</li>
+<li>Démontrer qu'appliquer cela récursivement à des matrices
+par blocs multiplie deux matrices \(n \times n\) en \(O(n^{\log_2 7}) = O(n^{2.81})\) opérations
+élémentaires.</li>
+<li>Démontrer que 7 est optimal pour le cas \(2 \times 2\) : aucun algorithme bilinéaire n'emploie 6
+multiplications (Winograd, 1971 — difficile ; a minima, lire une démonstration et en reconstruire le
+plan).</li>
+<li>Montrer que tout algorithme demande au moins \(cn^2\) étapes, de sorte que l'exposant de la
+multiplication matricielle est compris entre 2 et \(\log_2 7\).</li>
+</ol>
+</div>
+<p class="context">Strassen trouva son algorithme en 1969 alors qu'il tentait de démontrer le
+contraire — que le pivot de Gauss est optimal ; son article s'intitule « Gaussian elimination is not
+optimal ». La découverte que l'algorithme cubique « évident » est battable a ouvert la théorie de la
+complexité algébrique et une course de cinquante ans, documentée en LIN-19. La méthode de Strassen
+n'est pas une curiosité : pour de grandes matrices, elle est implantée dans des bibliothèques de
+production, et sa structure récursive par blocs est le modèle de pratiquement toutes les
+multiplications matricielles rapides depuis lors.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_Strassen">Algorithme de Strassen — Wikipédia</a></li>
+<li>Article : V. Strassen, « Gaussian elimination is not optimal » (1969), Numerische Mathematik 13, 354–356</li>
+<li>Lecture : J. Landsberg, <i>Tensors: Geometry and Applications</i> (AMS GSM 128), ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-18" data-level="Master">
+<h3>LIN-18 · La porte des tenseurs <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b></p>
+<ol class="parts" type="i">
+<li>Définir le produit tensoriel \(V \otimes W\) de deux espaces
+vectoriels par sa propriété universelle : les applications bilinéaires issues de \(V \times W\)
+correspondent exactement aux applications linéaires issues de \(V \otimes W\). Démontrer qu'il existe,
+qu'il est unique à isomorphisme canonique près, et qu'il vérifie
+\(\dim(V \otimes W) = \dim V \cdot \dim W\).</li>
+<li>Démontrer que tout élément de \(V \otimes W\) n'est pas un tenseur « pur » \(v \otimes w\) ; le
+nombre minimal de tenseurs purs nécessaires pour écrire \(t\) est son <i>rang</i>. Montrer que pour
+\(t \in V \otimes W\), on retrouve ainsi le rang usuel d'une matrice.</li>
+<li>Montrer que la multiplication des matrices \(2 \times 2\)
+« est » un tenseur précis \(T \in U \otimes V \otimes W\) avec \(\dim U = \dim V = \dim W = 4\), et
+que l'algorithme de Strassen (LIN-17) est exactement une décomposition de ce tenseur en 7 tenseurs
+purs.</li>
+<li>Contrairement au rang matriciel, le rang tensoriel à trois facteurs peut sauter <i>vers le bas</i>
+à la limite : exhiber une suite de tenseurs de rang 2 convergeant vers un tenseur de rang 3. (Ce
+phénomène — le rang de bord — est la raison pour laquelle la complexité de la multiplication
+matricielle est si difficile à cerner.)</li>
+</ol>
+</div>
+<p class="context">Les produits tensoriels sont entrés en mathématiques par la théorie des invariants
+et la géométrie différentielle du dix-neuvième siècle, ont été faits algèbre par Whitney (1938), et
+rendus incontournables par la mécanique quantique, où l'espace des états de deux systèmes est le
+produit tensoriel de leurs espaces d'états — l'intrication est exactement l'existence de tenseurs non
+purs, partie (ii). La partie (iii), l'observation que les algorithmes rapides sont des décompositions
+tensorielles de rang faible, est due à Strassen et a transformé une question algorithmique en
+géométrie algébrique ; le rang de bord de la partie (iv) (Bini et al., 1979) en est la subtilité
+centrale. Ce problème est la porte de l'algèbre linéaire vers l'algèbre <i>multilinéaire</i>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_tensoriel">Produit tensoriel — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Tensor_rank_decomposition">Décomposition de rang tensoriel — Wikipédia (en anglais)</a></li>
+<li>Lecture : J. Landsberg, <i>Tensors: Geometry and Applications</i> (AMS GSM 128), ch. 1–2</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-28" data-level="Master" data-kind="court">
+<h3>LIN-28 · La nilpotence détectée par les traces <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(N\) une matrice \(n \times n\) sur \(\mathbb{C}\).
+Démontrer que les assertions suivantes sont équivalentes : \(N^k = 0\) pour un certain \(k\) ; toute
+valeur propre de \(N\) est \(0\) ; et \(\operatorname{tr}(N^k) = 0\) pour \(k = 1, 2, \dots, n\).</p>
+<p class="context">La troisième condition est remarquable parce qu'il s'agit d'une liste finie de
+conditions linéaires sur les coefficients de \(N^k\), détectant une propriété purement qualitative. Le
+pont est constitué par les identités de Newton, qui expriment les coefficients du polynôme
+caractéristique au moyen des sommes de puissances \(\operatorname{tr}(N^k)\) — et c'est exactement là
+qu'intervient l'hypothèse de caractéristique nulle : sur \(\mathbb{F}_p\), la matrice identité de
+taille \(p\) a toutes ses traces de puissances nulles sans être nilpotente. L'énoncé est l'ombre
+matricielle du théorème d'Engel en théorie de Lie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_nilpotente">Matrice nilpotente — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Identit%C3%A9s_de_Newton">Identités de Newton — Wikipédia</a></li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 1–2</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-29" data-level="Master" data-kind="court">
+<h3>LIN-29 · Une seule base pour deux matrices <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \(A\) et \(B\) deux matrices complexes \(n \times n\)
+diagonalisables. Démontrer qu'il existe une seule et même matrice inversible \(S\) rendant
+\(S^{-1} A S\) et \(S^{-1} B S\) toutes deux diagonales si et seulement si \(AB = BA\), et montrer par un exemple que la
+conclusion tombe en défaut si l'on suppose seulement que les matrices commutent sans être
+diagonalisables.</p>
+<p class="context">C'est le contenu algébrique d'un slogan physique : deux observables peuvent être
+mesurées simultanément précisément lorsque leurs opérateurs commutent, car c'est seulement alors
+qu'elles partagent une base propre. La démonstration — restreindre l'un des opérateurs aux espaces
+propres de l'autre — est le prototype du théorème spectral pour les familles commutatives d'opérateurs
+normaux, et de la diagonalisation simultanée d'une algèbre commutative entière, dont les matrices
+circulantes de LIN-30 sont l'exemple le plus net.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paire_de_matrices_commutantes">Paire de matrices commutantes — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_diagonalisable">Matrice diagonalisable — Wikipédia</a></li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 1.3</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-30" data-level="Master">
+<h3>LIN-30 · Les matrices circulantes, et pourquoi la matrice de Fourier apparaît <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une <i>circulante</i> est une matrice \(C\) dont les lignes sont les décalages
+cycliques successifs de la première : son coefficient \((j,k)\) est \(c_{k-j}\), les indices étant lus
+modulo \(n\). Soit \(S\) la circulante de première ligne \((0, 1, 0, \dots, 0)\) — le décalage
+cyclique — et posons \(\omega = e^{2\pi i / n}\).</p>
+<ol class="parts" type="i">
+<li>Démontrer que \(S^n = I\) et que toute circulante est égale à \(p(S)\) pour le polynôme
+\(p(z) = c_0 + c_1 z + \cdots + c_{n-1} z^{n-1}\). Démontrer réciproquement qu'une matrice est
+circulante si et seulement si elle commute avec \(S\).</li>
+<li>Démontrer que les vecteurs \(v_k = (1, \omega^{k}, \omega^{2k}, \dots, \omega^{(n-1)k})^{\mathsf{T}}\),
+pour \(k = 0, 1, \dots, n-1\), sont vecteurs propres de <i>toute</i> circulante \(n \times n\). En
+déduire que la matrice unitaire \(F\) de coefficients \(F_{jk} = n^{-1/2} \omega^{jk}\) — la
+transformation de Fourier discrète — diagonalise simultanément toutes les circulantes, avec
+\[ F^{*} C F = \operatorname{diag}\big(p(1), p(\omega), \dots, p(\omega^{n-1})\big). \]</li>
+<li>En déduire que les circulantes forment une algèbre commutative isomorphe à
+\(\mathbb{C}[z] / (z^n - 1)\), que \(\det C = \prod_{k=0}^{n-1} p(\omega^{k})\), et que \(Cx\) est la
+convolution cyclique de \(c\) avec \(x\) — de sorte qu'elle se calcule en \(O(n \log n)\) opérations
+par transformation de Fourier rapide.</li>
+<li>Démontrer que toute circulante est une matrice normale, et donner une formule pour \(C^{-1}\)
+lorsqu'elle existe. Expliquer ensuite pourquoi la partie (ii) est un cas particulier d'un principe
+général : une application linéaire commutant avec l'action d'un groupe abélien fini est diagonalisée
+par les caractères de ce groupe.</li>
+</ol>
+</div>
+<p class="context">La formule des valeurs propres de (ii) fut trouvée au dix-neuvième siècle — Catalan
+et Muir ont tous deux calculé les déterminants circulants — mais sa signification relève de la théorie
+des représentations : une circulante est exactement un opérateur commutant avec le décalage cyclique,
+et la base de Fourier discrète est la base des caractères de \(\mathbb{Z}/n\mathbb{Z}\). Cette seule
+observation explique pourquoi la transformation de Fourier change la convolution en multiplication, et
+pourquoi la FFT de Cooley–Tukey de 1965 — anticipée par Gauss dans une note non publiée de 1805 — est
+l'algorithme le plus utilisé en ingénierie. C'est aussi le modèle fini de la façon dont la symétrie
+diagonalise les opérateurs différentiels : les ondes planes sont fonctions propres du laplacien pour
+la même raison.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_circulante">Matrice circulante — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Transformation_de_Fourier_discr%C3%A8te">Transformation de Fourier discrète — Wikipédia</a></li>
+<li>Lecture : P. J. Davis, <i>Circulant Matrices</i></li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/">MIT OCW 18.065 Matrix Methods in Data Analysis (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-39" data-level="Master">
+<h3>LIN-39 · Le triangle de Schur, et ce que « normal » veut vraiment dire <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(A\) une matrice complexe \(n \times n\) et \(A^{*}\) sa transconjuguée. On
+dit que \(A\) est <i>normale</i> si \(A A^{*} = A^{*} A\), et l'on note \(\|A\|_F\) la norme de
+Frobenius \(\big(\sum_{i,j} |a_{ij}|^2\big)^{1/2}\).</p>
+<ol class="parts" type="a">
+<li>Démontrer le théorème de Schur : \(A = Q T Q^{*}\) avec \(Q\) unitaire et \(T\) triangulaire
+supérieure, et les valeurs propres peuvent être amenées à apparaître le long de la diagonale de \(T\)
+dans n'importe quel ordre prescrit.</li>
+<li>En déduire que \(A\) est normale si et seulement si elle est unitairement diagonalisable. En
+dériver les théorèmes spectraux pour les matrices hermitiennes, antihermitiennes et unitaires, et dire
+dans chaque cas exactement où dans \(\mathbb{C}\) les valeurs propres sont contraintes de se
+trouver.</li>
+<li>Démontrer l'inégalité de Schur : si \(\lambda_1, \dots, \lambda_n\) sont les valeurs propres de
+\(A\) comptées avec multiplicité, alors \(\sum_i |\lambda_i|^2 \le \|A\|_F^2\), avec égalité si et
+seulement si \(A\) est normale.</li>
+<li>Démontrer deux caractérisations supplémentaires : \(A\) est normale si et seulement si
+\(\|Ax\| = \|A^{*}x\|\) pour tout \(x\), et si et seulement si \(A^{*} = p(A)\) pour un certain
+polynôme \(p\). Démontrer enfin la forme de Schur réelle : toute matrice carrée réelle est
+orthogonalement semblable à une matrice triangulaire supérieure par blocs dont les blocs diagonaux
+sont \(1 \times 1\) et \(2 \times 2\).</li>
+</ol>
+</div>
+<p class="context">Issai Schur publia la triangularisation en 1909. Élève de Frobenius et principal
+algébriste de Berlin, il fut chassé de sa chaire par les lois raciales nazies, émigra en Palestine en
+1939 et mourut à Tel-Aviv deux ans plus tard. Son théorème est ce que la réduction de Jordan de
+LIN-14 ne peut pas être : le changement de base est unitaire, donc il ne peut amplifier les erreurs,
+alors que la similitude produisant une réduite de Jordan peut être arbitrairement mal conditionnée et
+que la structure de Jordan elle-même est détruite par une perturbation arbitrairement petite. C'est
+pourquoi l'algorithme QR calcule une forme de Schur et non une forme de Jordan, et pourquoi la
+normalité est <i>la</i> ligne de partage de l'algèbre linéaire numérique : pour les matrices normales,
+les valeurs propres sont parfaitement conditionnées, et tout ce qui est difficile — pseudospectres,
+croissance transitoire, conjecture de Crouzeix (LIN-21) — vit strictement de l'autre côté.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9composition_de_Schur">Décomposition de Schur — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_normale">Matrice normale — Wikipédia</a></li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Matrix Analysis</i>, 2<sup>e</sup> éd., ch. 2</li>
+<li>Lecture : L. Trefethen &amp; D. Bau, <i>Numerical Linear Algebra</i>, partie V</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-40" data-level="Master">
+<h3>LIN-40 · Produits de Kronecker et équation de Sylvester <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour \(A\) de taille \(m \times m\) et \(B\) de taille \(n \times n\), le
+<i>produit de Kronecker</i> \(A \otimes B\) est la matrice \(mn \times mn\) formée des blocs
+\(a_{ij}B\), et \(\operatorname{vec}(X)\) désigne le long vecteur obtenu en empilant les colonnes de
+\(X\).</p>
+<ol class="parts" type="a">
+<li>Démontrer la règle du produit mixte \((A \otimes B)(C \otimes D) = (AC) \otimes (BD)\) chaque fois
+que les produits sont définis, et en déduire que \(A \otimes B\) est inversible exactement lorsque
+\(A\) et \(B\) le sont toutes deux.</li>
+<li>Démontrer que les valeurs propres de \(A \otimes B\) sont exactement les produits
+\(\lambda_i \mu_j\) des valeurs propres de \(A\) et de \(B\), comptées avec multiplicité, et en
+déduire \(\operatorname{tr}(A \otimes B) = \operatorname{tr}(A)\operatorname{tr}(B)\) et
+\(\det(A \otimes B) = (\det A)^{n} (\det B)^{m}\).</li>
+<li>Démontrer l'identité
+\[ \operatorname{vec}(AXB) = \big(B^{\mathsf{T}} \otimes A\big)\operatorname{vec}(X), \]
+et l'utiliser, avec (b), pour démontrer le théorème de Sylvester : l'équation \(AX - XB = C\) admet une
+unique solution \(X\) pour tout \(C\) si et seulement si \(A\) et \(B\) n'ont aucune valeur propre en
+commun.</li>
+<li>En déduire le cas de Lyapunov : si toute valeur propre de \(A\) est de partie réelle strictement
+négative, alors \(A^{\mathsf{T}}P + PA = -Q\) admet exactement une solution \(P\) pour chaque \(Q\), et
+\(P\) est symétrique définie positive dès que \(Q\) l'est. Expliquer ce que cela dit du comportement à
+long terme de \(x' = Ax\) (LIN-12), et pourquoi cela transforme la « stabilité » en un test de
+faisabilité semi-défini.</li>
+</ol>
+</div>
+<p class="context">Le produit porte le nom de Kronecker sur de minces indices : Johann Georg Zehfuss
+l'écrivit en 1858, comme l'ont documenté Henderson, Pukelsheim et Searle dans une étude historique de
+1983, et il circula pendant des décennies sous le nom de « matrice de Zehfuss ». Sylvester posa son
+équation en 1884, et le critère spectral de (c) a été redécouvert à plusieurs reprises depuis, y
+compris sous forme d'opérateurs par Rosenblum en 1956. Conceptuellement, ce problème est LIN-18 en
+coordonnées : \(A \otimes B\) est la matrice du produit tensoriel de deux applications linéaires, et
+la partie (b) énonce que des systèmes indépendants multiplient leurs spectres — ce qui est exactement
+pourquoi l'espace des états de deux systèmes quantiques est un produit tensoriel. Pratiquement,
+l'équation de Lyapunov de (d) est la raison pour laquelle les automaticiens peuvent certifier la
+stabilité en résolvant un seul système linéaire plutôt qu'en intégrant une équation
+différentielle.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_de_Kronecker">Produit de Kronecker — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_de_Sylvester">Équation de Sylvester — Wikipédia</a></li>
+<li>Article : H. V. Henderson, F. Pukelsheim &amp; S. R. Searle, « On the history of the Kronecker product » (1983), Linear and Multilinear Algebra 14, 113–120</li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Topics in Matrix Analysis</i>, ch. 4</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-41" data-level="Master" data-kind="court">
+<h3>LIN-41 · Le théorème de Birkhoff sur les matrices bistochastiques <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> On dit qu'une matrice \(n \times n\) est <i>bistochastique</i>
+si ses coefficients sont positifs ou nuls et si la somme de chaque ligne et de chaque colonne vaut
+\(1\). Démontrer le théorème de Birkhoff–von Neumann : ces matrices forment un convexe compact dont
+les points extrémaux sont exactement les \(n!\) matrices de permutation, de sorte que toute matrice
+bistochastique est une combinaison convexe de matrices de permutation.</p>
+<p class="context">Birkhoff publia ce résultat en 1946, en trois brèves observations dans une revue de
+l'université de Tucumán ; von Neumann démontra un énoncé équivalent en 1953 en travaillant sur le
+problème d'affectation. Le théorème est en réalité le théorème des mariages de Hall en costume
+matriciel — le nœud de toute démonstration consiste à extraire une permutation du motif des
+coefficients strictement positifs — et il dit que les « permutations randomisées » sont le seul
+comportement bistochastique qui existe. Le polytope qu'il décrit est de dimension \((n-1)^2\) et
+possède \(n!\) sommets, et son volume n'est connu que pour de petits \(n\) ; la question naturelle
+suivante, celle de savoir à quel point le permanent d'une matrice bistochastique peut être petit,
+était la conjecture de van der Waerden de 1926, réglée indépendamment par Egorychev et Falikman en
+1980–81.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_bistochastique">Matrice bistochastique — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Birkhoff_polytope">Polytope de Birkhoff — Wikipédia (en anglais)</a></li>
+<li>Lecture : R. A. Brualdi, <i>Combinatorial Matrix Classes</i>, ch. 9</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="LIN-19" data-level="Recherche">
+<h3>LIN-19 · L'exposant de la multiplication matricielle <span class="level">[Recherche]</span></h3>
+<p class="statement"><b>Problème.</b> L'exposant \(\omega\) est la borne inférieure de tous les \(c\)
+tels que deux matrices \(n \times n\) puissent être multipliées en \(O(n^c)\) opérations
+arithmétiques. A-t-on \(\omega = 2\) ? <b>Statut : ouvert.</b> Ce que l'on sait :
+\(2 \le \omega \le \log_2 7 \approx 2.807\) (Strassen 1969, LIN-17) ; \(\omega &lt; 2.376\)
+(Coppersmith–Winograd, 1990) ; après un long plateau, \(\omega &lt; 2.3729\) (Le Gall 2014 ;
+Alman–Vassilevska Williams 2021), \(\omega &lt; 2.37188\) (Duan–Wu–Zhou, 2023),
+\(\omega &lt; 2.371552\) (Vassilevska Williams–Xu–Xu–Zhou, SODA 2024), \(\omega &lt; 2.371339\)
+(Alman–Duan–Vassilevska Williams–Xu–Xu–Zhou, SODA 2025). En août 2026, le même cadre de la méthode
+laser, avec une chaîne d'optimisation assistée par le système AlphaEvolve, a atteint
+\(\omega &lt; 2.371177\). Des barrières connues démontrent que le tenseur de Coppersmith–Winograd ne
+peut mener ces méthodes en dessous d'environ 2,3 : combler l'écart jusqu'à 2 — ou démontrer
+\(\omega &gt; 2\) — demande une idée véritablement neuve. Pour entrer dans le sujet : démontrez
+vous-même \(\omega \le 2.81\) (LIN-17), puis lisez l'approche par la théorie des groupes de Cohn et
+Umans, qui donnerait \(\omega = 2\) si certaines familles de groupes existent.</p>
+<p class="context">Savoir si le calcul le plus fondamental de l'algèbre linéaire peut se faire en
+temps essentiellement quadratique compte parmi les grands problèmes ouverts de l'informatique et de
+l'algèbre à la fois, relié par LIN-18 à la géométrie d'un seul tenseur. Les progrès depuis 2010 se
+font par incréments de \(10^{-3}\) puis de \(10^{-4}\) — chaque incrément étant un article
+substantiel — et l'étape de 2026 s'est fait remarquer comme une collaboration entre humain et
+machine. De nombreux théoriciens de la complexité croient que \(\omega = 2\) ; aucun ne sait le
+démontrer, et les algorithmes rapides praticables restent très en retrait de ces bornes théoriques,
+qui dissimulent des constantes astronomiques.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Complexit%C3%A9_de_la_multiplication_de_matrices">Complexité de la multiplication de matrices — Wikipédia</a></li>
+<li>Article : V. Vassilevska Williams, Y. Xu, Z. Xu, R. Zhou, « New Bounds for Matrix Multiplication: from Alpha to Omega » (2024), <a href="https://arxiv.org/abs/2307.07970">arXiv:2307.07970</a></li>
+<li>Article : J. Alman, R. Duan, V. Vassilevska Williams, Y. Xu, Z. Xu, R. Zhou, « More Asymmetry Yields Faster Matrix Multiplication » (2025), <a href="https://arxiv.org/abs/2404.16349">arXiv:2404.16349</a></li>
+<li>Article : E. Dupont et al., « Improving the matrix multiplication exponent with modern optimization and AlphaEvolve » (2026), <a href="https://arxiv.org/abs/2608.16884">arXiv:2608.16884</a></li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-20" data-level="Recherche">
+<h3>LIN-20 · La conjecture de Hadamard <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une <i>matrice de Hadamard</i> d'ordre \(n\) est une
+matrice \(n \times n\) à coefficients \(\pm 1\) dont les lignes sont deux à deux orthogonales. La
+conjecture de Hadamard : une telle matrice existe pour tout \(n\) divisible par 4.
+<b>Statut : ouvert.</b> Pour entrer dans le sujet :</p>
+<ol class="parts" type="i">
+<li>démontrer qu'une matrice de Hadamard d'ordre \(n &gt; 2\) force \(n \equiv 0 \pmod 4\) ;</li>
+<li>démontrer l'inégalité de Hadamard — une matrice \(n \times n\) à coefficients dans \([-1, 1]\)
+vérifie \(|\det| \le n^{n/2}\) — et montrer que l'égalité a lieu exactement pour les matrices de
+Hadamard ;</li>
+<li>construire des matrices de Hadamard de tous les ordres \(2^k\) (Sylvester, 1867) et d'ordre 12
+(construction de Paley, 1933). Ce que l'on sait : les constructions couvrent la plupart des ordres ;
+le plus petit cas indécis se situait à 428 jusqu'à ce que Kharaghani et Tayfeh-Rezaie en trouvent une
+en 2004, puis à 668 pendant deux décennies — jusqu'en août 2026, où une matrice d'ordre 668 a été
+annoncée par Levent Alpöge et ses collaborateurs (un certificat vérifiable par machine, trouvé avec
+assistance informatique). Les plus petits ordres encore indécis sont 716 et 892 ; la conjecture
+générale reste grande ouverte.</li>
+</ol>
+</div>
+<p class="context">Les matrices de Hadamard sont entrées par l'inégalité sur le déterminant (Hadamard,
+1893), mais Sylvester avait joué avec la famille des \(2^k\) des décennies plus tôt. Elles relèvent à
+la fois de la combinatoire extrémale, de la théorie des codes (le code de Reed–Muller embarqué sur
+Mariner 9) et des plans d'expérience (Plackett–Burman). La forme de la conjecture est typique de la
+combinatoire difficile : une densité écrasante d'exemples, aucune construction générale — chaque ordre
+récalcitrant n'est tombé que devant une idée algébrique sur mesure, plus, dans le dernier cas, un
+calcul sérieux.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_de_Hadamard">Matrice de Hadamard — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Paley_construction">Construction de Paley — Wikipédia (en anglais)</a></li>
+<li>Article : H. Kharaghani &amp; B. Tayfeh-Rezaie, « A Hadamard matrix of order 428 » (2005), Journal of Combinatorial Designs 13, 435–440</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-21" data-level="Recherche">
+<h3>LIN-21 · La conjecture de Crouzeix <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'<i>image numérique</i> d'une matrice carrée complexe
+\(A\) est l'ensemble \(W(A) = \{ x^* A x : \|x\| = 1 \}\) du plan complexe — un convexe compact
+contenant les valeurs propres. Conjecture de Crouzeix (2004) : pour toute matrice \(A\) et tout
+polynôme \(p\),
+\[ \| p(A) \| \le 2 \max_{z \in W(A)} |p(z)|, \]
+où \(\|\cdot\|\) est la norme d'opérateur. <b>Statut : ouvert.</b> Ce que l'on sait : l'inégalité vaut
+avec la constante 11,08 (Crouzeix, 2007) et avec la constante \(1 + \sqrt{2}\) (Crouzeix–Palencia,
+2017) ; la constante 2 serait optimale, et la conjecture est vérifiée pour les matrices
+\(2 \times 2\) et diverses classes particulières. Pour entrer dans le sujet :</p>
+<ol class="parts" type="i">
+<li>démontrer que \(W(A)\) est convexe (le
+théorème de Toeplitz–Hausdorff) ;</li>
+<li>démontrer la conjecture — avec la constante 1 — pour les matrices normales,
+en utilisant le théorème spectral ;</li>
+<li>montrer par un exemple que pour \(A\) non normale, \(\|p(A)\|\) peut
+dépasser \(\max_{W(A)} |p|\), de sorte qu'une constante strictement supérieure à 1 est réellement
+nécessaire.</li>
+</ol>
+</div>
+<p class="context">La conjecture demande jusqu'où une matrice non normale peut amplifier un polynôme
+au-delà de ce que prédit son « ombre » dans le plan — la forme quantitative la plus serrée de l'écart
+entre comportement normal et non normal qui domine l'analyse numérique (le même écart qui se cache
+derrière les pseudospectres et la croissance transitoire). Michel Crouzeix la posa après avoir démontré
+la première constante finie ; l'élégante démonstration de \(1 + \sqrt 2\) par Crouzeix et Palencia en
+2017 a ranimé le domaine, et le dernier pas de \(1+\sqrt{2}\) à 2 a résisté à une décennie d'efforts,
+tant des théoriciens des opérateurs que des analystes numériciens.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Crouzeix%27s_conjecture">Conjecture de Crouzeix — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Numerical_range">Image numérique — Wikipédia (en anglais)</a></li>
+<li>Article : M. Crouzeix &amp; C. Palencia, « The numerical range is a \((1+\sqrt{2})\)-spectral set » (2017), SIAM J. Matrix Anal. Appl. 38, 649–655</li>
+
+<li>Voir aussi : <a href="pure-functional-analysis.html#FA-29">FA-29</a> donne la formulation en termes d'opérateurs sur un espace de Hilbert de la même conjecture.</li></ul>
+</section>
+
+<section class="problem" id="LIN-31" data-level="Recherche" data-kind="court">
+<h3>LIN-31 · La conjecture de Hadamard circulante <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Une matrice de Hadamard circulante est une circulante (LIN-30) à
+coefficients \(\pm 1\) dont les lignes sont deux à deux orthogonales (LIN-20) ; les seuls exemples
+connus sont d'ordre \(1\) et \(4\). Démontrer qu'il n'en existe pas d'autres, ou en exhiber une d'ordre
+strictement supérieur à \(4\) — <b>statut : ouvert.</b></p>
+<p class="context">Ryser conjectura cela vers 1963, et c'est l'un de ces rares problèmes ouverts où le
+premier pas est un véritable plaisir : diagonaliser par la matrice de Fourier (LIN-30) transforme
+l'orthogonalité en la condition \(|p(\omega^k)| = \sqrt{n}\) pour toute racine \(n\)-ième de l'unité,
+ce qui force \(n\) à valoir quatre fois un carré parfait et livre le problème à la théorie algébrique
+des nombres. Les travaux de Turyn sur les nombres premiers autoconjugués et la méthode de la
+« descente de corps » de Leung et Schmidt ont depuis éliminé tous les ordres \(4 &lt; n \le 10^{11}\)
+sauf une poignée de candidats — un domaine vérifié considérable, sans démonstration en vue. La
+conjecture équivaut à l'inexistence de certaines suites binaires parfaites, ce qui explique pourquoi
+les ingénieurs du radar et des télécommunications s'y intéressent.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_circulante">Matrice circulante — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_de_Hadamard">Matrice de Hadamard — Wikipédia</a></li>
+<li>Article : K. H. Leung &amp; B. Schmidt, « New restrictions on possible orders of circulant Hadamard matrices » (2012), Designs, Codes and Cryptography</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-32" data-level="Recherche" data-kind="court">
+<h3>LIN-32 · Permanent contre déterminant <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Le permanent d'une matrice \(n \times n\) est
+\(\operatorname{per}(X) = \sum_{\sigma \in S_n} \prod_{i=1}^{n} x_{i \sigma(i)}\) — le déterminant
+privé de tous ses signes moins — et sa <i>complexité déterminantale</i> \(\mathrm{dc}(n)\) est le plus
+petit \(m\) pour lequel \(\operatorname{per}(X) = \det(M)\) pour une certaine matrice \(m \times m\)
+\(M\) dont les coefficients sont des fonctions affines des coefficients de \(X\). Déterminer la
+croissance de \(\mathrm{dc}(n)\) : Valiant a conjecturé qu'elle est superpolynomiale, et
+<b>statut : ouvert</b> — les meilleures bornes connues sont \(\mathrm{dc}(n) \ge n^2/2\)
+(Mignon–Ressayre, 2004) contre une borne supérieure exponentielle d'environ \(2^n\).</p>
+<p class="context">Valiant montra en 1979 que le permanent est complet pour la classe de comptage
+\(\#\mathrm{P}\) alors que le déterminant se calcule en temps polynomial, de sorte que ces deux
+polynômes presque identiques siègent de part et d'autre d'une frontière de complexité ; les séparer
+est l'analogue algébrique de P contre NP. Le problème s'énonce entièrement en termes d'algèbre
+linéaire, et il est à l'origine de la théorie géométrique de la complexité, le programme de Mulmuley
+et Sohoni pour l'attaquer par la théorie des représentations et la géométrie algébrique. L'écart entre
+\(n^2/2\) et \(2^n\) n'a presque pas bougé en deux décennies.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Permanent_%28math%C3%A9matiques%29">Permanent (mathématiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Computing_the_permanent">Calcul du permanent — Wikipédia (en anglais)</a></li>
+<li>Article : T. Mignon &amp; N. Ressayre, « A quadratic bound for the determinant and permanent problem » (2004), International Mathematics Research Notices 2004, n<sup>o</sup> 79, 4241–4253</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-33" data-level="Recherche">
+<h3>LIN-33 · Combien de droites équiangulaires tiennent dans l'espace ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une famille de droites passant par l'origine de \(\mathbb{R}^d\) est
+<i>équiangulaire</i> si deux quelconques d'entre elles font le même angle. Notons \(N(d)\) le plus
+grand nombre de telles droites, et \(N_\alpha(d)\) le plus grand nombre lorsque l'angle commun
+\(\theta\) est fixé avec \(\alpha = \cos\theta\).</p>
+<ol class="parts" type="i">
+<li>Démontrer la borne de Gerzon \(N(d) \le \tbinom{d+1}{2}\), en montrant que les projections
+orthogonales sur les droites sont linéairement indépendantes à l'intérieur de l'espace de dimension
+\(\tbinom{d+1}{2}\) des matrices symétriques \(d \times d\).</li>
+<li>Démontrer la borne relative : si les droites sont engendrées par des vecteurs unitaires \(u_i\)
+vérifiant \(|\langle u_i, u_j \rangle| = \alpha\) pour \(i \ne j\), et si \(d &lt; 1/\alpha^2\), alors
+\[ N_\alpha(d) \;\le\; \frac{d\,(1 - \alpha^2)}{1 - d\,\alpha^2}. \]</li>
+<li>Construire 6 droites équiangulaires dans \(\mathbb{R}^3\) (les six diagonales d'un icosaèdre
+régulier) et 28 dans \(\mathbb{R}^7\), et démontrer que 6 est optimal dans \(\mathbb{R}^3\).</li>
+<li>Étudier le théorème de 2021 de Jiang, Tidor, Yao, Zhang et Zhao, qui détermine \(N_\alpha(d)\)
+pour tout \(\alpha\) fixé et tout \(d\) suffisamment grand, et rédiger un exposé de son ingrédient
+spectral clé : un graphe connexe de degré borné a une multiplicité sous-linéaire de sa deuxième valeur
+propre. <b>Statut :</b> le problème à angle fixé est réglé pour \(d\) grand ; la valeur exacte de
+\(N(d)\) n'est connue que pour une courte liste de dimensions et reste ouverte en général, tout comme
+le comportement lorsque l'on autorise l'angle à décroître avec \(d\).</li>
+</ol>
+</div>
+<p class="context">Haantjes demanda en 1948 combien de droites équiangulaires tiennent dans l'espace de
+dimension trois ; van Lint et Seidel entamèrent la théorie systématique en 1966, et le mémoire de
+Lemmens et Seidel de 1973 en fit une famille de conjectures précises qui tinrent près de cinquante
+ans. Le sujet est un carrefour : les systèmes de droites équiangulaires sont les mêmes données que
+certains bigraphes et graphes fortement réguliers, ce sont des codes sphériques optimaux, et leur
+analogue complexe — \(d^2\) droites équiangulaires dans \(\mathbb{C}^d\), les SIC-POVM de
+l'information quantique — est lui-même un fameux problème ouvert. La résolution de 2021 du cas à angle
+fixé est venue d'une direction inattendue, la théorie spectrale des graphes, et le régime exponentiel
+est aujourd'hui activement attaqué.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Equiangular_lines">Droites équiangulaires — Wikipédia (en anglais)</a></li>
+<li>Article : Z. Jiang, J. Tidor, Y. Yao, S. Zhang, Y. Zhao, « Equiangular lines with a fixed angle » (2021), Annals of Mathematics 194, 729–743, <a href="https://arxiv.org/abs/1907.12466">arXiv:1907.12466</a></li>
+<li>Article : I. Balla &amp; M. Bucić, « Equiangular lines via improved eigenvalue multiplicity » (2024), <a href="https://arxiv.org/abs/2409.16219">arXiv:2409.16219</a></li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="LIN-42" data-level="Recherche">
+<h3>LIN-42 · À quelle vitesse un produit de matrices peut-il croître ? <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour un ensemble fini \(\mathcal{M} = \{A_1, \dots, A_m\}\) de matrices réelles
+\(n \times n\), le <i>rayon spectral joint</i> est
+\[ \rho(\mathcal{M}) \;=\; \lim_{k \to \infty} \; \max \big\{ \|A_{i_1} A_{i_2} \cdots A_{i_k}\|^{1/k} \;:\; A_{i_j} \in \mathcal{M} \big\}, \]
+le taux de croissance asymptotique le plus rapide réalisable par des produits pris dans
+\(\mathcal{M}\).</p>
+<ol class="parts" type="a">
+<li>Démontrer que la limite existe et ne dépend pas de la norme sous-multiplicative employée (lemme
+sous-additif de Fekete). Pour \(m = 1\), démontrer qu'il s'agit du rayon spectral ordinaire — la
+formule de Gelfand.</li>
+<li>Démontrer que tout produit de matrices de \(\mathcal{M}\) tend vers \(0\) lorsque sa longueur
+croît si et seulement si \(\rho(\mathcal{M}) &lt; 1\), et démontrer l'inégalité
+\(\rho(\mathcal{M}) \ge \rho(A_{i_1} \cdots A_{i_k})^{1/k}\) pour tout produit fini. (Que la borne
+supérieure du membre de droite soit égale à \(\rho\) est le théorème de Berger–Wang, 1992.)</li>
+<li>Démontrer que \(\rho(\mathcal{M}) = \max_i \rho(A_i)\) lorsque les matrices sont simultanément
+trigonalisables, et exhiber un couple de matrices \(2 \times 2\) pour lequel
+\(\rho(\mathcal{M}) &gt; \max_i \rho(A_i)\) — chaque matrice prise séparément peut donc être stable
+alors que l'un de leurs produits ne l'est pas.</li>
+<li>Lire l'état du sujet et en rédiger un exposé. <b>Statut :</b> la conjecture de finitude de Lagarias
+et Wang (1995) — selon laquelle \(\rho\) est toujours atteint par un produit périodique — est
+<b>fausse</b> (Bousch et Mairesse, 2002 ; un contre-exemple explicite a été donné par Hare, Morris,
+Sidorov et Theys en 2011). Calculer ou approcher \(\rho\) est NP-difficile, et décider si
+\(\rho \le 1\) est <b>indécidable</b> (Blondel et Tsitsiklis). Savoir si la question stricte « a-t-on
+\(\rho &lt; 1\) ? » est décidable est, autant qu'on sache, <b>ouvert</b> — de même que la description
+des ensembles de matrices qui possèdent effectivement la propriété de finitude. En attendant, des
+algorithmes pratiques approchent bien \(\rho\) pour les ensembles rencontrés dans les
+applications.</li>
+</ol>
+</div>
+<p class="context">Rota et Strang introduisirent cette quantité au MIT en 1960 et elle resta discrète
+jusqu'à ce que Daubechies et Lagarias découvrent, à la fin des années 1980, que la régularité d'une
+ondelette est gouvernée par le rayon spectral joint de deux matrices construites à partir de ses
+coefficients de raffinement. Elle décide aujourd'hui de la stabilité des systèmes commutés en
+automatique, de la convergence des schémas de subdivision en conception assistée par ordinateur, et de
+la croissance de suites combinatoires. La situation mathématique est d'une netteté inhabituelle : la
+quantité est définie par une limite d'une seule ligne, elle est calculable en pratique avec la
+précision que l'on veut, et pourtant les questions naturelles à son sujet sont prouvablement
+intraitables ou indécidables — un point de rencontre concret entre l'algèbre linéaire et la
+calculabilité, qui récompense une lecture lente.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Joint_spectral_radius">Rayon spectral joint — Wikipédia (en anglais)</a></li>
+<li>Lecture : R. Jungers, <i>The Joint Spectral Radius: Theory and Applications</i> (Springer, 2009)</li>
+<li>Article : T. Bousch &amp; J. Mairesse, « Asymptotic height optimization for topical IFS, Tetris heaps, and the finiteness conjecture » (2002), Journal of the American Mathematical Society</li>
+<li>Article : K. G. Hare, I. D. Morris, N. Sidorov &amp; J. Theys, « An explicit counterexample to the Lagarias–Wang finiteness conjecture » (2011), Advances in Mathematics</li>
+</ul>
+</section>
+
+<section class="problem" id="LIN-43" data-level="Recherche" data-kind="court">
+<h3>LIN-43 · La conjecture BMV, aujourd'hui théorème de Stahl <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \(A\) et \(B\) des matrices hermitiennes
+\(n \times n\) semi-définies positives et soit \(m \ge 0\) un entier ; démontrer que tout coefficient
+du polynôme \(t \mapsto \operatorname{tr}\big((A + tB)^{m}\big)\) est positif ou nul.
+<b>Statut : démontré</b> — c'est la forme de Lieb–Seiringer de la conjecture de
+Bessis–Moussa–Villani de 1975, réglée par Herbert Stahl en 2011 par un argument d'analyse complexe et
+simplifiée par Eremenko en 2015 ; la tâche honnête consiste donc à reconstruire une démonstration ou à
+trouver une voie plus courte relevant de la seule analyse matricielle.</p>
+<p class="context">Bessis, Moussa et Villani demandèrent en 1975 si
+\(\operatorname{tr} e^{-(A + tB)}\) est la transformée de Laplace d'une mesure positive, ce qui aurait
+justifié les approximants de Padé que les physiciens appliquaient déjà aux séries de perturbation en
+mécanique statistique quantique. La reformulation de Lieb et Seiringer en 2004 a transformé cette
+question analytique en l'énoncé fini et purement algébrique ci-dessus — et il a encore tenu en échec
+les analystes matriciels pendant sept ans, parce que développer \((A + tB)^m\) produit des mots en deux
+lettres non commutantes dont les traces refusent d'être comparées terme à terme. La démonstration de
+Stahl est venue d'une direction inattendue, la théorie des surfaces de Riemann et l'asymptotique des
+polynômes orthogonaux, et en 2023 Heinävaara l'a déduite d'un théorème de structure pour les matrices
+hermitiennes. C'est une bonne étude de cas sur la durée pendant laquelle une inégalité matricielle
+« manifestement vraie » peut résister.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Stahl%27s_theorem">Théorème de Stahl — Wikipédia (en anglais)</a></li>
+<li>Article : H. R. Stahl, « Proof of the BMV conjecture » (2013), Acta Mathematica</li>
+<li>Lecture : R. Horn &amp; C. Johnson, <i>Topics in Matrix Analysis</i>, ch. 6</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT OCW 18.06 Linear Algebra (en anglais)</a> (les cours légendaires de Strang),
+<a href="https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/">MIT OCW 18.065 Matrix Methods in Data Analysis (en anglais)</a>,
+<a href="https://ocw.mit.edu/courses/18-701-algebra-i-fall-2010/">MIT OCW 18.701 Algebra I (en anglais)</a> (le point de vue abstrait).</li>
+<li>Livres : G. Strang, <i>Introduction to Linear Algebra</i> (les matrices d'abord, l'intuition d'abord) ;
+S. Axler, <i>Linear Algebra Done Right</i> (les opérateurs d'abord, les déterminants en dernier) ;
+P. Halmos, <i>Finite-Dimensional Vector Spaces</i> (le pont classique vers l'abstraction) ;
+L. Trefethen &amp; D. Bau, <i>Numerical Linear Algebra</i> (ce que font réellement les ordinateurs) ;
+R. Horn &amp; C. Johnson, <i>Matrix Analysis</i> (l'étagère de référence).</li>
+<li>Articles et essais : C. Moler &amp; C. Van Loan, « Nineteen Dubious Ways to Compute the Exponential of a Matrix, Twenty-Five Years Later », SIAM Review 45 (2003) ;
+K. Bryan &amp; T. Leise, « The $25,000,000,000 Eigenvector », SIAM Review 48 (2006) ;
+V. Strassen, « Gaussian elimination is not optimal », Numer. Math. 13 (1969).</li>
+</ul>
+<p>Voir aussi : <a href="pure-algebra.html">Algèbre abstraite</a>, <a href="applied-optimization.html">Optimisation</a>, <a href="open-problems.html">Problèmes ouverts</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimisation et théorie des jeux — Hors de la Caverne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script src="theme.js"></script>
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<nav>
+<a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="highschool.html">Lycée</a> ·
+<a href="index.html#pure">Pures</a> ·
+<a href="index.html#applied">Appliquées</a> ·
+<a href="puzzles.html">Casse-tête</a> ·
+<a href="open-problems.html">Problèmes ouverts</a> ·
+<a href="proofs.html">L'art de la démonstration</a> ·
+<a href="worksheet.html">Feuille d'exercices</a> ·
+<a href="resources.html">Ressources</a>
+<button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
+</nav>
+<hr>
+
+<h1>Optimisation et théorie des jeux</h1>
+<p class="lede">L'optimisation pose la plus ancienne question appliquée des mathématiques — quel est le mieux que nous puissions faire, et comment démontrer que rien de meilleur n'existe ? — tandis que la théorie des jeux la pose quand la réponse dépend de ce que font tous les autres. Les deux domaines sont nés deux fois : une fois dans l'Antiquité (le problème isopérimétrique de Didon, le principe de Fermat) et une fois dans les années 1940, quand George Dantzig inventa la méthode du simplexe pour la planification de l'armée de l'air américaine et que John von Neumann et Oskar Morgenstern bâtirent une théorie du comportement stratégique ; les deux hommes découvrirent dans l'heure qui suivit leur rencontre que la programmation linéaire et les jeux à somme nulle sont le même sujet déguisé. Travailler ici, c'est assister à un dialogue entre la géométrie et l'économie : tout maximum cache un certificat, tout prix cache un dual, et la démonstration que vous avez terminé est souvent plus belle que la réponse elle-même.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/applied-optimization.tex" download>source LaTeX</a> · <a href="tex/applied-optimization.pdf" download>PDF compilé</a></p>
+<!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
+<hr>
+
+<h2>Lycée</h2>
+
+<section class="problem" id="OPT-01" data-level="Lycée">
+<h3>OPT-01 · Le meilleur rectangle, sans le calcul différentiel <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Aucune dérivée n'est autorisée dans ce problème.</p>
+<ol class="parts" type="a">
+<li>Démontrez que pour tous réels positifs ou nuls \(a\) et \(b\),
+\[ \frac{a+b}{2} \ge \sqrt{ab}, \]
+avec égalité exactement lorsque \(a = b\).</li>
+<li>Déduisez-en que parmi tous les rectangles de périmètre donné, le carré a la plus grande aire.</li>
+<li>Un agriculteur dispose de \(100\) m de clôture et veut enclore un enclos rectangulaire adossé à une rivière rectiligne, en ne clôturant que trois côtés. Déterminez, avec démonstration, les dimensions qui donnent l'aire maximale.</li>
+</ol>
+</div>
+<p class="context">L'inégalité entre moyenne arithmétique et moyenne géométrique est le plus ancien outil d'optimisation qui soit : les <i>Éléments</i> d'Euclide (livre VI) contiennent déjà le cas à deux variables sous un habit géométrique, et l'instinct isopérimétrique derrière (b) remonte à la légende de la reine Didon délimitant Carthage avec une peau de bœuf. Les maxima sous contrainte ont été démontrés rigoureusement deux mille ans avant l'existence du calcul différentiel ; retrouver cette capacité est tout l'objet de ce problème.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_arithm%C3%A9tico-g%C3%A9om%C3%A9trique">Inégalité arithmético-géométrique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_isop%C3%A9rim%C3%A9trique">Théorème isopérimétrique — Wikipédia</a></li>
+<li>Lecture : Steele, <i>The Cauchy–Schwarz Master Class</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-02" data-level="Lycée">
+<h3>OPT-02 · Une boîte ouverte et l'inégalité arithmético-géométrique à trois variables <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une boîte à base carrée et sans couvercle doit contenir exactement \(32\,000\) cm³.</p>
+<ol class="parts" type="a">
+<li>Démontrez l'inégalité entre moyenne arithmétique et moyenne géométrique pour trois réels positifs ou nuls :
+\[ \frac{x+y+z}{3} \ge \sqrt[3]{xyz}, \]
+avec égalité exactement lorsque \(x = y = z\). (La récurrence en avant puis en arrière de Cauchy est une voie possible ; trouvez-en une correcte, quelle qu'elle soit.)</li>
+<li>À l'aide de (a) — et non du calcul différentiel — déterminez, avec démonstration, le côté de la base et la hauteur qui minimisent l'aire totale de la base et des quatre côtés, et démontrez que votre configuration est l'unique minimiseur.</li>
+</ol>
+</div>
+<p class="context">Cauchy a démontré l'inégalité arithmético-géométrique générale à n variables dans son <i>Cours d'analyse</i> de 1821, par une récurrence qui bondit en avant vers les puissances de deux puis redescend pas à pas — l'un des schémas de démonstration les plus imités de l'analyse. La partie (b) est le genre de problème de conception (le moins de matière pour une capacité fixée) qui remplissait les manuels des XVIII<sup>e</sup> et XIX<sup>e</sup> siècles ; le résoudre par pure inégalité, en découpant l'aire de surface en morceaux de produit constant, donne un avant-goût de la façon dont pensent ceux qui optimisent, avant qu'ils ne saisissent un gradient.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_arithm%C3%A9tico-g%C3%A9om%C3%A9trique">Inégalité arithmético-géométrique — Wikipédia</a></li>
+<li>Lecture : Niven, <i>Maxima and Minima Without Calculus</i></li>
+<li>Lecture : Steele, <i>The Cauchy–Schwarz Master Class</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-03" data-level="Lycée">
+<h3>OPT-03 · Le problème du régime alimentaire, concrètement <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'aliment A coûte 50 centimes les 100 g et fournit 20 g de protéines et 200 kcal ; l'aliment B coûte 20 centimes les 100 g et fournit 2 g de protéines et 250 kcal. Le régime d'une journée doit apporter au moins 60 g de protéines et au moins 2000 kcal.</p>
+<ol class="parts" type="a">
+<li>Justifiez le modèle : minimiser \(50a + 20b\) sous les contraintes \(20a + 2b \ge 60\), \(200a + 250b \ge 2000\), \(a, b \ge 0\).</li>
+<li>Tracez la région admissible et trouvez le régime le moins cher.</li>
+<li>Certifiez l'optimalité : trouvez des multiplicateurs positifs ou nuls \(y_1, y_2\) pour les deux contraintes nutritionnelles tels que \(y_1 \cdot (\text{ligne des protéines}) + y_2 \cdot (\text{ligne des calories})\) démontre, en deux lignes d'algèbre, qu'aucun régime admissible ne peut coûter moins que le vôtre.</li>
+</ol>
+</div>
+<p class="context">C'est le problème du régime alimentaire, posé par l'économiste George Stigler en 1945 : quelle est la façon la moins chère de rester en vie ? Stigler a résolu heuristiquement une version à 77 aliments et 9 nutriments (39,93 $ par an aux prix de 1939) ; en 1947, l'équipe de Dantzig l'a résolue de nouveau avec la toute nouvelle méthode du simplexe — neuf employés sur des calculatrices de bureau pendant environ 120 jours-personne — et l'estimation de Stigler ne s'écartait que de 24 cents. La partie (c) est votre premier certificat dual : les multiplicateurs sont des prix pour les protéines et les calories, et ils sont le germe de toute la théorie d'OPT-06.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Stigler_diet">Problème du régime de Stigler — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Optimisation_lin%C3%A9aire">Optimisation linéaire — Wikipédia</a></li>
+<li>Article : Stigler, « The Cost of Subsistence », Journal of Farm Economics 27 (1945)</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/">MIT OCW 15.053 Optimization Methods in Management Science</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-04" data-level="Lycée">
+<h3>OPT-04 · Le problème des transports, concrètement <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'entrepôt 1 détient 30 caisses, l'entrepôt 2 en détient 25 ; les magasins X, Y, Z ont besoin de 20, 20 et 15 caisses. Expédier une caisse coûte, en dollars : de E1 vers (X, Y, Z) : 4, 6, 9 ; de E2 : 5, 3, 8.</p>
+<ol class="parts" type="a">
+<li>Formulez le plan d'expédition le moins cher comme un programme linéaire en les six inconnues \(x_{ij} \ge 0\).</li>
+<li>Trouvez un plan optimal à la main.</li>
+<li>Démontrez que votre plan est optimal en attachant un nombre \(u_i\) à chaque entrepôt et \(v_j\) à chaque magasin avec \(u_i + v_j \le c_{ij}\) pour chaque route, puis en comparant \(\sum_i (\text{offre}_i) u_i + \sum_j (\text{demande}_j) v_j\) à votre coût.</li>
+</ol>
+</div>
+<p class="context">Le problème des transports a été formulé par Frank Hitchcock en 1941 et, indépendamment et plus tôt, par Leonid Kantorovitch en Union soviétique, dont l'opuscule de 1939 sur la planification de la production lui valut le prix Nobel d'économie 1975 (partagé avec Tjalling Koopmans) ; son ancêtre continu est le mémoire de Gaspard Monge de 1781 sur les déblais et remblais des fortifications. Les potentiels \(u, v\) de (c) sont des prix fictifs aux deux extrémités de chaque route — encore la dualité, un an avant que quiconque l'eût nommée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_du_transport">Théorie du transport — Wikipédia</a></li>
+<li>Lecture : Papadimitriou et Steiglitz, <i>Combinatorial Optimization: Algorithms and Complexity</i>, ch. 7</li>
+<li>Cours : <a href="https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/">MIT OCW 15.053 Optimization Methods in Management Science</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-24" data-level="Lycée" data-kind="court">
+<h3>OPT-24 · Le plus court chemin de Héron <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Les points \(A\) et \(B\) sont du même côté d'une droite
+\(\ell\). Démontrez que parmi tous les chemins qui vont de \(A\) à un point \(P\) de \(\ell\) puis
+à \(B\), le plus court est l'unique chemin pour lequel \(AP\) et \(PB\) font des angles égaux avec
+\(\ell\) — et n'utilisez que la géométrie plane, pas de calcul différentiel.</p>
+<p class="context">Héron d'Alexandrie a démontré cela dans sa <i>Catoptrique</i> vers le premier
+siècle, déduisant la loi de la réflexion de l'hypothèse que la lumière emprunte le plus court
+chemin : le premier argument d'optimisation en physique, dix-sept siècles avant que Fermat ne le
+généralise au moindre <i>temps</i> et n'obtienne aussi la réfraction. La raison d'insister sur la
+géométrie plane est que la démonstration géométrique montre <i>pourquoi</i> le minimum est ce
+qu'il est, là où une dérivée ne fait que le confirmer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_de_Fermat">Principe de Fermat — Wikipédia</a></li>
+<li>Lecture : Niven, <i>Maxima and Minima Without Calculus</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-25" data-level="Lycée" data-kind="court">
+<h3>OPT-25 · Quand la gourmandise a raison, et quand elle a tort <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Avec des pièces de 1, 5, 10 et 25 centimes, démontrez que la règle
+gloutonne — prendre répétitivement la plus grosse pièce ne dépassant pas ce qui reste — règle tout
+nombre entier de centimes avec le moins de pièces possible. Exhibez ensuite un système de pièces
+où la gourmandise échoue, et démontrez qu'elle échoue au montant que vous désignez.</p>
+<p class="context">Les algorithmes gloutons sont ceux que tout le monde invente en premier et que
+presque personne ne démontre ; le travail honnête ici est l'analyse de cas montrant qu'une solution
+optimale peut toujours être réarrangée en la solution gloutonne. Les systèmes de pièces où la
+gourmandise fonctionne sont dits <i>canoniques</i>, et savoir si un système donné est canonique se
+décide en temps polynomial (Pearson, 2005) — un résultat étonnamment récent pour une question si
+ancienne. La question générale des structures qui rendent la gourmandise optimale a une belle
+réponse : c'est OPT-30.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_rendu_de_monnaie">Problème du rendu de monnaie — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_glouton">Algorithme glouton — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-26" data-level="Lycée">
+<h3>OPT-26 · Le paradoxe de Braess et le prix de l'anarchie <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Quatre mille automobilistes vont de \(S\) à \(T\). Il y a deux itinéraires,
+\(S \to A \to T\) et \(S \to B \to T\). Les arêtes \(S \to A\) et \(B \to T\) prennent chacune \(x/100\)
+minutes quand \(x\) automobilistes les empruntent ; les arêtes \(A \to T\) et \(S \to B\) prennent chacune
+45 minutes fixes.</p>
+<ol class="parts" type="a">
+<li>Trouvez la répartition du trafic pour laquelle aucun automobiliste seul ne peut raccourcir son
+trajet en changeant d'itinéraire, et démontrez qu'alors chaque automobiliste a besoin de 65 minutes.
+Démontrez que cette même répartition minimise aussi le temps de trajet total de tous les
+automobilistes.</li>
+<li>Une nouvelle route \(A \to B\) est ouverte, si rapide que son temps de parcours est nul.
+Démontrez que le seul agencement où aucun automobiliste ne souhaite changer est que <i>tout le
+monde</i> emprunte \(S \to A \to B \to T\), et que chaque automobiliste a désormais besoin de 80
+minutes. Construire une route a rendu la situation pire pour les 4000 personnes.</li>
+<li>Montrez qu'un planificateur central, la nouvelle route étant donnée, peut malgré tout obtenir
+une moyenne de 65 minutes. Le <i>prix de l'anarchie</i> est le rapport du pire résultat égoïste au
+meilleur résultat coordonné : calculez-le pour ce réseau.</li>
+<li>Expliquez la contradiction apparente avec vos propres mots : ajouter une option ne peut pas
+nuire à un décideur isolé, alors pourquoi cela nuit-il à une foule de décideurs ?</li>
+</ol>
+</div>
+<p class="context">Dietrich Braess a publié le paradoxe en 1968 dans une revue allemande de recherche
+opérationnelle, et il n'a cessé de resurgir dans le monde réel : la circulation de Stuttgart s'est
+améliorée après la <i>fermeture</i> d'un nouveau tronçon de route, la 42<sup>e</sup> rue de New York
+s'est mieux écoulée le jour où elle a été barrée en 1990, et la démolition de la voie express de
+Cheonggyecheon à Séoul en 2005 est le plus grand exemple enregistré. Koutsoupias et Papadimitriou
+ont baptisé le rapport de (c) prix de l'anarchie en 1999, et Roughgarden et Tardos ont démontré en
+2002 que pour des latences de la forme \(ax + b\) il ne dépasse jamais \(4/3\) — dans <i>n'importe
+quel</i> réseau, si embrouillé soit-il. L'égoïsme est borné ; il n'est simplement jamais
+gratuit.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_de_Braess">Paradoxe de Braess — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Prix_de_l%27anarchie">Prix de l'anarchie — Wikipédia</a></li>
+<li>Article : Roughgarden et Tardos, « How bad is selfish routing? », Journal of the ACM 49(2) (2002)</li>
+<li>Lecture : Nisan, Roughgarden, Tardos et Vazirani (dir.), <i>Algorithmic Game Theory</i>, ch. 18</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-36" data-level="Lycée" data-kind="court">
+<h3>OPT-36 · Appariez le plus grand avec le plus grand <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \(a_1 \le a_2 \le \cdots \le a_n\) et \(b_1 \le b_2 \le \cdots \le b_n\) des nombres réels et soit \(\sigma\) une permutation quelconque de \(\{1, \ldots, n\}\). Démontrez l'inégalité de réarrangement
+\[ \sum_{i=1}^{n} a_i b_{n+1-i} \;\le\; \sum_{i=1}^{n} a_i b_{\sigma(i)} \;\le\; \sum_{i=1}^{n} a_i b_i , \]
+et déduisez-en que si \(n\) tâches de durées connues doivent être exécutées, une par machine, sur \(n\) machines de vitesses connues, le temps d'exécution total \(\sum_i \ell_{\sigma(i)}/s_i\) est minimisé en confiant la tâche la plus longue à la machine la plus rapide.</p>
+<p class="context">L'inégalité est le théorème 368 des <i>Inequalities</i> de Hardy, Littlewood et Pólya (1934), même si le fait relevait du savoir commun bien avant ; l'inégalité de Tchebychev pour les sommes (1882) en est la version moyennée. Toute la démonstration tient en une observation : si deux paires sont appariées dans le mauvais ordre, les échanger ne peut pas diminuer la somme, et un nombre fini d'échanges met tout en ordre. Cet argument — prendre une solution optimale et montrer qu'elle peut être réarrangée, pas à pas, en celle que produit votre règle — est l'<i>argument d'échange</i>, et c'est ainsi que presque tout algorithme glouton de cette page est démontré correct (OPT-25, OPT-30). C'est aussi la raison pour laquelle le problème d'affectation d'OPT-17, qui en général demande la méthode hongroise, se réduit à un tri lorsque le coût d'appariement de l'ouvrier \(i\) avec la tâche \(j\) se trouve être un produit \(a_i b_j\).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_r%C3%A9arrangement">Inégalité de réarrangement — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Tchebychev_pour_les_sommes">Inégalité de Tchebychev pour les sommes — Wikipédia</a></li>
+<li>Lecture : Hardy, Littlewood et Pólya, <i>Inequalities</i>, ch. 10</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-37" data-level="Lycée">
+<h3>OPT-37 · Le point de Fermat, et la forme d'une lame de savon <span class="level">[Lycée]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Étant donné trois points distincts \(A, B, C\) du plan, trouvez le point \(P\) qui minimise la distance totale
+\[ d(P) \;=\; |PA| + |PB| + |PC| . \]</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'un minimiseur existe et qu'il est unique. (Pour l'existence, remarquez que \(d\) est continue et tend vers l'infini ; pour l'unicité, montrez que \(d\) est convexe et examinez où elle cesse d'être strictement convexe.)</li>
+<li>Supposez qu'aucun angle du triangle \(ABC\) ne vaut \(120^\circ\) ou plus. Démontrez que le minimiseur est le point intérieur en lequel les trois segments \(PA, PB, PC\) se rencontrent selon trois angles de \(120^\circ\) exactement. Une voie propre : faites tourner le plan entier de \(60^\circ\) autour de \(A\), amenant \(B\) en \(B'\) et \(P\) en \(P'\) ; montrez que \(|PA| + |PB| + |PC|\) égale la longueur du chemin brisé \(C \to P \to P' \to B'\), et qu'un chemin brisé est le plus court lorsqu'il est droit.</li>
+<li>Démontrez que si un angle du triangle vaut \(120^\circ\) ou plus, alors le minimiseur est ce sommet lui-même — le point intérieur de (b) a disparu.</li>
+<li>Démontrez la construction de Torricelli : élevez un triangle équilatéral vers l'extérieur sur chaque côté de \(ABC\) ; alors les trois cercles circonscrits à ces triangles passent par un point commun, qui est le minimiseur de (b), et les trois droites joignant chaque nouveau sommet extérieur au sommet opposé de \(ABC\) passent également par lui et ont toutes la même longueur, égale à la valeur minimale \(d(P)\).</li>
+<li>Quatre points, et une autre question. Pour les coins d'un carré unité, comparez la longueur totale des deux diagonales, \(2\sqrt{2}\), à celle du réseau formé de deux points de jonction intérieurs reliés par un court segment, chaque jonction envoyant deux bras vers deux coins, tous les angles aux jonctions valant \(120^\circ\). Calculez la longueur \(1 + \sqrt{3}\) du second réseau, et concluez que la façon la moins chère de relier quatre points n'est pas de tout faire passer par un point unique. Expliquez pourquoi la règle des \(120^\circ\) survit au changement de problème.</li>
+</ol>
+</div>
+<p class="context">Fermat a posé le problème des trois points vers 1636 à la fin de son essai sur les maxima et les minima, comme un défi aux autres géomètres ; Evangelista Torricelli l'a résolu avant 1640 par la construction au cercle de la partie (d), et son élève Viviani a publié la solution en 1659. Thomas Simpson a ajouté les droites concourantes en 1750, et au XIX<sup>e</sup> siècle le nom de Jakob Steiner s'est attaché à la version en réseau de la partie (e). Le problème est l'ancêtre de la localisation d'installations — où placer l'entrepôt, le transformateur, l'hôpital — et la version à \(n\) points, la médiane géométrique, est célèbre pour son absence de formule : Bajaj a démontré en 1988 que pour cinq points elle ne peut en général pas s'exprimer par radicaux, si bien qu'on la calcule plutôt par l'itération de Weiszfeld de 1937. Les lames de savon tendues entre des tiges plantées sur deux plaques de verre parallèles résolvent physiquement le problème de réseau en minimisant l'énergie de surface, et elles se rencontrent toujours par trois à \(120^\circ\) : ce sont (b) et (e) confirmés par la nature.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Point_de_Fermat">Point de Fermat — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9diane_g%C3%A9om%C3%A9trique">Médiane géométrique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_l%27arbre_de_Steiner">Problème de l'arbre de Steiner — Wikipédia</a></li>
+<li>Lecture : Courant et Robbins, <i>What Is Mathematics?</i>, ch. VII</li>
+</ul>
+</section>
+
+<h2>Licence</h2>
+
+<section class="problem" id="OPT-05" data-level="Licence">
+<h3>OPT-05 · L'optimum siège en un sommet <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(P = \{x \in \mathbb{R}^n : Ax \le b\}\) un polyèdre non vide et \(c \in \mathbb{R}^n\). Appelez \(x \in P\) un <i>sommet</i> s'il est l'unique solution d'un sous-système de \(n\) contraintes linéairement indépendantes prises avec égalité, et un <i>point extrémal</i> s'il n'est pas le milieu de deux points distincts de \(P\).</p>
+<ol class="parts" type="a">
+<li>Démontrez que les deux définitions coïncident.</li>
+<li>Démontrez que si \(P\) ne contient aucune droite et si \(\max\{c^\top x : x \in P\}\) est atteint, alors il est atteint en un sommet.</li>
+<li>Exhibez un polyèdre et une fonction objectif pour lesquels le maximum est atteint mais en aucun sommet, et conciliez cela avec (b).</li>
+</ol>
+</div>
+<p class="context">C'est le théorème fondamental de la programmation linéaire, et le permis géométrique dont dispose la méthode du simplexe : un algorithme peut restreindre sa recherche à un nombre fini de coins. Dantzig a raconté plus tard qu'en 1947 il se méfiait d'abord de l'idée de sauter de sommet en sommet — la géométrie des polytopes en grande dimension lui semblait trop vaste — jusqu'à ce que le théorème le convainque que les coins suffisaient. Tout ce qui suit dans OPT-06 et OPT-07 repose sur ce résultat.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Optimisation_lin%C3%A9aire">Optimisation linéaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Points_et_parties_remarquables_de_la_fronti%C3%A8re_d%27un_convexe">Point extrémal — Wikipédia</a></li>
+<li>Lecture : Chvátal, <i>Linear Programming</i>, ch. 2–3</li>
+<li>Lecture : Bertsimas et Tsitsiklis, <i>Introduction to Linear Optimization</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-06" data-level="Licence">
+<h3>OPT-06 · La dualité linéaire et le sens des prix <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez le programme primal \(\max\{c^\top x : Ax \le b,\ x \ge 0\}\) et son dual \(\min\{b^\top y : A^\top y \ge c,\ y \ge 0\}\).</p>
+<ol class="parts" type="a">
+<li>Démontrez la dualité faible : tout \(x\) admissible pour le primal et tout \(y\) admissible pour le dual vérifient \(c^\top x \le b^\top y\).</li>
+<li>Déduisez-en que si un couple admissible réalise \(c^\top x = b^\top y\), les deux sont optimaux.</li>
+<li>Établissez les conditions d'écarts complémentaires et démontrez qu'elles caractérisent l'optimalité (vous pouvez admettre la dualité forte).</li>
+<li>Interprétez : si le primal est une usine choisissant des niveaux de production \(x\) sous des stocks de ressources \(b\), expliquez précisément pourquoi le \(y_i\) optimal mérite le nom de <i>prix fictif</i> de la ressource \(i\).</li>
+</ol>
+</div>
+<p class="context">Von Neumann a esquissé la dualité devant Dantzig lors de leur première rencontre en 1947, en l'improvisant — selon le récit de Dantzig — à partir de sa propre théorie des jeux ; Gale, Kuhn et Tucker en ont publié la première démonstration en 1951. La dualité est le certificat maître du domaine : un seul vecteur dual démontre l'optimalité à un sceptique qui refuse de vérifier toute votre recherche. Les économistes lisent le même théorème comme l'affirmation que des prix concurrentiels décentralisent un plan optimal — un théorème, deux civilisations.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Dualit%C3%A9_(optimisation)">Dualité en optimisation — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Shadow_price">Prix fictif — Wikipédia (en anglais)</a></li>
+<li>Lecture : Chvátal, <i>Linear Programming</i>, ch. 5</li>
+<li>Lecture : Papadimitriou et Steiglitz, <i>Combinatorial Optimization</i>, ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-07" data-level="Licence">
+<h3>OPT-07 · Le cyclage, et la règle de Bland à la rescousse <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La méthode du simplexe passe d'une solution de base admissible à une autre, sans jamais faire décroître la fonction objectif.</p>
+<ol class="parts" type="a">
+<li>Expliquez précisément comment la <i>dégénérescence</i> (une variable de base nulle) permet un pivot qui change la base mais pas le point, et pourquoi une suite de tels pivots peut ramener à une base antérieure — de sorte que la méthode, implémentée naïvement, peut ne pas se terminer. (Beale a construit un exemple explicite de cyclage en 1955 ; vous pouvez le consulter et vérifier le cycle, mais l'explication doit être la vôtre.)</li>
+<li>Démontrez le théorème de Bland : si les égalités pour la variable entrante et la variable sortante sont toujours départagées par le plus petit indice, la méthode du simplexe ne cycle jamais, donc elle se termine.</li>
+</ol>
+</div>
+<p class="context">Pendant sa première décennie, la méthode du simplexe a fonctionné sans faute en pratique alors que sa démonstration de terminaison avait un trou ; Hoffman (1953) et Beale (1955) ont montré que le trou était réel. La règle de pivotage de Robert Bland (1977) l'a comblé par une démonstration d'une frappante économie — un argument de contre-exemple minimal où le plus petit indice se retrouve piégé à la fois comme entrant et comme sortant. C'est le premier exemple standard de la façon dont une minuscule discipline combinatoire peut dompter un algorithme géométrique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Bland%27s_rule">Règle de Bland — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_du_simplexe">Algorithme du simplexe — Wikipédia</a></li>
+<li>Article : Bland, « New finite pivoting rules for the simplex method », Mathematics of Operations Research 2 (1977)</li>
+<li>Lecture : Chvátal, <i>Linear Programming</i>, ch. 3</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-08" data-level="Licence">
+<h3>OPT-08 · Convexité et inégalité de Jensen <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un ensemble \(C \subset \mathbb{R}^n\) est convexe s'il contient le segment joignant deux quelconques de ses points ; \(f : C \to \mathbb{R}\) est convexe si \(f(\lambda x + (1-\lambda)y) \le \lambda f(x) + (1-\lambda)f(y)\) pour tous \(x, y \in C\), \(\lambda \in [0,1]\).</p>
+<ol class="parts" type="a">
+<li>Démontrez l'inégalité de Jensen : pour \(f\) convexe, des points \(x_1, \dots, x_m \in C\) et des poids \(\lambda_i \ge 0\) avec \(\sum_i \lambda_i = 1\),
+\[ f\Big(\sum_{i=1}^m \lambda_i x_i\Big) \le \sum_{i=1}^m \lambda_i f(x_i). \]</li>
+<li>Déduisez-en l'inégalité arithmético-géométrique à n variables par un choix convenable de \(f\).</li>
+<li>Démontrez qu'un minimum local d'une fonction convexe sur un convexe est un minimum global, et expliquez en un paragraphe pourquoi ce seul fait organise tout le domaine.</li>
+</ol>
+</div>
+<p class="context">Johan Jensen, ingénieur téléphonique danois autodidacte, a publié l'inégalité en 1906 ; c'est l'outil de référence qui transforme la convexité en théorèmes, de la théorie de l'information (inégalité de Gibbs) à la finance. L'évangile moderne — selon lequel la vraie frontière en optimisation passe entre convexe et non convexe, et non entre linéaire et non linéaire — est le thème d'ouverture du livre de Boyd et Vandenberghe, et la partie (c) en donne la raison.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Jensen">Inégalité de Jensen — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_convexe">Fonction convexe — Wikipédia</a></li>
+<li>Lecture : Boyd et Vandenberghe, <i>Convex Optimization</i>, ch. 2–3 — <a href="https://web.stanford.edu/~boyd/cvxbook/">PDF gratuit sur le site de Stanford</a></li>
+<li>Cours : <a href="https://web.stanford.edu/class/ee364a/">Stanford EE364a Convex Optimization</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-09" data-level="Licence">
+<h3>OPT-09 · Les moindres carrés comme problème d'optimisation <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(A\) une matrice réelle \(m \times n\) à colonnes linéairement indépendantes et \(b \in \mathbb{R}^m\).</p>
+<ol class="parts" type="a">
+<li>Démontrez que \(x \mapsto \|Ax - b\|^2\) a un unique minimiseur \(\hat{x}\), caractérisé par les équations normales \(A^\top A \hat{x} = A^\top b\).</li>
+<li>Démontrez la caractérisation géométrique : \(\hat{x}\) est optimal si et seulement si le résidu \(b - A\hat{x}\) est orthogonal à toute colonne de \(A\), de sorte que \(A\hat{x}\) est la projection orthogonale de \(b\) sur l'espace des colonnes.</li>
+<li>Montrez par un exemple que lorsque les colonnes sont liées le minimum est encore atteint mais que le minimiseur n'est pas unique, et décrivez l'ensemble complet des solutions.</li>
+</ol>
+</div>
+<p class="context">Les moindres carrés forment le problème d'optimisation le plus résolu de l'histoire. Legendre a publié la méthode en 1805 ; Gauss a prétendu l'employer depuis 1795 et avoir localisé grâce à elle l'astéroïde perdu Cérès en 1801 — la querelle de priorité qui s'ensuivit ne fut jamais tranchée. Le problème est le point de rencontre de l'optimisation, de l'algèbre linéaire et de la statistique (Gauss-Markov), et le prototype de tous les modèles du type « minimiser une somme d'erreurs quadratiques » depuis lors.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">Méthode des moindres carrés — Wikipédia</a></li>
+<li>Lecture : Strang, <i>Introduction to Linear Algebra</i>, ch. 4</li>
+<li>Lecture : Boyd et Vandenberghe, <i>Convex Optimization</i>, ch. 1 — <a href="https://web.stanford.edu/~boyd/cvxbook/">PDF gratuit sur le site de Stanford</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-10" data-level="Licence">
+<h3>OPT-10 · Gale-Shapley : la stabilité et qui elle favorise <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> \(n\) candidats et \(n\) hôpitaux classent chacun entièrement l'autre côté. Un couplage est <i>stable</i> si aucun couple candidat-hôpital ne se préfère mutuellement à ses partenaires attribués. Dans l'algorithme d'acceptation différée, les candidats non appariés font des propositions en descendant leur liste et les hôpitaux retiennent la meilleure proposition reçue jusque-là. Démontrez :</p>
+<ol class="parts" type="a">
+<li>que l'algorithme se termine après au plus \(n^2\) propositions ;</li>
+<li>que le résultat est un couplage stable (donc il existe toujours des couplages stables) ;</li>
+<li>l'optimalité pour le proposant — chaque candidat obtient le meilleur partenaire qu'il ait dans <i>n'importe quel</i> couplage stable ;</li>
+<li>déduisez-en que chaque hôpital obtient son plus mauvais partenaire parmi tous les couplages stables.</li>
+</ol>
+</div>
+<p class="context">David Gale et Lloyd Shapley ont publié cela en 1962 dans un article écrit pour être lisible par n'importe qui (« College Admissions and the Stability of Marriage »), et c'est peut-être le théorème le plus déployé de la conception de marchés : le programme américain d'affectation des internes (NRMP) avait indépendamment convergé vers essentiellement le même algorithme dès 1952, et Shapley et Alvin Roth ont reçu le prix Nobel d'économie 2012 pour la théorie et ses refontes des marchés d'appariement. La partie (c) est le dard : le côté qui propose obtient tout, un fait qui a changé en 1997 quel côté propose dans le NRMP.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_Gale_et_Shapley">Algorithme de Gale et Shapley — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_des_mariages_stables">Problème des mariages stables — Wikipédia</a></li>
+<li>Article : Gale et Shapley, « College Admissions and the Stability of Marriage », American Mathematical Monthly 69 (1962)</li>
+<li>Lecture : Gusfield et Irving, <i>The Stable Marriage Problem: Structure and Algorithms</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-11" data-level="Licence">
+<h3>OPT-11 · Le minimax par la dualité <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans un jeu à somme nulle de matrice de gains \(M\) (le joueur en lignes reçoit \(M_{ij}\)), une stratégie mixte est un vecteur de probabilité sur les lignes ou sur les colonnes.</p>
+<ol class="parts" type="a">
+<li>Formulez le problème du joueur en lignes — choisir \(p\) pour maximiser le gain dans le pire cas \(\min_j (p^\top M)_j\) — comme un programme linéaire, et de même pour le joueur en colonnes.</li>
+<li>Démontrez que les deux programmes sont duaux l'un de l'autre, et déduisez le théorème du minimax de von Neumann de la dualité linéaire forte :
+\[ \max_p \min_q\, p^\top M q \;=\; \min_q \max_p\, p^\top M q. \]</li>
+<li>Calculez la valeur et les stratégies optimales du jeu \(M = \begin{pmatrix} 2 &amp; -1 \\ -1 &amp; 1 \end{pmatrix}\), et démontrez directement que vos stratégies sont optimales.</li>
+</ol>
+</div>
+<p class="context">Von Neumann a démontré le théorème du minimax en 1928 (« Zur Theorie der Gesellschaftsspiele ») par un argument topologique, et il a dit plus tard que sans lui il n'aurait pu y avoir de théorie des jeux. Quand Dantzig lui rendit visite en 1947, von Neumann conjectura sur-le-champ que la dualité linéaire et le minimax étaient équivalents ; ce problème est l'un des sens de cette équivalence, et la démonstration des manuels modernes. Un joueur rationnel dans un jeu à somme nulle résout, littéralement, un programme linéaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_minimax_de_von_Neumann">Théorème du minimax de von Neumann — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Jeu_%C3%A0_somme_nulle">Jeu à somme nulle — Wikipédia</a></li>
+<li>Lecture : Matoušek et Gärtner, <i>Understanding and Using Linear Programming</i>, ch. 8</li>
+<li>Cours : <a href="https://oyc.yale.edu/economics/econ-159">Yale ECON 159 Game Theory (Ben Polak)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-12" data-level="Licence">
+<h3>OPT-12 · Les enchères de Vickrey et le prix de l'honnêteté <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un objet est vendu par plis cachetés ; chaque enchérisseur \(i\) lui attribue en privé la valeur \(v_i\). Dans l'enchère au second prix (de Vickrey), le plus offrant l'emporte mais paie la deuxième offre la plus élevée.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'annoncer sa vraie valeur \(v_i\) est une stratégie faiblement dominante : quelles que soient les autres offres, aucune autre offre ne fait jamais mieux, et pour chaque écart il existe un profil d'offres adverses qui le rend strictement pire.</li>
+<li>Montrez que l'enchère au premier prix (le gagnant paie sa propre offre) n'a pas de telle stratégie dominante véridique.</li>
+<li>Montrez que la véracité échoue si le gagnant paie au contraire un prix strictement compris entre les deux meilleures offres.</li>
+</ol>
+</div>
+<p class="context">William Vickrey a analysé cette enchère en 1961 et a reçu le prix Nobel d'économie 1996 quelques jours avant sa mort ; les philatélistes pratiquaient des enchères par correspondance au second prix depuis les années 1890, et l'enchère automatique d'eBay est une enchère de Vickrey au ralenti. Le résultat est le germe de la théorie des mécanismes — l'art d'écrire des règles telles que l'honnêteté soit la meilleure politique de chaque participant — et se généralise au mécanisme de Vickrey-Clarke-Groves, qui sous-tend des milliards de dollars d'enchères publicitaires en ligne.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ench%C3%A8re_de_Vickrey">Enchère de Vickrey — Wikipédia</a></li>
+<li>Article : Vickrey, « Counterspeculation, Auctions, and Competitive Sealed Tenders », Journal of Finance 16 (1961)</li>
+<li>Lecture : Nisan, Roughgarden, Tardos et Vazirani (dir.), <i>Algorithmic Game Theory</i>, ch. 9</li>
+<li>Cours : <a href="https://oyc.yale.edu/economics/econ-159">Yale ECON 159 Game Theory (Ben Polak)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-13" data-level="Licence">
+<h3>OPT-13 · Le dilemme du prisonnier, une fois et répété <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Deux joueurs choisissent simultanément Coopérer ou Trahir ; gains par tour : coopération mutuelle 3 chacun, trahison mutuelle 1 chacun, traître solitaire 5 et le coopérateur 0.</p>
+<ol class="parts" type="a">
+<li>Démontrez que Trahir domine strictement Coopérer dans le jeu à un coup, de sorte que la trahison mutuelle est l'unique équilibre de Nash — bien que les deux joueurs préfèrent la coopération mutuelle.</li>
+<li>Démontrez par récurrence à rebours que si le jeu est répété un nombre de fois fixé et connu de tous, tout équilibre parfait en sous-jeux joue Trahir à chaque tour.</li>
+<li>Répétez maintenant indéfiniment avec un facteur d'actualisation \(\delta \in (0,1)\). Démontrez que la stratégie de déclenchement « coopérer jusqu'à ce que l'adversaire trahisse, puis trahir à jamais » est un équilibre de Nash si et seulement si \(\delta \ge 1/2\), et interprétez : la coopération entre égoïstes exige une ombre de l'avenir assez longue.</li>
+</ol>
+</div>
+<p class="context">Le jeu a été inventé à la RAND en 1950 par Merrill Flood et Melvin Dresher, et Albert Tucker lui a donné son histoire de prison. En 1980, Robert Axelrod a organisé des tournois informatiques où des stratégies soumises par des théoriciens des jeux jouaient des dilemmes itérés les unes contre les autres ; la participante la plus simple — le donnant-donnant d'Anatol Rapoport, quatre lignes en tout — l'a emporté les deux fois, et l'analyse d'Axelrod expliquant pourquoi (être gentil, réagir, pardonner, rester clair) est devenue <i>The Evolution of Cooperation</i>, l'un des ouvrages les plus cités de toutes les sciences sociales et de la biologie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Dilemme_du_prisonnier">Dilemme du prisonnier — Wikipédia</a></li>
+<li>Article : Axelrod et Hamilton, « The Evolution of Cooperation », Science 211 (1981)</li>
+<li>Lecture : Axelrod, <i>The Evolution of Cooperation</i></li>
+<li>Cours : <a href="https://oyc.yale.edu/economics/econ-159">Yale ECON 159 Game Theory (Ben Polak)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-14" data-level="Licence">
+<h3>OPT-14 · Partager un gâteau sans envie : Selfridge-Conway <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un gâteau divisible doit être partagé ; les joueurs peuvent évaluer les parts différemment, et une allocation est <i>sans envie</i> si aucun joueur n'estime la part d'un autre supérieure à la sienne.</p>
+<ol class="parts" type="a">
+<li>Démontrez que pour deux joueurs, « l'un coupe, l'autre choisit » est sans envie.</li>
+<li>Pour trois joueurs, considérez la procédure de Selfridge-Conway : la joueuse 1 coupe trois parts qu'elle juge égales ; le joueur 2 rogne la part qu'il juge la plus grande jusqu'à ce qu'elle égale sa deuxième plus grande, en mettant la rognure de côté ; les joueurs 3, 2, 1 choisissent dans cet ordre, le joueur 2 étant tenu de prendre la part rognée si le joueur 3 ne l'a pas prise ; puis les rognures sont partagées par un tour supplémentaire dont vous préciserez les rôles exacts. Démontrez que la procédure complète aboutit, rognures comprises, à une allocation sans envie.</li>
+<li>Indiquez exactement où l'argument utilise le fait qu'un joueur n'envie jamais une part assemblée à partir de morceaux qu'il a choisis en premier.</li>
+</ol>
+</div>
+<p class="context">Le partage équitable est né avec Steinhaus, Banach et Knaster dans le Lwów assiégé des années 1940 ; le partage proportionnel (chacun obtient au moins \(1/n\) selon sa propre mesure) fut résolu rapidement, mais l'absence d'envie à trois joueurs a résisté jusqu'à ce que John Selfridge et John Conway trouvent cette procédure indépendamment vers 1960 — aucun des deux ne l'a jamais publiée, et elle a circulé de bouche à oreille pendant des années. C'est la première vitrine standard de l'étrangeté et de la beauté qu'atteint la conception de protocoles ; l'histoire à n joueurs se poursuit dans OPT-23.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_Selfridge-Conway">Algorithme de Selfridge-Conway — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Partage_%C3%A9quitable">Partage équitable — Wikipédia</a></li>
+<li>Lecture : Brams et Taylor, <i>Fair Division: From Cake-Cutting to Dispute Resolution</i></li>
+<li>Article : Procaccia, « Cake Cutting: Not Just Child's Play », Communications of the ACM 56(7) (2013)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-27" data-level="Licence" data-kind="court">
+<h3>OPT-27 · Le lemme de Farkas <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \(A \in \mathbb{R}^{m \times n}\) et
+\(b \in \mathbb{R}^m\). Démontrez le lemme de Farkas : exactement l'un des deux systèmes
+\[ Ax = b,\ x \ge 0 \qquad\text{et}\qquad A^{\top} y \le 0,\ b^{\top} y \gt 0 \]
+a une solution, et expliquez ce que signifie géométriquement le second système — un hyperplan séparant
+\(b\) du cône engendré par les colonnes de \(A\).</p>
+<p class="context">Gyula Farkas a publié le lemme en 1902, dans un article de mécanique : il
+voulait rendre rigoureux le principe des travaux virtuels de Fourier, et avait besoin de savoir
+exactement quand un système de forces pouvait être équilibré. C'est l'ancêtre de tous les théorèmes
+de dualité de cette page — la dualité linéaire, le théorème du minimax, les conditions KKT en
+découlent tous — et l'unique ingrédient non évident de chaque démonstration est qu'un cône de type
+fini est fermé, ce qui est précisément l'endroit où la finitude de l'ensemble générateur gagne son
+salaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lemme_de_Farkas">Lemme de Farkas — Wikipédia</a></li>
+<li>Lecture : Matoušek et Gärtner, <i>Understanding and Using Linear Programming</i>, ch. 6</li>
+<li>Lecture : Schrijver, <i>Theory of Linear and Integer Programming</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-28" data-level="Licence" data-kind="court">
+<h3>OPT-28 · La valeur de Shapley est forcée <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour un jeu coopératif à \(n\) joueurs de fonction
+caractéristique \(v\) vérifiant \(v(\emptyset) = 0\), la valeur de Shapley du joueur \(i\) est
+\[ \phi_i(v) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!\,(n - |S| - 1)!}{n!}\,
+\bigl( v(S \cup \{i\}) - v(S) \bigr). \]
+Démontrez le théorème de Shapley (1953) : \(\phi\) est la <i>seule</i> règle de répartition vérifiant
+l'efficacité (les gains somment à \(v(N)\)), la symétrie (des joueurs interchangeables reçoivent des
+gains égaux), la propriété du joueur nul (un joueur n'apportant rien à aucune coalition ne reçoit
+rien) et l'additivité en \(v\).</p>
+<p class="context">La réponse de Lloyd Shapley à la question « que vaut un joueur ? » est la moyenne
+de ses contributions marginales sur les \(n!\) ordres d'arrivée, et le théorème dit que quatre
+exigences d'équité anodines ne laissent aucune autre possibilité — un résultat d'unicité axiomatique
+de la même famille que celui d'Arrow. Il sert à répartir les coûts d'une piste d'aéroport, à mesurer
+le pouvoir de vote (l'indice de Shapley-Shubik, 1954) et, depuis 2017, à attribuer les prédictions
+d'apprentissage automatique aux variables d'entrée sous le nom de SHAP. Shapley a partagé le prix
+Nobel d'économie 2012 avec Alvin Roth.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Valeur_de_Shapley">Valeur de Shapley — Wikipédia</a></li>
+<li>Article : Shapley, « A value for n-person games », dans <i>Contributions to the Theory of Games II</i> (Princeton, 1953)</li>
+<li>Lecture : Osborne et Rubinstein, <i>A Course in Game Theory</i>, partie IV</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-29" data-level="Licence">
+<h3>OPT-29 · Flot maximal et coupe minimale <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans un réseau orienté de source \(s\), de puits \(t\) et de capacités positives
+\(c(e)\), un <i>flot</i> vérifie \(0 \le f(e) \le c(e)\) sur chaque arête et se conserve en tout
+sommet autre que \(s\) et \(t\) ; sa valeur est la quantité nette sortant de \(s\). Une
+<i>coupe</i> \(s\)–\(t\) est une partition des sommets en \(S \ni s\) et \(\bar S \ni t\), de capacité
+égale à la capacité totale des arêtes allant de \(S\) vers \(\bar S\).</p>
+<ol class="parts" type="a">
+<li>Démontrez la dualité faible : la valeur de tout flot est au plus la capacité de toute coupe.
+Déterminez exactement quelles arêtes doivent être saturées, et lesquelles doivent être vides,
+lorsqu'il y a égalité.</li>
+<li>Démontrez le théorème flot-max/coupe-min. Montrez qu'un flot est maximal si et seulement si son
+réseau résiduel ne contient aucun chemin augmentant de \(s\) vers \(t\), et que dans ce cas les
+sommets accessibles depuis \(s\) dans le réseau résiduel forment une coupe dont la capacité égale la
+valeur du flot.</li>
+<li>Démontrez le théorème d'intégralité : avec des capacités entières, la procédure de Ford-Fulkerson
+s'arrête sur un flot maximal entier. Déduisez-en le théorème de Kőnig — dans un graphe biparti, le
+plus grand couplage et la plus petite couverture par sommets ont la même taille.</li>
+<li>Montrez que la procédure a besoin d'une règle. Construisez un réseau avec une capacité
+irrationnelle sur lequel une certaine suite de chemins augmentants converge vers une valeur
+strictement inférieure au maximum, et démontrez que la règle d'Edmonds et Karp — augmenter toujours
+le long d'un chemin comptant le moins d'arêtes — s'arrête après \(O(|V||E|)\) augmentations, quelles
+que soient les capacités.</li>
+</ol>
+</div>
+<p class="context">Ford et Fulkerson ont trouvé le théorème à la RAND en 1955 en étudiant, pour
+l'armée de l'air américaine, combien de trafic le réseau ferroviaire soviétique pouvait supporter et
+où le couper ; leur rapport est resté classifié jusqu'en 1999, et l'article même qui calcule un flot
+maximal calcule la façon la moins coûteuse d'en trancher un. Elias, Feinstein et Shannon ont démontré
+le théorème indépendamment la même année. C'est la dualité linéaire en habit combinatoire, et le
+théorème de Menger, le théorème des mariages de Hall et le théorème de Kőnig en sont tous des
+corollaires — d'où la brièveté de la partie (c).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_flot-max%2Fcoupe-min">Théorème flot-max/coupe-min — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_Ford-Fulkerson">Algorithme de Ford-Fulkerson — Wikipédia</a></li>
+<li>Article : Ford et Fulkerson, « Maximal flow through a network », Canadian Journal of Mathematics 8 (1956), 399–404</li>
+<li>Lecture : Papadimitriou et Steiglitz, <i>Combinatorial Optimization: Algorithms and Complexity</i>, ch. 6</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-38" data-level="Licence" data-kind="court">
+<h3>OPT-38 · Birkhoff-von Neumann : des coins qui sont des permutations <span class="level">[Licence]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Une matrice \(n \times n\) est <i>bistochastique</i> si ses coefficients sont positifs ou nuls et si chaque ligne et chaque colonne somme à \(1\). Démontrez le théorème de Birkhoff-von Neumann — les matrices bistochastiques forment un polytope convexe dont les points extrémaux sont exactement les \(n!\) matrices de permutation, de sorte que toute matrice bistochastique est une combinaison convexe de permutations — et déduisez-en que le programme linéaire \(\min \sum_{i,j} c_{ij}x_{ij}\) sur ce polytope atteint toujours son minimum en une permutation, autrement dit que le problème d'affectation d'OPT-17 n'a besoin d'aucune contrainte d'intégrité.</p>
+<p class="context">Garrett Birkhoff a publié le théorème en 1946 dans une revue de Tucumán en Argentine, et von Neumann l'a démontré indépendamment en 1953 en analysant une version en théorie des jeux du problème d'affectation ; les ingrédients étaient déjà présents dans les travaux hongrois de Kőnig et Egerváry des années 1930, et la démonstration standard passe par le théorème des mariages de Hall pour trouver une permutation portée là où la matrice est positive. C'est l'exemple le plus net d'un thème qui traverse toute la page : un programme en nombres entiers auquel il n'est pas nécessaire de dire que ses variables sont entières, parce que les coins de sa région admissible le sont déjà. La théorie des matrices totalement unimodulaires de Hoffman et Kruskal (1956) explique toute la famille — transports (OPT-04), flots (OPT-29), couplage biparti — et le théorème lui-même sert bien au-delà de l'optimisation : en théorie de la majorisation, en ordonnancement, et en information quantique, où les matrices bistochastiques décrivent exactement les canaux qui mélangent des unitaires.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Birkhoff_polytope">Polytope de Birkhoff — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matrice_bistochastique">Matrice bistochastique — Wikipédia</a></li>
+<li>Lecture : Bertsimas et Tsitsiklis, <i>Introduction to Linear Optimization</i>, ch. 7</li>
+<li>Lecture : Schrijver, <i>Theory of Linear and Integer Programming</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-39" data-level="Licence">
+<h3>OPT-39 · Séparer, évaluer et couper <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Considérez le programme en nombres entiers \(\max\{c^{\top}x : Ax \le b,\ x \in \mathbb{Z}^n_{\ge 0}\}\) à données rationnelles et région admissible bornée, ainsi que sa relaxation linéaire, obtenue en abandonnant l'exigence que \(x\) soit entier.</p>
+<ol class="parts" type="a">
+<li>Démontrez que la valeur optimale de la relaxation majore l'optimum entier. Montrez ensuite que cette borne peut être inutile : exhibez une instance à deux variables dont la relaxation a un optimum fractionnaire très éloigné de tout point entier admissible, et une seconde instance admissible pour la relaxation mais sans aucun point entier admissible.</li>
+<li>Séparation et évaluation. Résolvez la relaxation ; si la solution est entière, arrêtez-vous ; sinon choisissez une coordonnée de valeur fractionnaire \(f\) et recommencez récursivement sur les deux sous-problèmes obtenus en ajoutant \(x_j \le \lfloor f \rfloor\) puis \(x_j \ge \lceil f \rceil\). Démontrez que la recherche se termine et renvoie une solution entière optimale, et démontrez la validité de la règle d'élagage : un sous-problème dont la borne de relaxation ne vaut pas mieux que la meilleure solution entière déjà trouvée peut être écarté sans examen supplémentaire.</li>
+<li>Plans sécants. Appelez une inégalité <i>valide</i> si tout point entier admissible la vérifie. Démontrez le principe d'arrondi de Gomory-Chvátal : si \(\sum_j \alpha_j x_j \le \beta\) est valide pour la relaxation, alors \(\sum_j \lfloor \alpha_j \rfloor x_j \le \lfloor \beta \rfloor\) est valide pour tous les points entiers positifs. Établissez ensuite la coupe fractionnaire de Gomory à partir d'une ligne d'un tableau du simplexe optimal et démontrez que le sommet fractionnaire courant la viole — la coupe retire donc réellement la fraction sans retirer aucun point entier.</li>
+<li>Démontrez, ou reconstituez soigneusement à partir de la littérature, le théorème de Chvátal (1973, complété pour les polyèdres rationnels par Schrijver en 1980) : appliquer l'arrondi de (c) à toutes les inégalités valides, et répéter, produit l'enveloppe entière après un nombre fini de tours. Expliquez ce que mesure le rang de Chvátal d'un polyèdre, et pourquoi une procédure finie en théorie peut rester désespérée en pratique.</li>
+<li>Comparez avec ce que font les solveurs. Expliquez la méthode de coupes et séparation : des coupes engendrées aux nœuds de l'arbre de séparation, non tenues de définir des facettes, conservées seulement tant qu'elles se rentabilisent. Notez ensuite le malaise — le choix de la variable sur laquelle séparer est fait par des heuristiques sans la moindre garantie, au sein d'un domaine où toute autre sous-routine est accompagnée d'un théorème — et décrivez ce que devrait fournir une théorie des décisions de séparation.</li>
+</ol>
+</div>
+<p class="context">Ralph Gomory a inventé les plans sécants en 1958, trois ans après que Dantzig, Fulkerson et Johnson eurent résolu une instance à 49 villes du voyageur de commerce (OPT-18) en inventant des coupes à la main pour ce seul problème ; Ailsa Land et Alison Doig ont publié la séparation et évaluation dans <i>Econometrica</i> en 1960. Les coupes de Gomory sont ensuite tombées en disgrâce pendant trois décennies — elles accumulent les difficultés numériques et convergent lentement quand on les emploie seules — puis sont revenues dans les années 1990 lorsqu'on a compris comment les utiliser <i>à l'intérieur</i> d'une recherche par séparation plutôt qu'à sa place. Cette combinaison, coupes et séparation, est ce que fait tourner aujourd'hui tout solveur commercial ; l'accélération mesurée des solveurs en nombres entiers mixtes entre le début des années 1990 et les années 2010 est de l'ordre du million, et selon la comptabilité bien connue de Bixby, environ la moitié vient des algorithmes plutôt que de machines plus rapides, les plans sécants y contribuant le plus. La programmation en nombres entiers est l'exemple standard d'un problème NP-difficile qui est, dans la pratique industrielle quotidienne, résolu.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_plans_s%C3%A9cants">Méthode des plans sécants — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/S%C3%A9paration_et_%C3%A9valuation">Séparation et évaluation — Wikipédia</a></li>
+<li>Article : Land et Doig, « An automatic method of solving discrete programming problems », Econometrica 28 (1960)</li>
+<li>Lecture : Wolsey, <i>Integer Programming</i> ; ou Schrijver, <i>Theory of Linear and Integer Programming</i>, ch. 23</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-40" data-level="Licence">
+<h3>OPT-40 · Apprendre des experts : la méthode des poids multiplicatifs <span class="level">[Licence]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> À chacun de \(T\) tours vous devez choisir l'un de \(n\) experts. Après votre choix, un adversaire qui connaît votre algorithme dévoile une perte \(\ell_{t,i} \in [0,1]\) pour chaque expert \(i\), et vous subissez la perte de l'expert que vous avez retenu. Votre <i>regret</i> est
+\[ R_T \;=\; \mathbb{E}\Big[\sum_{t=1}^{T} \ell_{t,i_t}\Big] \;-\; \min_{1 \le i \le n} \sum_{t=1}^{T} \ell_{t,i}, \]
+l'excès par rapport au meilleur expert unique choisi rétrospectivement.</p>
+<ol class="parts" type="a">
+<li>Démontrez que le hasard est incontournable : pour \(n = 2\), exhibez un adversaire contre lequel tout algorithme déterministe subit une perte totale \(T\) alors qu'un expert subit au plus \(T/2\), de sorte que le regret est linéaire en \(T\).</li>
+<li>L'algorithme. Gardez des poids \(w_{1,i} = 1\), jouez l'expert \(i\) avec probabilité \(p_{t,i} = w_{t,i}/\sum_j w_{t,j}\), et mettez à jour \(w_{t+1,i} = w_{t,i}\,e^{-\eta \ell_{t,i}}\). Au moyen du potentiel \(\Phi_t = \sum_i w_{t,i}\), démontrez que pour tout \(\eta &gt; 0\),
+\[ \sum_{t=1}^{T} \langle p_t, \ell_t\rangle \;-\; \min_i \sum_{t=1}^{T}\ell_{t,i} \;\le\; \frac{\ln n}{\eta} + \frac{\eta T}{8}, \]
+et concluez que \(\eta = \sqrt{8\ln n / T}\) donne \(R_T \le \sqrt{(T\ln n)/2}\). Remarquez ce que la borne ne contient <i>pas</i> : aucune hypothèse, quelle qu'elle soit, sur la façon dont les pertes sont engendrées.</li>
+<li>Démontrez une borne inférieure correspondante de l'ordre de \(\sqrt{T \log n}\) en prenant pour pertes des tirages à pile ou face équilibrés indépendants et en estimant la perte minimale espérée sur \(n\) experts ; aucun algorithme ne peut donc faire mieux que (b) à un facteur constant près.</li>
+<li>Les jeux. Faites tourner cet algorithme l'un contre l'autre pour les deux joueurs d'un jeu à somme nulle de gains dans \([0,1]\) pendant \(T\) tours, chacun traitant ses propres stratégies pures comme des experts. Démontrez que leurs stratégies mixtes moyennées dans le temps forment un équilibre \(\varepsilon\)-approché avec \(\varepsilon = O(\sqrt{\log n / T})\), et déduisez-en à la limite le théorème du minimax de von Neumann — une démonstration algorithmique, de nature entièrement différente de la démonstration par dualité d'OPT-11.</li>
+<li>Reconnaissez la même mise à jour sous d'autres déguisements. Expliquez comment elle devient AdaBoost lorsque les experts sont les exemples d'entraînement, la méthode de Plotkin-Shmoys-Tardos lorsqu'ils sont les contraintes d'un programme linéaire de recouvrement ou d'empaquetage, et la dynamique du réplicateur de la théorie des jeux évolutionnaire dans la limite en temps continu. Qu'affirme la borne de regret de (b) dans chacun de ces cas ?</li>
+</ol>
+</div>
+<p class="context">Cet algorithme a été découvert encore et encore par des gens qui s'ignoraient : par Hannan et Blackwell en théorie des jeux dans les années 1950, par Littlestone et Warmuth sous le nom d'algorithme de la majorité pondérée en théorie de l'apprentissage en 1989, par Freund et Schapire sous le nom de Hedge — d'où est venu le <i>boosting</i> — dans les années 1990, en théorie de l'information avec les portefeuilles universels de Cover, et en physique statistique, où la mise à jour est exactement la distribution de Gibbs. Arora, Hazan et Kale en ont écrit la synthèse unificatrice en 2012 et l'ont appelé un méta-algorithme. Ce qui devrait surprendre dans (b), c'est le peu qu'on suppose : l'adversaire peut être malveillant, connaître votre code et choisir les pertes après avoir vu votre distribution, et votre perte moyenne reste à \(O(\sqrt{\log n / T})\) du meilleur expert fixe. Le logarithme est tout l'enjeu — vous pouvez consulter un million d'experts au prix de \(\sqrt{\ln 10^6}\), et non de \(10^6\).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_des_poids_multiplicatifs">Méthode des poids multiplicatifs — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_du_regret">Théorie du regret — Wikipédia</a></li>
+<li>Article : Littlestone et Warmuth, « The weighted majority algorithm », Information and Computation 108 (1994)</li>
+<li>Lecture : Hazan, <i>Introduction to Online Convex Optimization</i> (MIT Press)</li>
+</ul>
+</section>
+
+<h2>Master</h2>
+
+<section class="problem" id="OPT-15" data-level="Master">
+<h3>OPT-15 · Les conditions KKT en action : le remplissage d'eau <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour le problème consistant à minimiser \(f(x)\) sous les contraintes \(g_i(x) \le 0\) pour \(i = 1, \dots, m\), toutes les fonctions étant différentiables, les conditions de Karush-Kuhn-Tucker en \(x^*\) réclament des multiplicateurs \(\mu_i \ge 0\) tels que
+\[ \nabla f(x^*) + \sum_{i=1}^m \mu_i \nabla g_i(x^*) = 0, \qquad \mu_i\, g_i(x^*) = 0 \ \text{ pour tout } i. \]</p>
+<ol class="parts" type="a">
+<li>Démontrez que pour \(f\) et \(g_i\) convexes, les conditions KKT sont suffisantes pour l'optimalité globale.</li>
+<li>Démontrez qu'elles sont nécessaires sous la condition de Slater (un point rend tous les \(g_i\) strictement négatifs), ou rendez un compte rendu soigneux d'une démonstration tirée de la littérature.</li>
+<li>Appliquez les conditions KKT à la maximisation de \(\sum_{i=1}^n \log(\alpha_i + x_i)\) sous les contraintes \(x_i \ge 0\), \(\sum_i x_i = 1\) (répartition de puissance sur \(n\) canaux bruités), et montrez que la solution « remplit d'eau jusqu'à un niveau commun » : \(x_i = \max(0, \nu - \alpha_i)\), avec \(\nu\) fixé par le budget.</li>
+</ol>
+</div>
+<p class="context">William Karush a démontré ces conditions dans son mémoire de master non publié, à Chicago en 1939 ; Kuhn et Tucker les ont redécouvertes en 1951, et la communauté a fini par rétablir le nom de Karush. Ces conditions sont le mur porteur de l'optimisation non linéaire — le test d'optimalité de tout solveur — et la solution par remplissage d'eau de (c), standard en théorie de l'information depuis Shannon, est la démonstration canonique que les conditions KKT calculent des réponses douées de sens physique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conditions_de_Karush-Kuhn-Tucker">Conditions de Karush-Kuhn-Tucker — Wikipédia</a></li>
+<li>Lecture : Boyd et Vandenberghe, <i>Convex Optimization</i>, ch. 5 — <a href="https://web.stanford.edu/~boyd/cvxbook/">PDF gratuit sur le site de Stanford</a></li>
+<li>Lecture : Nocedal et Wright, <i>Numerical Optimization</i>, ch. 12</li>
+<li>Cours : <a href="https://web.stanford.edu/class/ee364a/">Stanford EE364a Convex Optimization</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-16" data-level="Master">
+<h3>OPT-16 · Une vitesse de convergence pour la descente de gradient <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \(f : \mathbb{R}^n \to \mathbb{R}\) convexe, différentiable et \(L\)-régulière (\(\|\nabla f(x) - \nabla f(y)\| \le L\|x - y\|\)), de minimiseur \(x^*\). Faites tourner \(x_{k+1} = x_k - \frac{1}{L}\nabla f(x_k)\).</p>
+<ol class="parts" type="a">
+<li>Démontrez le lemme de descente : \(f(y) \le f(x) + \nabla f(x)^\top (y - x) + \frac{L}{2}\|y - x\|^2\).</li>
+<li>Démontrez qu'après \(k\) étapes,
+\[ f(x_k) - f(x^*) \le \frac{L\,\|x_0 - x^*\|^2}{2k}. \]</li>
+<li>Énoncez précisément la borne inférieure de Nemirovski-Yudin pour les méthodes qui n'accèdent qu'aux gradients, expliquez pourquoi elle ne laisse de marge que jusqu'à l'ordre \(1/k^2\), et ce qu'une méthode « accélérée » doit donc atteindre.</li>
+</ol>
+</div>
+<p class="context">La descente de gradient remonte à Cauchy (1847), qui voulait calculer des orbites planétaires sans résoudre d'équations ; la vitesse propre en \(1/k\) ci-dessus date du milieu du XX<sup>e</sup> siècle, et l'écart avec la borne inférieure en \(1/k^2\) a subsisté jusqu'à ce que la méthode accélérée de Iouri Nesterov (1983) le referme exactement — un algorithme si contre-intuitif qu'une petite industrie s'emploie encore à expliquer <i>pourquoi</i> il fonctionne. À l'ère de l'apprentissage automatique, les estimations de ce problème sont récitées quotidiennement ; les démontrer une fois, c'est toute la différence entre réciter et savoir.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_du_gradient">Algorithme du gradient — Wikipédia</a></li>
+<li>Lecture : Nesterov, <i>Lectures on Convex Optimization</i>, ch. 2</li>
+<li>Lecture : Bubeck, <i>Convex Optimization: Algorithms and Complexity</i> (Foundations and Trends in ML, 2015)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-17" data-level="Master">
+<h3>OPT-17 · Le problème d'affectation et la méthode hongroise <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Étant donné une matrice de coûts \(c\) de taille \(n \times n\), affectez les ouvriers aux tâches de façon bijective à coût total minimal.</p>
+<ol class="parts" type="a">
+<li>Démontrez que retrancher une constante à une ligne ou à une colonne modifie également le coût de toutes les affectations, donc pas les optimiseurs.</li>
+<li>Dites que des potentiels \(u, v\) sont <i>admissibles</i> si \(u_i + v_j \le c_{ij}\) pour tous \(i, j\). Démontrez que des potentiels admissibles quelconques donnent la borne inférieure \(\sum_i u_i + \sum_j v_j\), et qu'un couplage parfait n'utilisant que des arêtes tendues (\(u_i + v_j = c_{ij}\)) est optimal.</li>
+<li>Décrivez la méthode hongroise — faire croître alternativement un couplage d'arêtes tendues et mettre à jour les potentiels — et démontrez qu'elle se termine sur une affectation optimale en temps \(O(n^4)\) (ou, avec du soin, \(O(n^3)\)).</li>
+<li>Identifiez précisément où le théorème de Kőnig sur les couplages bipartis intervient dans la démonstration.</li>
+</ol>
+</div>
+<p class="context">Harold Kuhn a assemblé l'algorithme en 1955 à partir d'idées tirées d'articles des Hongrois Dénes Kőnig et Jenő Egerváry — d'où le nom. En 2006, il est apparu que Carl Gustav Jacobi avait résolu un problème équivalent dans les années 1840, publié à titre posthume en latin en 1890 ; la priorité en optimisation est une comédie récurrente. Le problème d'affectation est le programme en nombres entiers le plus simple que la programmation linéaire résout exactement, et les potentiels de (b) sont la dualité faisant un travail combinatoire — le modèle de la théorie des flots et des couplages depuis lors.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_hongrois">Algorithme hongrois — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_d%27affectation">Problème d'affectation — Wikipédia</a></li>
+<li>Article : Kuhn, « The Hungarian Method for the Assignment Problem », Naval Research Logistics Quarterly 2 (1955)</li>
+<li>Lecture : Papadimitriou et Steiglitz, <i>Combinatorial Optimization</i>, ch. 11</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-18" data-level="Master">
+<h3>OPT-18 · Le voyageur de commerce et la garantie 3/2 de Christofides <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans le voyageur de commerce métrique, les \(n\) villes ont des distances symétriques vérifiant l'inégalité triangulaire, et l'on cherche le plus court circuit les visitant toutes.</p>
+<ol class="parts" type="a">
+<li>Expliquez, par réduction depuis le circuit hamiltonien, pourquoi le voyageur de commerce est NP-difficile, et pourquoi avec une fonction de distance <i>arbitraire</i> aucun algorithme polynomial ne peut garantir un quelconque facteur constant à moins que P = NP.</li>
+<li>Démontrez les deux bornes de base : un arbre couvrant minimal coûte moins que le circuit optimal, et un couplage parfait de poids minimal sur tout sous-ensemble \(S\) de villes de cardinal pair coûte au plus la moitié du circuit optimal.</li>
+<li>Assemblez l'algorithme de Christofides — arbre couvrant minimal, plus couplage minimal sur ses sommets de degré impair, puis raccourcissement d'un circuit eulérien en un circuit hamiltonien — et démontrez que le résultat vaut au plus \(3/2\) fois l'optimum.</li>
+<li>Exhibez une famille d'instances montrant que l'analyse est asymptotiquement optimale pour cet algorithme.</li>
+</ol>
+</div>
+<p class="context">Nicos Christofides a publié la garantie dans un rapport technique de Carnegie Mellon en 1976 ; Anatoli Serdioukov a démontré la même borne indépendamment en URSS en 1978. La barrière de \(3/2\) a ensuite tenu plus de quatre décennies, jusqu'à ce que Karlin, Klein et Oveis Gharan la franchissent en 2020 avec une approximation randomisée à \((3/2 - \varepsilon)\) pour un \(\varepsilon\) de l'ordre de \(10^{-36}\) — un epsilon célébré non pour sa taille mais pour son existence — suivie d'une version déterministe en 2023. Savoir si \(4/3\) est atteignable reste ouvert et est lié à une célèbre conjecture sur la relaxation linéaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_Christofides">Algorithme de Christofides — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_voyageur_de_commerce">Problème du voyageur de commerce — Wikipédia</a></li>
+<li>Article : Karlin, Klein et Oveis Gharan, « A (Slightly) Improved Approximation Algorithm for Metric TSP » (2021), <a href="https://arxiv.org/abs/2007.01409">arXiv:2007.01409</a></li>
+<li>Lecture : Williamson et Shmoys, <i>The Design of Approximation Algorithms</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-19" data-level="Master">
+<h3>OPT-19 · L'équilibre de Nash existe <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un jeu fini compte \(n\) joueurs, chacun muni d'un ensemble fini de stratégies et d'une fonction de gain du choix conjoint ; un profil de stratégies mixtes est un équilibre de Nash si aucun joueur ne peut gagner en modifiant seulement sa propre loi de mélange. Démontrez le théorème de Nash : tout jeu fini possède au moins un équilibre de Nash en stratégies mixtes. Suivez la voie de Nash lui-même — pour chaque joueur \(i\) et chaque stratégie pure \(s\), notez \(g_{i,s}(x)\) la partie positive du gain d'amélioration procuré par le passage à \(s\), et définissez l'application du produit des simplexes dans lui-même
+\[ x_{i,s} \;\mapsto\; \frac{x_{i,s} + g_{i,s}(x)}{1 + \sum_{s'} g_{i,s'}(x)}. \]</p>
+<ol class="parts" type="a">
+<li>Vérifiez que le théorème du point fixe de Brouwer s'applique à cette application.</li>
+<li>Démontrez que ses points fixes sont exactement les équilibres — en prenant soin du « exactement » : montrez qu'aucun point qui n'est pas un équilibre ne peut être fixe.</li>
+</ol>
+</div>
+<p class="context">John Nash a démontré l'existence dans une note d'une page aux PNAS en 1950, à 21 ans, étendant l'équilibre au-delà du monde à somme nulle de von Neumann à tous les jeux finis ; von Neumann l'aurait balayé d'un « ce n'est qu'un théorème de point fixe », ce qui est précisément ce que c'est et précisément pourquoi cela a refaçonné l'économie (Nobel, 1994). La topologie sur laquelle il s'appuie — le théorème de Brouwer — a sa propre page ici ; le coût computationnel de ce que Brouwer accorde gratuitement fait l'objet d'OPT-22.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quilibre_de_Nash">Équilibre de Nash — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_point_fixe_de_Brouwer">Théorème du point fixe de Brouwer — Wikipédia</a> (voir aussi <a href="pure-topology.html">Topologie</a>)</li>
+<li>Article : Nash, « Equilibrium points in n-person games », PNAS 36 (1950) ; « Non-Cooperative Games », Annals of Mathematics 54 (1951)</li>
+<li>Lecture : Osborne et Rubinstein, <i>A Course in Game Theory</i>, ch. 2–3</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-30" data-level="Master" data-kind="court">
+<h3>OPT-30 · La gourmandise est optimale exactement sur les matroïdes <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(E\) un ensemble fini et soit \(\mathcal{I}\) une
+famille non vide de parties de \(E\), stable par passage aux sous-ensembles. Démontrez le théorème
+de Rado-Edmonds : l'algorithme glouton — parcourir \(E\) par poids décroissants et garder tout
+élément dont l'ajout laisse l'ensemble courant dans \(\mathcal{I}\) — renvoie un élément de
+\(\mathcal{I}\) de poids maximal pour <i>toute</i> fonction de poids positive si et seulement si
+\(\mathcal{I}\) vérifie l'axiome d'échange (dès que \(A, B \in \mathcal{I}\) avec \(|A| \lt |B|\),
+il existe \(e \in B \setminus A\) tel que \(A \cup \{e\} \in \mathcal{I}\)).</p>
+<p class="context">Hassler Whitney a inventé les matroïdes en 1935 pour isoler ce que
+l'indépendance linéaire et l'acyclicité des graphes ont en commun ; Richard Rado en 1957 et Jack
+Edmonds en 1971 ont découvert qu'ils sont aussi exactement les structures sur lesquelles la
+gourmandise ne peut pas échouer. Ce sens « seulement si » est la moitié frappante — il transforme
+une heuristique en théorème de caractérisation, et il explique d'un coup pourquoi l'algorithme
+d'arbre couvrant de Kruskal est correct et pourquoi l'ordonnancement glouton et le recouvrement
+glouton ne le sont pas. La frontière est nette : optimiser sur l'intersection de deux matroïdes
+reste polynomial (Edmonds, 1970), sur trois c'est NP-difficile.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matro%C3%AFde">Matroïde — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_glouton">Algorithme glouton — Wikipédia</a></li>
+<li>Article : Edmonds, « Matroids and the greedy algorithm », Mathematical Programming 1 (1971), 127–136</li>
+<li>Lecture : Schrijver, <i>Combinatorial Optimization: Polyhedra and Efficiency</i>, ch. 39–40</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-31" data-level="Master" data-kind="court">
+<h3>OPT-31 · La projection, et le point fixe qui signifie optimal <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soit \(C \subseteq \mathbb{R}^n\) non vide, fermé et
+convexe, et soit \(\Pi_C\) la projection euclidienne sur \(C\). Démontrez que \(\Pi_C\) est bien
+définie et non expansive, \(\|\Pi_C x - \Pi_C y\| \le \|x - y\|\), et que pour \(f\) convexe
+différentiable un point \(x^\star \in C\) minimise \(f\) sur \(C\) si et seulement si
+\[ x^\star = \Pi_C\bigl( x^\star - t\,\nabla f(x^\star) \bigr) \quad\text{pour tout } t \gt 0. \]</p>
+<p class="context">L'existence et l'unicité de la projection sont le cas de dimension finie du
+théorème de projection sur un convexe fermé, et l'inégalité variationnelle qui s'y cache —
+\(\langle x - \Pi_C x,\ z - \Pi_C x \rangle \le 0\) pour tout \(z \in C\) — constitue toute la
+démonstration. La caractérisation par point fixe est ce qui convertit l'optimalité en algorithme :
+itérez l'application et vous obtenez la descente de gradient projetée, introduite par Goldstein
+puis par Levitin et Poliak au milieu des années 1960. Remplacez le gradient par un sous-gradient et
+la projection par l'opérateur proximal de Moreau, et vous obtenez la machinerie qui sous-tend la
+régression parcimonieuse moderne.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_projection_sur_un_convexe_ferm%C3%A9">Théorème de projection sur un convexe fermé — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_du_gradient_proximal">Méthode du gradient proximal — Wikipédia</a></li>
+<li>Lecture : Boyd et Vandenberghe, <i>Convex Optimization</i>, ch. 4 — <a href="https://web.stanford.edu/~boyd/cvxbook/">PDF gratuit sur le site de Stanford</a></li>
+<li>Lecture : Bertsekas, <i>Nonlinear Programming</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-32" data-level="Master">
+<h3>OPT-32 · La méthode de Newton, l'auto-concordance et le chemin central <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour \(f\) deux fois continûment différentiable, la méthode de Newton pour la
+minimisation s'écrit
+\[ x_{k+1} = x_k - \nabla^2 f(x_k)^{-1} \nabla f(x_k). \]</p>
+<ol class="parts" type="a">
+<li>Démontrez la convergence quadratique locale : si \(\nabla^2 f\) est lipschitzienne de constante
+\(M\) au voisinage d'un minimiseur \(x^\star\) et si \(\nabla^2 f(x^\star) \succeq m I\) avec
+\(m \gt 0\), alors \(\|x_{k+1} - x^\star\| \le \frac{M}{2m}\|x_k - x^\star\|^2\) dès que \(x_k\) est
+assez proche. Explicitez ce « assez proche ».</li>
+<li>Démontrez que la méthode est invariante par transformation affine : si \(x \mapsto Tx\) est
+linéaire inversible, les itérés de Newton de \(f \circ T\) sont les images par \(T^{-1}\) de ceux de
+\(f\). La descente de gradient n'a pas cette propriété. Montrez ensuite que la convergence globale
+peut échouer même en dimension un : pour \(f(x) = \sqrt{1 + x^2}\), l'itération est exactement
+\(x_{k+1} = -x_k^3\), de sorte qu'elle converge cubiquement quand \(|x_0| \lt 1\) et diverge quand
+\(|x_0| \gt 1\).</li>
+<li>La réparation de Nesterov et Nemirovski : dites qu'une fonction convexe \(f\) sur un ouvert est
+<i>auto-concordante</i> si \(|f'''(x)[h,h,h]| \le 2\,(f''(x)[h,h])^{3/2}\) pour tous \(x\) et
+\(h\). Vérifiez que \(-\log x\) sur \((0, \infty)\) est auto-concordante, que la propriété est
+préservée par substitution affine et par sommation, et expliquez pourquoi elle fournit une analyse
+de convergence sans aucune constante inconnue du problème.</li>
+<li>Le chemin central : pour \(\min c^{\top}x\) sous les contraintes \(a_i^{\top} x \le b_i\)
+(\(i = 1,\dots,m\)) avec intérieur non vide et borné, notez \(x(t)\) le minimiseur de
+\(t\,c^{\top}x - \sum_{i=1}^m \log(b_i - a_i^{\top}x)\). Démontrez que \(x(t)\) existe et est unique,
+démontrez la majoration du saut de dualité \(c^{\top}x(t) - \mathrm{OPT} \le m/t\), et expliquez
+comment suivre ce chemin par des pas de Newton donne un algorithme polynomial.</li>
+</ol>
+</div>
+<p class="context">La méthode de Newton était un chercheur de racines pour Newton (1669) et Raphson
+(1690) ; Simpson en a fait en 1740 l'itération moderne pour les systèmes et pour la minimisation.
+Sa vitesse quadratique et son manque de fiabilité loin de la solution sont les deux faits avec
+lesquels vit toute personne qui optimise. La résolution est venue d'une direction inattendue : la
+méthode de l'ellipsoïde de Khatchiyan a démontré en 1979 que la programmation linéaire est
+polynomiale mais était désespérée en pratique, la méthode de points intérieurs de Karmarkar (1984)
+était à la fois polynomiale et rapide, et la théorie des barrières auto-concordantes de Nesterov et
+Nemirovski (1994) a expliqué pourquoi — tout en l'étendant à tous les programmes convexes, créant au
+passage la programmation semi-définie comme outil utilisable.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Newton">Méthode de Newton (en optimisation) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thodes_de_points_int%C3%A9rieurs">Méthodes de points intérieurs — Wikipédia</a></li>
+<li>Lecture : Boyd et Vandenberghe, <i>Convex Optimization</i>, ch. 9–11 — <a href="https://web.stanford.edu/~boyd/cvxbook/">PDF gratuit sur le site de Stanford</a></li>
+<li>Lecture : Nesterov et Nemirovski, <i>Interior-Point Polynomial Algorithms in Convex Programming</i> (SIAM, 1994)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-41" data-level="Master" data-kind="court">
+<h3>OPT-41 · Rendements décroissants et la constante \(1 - 1/e\) <span class="level">[Master]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Une fonction d'ensemble \(f : 2^V \to \mathbb{R}_{\ge 0}\) avec \(f(\emptyset) = 0\) est <i>monotone</i> si \(f(S) \le f(T)\) dès que \(S \subseteq T\), et <i>sous-modulaire</i> si
+\[ f(S \cup \{e\}) - f(S) \;\ge\; f(T \cup \{e\}) - f(T) \qquad \text{pour tous } S \subseteq T \text{ et } e \notin T . \]
+Démontrez le théorème de Nemhauser, Wolsey et Fisher (1978) : l'algorithme glouton qui construit un ensemble en ajoutant, \(k\) fois, l'élément de plus grand gain immédiat renvoie \(S_k\) vérifiant \(f(S_k) \ge \big(1 - (1 - 1/k)^k\big)\,\mathrm{OPT} \ge (1 - 1/e)\,\mathrm{OPT}\), où OPT est le maximum de \(f\) sur tous les ensembles de cardinal \(k\) ; montrez ensuite que cette constante est la limite exacte de ce qui est atteignable, à la fois dans le modèle de l'oracle de valeur sans aucune hypothèse de complexité et, pour le cas particulier de la couverture maximale, sous P ≠ NP.</p>
+<p class="context">La sous-modularité, ce sont les rendements décroissants mis par écrit : les fonctions de couverture, l'entropie, la fonction de rang d'un matroïde (OPT-30) et la propagation d'influence dans un réseau sont toutes sous-modulaires, et l'algorithme glouton est de toute façon celui que chacun écrit en premier — le contenu du théorème est qu'ici il n'est pas seulement raisonnable mais prouvablement quasi optimal, et qu'aucune méthode polynomiale plus habile ne fera mieux. Le théorème de Feige (1998) selon lequel \(\ln n\) est le seuil exact pour le recouvrement d'ensembles fournit la difficulté correspondante. La situation est l'image en miroir de la convexité, raison pour laquelle on appelle souvent les fonctions sous-modulaires l'analogue discret : <i>minimiser</i> une fonction sous-modulaire est polynomial — d'abord par la méthode de l'ellipsoïde (OPT-42, Grötschel-Lovász-Schrijver 1981), puis par des algorithmes combinatoires — tandis qu'en <i>maximiser</i> une est NP-difficile et approximable exactement à \(1 - 1/e\). L'article de Kempe, Kleinberg et Tardos de 2003 sur la maximisation d'influence a rendu le résultat célèbre hors de l'optimisation, et il justifie aujourd'hui les algorithmes de placement de capteurs, de résumé automatique de documents et de sélection de sous-ensembles de données.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fonction_sous-modulaire">Fonction sous-modulaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_couverture_maximale">Problème de couverture maximale — Wikipédia</a></li>
+<li>Article : Nemhauser, Wolsey et Fisher, « An analysis of approximations for maximizing submodular set functions—I », Mathematical Programming 14 (1978)</li>
+<li>Article : Feige, « A threshold of ln n for approximating set cover », Journal of the ACM 45 (1998)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-42" data-level="Master">
+<h3>OPT-42 · La méthode de l'ellipsoïde, et ce qui lui a survécu <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Notez \(E(c, A) = \{x \in \mathbb{R}^n : (x - c)^{\top}A^{-1}(x - c) \le 1\}\) l'ellipsoïde de centre \(c\) et de matrice de forme \(A\) symétrique définie positive.</p>
+<ol class="parts" type="a">
+<li>L'étape de bissection. Étant donné \(E(c,A)\) et \(a \in \mathbb{R}^n\) non nul, démontrez que l'ellipsoïde de volume minimal contenant le demi-ellipsoïde \(\{x \in E(c,A) : a^{\top}x \le a^{\top}c\}\) est \(E(c', A')\) avec
+\[ c' = c - \frac{1}{n+1}\,\frac{Aa}{\sqrt{a^{\top}Aa}}, \qquad A' = \frac{n^2}{n^2 - 1}\left( A - \frac{2}{n+1}\,\frac{Aaa^{\top}A}{a^{\top}Aa} \right), \]
+et démontrez l'estimation de volume \(\mathrm{vol}(E')/\mathrm{vol}(E) \le e^{-1/(2(n+1))}\).</li>
+<li>L'algorithme. Supposez que l'ensemble admissible \(P = \{x : Ax \le b\}\) est contenu dans une boule de rayon \(R\) et, s'il est non vide, contient une boule de rayon \(r\). Démontrez qu'itérer (a) — à chaque étape, ou bien le centre est admissible, ou bien une contrainte violée fournit la direction de coupe — décide de l'admissibilité en \(O(n^2 \log(R/r))\) itérations.</li>
+<li>Le théorème de Khatchiyan. Expliquez comment des bornes sur la taille en bits de données rationnelles fournissent de tels \(R\) et \(r\), après une perturbation rendant le système de dimension pleine, et concluez que la programmation linéaire se résout en temps polynomial en la longueur en bits de l'entrée — la première démonstration que la programmation linéaire est dans P. Expliquez ensuite précisément pourquoi cet algorithme est néanmoins inutilisable en pratique, et pourquoi la méthode du simplexe (OPT-21) ne lui a jamais perdu un seul utilisateur.</li>
+<li>Ce qui a survécu. Observez que la méthode ne lit jamais la liste des contraintes : elle n'a besoin que d'un <i>oracle de séparation</i> qui, étant donné un point, ou bien certifie son appartenance, ou bien renvoie une inégalité violée. Démontrez cette conséquence, déduisez-en l'équivalence de Grötschel-Lovász-Schrijver entre séparation et optimisation, et donnez deux exemples de familles d'inégalités de taille exponentielle admettant une séparation polynomiale — les contraintes d'élimination des sous-circuits pour le polytope du voyageur de commerce, et les inégalités définissant la minimisation des fonctions sous-modulaires (OPT-41).</li>
+<li>Réfléchissez aux deux choses différentes que peut être un algorithme polynomial : une procédure que l'on exécute, et un théorème que l'on cite. Lequel des résultats ci-dessus est l'un, lequel est l'autre, et que dit cela du rapport entre théorie de la complexité et calcul effectif ?</li>
+</ol>
+</div>
+<p class="context">Naum Chor, David Yudin et Arkadi Nemirovski ont développé les idées d'ellipsoïdes en Union soviétique dans les années 1970 pour la minimisation convexe générale ; en 1979, Leonid Khatchiyan a montré qu'elles règlent la complexité de la programmation linéaire, et le résultat s'est entièrement échappé des mathématiques — le <i>New York Times</i> l'a mis en une en novembre de cette année-là. Ce fut aussi une déception : l'algorithme est numériquement délicat et désespérément lent, et il n'a jamais délogé la méthode du simplexe sur un seul problème réel. Sa seconde vie a commencé en 1981, quand Grötschel, Lovász et Schrijver ont remarqué que la méthode ne pose jamais qu'une seule question à la région admissible — <i>ce point est-il en toi, et sinon, quelle inégalité viole-t-il ?</i> —, ce qui en fait l'instrument universel pour démontrer que des problèmes d'optimisation combinatoire sont polynomiaux, y compris des problèmes dont la liste de contraintes est de longueur exponentielle. La méthode de points intérieurs de Karmarkar (1984, OPT-32) a ensuite livré en pratique ce que celle de Khatchiyan avait promis en théorie.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_de_l%27ellipso%C3%AFde">Méthode de l'ellipsoïde — Wikipédia</a></li>
+<li>Article : Grötschel, Lovász et Schrijver, « The ellipsoid method and its consequences in combinatorial optimization », Combinatorica 1 (1981)</li>
+<li>Lecture : Grötschel, Lovász et Schrijver, <i>Geometric Algorithms and Combinatorial Optimization</i> (Springer, 1988)</li>
+<li>Lecture : Schrijver, <i>Theory of Linear and Integer Programming</i>, ch. 13–14</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-43" data-level="Master">
+<h3>OPT-43 · Le gradient stochastique : une vitesse qui ignore la dimension <span class="level">[Master]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Minimisez une fonction convexe \(f\) sur un convexe fermé \(C\) de diamètre \(D\), avec pour seul accès un oracle stochastique : en tout \(x\) il renvoie un vecteur aléatoire \(g\) tel que \(\mathbb{E}[g] \in \partial f(x)\) et \(\mathbb{E}\|g\|^2 \le G^2\). La descente de gradient stochastique itère
+\[ x_{t+1} = \Pi_C\big(x_t - \eta_t\, g_t\big), \]
+où \(\Pi_C\) est la projection euclidienne d'OPT-31.</p>
+<ol class="parts" type="a">
+<li>Démontrez l'inégalité d'une étape
+\[ \mathbb{E}\|x_{t+1} - x^\star\|^2 \;\le\; \mathbb{E}\|x_t - x^\star\|^2 \;-\; 2\eta_t\,\mathbb{E}\big[f(x_t) - f(x^\star)\big] \;+\; \eta_t^2 G^2, \]
+en utilisant la non-expansivité de la projection et l'inégalité de sous-gradient. Identifiez exactement où sert l'absence de biais de l'oracle.</li>
+<li>Avec un pas constant \(\eta\), sommez, télescopez et appliquez l'inégalité de Jensen à la moyenne \(\bar{x}_T = \tfrac{1}{T}\sum_{t=1}^{T} x_t\) pour obtenir
+\[ \mathbb{E}\big[f(\bar{x}_T)\big] - f(x^\star) \;\le\; \frac{D^2}{2\eta T} + \frac{\eta G^2}{2}, \]
+et optimisez en \(\eta\) pour obtenir une vitesse de l'ordre de \(GD/\sqrt{T}\). Notez ce qui est absent : aucune régularité, aucune borne sur le bruit au-delà d'un moment d'ordre deux — et aucune dépendance au nombre de variables.</li>
+<li>Forte convexité. Pour \(f\) \(\mu\)-fortement convexe et le calendrier \(\eta_t = 1/(\mu t)\), démontrez une vitesse de l'ordre de \(G^2 \log T/(\mu T)\), et expliquez comment ne moyenner que la seconde moitié des itérés supprime le logarithme.</li>
+<li>Le plancher de bruit. Prenez \(f(x) = \tfrac{\mu}{2}x^2\) en dimension un avec l'oracle \(g_t = \mu x_t + \zeta_t\), où \(\zeta_t\) est de moyenne \(0\) et de variance \(\sigma^2\), et un pas constant \(\eta\). Établissez la récurrence exacte pour \(\mathbb{E}[x_t^2]\), calculez sa limite et montrez qu'elle est un multiple positif de \(\eta\sigma^2/\mu\) : à pas fixe, les itérés convergent géométriquement vers un <i>voisinage</i> du minimiseur et pas plus loin. Déduisez-en pourquoi les pas doivent décroître, et énoncez les conditions de Robbins-Monro \(\sum_t \eta_t = \infty\), \(\sum_t \eta_t^2 &lt; \infty\).</li>
+<li>Là où la pratique s'écarte de la théorie. Dans les problèmes de somme finie surparamétrés de l'apprentissage automatique, le bruit du gradient s'annule en un minimiseur global parce que chaque terme y est minimisé ; expliquez pourquoi la descente de gradient stochastique à pas constant converge alors géométriquement malgré tout, et pourquoi l'itéré moyenné qu'exige la théorie de (b) n'est presque jamais utilisé en pratique. Comparez avec NUM-19 sur la page <a href="applied-numerical.html">Analyse numérique</a>.</li>
+</ol>
+</div>
+<p class="context">Herbert Robbins et Sutton Monro ont introduit l'approximation stochastique en 1951 comme une procédure statistique — comment trouver la racine d'une fonction de régression que l'on ne peut échantillonner qu'avec du bruit, comme dans un essai de dosage — et Kiefer et Wolfowitz en ont ajouté la version sans dérivées un an plus tard. La théorie a mûri discrètement : le moyennage de Poliak et Juditsky (1992) atteint des vitesses asymptotiquement optimales, et l'article de Nemirovski, Juditsky, Lan et Shapiro (2009) est l'énoncé moderne des bornes ci-dessus. Puis l'algorithme est devenu la procédure d'optimisation la plus exécutée de l'histoire, à cause de la comptabilité de (b) : la vitesse dépend de \(G\) et de \(D\) et non de la dimension, si bien qu'avec un million d'exemples un pas bruité coûtant un exemple bat un pas de gradient exact coûtant un million. Tout dans ce problème vaut pour \(f\) convexe ; que le même algorithme fonctionne sur les objectifs non convexes pour lesquels on l'emploie réellement reste, comme le consigne NUM-19, inexpliqué.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_du_gradient_stochastique">Algorithme du gradient stochastique — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Stochastic_approximation">Approximation stochastique — Wikipédia (en anglais)</a></li>
+<li>Article : Robbins et Monro, « A stochastic approximation method », The Annals of Mathematical Statistics 22 (1951)</li>
+<li>Article : Nemirovski, Juditsky, Lan et Shapiro, « Robust stochastic approximation approach to stochastic programming », SIAM Journal on Optimization 19 (2009)</li>
+</ul>
+</section>
+
+<h2>Recherche</h2>
+
+<section class="problem" id="OPT-20" data-level="Recherche">
+<h3>OPT-20 · La conjecture de Hirsch polynomiale <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le diamètre du graphe d'un polytope est le plus grand nombre d'arêtes nécessaires pour aller d'un sommet à un autre. Warren Hirsch a conjecturé en 1957 qu'un polytope de dimension \(d\) à \(f\) facettes a un diamètre au plus égal à \(f - d\).</p>
+<ol class="parts" type="a">
+<li>Comme point d'entrée, démontrez le théorème de Naddef : les polytopes 0/1 (toutes les coordonnées des sommets valent 0 ou 1) vérifient la borne de Hirsch.</li>
+<li>Le problème de recherche : existe-t-il une borne polynomiale \(p(f, d)\) sur le diamètre de tous les polytopes ? <b>État : ouvert.</b> Francisco Santos a réfuté la conjecture originale en 2010 avec un contre-exemple en dimension 43 (publié dans les Annals of Mathematics en 2012), mais toutes les violations connues ne le sont que par des facteurs constants ; les meilleures bornes supérieures générales, issues de Kalai-Kleitman (1992) et de ses raffinements, restent quasi polynomiales. Même une borne du type \(f^2\) est inconnue.</li>
+</ol>
+</div>
+<p class="context">La conjecture n'est pas un culte oiseux des polytopes : la méthode du simplexe marche sur le graphe du polytope, de sorte qu'un diamètre superpolynomial condamnerait d'un coup toute règle de pivotage, tandis qu'une borne polynomiale est nécessaire (mais non suffisante) pour une variante fortement polynomiale du simplexe. Santos a annoncé son contre-exemple en 2010 lors d'un colloque célébrant les plus de cinquante ans de règne de la conjecture — l'équivalent mathématique d'amener le dragon au pot de départ à la retraite du chevalier. La version polynomiale est aujourd'hui le problème géométrique ouvert central du domaine.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Hirsch">Conjecture de Hirsch — Wikipédia</a></li>
+<li>Article : Santos, « A counterexample to the Hirsch conjecture » (2012), <a href="https://arxiv.org/abs/1006.2814">arXiv:1006.2814</a></li>
+<li>Article : Kalai et Kleitman, « A quasi-polynomial bound for the diameter of graphs of polyhedra », Bulletin of the AMS 26 (1992)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-21" data-level="Recherche">
+<h3>OPT-21 · Pourquoi le simplexe fonctionne-t-il ? L'analyse lisse <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Klee et Minty (1972) ont construit des programmes linéaires sur lesquels la règle de pivotage de Dantzig prend \(2^n\) étapes ; pourtant le simplexe est rapide sur toutes les instances réelles que l'on rencontre.</p>
+<ol class="parts" type="a">
+<li>Point d'entrée : construisez le cube de Klee-Minty et démontrez le chemin exponentiel.</li>
+<li>Comprenez la résolution : l'<i>analyse lisse</i> de Spielman et Teng (2001-2004) démontre que si les données d'une instance quelconque sont perturbées par un bruit gaussien de taille relative \(\sigma\), le temps d'exécution espéré d'une variante du simplexe est polynomial en les dimensions et en \(1/\sigma\). Lisez et reconstituez le plan de leur argument, ainsi que la version simplifiée et affinée de Dadush et Huiberts (2018). <b>État : cette question est résolue</b> — la polynomialité lisse est un théorème, reconnu par le prix Gödel 2008. <b>Ce qui reste ouvert :</b> un algorithme fortement polynomial pour la programmation linéaire (le 9<sup>e</sup> problème de Smale pour le XXI<sup>e</sup> siècle), et toute règle de pivotage polynomiale dans le pire cas.</li>
+</ol>
+</div>
+<p class="context">L'article de Spielman et Teng a fait plus que régler une gêne vieille de cinquante ans — il a introduit un genre d'analyse nouveau, entre le pire cas et le cas moyen, aujourd'hui appliqué en algorithmique, en analyse numérique et en apprentissage automatique. L'histoire est la meilleure parabole du domaine au sujet des modèles : le décalage entre la théorie et la pratique était un fait relatif à la question, non à l'algorithme. Les problèmes ouverts restants marquent la vraie frontière : personne ne connaît d'algorithme de programmation linéaire dont le nombre d'opérations arithmétiques soit polynomial en le seul nombre de variables et de contraintes.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Analyse_lisse_d%27algorithme">Analyse lisse d'algorithme — Wikipédia</a></li>
+<li>Article : Spielman et Teng, « Smoothed analysis of algorithms: Why the simplex algorithm usually takes polynomial time », Journal of the ACM 51(3) (2004)</li>
+<li>Article : Dadush et Huiberts, « A friendly smoothed analysis of the simplex method », STOC 2018</li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8mes_de_Smale">Problèmes de Smale — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-22" data-level="Recherche">
+<h3>OPT-22 · La complexité du calcul d'un équilibre de Nash <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le théorème de Nash (OPT-19) garantit qu'un équilibre existe, de sorte que le problème de recherche ne peut être NP-difficile à moins que NP = coNP ; sa véritable demeure est la classe PPAD, formée des problèmes de recherche dont la totalité est garantie par un argument de parité sur des graphes orientés.</p>
+<ol class="parts" type="a">
+<li>Point d'entrée : définissez PPAD via le problème End-of-Line et montrez que le calcul d'un équilibre de Nash y appartient.</li>
+<li>Comprenez le jalon : Daskalakis, Goldberg et Papadimitriou (2006/2009) ont démontré que calculer un équilibre de Nash est PPAD-complet pour les jeux à 3 joueurs ou plus, et Chen et Deng ont étendu cela aux jeux à deux joueurs. <b>État : la complexité est réglée</b> — Nash est exactement aussi difficile que Brouwer. <b>Ouvert :</b> savoir si les problèmes PPAD-complets admettent des algorithmes polynomiaux (on croit que non), et la complexité exacte des équilibres <i>approchés</i>, où la borne inférieure quasi polynomiale de Rubinstein (2016), sous une hypothèse de type ETH, rejoint l'algorithme de Lipton-Markakis-Mehta.</li>
+</ol>
+</div>
+<p class="context">« Si votre ordinateur portable ne peut pas le trouver, le marché non plus » — le résumé de Kamal Jain expliquant pourquoi ce théorème compte : l'équilibre est la prédiction centrale de l'économie, et la PPAD-complétude dit que le calculer est en général intraitable. La démonstration de 2006, qui a refaçonné la théorie algorithmique des jeux et valu à ses auteurs, entre autres, le prix 2008 de la Game Theory Society, réduit les points fixes de Brouwer, via les jeux graphiques, à l'équilibre de Nash sous forme normale. C'est la réponse la plus profonde connue au « ce n'est qu'un théorème de point fixe » de von Neumann.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/PPAD_(complexit%C3%A9)">PPAD (complexité) — Wikipédia</a></li>
+<li>Article : Daskalakis, Goldberg et Papadimitriou, « The Complexity of Computing a Nash Equilibrium », SIAM Journal on Computing 39(1) (2009)</li>
+<li>Article : Chen, Deng et Teng, « Settling the complexity of computing two-player Nash equilibria », Journal of the ACM 56(3) (2009)</li>
+<li>Lecture : Nisan, Roughgarden, Tardos et Vazirani (dir.), <i>Algorithmic Game Theory</i>, ch. 2</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-23" data-level="Recherche">
+<h3>OPT-23 · La frontière du partage de gâteau <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour \(n\) joueurs, existe-t-il un protocole de partage de gâteau sans envie qui utilise un nombre <i>borné</i> de requêtes — et combien en faut-il ?</p>
+<ol class="parts" type="a">
+<li>Point d'entrée : montrez que le couteau mobile de Dubins-Spanier et le protocole de Brams-Taylor échouent chacun à la bornitude de façons différentes (l'un exige un continuum d'instants, l'autre n'a pas de borne indépendante des évaluations).</li>
+<li>Le jalon : Aziz et Mackenzie (2016) ont donné un protocole sans envie discret et borné pour tout \(n\) — avec une complexité en requêtes égale à une tour d'exponentielles de hauteur six, \(n^{n^{n^{n^{n^{n}}}}}\).</li>
+<li>Le problème de recherche : réduire l'écart avec la meilleure borne inférieure connue, le \(\Omega(n^2)\) de Procaccia. <b>État : l'existence est réglée (2016) ; l'écart de complexité — une tour de six exponentielles contre \(n^2\) — est grand ouvert</b>, les progrès récents ne portant que sur des cadres restreints, comme les graphes d'envie structurés.</li>
+</ol>
+</div>
+<p class="context">Après que Selfridge-Conway (OPT-14) eut réglé le cas \(n = 3\) vers 1960, le seul cas \(n = 4\) a résisté un demi-siècle ; Aziz et Mackenzie ont d'abord percé le cas de quatre joueurs, puis tous les \(n\) en moins d'un an. Leur borne en tour d'exponentielles est à la fois un triomphe (bornée, enfin !) et une invitation ouverte — peu de résultats en mathématiques ont une borne supérieure et une borne inférieure séparées par cinq étages d'exponentielles. Le partage équitable est aujourd'hui un point de rencontre entre la combinatoire, la topologie (arguments à la Sperner) et l'informatique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Envy-free_cake-cutting">Partage de gâteau sans envie — Wikipédia (en anglais)</a></li>
+<li>Article : Aziz et Mackenzie, « A Discrete and Bounded Envy-Free Cake Cutting Protocol for Any Number of Agents » (2016), <a href="https://arxiv.org/abs/1604.03655">arXiv:1604.03655</a></li>
+<li>Article : Procaccia, « Thou Shalt Covet Thy Neighbor's Cake », IJCAI 2009</li>
+<li>Lecture : Brams et Taylor, <i>Fair Division: From Cake-Cutting to Dispute Resolution</i></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-33" data-level="Recherche" data-kind="court">
+<h3>OPT-33 · La conjecture du secrétaire matroïdal <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Les éléments d'un matroïde arrivent un à un dans un ordre
+uniformément aléatoire, chacun révélant à son arrivée un poids choisi par un adversaire, et un
+algorithme doit accepter ou rejeter chaque élément irrévocablement, en gardant indépendant
+l'ensemble accepté. Babaioff, Immorlica et Kleinberg ont conjecturé en 2007 qu'un certain
+algorithme récolte toujours, en espérance, une fraction constante de la base de poids maximal ;
+démontrez le cas classique de rang un (la règle du secrétaire en \(1/e\)), puis faites le point
+sur l'état des connaissances — des facteurs constants sont connus pour de nombreuses classes
+particulières de matroïdes, la meilleure garantie générale est en
+\(O(\log\log \mathrm{rang})\), et la conjecture elle-même est <b>ouverte</b>.</p>
+<p class="context">C'est le problème classique du secrétaire — Lindley (1961) et Dynkin (1963)
+en ont donné la règle en \(1/e\) pour choisir l'unique meilleur candidat — promu à une contrainte
+combinatoire, et il est devenu urgent quand l'allocation de publicité en ligne a fait de
+« décider maintenant, irrévocablement, l'avenir étant inconnu » la condition normale d'un
+algorithme. Lachish a atteint \(O(\log\log \mathrm{rang})\) en 2014 et Feldman, Svensson et
+Zenklusen ont simplifié l'argument en 2015 ; près de deux décennies plus tard, personne n'a
+trouvé de constante, et personne n'a montré qu'elle est impossible.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_secr%C3%A9taire">Problème du secrétaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Matro%C3%AFde">Matroïde — Wikipédia</a></li>
+<li>Article : Babaioff, Immorlica et Kleinberg, « Matroids, secretary problems, and online mechanisms », SODA 2007</li>
+<li>Article : Feldman, Svensson et Zenklusen, « A simple O(log log(rank))-competitive algorithm for the matroid secretary problem », SODA 2015</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-34" data-level="Recherche" data-kind="court">
+<h3>OPT-34 · Quelle taille doit avoir un programme linéaire ? <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> La <i>complexité d'extension</i> d'un polytope \(P\) est le
+plus petit nombre de facettes d'un polytope \(Q\), en dimension quelconque, se projetant
+linéairement sur \(P\) ; un petit \(Q\) signifie que l'on peut optimiser sur \(P\) au moyen d'un
+petit programme linéaire. Démontrez le sens facile — une formulation étendue à \(f\) facettes
+donne un programme linéaire à \(f\) contraintes — puis rendez compte des deux bornes inférieures
+marquantes : le polytope du voyageur de commerce (Fiorini, Massar, Pokutta, Tiwary et de Wolf,
+2012) et même le polytope des couplages parfaits (Rothvoß, 2014) ont une complexité d'extension
+exponentielle, ce dernier bien que le couplage soit résoluble en temps polynomial.</p>
+<p class="context">Mihalis Yannakakis a démontré en 1988 que toute formulation étendue
+<i>symétrique</i> du polytope du voyageur de commerce est exponentielle, ce qui a discrètement
+réglé leur sort à un flot de prétendues démonstrations de P = NP par la programmation linéaire ;
+retirer l'hypothèse de symétrie a demandé vingt-quatre ans de plus. Le théorème de Rothvoß est
+celui qui porte la philosophie : la résolubilité en temps polynomial ne vous offre pas un
+programme linéaire de taille polynomiale, si bien qu'« exprimez-le comme un programme linéaire »
+est un outil strictement plus faible que « résolvez-le en temps polynomial ». <i>État : ces
+polytopes sont réglés ; la question générale de savoir quels polytopes admettent de petites
+formulations étendues, exactes ou approchées, reste grande ouverte.</i></p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Extended_formulation">Formulation étendue — Wikipédia (en anglais)</a></li>
+<li>Article : Fiorini, Massar, Pokutta, Tiwary et de Wolf, « Linear vs. semidefinite extended formulations: exponential separation and strong lower bounds », STOC 2012</li>
+<li>Article : Rothvoß, « The matching polytope has exponential extension complexity », STOC 2014 ; Journal of the ACM 64 (2017)</li>
+<li>Article : Yannakakis, « Expressing combinatorial optimization problems by linear programs », Journal of Computer and System Sciences 43 (1991)</li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-35" data-level="Recherche">
+<h3>OPT-35 · La conjecture des jeux uniques <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans un <i>jeu unique</i>, on se donne un graphe, un alphabet \([k]\) et, pour
+chaque arête, une permutation de \([k]\) ; un étiquetage des sommets satisfait une arête si la
+permutation envoie l'étiquette d'une extrémité sur celle de l'autre. La conjecture des jeux
+uniques de Khot (2002) affirme que pour tout \(\varepsilon \gt 0\) il existe un \(k\) pour lequel
+il est NP-difficile de distinguer les instances où un étiquetage satisfait au moins
+\(1 - \varepsilon\) des arêtes des instances où aucun n'en satisfait plus de \(\varepsilon\).</p>
+<ol class="parts" type="a">
+<li>Point d'entrée : démontrez la garantie de Goemans-Williamson pour MAX-CUT. Écrivez la
+relaxation semi-définie, arrondissez-la par un hyperplan aléatoire uniforme passant par
+l'origine, et montrez que la coupe espérée vaut au moins
+\[ \alpha_{\mathrm{GW}} \;=\; \min_{0 \lt \theta \le \pi} \frac{\theta/\pi}{(1 - \cos\theta)/2} \;\approx\; 0.87856 \]
+fois l'optimum.</li>
+<li>Énoncez le théorème de Khot, Kindler, Mossel et O'Donnell : en supposant la conjecture et
+P ≠ NP, aucun algorithme polynomial n'approche MAX-CUT mieux que
+\(\alpha_{\mathrm{GW}}\). Expliquez le rôle que joue le théorème « Majority Is Stablest » de
+Mossel, O'Donnell et Oleszkiewicz, et pourquoi un résultat de difficulté de cette forme est
+remarquable : une constante disgracieuse issue d'un argument d'arrondi se révèle être la vérité
+exacte.</li>
+<li>Rendez compte des indices. Khot, Minzer et Safra ont démontré en 2018 la conjecture des jeux
+2-vers-2 avec complétude imparfaite, ce qui implique que distinguer les jeux uniques de valeur au
+moins \(1/2\) de ceux de valeur au plus \(\varepsilon\) est NP-difficile — « à mi-chemin » de la
+conjecture, puisque celle-ci exige une complétude \(1 - \varepsilon\). Expliquez précisément
+quel écart demeure.</li>
+<li>Problème de compréhension : défendez l'autre camp. Arora, Barak et Steurer ont donné en 2010
+un algorithme en temps sous-exponentiel — de l'ordre de \(2^{n^{\varepsilon}}\) — pour les jeux
+uniques, ce qui n'est pas ce que l'on attend d'un problème NP-difficile, et c'est la raison
+principale pour laquelle certains experts doutent de la conjecture. Expliquez pourquoi cet
+algorithme ne la réfute pas.
+<i>État : ouvert. Le théorème 2-vers-2 de 2018 est le progrès le plus profond ; le même cercle
+d'auteurs a poursuivi le programme depuis, et la conjecture reste ni démontrée ni réfutée.</i></li>
+</ol>
+</div>
+<p class="context">Subhash Khot a proposé la conjecture en 2002 comme un dispositif technique et
+elle est devenue l'hypothèse organisatrice de tout un domaine : admettez-la, et le seuil exact
+d'approximabilité de MAX-CUT, de la couverture par sommets et de tout problème de satisfaction de
+contraintes se calcule par un unique programme semi-défini (Raghavendra, 2008). Peu de conjectures
+ont cette portée — c'est moins une question qu'un gond sur lequel pivote la carte de la difficulté
+d'approximation — et Khot a reçu le prix Nevanlinna en 2014 pour la lignée de travaux qu'elle a
+lancée. Voir aussi la page
+<a href="open-problems.html">Problèmes ouverts</a> du site et
+<a href="applied-discrete-cs.html">Mathématiques discrètes et informatique</a>.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_des_jeux_uniques">Conjecture des jeux uniques — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Coupe_maximum">Coupe maximum — Wikipédia</a></li>
+<li>Article : Goemans et Williamson, « Improved approximation algorithms for maximum cut and satisfiability problems using semidefinite programming », Journal of the ACM 42(6) (1995)</li>
+<li>Article : Khot, Minzer et Safra, « Pseudorandom sets in Grassmann graph have near-perfect expansion », FOCS 2018</li>
+</ul>
+</section>
+
+<hr>
+<section class="problem" id="OPT-44" data-level="Recherche" data-kind="court">
+<h3>OPT-44 · La conjecture des k serveurs <span class="level">[Recherche]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans le problème des \(k\) serveurs, \(k\) serveurs sont placés en des points d'un espace métrique ; les requêtes arrivent une à une, chacune en un point, et doivent être servies en y déplaçant un serveur, à un coût égal à la distance parcourue, sans aucune connaissance des requêtes futures. Un algorithme en ligne est <i>\(c\)-compétitif</i> si, sur toute suite de requêtes, son coût total vaut au plus \(c\) fois le coût optimal rétrospectif, à une constante près ; démontrez qu'aucun algorithme déterministe ne peut faire mieux que \(k\)-compétitif sur un espace métrique d'au moins \(k+1\) points, puis rendez un compte exact de l'état de la conjecture des \(k\) serveurs de Manasse, McGeoch et Sleator (1988) — selon laquelle sur tout espace métrique un certain algorithme déterministe est \(k\)-compétitif — en couvrant ce que l'on sait pour \(k = 2\), pour la droite et pour la pagination, la borne supérieure \(2k-1\) de l'algorithme de fonction de travail, et le sort de l'analogue randomisé.</p>
+<p class="context">L'analyse compétitive a été inventée par Sleator et Tarjan en 1985 pour la pagination, qui est exactement le problème des \(k\) serveurs sur une métrique uniforme, et où les algorithmes naturels sont précisément \(k\)-compétitifs ; Manasse, McGeoch et Sleator ont demandé en 1988 si le même \(k\) est atteignable dans <i>tout</i> espace métrique, et la question résiste depuis. <b>État : ouvert.</b> Koutsoupias et Papadimitriou ont démontré en 1995 que l'algorithme de fonction de travail est \((2k-1)\)-compétitif, ce qui reste la meilleure borne supérieure générale, et la conjecture est confirmée pour \(k = 2\), pour les droites et les arbres, et pour une poignée de métriques particulières. La version randomisée avait une conjecture compagne — un rapport de compétitivité de l'ordre de \(\log k\) — et elle est tombée en 2023, quand Bubeck, Coester et Rabani ont exhibé des espaces métriques sur lesquels tout algorithme randomisé a un rapport en \(\Omega(\log^2 k)\), première amélioration de la borne inférieure générale depuis l'introduction du modèle. La conjecture déterministe, vieille de près de quarante ans, demeure le problème ouvert central des algorithmes en ligne.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/K-server_problem">Problème des k serveurs — Wikipédia (en anglais)</a></li>
+<li>Article : Manasse, McGeoch et Sleator, « Competitive algorithms for server problems », Journal of Algorithms 11 (1990)</li>
+<li>Article : Koutsoupias et Papadimitriou, « On the k-server conjecture », Journal of the ACM 42 (1995)</li>
+<li>Article : Bubeck, Coester et Rabani, « The randomized k-server conjecture is false! » (2022), <a href="https://arxiv.org/abs/2211.05753">arXiv:2211.05753</a></li>
+</ul>
+</section>
+
+<section class="problem" id="OPT-45" data-level="Recherche">
+<h3>OPT-45 · Sommes de carrés : des certificats pour l'optimisation polynomiale <span class="level">[Recherche]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dites que \(p \in \mathbb{R}[x_1,\ldots,x_n]\) est une <i>somme de carrés</i> (SOS) si \(p = \sum_j q_j^2\) pour un nombre fini de polynômes \(q_j\). Tout polynôme SOS est positif ou nul ; le sujet commence avec le fait que la réciproque est fausse, et que c'est le côté SOS qui est calculable.</p>
+<ol class="parts" type="a">
+<li>Démontrez la caractérisation par matrice de Gram : si \(z\) est le vecteur de tous les monômes de degré au plus \(d\), alors un polynôme \(p\) de degré \(2d\) est SOS si et seulement s'il existe une matrice semi-définie positive \(Q\) telle que \(p = z^{\top}Qz\). Déduisez-en que tester la propriété SOS est un problème d'admissibilité semi-définie de taille \(\binom{n+d}{d}\), donc résoluble à toute précision fixée en temps polynomial à degré fixé — alors que décider de la positivité est déjà NP-difficile pour les polynômes de degré quatre.</li>
+<li>Démontrez que le polynôme de Motzkin
+\[ M(x,y,z) \;=\; x^4y^2 + x^2y^4 + z^6 - 3x^2y^2z^2 \]
+est positif ou nul — l'inégalité arithmético-géométrique sur trois termes y suffit — mais n'est pas une somme de carrés, en examinant quels monômes pourraient figurer dans les \(q_j\). Énoncez ensuite le théorème de Hilbert de 1888 : positivité et SOS coïncident exactement pour les polynômes à une variable, pour les formes quadratiques et pour les quartiques ternaires, et dans aucun autre cas. Notez que le 17<sup>e</sup> problème de Hilbert, résolu par Artin en 1927, rétablit l'égalité dès que l'on autorise des dénominateurs.</li>
+<li>La hiérarchie. Pour \(\min\{p(x) : g_1(x) \ge 0, \ldots, g_m(x) \ge 0\}\), définissez la relaxation de niveau \(d\)
+\[ \max\Big\{\gamma \;:\; p - \gamma = \sigma_0 + \sum_{i=1}^{m}\sigma_i g_i,\ \ \sigma_i \text{ SOS de degré} \le 2d \Big\} \]
+ainsi que sa relaxation duale sur les suites de moments. Démontrez que chaque niveau donne une borne inférieure valide et que ces bornes croissent au sens large avec \(d\) ; énoncez le Positivstellensatz de Putinar, qui donne la convergence vers l'optimum véritable sous une condition archimédienne ; et identifiez la relaxation de Goemans-Williamson de MAX-CUT (OPT-35) comme une instance du premier niveau non trivial.</li>
+<li><b>Le problème de recherche.</b> La hiérarchie est une théorie du tout, avec un hic : son programme semi-défini de niveau \(d\) est de dimension \(n^{O(d)}\), de sorte que seuls les deux ou trois premiers niveaux sont résolubles. Plusieurs questions honnêtes sont ouvertes. Quelles sont les vitesses de convergence exactes en \(d\) pour des classes naturelles de problèmes — les bornes générales connues sont bien plus faibles que ce que l'on observe ? Quand la hiérarchie converge-t-elle en un nombre fini d'étapes, et cela peut-il être certifié à l'avance (Nie a démontré en 2014 que la convergence finie est générique, sans test utilisable) ? De l'autre côté, les bornes inférieures en degré : des bornes inférieures sommes de carrés presque optimales pour le problème de la clique plantée (Barak, Hopkins, Kelner, Kothari, Moitra et Potechin, 2016) montrent que la hiérarchie n'y bat pas le seuil spectral élémentaire. Et, via le théorème de Raghavendra, la question de savoir si le niveau le plus bas est déjà optimal pour tout problème de satisfaction de contraintes est liée à la conjecture des jeux uniques d'OPT-35. <b>État : ouvert sur ces quatre points.</b> Choisissez-en un et faites-le avancer.</li>
+</ol>
+</div>
+<p class="context">La découverte par Hilbert en 1888 que les polynômes positifs ne sont pas nécessairement des sommes de carrés était purement existentielle ; le premier exemple explicite jamais écrit fut celui de Motzkin, en 1967, soixante-dix-neuf ans plus tard. Le sujet s'est ensuite endormi jusqu'en 2000, quand la thèse de Pablo Parrilo à Caltech et l'article de Jean-Bernard Lasserre de 2001 ont observé indépendamment que la condition SOS est un programme semi-défini — convertissant une question centenaire de géométrie algébrique réelle en un calcul. Le geste est exactement celui d'OPT-06, un étage d'algèbre plus haut : un certificat de positivité qu'un ordinateur peut chercher et qu'un sceptique peut vérifier en temps polynomial. C'est aujourd'hui l'outil standard pour l'optimisation polynomiale globale, pour trouver des fonctions de Liapounov en automatique, pour borner des quantités en information quantique, et — lorsque les identités du Positivstellensatz se lisent comme les lignes d'un système de preuve — le cadre général le plus puissant que l'on connaisse pour les algorithmes d'approximation et pour démontrer leurs limites.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Sum-of-squares_optimization">Optimisation par sommes de carrés — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Positive_polynomial">Polynôme positif (et le Positivstellensatz) — Wikipédia (en anglais)</a></li>
+<li>Article : Lasserre, « Global optimization with polynomials and the problem of moments », SIAM Journal on Optimization 11 (2001)</li>
+<li>Article : Barak, Hopkins, Kelner, Kothari, Moitra et Potechin, « A nearly tight sum-of-squares lower bound for the planted clique problem », FOCS 2016 ; SIAM Journal on Computing (2019)</li>
+</ul>
+</section>
+
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Cours : <a href="https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/">MIT OCW 15.053 Optimization Methods in Management Science</a> ; <a href="https://web.stanford.edu/class/ee364a/">Stanford EE364a Convex Optimization (Boyd)</a> ; <a href="https://oyc.yale.edu/economics/econ-159">Yale ECON 159 Game Theory (Ben Polak)</a> ; <a href="https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/">MIT OCW 6.046J Design and Analysis of Algorithms</a>.</li>
+<li>Livres : Matoušek et Gärtner, <i>Understanding and Using Linear Programming</i> ; Chvátal, <i>Linear Programming</i> ; Boyd et Vandenberghe, <i>Convex Optimization</i> (<a href="https://web.stanford.edu/~boyd/cvxbook/">PDF gratuit sur le site de Stanford</a>) ; Papadimitriou et Steiglitz, <i>Combinatorial Optimization: Algorithms and Complexity</i> ; Nisan, Roughgarden, Tardos et Vazirani (dir.), <i>Algorithmic Game Theory</i>.</li>
+<li>Articles et essais : Dantzig, « Reminiscences about the origins of linear programming », Operations Research Letters 1 (1982) ; Nash, « Non-Cooperative Games », Annals of Mathematics 54 (1951) ; Spielman et Teng, « Smoothed analysis of algorithms », Journal of the ACM 51(3) (2004).</li>
+</ul>
+<p>Voir aussi : <a href="applied-discrete-cs.html">Mathématiques discrètes et informatique</a>, <a href="pure-topology.html">Topologie</a> (le théorème de Brouwer derrière Nash), <a href="open-problems.html">Problèmes ouverts</a>.</p>
+
+<hr>
+<footer>
+<p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
+Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
+marcher. <a href="index.html">Accueil</a></p>
+</footer>
+</body>
+</html>

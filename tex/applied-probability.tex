@@ -1,0 +1,1603 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{problem}{Problème}
+\newenvironment{refs}{\par\small\noindent\emph{Références :}\begin{itemize}\setlength\itemsep{0pt}}{\end{itemize}\normalsize}
+\title{Hors de la Caverne \\ \Large Probabilités}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent\emph{Des problèmes, pas de réponses.} Chaque problème ci-dessous est posé
+sans solution. Les références indiquent où trouver les connaissances nécessaires.
+\medskip
+
+
+\section*{Lycée}
+
+\begin{problem}[{Les dés de Galilée --- Lycée}]
+\textbf{PRB-01.} \textbf{Problème.} On lance trois dés équilibrés. Les sommes 9 et 10 s'écrivent
+chacune comme somme de trois valeurs de dés d'exactement six façons
+($ 9 = 1{+}2{+}6 = 1{+}3{+}5 = \dots $, et de même pour 10) --- ce qui laisse croire qu'elles
+devraient être équiprobables. Les joueurs savaient d'expérience que le 10 sort plus souvent.
+Donnez raison aux joueurs : construisez l'univers correct des $ 6^3 = 216 $ issues ordonnées
+équiprobables, montrez que
+$ P(\text{somme}=10) = \frac{27}{216} > \frac{25}{216} = P(\text{somme}=9) $, et expliquez
+exactement où l'argument des \og{} six façons pour chacune \fg{} se trompe. Déduisez-en ensuite la loi
+complète de la somme de \textit{deux} dés et démontrez que 7 en est la valeur la plus probable.
+\end{problem}
+
+\noindent Le grand-duc de Toscane soumit l'énigme du 9 contre le 10 à Galilée, qui la
+trancha dans une courte note (\textit{Sopra le scoperte dei dadi}, vers 1620) ; Cardan était
+parvenu à des idées voisines dans son \textit{Liber de ludo aleae} un demi-siècle plus tôt, resté
+inédit jusqu'en 1663. La leçon --- compter les issues \textit{équiprobables}, et non les descriptions
+d'issues --- est la première idée sérieuse de la théorie des probabilités, et les joueurs de dés
+avaient relevé empiriquement un écart de 1/108 avant que les mathématiques ne sachent
+l'expliquer.
+
+\begin{refs}
+\item Contexte : Histoire des probabilités --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Histoire_des_probabilit%C3%A9s})
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1, ch. I
+\item Cours : MIT OCW 18.600 Probability and Random Variables (\url{https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Les deux paris du Chevalier --- Lycée}]
+\textbf{PRB-02.} \textbf{Problème.} Le chevalier de Méré gagnait de l'argent en pariant qu'il
+obtiendrait au moins un six en quatre lancers d'un dé, puis en perdit en pariant qu'il obtiendrait
+au moins un double-six en vingt-quatre lancers de deux dés --- alors qu'il tenait les deux paris
+pour équivalents (\og{} 4 est à 6 ce que 24 est à 36 \fg{}).
+\begin{enumerate}
+\item[(a)] Démontrez que le premier pari est favorable :
+$ 1 - (5/6)^4 > 1/2 $.
+\item[(b)] Démontrez que le second ne l'est pas :
+$ 1 - (35/36)^{24} < 1/2 $, et déterminez, avec démonstration, le plus petit nombre de lancers
+qui rend favorable le pari sur le double-six.
+\item[(c)] Mettez le doigt sur l'étape fausse du
+raisonnement de proportionnalité.
+\item[(d)] Le problème des partis : deux joueurs misent la même somme sur un jeu de pile ou face
+équilibré où le premier à remporter un nombre fixé de manches emporte tout ; ils doivent
+s'arrêter alors qu'il manque encore 2 victoires au joueur A et 3 au joueur B. Déterminez, avec
+démonstration, le partage équitable des mises.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Voilà les questions que de Méré apporta à Pascal en 1654, et la partie (iv) est
+\textit{le} problème des partis --- partager équitablement les mises exige de raisonner sur des
+parties qui n'ont jamais été jouées, et les lettres de Pascal et Fermat qui le résolvent sont les
+actes fondateurs de la théorie des probabilités. Fermat dénombrait ; Pascal récursait ; tous deux
+obtinrent la même réponse, et chacune des deux méthodes est devenue un pilier de la
+discipline.
+
+\begin{refs}
+\item Contexte : Problème des partis --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_des_partis})
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability}, ch. 1 (en libre accès (\url{https://probabilitybook.net}))
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le paradoxe des anniversaires --- Lycée}]
+\textbf{PRB-03.} \textbf{Problème.} On suppose les anniversaires indépendants et uniformes sur
+365 jours.
+\begin{enumerate}
+\item[(a)] Établissez la probabilité que $ n $ personnes aient toutes des anniversaires distincts :
+$ p_n = \prod_{k=0}^{n-1} \big(1 - \frac{k}{365}\big) $, et démontrez que $ n = 23 $ est la
+plus petite taille de groupe pour laquelle un anniversaire commun est plus probable
+qu'improbable.
+\item[(b)] Expliquez maintenant le phénomène, et pas seulement le nombre : avec $ N $ anniversaires
+possibles, utilisez l'inégalité $ 1 - x \le e^{-x} $ (démontrez-la) pour montrer qu'une
+collision devient probable dès que $ n \approx 1{,}18\sqrt{N} $, puis utilisez une inégalité
+correspondante dans l'autre sens pour montrer que l'ordre $ \sqrt{N} $ est bien le seuil --- la
+réponse varie comme la racine carrée de la longueur de l'année, ce qui explique que 23 paraisse
+trop petit.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le problème fut posé par Richard von Mises (1939) et popularisé par le manuel
+de Feller ; on dit que Harold Davenport le connaissait plus tôt. La loi en $\surd$N de la partie (ii)
+en est le contenu véritable : le même calcul régit les collisions dans les tables de hachage et
+l'\og{} attaque des anniversaires \fg{} sur les fonctions de hachage cryptographiques, où $ N $ est
+astronomiquement grand et où 1,18$\surd$N reste le budget dont un attaquant a besoin.
+
+\begin{refs}
+\item Contexte : Paradoxe des anniversaires --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Paradoxe_des_anniversaires})
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability}, ch. 1 (en libre accès (\url{https://probabilitybook.net}))
+\item Cours : MIT OCW 18.600 Probability and Random Variables (\url{https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Monty Hall, démontré --- et non plaidé --- Lycée}]
+\textbf{PRB-04.} \textbf{Problème.} Une voiture est cachée uniformément au hasard derrière
+l'une de trois portes ; les deux autres cachent des chèvres. Vous choisissez la porte 1. Le
+présentateur --- qui sait où est la voiture, ouvre toujours une porte que vous n'avez pas choisie,
+révèle toujours une chèvre, et choisit uniformément au hasard quand ses deux options cachent des
+chèvres --- ouvre la porte 3.
+\begin{enumerate}
+\item[(a)] Calculez, à partir de la
+définition de la probabilité conditionnelle, $ P(\text{voiture derrière la porte 2} \mid
+\text{le présentateur ouvre la porte 3}) $, et démontrez que changer de porte fait gagner avec
+probabilité $ 2/3 $.
+\item[(b)] Changez maintenant une règle : le présentateur ignore où est la voiture, ouvre uniformément
+au hasard l'une des deux portes non choisies, et \textit{se trouve} révéler une chèvre. Démontrez
+que la probabilité de gagner en changeant vaut désormais $ 1/2 $.
+\item[(c)] Dites en une phrase ce que ce couple de
+calculs démontre au sujet de \og{} la \fg{} réponse à une énigme probabiliste dont le protocole n'est pas
+énoncé.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Steve Selvin posa le problème dans \textit{The American Statistician} (1975) ; il
+explosa en 1990 quand Marilyn vos Savant publia la réponse \og{} changez de porte \fg{} dans
+\textit{Parade} et reçut des milliers de lettres --- beaucoup de docteurs en mathématiques ---
+soutenant qu'elle avait tort. Paul Erdős serait resté incrédule jusqu'à ce qu'on lui montre une
+simulation. C'est la démonstration canonique que la plausibilité verbale ne vaut rien en
+probabilités : seuls le modèle et le calcul tranchent.
+
+\begin{refs}
+\item Contexte : Problème de Monty Hall --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_Monty_Hall})
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability}, ch. 2 (en libre accès (\url{https://probabilitybook.net}))
+\item Cours : Harvard Stat 110 sur edX (Blitzstein) (\url{https://www.edx.org/bio/joseph-blitzstein})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'erreur du parieur et la longueur des séries --- Lycée}]
+\textbf{PRB-05.} \textbf{Problème.} On lance indéfiniment une pièce équilibrée, les lancers étant indépendants.
+\begin{enumerate}
+\item[(a)] Démontrez, à partir de la définition de l'indépendance, qu'après n'importe quelle suite
+d'issues observée --- y compris dix \og{} face \fg{} d'affilée --- la probabilité que le lancer suivant donne
+\og{} face \fg{} vaut encore $ 1/2 $.
+\item[(b)] Ceux qui fabriquent de fausses suites \og{} aléatoires \fg{} évitent les longues séries, et c'est
+ainsi qu'on les démasque : démontrez qu'en 200 lancers, la probabilité d'observer une série d'au
+moins 6 \og{} face \fg{} consécutifs dépasse $ 2/5 $. (Découpez 198 lancers en 33 blocs disjoints de
+six et majorez la probabilité qu'aucun bloc ne soit entièrement \og{} face \fg{}.) (iii) Dites
+précisément ce que la loi des grands nombres ne promet \textit{pas} : montrez que l'espérance de
+(nombre de \og{} face \fg{} $ - \; n/2 $) vaut $ 0 $ pour tout $ n $, mais que son écart type vaut
+$ \sqrt{n}/2 $ --- la fréquence converge, l'écart absolu non ; les déviations sont diluées, jamais
+\og{} corrigées \fg{}.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le 18 août 1913, la roulette de Monte-Carlo sortit le noir 26 fois de suite, et
+des joueurs se ruinèrent en misant sur le rouge \og{} parce qu'il était dû \fg{}. Les psychologues Tversky
+et Kahneman ont mesuré plus tard la même erreur chez des scientifiques (\og{} Belief in the law of
+small numbers \fg{}, 1971). La majoration sur la longueur des séries de la partie (ii) est un
+véritable outil médico-légal, et la partie (iii) est l'énoncé honnête du théorème que l'erreur
+déforme.
+
+\begin{refs}
+\item Contexte : Erreur du parieur --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Erreur_du_parieur})
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1, ch. XIII
+\item Cours : MIT OCW 18.600 Probability and Random Variables (\url{https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Bayes au cabinet médical --- Lycée}]
+\textbf{PRB-06.} \textbf{Problème.} Une maladie touche 1 personne sur 1000. Un test la
+détecte avec probabilité $ 0{,}99 $ lorsqu'elle est présente (sensibilité) et donne une fausse
+alerte avec probabilité $ 0{,}05 $ lorsqu'elle est absente. Une personne tirée au hasard dans la
+population a un test positif.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème de Bayes
+$ P(A\mid B) = \frac{P(B\mid A)\,P(A)}{P(B)} $ à partir de la définition de la probabilité
+conditionnelle, y compris la formule des probabilités totales dont vous avez besoin au
+dénominateur.
+\item[(b)] Calculez $ P(\text{maladie} \mid \text{test positif}) $ exactement, et expliquez avec des
+mots --- en utilisant les effectifs dans une population imaginaire de 100\{ \}000 personnes ---
+pourquoi la réponse est si loin en dessous de $ 0{,}99 $.
+\item[(c)] Recalculez en supposant que la personne a été testée à cause de symptômes qui portent la
+probabilité a priori à $ 1/10 $, et énoncez en une phrase la morale sur les lois a priori.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'essai de Thomas Bayes fut publié à titre posthume en 1763 ; Laplace retrouva
+la règle indépendamment et l'utilisa dans toutes les sciences. Dans une célèbre enquête de 1978 à
+la faculté de médecine de Harvard, la plupart des médecins répondaient à une version de (ii) par
+$\approx$ 95 \% --- l'oubli de la fréquence de base, chez ceux-là mêmes qui prescrivent les tests. La
+reformulation en \og{} fréquences naturelles \fg{} de Gigerenzer, celle de la partie (ii), est aujourd'hui
+enseignée en médecine parce qu'elle rend la bonne réponse aussi évidente que la mauvaise le
+paraissait.
+
+\begin{refs}
+\item Contexte : Théorème de Bayes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes})
+\item Contexte : Oubli de la fréquence de base --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Oubli_de_la_fr%C3%A9quence_de_base})
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability}, ch. 2 (en libre accès (\url{https://probabilitybook.net}))
+\item Cours : Harvard Stat 110 sur edX (Blitzstein) (\url{https://www.edx.org/bio/joseph-blitzstein})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Deux enfants, deux protocoles --- Lycée, short}]
+\textbf{PRB-23.} \textbf{Problème.} Une famille a deux enfants, chacun étant indépendamment
+garçon ou fille avec probabilité $ 1/2 $. Démontrez que si tout ce qu'on vous dit est qu'au moins
+l'un des deux est un garçon, la probabilité conditionnelle que les deux soient des garçons vaut
+$ 1/3 $, tandis que si vous rencontrez l'un des deux enfants --- choisi uniformément au hasard --- et
+que cet enfant est un garçon, la probabilité que les deux soient des garçons vaut $ 1/2 $.
+\end{problem}
+
+\noindent Martin Gardner posa l'énigme dans sa chronique de \textit{Scientific American} en
+1959, donna la réponse $ 1/3 $, puis concéda que la question telle qu'elle est formulée ne
+détermine pas la réponse : ce qui compte n'est pas le fait que vous apprenez, mais la procédure
+qui l'a produit. Les deux calculs présentés ici sont la plus petite illustration complète de la
+morale de PRB-04 --- en probabilités, une énigme sans protocole énoncé n'est pas encore un
+problème.
+
+\begin{refs}
+\item Contexte : Paradoxe des deux enfants --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Paradoxe_des_deux_enfants})
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability}, ch. 2 (en libre accès (\url{https://probabilitybook.net}))
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Des dés qui se battent en rond --- Lycée, short}]
+\textbf{PRB-24.} \textbf{Problème.} Quatre dés équilibrés à six faces portent les valeurs
+$ A = (4,4,4,4,0,0) $, $ B = (3,3,3,3,3,3) $, $ C = (6,6,2,2,2,2) $,
+$ D = (5,5,5,1,1,1) $ ; deux joueurs lancent chacun un dé et le plus grand nombre l'emporte.
+Démontrez que
+\[ P(A \text{ bat } B) = P(B \text{ bat } C) = P(C \text{ bat } D)
+ = P(D \text{ bat } A) = \tfrac{2}{3}, \]
+de sorte que \og{} a plus de chances de gagner contre \fg{} n'est pas une relation transitive.
+\end{problem}
+
+\noindent Ce sont les dés de Bradley Efron, rendus célèbres par Martin Gardner dans
+\textit{Scientific American} en 1970. Ils comptent parce que presque tout le monde suppose en
+silence que \og{} meilleur que \fg{} doit être transitif --- l'hypothèse qui sous-tend le classement des
+joueurs, des produits et des options de vote --- et voici un contre-exemple en deux lignes ; l'astuce
+est qu'une probabilité compare deux lois, et que de telles comparaisons ne s'enchaînent pas
+nécessairement.
+
+\begin{refs}
+\item Contexte : Dés non transitifs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/D%C3%A9s_non_transitifs})
+\item Lecture : Martin Gardner, \textit{The Colossal Book of Mathematics} (chapitre sur les paradoxes non transitifs)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème des chapeaux --- Lycée}]
+\textbf{PRB-25.} \textbf{Problème.} À une soirée, $ n $ invités déposent leur chapeau au vestiaire, et un
+préposé distrait les leur rend dans un ordre uniformément aléatoire --- c'est-à-dire selon une
+permutation uniformément aléatoire de $ \{1, 2, \dots, n\} $. On dit qu'un invité est une
+\textit{rencontre} s'il reçoit son propre chapeau.
+\begin{enumerate}
+\item[(a)] Par inclusion-exclusion, démontrez que la probabilité qu'il n'y ait aucune rencontre vaut
+\[ p_n = \sum_{k=0}^{n} \frac{(-1)^k}{k!} , \]
+de sorte que le nombre de permutations sans point fixe (un \textit{dérangement}) vaut
+$ D_n = n!\, p_n $.
+\item[(b)] Déduisez-en que $ p_n \to e^{-1} $ et que $ |p_n - e^{-1}| < \frac{1}{(n+1)!} $ --- la
+réponse est donc essentiellement la même pour 10 invités et pour 10 millions.
+\item[(c)] Démontrez la récurrence $ D_n = (n-1)\big( D_{n-1} + D_{n-2} \big) $ pour $ n \ge 3 $ par
+un argument de dénombrement, et non par un calcul algébrique sur la formule.
+\item[(d)] Démontrez que la probabilité d'avoir exactement $ m $ rencontres vaut
+$ \frac{1}{m!} \sum_{k=0}^{n-m} \frac{(-1)^k}{k!} $, et montrez que lorsque $ n \to \infty $
+cette quantité tend vers $ \frac{e^{-1}}{m!} $ --- la loi de Poisson de PRB-28 de paramètre 1, en
+accord avec le nombre moyen de rencontres calculé en PRB-07.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Pierre Rémond de Montmort publia ceci sous le nom de \textit{problème des
+rencontres} dans son \textit{Essay d'analyse sur les jeux de hazard} (1708), où il modélisait un
+jeu de cartes appelé le treize ; Nicolas Bernoulli puis Euler y revinrent, et la somme alternée
+de (i) est l'une des premières apparitions imprimées du principe d'inclusion-exclusion. La chute
+de (ii) fait la célébrité du problème : une probabilité qui refuse obstinément de dépendre de la
+taille de la soirée, fixée à $ 1/e $ dès $ n = 6 $ environ et jusqu'aux limites de la
+mesure.
+
+\begin{refs}
+\item Contexte : Problème des rencontres --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_des_rencontres})
+\item Contexte : Principe d'inclusion-exclusion --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_d'inclusion-exclusion})
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1, ch. IV
+\item Cours : MIT OCW 18.600 Probability and Random Variables (\url{https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ce que trois axiomes imposent déjà --- Lycée, short}]
+\textbf{PRB-35.} \textbf{Problème.} Les axiomes de Kolmogorov disent seulement ceci : tout
+événement $ A $ reçoit un nombre $ P(A) \ge 0 $, l'événement certain vérifie
+$ P(\Omega) = 1 $, et $ P(A_1 \cup A_2 \cup \cdots) = \sum_{n} P(A_n) $ dès que les événements
+$ A_n $ sont deux à deux disjoints. En n'utilisant rien d'autre, démontrez la règle du
+complémentaire $ P(A^c) = 1 - P(A) $, la croissance ($ A \subseteq B $ entraîne
+$ P(A) \le P(B) $), la formule à deux événements
+$ P(A \cup B) = P(A) + P(B) - P(A \cap B) $ et l'inégalité de Boole
+$ P\big( \bigcup_n A_n \big) \le \sum_n P(A_n) $ ; démontrez ensuite qu'aucune probabilité
+n'attribue le \textit{même} nombre à chacun des événements $ \{1\}, \{2\}, \{3\}, \dots $ sur
+l'univers $ \Omega = \{1,2,3,\dots\} $, de sorte que \og{} tirer un entier naturel au hasard \fg{} ne
+décrit rien du tout.
+\end{problem}
+
+\noindent Andreï Kolmogorov publia ces axiomes dans \textit{Grundbegriffe der
+Wahrscheinlichkeitsrechnung} (1933), réglant pour les probabilités la part du sixième problème
+de Hilbert (1900) qui réclamait un traitement axiomatique de la discipline ; en une décennie, tout
+résultat de ce domaine devint un théorème de théorie de la mesure. La dernière partie du problème
+montre que le troisième axiome --- l'additivité sur une infinité \textit{dénombrable} d'événements
+disjoints --- est un engagement réel et non une commodité comptable : c'est exactement lui qui tue
+la loi uniforme sur les entiers, et c'est pourquoi Bruno de Finetti (PRB-18) plaidait pour une
+théorie seulement finiment additive. Le même axiome impose une restriction de plus, invisible à ce
+niveau : aucune probabilité dénombrablement additive et invariante par translation ne peut être
+définie sur \textit{toutes} les parties du cercle, comme Giuseppe Vitali l'a montré en 1905, ce qui
+explique que les axiomes parlent d'une famille d'événements choisie plutôt que de tous les
+ensembles sans exception.
+
+\begin{refs}
+\item Contexte : Axiomes des probabilités --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Axiomes_des_probabilit%C3%A9s})
+\item Contexte : Ensemble de Vitali --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ensemble_de_Vitali})
+\item Lecture : A. N. Kolmogorov, \textit{Foundations of the Theory of Probability} (1933 ; traduction anglaise, Chelsea, 1956)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le problème du scrutin --- Lycée}]
+\textbf{PRB-36.} \textbf{Problème.} Lors d'une élection, le candidat A recueille $ p $ voix et le candidat B en
+recueille $ q $, avec $ p > q $. Les $ p + q $ bulletins sont dépouillés un à un dans un
+ordre uniformément aléatoire, les $ \binom{p+q}{p} $ ordres étant équiprobables. On représente un
+dépouillement par un chemin qui monte à chaque voix pour A et descend à chaque voix pour B.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème du scrutin : la probabilité que A soit strictement en tête de B à chaque
+étape du dépouillement vaut
+\[ \frac{p-q}{p+q} . \]
+(Réfléchissez le segment initial de chaque mauvais chemin par rapport à l'axe horizontal jusqu'au
+premier instant d'égalité entre les deux candidats, et montrez que cela apparie bijectivement les
+mauvais chemins commençant par une voix pour A avec ceux commençant par une voix pour B.)
+\item[(b)] Démontrez-le une seconde fois par le lemme du cycle : écrivez les $ p+q $ bulletins autour
+d'un cercle et montrez que, parmi les $ p+q $ rotations d'une disposition fixée, exactement
+$ p - q $ donnent un dépouillement où A est en tête du début à la fin.
+\item[(c)] Démontrez la forme faible --- le nombre d'ordres dans lesquels A n'est jamais \textit{derrière}
+vaut $ \frac{p+1-q}{p+1}\binom{p+q}{q} $ --- et déduisez-en que pour $ p = q = n $ le nombre de
+tels ordres est le nombre de Catalan $ \frac{1}{n+1}\binom{2n}{n} $.
+\item[(d)] Remarquez ce dont la réponse ne dépend pas. Calculez la probabilité que le vainqueur soit en
+tête du premier au dernier bulletin dans un électorat d'un million de personnes se partageant
+600\{ \}000 contre 400\{ \}000, et comparez avec un village de dix électeurs se partageant 6 contre
+4 ; montrez ensuite qu'une marge d'une seule voix ($ p = q+1 $) rend une avance de bout en bout
+essentiellement impossible, avec probabilité $ 1/(p+q) $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Joseph Bertrand posa la question dans les \textit{Comptes rendus} en 1887 et la
+résolut par une récurrence, en remarquant que la simplicité de la réponse appelait une
+démonstration directe ; W. A. Whitworth avait en fait publié le résultat dès 1878. Quelques
+semaines après Bertrand, Désiré André fournit un argument direct, et tous les manuels depuis
+l'appellent \og{} le principe de réflexion \fg{} --- mais Marc Renault, lisant l'original français en 2008, a
+montré qu'André n'avait rien réfléchi : sa bijection permute les voix, et la démonstration par
+réflexion n'entre dans les archives qu'en 1923. Le lemme du cycle de la partie (b) est dû à
+Dvoretzky et Motzkin (1947), et le théorème lui-même est le germe de la théorie des fluctuations
+de PRB-38 et des apparitions des nombres de Catalan dans toute la combinatoire.
+
+\begin{refs}
+\item Contexte : Problème du scrutin --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_scrutin})
+\item Contexte : Nombre de Catalan --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Nombre_de_Catalan})
+\item Article : M. Renault, \og{} Lost (and found) in translation: André's actual method and its application to the generalized ballot problem \fg{}, Amer. Math. Monthly 115 (2008), 358--363
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1, ch. III
+\item Voir aussi : PUZ-51 (\url{puzzles.html#PUZ-51}) --- la page Casse-tête, où le même dénombrement est posé comme une énigme.
+\end{refs}
+
+\bigskip
+
+
+\section*{Licence}
+
+\begin{problem}[{Linéarité de l'espérance --- Licence}]
+\textbf{PRB-07.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez que $ E[X+Y] = E[X] + E[Y] $ pour deux variables aléatoires quelconques
+d'espérance finie --- sans aucune hypothèse d'indépendance --- et expliquez pourquoi c'est remarquable
+lorsque $ X $ et $ Y $ sont fortement dépendantes. Utilisez ensuite des variables indicatrices
+pour démontrer :
+\item[(b)] le théorème du collectionneur de vignettes --- en tirant uniformément avec remise parmi $ n $
+types de vignettes, le nombre moyen de tirages nécessaires pour les collecter toutes vaut
+$ n H_n = n\big(1 + \frac12 + \cdots + \frac1n\big) \approx n\ln n $ ;
+\item[(c)] une permutation uniformément aléatoire de $ n $ lettres a exactement $ 1 $ point fixe en
+moyenne, et cela pour tout $ n $ ;
+\item[(d)] défi : son nombre moyen de cycles vaut $ H_n $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le problème des rencontres de Montmort (1708) --- combien d'invités récupèrent
+leur propre chapeau ? --- c'est la partie (iii) en costume d'époque. La linéarité de l'espérance est
+la plus puissante des astuces bon marché des probabilités : des sommes d'indicatrices dépendantes
+qu'il serait sans espoir de traiter conjointement deviennent triviales une par une, et Erdős a
+bâti la méthode probabiliste exactement sur ce geste.
+
+\begin{refs}
+\item Contexte : Espérance mathématique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Esp%C3%A9rance_math%C3%A9matique})
+\item Contexte : Problème du collectionneur de vignettes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_collectionneur_de_vignettes})
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability}, ch. 4 (en libre accès (\url{https://probabilitybook.net}))
+\item Cours : MIT OCW 18.600 Probability and Random Variables (\url{https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Tchebychev et la loi faible --- Licence}]
+\textbf{PRB-08.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Démontrez l'inégalité de Markov : pour $ X\ge 0 $
+et $ a>0 $, $ P(X\ge a) \le E[X]/a $.
+\item[(b)] Déduisez-en l'inégalité de Bienaymé-Tchebychev
+$ P(|X-\mu| \ge k\sigma) \le 1/k^2 $.
+\item[(c)] Démontrez que la variance d'une somme de variables aléatoires deux à deux indépendantes est la
+somme des variances, et déduisez-en la loi faible des grands nombres pour des variables i.i.d. de
+variance finie : $ P\big( \big| \frac{S_n}{n} - \mu \big| \ge \varepsilon \big) \to 0 $.
+\item[(d)] Appliquez-la : combien de lancers d'une pièce équilibrée Tchebychev exige-t-il pour garantir,
+avec probabilité au moins $ 0{,}95 $, que la fréquence observée de \og{} face \fg{} soit à $ 0{,}01 $
+près de $ 1/2 $ ? Comparez avec le nombre bien plus petit que suggère le théorème central limite
+(PRB-14), et expliquez l'écart.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Jacques Bernoulli démontra la première loi des grands nombres dans
+\textit{Ars Conjectandi} (publié en 1713) après vingt ans d'efforts --- il l'appelait son \og{} théorème
+d'or \fg{}. L'inégalité de Tchebychev de 1867 la réduisit à quatre lignes. Ce couple d'inégalités est
+l'atome d'hydrogène de la concentration de la mesure : grossières, universelles, et le patron de
+toutes les majorations plus fines depuis.
+
+\begin{refs}
+\item Contexte : Inégalité de Bienaymé-Tchebychev --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Bienaym%C3%A9-Tchebychev})
+\item Contexte : Loi des grands nombres --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_des_grands_nombres})
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability} (en libre accès (\url{https://probabilitybook.net}))
+\item Cours : MIT OCW 18.600 Probability and Random Variables (\url{https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Attendre le premier succès --- Licence}]
+\textbf{PRB-09.} \textbf{Problème.} Des épreuves indépendantes réussissent avec probabilité $ p $.
+\begin{enumerate}
+\item[(a)] Établissez la loi géométrique $ P(T = k) = (1-p)^{k-1}p $ de l'instant du premier succès et
+vérifiez qu'elle somme à 1.
+\item[(b)] Démontrez $ E[T] = 1/p $ de deux façons : en sommant la série, et par l'identité de
+conditionnement $ E[T] = 1 + (1-p)E[T] $ --- et justifiez rigoureusement pourquoi cette identité
+est vraie et pourquoi il est légitime de la résoudre.
+\item[(c)] Démontrez que la loi géométrique est sans mémoire ---
+$ P(T > m+n \mid T > m) = P(T > n) $ --- et démontrez que c'est la \textit{seule} loi sur
+$ \{1,2,3,\dots\} $ ayant cette propriété.
+\item[(d)] Établissez la loi binomiale négative de l'instant du $ r $-ième succès, présentez-la comme
+une somme de $ r $ variables géométriques indépendantes, et calculez son espérance et sa
+variance.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La loi binomiale négative apparaît chez Pascal --- on l'appelle encore la loi de
+Pascal --- et la caractérisation par l'absence de mémoire de (iii) est l'ombre discrète de la
+propriété qui définit la loi exponentielle, la raison pour laquelle les temps d'attente
+géométriques sont les atomes de la théorie des chaînes de Markov. Les deux calculs de $ E[T] $
+en (ii) --- force brute contre auto-similarité --- sont une première leçon d'argument de
+renouvellement.
+
+\begin{refs}
+\item Contexte : Loi géométrique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_g%C3%A9om%C3%A9trique})
+\item Contexte : Loi binomiale négative --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_binomiale_n%C3%A9gative})
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability}, ch. 4 (en libre accès (\url{https://probabilitybook.net}))
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La ruine du joueur --- Licence}]
+\textbf{PRB-10.} \textbf{Problème.} Un joueur part avec $ i $ unités et mise une unité par
+manche, gagnant avec probabilité $ p $ et perdant avec probabilité $ q = 1-p $, de façon
+indépendante ; la partie s'arrête à la fortune $ 0 $ (ruine) ou $ N $ (victoire).
+\begin{enumerate}
+\item[(a)] Écrivez l'équation aux différences vérifiée par la probabilité de ruine $ r_i $,
+résolvez-la pour $ p = 1/2 $ puis pour $ p \ne 1/2 $, et démontrez que votre solution est
+l'unique solution satisfaisant les conditions aux limites.
+\item[(b)] Calculez la durée moyenne de la partie.
+\item[(c)] Démontrez que contre un adversaire infiniment riche ($ N \to \infty $) à jeu équitable, la
+ruine est certaine.
+\item[(d)] Chiffrez l'avantage de la maison : avec $ p = 18/38 $ (roulette américaine, mise sur le
+rouge), comparez les probabilités de ruine d'un joueur qui possède 50 unités et veut atteindre 100
+par mises unitaires avec celles d'un joueur qui mise ses 50 unités sur un seul tour --- et démontrez
+laquelle des deux stratégies est la meilleure.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Pascal posa le problème de la ruine à Fermat en 1656, et Huygens l'inclut dans
+le premier traité imprimé de probabilités (1657) ; la résolution par équation aux différences est
+essentiellement celle d'Abraham de Moivre. La partie (iv) --- le jeu prudent perd plus sûrement que
+le jeu audacieux face à un jeu défavorable --- est un théorème que les joueurs paient pour
+redécouvrir, et l'ensemble du problème est la porte d'entrée des chaînes de Markov absorbantes et
+des idées d'arrêt optionnel de PRB-16.
+
+\begin{refs}
+\item Contexte : Ruine du joueur --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Ruine_du_joueur})
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1, ch. XIV
+\item Lecture : Geoffrey Grimmett \& David Stirzaker, \textit{Probability and Random Processes}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le paradoxe de Saint-Pétersbourg --- Licence}]
+\textbf{PRB-11.} \textbf{Problème.} On lance une pièce équilibrée jusqu'au premier \og{} face \fg{} ;
+si cela se produit au lancer $ k $, le casino verse $ 2^k $ ducats.
+\begin{enumerate}
+\item[(a)] Démontrez que le gain espéré est infini --- et pourtant personne ne paierait 1000 ducats pour
+jouer une fois.
+\item[(b)] La résolution de Daniel Bernoulli : un joueur de fortune $ w $ évalue l'argent par
+$ \ln w $. Montrez que le \textit{gain d'utilité} espéré du jeu est fini, et calculez
+(numériquement) le droit d'entrée équitable qu'il implique pour un joueur de fortune 1000.
+\item[(c)] La résolution de Feller : l'espérance est simplement le mauvais résumé pour un jeu unique à
+queue lourde. Rendez son énoncé précis --- pour $ n $ parties indépendantes de gain total
+$ S_n $, le droit d'entrée \og{} équitable \fg{} par partie croît comme $ \log_2 n $ --- et démontrez la
+moitié accessible : si chaque partie coûte un montant fixe $ c $, le casino gagne à la longue,
+aussi grand que $ c $ soit choisi.
+\item[(d)] Expliquez pourquoi (i)--(iii) ne se contredisent pas.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Nicolas Bernoulli proposa le jeu dans une lettre à Montmort en 1713 ; son cousin
+Daniel publia la résolution par l'utilité dans le journal de l'Académie de Saint-Pétersbourg
+(1738), fondant la théorie de l'utilité espérée et, avec elle, une grande part de l'économie.
+L'analyse de Feller au XXe siècle a recadré la question : le paradoxe ne porte pas sur
+la psychologie mais sur ce que la loi des grands nombres autorise réellement quand la variance est
+infinie.
+
+\begin{refs}
+\item Contexte : Paradoxe de Saint-Pétersbourg --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Paradoxe_de_Saint-P%C3%A9tersbourg})
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1
+\item Cours : MIT OCW 18.600 Probability and Random Variables (\url{https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'aiguille de Buffon --- Licence}]
+\textbf{PRB-12.} \textbf{Problème.} On laisse tomber une aiguille de longueur $ \ell $ sur un
+parquet rayé de droites parallèles distantes de $ d \ge \ell $. (i) Construisez le modèle --- la
+distance du milieu de l'aiguille à la droite la plus proche uniforme sur $ [0, d/2] $, son angle
+uniforme sur $ [0, \pi/2] $, les deux indépendants --- et démontrez
+\[ P(\text{l'aiguille coupe une droite}) = \frac{2\ell}{\pi d}. \]
+(ii) Transformez cela en un estimateur de $\pi$ à partir de $ n $ chutes indépendantes ; calculez la
+variance de l'estimateur et utilisez Tchebychev (PRB-08) pour majorer le nombre de chutes
+garantissant deux décimales correctes avec probabilité $ 0{,}99 $. (iii) La \og{} nouille de
+Buffon \fg{} de Barbier : démontrez que pour une courbe rigide de forme quelconque et de longueur
+$ L $, le \textit{nombre moyen} d'intersections avec les droites vaut $ \frac{2L}{\pi d} $ --- en
+n'utilisant rien d'autre que la linéarité de l'espérance (PRB-07).
+\end{problem}
+
+\noindent L'\textit{Essai d'arithmétique morale} de Buffon (1777) a fait de ceci le premier
+problème de probabilités géométriques. En 1901, Lazzarini annonça avoir estimé $\pi$ à 355/113 à
+partir de 3408 chutes --- une précision si improbable que son expérience est aujourd'hui l'exemple
+scolaire de données trop belles pour être vraies ; votre majoration de la variance en (ii) est
+l'outil qui le confond. L'argument de Barbier en 1860, celui de la partie (iii), est un joyau de
+la méthode des indicatrices.
+
+\begin{refs}
+\item Contexte : Aiguille de Buffon --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Aiguille_de_Buffon})
+\item Contexte : La nouille de Buffon --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Buffon%27s_noodle})
+\item Lecture : Daniel A. Klain \& Gian-Carlo Rota, \textit{Introduction to Geometric Probability}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'ivrogne de Pólya : marches aléatoires en dimension d --- Licence}]
+\textbf{PRB-13.} \textbf{Problème.} La marche aléatoire simple sur $ \mathbb{Z}^d $ saute
+vers un plus proche voisin choisi uniformément, indépendamment et indéfiniment ; on dit que la
+marche est \textit{récurrente} si elle revient à son point de départ avec probabilité 1.
+\begin{enumerate}
+\item[(a)] Démontrez le critère : la marche est récurrente si et seulement si
+$ \sum_n P(S_{2n} = 0) = \infty $.
+\item[(b)] Pour $ d=1 $, montrez que
+$ P(S_{2n}=0) = \binom{2n}{n}2^{-2n} \sim \frac{1}{\sqrt{\pi n}} $ (Stirling, ou PRB-14), et
+concluez à la récurrence.
+\item[(c)] Pour $ d=2 $, démontrez que $ P(S_{2n}=0) \sim \frac{c}{n} $ (une identité combinatoire
+ramène le calcul à deux marches unidimensionnelles indépendantes) --- récurrence de nouveau.
+\item[(d)] Pour $ d=3 $, montrez que $ P(S_{2n}=0) = O(n^{-3/2}) $ et concluez à la transience : avec
+probabilité strictement positive, la marche ne rentre jamais chez elle.
+\end{enumerate}
+
+\end{problem}
+
+\noindent George Pólya démontra ceci en 1921, inspiré --- disait-il --- par le fait de croiser
+sans cesse le même couple en se promenant dans les bois près de Zurich. Le résumé de Kakutani est
+immortel : \og{} Un homme ivre finira par retrouver son chemin, mais un oiseau ivre risque de se
+perdre à jamais. \fg{} Le seuil de dimension entre récurrence et transience est la première apparition
+d'une transition de phase dans cette discipline --- un thème qui revient en pleine force en PRB-17
+et PRB-20.
+
+\begin{refs}
+\item Contexte : Marche aléatoire --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Marche_al%C3%A9atoire})
+\item Article : G. Pólya, \og{} Über eine Aufgabe der Wahrscheinlichkeitsrechnung betreffend die Irrfahrt im Straßennetz \fg{}, Math. Ann. 84 (1921)
+\item Lecture : Peter G. Doyle \& J. Laurie Snell, \textit{Random Walks and Electric Networks} (en libre accès)
+\item Lecture : Rick Durrett, \textit{Probability: Theory and Examples} (PDF gratuit, Duke (\url{https://sites.math.duke.edu/\textasciitilde{}rtd/PTE/PTE5_011119.pdf}))
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La courbe en cloche gagne sa place : de Moivre-Laplace --- Licence}]
+\textbf{PRB-14.} \textbf{Problème.} Soit $ S_n $ le nombre de \og{} face \fg{} en $ n $ lancers
+d'une pièce équilibrée.
+\begin{enumerate}
+\item[(a)] Démontrez une formule de Stirling faible $ n! \sim C\sqrt{n}\,(n/e)^n $ en comparant
+$ \ln n! $ à une intégrale, puis identifiez $ C = \sqrt{2\pi} $ grâce au produit de Wallis (ou
+à l'intégrale de Gauss, CAL-15 sur la page
+Calcul différentiel et intégral (\url{applied-calculus.html})).
+\item[(b)] Démontrez le théorème limite local : pour $ k = n/2 + x\sqrt{n}/2 $ avec $ x $ borné,
+\[ P(S_n = k) \sim \frac{2}{\sqrt{2\pi n}}\; e^{-x^2/2} . \]
+(iii) Sommez : déduisez-en le théorème de Moivre-Laplace
+$ P\big( a \le \frac{S_n - n/2}{\sqrt{n}/2} \le b \big) \to
+\frac{1}{\sqrt{2\pi}}\int_a^b e^{-x^2/2}\,dx $. (iv) Énoncez soigneusement --- sans démonstration ---
+le théorème central limite général pour les suites i.i.d. de variance finie, et expliquez ce que
+signifie ici l'\og{} universalité \fg{} : quels détails de la pièce votre limite a-t-elle oubliés ?
+\end{enumerate}
+
+\end{problem}
+
+\noindent De Moivre publia l'approximation en 1733 sous forme de supplément privé, plus
+tard intégré à \textit{The Doctrine of Chances} ; Laplace l'étendit et fit de la courbe normale le
+cheval de bataille de la statistique céleste et sociale. Le TCL général --- Lindeberg, Lévy, années
+1920 --- se démontre par les fonctions caractéristiques (voir Durrett), mais le cas de la pièce que
+vous traitez ici contient le phénomène tout entier : les détails microscopiques s'effacent, et
+$ e^{-x^2/2} $ est ce qui reste.
+
+\begin{refs}
+\item Contexte : Théorème de Moivre-Laplace --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Moivre-Laplace})
+\item Contexte : Théorème central limite --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_central_limite})
+\item Lecture : Rick Durrett, \textit{Probability: Theory and Examples}, ch. 3 (PDF gratuit, Duke (\url{https://sites.math.duke.edu/\textasciitilde{}rtd/PTE/PTE5_011119.pdf}))
+\item Cours : MIT OCW 18.600 Probability and Random Variables (\url{https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Seule l'exponentielle oublie --- Licence, short}]
+\textbf{PRB-26.} \textbf{Problème.} Soit $ T $ une variable aléatoire telle que
+$ P(T < \infty) = 1 $ et $ P(T > t) > 0 $ pour tout $ t \ge 0 $, vérifiant la
+propriété d'absence de mémoire
+\[ P(T > s+t) = P(T > s)\, P(T > t) \qquad \text{pour tous } s,t \ge 0 . \]
+Démontrez qu'il existe $ \lambda > 0 $ tel que $ P(T > t) = e^{-\lambda t} $, en prenant
+soin de justifier le passage de $ t $ rationnel à $ t $ réel en n'utilisant que la monotonie de
+la fonction de survie.
+\end{problem}
+
+\noindent C'est le jumeau continu de la caractérisation géométrique de PRB-09(iii), et
+c'est la raison pour laquelle la loi exponentielle est incontournable : tout temps d'attente qui ne
+vieillit pas est exponentiel. L'équation fonctionnelle $ f(s+t) = f(s)f(t) $ est celle de Cauchy
+(1821), et elle possède des solutions monstrueuses non mesurables si l'on n'impose aucune
+régularité --- Hamel en a exhibé en 1905 --- de sorte que la monotonie que vous exploitez n'est pas un
+détail technique mais toute l'hypothèse. Tout ce qui est bâti sur des temps de séjour exponentiels,
+des processus de Poisson aux chaînes de Markov à temps continu et à la théorie des files
+d'attente, repose sur ce seul théorème.
+
+\begin{refs}
+\item Contexte : Perte de mémoire (probabilités) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Perte_de_m%C3%A9moire_(probabilit%C3%A9s)})
+\item Contexte : Loi exponentielle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_exponentielle})
+\item Lecture : Geoffrey Grimmett \& David Stirzaker, \textit{Probability and Random Processes}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Où tombe le $ k $-ième plus petit point --- Licence, short}]
+\textbf{PRB-27.} \textbf{Problème.} Soient $ U_1, \dots, U_n $ indépendantes et uniformes sur
+$ (0,1) $, et soient $ U_{(1)} < U_{(2)} < \cdots < U_{(n)} $ ces mêmes nombres rangés
+par ordre croissant. Démontrez que $ U_{(k)} $ admet la densité
+\[ f_{(k)}(x) = \frac{n!}{(k-1)!\,(n-k)!}\; x^{k-1}(1-x)^{n-k}, \qquad 0 < x < 1, \]
+et déduisez-en que $ E\big[U_{(k)}\big] = \frac{k}{n+1} $ --- les $ n $ points découpent
+l'intervalle en $ n+1 $ morceaux de même longueur moyenne.
+\end{problem}
+
+\noindent Ce sont les statistiques d'ordre, et la densité ci-dessus est la loi bêta que
+Bayes intégrait déjà en 1763. Le fait que les espacements aient la même longueur moyenne est
+l'ancêtre continu de l'estimateur du char d'assaut allemand (STA-11 sur la page
+Statistique (\url{applied-statistics.html})), où la même correction \og{} ajoutez l'écart moyen \fg{}
+transforme le maximum de l'échantillon en estimateur sans biais ; il sous-tend aussi les positions
+de tracé d'un diagramme quantile-quantile et la statistique de Kolmogorov-Smirnov.
+
+\begin{refs}
+\item Contexte : Statistique d'ordre --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Statistique_d'ordre})
+\item Lecture : H. A. David \& H. N. Nagaraja, \textit{Order Statistics}, 3e éd., ch. 1--2
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability}, ch. 8 (en libre accès (\url{https://probabilitybook.net}))
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La loi des petits nombres --- Licence}]
+\textbf{PRB-28.} \textbf{Problème.} Soient $ X_1, \dots, X_n $ indépendantes avec $ X_i \sim
+\mathrm{Bernoulli}(p_i) $, soit $ S_n = X_1 + \cdots + X_n $, et posons
+$ \lambda = p_1 + \cdots + p_n $.
+\begin{enumerate}
+\item[(a)] Démontrez le théorème limite de Poisson sous sa forme classique : si $ p_i = \lambda/n $
+pour tout $ i $, alors pour chaque $ k $ fixé
+\[ P(S_n = k) \longrightarrow \frac{e^{-\lambda}\lambda^k}{k!} \qquad (n \to \infty) . \]
+\item[(b)] Démontrez qu'une variable de Poisson($ \lambda $) a une espérance et une variance toutes
+deux égales à $ \lambda $, calculez sa fonction génératrice des probabilités, et déduisez-en
+qu'une somme de variables de Poisson indépendantes suit une loi de Poisson de paramètre la somme
+des paramètres.
+\item[(c)] Renforcez la limite en une inégalité --- le théorème de Le Cam : la distance en variation totale
+entre la loi de $ S_n $ et Poisson($ \lambda $) vérifie
+\[ \sum_{k \ge 0} \big| P(S_n = k) - e^{-\lambda}\lambda^k/k! \big| \;\le\; 2\sum_{i=1}^{n} p_i^2 . \]
+(Couplez chaque $ X_i $ avec une variable de Poisson($ p_i $) sur un même espace probabilisé de
+sorte qu'elles diffèrent avec probabilité au plus $ p_i^2 $, puis comparez les sommes.) Remarquez
+qu'aucun \og{} $ n \to \infty $ \fg{} n'apparaît : la majoration est bonne dès que les probabilités
+individuelles sont petites, si inégales soient-elles.
+\item[(d)] Testez la théorie sur le jeu de données fondateur. Ladislaus von Bortkiewicz a relevé, pour 10
+corps d'armée prussiens sur les 20 années 1875--1894, le nombre de soldats tués par ruade de
+cheval : 109 années-corps avec 0 mort, 65 avec 1, 22 avec 2, 3 avec 3, 1 avec 4. Estimez
+$ \lambda $ à partir du total, comparez les 200 effectifs attendus sous la loi de Poisson aux
+effectifs observés, et expliquez précisément quelles hypothèses de (iii) rendent le modèle
+plausible ici.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Siméon Denis Poisson établit la loi en 1837 dans une étude sur la probabilité
+des condamnations par les jurys français --- une application dont personne ne se souvient, dans un
+livre que presque personne n'a lu à l'époque. Elle ne devint célèbre qu'après que
+\textit{Das Gesetz der kleinen Zahlen} de Bortkiewicz (1898) l'eut ajustée aux données des ruades de
+cheval et eut donné son nom au sujet : des événements rares, beaucoup d'occasions indépendantes,
+une moyenne stable. La majoration de Le Cam de 1960, celle de la partie (iii), est la forme moderne
+du théorème --- elle remplace une limite par une estimation d'erreur, et c'est elle qui permet
+d'appliquer l'approximation de Poisson à une collection finie, hétérogène et désordonnée de petits
+risques.
+
+\begin{refs}
+\item Contexte : Théorème limite de Poisson --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Poisson_limit_theorem})
+\item Contexte : Inégalité de Le Cam --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Le_Cam})
+\item Article : L. Le Cam, \og{} An approximation theorem for the Poisson binomial distribution \fg{}, Pacific J. Math. 10 (1960), 1181--1197
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1, ch. VI
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La moyenne qui n'apprend rien --- Licence, short}]
+\textbf{PRB-37.} \textbf{Problème.} Soient $ X_1, X_2, \dots, X_n $ indépendantes de densité de
+Cauchy standard $ f(x) = \frac{1}{\pi(1+x^2)} $ sur $ \mathbb{R} $. Démontrez que la moyenne
+empirique $ \bar{X}_n = (X_1 + \cdots + X_n)/n $ suit \textit{exactement} la loi de Cauchy standard
+pour tout $ n $ --- par exemple en calculant la fonction caractéristique
+$ E\big[e^{itX_1}\big] = e^{-|t|} $ --- de sorte que moyenner un million d'observations ne vaut pas
+mieux que garder la première, et identifiez précisément quelle hypothèse de la loi des grands
+nombres (PRB-08) a été violée.
+\end{problem}
+
+\noindent Poisson écrivit cette densité en 1824 comme une curiosité ; elle porte le nom de
+Cauchy à cause de son échange de 1853 avec Irénée-Jules Bienaymé au sujet de la méthode des
+moindres carrés, où cet exemple précis servit de munition --- Bienaymé défendait les moindres carrés,
+Cauchy produisait des erreurs pour lesquelles les moyennes empiriques ne se stabilisent pas. La loi
+de Cauchy est la loi stable symétrique d'indice $ \alpha = 1 $, et les lois stables sont
+exactement les limites possibles de sommes normalisées de variables i.i.d., le théorème central
+limite de PRB-14 étant le cas $ \alpha = 2 $ ; tout le reste de la famille a une variance infinie
+et une queue qui décroît comme une puissance. Benoit Mandelbrot soutint en 1963 que les cours du
+coton se comportent ainsi, et le débat sur les queues lourdes en finance et en assurance n'a jamais
+cessé depuis.
+
+\begin{refs}
+\item Contexte : Loi de Cauchy (probabilités) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_de_Cauchy_(probabilit%C3%A9s)})
+\item Contexte : Loi stable --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_stable})
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 2, ch. VI et XVII
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Réflexion, premier passage et loi de l'arcsinus --- Licence}]
+\textbf{PRB-38.} \textbf{Problème.} Soient $ S_0 = 0 $ et $ S_k = X_1 + \cdots + X_k $, où les $ X_i $ sont
+indépendantes et valent $ +1 $ ou $ -1 $ avec probabilité $ 1/2 $ chacune. Notons
+$ M_n = \max_{0 \le k \le n} S_k $ et $ u_{2m} = P(S_{2m} = 0) = \binom{2m}{m} 2^{-2m} $.
+\begin{enumerate}
+\item[(a)] Démontrez le principe de réflexion : pour des entiers $ a \ge 1 $ et $ x \le a $, les
+chemins de $ (0,0) $ à $ (n,x) $ qui touchent le niveau $ a $ sont en bijection avec
+\textit{tous} les chemins de $ (0,0) $ à $ (n, 2a - x) $. Déduisez-en
+\[ P(M_n \ge a) = P(S_n \ge a) + P(S_n \ge a+1) . \]
+\item[(b)] Soit $ T_a = \min\{ k \ge 1 : S_k = a \} $ l'instant de premier passage en $ a \ge 1 $.
+Démontrez le théorème du temps d'atteinte
+\[ P(T_a = n) = \frac{a}{n}\, P(S_n = a) . \]
+\item[(c)] Démontrez que la marche évite l'origine pendant $ 2n $ pas exactement aussi souvent qu'elle y
+revient à l'instant $ 2n $ :
+\[ P(S_1 \ne 0, S_2 \ne 0, \dots, S_{2n} \ne 0) = P(S_{2n} = 0) = u_{2n} , \]
+et déduisez-en que le premier retour à l'origine a lieu à l'instant $ 2n $ avec probabilité
+$ u_{2n}/(2n-1) $.
+\item[(d)] Soit $ L_{2n} $ le nombre d'indices $ k \in \{1, \dots, 2n\} $ tels que
+$ S_{k-1} \ge 0 $ et $ S_k \ge 0 $ --- le nombre de pas que la marche passe du côté positif.
+Démontrez la loi de l'arcsinus discrète $ P(L_{2n} = 2k) = u_{2k}\, u_{2n-2k} $ pour
+$ 0 \le k \le n $, et déduisez-en avec la formule de Stirling que
+\[ P\!\left( \frac{L_{2n}}{2n} \le x \right) \longrightarrow \frac{2}{\pi}\arcsin\sqrt{x},
+ \qquad 0 \le x \le 1 . \]
+Expliquez ensuite ce que la forme de cette loi limite a de choquant.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Tout ceci est le problème du scrutin de PRB-36 devenu adulte : la réflexion
+transforme des questions sur le chemin entier en questions sur son extrémité, le seul endroit où
+l'on puisse lire un coefficient binomial. Feller a consacré à ces résultats un chapitre entier du
+volume 1 et écrivait qu'ils contredisent l'intuition si violemment qu'aucune expérience n'y
+prépare --- la densité de l'arcsinus en (d) est en forme de U, de sorte que dans une longue partie
+équitable les issues les \textit{plus probables} sont celles où un joueur mène presque tout le temps,
+un partage à peu près égal de l'avance étant la chose la plus rare qui soit. La partie (b) est
+souvent appelée formule de Kemperman, et ses analogues continus sont les lois de l'arcsinus de Lévy
+pour le mouvement brownien (PRB-42), démontrées par exactement la même réflexion.
+
+\begin{refs}
+\item Contexte : Principe de réflexion (processus de Wiener) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Reflection_principle_(Wiener_process)}) (l'analogue continu)
+\item Contexte : Lois de l'arcsinus (processus de Wiener) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Arcsine_laws_(Wiener_process)})
+\item Lecture : William Feller, \textit{An Introduction to Probability Theory and Its Applications}, vol. 1, ch. III
+\item Lecture : Rick Durrett, \textit{Probability: Theory and Examples} (PDF gratuit, Duke (\url{https://sites.math.duke.edu/\textasciitilde{}rtd/PTE/PTE5_011119.pdf}))
+\end{refs}
+
+\bigskip
+
+
+\section*{Master}
+
+\begin{problem}[{Borel-Cantelli et la logique de l'\og{} infiniment souvent \fg{} --- Master}]
+\textbf{PRB-15.} \textbf{Problème.} Pour des événements $ A_1, A_2, \dots $, on écrit
+$ \{A_n \text{ i.s.}\} = \bigcap_m \bigcup_{n\ge m} A_n $ (\og{} $ A_n $ infiniment souvent \fg{}).
+\begin{enumerate}
+\item[(a)] Démontrez le premier lemme de Borel-Cantelli : $ \sum P(A_n) < \infty $ entraîne
+$ P(A_n \text{ i.s.}) = 0 $.
+\item[(b)] Démontrez le second : si les $ A_n $ sont indépendants et $ \sum P(A_n) = \infty $, alors
+$ P(A_n \text{ i.s.}) = 1 $ ; exhibez un contre-exemple montrant qu'on ne peut pas simplement
+supprimer l'indépendance.
+\item[(c)] Application --- le singe à la machine à écrire : des lettres aléatoires i.i.d. uniformes
+contiennent presque sûrement \og{} ABRACADABRA \fg{} une infinité de fois.
+\item[(d)] Application --- les plus longues séries : pour des lancers de pièce équilibrée, démontrez que la
+plus longue série de \og{} face \fg{} $ L_n $ en $ n $ lancers vérifie $ L_n / \log_2 n \to 1 $
+presque sûrement (majoration par le premier lemme, minoration par le second appliqué à des blocs
+disjoints).
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'article de Borel de 1909 sur les nombres normaux et le raffinement de
+Cantelli en 1917 ont donné aux probabilités leur mécanisme fondamental du zéro-un : les événements
+asymptotiques ont tendance à avoir probabilité 0 ou 1, et ces deux lemmes sont ce qui permet de
+trancher. La partie (iv) est la loi d'Erdős-Rényi sous sa forme la plus simple --- la version
+rigoureuse de l'analyse médico-légale des séries de PRB-05, et un premier aperçu de la façon dont
+on démontre réellement les énoncés presque sûrs.
+
+\begin{refs}
+\item Contexte : Lemme de Borel-Cantelli --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Lemme_de_Borel-Cantelli})
+\item Lecture : Rick Durrett, \textit{Probability: Theory and Examples} (PDF gratuit, Duke (\url{https://sites.math.duke.edu/\textasciitilde{}rtd/PTE/PTE5_011119.pdf}))
+\item Lecture : Geoffrey Grimmett \& David Stirzaker, \textit{Probability and Random Processes}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{ABRACADABRA : martingales et arrêt optionnel --- Master}]
+\textbf{PRB-16.} \textbf{Problème.}
+\begin{enumerate}
+\item[(a)] Définissez une martingale et un temps d'arrêt ; énoncez le théorème d'arrêt optionnel, et
+démontrez-le pour les temps d'arrêt bornés.
+\item[(b)] Un singe tape des majuscules i.i.d. uniformes. À chaque frappe, un nouveau joueur arrive, mise
+1 sur le fait que la lettre suivante est un \og{} A \fg{}, et --- s'il est encore en vie --- laisse toute sa
+fortune courir sur les lettres successives d'ABRACADABRA ; toutes les mises sont à cote équitable
+(26 pour 1). En appliquant le théorème d'arrêt optionnel au profit total du casino, démontrez que
+le nombre moyen de frappes avant la première apparition d'ABRACADABRA vaut
+\[ 26^{11} + 26^4 + 26 , \]
+et expliquez le rôle des auto-chevauchements du mot.
+\item[(c)] Déduisez-en la version pile ou face : le temps d'attente moyen vaut 10 pour FPF mais 8 pour
+FFP --- démontrez les deux, et démontrez que parmi tous les motifs de trois lancers, ceux qui se
+chevauchent eux-mêmes attendent toujours plus longtemps.
+\item[(d)] Vérifiez les hypothèses du théorème d'arrêt optionnel dans votre argument --- c'est là que
+résident les vraies mathématiques.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'argument de l'équipe de joueurs est celui de Shuo-Yen Robert Li (1980), qui
+généralise des formules de Feller et les \og{} leading numbers \fg{} de Conway pour le jeu de Penney. C'est
+la démonstration standard que l'arrêt optionnel des martingales n'est pas une abstraction mais un
+instrument de calcul : une identité sur un temps d'attente où aucune martingale n'est visible tombe
+en trois lignes une fois inventé le bon jeu équitable.
+
+\begin{refs}
+\item Contexte : Théorème d'arrêt de Doob --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d'arr%C3%AAt_de_Doob})
+\item Article : S.-Y. R. Li, \og{} A Martingale Approach to the Study of Occurrence of Sequence Patterns in Repeated Experiments \fg{}, Ann. Probab. 8 (1980), Project Euclid (\url{https://projecteuclid.org/journals/annals-of-probability/volume-8/issue-6/A-Martingale-Approach-to-the-Study-of-Occurrence-of-Sequence/10.1214/aop/1176994578.full})
+\item Lecture : David Williams, \textit{Probability with Martingales}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Percolation : une transition de phase que l'on peut démontrer --- Master}]
+\textbf{PRB-17.} \textbf{Problème.} Dans la percolation par arêtes sur $ \mathbb{Z}^2 $,
+chaque arête est \textit{ouverte} indépendamment avec probabilité $ p $. Posons
+$ \theta(p) = P(\text{l'origine appartient à un amas ouvert infini}) $ et
+$ p_c = \sup\{p : \theta(p) = 0\} $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ \theta $ est croissante en $ p $ (construisez tous les processus de
+percolation sur un même espace probabilisé).
+\item[(b)] Démontrez $ p_c \ge 1/3 $ : dénombrez les chemins auto-évitants issus de l'origine --- au plus
+$ 4\cdot 3^{n-1} $ de longueur $ n $ --- et majorez la probabilité qu'un long chemin soit
+ouvert.
+\item[(c)] Démontrez $ p_c \le 2/3 $ par l'argument de contour de Peierls : un amas fini est entouré
+d'un circuit d'arêtes duales fermées ; dénombrez les circuits duaux et majorez leur probabilité
+totale.
+\item[(d)] Concluez que $ 0 < p_c < 1 $ : une véritable transition de phase. Énoncez --- avec
+attribution, sans démonstration --- la valeur exacte de $ p_c $ et qui l'a démontrée.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Broadbent et Hammersley inventèrent la percolation en 1957, pour modéliser la
+façon dont un fluide --- ou le gaz de houille dans le filtre d'un masque --- pénètre un milieu poreux
+aléatoire. Harris démontra $ \theta(1/2) = 0 $ en 1960 ; vingt ans plus tard, Kesten combla
+l'écart avec $ p_c = 1/2 $ (1980), l'un des résultats célèbres des probabilités modernes. Les
+deux arguments de dénombrement que vous donnez en (ii) et (iii) sont les outils originels du
+domaine et restent la première chose que l'on essaie sur tout modèle nouveau ; la frontière à
+laquelle ils mènent est PRB-20.
+
+\begin{refs}
+\item Contexte : Théorie de la percolation --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_la_percolation})
+\item Lecture : Geoffrey Grimmett, \textit{Percolation} (Springer)
+\item Article : H. Duminil-Copin, \og{} Sixty years of percolation \fg{} (2017), arXiv:1712.04651 (\url{https://arxiv.org/abs/1712.04651})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Échangeabilité : le théorème de de Finetti --- Master}]
+\textbf{PRB-18.} \textbf{Problème.} Une suite $ X_1, X_2, \dots $ est
+\textit{échangeable} si sa loi est invariante par toute permutation d'un nombre fini d'indices.
+\begin{enumerate}
+\item[(a)] Montrez que toute suite i.i.d. est échangeable, et trouvez une suite échangeable qui n'est pas
+i.i.d.
+\item[(b)] Démontrez le théorème de de Finetti pour les suites à valeurs dans $ \{0,1\} $ : une suite
+échangeable infinie est un \textit{mélange} de suites i.i.d. de Bernoulli --- il existe une variable
+aléatoire $ \Theta \in [0,1] $ telle que, conditionnellement à $ \Theta = \theta $, les
+$ X_i $ soient i.i.d. de loi Bernoulli($ \theta $). (Une voie par les moments ou les
+martingales : montrez que les fréquences empiriques convergent et conditionnez par la limite.)
+(iii) Montrez que l'infinité est essentielle : exhibez une famille échangeable finie --- par exemple
+un tirage sans remise dans une urne --- qui n'est en aucune façon un mélange de suites i.i.d.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Bruno de Finetti démontra le théorème en 1931 comme pierre angulaire de sa
+théorie subjective des probabilités --- son mot d'ordre \og{} la probabilité n'existe pas \fg{} signifiait
+que les chances objectives sont facultatives : pour qui croit à l'échangeabilité, le biais inconnu
+$ \Theta $ est \textit{fabriqué} par le théorème, ce qui explique que la statistique bayésienne
+traite les paramètres comme aléatoires. Hewitt et Savage (1955) l'ont étendu bien au-delà des
+pièces de monnaie, et l'échangeabilité est devenue une théorie structurelle du hasard symétrique
+(Aldous, Kingman) qui anime encore la recherche aujourd'hui.
+
+\begin{refs}
+\item Contexte : Théorème de de Finetti --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/De_Finetti%27s_theorem})
+\item Lecture : Rick Durrett, \textit{Probability: Theory and Examples} (PDF gratuit, Duke (\url{https://sites.math.duke.edu/\textasciitilde{}rtd/PTE/PTE5_011119.pdf}))
+\item Lecture : Joseph K. Blitzstein \& Jessica Hwang, \textit{Introduction to Probability} (en libre accès (\url{https://probabilitybook.net}))
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La formule de Wald --- Master, short}]
+\textbf{PRB-29.} \textbf{Problème.} Soient $ X_1, X_2, \dots $ i.i.d. avec
+$ E|X_1| < \infty $, soit $ N $ un temps d'arrêt pour la filtration qu'elles engendrent, avec
+$ E[N] < \infty $, et posons $ S_N = X_1 + \cdots + X_N $. Démontrez la formule de Wald
+$ E[S_N] = E[N]\, E[X_1] $, puis exhibez pour la marche aléatoire simple symétrique un temps
+d'arrêt pour lequel l'identité est en défaut, en identifiant exactement quelle hypothèse a été
+perdue.
+\end{problem}
+
+\noindent Abraham Wald démontra ceci alors qu'il dirigeait le programme d'analyse
+séquentielle au Statistical Research Group de Columbia pendant la Seconde Guerre mondiale, où la
+question était de savoir combien d'obus il faut inspecter avant d'accepter ou de rejeter un lot ;
+c'est cette identité qui calcule la taille d'échantillon moyenne de son test séquentiel du rapport
+de vraisemblance. C'est aussi le théorème d'arrêt optionnel de PRB-16 en habits ordinaires, et le
+contre-exemple que vous construisez --- la marche arrêtée à son premier passage en $ +1 $, qui a
+lieu avec probabilité un mais après un temps moyen infini --- est l'avertissement classique que
+\og{} certain \fg{} et \og{} rapide \fg{} sont deux choses différentes.
+
+\begin{refs}
+\item Contexte : Formule de Wald --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Formule_de_Wald})
+\item Article : A. Wald, \og{} On cumulative sums of random variables \fg{}, Ann. Math. Statist. 15 (1944), 283--296
+\item Lecture : David Williams, \textit{Probability with Martingales}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Une majoration exponentielle pour le pile ou face --- Master, short}]
+\textbf{PRB-30.} \textbf{Problème.} Soit $ S_n $ le nombre de \og{} face \fg{} en $ n $ lancers d'une
+pièce équilibrée. Démontrez la majoration de Chernoff-Hoeffding
+\[ P\!\left( S_n \ge \tfrac{n}{2} + t \right) \le e^{-2t^2/n} \qquad (t > 0), \]
+en montrant que les termes centrés vérifient $ E\big[e^{\theta (X_i - 1/2)}\big] \le
+e^{\theta^2/8} $ pour tout réel $ \theta $, en appliquant l'inégalité de Markov à
+$ e^{\theta S_n} $, puis en optimisant en $ \theta > 0 $.
+\end{problem}
+
+\noindent L'inégalité de Tchebychev (PRB-08) ne donne ici qu'une décroissance
+polynomiale ; la méthode des moments exponentiels --- Bernstein dans les années 1920, Chernoff en
+1952, Hoeffding en 1963 --- la remplace par une majoration qui décroît aussi vite que le théorème
+central limite (PRB-14) le prévoit, et cela de manière non asymptotique. Cet écart entre
+$ 1/k^2 $ et $ e^{-2t^2/n} $ est ce qui rend possibles les algorithmes randomisés, les codes
+correcteurs d'erreurs et la théorie de l'apprentissage : c'est la raison pour laquelle quelques
+centaines d'échantillons indépendants peuvent certifier une conclusion.
+
+\begin{refs}
+\item Contexte : Inégalité de Hoeffding --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Hoeffding})
+\item Contexte : Inégalité de Chernoff --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Chernoff})
+\item Article : W. Hoeffding, \og{} Probability inequalities for sums of bounded random variables \fg{}, J. Amer. Statist. Assoc. 58 (1963), 13--30
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Extinction d'un processus de branchement --- Master}]
+\textbf{PRB-31.} \textbf{Problème.} Dans un processus de Galton-Watson, $ Z_0 = 1 $ et chaque individu de la
+génération $ n $ a, indépendamment, un nombre aléatoire d'enfants suivant la même loi de
+reproduction $ (p_k)_{k \ge 0} $ ; notons $ f(s) = \sum_{k \ge 0} p_k s^k $ sa fonction
+génératrice des probabilités et $ m = f'(1) = E[Z_1] $ le nombre moyen d'enfants. On suppose
+$ p_1 < 1 $.
+\begin{enumerate}
+\item[(a)] Démontrez que la fonction génératrice de $ Z_n $ est la composée $ n $-ième
+$ f_n = f \circ f \circ \cdots \circ f $, et déduisez-en $ E[Z_n] = m^n $.
+\item[(b)] Soit $ q = P(Z_n = 0 \text{ pour un certain } n) $ la probabilité d'extinction. Démontrez que
+$ q $ est la plus petite racine de $ f(s) = s $ dans $ [0,1] $, et démontrez la dichotomie :
+si $ m \le 1 $ alors $ q = 1 $, tandis que si $ m > 1 $ alors $ q < 1 $. (La convexité
+de $ f $ sur $ [0,1] $ fait tout le travail.)
+\item[(c)] Démontrez que $ W_n = Z_n / m^n $ est une martingale positive, donc converge presque
+sûrement ; énoncez ce qu'il faut de plus pour que la limite soit non dégénérée (la condition de
+Kesten-Stigum) --- sans démonstration.
+\item[(d)] Calculez $ q $ explicitement lorsque la loi de reproduction est Poisson($ m $) puis
+lorsqu'elle est géométrique, $ p_k = (1-a)a^k $. Diagnostiquez ensuite l'erreur historique :
+Galton et Watson conclurent en 1874--75 que \textit{tout} patronyme finit par s'éteindre ; à l'aide de
+(ii), dites exactement quelle racine ils ont prise et pourquoi la conclusion est fausse pour
+$ m > 1 $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Francis Galton demanda dans l'\textit{Educational Times} (1873) pourquoi tant de
+familles distinguées avaient perdu leur patronyme, et Henry William Watson répondit avec des
+fonctions génératrices --- bien posées, mal conclues, car il lut le point fixe $ s = 1 $ et en
+déduisit l'extinction certaine. Irénée-Jules Bienaymé avait énoncé le critère correct dès 1845,
+fait redécouvert seulement dans les années 1970 par Heyde et Seneta, et la lacune fut définitivement
+comblée par Steffensen vers 1930. Le modèle a ensuite servi à calculer les réactions en chaîne de
+neutrons à Los Alamos, et la condition $ m > 1 $ est exactement le $ R_0 > 1 $ des
+épidémiologistes.
+
+\begin{refs}
+\item Contexte : Processus de Galton-Watson --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Processus_de_Galton-Watson})
+\item Contexte : Processus de branchement --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Processus_de_branchement})
+\item Article : H. W. Watson \& F. Galton, \og{} On the probability of the extinction of families \fg{}, J. Anthropological Institute of Great Britain and Ireland 4 (1875), 138--144
+\item Lecture : Krishna B. Athreya \& Peter E. Ney, \textit{Branching Processes}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Conditionner, c'est projeter --- Master, short}]
+\textbf{PRB-39.} \textbf{Problème.} Soient $ (\Omega, \mathcal{F}, P) $ un espace probabilisé,
+$ \mathcal{G} \subseteq \mathcal{F} $ une sous-tribu, et
+$ X \in L^2(\Omega, \mathcal{F}, P) $. Démontrez que $ L^2(\Omega, \mathcal{G}, P) $ est un
+sous-espace fermé de $ L^2(\Omega, \mathcal{F}, P) $, que la projection orthogonale $ Y $ de
+$ X $ sur ce sous-espace est caractérisée par
+\[ E\big[ X \mathbf{1}_A \big] = E\big[ Y \mathbf{1}_A \big] \qquad \text{pour tout } A \in \mathcal{G}, \]
+de sorte que $ Y = E[X \mid \mathcal{G}] $ est l'unique variable $ \mathcal{G} $-mesurable
+minimisant $ E\big[(X - Y)^2\big] $ ; déduisez-en la propriété de la tour et la contraction
+$ E\big[ E[X\mid\mathcal{G}]^2 \big] \le E[X^2] $ comme énoncés du théorème de Pythagore, et
+expliquez pourquoi prolonger $ E[\cdot \mid \mathcal{G}] $ de $ L^2 $ à $ L^1 $ exige le
+théorème de Radon-Nikodym plutôt que la géométrie.
+\end{problem}
+
+\noindent Kolmogorov définit l'espérance conditionnelle en 1933 comme une dérivée de
+Radon-Nikodym précisément parce que le quotient élémentaire $ P(A \cap B)/P(B) $ s'effondre
+lorsque $ P(B) = 0 $, et que conditionner par une observation continue revient toujours à
+conditionner par des événements négligeables --- le paradoxe de Borel-Kolmogorov est ce qui arrive
+quand on l'oublie. La lecture géométrique s'est révélée la plus féconde : les moindres carrés
+(STA-04 sur la page Statistique (\url{applied-statistics.html})), la théorie de la prédiction
+de Wiener dans les années 1940, le filtre de Kalman et tout le calcul des martingales sont la même
+projection effectuée dans des espaces de Hilbert différents, et \og{} meilleur prédicteur \fg{} et
+\og{} espérance conditionnelle \fg{} deviennent deux noms pour un seul objet.
+
+\begin{refs}
+\item Contexte : Espérance conditionnelle --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Esp%C3%A9rance_conditionnelle})
+\item Contexte : Théorème de projection sur un convexe fermé --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_projection_sur_un_convexe_ferm%C3%A9})
+\item Lecture : David Williams, \textit{Probability with Martingales}, ch. 9
+\item Lecture : Rick Durrett, \textit{Probability: Theory and Examples}, ch. 4 (PDF gratuit, Duke (\url{https://sites.math.duke.edu/\textasciitilde{}rtd/PTE/PTE5_011119.pdf}))
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Fonctions caractéristiques et théorème de convergence de Lévy --- Master}]
+\textbf{PRB-40.} \textbf{Problème.} Pour une variable aléatoire réelle $ X $, on définit sa fonction
+caractéristique $ \varphi_X(t) = E\big[e^{itX}\big] $, $ t \in \mathbb{R} $.
+\begin{enumerate}
+\item[(a)] Démontrez que $ \varphi_X $ est uniformément continue, vérifie $ \varphi_X(0) = 1 $ et
+$ |\varphi_X(t)| \le 1 $, que $ \varphi_{X+Y} = \varphi_X \varphi_Y $ pour $ X, Y $
+indépendantes, et que si $ E|X|^k $ est fini alors $ \varphi_X $ est $ k $ fois dérivable
+avec $ \varphi_X^{(k)}(0) = i^k E[X^k] $.
+\item[(b)] Démontrez la formule d'inversion de Lévy : pour $ a < b $,
+\[ \lim_{T \to \infty} \frac{1}{2\pi} \int_{-T}^{T}
+ \frac{e^{-ita} - e^{-itb}}{it}\, \varphi_X(t)\, dt
+ = P(a < X < b) + \tfrac{1}{2}\big( P(X = a) + P(X = b) \big) , \]
+et déduisez-en le théorème d'unicité : la fonction caractéristique détermine la loi.
+\item[(c)] Énoncez le théorème de convergence de Lévy --- si $ \varphi_{X_n}(t) \to \varphi(t) $ pour tout
+$ t $ et si $ \varphi $ est continue en $ 0 $, alors $ \varphi $ est la fonction
+caractéristique d'une certaine variable $ X $ et $ X_n $ converge en loi vers $ X $ --- et
+démontrez le sens facile. Démontrez ensuite le théorème central limite pour des variables i.i.d.
+d'espérance $ \mu $ et de variance finie $ \sigma^2 $ en développant $ \log \varphi $ à
+l'ordre deux, et dites exactement où la continuité de la limite en $ 0 $ intervient.
+\item[(d)] Montrez pourquoi la méthode des moments ne peut pas remplacer tout cela. Démontrez que pour la
+densité log-normale standard $ f $ sur $ (0,\infty) $, les densités perturbées
+\[ f_c(x) = f(x)\big( 1 + c \sin(2\pi \log x) \big), \qquad |c| \le 1 , \]
+sont de véritables densités de probabilité ayant exactement les mêmes moments de tous ordres que
+$ f $ --- une loi n'est donc pas nécessairement déterminée par ses moments, alors que d'après (b)
+elle l'est toujours par sa fonction caractéristique.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Laplace et Cauchy utilisaient déjà les transformées de Fourier de lois, mais
+c'est Liapounov (1901) qui en fit l'instrument standard des théorèmes limites, et Lévy qui bâtit la
+théorie sous la forme employée ici ; le théorème de convergence est ce qui transforme un calcul sur
+des fonctions de $ t $ en un énoncé de convergence de lois, et toute démonstration moderne du
+théorème central limite passe par lui. La partie (d) est la découverte de Stieltjes en 1894 sous la
+forme donnée par C. C. Heyde en 1963 : la loi log-normale, l'une des plus utilisées en statistique,
+partage ses moments avec toute une famille d'autres lois. C'est la raison précise pour laquelle la
+méthode des moments (STA-22 sur la page Statistique (\url{applied-statistics.html})) a besoin
+d'une condition auxiliaire comme celle de Carleman, et pourquoi les fonctions caractéristiques ont
+gagné.
+
+\begin{refs}
+\item Contexte : Fonction caractéristique (probabilités) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_caract%C3%A9ristique_(probabilit%C3%A9s)})
+\item Contexte : Théorème de convergence de Lévy --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_convergence_de_L%C3%A9vy})
+\item Article : C. C. Heyde, \og{} On a property of the lognormal distribution \fg{}, J. Roy. Statist. Soc. B 25 (1963), 392--393
+\item Lecture : Rick Durrett, \textit{Probability: Theory and Examples}, ch. 3 (PDF gratuit, Duke (\url{https://sites.math.duke.edu/\textasciitilde{}rtd/PTE/PTE5_011119.pdf}))
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le théorème de Cramér : le prix d'une grande déviation --- Master}]
+\textbf{PRB-41.} \textbf{Problème.} Soient $ X_1, X_2, \dots $ i.i.d. telles que
+$ \Lambda(\theta) = \log E\big[e^{\theta X_1}\big] $ soit finie pour tout réel $ \theta $,
+d'espérance $ \mu = E[X_1] $, et posons $ S_n = X_1 + \cdots + X_n $. On définit la fonction de
+taux comme la transformée de Legendre
+\[ I(x) = \sup_{\theta \in \mathbb{R}} \big( \theta x - \Lambda(\theta) \big) . \]
+\begin{enumerate}
+\item[(a)] Démontrez que $ \Lambda $ est convexe et dérivable, que $ I $ est convexe et positive, et
+que $ I(\mu) = 0 $.
+\item[(b)] Démontrez la majoration non asymptotique $ P(S_n \ge nx) \le e^{-n I(x)} $ pour tout
+$ x \ge \mu $ et tout $ n $, en optimisant l'inégalité de Markov appliquée à
+$ e^{\theta S_n} $ (c'est PRB-30 sous forme générale).
+\item[(c)] Démontrez la minoration correspondante par bascule exponentielle : pour $ x $ à l'intérieur
+de l'image de $ \Lambda' $, soit $ \theta^{*} $ la solution de
+$ \Lambda'(\theta^{*}) = x $, définissez la loi basculée
+$ dP_{\theta^{*}} = e^{\theta^{*} y - \Lambda(\theta^{*})} dP $, et montrez que sous cette loi la
+somme a pour espérance $ nx $, de sorte qu'une estimation de type théorème central limite donne
+\[ \lim_{n \to \infty} \frac{1}{n} \log P(S_n \ge nx) = -I(x) . \]
+\item[(d)] Calculez $ I $ explicitement pour une pièce équilibrée ($ X_i \in \{0,1\} $) et pour la loi
+exponentielle de taux 1, et vérifiez que $ I(x) \approx (x-\mu)^2/(2\sigma^2) $ pour $ x $
+proche de $ \mu $. Montrez ensuite sur un exemple qu'extrapoler l'approximation gaussienne de
+PRB-14 dans le régime des grandes déviations donne le mauvais exposant --- le théorème central limite
+décrit une fenêtre de largeur $ \sqrt{n} $ et ne dit rien des événements de probabilité
+$ e^{-cn} $.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Harald Cramér démontra ceci en 1938 alors qu'il travaillait sur la théorie
+collective du risque de l'assurance suédoise --- la question y est la probabilité que les réserves
+d'une compagnie soient ruinées par une série improbable de sinistres, et c'est précisément une
+probabilité que la loi des grands nombres déclare petite sans dire à quel point. Chernoff
+redécouvrit la majoration en 1952 pour des problèmes de test ; la formulation du principe de
+grandes déviations par Varadhan en 1966 (prix Abel 2007) a transformé le motif en théorie générale,
+étendue par Sanov aux mesures empiriques et par Freidlin et Wentzell aux petites perturbations
+aléatoires de systèmes dynamiques. La morale de la partie (d) est à retenir : une approximation
+gaussienne est un énoncé sur le centre d'une loi, et la queue est gouvernée par une tout autre
+fonction.
+
+\begin{refs}
+\item Contexte : Théorème de Cramér --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cram%C3%A9r})
+\item Contexte : Principe de grandes déviations --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_de_grandes_d%C3%A9viations})
+\item Article : H. Cramér, \og{} Sur un nouveau théorème-limite de la théorie des probabilités \fg{}, Actualités Scientifiques et Industrielles 736 (1938)
+\item Lecture : Amir Dembo \& Ofer Zeitouni, \textit{Large Deviations Techniques and Applications}, ch. 2
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Construire le mouvement brownien, et démontrer qu'il n'est nulle part régulier --- Master}]
+\textbf{PRB-42.} \textbf{Problème.} Un mouvement brownien standard sur $ [0,1] $ est un processus
+$ (B_t)_{0 \le t \le 1} $ vérifiant $ B_0 = 0 $, à accroissements indépendants, avec
+$ B_t - B_s \sim N(0, t-s) $ pour $ s < t $, et à trajectoires continues. Rien ne garantit
+d'avance qu'un tel objet existe.
+\begin{enumerate}
+\item[(a)] Construisez-le. Soit $ (h_k) $ la base orthonormée de Haar de $ L^2[0,1] $, soit
+$ \Delta_k(t) = \int_0^t h_k(s)\,ds $ les fonctions de Schauder, et soient $ \xi_k $ des
+variables gaussiennes standard i.i.d. Démontrez que
+\[ B_t = \sum_{k \ge 0} \xi_k \, \Delta_k(t) \]
+converge uniformément sur $ [0,1] $ avec probabilité un --- majorez $ \max |\xi_k| $ sur chaque
+bloc dyadique et utilisez Borel-Cantelli (PRB-15) --- et vérifiez que la limite possède les trois
+propriétés ci-dessus.
+\item[(b)] Démontrez que les trajectoires sont presque sûrement höldériennes de tout exposant
+$ \alpha < 1/2 $, et démontrez qu'elles ne sont presque sûrement \textit{pas} höldériennes
+d'exposant $ 1/2 $.
+\item[(c)] Démontrez qu'avec probabilité un la trajectoire $ t \mapsto B_t $ n'est dérivable en aucun
+point. (Si $ B $ avait une dérivée en un certain $ s $, alors pour $ n $ grand plusieurs
+accroissements consécutifs de taille $ 2^{-n} $ près de $ s $ seraient tous anormalement
+petits ; majorez la probabilité de cet événement et sommez sur la grille dyadique.)
+\item[(d)] Démontrez que le long des partitions dyadiques la variation quadratique
+$ \sum_{j} \big( B_{(j+1)2^{-n}} - B_{j 2^{-n}} \big)^2 $ converge vers $ t $ dans
+$ L^2 $, et déduisez-en que les trajectoires sont à variation totale infinie sur tout intervalle.
+Expliquez en un paragraphe pourquoi c'est la raison précise pour laquelle $ \int f\, dB $ ne peut
+pas être une intégrale de Stieltjes, et pourquoi Itô a dû en inventer une autre.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Robert Brown observa des grains de pollen frémir en 1827 ; Bachelier modélisa
+la Bourse de Paris avec le même processus en 1900, et Einstein s'en servit en 1905 pour plaider la
+réalité des atomes --- mais personne n'avait produit d'objet mathématique possédant ces propriétés
+avant que Norbert Wiener ne le fasse en 1923, d'où le nom de processus de Wiener. La construction
+de (a) est celle de Lévy (1948) sous la forme en fonctions de Haar de Ciesielski (1961), et c'est
+la démonstration d'existence la plus propre que l'on connaisse : une série aléatoire explicite de
+type Fourier. La partie (c) est le théorème de Paley, Wiener et Zygmund (1933), qui a choqué les
+analystes --- pendant un siècle les mathématiciens avaient tenu la fonction nulle part dérivable de
+Weierstrass pour un monstre, et voici que presque toute trajectoire du processus le plus naturel
+des probabilités en est une. La partie (d) est le point de départ du calcul stochastique : la
+variation quadratique non nulle est exactement le terme supplémentaire de la formule d'Itô.
+
+\begin{refs}
+\item Contexte : Processus de Wiener --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Processus_de_Wiener})
+\item Contexte : Mouvement brownien --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Mouvement_brownien})
+\item Article : R. E. A. C. Paley, N. Wiener \& A. Zygmund, \og{} Notes on random functions \fg{}, Math. Z. 37 (1933), 647--668
+\item Lecture : Peter Mörters \& Yuval Peres, \textit{Brownian Motion} (Cambridge, 2010), ch. 1
+\end{refs}
+
+\bigskip
+
+
+\section*{Recherche}
+
+\begin{problem}[{Chemins auto-évitants et constante de connectivité --- Recherche}]
+\textbf{PRB-19.} \textbf{Problème.} Soit $ c_n $ le nombre de chemins auto-évitants de
+$ n $ pas issus de l'origine dans un réseau.
+\begin{enumerate}
+\item[(a)] Démontrez --- cette partie est entièrement à votre portée --- que $ c_{m+n} \le c_m c_n $, et
+déduisez-en, via le lemme de sous-additivité de Fekete (énoncez-le et démontrez-le), que la
+\textit{constante de connectivité} $ \mu = \lim_n c_n^{1/n} $ existe.
+\item[(b)] Démontrez les majorations et minorations grossières $ 2 \le \mu \le 3 $ pour
+$ \mathbb{Z}^2 $.
+\item[(c)] \textbf{Résolu (2012) :} sur le réseau en nid d'abeilles,
+$ \mu = \sqrt{2 + \sqrt{2}} $ --- prédit par le physicien Nienhuis en 1982, démontré par
+Duminil-Copin et Smirnov à l'aide d'une observable discrètement holomorphe. Comprenez l'énoncé et
+l'architecture de la démonstration.
+\item[(d)] \textbf{Ouvert :} la valeur exacte de $ \mu $ pour $ \mathbb{Z}^2 $ (numériquement
+$\approx$ 2,63816) est inconnue ; le comportement asymptotique conjecturé
+$ c_n \sim A\,\mu^n n^{11/32} $ dans le plan et la conjecture selon laquelle la limite d'échelle
+est l'évolution de Schramm-Loewner SLE8/3 ne sont pas démontrés ; en dimension 3,
+essentiellement rien n'est rigoureux sur les exposants critiques.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le chemin auto-évitant est le modèle standard d'une longue chaîne polymère,
+introduit par le chimiste Flory dans les années 1940 ; il est notoirement difficile parce que la
+contrainte d'auto-évitement détruit l'indépendance. Qu'un seul réseau --- celui en nid d'abeilles ---
+ait livré une constante exacte, grâce à des idées importées de la théorie conforme des champs, est
+l'un des résultats célèbres des probabilités du XXIe siècle ; toutes les questions
+voisines restent ouvertes, énoncées honnêtement ci-dessus.
+
+\begin{refs}
+\item Contexte : Chemin auto-évitant --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Chemin_auto-%C3%A9vitant})
+\item Contexte : Constante de connectivité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Constante_de_connectivit%C3%A9})
+\item Article : H. Duminil-Copin \& S. Smirnov, \og{} The connective constant of the honeycomb lattice equals $\surd$(2+$\surd$2) \fg{}, Ann. of Math. 175 (2012), arXiv:1007.0575 (\url{https://arxiv.org/abs/1007.0575})
+\item Lecture : Neal Madras \& Gordon Slade, \textit{The Self-Avoiding Walk}
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Percolation critique en dimension trois --- Recherche}]
+\textbf{PRB-20.} \textbf{Problème.} Poursuivez à partir de PRB-17.
+\begin{enumerate}
+\item[(a)] Dans le plan, le tableau critique est un théorème : pour la percolation par sites sur le
+réseau triangulaire, Smirnov a démontré l'invariance conforme des probabilités de traversée
+(formule de Cardy, 2001) et, avec Werner, en a déduit les exposants critiques --- par exemple
+$ \theta(p) = (p - p_c)^{5/36 + o(1)} $ lorsque $ p \downarrow p_c $. Comprenez ces énoncés et
+la façon dont SLE6 intervient.
+\item[(b)] En grande dimension ($ d \ge 11 $, Fitzner-van der Hofstad 2017, après Hara-Slade pour
+$ d \ge 19 $), le développement en lacets donne les exposants de champ moyen.
+\item[(c)] \textbf{Ouvert :} pour $ 3 \le d \le 10 $ --- y compris la dimension physique 3 --- il n'est pas
+démontré que les exposants critiques existent, et encore moins quelles sont leurs valeurs ; même la
+continuité de la transition de phase (à savoir $ \theta(p_c) = 0 $) est un célèbre problème
+ouvert dans ces dimensions. Tâche accessible : démontrez que $ \theta(p_c) = 0 $
+\textit{découlerait}, pour $ d = 3 $, d'hypothèses d'unicité de la limite d'échelle que vous
+énoncerez précisément ; lisez ensuite ce qui est réellement connu.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les physiciens disposent de valeurs numériques précises pour les exposants en
+dimension 3 et ne doutent pas de leur existence ; les mathématiques ne savent pas encore démontrer
+cette existence. La solution en dimension deux (Smirnov, médaille Fields 2010) et le développement
+en lacets en grande dimension encadrent le mystère sans y toucher --- la dimension trois est la
+frontière où les probabilités, la physique statistique et la géométrie conforme s'arrêtent
+aujourd'hui. État en 2026 : ouvert. Voir aussi
+Problèmes ouverts (\url{open-problems.html}).
+
+\begin{refs}
+\item Contexte : Exposants critiques de la percolation --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Percolation_critical_exponents})
+\item Article : S. Smirnov, \og{} Critical percolation in the plane: conformal invariance, Cardy's formula, scaling limits \fg{}, C. R. Acad. Sci. Paris 333 (2001)
+\item Article : H. Duminil-Copin, \og{} Sixty years of percolation \fg{} (2017), arXiv:1712.04651 (\url{https://arxiv.org/abs/1712.04651})
+\item Lecture : Geoffrey Grimmett, \textit{Percolation} (Springer)
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'universalité KPZ --- Recherche}]
+\textbf{PRB-21.} \textbf{Problème.} De nombreux modèles de croissance unidimensionnels ---
+croissance en coin, percolation de dernier passage, processus d'exclusion asymétrique, taches de
+café s'étalant sur du papier --- sont conjecturés partager une même limite d'échelle : des
+fluctuations de hauteur d'ordre $ t^{1/3} $, des corrélations sur une distance $ t^{2/3} $, et
+des lois limites de Tracy-Widom issues de la théorie des matrices aléatoires.
+\begin{enumerate}
+\item[(a)] Parties accessibles : dérivez heuristiquement le changement d'échelle 1:2:3 à partir de
+l'équation KPZ $ \partial_t h = \tfrac12 \partial_x^2 h + \tfrac12 (\partial_x h)^2 +
+\xi $, et comprenez pourquoi le TCL gaussien (PRB-14) \textit{ne peut pas} valoir ici.
+\item[(b)] \textbf{Résolu pour les modèles exactement solubles :} le processus de Markov limite --- le point
+fixe KPZ --- a été construit par Matetski, Quastel et Remenik (Acta Math. 227, 2021) à partir du
+TASEP, et le paysage dirigé, plus riche, par Dauvergne, Ortmann et Virág (2018--22) à partir de la
+percolation de dernier passage brownienne ; on sait désormais que l'équation KPZ elle-même converge
+vers le point fixe. Comprenez ces énoncés.
+\item[(c)] \textbf{Ouvert :} l'universalité --- le fait que les modèles génériques de la classe (lois de poids
+générales, règles microscopiques quelconques) convergent vers la même limite --- reste indémontrée
+hors de l'îlot intégrable.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Kardar, Parisi et Zhang écrivirent leur équation en 1986 ; le sujet explosa
+quand Baik, Deift et Johansson (1999) trouvèrent des fluctuations de Tracy-Widom dans les plus
+longues sous-suites croissantes. Les constructions des années 2020 ont transformé une prophétie de
+physiciens en objets mathématiques, mais la \textit{conjecture} d'universalité --- l'affirmation que le
+point fixe mérite son nom --- est ouverte, et largement tenue pour l'un des problèmes centraux des
+probabilités modernes. État en 2026 : ouvert au-delà des modèles exactement solubles.
+
+\begin{refs}
+\item Contexte : Équation de Kardar-Parisi-Zhang --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Kardar%E2%80%93Parisi%E2%80%93Zhang_equation})
+\item Contexte : Loi de Tracy-Widom --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Tracy%E2%80%93Widom_distribution})
+\item Article : K. Matetski, J. Quastel \& D. Remenik, \og{} The KPZ fixed point \fg{}, Acta Math. 227 (2021), Project Euclid (\url{https://projecteuclid.org/journals/acta-mathematica/volume-227/issue-1/The-KPZ-fixed-point/10.4310/ACTA.2021.v227.n1.a3.full})
+\item Article : D. Dauvergne, J. Ortmann \& B. Virág, \og{} The directed landscape \fg{} (2018), arXiv:1812.00309 (\url{https://arxiv.org/abs/1812.00309})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Ensembles de boucles conformes : les boucles des modèles critiques --- Recherche}]
+\textbf{PRB-22.} \textbf{Problème.} L'ensemble de boucles conforme CLE$\kappa$
+($ 8/3 < \kappa < 8 $) est une collection aléatoire de boucles sans croisement dans un
+domaine plan, dont la loi est invariante par les applications conformes ; c'est la limite d'échelle
+conjecturée de toute la famille des interfaces des modèles critiques bidimensionnels sur
+réseau.
+\begin{enumerate}
+\item[(a)] Parties accessibles : précisez ce que signifie \og{} limite d'échelle conformément invariante \fg{}
+pour un modèle sur réseau, et vérifiez l'invariance conforme dans le seul cas où elle est
+élémentaire --- la trajectoire du mouvement brownien plan (Lévy).
+\item[(b)] \textbf{Cas résolus, avec attribution :} les interfaces de la percolation critique par sites
+convergent vers CLE6 (Smirnov 2001 ; Camia-Newman 2006), et les interfaces d'Ising
+critique vers CLE3 (Benoist-Hongler, Ann. Probab. 47, 2019) ; Sheffield et Werner
+(Ann. of Math. 176, 2012) ont caractérisé CLE axiomatiquement. Comprenez ces énoncés.
+\item[(c)] \textbf{Ouvert :} la convergence vers CLE$\kappa$ pour la grande majorité des modèles
+conjecturés --- chemin auto-évitant vers SLE8/3 ($\kappa$ = 8/3), modèles de boucles O(n) pour
+n général, variantes de l'arbre couvrant uniforme au-delà des cas démontrés --- reste indémontrée ;
+chacun de ces cas est un problème de frontière identifié.
+\end{enumerate}
+
+\end{problem}
+
+\noindent L'invention de SLE par Schramm (1999) a transformé la théorie conforme des
+champs des physiciens en théorèmes de probabilités et réorganisé tout le domaine des phénomènes
+critiques bidimensionnels ; CLE en est le complément à plusieurs boucles. Le tableau du domaine est
+net : l'universalité est crue pour tous les modèles et démontrée seulement là où l'on a trouvé une
+miraculeuse holomorphie discrète --- exactement la situation de PRB-19 et PRB-20, et la raison pour
+laquelle les phénomènes critiques plans restent une mine d'or en activité. État en 2026 : ouvert
+hors des cas listés.
+
+\begin{refs}
+\item Contexte : Ensemble de boucles conforme --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Conformal_loop_ensemble})
+\item Contexte : Évolution de Schramm-Loewner --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Schramm%E2%80%93Loewner_evolution})
+\item Article : S. Sheffield \& W. Werner, \og{} Conformal loop ensembles: the Markovian characterization and the loop-soup construction \fg{}, Ann. of Math. 176 (2012)
+\item Article : S. Benoist \& C. Hongler, \og{} The scaling limit of critical Ising interfaces is CLE(3) \fg{}, Ann. Probab. 47 (2019), arXiv:1604.06975 (\url{https://arxiv.org/abs/1604.06975})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Énoncez précisément ce que la formule de Parisi a réglé --- Recherche, short}]
+\textbf{PRB-32.} \textbf{Problème.} Le verre de spin de Sherrington-Kirkpatrick attribue à chaque
+configuration $ \sigma \in \{-1,+1\}^N $ l'énergie
+$ H_N(\sigma) = N^{-1/2} \sum_{i < j} g_{ij}\, \sigma_i \sigma_j $ avec des couplages
+gaussiens standard i.i.d. $ g_{ij} $, et l'ansatz de brisure de symétrie des répliques de Parisi
+(1979--80) prédisait la limite de $ N^{-1} E \log \sum_{\sigma} e^{\beta H_N(\sigma)} $. Rédigez un
+compte rendu précis de l'état des lieux : énoncez la formule variationnelle de Parisi, énoncez
+exactement ce que Guerra (2003), Talagrand (2006) et le théorème d'ultramétricité de Panchenko
+(2013) ont chacun établi, et énoncez honnêtement que le tableau correspondant pour le modèle
+d'Edwards-Anderson en dimension finie reste ouvert.
+\end{problem}
+
+\noindent La solution de Parisi fut obtenue par un calcul faisant intervenir
+\og{} $ n \to 0 $ répliques \fg{} qui n'avait absolument aucun sens mathématique, et pendant deux
+décennies on ignora si c'était même la bonne réponse. L'interpolation de Guerra fournit une
+inégalité, Talagrand l'autre ; la part de Parisi dans le prix Nobel de physique 2021 citait ce
+cercle d'idées. Ce que l'on ne sait \textit{pas}, c'est si un tableau semblable vaut pour des verres
+de spin réalistes à courte portée en trois dimensions --- la controverse entre le modèle des
+gouttelettes et la brisure de symétrie des répliques n'est pas tranchée. État en 2026 : cas de
+champ moyen démontré, cas en dimension finie ouvert.
+
+\begin{refs}
+\item Contexte : Modèle de Sherrington-Kirkpatrick --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Sherrington%E2%80%93Kirkpatrick_model})
+\item Contexte : Verre de spin --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Verre_de_spin})
+\item Article : M. Talagrand, \og{} The Parisi formula \fg{}, Ann. of Math. 163 (2006), 221--263
+\item Article : D. Panchenko, \og{} The Parisi ultrametricity conjecture \fg{}, Ann. of Math. 177 (2013), 383--393
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Où le 3-SAT aléatoire devient-il insatisfiable ? --- Recherche, short}]
+\textbf{PRB-33.} \textbf{Problème.} Une formule $ k $-SAT aléatoire tire $ m = \alpha n $
+clauses uniformément et indépendamment parmi les $ \binom{n}{k} 2^k $ $ k $-clauses possibles
+sur $ n $ variables booléennes, et la conjecture du seuil de satisfaisabilité affirme que pour
+chaque $ k $ il existe un $ \alpha_k $ tel que la formule soit satisfiable avec une probabilité
+tendant vers 1 en dessous de $ \alpha_k $ et vers 0 au-dessus. Rédigez un compte rendu précis de
+l'état des lieux : Friedgut (1999) a démontré l'existence d'une \textit{suite} de seuils nets sans la
+localiser, Ding, Sly et Sun (Ann. of Math. 196, 2022) ont déterminé $ \alpha_k $ pour tout $ k $
+assez grand, et le cas $ k = 3 $ --- où la méthode de la cavité des physiciens prédit
+$ \alpha_3 \approx 4{,}267 $ --- reste ouvert.
+\end{problem}
+
+\noindent C'est le point de rencontre le plus net entre probabilités, physique statistique
+et informatique théorique : la formule conjecturée pour $ \alpha_k $ est issue de la méthode de
+la cavité de Mézard, Parisi et Zecchina, la même machinerie de répliques qu'en PRB-32, et la
+démonstration pour $ k $ grand a dû transformer ce calcul non rigoureux en théorème.
+Empiriquement, la transition est spectaculaire --- au voisinage de $ \alpha_3 \approx 4{,}267 $ les
+formules aléatoires deviennent les plus difficiles pour les solveurs SAT, ce qui rend le seuil
+intéressant en pratique autant qu'en théorie. État en 2026 : ouvert pour $ k = 3 $.
+
+\begin{refs}
+\item Contexte : Problème SAT --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_SAT})
+\item Article : E. Friedgut, \og{} Sharp thresholds of graph properties, and the $ k $-SAT problem \fg{}, J. Amer. Math. Soc. 12 (1999), 1017--1054
+\item Article : J. Ding, A. Sly \& N. Sun, \og{} Proof of the satisfiability conjecture for large $ k $ \fg{}, Ann. of Math. 196 (2022), arXiv:1411.0650 (\url{https://arxiv.org/abs/1411.0650})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Temps de mélange et phénomène de coupure --- Recherche}]
+\textbf{PRB-34.} \textbf{Problème.} Pour une chaîne de Markov irréductible apériodique sur un espace d'états fini,
+de matrice de transition $ P $ et de loi stationnaire $ \pi $, posons
+\[ d(t) = \max_{x} \; \big\lVert P^t(x, \cdot) - \pi \big\rVert_{\mathrm{TV}} ,
+\qquad t_{\mathrm{mix}}(\varepsilon) = \min\{ t : d(t) \le \varepsilon \} . \]
+Une \textit{famille} de chaînes indexée par $ n $ présente une \textit{coupure} (cutoff) si
+$ t_{\mathrm{mix}}^{(n)}(\varepsilon) / t_{\mathrm{mix}}^{(n)}(1-\varepsilon) \to 1 $ pour tout
+$ \varepsilon \in (0, 1/2) $ --- la distance à l'équilibre reste proche de 1 puis s'effondre vers 0
+dans une fenêtre d'ordre inférieur au temps de mélange lui-même.
+\begin{enumerate}
+\item[(a)] Partie accessible : démontrez que $ d $ est décroissante et que
+$ \bar{d}(t) = \max_{x,y} \lVert P^t(x,\cdot) - P^t(y,\cdot) \rVert_{\mathrm{TV}} $ est
+sous-multiplicative, $ \bar{d}(s+t) \le \bar{d}(s)\bar{d}(t) $, et déduisez-en que la distance à
+la stationnarité décroît exponentiellement une fois $ t_{\mathrm{mix}} $ dépassé.
+\item[(b)] Démontrez une coupure de bout en bout pour la marche aléatoire paresseuse sur l'hypercube
+$ \{0,1\}^n $ --- à chaque pas, on choisit une coordonnée uniformément et on la remplace par un
+nouveau tirage à pile ou face équilibré : montrez que
+$ t_{\mathrm{mix}} = \tfrac12 n \log n\,(1+o(1)) $, la minoration venant du dénombrement à la
+collectionneur de vignettes des coordonnées jamais touchées (PRB-07) et la majoration d'un
+couplage.
+\item[(c)] Comprenez le cas célèbre : Bayer et Diaconis (1992) ont démontré que le battage américain
+(riffle shuffle) d'un jeu de $ n $ cartes présente une coupure à $ \tfrac32 \log_2 n $
+battages, source des fameux \og{} sept battages \fg{} pour $ n = 52 $. Énoncez précisément ce que ce
+théorème affirme et ce qu'il n'affirme pas.
+\item[(d)] \textbf{Ouvert :} Aldous et Diaconis ont demandé dans les années 1980 un critère général de
+coupure. La \textit{condition de produit} de Peres --- le produit de $ t_{\mathrm{mix}} $ par le trou
+spectral tend vers l'infini --- est nécessaire, mais le contre-exemple d'Aldous montre qu'elle n'est
+pas suffisante en général ; elle l'\textit{est} pour les chaînes de naissance et de mort
+(Ding-Lubetzky-Peres, 2010) et pour les chaînes à courbure positive (Salez, 2021). Savoir si elle
+suffit pour des familles symétriques naturelles --- par exemple toutes les chaînes sommet-transitives
+--- est ouvert. Énoncez la conjecture précisément et lisez ce qui est connu.
+\end{enumerate}
+
+\end{problem}
+
+\noindent La coupure fut découverte par Aldous et Diaconis vers 1981 en analysant des
+battages de cartes : pendant longtemps rien ne semble se passer, puis le jeu est soudain aléatoire.
+Le phénomène est aujourd'hui connu pour des dizaines de chaînes et reste invisible aux majorations
+spectrales grossières, de sorte que chaque démonstration a besoin d'une statistique discriminante
+pour la minoration et d'un couplage ou d'un temps stationnaire fort pour la majoration. Qu'il
+n'existe toujours pas de critère général --- après quarante ans, avec la condition de produit si
+proche du but --- est l'un des problèmes ouverts bien connus du domaine. État en 2026 : ouvert en
+général, démontré pour les familles particulières listées ci-dessus.
+
+\begin{refs}
+\item Contexte : Temps de mélange d'une chaîne de Markov --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Markov_chain_mixing_time})
+\item Lecture : David A. Levin \& Yuval Peres, \textit{Markov Chains and Mixing Times}, 2e éd. (AMS)
+\item Article : D. Bayer \& P. Diaconis, \og{} Trailing the dovetail shuffle to its lair \fg{}, Ann. Appl. Probab. 2 (1992), 294--313
+\item Articles : J. Ding, E. Lubetzky \& Y. Peres, \og{} Total variation cutoff in birth-and-death chains \fg{}, Probab. Theory Related Fields 146 (2010), 61--85 ; J. Salez, \og{} Cutoff for non-negatively curved Markov chains \fg{}, J. Eur. Math. Soc., arXiv:2102.05597 (\url{https://arxiv.org/abs/2102.05597})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{L'inégalité de corrélation gaussienne --- Recherche, short}]
+\textbf{PRB-43.} \textbf{Problème.} L'inégalité de corrélation gaussienne affirme que pour une
+mesure gaussienne centrée $ \mu $ sur $ \mathbb{R}^n $ et deux convexes quelconques
+$ K, L \subseteq \mathbb{R}^n $ symétriques par rapport à l'origine,
+\[ \mu(K \cap L) \;\ge\; \mu(K)\, \mu(L) . \]
+Démontrez le cas où $ K $ et $ L $ sont des bandes $ \{ |x_i| \le a_i \} $ portant sur des
+ensembles disjoints de coordonnées, vérifiez par calcul direct le cas bidimensionnel
+$ K = \{|x_1| \le a\} $, $ L = \{|x_2| \le b\} $ pour un couple corrélé, puis rédigez un compte
+rendu précis de l'état des lieux : quels cas particuliers étaient connus (l'inégalité de Šidák de
+1967 pour les rectangles), qui a conjecturé l'énoncé général et quand, et comment il a finalement
+été démontré.
+\end{problem}
+
+\noindent L'inégalité dit une chose sur laquelle un probabiliste parierait sa maison ---
+deux contraintes convexes symétriques sont positivement associées sous une gaussienne, de sorte que
+satisfaire l'une rend l'autre plus probable --- et elle a résisté six décennies. Un cas particulier
+fut proposé par Dunnett et Sobel en 1955 et la conjecture générale énoncée par Das Gupta, Eaton,
+Olkin, Perlman, Savage et Sobel en 1972 ; plusieurs démonstrations annoncées se sont effondrées. En
+2014, Thomas Royen, statisticien allemand à la retraite travaillant le matin avant le petit
+déjeuner, l'a démontrée en quelques pages comme corollaire d'une généralisation aux lois gamma
+multivariées, et l'a publiée dans une revue que presque personne ne lisait ; le résultat n'a été
+reconnu par la communauté que vers 2017. État en 2026 : démontré, et vérifié indépendamment --- un
+rappel que les mathématiques n'ont d'autre gardien qu'un argument correct.
+
+\begin{refs}
+\item Contexte : Inégalité de corrélation gaussienne --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Gaussian_correlation_inequality})
+\item Article : T. Royen, \og{} A simple proof of the Gaussian correlation conjecture extended to multivariate gamma distributions \fg{}, Far East J. Theor. Stat. 48 (2014), 139--145, arXiv:1408.1028 (\url{https://arxiv.org/abs/1408.1028})
+\item Article : Z. Šidák, \og{} Rectangular confidence regions for the means of multivariate normal distributions \fg{}, J. Amer. Statist. Assoc. 62 (1967), 626--633
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{À quelle vitesse le théorème central limite converge-t-il ? --- Recherche}]
+\textbf{PRB-44.} \textbf{Problème.} Soient $ X_1, \dots, X_n $ i.i.d. d'espérance $ 0 $, de variance
+$ \sigma^2 $ et telles que $ \rho = E|X_1|^3 < \infty $, et soit $ F_n $ la fonction de
+répartition de $ (X_1 + \cdots + X_n)/(\sigma\sqrt{n}) $. Le théorème de Berry-Esseen affirme
+qu'il existe une constante universelle $ C $ telle que
+\[ \sup_{x \in \mathbb{R}} \big| F_n(x) - \Phi(x) \big| \;\le\; \frac{C \rho}{\sigma^3 \sqrt{n}} . \]
+\begin{enumerate}
+\item[(a)] Démontrez la caractérisation de Stein de la loi normale : une variable aléatoire $ W $ est
+normale standard si et seulement si $ E\big[ f'(W) - W f(W) \big] = 0 $ pour toute fonction
+$ f $ bornée, continûment dérivable et de dérivée bornée.
+\item[(b)] Résolvez l'équation de Stein : étant donnée une fonction test $ h $, montrez que
+$ f'(w) - w f(w) = h(w) - E[h(Z)] $ (avec $ Z $ normale standard) admet la solution explicite
+\[ f_h(w) = e^{w^2/2} \int_{-\infty}^{w} \big( h(y) - E[h(Z)] \big) e^{-y^2/2} \, dy , \]
+et majorez $ f_h $ et $ f_h' $ lorsque $ h $ est l'indicatrice d'une demi-droite.
+\item[(c)] Utilisez (a) et (b) pour démontrer une majoration de type Berry-Esseen de la forme annoncée
+avec une constante explicite, par un développement de Taylor de
+$ E[f'(W_n) - W_n f(W_n)] $ sur la décomposition \og{} une variable en moins \fg{} de la somme.
+\item[(d)] Voici maintenant la partie ouverte. Esseen a démontré en 1956 que la meilleure constante
+possible vérifie
+\[ C \;\ge\; \frac{\sqrt{10}+3}{6\sqrt{2\pi}} \approx 0{,}4097 , \]
+au moyen d'une loi à deux points --- reconstruisez un tel exemple et vérifiez la minoration
+numériquement. Lisez ensuite l'historique des majorations, depuis le $ 7{,}59 $ d'Esseen lui-même
+(1942) en passant par van Beek (1972) et Shiganov (1986) jusqu'aux raffinements de Tiourine et de
+Chevtsova vers 2010, qui se situent autour de $ 0{,}47 $ dans le cas i.i.d. et de $ 0{,}56 $
+sans loi identique. \textbf{Ouvert :} la constante optimale est inconnue, et la conjecture d'Esseen
+selon laquelle sa minoration est la vérité n'est pas démontrée.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Andrew Berry (1941) et Carl-Gustav Esseen (1942) ont fourni indépendamment ce
+qui manque manifestement au théorème central limite de PRB-14 --- une vitesse --- et leur théorème est
+la raison pour laquelle un statisticien peut employer une approximation normale sur un échantillon
+de cinquante avec une majoration plutôt qu'un espoir. La voie de démonstration proposée ici est
+celle de Charles Stein (1972), inventée parce que les fonctions caractéristiques supportent mal la
+dépendance : la méthode de Stein remplace la transformée de Fourier par une caractérisation
+différentielle de la loi normale, fonctionne pour des termes dépendants et non identiquement
+distribués, et sous-tend aujourd'hui les majorations d'erreur pour l'approximation de Poisson
+(Chen), les graphes aléatoires et les algorithmes randomisés. Que quatre-vingts ans d'efforts
+n'aient réduit la constante universelle qu'à l'intervalle allant d'environ 0,41 à 0,47 donne une
+juste mesure de la délicatesse d'une inégalité optimale. État en 2026 : la constante optimale reste
+ouverte.
+
+\begin{refs}
+\item Contexte : Inégalité de Berry-Esseen --- Wikipédia (\url{https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_de_Berry-Esseen})
+\item Contexte : Méthode de Stein --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Stein})
+\item Article : C. Stein, \og{} A bound for the error in the normal approximation to the distribution of a sum of dependent random variables \fg{}, Proc. Sixth Berkeley Symposium on Mathematical Statistics and Probability, vol. 2 (1972)
+\item Lecture : Louis H. Y. Chen, Larry Goldstein \& Qi-Man Shao, \textit{Normal Approximation by Stein's Method} (Springer, 2011)
+\end{refs}
+
+\bigskip
+
+
+\section*{Pour aller plus loin}
+
+
+\vfill
+\noindent\emph{Hors de la Caverne} --- des probl\`emes, pas de r\'eponses.
+\end{document}
