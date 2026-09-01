@@ -12,14 +12,16 @@ lumière. Chaque problème est accompagné de son histoire — qui l'a posé, qu
 pourquoi il a compté — et de références indiquant le savoir nécessaire pour
 l'attaquer. Aucune solution n'est donnée, nulle part, jamais.
 
-Version française de [Out of the Cave](https://b-3llum.github.io/out-of-the-cave/).
+Version française de [Out of the Cave](https://b-3llum.github.io/out-of-the-cave/),
+augmentée d'un niveau collège que l'édition anglaise n'a pas.
 
 ## Ce que contient le site
 
-**1 164 problèmes** dans 24 domaines, du lycée à la recherche ouverte :
+**1 274 problèmes** dans 24 domaines, du collège à la recherche ouverte :
 
 | Niveau | Problèmes |
 |---|---|
+| Collège | 110 |
 | Lycée | 234 |
 | Licence | 383 |
 | Master | 312 |
@@ -33,7 +35,7 @@ dérivées partielles, analyse numérique, optimisation, mathématiques discrèt
 informatique, cryptographie et théorie de l'information, physique mathématique),
 ainsi que trois collections spéciales :
 
-- **[Casse-tête](puzzles.html)** — 100 énigmes dont la chute est un véritable théorème.
+- **[Casse-tête](puzzles.html)** — 116 énigmes dont la chute est un véritable théorème.
 - **[Problèmes ouverts](open-problems.html)** — les problèmes du prix du millénaire
   avec des variantes réellement abordables, une section approfondie sur la conjecture
   de Collatz, les grands problèmes ouverts classiques, et les murs récemment tombés.
@@ -42,11 +44,15 @@ ainsi que trois collections spéciales :
 
 ## Fonctionnalités
 
-- **Niveaux et filtrage.** Chaque problème porte une étiquette Lycée / Licence /
-  Master / Recherche. Chaque page dispose d'un filtre par niveau, d'une recherche en
-  direct et d'un bouton « Courts seulement » (309 problèmes sont de forme courte).
-- **La salle des lycéens.** Les 234 problèmes de niveau lycée rassemblés en un seul
-  endroit, sélectionnables par domaine.
+- **Niveaux et filtrage.** Chaque problème porte une étiquette Collège / Lycée /
+  Licence / Master / Recherche. Chaque page dispose d'un filtre par niveau, d'une
+  recherche en direct et d'un bouton « Courts seulement » (345 problèmes sont de
+  forme courte).
+- **Deux salles.** La [salle des collégiens](college.html) rassemble les 110
+  problèmes de niveau collège et la [salle des lycéens](highschool.html) les 234 de
+  niveau lycée, dans les deux cas regroupés par domaine. Le niveau collège est propre
+  à l'édition française : rien n'y dépasse le programme du collège, mais on y demande
+  toujours de justifier, jamais seulement de calculer.
 - **Composeur de feuilles d'exercices.** Cochez des problèmes en parcourant le site,
   ou tirez un ensemble au hasard par niveau et par domaine, puis enregistrez-les
   seuls en PDF ou téléchargez-les en LaTeX compilable.
@@ -67,10 +73,11 @@ Le répertoire `_source/` contient la chaîne de production :
 | Script | Rôle |
 |---|---|
 | `html2tex.py` | Engendre `tex/*.tex` à partir des pages HTML. Le LaTeX est toujours dérivé — jamais écrit à la main. |
-| `assemble.py` | Valide chaque page, engendre `highschool.html`, `manifest.js` et `problems-data.js`, et insère les liens de téléchargement des PDF. |
+| `assemble.py` | Valide chaque page, engendre `college.html`, `highschool.html`, `manifest.js` et `problems-data.js`, et insère les liens de téléchargement des PDF. |
 | `insert.py` / `merge_round.py` | Insèrent de nouveaux blocs de problèmes à la fin de la bonne bande de niveau, avec validation. |
 | `reformat.py` | Convertit les énoncés d'un seul paragraphe en une mise en place suivie d'une liste de questions. |
 | `linkcheck2.sh` | Vérificateur de liens externes en parallèle. |
+| `wikifr.py` | Bascule les liens Wikipédia vers l'article français lorsqu'il existe, et signale « (en anglais) » sinon. |
 
 `BRIEF.md` est le brief de rédaction (style de la maison, structure HTML d'un
 problème, règles de référencement) ; `BRIEF-FR.md` est le brief de traduction.
@@ -80,7 +87,7 @@ Reconstruire après modification d'une page :
 ```sh
 python3 _source/html2tex.py <page>.html      # régénérer le LaTeX
 cd tex && tectonic -X compile --outfmt pdf <page>.tex && cd ..
-python3 _source/assemble.py                  # reconstruire la salle, le manifeste, les données
+python3 _source/assemble.py                  # reconstruire les salles, le manifeste, les données
 ./_source/linkcheck2.sh                      # vérifier tous les liens externes
 ```
 
