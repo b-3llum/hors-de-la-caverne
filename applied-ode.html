@@ -182,7 +182,7 @@ en dessous de cette droite pour prédire l'allure de toutes les autres solutions
 <li>Vérifier que la solution du problème de Cauchy est
 \( y(t) = t + 1 - \tfrac{1}{2}e^{t} \), et confirmer qu'elle correspond à votre prédiction.</li>
 <li>Appliquer la méthode d'Euler \( y_{n+1} = y_n + h\,(y_n - t_n) \) avec les pas
-\( h = 0.5,\ 0.25,\ 0.125 \) pour estimer \( y(1) \). Dresser le tableau des trois erreurs
+\( h = 0{,}5,\ 0{,}25,\ 0{,}125 \) pour estimer \( y(1) \). Dresser le tableau des trois erreurs
 et observer que chaque division par deux de \( h \) divise à peu près l'erreur par deux.</li>
 <li>Expliquer cette observation. Montrer par un développement de Taylor qu'un pas d'Euler à
 partir d'une valeur exacte commet une erreur au plus \( \tfrac{1}{2}h^2 \max|y''| \), et
@@ -286,7 +286,7 @@ sel par litre y entre à 3 litres par minute ; la cuve est parfaitement mélang�
 3 litres par minute. Soit \( S(t) \) la masse de sel dans la cuve, en kilogrammes.</p>
 <ol class="parts" type="a">
 <li>Établir, en justifiant chaque terme à partir des principes premiers (débit entrant moins
-débit sortant), l'équation \( S' = 1.5 - \frac{3S}{100} \).</li>
+débit sortant), l'équation \( S' = 1{,}5 - \frac{3S}{100} \).</li>
 <li>La résoudre par facteur intégrant, et démontrer que \( S(t) \to 50 \) de façon
 monotone.</li>
 <li>Supposer maintenant que le débit sortant vaut 2 litres par minute, de sorte que le volume
@@ -749,8 +749,8 @@ pas pour un système non linéaire.</li>
 \[ A = \frac{1}{2}\begin{pmatrix} -1001 & 999 \\ 999 & -1001 \end{pmatrix}, \]
 et vérifier que \( A \) a pour valeurs propres \( -1 \) et \( -1000 \), de vecteurs propres
 \( (1,1) \) et \( (1,-1) \). Écrire la solution exacte de \( x' = Ax \), montrer qu'après
-\( t \approx 0.01 \) elle est indiscernable d'une courbe lisse variant sur l'échelle de temps
-\( 1 \), et démontrer qu'Euler explicite exige néanmoins \( h &lt; 0.002 \) pour toute
+\( t \approx 0{,}01 \) elle est indiscernable d'une courbe lisse variant sur l'échelle de temps
+\( 1 \), et démontrer qu'Euler explicite exige néanmoins \( h &lt; 0{,}002 \) pour toute
 l'intégration. Compter les pas nécessaires sur \( [0, 10] \) pour chacune des deux méthodes, et
 expliquer où passe le travail supplémentaire dans chaque cas.</li>
 <li>Définir le domaine de stabilité absolue d'une méthode à un pas comme l'ensemble des
@@ -897,9 +897,9 @@ dérivée, et démontrer ce critère).</li>
 naît : calculer explicitement les points de période 2 à partir d'une équation du second degré,
 et montrer qu'ils sont attractifs pour \( 3 \lt r \lt 1 + \sqrt{6} \).</li>
 <li>Problème de compréhension : décrire la cascade de doublements de période — les paramètres
-\( r_1 \lt r_2 \lt \cdots \to r_\infty \approx 3.5699 \) où apparaissent les orbites de période
+\( r_1 \lt r_2 \lt \cdots \to r_\infty \approx 3{,}5699 \) où apparaissent les orbites de période
 \( 2^k \) — et expliquer le sens de la constante de Feigenbaum
-\( \delta = \lim_k (r_k - r_{k-1})/(r_{k+1} - r_k) \approx 4.6692 \) : le même nombre apparaît
+\( \delta = \lim_k (r_k - r_{k-1})/(r_{k+1} - r_k) \approx 4{,}6692 \) : le même nombre apparaît
 pour toute une classe d'applications (universalité). Expliquer, au niveau des idées, comment la
 renormalisation en rend compte, et noter que les conjectures de Feigenbaum ont été démontrées par
 Lanford (1982) au moyen d'une démonstration assistée par ordinateur.</li>

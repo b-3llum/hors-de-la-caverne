@@ -14,3 +14,7 @@ tex/*.fdb_latexmk
 # editor scratch
 *.swp
 *~
+
+# python bytecode
+__pycache__/
+*.pyc

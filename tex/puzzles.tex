@@ -2039,13 +2039,13 @@ convenir d'une stratégie à l'avance.
 \begin{enumerate}
 \item[(a)] Montrez que si chaque prisonnier ouvre cinquante boîtes uniformément au hasard, la
 probabilité que tous réussissent vaut $ 2^{-100} $ --- astronomiquement petite.
-\item[(b)] Il existe une stratégie qui réussit avec une probabilité supérieure à $ 0.30 $.
+\item[(b)] Il existe une stratégie qui réussit avec une probabilité supérieure à $ 0{,}30 $.
 Trouvez-la. L'indice auquel vous avez droit : la disposition des papiers est une
 permutation, et une permutation se décompose en cycles.
 \item[(c)] Démontrez que la probabilité de succès de cette stratégie est égale à la probabilité
 qu'une permutation uniformément aléatoire de $ 2n $ éléments n'ait aucun cycle de
 longueur supérieure à $ n $, et montrez que cela tend vers
-$ 1 - \ln 2 \approx 0.3069 $ quand $ n \to \infty $.
+$ 1 - \ln 2 \approx 0{,}3069 $ quand $ n \to \infty $.
 \end{enumerate}
 
 \end{problem}
@@ -2854,7 +2854,7 @@ vous l'êtes largement. Les mathématiques qui comptent sont la loi en $ \sqrt{N
 question (a), car c'est elle qui rend la réponse contre-intuitive : l'intuition compare
 $ n $ à $ N $ quand elle devrait comparer $ \binom{n}{2} $ à $ N $. Le même calcul
 est l'attaque des anniversaires en cryptographie, où $ N $ est le nombre de valeurs de
-hachage possibles et $ 1.18\sqrt{N} $ le budget de l'attaquant, et c'est pourquoi une
+hachage possibles et $ 1{,}18\sqrt{N} $ le budget de l'attaquant, et c'est pourquoi une
 fonction de hachage a besoin du double de la longueur de sortie que l'on exigerait
 naïvement. La question (c) est celle qui empêche le tour d'être une escroquerie : un
 sceptique objectera que les anniversaires ne sont pas uniformes, et la réponse honnête est
@@ -4036,14 +4036,14 @@ qui compte.
 \begin{problem}[{Le plus grand canapé qui passe le coin --- Recherche}]
 \textbf{PUZ-30.} \textbf{Problème.} Un couloir de largeur unité tourne à angle droit. Un \textit{canapé} est une région plane connexe que l'on peut déplacer continûment --- par translation et rotation, en restant à tout instant à l'intérieur du couloir --- du corridor d'arrivée vers celui de sortie. La \textit{constante du canapé} est la borne supérieure des aires de tous les canapés.
 \begin{enumerate}
-\item[(a)] Démontrez les bornes élémentaires. Montrez que la forme de Hammersley --- deux quarts de disque unité flanquant un rectangle $ 1 \times 4/\pi $ auquel on a ôté un demi-disque de rayon $ 2/\pi $ --- est un canapé, et calculez son aire $ \pi/2 + 2/\pi \approx 2.2074 $. Démontrez ensuite qu'aucun canapé n'a une aire dépassant $ 2\sqrt{2} \approx 2.8284 $.
-\item[(b)] \textbf{Revendiqué récemment.} Joseph Gerver a construit en 1992 un canapé d'aire $ \approx 2.2195 $ assemblé à partir de dix-huit arcs analytiques, et l'a conjecturé optimal. En novembre 2024, Jineon Baek a déposé une prépublication de 119 pages démontrant l'optimalité de la forme de Gerver ; en 2026, cet argument n'a pas achevé son évaluation par les pairs, de sorte que le problème est mieux décrit comme très probablement réglé mais pas encore formellement clos. Lisez la prépublication et vérifiez-en une portion autonome.
-\item[(c)] \textbf{Problème ouvert.} Le problème du canapé \textit{ambidextre} demande la plus grande forme capable de négocier un virage à angle droit du même couloir dans les deux sens. Dan Romik a construit en 2018 un candidat d'aire $ \approx 1.6449 $, dont le bord est une courbe algébrique par morceaux donnée sous forme close. Aucune borne supérieure correspondante n'est connue. Déterminez la constante du canapé ambidextre.
+\item[(a)] Démontrez les bornes élémentaires. Montrez que la forme de Hammersley --- deux quarts de disque unité flanquant un rectangle $ 1 \times 4/\pi $ auquel on a ôté un demi-disque de rayon $ 2/\pi $ --- est un canapé, et calculez son aire $ \pi/2 + 2/\pi \approx 2{,}2074 $. Démontrez ensuite qu'aucun canapé n'a une aire dépassant $ 2\sqrt{2} \approx 2{,}8284 $.
+\item[(b)] \textbf{Revendiqué récemment.} Joseph Gerver a construit en 1992 un canapé d'aire $ \approx 2{,}2195 $ assemblé à partir de dix-huit arcs analytiques, et l'a conjecturé optimal. En novembre 2024, Jineon Baek a déposé une prépublication de 119 pages démontrant l'optimalité de la forme de Gerver ; en 2026, cet argument n'a pas achevé son évaluation par les pairs, de sorte que le problème est mieux décrit comme très probablement réglé mais pas encore formellement clos. Lisez la prépublication et vérifiez-en une portion autonome.
+\item[(c)] \textbf{Problème ouvert.} Le problème du canapé \textit{ambidextre} demande la plus grande forme capable de négocier un virage à angle droit du même couloir dans les deux sens. Dan Romik a construit en 2018 un candidat d'aire $ \approx 1{,}6449 $, dont le bord est une courbe algébrique par morceaux donnée sous forme close. Aucune borne supérieure correspondante n'est connue. Déterminez la constante du canapé ambidextre.
 \end{enumerate}
 
 \end{problem}
 
-\noindent Leo Moser a publié le problème en 1966, bien qu'il eût circulé auparavant, et sa célébrité tient à l'écart entre la facilité de son énoncé et l'acharnement de sa résistance. La difficulté est qu'une \og{} forme que l'on peut déplacer \fg{} est définie par une contrainte portant sur un espace de dimension infinie de programmes de rotation, de sorte que toute borne supérieure doit maîtriser simultanément tous les mouvements possibles ; Yoav Kallus et Dan Romik ont obtenu la borne $ 2.37 $ en 2018 par un argument assisté par ordinateur qui discrétise l'ensemble des angles de rotation et qui est, par conception, capable d'être poussé arbitrairement près de la vérité pourvu qu'on calcule assez. L'argument de Baek construit au contraire une fonctionnelle de majoration taillée sur la géométrie et procède sans calcul à grande échelle. La question (c) est là où les questions élémentaires ont migré : la version ambidextre a résisté à toutes les techniques qui avaient réussi sur la version manchote, et c'est actuellement l'endroit naturel où un nouveau venu peut attaquer ce cercle de problèmes.
+\noindent Leo Moser a publié le problème en 1966, bien qu'il eût circulé auparavant, et sa célébrité tient à l'écart entre la facilité de son énoncé et l'acharnement de sa résistance. La difficulté est qu'une \og{} forme que l'on peut déplacer \fg{} est définie par une contrainte portant sur un espace de dimension infinie de programmes de rotation, de sorte que toute borne supérieure doit maîtriser simultanément tous les mouvements possibles ; Yoav Kallus et Dan Romik ont obtenu la borne $ 2{,}37 $ en 2018 par un argument assisté par ordinateur qui discrétise l'ensemble des angles de rotation et qui est, par conception, capable d'être poussé arbitrairement près de la vérité pourvu qu'on calcule assez. L'argument de Baek construit au contraire une fonctionnelle de majoration taillée sur la géométrie et procède sans calcul à grande échelle. La question (c) est là où les questions élémentaires ont migré : la version ambidextre a résisté à toutes les techniques qui avaient réussi sur la version manchote, et c'est actuellement l'endroit naturel où un nouveau venu peut attaquer ce cercle de problèmes.
 
 \begin{refs}
 \item Contexte : Problème du sofa --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_sofa})
@@ -4241,7 +4241,7 @@ Expliquez pourquoi cela ruine la voie habituelle vers une solution, puisqu'aucun
 exhaustive de faible dimension n'est disponible.
 \item[(d)] \textbf{Problème ouvert.} La valeur limite $ V = \lim_{n \to \infty} V_n $ est inconnue.
 Les bornes habituellement citées sont
-\[ 1.908 < V < 2.329 , \]
+\[ 1{,}908 < V < 2{,}329 , \]
 obtenues par Bruss et Ferguson à partir de règles de seuil sans mémoire. Améliorez l'une ou
 l'autre borne, ou déterminez $ V $.
 \end{enumerate}

@@ -19,21 +19,21 @@ sans solution. Les références indiquent où trouver les connaissances nécessa
 
 \section*{Lycée}
 
-\begin{problem}[{Pourquoi 0.1 + 0.2 $\ne$ 0.3 sur un ordinateur --- Lycée}]
+\begin{problem}[{Pourquoi 0,1 + 0,2 $\ne$ 0,3 sur un ordinateur --- Lycée}]
 \textbf{NUM-01.} \textbf{Problème.} Les ordinateurs stockent les nombres réels en virgule
 flottante binaire : un \og{} double \fg{} IEEE 754 est un nombre
-$\pm(1.b_1 b_2 \ldots b_{52})_2 \times 2^{e}$ --- un signe, 52 chiffres binaires après
+$\pm(1{,}b_1 b_2 \ldots b_{52})_2 \times 2^{e}$ --- un signe, 52 chiffres binaires après
 le 1 initial et un exposant entier --- et tout résultat arithmétique est arrondi au
 nombre de cette forme le plus proche.
 \begin{enumerate}
 \item[(a)] Démontrez que $1/10$ n'a pas de développement binaire fini
 (regardez le dénominateur) et montrez que son développement infini vaut
-$(0.0\overline{0011})_2$.
+$(0{,}0\overline{0011})_2$.
 \item[(b)] Montrez que le double le plus proche de $1/10$ est exactement
-$3602879701896397/2^{55}$, qui dépasse $1/10$ d'environ $5.5 \times 10^{-18}$.
-\item[(c)] Trouvez les doubles les plus proches de $0.2$ et de $0.3$, effectuez l'addition
-machine des valeurs stockées de $0.1$ et $0.2$ (additionnez exactement, puis
-arrondissez) et montrez que le résultat diffère du $0.3$ stocké d'exactement une
+$3602879701896397/2^{55}$, qui dépasse $1/10$ d'environ $5{,}5 \times 10^{-18}$.
+\item[(c)] Trouvez les doubles les plus proches de $0{,}2$ et de $0{,}3$, effectuez l'addition
+machine des valeurs stockées de $0{,}1$ et $0{,}2$ (additionnez exactement, puis
+arrondissez) et montrez que le résultat diffère du $0{,}3$ stocké d'exactement une
 unité au dernier rang, $2^{-54}$ --- de sorte que l'ordinateur déclare honnêtement
 \texttt{0.1 + 0.2 == 0.3} faux.
 \item[(d)] Expliquez pourquoi les programmeurs comparent donc
@@ -160,7 +160,7 @@ Démontrez par récurrence sur $n$ qu'il rend bien $p(x)$, et comptez ses multip
 \bigskip
 
 \begin{problem}[{Quelle taille doit avoir $h$ ? --- Lycée}]
-\textbf{NUM-22.} \textbf{Problème.} Un ordinateur stocke les nombres avec une erreur relative d'au plus $\varepsilon \approx 1.1 \times 10^{-16}$ (double précision), de sorte que les valeurs de $f$ qu'il renvoie ne sont correctes qu'à cette précision relative. Estimez $f'(x)$ par le quotient de différences
+\textbf{NUM-22.} \textbf{Problème.} Un ordinateur stocke les nombres avec une erreur relative d'au plus $\varepsilon \approx 1{,}1 \times 10^{-16}$ (double précision), de sorte que les valeurs de $f$ qu'il renvoie ne sont correctes qu'à cette précision relative. Estimez $f'(x)$ par le quotient de différences
 \[ D_h f(x) = \frac{f(x+h) - f(x)}{h}. \]
 \begin{enumerate}
 \item[(a)] À l'aide de la formule de Taylor, montrez que l'erreur en arithmétique exacte (erreur de troncature) vaut environ $\tfrac{1}{2} h\,|f''(x)|$.
@@ -203,7 +203,7 @@ issues de $M_0 = S_0 = 0$, vérifient $M_k = \tfrac{1}{k}\sum_{i \le k} x_i$ et 
 \bigskip
 
 \begin{problem}[{La sommation compensée de Kahan --- Lycée}]
-\textbf{NUM-33.} \textbf{Problème.} Additionner une liste de nombres est l'opération la plus courante du calcul scientifique, et la boucle naïve n'est pas la meilleure façon de le faire. Travaillez en virgule flottante binaire avec une unité d'arrondi $\varepsilon$ (pour les doubles IEEE, $\varepsilon = 2^{-53} \approx 1.1 \times 10^{-16}$), où chaque opération obéit à
+\textbf{NUM-33.} \textbf{Problème.} Additionner une liste de nombres est l'opération la plus courante du calcul scientifique, et la boucle naïve n'est pas la meilleure façon de le faire. Travaillez en virgule flottante binaire avec une unité d'arrondi $\varepsilon$ (pour les doubles IEEE, $\varepsilon = 2^{-53} \approx 1{,}1 \times 10^{-16}$), où chaque opération obéit à
 \[ \mathrm{fl}(a \pm b) = (a \pm b)(1 + \delta), \qquad |\delta| \le \varepsilon . \]
 \begin{enumerate}
 \item[(a)] Montrez que l'addition en virgule flottante n'est pas associative : trouvez trois doubles tels que $(a + b) + c \ne a + (b + c)$ lorsque chaque addition est arrondie. Concluez que la somme d'une liste dépend de l'ordre dans lequel vous l'additionnez.
@@ -246,7 +246,7 @@ $C$ voisin de $|f''(r)/(2f'(r))|$.
 \item[(c)] Prenez maintenant $f(x) = x^3 - 2x + 2$ avec
 $x_0 = 0$. Montrez que l'itération tourne en rond indéfiniment :
 $0 \to 1 \to 0 \to 1 \to \cdots$, sans jamais trouver la racine réelle voisine de
-$-1.77$.
+$-1{,}77$.
 \item[(d)] Démontrez que ce 2-cycle est
 \textit{attractif} : calculez la dérivée de l'application de Newton itérée deux fois le
 long du cycle et montrez que tout un intervalle de points de départ est piégé.
@@ -316,7 +316,7 @@ continues l'erreur en chaque $x$ vaut
 \[ f(x) - p_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\,\prod_{j=0}^{n}(x - x_j)
 \quad\text{pour un certain } \xi. \]
 (b) Le phénomène de Runge : interpolez $f(x) = 1/(1 + 25x^2)$ sur $[-1,1]$ en des
-nœuds équidistants et calculez la valeur de l'interpolant près de $x = 0.95$ pour
+nœuds équidistants et calculez la valeur de l'interpolant près de $x = 0{,}95$ pour
 $n$ croissant ; observez la divergence, et expliquez le mécanisme en comparant la
 taille du polynôme nodal $\prod (x - x_j)$ près des extrémités à sa taille
 près du centre. (c) Le remède : définissez les polynômes de Tchebychev par
@@ -450,7 +450,7 @@ singulière, et que $\kappa \ge 1$ toujours.
 \item[(c)] La matrice de Hilbert $H_n$ a pour coefficients
 $1/(i + j - 1)$. Démontrez qu'elle est symétrique définie positive en écrivant
 $x^T H_n x$ comme l'intégrale d'un carré. C'est une matrice célèbre pour son mauvais
-conditionnement --- $\kappa(H_n)$ croît comme $e^{3.5 n}$, de sorte que pour $n$
+conditionnement --- $\kappa(H_n)$ croît comme $e^{3{,}5 n}$, de sorte que pour $n$
 autour de $12$ une résolution en double précision peut perdre pratiquement tous les
 chiffres.
 \item[(d)] Expliquez pourquoi $H_n$ apparaît lorsque l'on ajuste des
@@ -490,14 +490,14 @@ $|\lambda_2/\lambda_1|$.
 matrice stochastique en colonnes d'un surfeur aléatoire qui suit les liens
 uniformément, et formez la matrice de Google $G = \alpha S + (1-\alpha)\tfrac{1}{n}J$,
 où $J$ est la matrice de tous les uns et $0 < \alpha < 1$ (en pratique
-$\alpha = 0.85$). Montrez que $G$ est stochastique à coefficients strictement
+$\alpha = 0{,}85$). Montrez que $G$ est stochastique à coefficients strictement
 positifs, et déduisez du théorème de Perron-Frobenius qu'elle possède un unique
 vecteur stationnaire positif --- le PageRank.
 \item[(c)] Démontrez que toute valeur propre de $G$ autre que $1$ vérifie
 $|\lambda| \le \alpha$, de sorte que la méthode de la puissance converge à la
 vitesse $\alpha$ quelle que soit la structure du web.
 \item[(d)] Estimez le nombre d'itérations qui donnent le PageRank
-à $10^{-8}$ près pour $\alpha = 0.85$.
+à $10^{-8}$ près pour $\alpha = 0{,}85$.
 \end{enumerate}
 
 \end{problem}
@@ -508,7 +508,7 @@ pour les petites matrices --- puis le web en a fait l'algorithme numérique le p
 exécuté sur Terre : le moteur de recherche de Brin et Page (1998) classe les pages
 par le vecteur stationnaire d'une chaîne de Markov à des milliards d'états, pour
 laquelle on ne peut se permettre que des produits matrice-vecteur. La partie (c), due
-à Haveliwala et Kamvar (2003), explique la constante magique $0.85$ : elle
+à Haveliwala et Kamvar (2003), explique la constante magique $0{,}85$ : elle
 troque la fidélité à la structure des liens contre la vitesse de convergence.
 
 \begin{refs}
@@ -569,10 +569,10 @@ prototype de toute conception de méthode.
 \begin{problem}[{La méthode de la sécante converge au nombre d'or --- Licence, short}]
 \textbf{NUM-23.} \textbf{Problème.} La méthode de la sécante remplace la tangente de Newton par la droite passant par les deux derniers itérés,
 \[ x_{n+1} = x_n - f(x_n)\,\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}. \]
-Pour $f$ deux fois continûment dérivable au voisinage d'une racine simple $r$, démontrez la relation d'erreur $e_{n+1} \approx \frac{f''(r)}{2f'(r)}\, e_n e_{n-1}$ avec $e_n = x_n - r$, et déduisez-en que l'ordre de convergence est la racine $p = (1+\sqrt{5})/2 \approx 1.618$ de $p^2 = p + 1$.
+Pour $f$ deux fois continûment dérivable au voisinage d'une racine simple $r$, démontrez la relation d'erreur $e_{n+1} \approx \frac{f''(r)}{2f'(r)}\, e_n e_{n-1}$ avec $e_n = x_n - r$, et déduisez-en que l'ordre de convergence est la racine $p = (1+\sqrt{5})/2 \approx 1{,}618$ de $p^2 = p + 1$.
 \end{problem}
 
-\noindent L'idée sous-jacente --- interpoler linéairement à partir de deux valeurs d'essai et extrapoler jusqu'à zéro --- est antique : elle apparaît sous le nom de \textit{regula falsi} dans l'arithmétique égyptienne, babylonienne, chinoise et arabe médiévale bien avant qu'on ne parle de dérivées. Le nombre d'or n'est pas ici une curiosité mais un verdict : une étape de la sécante coûte une nouvelle évaluation de $f$, tandis qu'une étape de Newton coûte une évaluation de $f$ \textit{et} de $f'$ ; rapporté à l'évaluation de fonction, l'ordre quadratique de Newton devient $\sqrt{2} \approx 1.414$, et la méthode plus ancienne et plus modeste l'emporte.
+\noindent L'idée sous-jacente --- interpoler linéairement à partir de deux valeurs d'essai et extrapoler jusqu'à zéro --- est antique : elle apparaît sous le nom de \textit{regula falsi} dans l'arithmétique égyptienne, babylonienne, chinoise et arabe médiévale bien avant qu'on ne parle de dérivées. Le nombre d'or n'est pas ici une curiosité mais un verdict : une étape de la sécante coûte une nouvelle évaluation de $f$, tandis qu'une étape de Newton coûte une évaluation de $f$ \textit{et} de $f'$ ; rapporté à l'évaluation de fonction, l'ordre quadratique de Newton devient $\sqrt{2} \approx 1{,}414$, et la méthode plus ancienne et plus modeste l'emporte.
 
 \begin{refs}
 \item Contexte : Méthode de la sécante --- Wikipédia (\url{https://fr.wikipedia.org/wiki/M%C3%A9thode_de_la_s%C3%A9cante})
@@ -602,7 +602,7 @@ Pour $f$ deux fois continûment dérivable au voisinage d'une racine simple $r$,
 \item[(a)] Montrez que les dérivées secondes inconnues $M_i = s''(x_i)$ vérifient un système linéaire tridiagonal, démontrez que ce système est à diagonale strictement dominante donc inversible, et concluez que $s$ existe et est unique.
 \item[(b)] Démontrez la propriété de courbure minimale : parmi \textit{toutes} les fonctions $g$ deux fois continûment dérivables qui interpolent les mêmes données, la spline cubique naturelle est l'unique minimiseur de $\int_a^b (g'')^2$. (Intégrez $\int (g'' - s'')\,s''$ deux fois par parties.)
 \item[(c)] Prenez la fonction de Runge $f(x) = 1/(1+25x^2)$ sur $[-1,1]$ avec 21 nœuds équidistants. Calculez à la fois le polynôme d'interpolation de degré 20 et la spline cubique naturelle, comparez leurs erreurs maximales, et expliquez le contraste avec NUM-06.
-\item[(d)] Pour des nœuds équidistants, montrez que l'influence sur $s$ d'un changement d'une seule valeur $f_j$ décroît géométriquement quand on s'éloigne de $x_j$, au taux $2 - \sqrt{3} \approx 0.268$ par nœud --- une spline est donc globale en principe et locale en pratique.
+\item[(d)] Pour des nœuds équidistants, montrez que l'influence sur $s$ d'un changement d'une seule valeur $f_j$ décroît géométriquement quand on s'éloigne de $x_j$, au taux $2 - \sqrt{3} \approx 0{,}268$ par nœud --- une spline est donc globale en principe et locale en pratique.
 \end{enumerate}
 
 \end{problem}
@@ -1031,9 +1031,9 @@ opérations arithmétiques pour tout $\epsilon > 0$. Porte d'entrée :
 \item[(a)] vérifiez
 les identités de Strassen (1969) qui calculent un produit par blocs $2 \times 2$ avec
 7 multiplications de blocs au lieu de 8, et démontrez que la récursion donne
-$O(n^{\log_2 7}) \approx O(n^{2.807})$. \textbf{État de l'exposant : ouvert.}
+$O(n^{\log_2 7}) \approx O(n^{2{,}807})$. \textbf{État de l'exposant : ouvert.}
 On sait que $2 \le \omega$, et un demi-siècle de raffinements de la \og{} méthode laser \fg{}
-a porté le record à $\omega < 2.3714$ (Alman, Duan,
+a porté le record à $\omega < 2{,}3714$ (Alman, Duan,
 Vassilevska Williams, Xu, Xu, Zhou, 2024) ; savoir si $\omega = 2$ est un problème
 ouvert central de la complexité algébrique.
 \item[(b)] Le problème \textit{pratique}, lui aussi
@@ -1056,7 +1056,7 @@ des matériels à précision mixte.
 \noindent L'article de Strassen de 1969, au titre volontairement provocateur
 \og{} Gaussian elimination is not optimal \fg{}, a fait voler en éclats l'idée que $n^3$ était
 le coût naturel de l'algèbre linéaire et a fondé la théorie de la complexité algébrique.
-L'histoire qui a suivi --- Coppersmith-Winograd atteignant $2.376$ en 1987, puis un
+L'histoire qui a suivi --- Coppersmith-Winograd atteignant $2{,}376$ en 1987, puis un
 filet de centièmes durement gagnés dans les années 2010-2020 --- a produit des
 mathématiques profondes (rang tensoriel, lien avec les \textit{cap sets}) tandis que les
 GPU du monde entier multiplient toujours les matrices à la manière classique, optimisée
@@ -1251,7 +1251,7 @@ sur laquelle ce décalage vaut $0$ et l'itération est exactement stationnaire �
 \textbf{NUM-41.} \textbf{Problème.} Pour $f$ continue sur $[-1,1]$, notez $E_{mn}(f)$ la plus petite valeur possible de $\max_{|x|\le 1}|f(x) - r(x)|$ sur les fractions rationnelles $r = p/q$ avec $\deg p \le m$, $\deg q \le n$. Les polynômes sont le cas $n = 0$ ; autoriser un dénominateur change complètement le sujet.
 \begin{enumerate}
 \item[(a)] Démontrez le théorème d'équioscillation de Tchebychev dans le cas polynomial : $p^*$ de degré au plus $m$ est une meilleure approximation de $f$ si et seulement si $f - p^*$ atteint son module maximal avec des signes alternés en au moins $m+2$ points ; déduisez-en l'unicité. Énoncez l'analogue rationnel, dans lequel le compte $m + n + 2$ est diminué du défaut de l'approximant, et décrivez comment l'algorithme d'échange de Remez transforme cette caractérisation en un calcul.
-\item[(b)] Le phénomène. Bernstein a démontré en 1913 que la meilleure approximation polynomiale de $|x|$ sur $[-1,1]$ ne décroît que comme $\beta/m$ avec $\beta \approx 0.2802$. Donald Newman a démontré en 1964 que les fractions rationnelles font incomparablement mieux : $\tfrac12 e^{-9\sqrt{n}} \le E_{nn}(|x|) \le 3e^{-\sqrt{n}}$. Démontrez la borne supérieure par la construction de Newman --- posez $\xi = e^{-1/\sqrt{n}}$, $p(x) = \prod_{k=0}^{n-1}(x + \xi^k)$, et considérez la fraction rationnelle impaire
+\item[(b)] Le phénomène. Bernstein a démontré en 1913 que la meilleure approximation polynomiale de $|x|$ sur $[-1,1]$ ne décroît que comme $\beta/m$ avec $\beta \approx 0{,}2802$. Donald Newman a démontré en 1964 que les fractions rationnelles font incomparablement mieux : $\tfrac12 e^{-9\sqrt{n}} \le E_{nn}(|x|) \le 3e^{-\sqrt{n}}$. Démontrez la borne supérieure par la construction de Newman --- posez $\xi = e^{-1/\sqrt{n}}$, $p(x) = \prod_{k=0}^{n-1}(x + \xi^k)$, et considérez la fraction rationnelle impaire
 \[ r(x) \;=\; x\,\frac{p(x) - p(-x)}{p(x) + p(-x)} \]
 --- et expliquez, avec vos propres mots, comment des pôles placés hors de l'intervalle mais agglutinés vers la singularité achètent une précision exponentielle en racine. Herbert Stahl a démontré plus tard la vitesse exacte : $E_{nn}(|x|) \sim 8 e^{-\pi\sqrt{n}}$.
 \item[(c)] Les problèmes de Zolotarev (1877). Décrivez sa meilleure approximation rationnelle en forme close de $\operatorname{sign}(x)$ sur $[-1,-\alpha]\cup[\alpha,1]$, écrite avec des fonctions elliptiques, et expliquez pourquoi ce n'est pas une pièce de musée : c'est l'outil le plus précis dont on dispose pour la fonction signe matricielle, et donc pour les solveurs de valeurs propres par division spectrale et pour les calculs de théorie des champs sur réseau.

@@ -303,96 +303,96 @@ l'arithmétique.</p>
 <div class="area" id="area-alg-bre-abstraite">
 <h2>Algèbre abstraite</h2>
 <section class="problem" id="ALG-01" data-level="Lycée">
-<h3>ALG-01 · Casting out nines and the clock of powers <span class="level">[Lycée]</span></h3>
+<h3>ALG-01 · La preuve par neuf et l'horloge des puissances <span class="level">[Lycée]</span></h3>
 <div class="statement">
-<p><b>Problème.</b> Two integers \(a\) and \(b\) are called <i>congruent
-modulo \(n\)</i>, written \(a \equiv b \pmod{n}\), if \(n\) divides \(a-b\).</p>
+<p><b>Problème.</b> Deux entiers \(a\) et \(b\) sont dits <i>congrus
+modulo \(n\)</i>, ce que l'on écrit \(a \equiv b \pmod{n}\), lorsque \(n\) divise \(a-b\).</p>
 <ol class="parts" type="i">
-<li>Prove that
-congruence modulo \(n\) respects addition and multiplication: if \(a \equiv a' \pmod{n}\) and
-\(b \equiv b' \pmod{n}\), then \(a+b \equiv a'+b' \pmod{n}\) and \(ab \equiv a'b' \pmod{n}\).</li>
-<li>Using (i), prove that a positive integer is divisible by 9 if and only if the sum of its
-decimal digits is divisible by 9.</li>
-<li>Determine, with proof, the last decimal digit of
+<li>Démontrez que la
+congruence modulo \(n\) respecte l'addition et la multiplication : si \(a \equiv a' \pmod{n}\) et
+\(b \equiv b' \pmod{n}\), alors \(a+b \equiv a'+b' \pmod{n}\) et \(ab \equiv a'b' \pmod{n}\).</li>
+<li>À l'aide de (i), démontrez qu'un entier strictement positif est divisible par 9 si et seulement si la somme de ses
+chiffres décimaux l'est.</li>
+<li>Déterminez, en le démontrant, le dernier chiffre décimal de
 \(7^{2026}\).</li>
 </ol>
 </div>
-<p class="context">Modular arithmetic was made systematic by Gauss in the opening pages of his
-<i>Disquisitiones Arithmeticae</i> (1801), written when he was 24; the ≡ notation is his. The
-digit-sum test ("casting out nines") is far older — medieval accountants used it to check
-ledgers. Behind part (iii) hides the first example of a group in this collection: the residues
-modulo 10 that have multiplicative inverses, cycling under multiplication.</p>
+<p class="context">L'arithmétique modulaire a été rendue systématique par Gauss dans les premières pages de ses
+<i>Disquisitiones Arithmeticae</i> (1801), écrites alors qu'il avait 24 ans ; la notation ≡ est de lui. Le
+critère par la somme des chiffres — la « preuve par neuf » — est bien plus ancien : les comptables du Moyen Âge
+s'en servaient pour vérifier leurs livres. Derrière la question (iii) se cache le premier exemple de groupe de ce
+recueil : les résidus modulo 10 qui possèdent un inverse multiplicatif, tournant en rond sous la multiplication.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arithm%C3%A9tique_modulaire">Arithmétique modulaire — Wikipédia</a></li>
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Disquisitiones_arithmeticae">Disquisitiones arithmeticae — Wikipédia</a></li>
-<li>Lecture : J. Fraleigh, <i>A First Course in Abstract Algebra</i>, sections 0 and 4</li>
+<li>Lecture : J. Fraleigh, <i>A First Course in Abstract Algebra</i>, sections 0 et 4</li>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-01">Algèbre abstraite</a>.</p>
 </section>
 <section class="problem" id="ALG-02" data-level="Lycée">
-<h3>ALG-02 · The twenty-four rotations of the cube <span class="level">[Lycée]</span></h3>
+<h3>ALG-02 · Les vingt-quatre rotations du cube <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
 <ol class="parts" type="i">
-<li>Prove that a cube has exactly 24 rotational symmetries
-— rotations of space that carry the cube onto itself — and justify that your list is complete.</li>
-<li>A cube has four space diagonals (segments joining opposite vertices). Show that every
-rotational symmetry permutes these four diagonals, and that distinct rotations give distinct
-permutations.</li>
-<li>Conclude that the rotations of the cube realize <i>every</i> one of the
-\(4! = 24\) possible rearrangements of the four diagonals.</li>
+<li>Démontrez qu'un cube possède exactement 24 symétries de rotation
+— les rotations de l'espace qui envoient le cube sur lui-même — et justifiez que votre liste est complète.</li>
+<li>Un cube possède quatre grandes diagonales (les segments joignant deux sommets opposés). Montrez que toute
+symétrie de rotation permute ces quatre diagonales, et que deux rotations distinctes donnent deux permutations
+distinctes.</li>
+<li>Concluez que les rotations du cube réalisent <i>toutes</i> les
+\(4! = 24\) réorganisations possibles des quatre diagonales.</li>
 </ol>
 </div>
-<p class="context">Counting symmetries is where group theory touches the eye. The regular solids
-were studied by the Greeks — Euclid's <i>Elements</i> ends with them — but the insight that their
-symmetries form a closed system of composable operations belongs to the nineteenth century, and
-part (iii) says the cube's rotation group "is" the symmetric group \(S_4\) in disguise.
-Klein's 1872 Erlangen program proposed defining geometry itself by its symmetry groups.</p>
+<p class="context">Dénombrer des symétries, c'est l'endroit où la théorie des groupes se laisse voir à l'œil nu.
+Les solides réguliers ont été étudiés par les Grecs — les <i>Éléments</i> d'Euclide s'achèvent sur eux — mais
+l'idée que leurs symétries forment un système clos d'opérations composables appartient au XIX<sup>e</sup> siècle,
+et la question (iii) dit que le groupe des rotations du cube « est » le groupe symétrique \(S_4\) déguisé.
+Le programme d'Erlangen, énoncé par Klein en 1872, proposait de définir la géométrie elle-même par ses groupes de symétrie.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://en.wikipedia.org/wiki/Octahedral_symmetry">Symétrie octaédrique — Wikipédia (en anglais)</a></li>
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_de_sym%C3%A9trie">Groupe de symétrie — Wikipédia</a></li>
-<li>Lecture : M. Artin, <i>Algebra</i>, ch. 6 (Symmetry)</li>
+<li>Lecture : M. Artin, <i>Algebra</i>, ch. 6 (la symétrie)</li>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-02">Algèbre abstraite</a>.</p>
 </section>
 <section class="problem" id="ALG-03" data-level="Lycée">
-<h3>ALG-03 · When is \(n^4 + 4\) prime? <span class="level">[Lycée]</span></h3>
-<p class="statement"><b>Problème.</b> Determine, with proof, all positive integers \(n\) for which
-\(n^4 + 4\) is a prime number. More generally, show that \(n^4 + 4m^4\) is composite for all
-integers \(n, m \ge 2\).</p>
-<p class="context">The key is a factorization that most people insist cannot exist — a sum
-that factors. It is named after Sophie Germain (1776–1831), who taught herself mathematics
-from her father's library during the French Revolution and corresponded with Gauss under a
-male pseudonym until he learned, with delight, who "Monsieur Le Blanc" really was. The
-identity behind this problem appears throughout olympiad mathematics and in her work on
-Fermat's Last Theorem.</p>
+<h3>ALG-03 · Quand \(n^4 + 4\) est-il premier ? <span class="level">[Lycée]</span></h3>
+<p class="statement"><b>Problème.</b> Déterminez, en le démontrant, tous les entiers strictement positifs \(n\) pour lesquels
+\(n^4 + 4\) est un nombre premier. Plus généralement, montrez que \(n^4 + 4m^4\) est composé pour tous les
+entiers \(n, m \ge 2\).</p>
+<p class="context">La clé est une factorisation dont la plupart des gens jurent qu'elle ne peut pas exister — une somme
+qui se factorise. Elle porte le nom de Sophie Germain (1776–1831), qui apprit seule les mathématiques
+dans la bibliothèque de son père pendant la Révolution française et correspondit avec Gauss sous un
+pseudonyme masculin, jusqu'à ce qu'il découvre, ravi, qui était réellement « Monsieur Le Blanc ». L'identité
+qui gouverne ce problème traverse toutes les mathématiques olympiques et intervient dans ses travaux sur le
+dernier théorème de Fermat.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Identit%C3%A9_de_Sophie_Germain">Identité de Sophie Germain — Wikipédia</a></li>
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sophie_Germain">Sophie Germain — Wikipédia</a></li>
-<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 6 (Number Theory)</li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 6 (théorie des nombres)</li>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-03">Algèbre abstraite</a>.</p>
 </section>
 <section class="problem" id="ALG-04" data-level="Lycée">
-<h3>ALG-04 · The rational root theorem, and why \(\sqrt[3]{2}\) is irrational <span class="level">[Lycée]</span></h3>
+<h3>ALG-04 · Le théorème de la racine rationnelle, et pourquoi \(\sqrt[3]{2}\) est irrationnel <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
 <ol class="parts" type="i">
-<li>Prove the rational root theorem: if a polynomial
-\(a_n x^n + \cdots + a_1 x + a_0\) with integer coefficients has a rational root \(p/q\) in
-lowest terms, then \(p\) divides \(a_0\) and \(q\) divides \(a_n\).</li>
-<li>Deduce that
-\(\sqrt[3]{2}\) is irrational.</li>
-<li>Show that \(x^3 - x - 1\) has no rational root, and
-explain why for a cubic this already proves it cannot be factored into polynomials of lower
-degree with rational coefficients.</li>
+<li>Démontrez le théorème de la racine rationnelle : si un polynôme
+\(a_n x^n + \cdots + a_1 x + a_0\) à coefficients entiers admet une racine rationnelle \(p/q\) écrite sous
+forme irréductible, alors \(p\) divise \(a_0\) et \(q\) divise \(a_n\).</li>
+<li>Déduisez-en que
+\(\sqrt[3]{2}\) est irrationnel.</li>
+<li>Montrez que \(x^3 - x - 1\) n'admet aucune racine rationnelle, et
+expliquez pourquoi, pour un polynôme de degré trois, cela démontre déjà qu'il ne peut pas se factoriser en
+polynômes de degré strictement inférieur à coefficients rationnels.</li>
 </ol>
 </div>
-<p class="context">This is the humble ancestor of everything in the Graduate band below: the
-irrationality of \(\sqrt[3]{2}\) is the first, easiest obstruction in the 2000-year-old problem
-of doubling the cube (ALG-18). The theorem itself is essentially due to Descartes and was
-routine by Euler's time; what changed later is that "has no rational root" grew into the far
-deeper notion of <i>irreducibility</i>, the atom-concept of field theory.</p>
+<p class="context">C'est l'humble ancêtre de tout ce qui figure dans la bande Master, plus bas : l'irrationalité
+de \(\sqrt[3]{2}\) est la première obstruction, et la plus facile, du problème vieux de deux mille ans de la
+duplication du cube (ALG-18). Le théorème lui-même revient pour l'essentiel à Descartes et était devenu
+routinier du temps d'Euler ; ce qui a changé ensuite, c'est que « n'a pas de racine rationnelle » est devenu la
+notion bien plus profonde d'<i>irréductibilité</i>, le concept-atome de la théorie des corps.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Racine_%C3%A9vidente">Théorème de la racine rationnelle — Wikipédia</a></li>
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyn%C3%B4me_irr%C3%A9ductible">Polynôme irréductible — Wikipédia</a></li>
@@ -401,78 +401,78 @@ deeper notion of <i>irreducibility</i>, the atom-concept of field theory.</p>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-04">Algèbre abstraite</a>.</p>
 </section>
 <section class="problem" id="ALG-26" data-level="Lycée" data-kind="court">
-<h3>ALG-26 · The symmetries of a rectangle <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
-<p class="statement"><b>Problème.</b> List all four symmetries of a non-square rectangle, write out their composition table, and prove that every non-identity element is its own inverse.</p>
-<p class="context">This is the Klein four-group, the smallest group that is not cyclic, and it can be discovered with a piece of cardboard before the word "group" is ever defined. Building the table by hand and then noticing the pattern is exactly how the abstract axioms were arrived at historically — the examples came first.</p>
+<h3>ALG-26 · Les symétries d'un rectangle <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Énumérez les quatre symétries d'un rectangle non carré, dressez leur table de composition, et démontrez que tout élément autre que l'identité est son propre inverse.</p>
+<p class="context">C'est le groupe de Klein, le plus petit groupe qui ne soit pas cyclique, et on peut le découvrir avec un morceau de carton avant même que le mot « groupe » ait été défini. Construire la table à la main, puis en remarquer le motif, c'est exactement ainsi que les axiomes abstraits ont été dégagés historiquement — les exemples sont venus d'abord.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_de_Klein">Groupe de Klein — Wikipédia</a></li>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-26">Algèbre abstraite</a>.</p>
 </section>
 <section class="problem" id="ALG-27" data-level="Lycée" data-kind="court">
-<h3>ALG-27 · A clock that loses numbers <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
-<p class="statement"><b>Problème.</b> In arithmetic modulo \( 12 \), determine exactly which residues have a multiplicative inverse, and prove that your criterion is correct for a general modulus \( n \).</p>
-<p class="context">Modular arithmetic looks like ordinary arithmetic until division fails, and finding precisely when it fails — exactly when the residue shares a factor with the modulus — is the first genuine theorem most people prove about rings. It is also why prime moduli behave so much better, which is the reason cryptography prefers them.</p>
+<h3>ALG-27 · Une horloge qui perd des nombres <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans l'arithmétique modulo \( 12 \), déterminez exactement quels résidus possèdent un inverse multiplicatif, et démontrez que votre critère est correct pour un module \( n \) quelconque.</p>
+<p class="context">L'arithmétique modulaire ressemble à l'arithmétique ordinaire jusqu'au moment où la division échoue, et déterminer précisément quand elle échoue — exactement lorsque le résidu partage un facteur avec le module — est le premier véritable théorème que la plupart des gens démontrent sur les anneaux. C'est aussi la raison pour laquelle les modules premiers se comportent tellement mieux, et donc celle pour laquelle la cryptographie les préfère.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Inverse_modulaire">Inverse modulaire — Wikipédia</a></li>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-27">Algèbre abstraite</a>.</p>
 </section>
 <section class="problem" id="ALG-34" data-level="Lycée">
-<h3>ALG-34 · Parity, and the 14–15 that never comes out <span class="level">[Lycée]</span></h3>
+<h3>ALG-34 · La parité, et le 14-15 qui ne sort jamais <span class="level">[Lycée]</span></h3>
 <div class="statement">
-<p><b>Problème.</b> A <i>transposition</i> is a permutation that exchanges two elements and fixes
-the rest; every permutation of a finite set is a product of transpositions. The <i>15 puzzle</i>
-is a \(4 \times 4\) tray holding tiles \(1, 2, \dots, 15\) and one empty square; a move slides a
-tile that is horizontally or vertically adjacent to the empty square into it.</p>
+<p><b>Problème.</b> Une <i>transposition</i> est une permutation qui échange deux éléments et fixe
+tous les autres ; toute permutation d'un ensemble fini est un produit de transpositions. Le <i>taquin</i>
+est un plateau \(4 \times 4\) portant les pièces \(1, 2, \dots, 15\) et une case vide ; un coup fait glisser
+dans la case vide une pièce qui lui est adjacente horizontalement ou verticalement.</p>
 <ol class="parts" type="a">
-<li>Prove that if a permutation \(\sigma\) is written as a product of transpositions in two
-ways, the two numbers of factors have the same parity. So the <i>sign</i>
-\(\operatorname{sgn}(\sigma) = \pm 1\) is well defined; prove that
+<li>Démontrez que si une permutation \(\sigma\) s'écrit de deux façons comme produit de
+transpositions, les deux nombres de facteurs ont la même parité. La <i>signature</i>
+\(\operatorname{sgn}(\sigma) = \pm 1\) est donc bien définie ; démontrez que
 \(\operatorname{sgn}(\sigma\tau) = \operatorname{sgn}(\sigma)\operatorname{sgn}(\tau)\).</li>
-<li>Deduce that for \(n \ge 2\) the even permutations form a subgroup of \(S_n\) containing
-exactly half its elements.</li>
-<li>Read a position of the puzzle as a permutation \(\sigma\) of the sixteen squares (the empty
-square counting as a sixteenth piece), with the empty square in row \(i\) and column \(j\).
-Prove that
+<li>Déduisez-en que pour \(n \ge 2\) les permutations paires forment un sous-groupe de \(S_n\) contenant
+exactement la moitié de ses éléments.</li>
+<li>Lisez une position du taquin comme une permutation \(\sigma\) des seize cases (la case
+vide comptant pour une seizième pièce), la case vide occupant la ligne \(i\) et la colonne \(j\).
+Démontrez que
 \[ \operatorname{sgn}(\sigma) \cdot (-1)^{\,i+j} \]
-is unchanged by every legal move.</li>
-<li>Conclude that the position obtained from the solved one by exchanging the tiles 14 and 15 can
-never be reached, and prove that at most half of the \(16!\) arrangements are reachable from any
-given one.</li>
+est inchangé par tout coup légal.</li>
+<li>Concluez que la position obtenue à partir de la position résolue en échangeant les pièces 14 et 15 ne
+peut jamais être atteinte, et démontrez qu'au plus la moitié des \(16!\) dispositions sont accessibles à
+partir de l'une quelconque d'entre elles.</li>
 </ol>
 </div>
-<p class="context">The puzzle was devised around 1874 by Noyes Palmer Chapman, a postmaster in
-Canastota, New York, and became a craze in 1880; Sam Loyd, who had nothing to do with inventing
-it, later offered \(\$1000\) for a solution to the 14–15 position and from 1891 claimed the puzzle
-as his own — a claim demolished by Slocum and Sonneveld's 2006 history. The prize was safe,
-because in 1879 William Woolsey Johnson and William E. Story had already published the invariant
-of part (c) in the <i>American Journal of Mathematics</i>: one of the earliest arguments in which
-an algebraic invariant proves that something cannot be done, rather than merely failing to do it.
-The sign of a permutation, born in eighteenth-century work on determinants, is the same
-homomorphism that produces the alternating group of ALG-11 and, in the end, the unsolvability of
-the quintic.</p>
+<p class="context">Le casse-tête fut imaginé vers 1874 par Noyes Palmer Chapman, receveur des postes à
+Canastota, dans l'État de New York, et fit fureur en 1880 ; Sam Loyd, qui n'avait rien à voir avec son
+invention, offrit plus tard \(\$1000\) pour une solution de la position 14-15 et revendiqua le casse-tête
+comme sien à partir de 1891 — revendication démolie par l'histoire qu'en ont écrite Slocum et Sonneveld en
+2006. Le prix ne risquait rien, car dès 1879 William Woolsey Johnson et William E. Story avaient publié
+l'invariant de la question (c) dans l'<i>American Journal of Mathematics</i> : l'un des tout premiers
+arguments où un invariant algébrique démontre qu'une chose est impossible, au lieu de simplement échouer à
+la faire. La signature d'une permutation, née des travaux du XVIII<sup>e</sup> siècle sur les déterminants,
+est le même homomorphisme qui produit le groupe alterné d'ALG-11 et, pour finir, l'insolubilité de
+l'équation du cinquième degré.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Taquin">Taquin — Wikipédia</a></li>
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Signature_d%27une_permutation">Signature d'une permutation — Wikipédia</a></li>
-<li>Article : Wm. W. Johnson &amp; W. E. Story, “Notes on the ‘15’ Puzzle” (1879), American Journal of Mathematics 2, 397–404</li>
-<li>Article : A. F. Archer, “A modern treatment of the 15 puzzle” (1999), American Mathematical Monthly 106, 793–799</li>
+<li>Article : Wm. W. Johnson &amp; W. E. Story, « Notes on the “15” Puzzle » (1879), American Journal of Mathematics 2, 397–404</li>
+<li>Article : A. F. Archer, « A modern treatment of the 15 puzzle » (1999), American Mathematical Monthly 106, 793–799</li>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-34">Algèbre abstraite</a>.</p>
 </section>
 <section class="problem" id="ALG-35" data-level="Lycée" data-kind="court">
-<h3>ALG-35 · Every group table is a Latin square <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
-<p class="statement"><b>Problème.</b> Prove that in the multiplication table of a finite group,
-every element of the group appears exactly once in each row and exactly once in each column.
-Then show, by exhibiting one, that a square array with that property need not be the
-multiplication table of any group.</p>
-<p class="context">The table is Cayley's invention: in his 1854 paper on abstract groups he laid
-one out and observed exactly this pattern, which is nothing but the cancellation law made visible.
-Squares filled so that each symbol occurs once per row and column had already been studied by
-Euler in 1782 under the name <i>Latin squares</i>, and the gap between the two notions is
-instructive — a Latin square encodes cancellation, but associativity leaves no visible trace in
-the grid, which is why the converse fails and why the objects that satisfy only the row-and-column
-condition (quasigroups) form a separate subject.</p>
+<h3>ALG-35 · Toute table de groupe est un carré latin <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que dans la table de multiplication d'un groupe fini,
+chaque élément du groupe apparaît exactement une fois dans chaque ligne et exactement une fois dans chaque
+colonne. Montrez ensuite, en en exhibant un, qu'un tableau carré ayant cette propriété n'est pas
+nécessairement la table de multiplication d'un groupe.</p>
+<p class="context">La table est une invention de Cayley : dans son article de 1854 sur les groupes abstraits,
+il en dresse une et observe exactement ce motif, qui n'est rien d'autre que la règle de simplification rendue
+visible. Les carrés remplis de sorte que chaque symbole figure une fois par ligne et une fois par colonne
+avaient déjà été étudiés par Euler en 1782 sous le nom de <i>carrés latins</i>, et l'écart entre les deux
+notions est instructif : un carré latin encode la simplification, mais l'associativité ne laisse aucune trace
+visible dans la grille — c'est pourquoi la réciproque est fausse, et pourquoi les objets qui ne satisfont que
+la condition sur les lignes et les colonnes (les quasi-groupes) forment un sujet à part.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Table_de_Cayley">Table de Cayley — Wikipédia</a></li>
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Carr%C3%A9_latin">Carré latin — Wikipédia</a></li>
@@ -989,13 +989,13 @@ Zurich, mécontent du flou géométrique entretenu autour de la droite numériqu
 </section>
 <section class="problem" id="RA-02" data-level="Lycée">
 <h3>RA-02 · Pourquoi 0,999… = 1 <span class="level">[Lycée]</span></h3>
-<p class="statement"><b>Problème.</b> Le symbole \( 0.999\ldots \) désigne, par définition, la
-limite de la suite \( 0.9,\ 0.99,\ 0.999,\ \dots \) — autrement dit la somme de la série
+<p class="statement"><b>Problème.</b> Le symbole \( 0{,}999\ldots \) désigne, par définition, la
+limite de la suite \( 0{,}9,\ 0{,}99,\ 0{,}999,\ \dots \) — autrement dit la somme de la série
 \( \frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \cdots \). Démontrez que
-\( 0.999\ldots = 1 \). Donnez deux démonstrations : l'une en sommant la série géométrique, l'autre
+\( 0{,}999\ldots = 1 \). Donnez deux démonstrations : l'une en sommant la série géométrique, l'autre
 directement à partir de la définition d'une limite (montrez que pour tout \( \varepsilon &gt; 0 \),
 les termes de la suite finissent par se trouver à une distance inférieure à \( \varepsilon \) de 1).
-Expliquez ensuite précisément ce qui cloche dans l'objection « \( 0.999\ldots \) est plus petit que
+Expliquez ensuite précisément ce qui cloche dans l'objection « \( 0{,}999\ldots \) est plus petit que
 1 parce qu'il n'atteint jamais 1 ».</p>
 <p class="context">C'est l'égalité la plus discutée d'internet, et la discussion porte toujours sur
 les définitions : un développement décimal illimité <i>est</i> une limite, et une fois cela admis
@@ -2737,7 +2737,7 @@ population a un test positif.</p>
 conditionnelle, y compris la formule des probabilités totales dont vous avez besoin au
 dénominateur.</li>
 <li>Calculez \( P(\text{maladie} \mid \text{test positif}) \) exactement, et expliquez avec des
-mots — en utilisant les effectifs dans une population imaginaire de 100{ }000 personnes —
+mots — en utilisant les effectifs dans une population imaginaire de 100 000 personnes —
 pourquoi la réponse est si loin en dessous de \( 0{,}99 \).</li>
 <li>Recalculez en supposant que la personne a été testée à cause de symptômes qui portent la
 probabilité a priori à \( 1/10 \), et énoncez en une phrase la morale sur les lois a priori.</li>
@@ -2889,7 +2889,7 @@ vaut \( \frac{p+1-q}{p+1}\binom{p+q}{q} \) — et déduisez-en que pour \( p = q
 tels ordres est le nombre de Catalan \( \frac{1}{n+1}\binom{2n}{n} \).</li>
 <li>Remarquez ce dont la réponse ne dépend pas. Calculez la probabilité que le vainqueur soit en
 tête du premier au dernier bulletin dans un électorat d'un million de personnes se partageant
-600{ }000 contre 400{ }000, et comparez avec un village de dix électeurs se partageant 6 contre
+600 000 contre 400 000, et comparez avec un village de dix électeurs se partageant 6 contre
 4 ; montrez ensuite qu'une marge d'une seule voix (\( p = q+1 \)) rend une avance de bout en bout
 essentiellement impossible, avec probabilité \( 1/(p+q) \).</li>
 </ol>
@@ -3141,7 +3141,7 @@ ce différentiel.</li>
 <li>Montrez que l'erreur d'échantillonnage n'était pas le problème. Pour un échantillon réellement
 aléatoire de taille \( n \) tiré de la population, démontrez que l'écart type de la fraction
 observée vaut \( \sqrt{p(1-p)/n} \le 1/(2\sqrt{n}) \), et évaluez-le pour
-\( n = 2{ }380{ }000 \). Comparez le résultat à l'erreur de 20 points du magazine, puis trouvez la
+\( n = 2\,380\,000 \). Comparez le résultat à l'erreur de 20 points du magazine, puis trouvez la
 taille d'échantillon à laquelle la seule erreur d'échantillonnage aléatoire atteint un point de
 pourcentage.</li>
 <li>Le <i>Digest</i> a commis deux erreurs distinctes : il a bâti son fichier d'adresses à partir
@@ -3309,7 +3309,7 @@ en dessous de cette droite pour prédire l'allure de toutes les autres solutions
 <li>Vérifier que la solution du problème de Cauchy est
 \( y(t) = t + 1 - \tfrac{1}{2}e^{t} \), et confirmer qu'elle correspond à votre prédiction.</li>
 <li>Appliquer la méthode d'Euler \( y_{n+1} = y_n + h\,(y_n - t_n) \) avec les pas
-\( h = 0.5,\ 0.25,\ 0.125 \) pour estimer \( y(1) \). Dresser le tableau des trois erreurs
+\( h = 0{,}5,\ 0{,}25,\ 0{,}125 \) pour estimer \( y(1) \). Dresser le tableau des trois erreurs
 et observer que chaque division par deux de \( h \) divise à peu près l'erreur par deux.</li>
 <li>Expliquer cette observation. Montrer par un développement de Taylor qu'un pas d'Euler à
 partir d'une valeur exacte commet une erreur au plus \( \tfrac{1}{2}h^2 \max|y''| \), et
@@ -3407,22 +3407,22 @@ explique en grande partie pourquoi la Lune n'a pas d'atmosphère à perdre.</p>
 <div class="area" id="area-analyse-num-rique">
 <h2>Analyse numérique</h2>
 <section class="problem" id="NUM-01" data-level="Lycée">
-<h3>NUM-01 · Pourquoi 0.1 + 0.2 ≠ 0.3 sur un ordinateur <span class="level">[Lycée]</span></h3>
+<h3>NUM-01 · Pourquoi 0,1 + 0,2 ≠ 0,3 sur un ordinateur <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Les ordinateurs stockent les nombres réels en virgule
 flottante binaire : un « double » IEEE 754 est un nombre
-\(\pm(1.b_1 b_2 \ldots b_{52})_2 \times 2^{e}\) — un signe, 52 chiffres binaires après
+\(\pm(1{,}b_1 b_2 \ldots b_{52})_2 \times 2^{e}\) — un signe, 52 chiffres binaires après
 le 1 initial et un exposant entier — et tout résultat arithmétique est arrondi au
 nombre de cette forme le plus proche.</p>
 <ol class="parts" type="a">
 <li>Démontrez que \(1/10\) n'a pas de développement binaire fini
 (regardez le dénominateur) et montrez que son développement infini vaut
-\((0.0\overline{0011})_2\).</li>
+\((0{,}0\overline{0011})_2\).</li>
 <li>Montrez que le double le plus proche de \(1/10\) est exactement
-\(3602879701896397/2^{55}\), qui dépasse \(1/10\) d'environ \(5.5 \times 10^{-18}\).</li>
-<li>Trouvez les doubles les plus proches de \(0.2\) et de \(0.3\), effectuez l'addition
-machine des valeurs stockées de \(0.1\) et \(0.2\) (additionnez exactement, puis
-arrondissez) et montrez que le résultat diffère du \(0.3\) stocké d'exactement une
+\(3602879701896397/2^{55}\), qui dépasse \(1/10\) d'environ \(5{,}5 \times 10^{-18}\).</li>
+<li>Trouvez les doubles les plus proches de \(0{,}2\) et de \(0{,}3\), effectuez l'addition
+machine des valeurs stockées de \(0{,}1\) et \(0{,}2\) (additionnez exactement, puis
+arrondissez) et montrez que le résultat diffère du \(0{,}3\) stocké d'exactement une
 unité au dernier rang, \(2^{-54}\) — de sorte que l'ordinateur déclare honnêtement
 <code>0.1 + 0.2 == 0.3</code> faux.</li>
 <li>Expliquez pourquoi les programmeurs comparent donc
@@ -3536,7 +3536,7 @@ Démontrez par récurrence sur \(n\) qu'il rend bien \(p(x)\), et comptez ses mu
 <section class="problem" id="NUM-22" data-level="Lycée">
 <h3>NUM-22 · Quelle taille doit avoir \(h\) ? <span class="level">[Lycée]</span></h3>
 <div class="statement">
-<p><b>Problème.</b> Un ordinateur stocke les nombres avec une erreur relative d'au plus \(\varepsilon \approx 1.1 \times 10^{-16}\) (double précision), de sorte que les valeurs de \(f\) qu'il renvoie ne sont correctes qu'à cette précision relative. Estimez \(f'(x)\) par le quotient de différences
+<p><b>Problème.</b> Un ordinateur stocke les nombres avec une erreur relative d'au plus \(\varepsilon \approx 1{,}1 \times 10^{-16}\) (double précision), de sorte que les valeurs de \(f\) qu'il renvoie ne sont correctes qu'à cette précision relative. Estimez \(f'(x)\) par le quotient de différences
 \[ D_h f(x) = \frac{f(x+h) - f(x)}{h}. \]</p>
 <ol class="parts" type="a">
 <li>À l'aide de la formule de Taylor, montrez que l'erreur en arithmétique exacte (erreur de troncature) vaut environ \(\tfrac{1}{2} h\,|f''(x)|\).</li>
@@ -3574,7 +3574,7 @@ issues de \(M_0 = S_0 = 0\), vérifient \(M_k = \tfrac{1}{k}\sum_{i \le k} x_i\)
 <section class="problem" id="NUM-33" data-level="Lycée">
 <h3>NUM-33 · La sommation compensée de Kahan <span class="level">[Lycée]</span></h3>
 <div class="statement">
-<p><b>Problème.</b> Additionner une liste de nombres est l'opération la plus courante du calcul scientifique, et la boucle naïve n'est pas la meilleure façon de le faire. Travaillez en virgule flottante binaire avec une unité d'arrondi \(\varepsilon\) (pour les doubles IEEE, \(\varepsilon = 2^{-53} \approx 1.1 \times 10^{-16}\)), où chaque opération obéit à
+<p><b>Problème.</b> Additionner une liste de nombres est l'opération la plus courante du calcul scientifique, et la boucle naïve n'est pas la meilleure façon de le faire. Travaillez en virgule flottante binaire avec une unité d'arrondi \(\varepsilon\) (pour les doubles IEEE, \(\varepsilon = 2^{-53} \approx 1{,}1 \times 10^{-16}\)), où chaque opération obéit à
 \[ \mathrm{fl}(a \pm b) = (a \pm b)(1 + \delta), \qquad |\delta| \le \varepsilon . \]</p>
 <ol class="parts" type="a">
 <li>Montrez que l'addition en virgule flottante n'est pas associative : trouvez trois doubles tels que \((a + b) + c \ne a + (b + c)\) lorsque chaque addition est arrondie. Concluez que la somme d'une liste dépend de l'ordre dans lequel vous l'additionnez.</li>
@@ -3904,8 +3904,8 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 <p class="context">Robert Boyer et J Strother Moore ont trouvé cela en 1980 au SRI International en réfléchissant aux systèmes tolérants aux pannes, où un « vote » entre calculs redondants doit se tenir vite et presque sans mémoire ; ils l'ont fait circuler comme rapport technique et ne l'ont publié qu'en 1991, dans un volume en l'honneur de Woody Bledsoe. Le même tandem avait déjà donné au monde l'algorithme de recherche de chaîne de Boyer–Moore et le démonstrateur automatique de Boyer–Moore, et ils ont traité cet algorithme comme un cas d'essai pour la vérification mécanique — destin bien choisi, car sa correction reste entièrement invisible tant qu'on n'a pas trouvé l'invariant de la question (b), et devient parfaitement évidente ensuite. Misra et Gries l'ont généralisé en 1982 pour trouver tous les éléments apparaissant plus de \(n/k\) fois.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm">Algorithme de vote majoritaire de Boyer–Moore — Wikipédia (en anglais)</a></li>
-<li>Article : Boyer &amp; Moore, “MJRTY — A Fast Majority Vote Algorithm”, dans <i>Automated Reasoning: Essays in Honor of Woody Bledsoe</i> (1991)</li>
-<li>Article : Misra &amp; Gries, “Finding repeated elements”, Science of Computer Programming 2 (1982)</li>
+<li>Article : Boyer &amp; Moore, « MJRTY — A Fast Majority Vote Algorithm », dans <i>Automated Reasoning: Essays in Honor of Woody Bledsoe</i> (1991)</li>
+<li>Article : Misra &amp; Gries, « Finding repeated elements », Science of Computer Programming 2 (1982)</li>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-31">Mathématiques discrètes et informatique</a>.</p>
 </section>
@@ -3924,7 +3924,7 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_la_location_de_skis">Problème de la location de skis — Wikipédia</a></li>
 <li>Contexte : <a href="https://en.wikipedia.org/wiki/Competitive_analysis_(online_algorithm)">Analyse compétitive (algorithme en ligne) — Wikipédia (en anglais)</a></li>
-<li>Article : Karlin, Manasse, Rudolph &amp; Sleator, “Competitive snoopy caching”, Algorithmica 3 (1988)</li>
+<li>Article : Karlin, Manasse, Rudolph &amp; Sleator, « Competitive snoopy caching », Algorithmica 3 (1988)</li>
 <li>Lecture : Borodin &amp; El-Yaniv, <i>Online Computation and Competitive Analysis</i>, ch. 1</li>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-41">Mathématiques discrètes et informatique</a>.</p>
@@ -4125,10 +4125,10 @@ question ouverte sérieuse jusqu'à ce que Campbell et Wiener démontrent en 199
 <h3>CRY-26 · Quelle est la force d'une phrase secrète ? <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On construit une phrase secrète en choisissant quatre
 mots indépendamment et uniformément au hasard dans une liste publique de \(7776 = 6^5\) mots.
-Montrez que le nombre de phrases secrètes possibles vaut environ \(3.7 \times 10^{15}\) —
-soit à peu près \(4\log_2 7776 \approx 51.7\) bits d'entropie — et comparez-le à un mot de
+Montrez que le nombre de phrases secrètes possibles vaut environ \(3{,}7 \times 10^{15}\) —
+soit à peu près \(4\log_2 7776 \approx 51{,}7\) bits d'entropie — et comparez-le à un mot de
 passe de huit lettres minuscules aléatoires (\(26^8\) possibilités, environ
-\(37.6\) bits) : lequel est le plus difficile à deviner, et par quel facteur ?</p>
+\(37{,}6\) bits) : lequel est le plus difficile à deviner, et par quel facteur ?</p>
 <p class="context">C'est le procédé Diceware (Arnold Reinhold, 1995) : la liste compte
 \(6^5\) mots afin que cinq jets de dés en sélectionnent un uniformément. L'idée, popularisée
 par une bande dessinée d'xkcd, est celle de Shannon (CRY-11) déguisée — ce qui compte est

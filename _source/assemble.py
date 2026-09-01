@@ -259,8 +259,8 @@ for fname, _ in PAGES:
     base = fname[:-5]
     if not os.path.exists(os.path.join(ROOT, "tex", base + ".pdf")): continue
     src = open(path, encoding="utf-8").read()
-    tex_link = f'<a href="tex/{base}.tex" download>LaTeX source</a>'
-    pdf_link = f'<a href="tex/{base}.pdf" download>compiled PDF</a>'
+    tex_link = f'<a href="tex/{base}.tex" download>source LaTeX</a>'
+    pdf_link = f'<a href="tex/{base}.pdf" download>PDF compilé</a>'
     if pdf_link in src: continue
     if tex_link in src:
         src = src.replace(tex_link, tex_link + " · " + pdf_link)

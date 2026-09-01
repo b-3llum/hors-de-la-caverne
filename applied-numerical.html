@@ -49,22 +49,22 @@ où une démonstration et un programme se vérifient l'un l'autre.</p>
 <h2>Lycée</h2>
 
 <section class="problem" id="NUM-01" data-level="Lycée">
-<h3>NUM-01 · Pourquoi 0.1 + 0.2 ≠ 0.3 sur un ordinateur <span class="level">[Lycée]</span></h3>
+<h3>NUM-01 · Pourquoi 0,1 + 0,2 ≠ 0,3 sur un ordinateur <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Les ordinateurs stockent les nombres réels en virgule
 flottante binaire : un « double » IEEE 754 est un nombre
-\(\pm(1.b_1 b_2 \ldots b_{52})_2 \times 2^{e}\) — un signe, 52 chiffres binaires après
+\(\pm(1{,}b_1 b_2 \ldots b_{52})_2 \times 2^{e}\) — un signe, 52 chiffres binaires après
 le 1 initial et un exposant entier — et tout résultat arithmétique est arrondi au
 nombre de cette forme le plus proche.</p>
 <ol class="parts" type="a">
 <li>Démontrez que \(1/10\) n'a pas de développement binaire fini
 (regardez le dénominateur) et montrez que son développement infini vaut
-\((0.0\overline{0011})_2\).</li>
+\((0{,}0\overline{0011})_2\).</li>
 <li>Montrez que le double le plus proche de \(1/10\) est exactement
-\(3602879701896397/2^{55}\), qui dépasse \(1/10\) d'environ \(5.5 \times 10^{-18}\).</li>
-<li>Trouvez les doubles les plus proches de \(0.2\) et de \(0.3\), effectuez l'addition
-machine des valeurs stockées de \(0.1\) et \(0.2\) (additionnez exactement, puis
-arrondissez) et montrez que le résultat diffère du \(0.3\) stocké d'exactement une
+\(3602879701896397/2^{55}\), qui dépasse \(1/10\) d'environ \(5{,}5 \times 10^{-18}\).</li>
+<li>Trouvez les doubles les plus proches de \(0{,}2\) et de \(0{,}3\), effectuez l'addition
+machine des valeurs stockées de \(0{,}1\) et \(0{,}2\) (additionnez exactement, puis
+arrondissez) et montrez que le résultat diffère du \(0{,}3\) stocké d'exactement une
 unité au dernier rang, \(2^{-54}\) — de sorte que l'ordinateur déclare honnêtement
 <code>0.1 + 0.2 == 0.3</code> faux.</li>
 <li>Expliquez pourquoi les programmeurs comparent donc
@@ -178,7 +178,7 @@ Démontrez par récurrence sur \(n\) qu'il rend bien \(p(x)\), et comptez ses mu
 <section class="problem" id="NUM-22" data-level="Lycée">
 <h3>NUM-22 · Quelle taille doit avoir \(h\) ? <span class="level">[Lycée]</span></h3>
 <div class="statement">
-<p><b>Problème.</b> Un ordinateur stocke les nombres avec une erreur relative d'au plus \(\varepsilon \approx 1.1 \times 10^{-16}\) (double précision), de sorte que les valeurs de \(f\) qu'il renvoie ne sont correctes qu'à cette précision relative. Estimez \(f'(x)\) par le quotient de différences
+<p><b>Problème.</b> Un ordinateur stocke les nombres avec une erreur relative d'au plus \(\varepsilon \approx 1{,}1 \times 10^{-16}\) (double précision), de sorte que les valeurs de \(f\) qu'il renvoie ne sont correctes qu'à cette précision relative. Estimez \(f'(x)\) par le quotient de différences
 \[ D_h f(x) = \frac{f(x+h) - f(x)}{h}. \]</p>
 <ol class="parts" type="a">
 <li>À l'aide de la formule de Taylor, montrez que l'erreur en arithmétique exacte (erreur de troncature) vaut environ \(\tfrac{1}{2} h\,|f''(x)|\).</li>
@@ -216,7 +216,7 @@ issues de \(M_0 = S_0 = 0\), vérifient \(M_k = \tfrac{1}{k}\sum_{i \le k} x_i\)
 <section class="problem" id="NUM-33" data-level="Lycée">
 <h3>NUM-33 · La sommation compensée de Kahan <span class="level">[Lycée]</span></h3>
 <div class="statement">
-<p><b>Problème.</b> Additionner une liste de nombres est l'opération la plus courante du calcul scientifique, et la boucle naïve n'est pas la meilleure façon de le faire. Travaillez en virgule flottante binaire avec une unité d'arrondi \(\varepsilon\) (pour les doubles IEEE, \(\varepsilon = 2^{-53} \approx 1.1 \times 10^{-16}\)), où chaque opération obéit à
+<p><b>Problème.</b> Additionner une liste de nombres est l'opération la plus courante du calcul scientifique, et la boucle naïve n'est pas la meilleure façon de le faire. Travaillez en virgule flottante binaire avec une unité d'arrondi \(\varepsilon\) (pour les doubles IEEE, \(\varepsilon = 2^{-53} \approx 1{,}1 \times 10^{-16}\)), où chaque opération obéit à
 \[ \mathrm{fl}(a \pm b) = (a \pm b)(1 + \delta), \qquad |\delta| \le \varepsilon . \]</p>
 <ol class="parts" type="a">
 <li>Montrez que l'addition en virgule flottante n'est pas associative : trouvez trois doubles tels que \((a + b) + c \ne a + (b + c)\) lorsque chaque addition est arrondie. Concluez que la somme d'une liste dépend de l'ordre dans lequel vous l'additionnez.</li>
@@ -256,7 +256,7 @@ assez proche de \(r\) les erreurs vérifient \(|x_{n+1} - r| \le C\,|x_n - r|^2\
 <li>Prenez maintenant \(f(x) = x^3 - 2x + 2\) avec
 \(x_0 = 0\). Montrez que l'itération tourne en rond indéfiniment :
 \(0 \to 1 \to 0 \to 1 \to \cdots\), sans jamais trouver la racine réelle voisine de
-\(-1.77\).</li>
+\(-1{,}77\).</li>
 <li>Démontrez que ce 2-cycle est
 <i>attractif</i> : calculez la dérivée de l'application de Newton itérée deux fois le
 long du cycle et montrez que tout un intervalle de points de départ est piégé.</li>
@@ -320,7 +320,7 @@ continues l'erreur en chaque \(x\) vaut
 \[ f(x) - p_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\,\prod_{j=0}^{n}(x - x_j)
 \quad\text{pour un certain } \xi. \]
 (b) Le phénomène de Runge : interpolez \(f(x) = 1/(1 + 25x^2)\) sur \([-1,1]\) en des
-nœuds équidistants et calculez la valeur de l'interpolant près de \(x = 0.95\) pour
+nœuds équidistants et calculez la valeur de l'interpolant près de \(x = 0{,}95\) pour
 \(n\) croissant ; observez la divergence, et expliquez le mécanisme en comparant la
 taille du polynôme nodal \(\prod (x - x_j)\) près des extrémités à sa taille
 près du centre. (c) Le remède : définissez les polynômes de Tchebychev par
@@ -448,7 +448,7 @@ singulière, et que \(\kappa \ge 1\) toujours.</li>
 <li>La matrice de Hilbert \(H_n\) a pour coefficients
 \(1/(i + j - 1)\). Démontrez qu'elle est symétrique définie positive en écrivant
 \(x^T H_n x\) comme l'intégrale d'un carré. C'est une matrice célèbre pour son mauvais
-conditionnement — \(\kappa(H_n)\) croît comme \(e^{3.5 n}\), de sorte que pour \(n\)
+conditionnement — \(\kappa(H_n)\) croît comme \(e^{3{,}5 n}\), de sorte que pour \(n\)
 autour de \(12\) une résolution en double précision peut perdre pratiquement tous les
 chiffres.</li>
 <li>Expliquez pourquoi \(H_n\) apparaît lorsque l'on ajuste des
@@ -486,14 +486,14 @@ vers le vecteur propre dominant pour presque tout départ, à la vitesse linéai
 matrice stochastique en colonnes d'un surfeur aléatoire qui suit les liens
 uniformément, et formez la matrice de Google \(G = \alpha S + (1-\alpha)\tfrac{1}{n}J\),
 où \(J\) est la matrice de tous les uns et \(0 &lt; \alpha &lt; 1\) (en pratique
-\(\alpha = 0.85\)). Montrez que \(G\) est stochastique à coefficients strictement
+\(\alpha = 0{,}85\)). Montrez que \(G\) est stochastique à coefficients strictement
 positifs, et déduisez du théorème de Perron-Frobenius qu'elle possède un unique
 vecteur stationnaire positif — le PageRank.</li>
 <li>Démontrez que toute valeur propre de \(G\) autre que \(1\) vérifie
 \(|\lambda| \le \alpha\), de sorte que la méthode de la puissance converge à la
 vitesse \(\alpha\) quelle que soit la structure du web.</li>
 <li>Estimez le nombre d'itérations qui donnent le PageRank
-à \(10^{-8}\) près pour \(\alpha = 0.85\).</li>
+à \(10^{-8}\) près pour \(\alpha = 0{,}85\).</li>
 </ol>
 </div>
 <p class="context">La méthode de la puissance est le plus ancien algorithme de calcul
@@ -502,7 +502,7 @@ pour les petites matrices — puis le web en a fait l'algorithme numérique le p
 exécuté sur Terre : le moteur de recherche de Brin et Page (1998) classe les pages
 par le vecteur stationnaire d'une chaîne de Markov à des milliards d'états, pour
 laquelle on ne peut se permettre que des produits matrice-vecteur. La partie (c), due
-à Haveliwala et Kamvar (2003), explique la constante magique \(0.85\) : elle
+à Haveliwala et Kamvar (2003), explique la constante magique \(0{,}85\) : elle
 troque la fidélité à la structure des liens contre la vitesse de convergence.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_de_la_puissance_it%C3%A9r%C3%A9e">Méthode de la puissance itérée — Wikipédia</a></li>
@@ -560,8 +560,8 @@ prototype de toute conception de méthode.</p>
 <h3>NUM-23 · La méthode de la sécante converge au nombre d'or <span class="level">[Licence]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> La méthode de la sécante remplace la tangente de Newton par la droite passant par les deux derniers itérés,
 \[ x_{n+1} = x_n - f(x_n)\,\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}. \]
-Pour \(f\) deux fois continûment dérivable au voisinage d'une racine simple \(r\), démontrez la relation d'erreur \(e_{n+1} \approx \frac{f''(r)}{2f'(r)}\, e_n e_{n-1}\) avec \(e_n = x_n - r\), et déduisez-en que l'ordre de convergence est la racine \(p = (1+\sqrt{5})/2 \approx 1.618\) de \(p^2 = p + 1\).</p>
-<p class="context">L'idée sous-jacente — interpoler linéairement à partir de deux valeurs d'essai et extrapoler jusqu'à zéro — est antique : elle apparaît sous le nom de <i>regula falsi</i> dans l'arithmétique égyptienne, babylonienne, chinoise et arabe médiévale bien avant qu'on ne parle de dérivées. Le nombre d'or n'est pas ici une curiosité mais un verdict : une étape de la sécante coûte une nouvelle évaluation de \(f\), tandis qu'une étape de Newton coûte une évaluation de \(f\) <i>et</i> de \(f'\) ; rapporté à l'évaluation de fonction, l'ordre quadratique de Newton devient \(\sqrt{2} \approx 1.414\), et la méthode plus ancienne et plus modeste l'emporte.</p>
+Pour \(f\) deux fois continûment dérivable au voisinage d'une racine simple \(r\), démontrez la relation d'erreur \(e_{n+1} \approx \frac{f''(r)}{2f'(r)}\, e_n e_{n-1}\) avec \(e_n = x_n - r\), et déduisez-en que l'ordre de convergence est la racine \(p = (1+\sqrt{5})/2 \approx 1{,}618\) de \(p^2 = p + 1\).</p>
+<p class="context">L'idée sous-jacente — interpoler linéairement à partir de deux valeurs d'essai et extrapoler jusqu'à zéro — est antique : elle apparaît sous le nom de <i>regula falsi</i> dans l'arithmétique égyptienne, babylonienne, chinoise et arabe médiévale bien avant qu'on ne parle de dérivées. Le nombre d'or n'est pas ici une curiosité mais un verdict : une étape de la sécante coûte une nouvelle évaluation de \(f\), tandis qu'une étape de Newton coûte une évaluation de \(f\) <i>et</i> de \(f'\) ; rapporté à l'évaluation de fonction, l'ordre quadratique de Newton devient \(\sqrt{2} \approx 1{,}414\), et la méthode plus ancienne et plus modeste l'emporte.</p>
 <ul class="refs">
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_de_la_s%C3%A9cante">Méthode de la sécante — Wikipédia</a></li>
 <li>Contexte : <a href="https://fr.wikipedia.org/wiki/Vitesse_de_convergence_des_suites">Vitesse de convergence des suites — Wikipédia</a></li>
@@ -588,7 +588,7 @@ Pour \(f\) deux fois continûment dérivable au voisinage d'une racine simple \(
 <li>Montrez que les dérivées secondes inconnues \(M_i = s''(x_i)\) vérifient un système linéaire tridiagonal, démontrez que ce système est à diagonale strictement dominante donc inversible, et concluez que \(s\) existe et est unique.</li>
 <li>Démontrez la propriété de courbure minimale : parmi <i>toutes</i> les fonctions \(g\) deux fois continûment dérivables qui interpolent les mêmes données, la spline cubique naturelle est l'unique minimiseur de \(\int_a^b (g'')^2\). (Intégrez \(\int (g'' - s'')\,s''\) deux fois par parties.)</li>
 <li>Prenez la fonction de Runge \(f(x) = 1/(1+25x^2)\) sur \([-1,1]\) avec 21 nœuds équidistants. Calculez à la fois le polynôme d'interpolation de degré 20 et la spline cubique naturelle, comparez leurs erreurs maximales, et expliquez le contraste avec NUM-06.</li>
-<li>Pour des nœuds équidistants, montrez que l'influence sur \(s\) d'un changement d'une seule valeur \(f_j\) décroît géométriquement quand on s'éloigne de \(x_j\), au taux \(2 - \sqrt{3} \approx 0.268\) par nœud — une spline est donc globale en principe et locale en pratique.</li>
+<li>Pour des nœuds équidistants, montrez que l'influence sur \(s\) d'un changement d'une seule valeur \(f_j\) décroît géométriquement quand on s'éloigne de \(x_j\), au taux \(2 - \sqrt{3} \approx 0{,}268\) par nœud — une spline est donc globale en principe et locale en pratique.</li>
 </ol>
 </div>
 <p class="context">Une spline était une mince latte de bois que les charpentiers de marine et les dessinateurs faisaient passer en la courbant entre des chevilles pour tracer une courbe harmonieuse ; la théorie de l'élasticité dit que la latte se stabilise dans la forme qui minimise son énergie de flexion, laquelle au premier ordre est l'intégrale de (b) — la partie (b) démontre donc que l'objet mathématique fait exactement ce que faisait l'objet physique. Isaac Schoenberg les a nommées et analysées dans deux articles de 1946 écrits au terrain d'essais d'Aberdeen, et Carl de Boor en a fait un logiciel fiable dans les années 1970 avec la base des B-splines, dont la vertu numérique est précisément la localité de (d). La raison pour laquelle ce sont les splines, et non les polynômes de haut degré, qui dessinent toutes les polices de caractères et toutes les carrosseries, c'est la comparaison qu'on vous demande en (c).</p>
@@ -981,9 +981,9 @@ opérations arithmétiques pour tout \(\epsilon &gt; 0\). Porte d'entrée :</p>
 <li>vérifiez
 les identités de Strassen (1969) qui calculent un produit par blocs \(2 \times 2\) avec
 7 multiplications de blocs au lieu de 8, et démontrez que la récursion donne
-\(O(n^{\log_2 7}) \approx O(n^{2.807})\). <b>État de l'exposant : ouvert.</b>
+\(O(n^{\log_2 7}) \approx O(n^{2{,}807})\). <b>État de l'exposant : ouvert.</b>
 On sait que \(2 \le \omega\), et un demi-siècle de raffinements de la « méthode laser »
-a porté le record à \(\omega &lt; 2.3714\) (Alman, Duan,
+a porté le record à \(\omega &lt; 2{,}3714\) (Alman, Duan,
 Vassilevska Williams, Xu, Xu, Zhou, 2024) ; savoir si \(\omega = 2\) est un problème
 ouvert central de la complexité algébrique.</li>
 <li>Le problème <i>pratique</i>, lui aussi
@@ -1004,7 +1004,7 @@ des matériels à précision mixte.</li>
 <p class="context">L'article de Strassen de 1969, au titre volontairement provocateur
 « Gaussian elimination is not optimal », a fait voler en éclats l'idée que \(n^3\) était
 le coût naturel de l'algèbre linéaire et a fondé la théorie de la complexité algébrique.
-L'histoire qui a suivi — Coppersmith-Winograd atteignant \(2.376\) en 1987, puis un
+L'histoire qui a suivi — Coppersmith-Winograd atteignant \(2{,}376\) en 1987, puis un
 filet de centièmes durement gagnés dans les années 2010-2020 — a produit des
 mathématiques profondes (rang tensoriel, lien avec les <i>cap sets</i>) tandis que les
 GPU du monde entier multiplient toujours les matrices à la manière classique, optimisée
@@ -1185,7 +1185,7 @@ sur laquelle ce décalage vaut \(0\) et l'itération est exactement stationnaire
 <p><b>Problème.</b> Pour \(f\) continue sur \([-1,1]\), notez \(E_{mn}(f)\) la plus petite valeur possible de \(\max_{|x|\le 1}|f(x) - r(x)|\) sur les fractions rationnelles \(r = p/q\) avec \(\deg p \le m\), \(\deg q \le n\). Les polynômes sont le cas \(n = 0\) ; autoriser un dénominateur change complètement le sujet.</p>
 <ol class="parts" type="a">
 <li>Démontrez le théorème d'équioscillation de Tchebychev dans le cas polynomial : \(p^*\) de degré au plus \(m\) est une meilleure approximation de \(f\) si et seulement si \(f - p^*\) atteint son module maximal avec des signes alternés en au moins \(m+2\) points ; déduisez-en l'unicité. Énoncez l'analogue rationnel, dans lequel le compte \(m + n + 2\) est diminué du défaut de l'approximant, et décrivez comment l'algorithme d'échange de Remez transforme cette caractérisation en un calcul.</li>
-<li>Le phénomène. Bernstein a démontré en 1913 que la meilleure approximation polynomiale de \(|x|\) sur \([-1,1]\) ne décroît que comme \(\beta/m\) avec \(\beta \approx 0.2802\). Donald Newman a démontré en 1964 que les fractions rationnelles font incomparablement mieux : \(\tfrac12 e^{-9\sqrt{n}} \le E_{nn}(|x|) \le 3e^{-\sqrt{n}}\). Démontrez la borne supérieure par la construction de Newman — posez \(\xi = e^{-1/\sqrt{n}}\), \(p(x) = \prod_{k=0}^{n-1}(x + \xi^k)\), et considérez la fraction rationnelle impaire
+<li>Le phénomène. Bernstein a démontré en 1913 que la meilleure approximation polynomiale de \(|x|\) sur \([-1,1]\) ne décroît que comme \(\beta/m\) avec \(\beta \approx 0{,}2802\). Donald Newman a démontré en 1964 que les fractions rationnelles font incomparablement mieux : \(\tfrac12 e^{-9\sqrt{n}} \le E_{nn}(|x|) \le 3e^{-\sqrt{n}}\). Démontrez la borne supérieure par la construction de Newman — posez \(\xi = e^{-1/\sqrt{n}}\), \(p(x) = \prod_{k=0}^{n-1}(x + \xi^k)\), et considérez la fraction rationnelle impaire
 \[ r(x) \;=\; x\,\frac{p(x) - p(-x)}{p(x) + p(-x)} \]
 — et expliquez, avec vos propres mots, comment des pôles placés hors de l'intervalle mais agglutinés vers la singularité achètent une précision exponentielle en racine. Herbert Stahl a démontré plus tard la vitesse exacte : \(E_{nn}(|x|) \sim 8 e^{-\pi\sqrt{n}}\).</li>
 <li>Les problèmes de Zolotarev (1877). Décrivez sa meilleure approximation rationnelle en forme close de \(\operatorname{sign}(x)\) sur \([-1,-\alpha]\cup[\alpha,1]\), écrite avec des fonctions elliptiques, et expliquez pourquoi ce n'est pas une pièce de musée : c'est l'outil le plus précis dont on dispose pour la fonction signe matricielle, et donc pour les solveurs de valeurs propres par division spectrale et pour les calculs de théorie des champs sur réseau.</li>

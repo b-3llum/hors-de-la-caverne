@@ -917,7 +917,7 @@ vieux de plusieurs décennies (Marcus, Spielman, Srivastava).
 quelconque peuvent être multipliées en n'utilisant que 7 multiplications d'éléments de l'anneau (au
 lieu des 8 évidentes), au prix d'additions supplémentaires.
 \item[(b)] Démontrer qu'appliquer cela récursivement à des matrices
-par blocs multiplie deux matrices $n \times n$ en $O(n^{\log_2 7}) = O(n^{2.81})$ opérations
+par blocs multiplie deux matrices $n \times n$ en $O(n^{\log_2 7}) = O(n^{2{,}81})$ opérations
 élémentaires.
 \item[(c)] Démontrer que 7 est optimal pour le cas $2 \times 2$ : aucun algorithme bilinéaire n'emploie 6
 multiplications (Winograd, 1971 --- difficile ; a minima, lire une démonstration et en reconstruire le
@@ -1200,16 +1200,16 @@ suivante, celle de savoir à quel point le permanent d'une matrice bistochastiqu
 \textbf{LIN-19.} \textbf{Problème.} L'exposant $\omega$ est la borne inférieure de tous les $c$
 tels que deux matrices $n \times n$ puissent être multipliées en $O(n^c)$ opérations
 arithmétiques. A-t-on $\omega = 2$ ? \textbf{Statut : ouvert.} Ce que l'on sait :
-$2 \le \omega \le \log_2 7 \approx 2.807$ (Strassen 1969, LIN-17) ; $\omega < 2.376$
-(Coppersmith--Winograd, 1990) ; après un long plateau, $\omega < 2.3729$ (Le Gall 2014 ;
-Alman--Vassilevska Williams 2021), $\omega < 2.37188$ (Duan--Wu--Zhou, 2023),
-$\omega < 2.371552$ (Vassilevska Williams--Xu--Xu--Zhou, SODA 2024), $\omega < 2.371339$
+$2 \le \omega \le \log_2 7 \approx 2{,}807$ (Strassen 1969, LIN-17) ; $\omega < 2{,}376$
+(Coppersmith--Winograd, 1990) ; après un long plateau, $\omega < 2{,}3729$ (Le Gall 2014 ;
+Alman--Vassilevska Williams 2021), $\omega < 2{,}37188$ (Duan--Wu--Zhou, 2023),
+$\omega < 2{,}371552$ (Vassilevska Williams--Xu--Xu--Zhou, SODA 2024), $\omega < 2{,}371339$
 (Alman--Duan--Vassilevska Williams--Xu--Xu--Zhou, SODA 2025). En août 2026, le même cadre de la méthode
 laser, avec une chaîne d'optimisation assistée par le système AlphaEvolve, a atteint
-$\omega < 2.371177$. Des barrières connues démontrent que le tenseur de Coppersmith--Winograd ne
+$\omega < 2{,}371177$. Des barrières connues démontrent que le tenseur de Coppersmith--Winograd ne
 peut mener ces méthodes en dessous d'environ 2,3 : combler l'écart jusqu'à 2 --- ou démontrer
 $\omega > 2$ --- demande une idée véritablement neuve. Pour entrer dans le sujet : démontrez
-vous-même $\omega \le 2.81$ (LIN-17), puis lisez l'approche par la théorie des groupes de Cohn et
+vous-même $\omega \le 2{,}81$ (LIN-17), puis lisez l'approche par la théorie des groupes de Cohn et
 Umans, qui donnerait $\omega = 2$ si certaines familles de groupes existent.
 \end{problem}
 

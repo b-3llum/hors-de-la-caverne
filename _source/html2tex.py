@@ -269,7 +269,8 @@ if __name__ == "__main__":
     names = sys.argv[1:] or sorted(
         f for f in os.listdir(ROOT)
         if f.endswith(".html") and f not in
-        ("index.html", "resources.html", "TEMPLATE.html", "highschool.html"))
+        ("index.html", "resources.html", "TEMPLATE.html", "highschool.html",
+         "college.html", "worksheet.html", "404.html"))
     total = 0
     for f in names:
         n, left = convert_page(f)

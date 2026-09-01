@@ -490,8 +490,8 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 
 \begin{refs}
 \item Contexte : Algorithme de vote majoritaire de Boyer--Moore --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm})
-\item Article : Boyer \& Moore, ``MJRTY --- A Fast Majority Vote Algorithm'', dans \textit{Automated Reasoning: Essays in Honor of Woody Bledsoe} (1991)
-\item Article : Misra \& Gries, ``Finding repeated elements'', Science of Computer Programming 2 (1982)
+\item Article : Boyer \& Moore, \og{} MJRTY --- A Fast Majority Vote Algorithm \fg{}, dans \textit{Automated Reasoning: Essays in Honor of Woody Bledsoe} (1991)
+\item Article : Misra \& Gries, \og{} Finding repeated elements \fg{}, Science of Computer Programming 2 (1982)
 \end{refs}
 
 \bigskip
@@ -512,7 +512,7 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 \begin{refs}
 \item Contexte : Problème de la location de skis --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_la_location_de_skis})
 \item Contexte : Analyse compétitive (algorithme en ligne) --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Competitive_analysis_(online_algorithm)})
-\item Article : Karlin, Manasse, Rudolph \& Sleator, ``Competitive snoopy caching'', Algorithmica 3 (1988)
+\item Article : Karlin, Manasse, Rudolph \& Sleator, \og{} Competitive snoopy caching \fg{}, Algorithmica 3 (1988)
 \item Lecture : Borodin \& El-Yaniv, \textit{Online Computation and Competitive Analysis}, ch. 1
 \end{refs}
 
@@ -536,11 +536,11 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 
 \begin{problem}[{Ordonner les vitesses de croissance --- Licence}]
 \textbf{DCS-05.} \textbf{Problème.} Écrivons $f \prec g$ lorsque $f(n)/g(n) \to 0$. (a) Rangez les fonctions suivantes en une seule chaîne pour $\prec$, en démontrant chaque comparaison consécutive à partir de la définition :
-\[ \log_2 n,\quad \sqrt{n},\quad \frac{n}{\log_2 n},\quad n,\quad n\log_2 n,\quad n^{\log_2 3},\quad n^2,\quad n^{10},\quad 1.01^n,\quad 2^n,\quad n!,\quad n^n. \]
+\[ \log_2 n,\quad \sqrt{n},\quad \frac{n}{\log_2 n},\quad n,\quad n\log_2 n,\quad n^{\log_2 3},\quad n^2,\quad n^{10},\quad 1{,}01^n,\quad 2^n,\quad n!,\quad n^n. \]
 (b) Démontrez les deux lemmes généraux qui font l'essentiel du travail : $\log n \prec n^{\varepsilon}$ pour tout $\varepsilon > 0$, et $n^k \prec c^n$ pour tout $k$ et tout $c > 1$. (c) Démontrez $2^n \prec n!$ et $n! \prec n^n$, et montrez que $\log_2(n!)$ croît comme $n \log_2 n$ à un facteur constant près.
 \end{problem}
 
-\noindent Paul Bachmann a introduit la notation O en 1894 et Edmund Landau l'a diffusée ; Knuth a fait campagne dans les années 1970 pour en fixer l'usage informatique. La chaîne ci-dessus est la règle graduée du domaine : qui ne sait pas situer instantanément $n \log n$ par rapport à $n^{1.01}$ navigue sans instrument. Les comparaisons ont l'air évidentes et le sont pour la plupart --- raison précise pour laquelle il vaut la peine de les démontrer une fois à partir de la définition, là où $n^{\log_2 3}$ (l'exposant de Karatsuba, voir DCS-06) demande, lui, un vrai moment de réflexion.
+\noindent Paul Bachmann a introduit la notation O en 1894 et Edmund Landau l'a diffusée ; Knuth a fait campagne dans les années 1970 pour en fixer l'usage informatique. La chaîne ci-dessus est la règle graduée du domaine : qui ne sait pas situer instantanément $n \log n$ par rapport à $n^{1{,}01}$ navigue sans instrument. Les comparaisons ont l'air évidentes et le sont pour la plupart --- raison précise pour laquelle il vaut la peine de les démontrer une fois à partir de la définition, là où $n^{\log_2 3}$ (l'exposant de Karatsuba, voir DCS-06) demande, lui, un vrai moment de réflexion.
 
 \begin{refs}
 \item Contexte : Comparaison asymptotique (notation de Landau) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Comparaison_asymptotique})
@@ -586,7 +586,7 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 
 \begin{refs}
 \item Contexte : Algorithme de Dijkstra --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra})
-\item Article : Dijkstra, ``A note on two problems in connexion with graphs'', Numerische Mathematik 1 (1959)
+\item Article : Dijkstra, \og{} A note on two problems in connexion with graphs \fg{}, Numerische Mathematik 1 (1959)
 \item Lecture : Cormen, Leiserson, Rivest \& Stein, \textit{Introduction to Algorithms}, ch. 22 (3e éd. : ch. 24)
 \item Cours : MIT OCW 6.006 Introduction to Algorithms (\url{https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/})
 \end{refs}
@@ -700,7 +700,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \textbf{DCS-13.} \textbf{Problème.} On jette $m$ objets, indépendamment et uniformément, dans $n$ casiers.
 \begin{enumerate}
 \item[(a)] Démontrez que la probabilité que les $m$ objets atterrissent dans des casiers distincts vaut $\prod_{i=1}^{m-1}(1 - i/n)$ et, à l'aide de $1 - x \le e^{-x}$, montrez qu'elle est au plus $e^{-m(m-1)/(2n)}$.
-\item[(b)] Concluez à la borne des anniversaires : les collisions deviennent probables (probabilité $\ge 1/2$) dès que $m$ avoisine $1.18\sqrt{n}$, et évaluez pour les anniversaires ($n = 365$).
+\item[(b)] Concluez à la borne des anniversaires : les collisions deviennent probables (probabilité $\ge 1/2$) dès que $m$ avoisine $1{,}18\sqrt{n}$, et évaluez pour les anniversaires ($n = 365$).
 \item[(c)] Démontrez une borne inférieure de sens contraire : pour $m \le \sqrt{2n}$, la probabilité de collision vaut au plus $m^2/(2n)$.
 \item[(d)] Tirez les deux conclusions d'ingénierie, chiffres à l'appui : jusqu'à quel remplissage une table de hachage à $n$ cases peut aller avant que les collisions ne dominent, et pourquoi une empreinte de 128 bits n'offre qu'environ $2^{64}$ de sécurité contre les attaques par collision.
 \end{enumerate}
@@ -732,7 +732,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Codage de Huffman --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Codage_de_Huffman})
-\item Article : Huffman, ``A Method for the Construction of Minimum-Redundancy Codes'', Proceedings of the IRE 40 (1952)
+\item Article : Huffman, \og{} A Method for the Construction of Minimum-Redundancy Codes \fg{}, Proceedings of the IRE 40 (1952)
 \item Lecture : Cormen, Leiserson, Rivest \& Stein, \textit{Introduction to Algorithms}, chapitre sur les algorithmes gloutons
 \end{refs}
 
@@ -768,7 +768,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Code de Hamming (7,4) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Code_de_Hamming_(7,4)})
 \item Contexte : Code de Hamming --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Code_de_Hamming})
-\item Article : Hamming, ``Error detecting and error correcting codes'', Bell System Technical Journal 29 (1950)
+\item Article : Hamming, \og{} Error detecting and error correcting codes \fg{}, Bell System Technical Journal 29 (1950)
 \item Lecture : MacWilliams \& Sloane, \textit{The Theory of Error-Correcting Codes}, ch. 1
 \end{refs}
 
@@ -783,7 +783,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Tableau dynamique (vecteur) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Vecteur_(structure_de_donn%C3%A9es)})
 \item Contexte : Analyse amortie --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Analyse_amortie})
-\item Article : Tarjan, ``Amortized computational complexity'', SIAM Journal on Algebraic and Discrete Methods 6 (1985)
+\item Article : Tarjan, \og{} Amortized computational complexity \fg{}, SIAM Journal on Algebraic and Discrete Methods 6 (1985)
 \end{refs}
 
 \bigskip
@@ -817,7 +817,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Arbre couvrant de poids minimal --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Arbre_couvrant_de_poids_minimal})
 \item Contexte : Algorithme de Kruskal --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_de_Kruskal})
-\item Article : Graham \& Hell, ``On the history of the minimum spanning tree problem'', Annals of the History of Computing 7 (1985)
+\item Article : Graham \& Hell, \og{} On the history of the minimum spanning tree problem \fg{}, Annals of the History of Computing 7 (1985)
 \item Lecture : Cormen, Leiserson, Rivest \& Stein, \textit{Introduction to Algorithms}, ch. 21 (3e éd. : ch. 23)
 \end{refs}
 
@@ -839,7 +839,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Théorème flot-max/coupe-min --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_flot-max%2Fcoupe-min})
 \item Contexte : Algorithme de Ford--Fulkerson --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_de_Ford-Fulkerson})
-\item Article : Ford \& Fulkerson, ``Maximal flow through a network'', Canadian Journal of Mathematics 8 (1956)
+\item Article : Ford \& Fulkerson, \og{} Maximal flow through a network \fg{}, Canadian Journal of Mathematics 8 (1956)
 \item Lecture : Kleinberg \& Tardos, \textit{Algorithm Design}, ch. 7
 \end{refs}
 
@@ -860,7 +860,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Algorithme de Knuth--Morris--Pratt --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Algorithme_de_Knuth-Morris-Pratt})
-\item Article : Knuth, Morris \& Pratt, ``Fast pattern matching in strings'', SIAM Journal on Computing 6 (1977)
+\item Article : Knuth, Morris \& Pratt, \og{} Fast pattern matching in strings \fg{}, SIAM Journal on Computing 6 (1977)
 \item Lecture : Gusfield, \textit{Algorithms on Strings, Trees, and Sequences}, ch. 2
 \item Lecture : Cormen, Leiserson, Rivest \& Stein, \textit{Introduction to Algorithms}, chapitre sur la recherche de motifs
 \end{refs}
@@ -875,7 +875,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Filtre de Bloom --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Filtre_de_Bloom})
-\item Article : Bloom, ``Space/time trade-offs in hash coding with allowable errors'', Communications of the ACM 13 (1970)
+\item Article : Bloom, \og{} Space/time trade-offs in hash coding with allowable errors \fg{}, Communications of the ACM 13 (1970)
 \item Lecture : Mitzenmacher \& Upfal, \textit{Probability and Computing}, ch. 5
 \end{refs}
 
@@ -898,7 +898,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Problème de l'arrêt --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_l%27arr%C3%AAt})
-\item Article : Turing, ``On Computable Numbers, with an Application to the Entscheidungsproblem'', Proceedings of the London Mathematical Society (1936)
+\item Article : Turing, \og{} On Computable Numbers, with an Application to the Entscheidungsproblem \fg{}, Proceedings of the London Mathematical Society (1936)
 \item Lecture : Sipser, \textit{Introduction to the Theory of Computation}, ch. 4
 \item Cours : MIT OCW 18.404J Theory of Computation (Sipser) (\url{https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/})
 \end{refs}
@@ -919,7 +919,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Théorème de Rice --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Rice})
-\item Article : Rice, ``Classes of recursively enumerable sets and their decision problems'', Transactions of the AMS 74 (1953)
+\item Article : Rice, \og{} Classes of recursively enumerable sets and their decision problems \fg{}, Transactions of the AMS 74 (1953)
 \item Lecture : Sipser, \textit{Introduction to the Theory of Computation}, ch. 5
 \end{refs}
 
@@ -933,7 +933,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Théorème de Cook--Levin --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Cook})
-\item Article : Cook, ``The Complexity of Theorem-Proving Procedures'', STOC 1971
+\item Article : Cook, \og{} The Complexity of Theorem-Proving Procedures \fg{}, STOC 1971
 \item Lecture : Sipser, \textit{Introduction to the Theory of Computation}, ch. 7
 \item Lecture : Arora \& Barak, \textit{Computational Complexity: A Modern Approach}, ch. 2
 \end{refs}
@@ -955,7 +955,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Problème de la clique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_la_clique})
 \item Contexte : Couverture par sommets --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Couverture_par_sommets})
-\item Article : Karp, ``Reducibility Among Combinatorial Problems'' (1972)
+\item Article : Karp, \og{} Reducibility Among Combinatorial Problems \fg{} (1972)
 \item Lecture : Garey \& Johnson, \textit{Computers and Intractability: A Guide to the Theory of NP-Completeness}
 \end{refs}
 
@@ -970,7 +970,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Couverture par sommets --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Couverture_par_sommets})
 \item Contexte : Conjecture des jeux uniques --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Conjecture_des_jeux_uniques})
-\item Article : Khot \& Regev, ``Vertex cover might be hard to approximate to within 2$-$$\varepsilon$'', Journal of Computer and System Sciences 74 (2008)
+\item Article : Khot \& Regev, \og{} Vertex cover might be hard to approximate to within 2$-$$\varepsilon$ \fg{}, Journal of Computer and System Sciences 74 (2008)
 \item Lecture : Vazirani, \textit{Approximation Algorithms}, ch. 1
 \end{refs}
 
@@ -991,7 +991,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Complexité de la communication --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Complexit%C3%A9_de_la_communication})
-\item Article : Yao, ``Some Complexity Questions Related to Distributive Computing'', STOC 1979
+\item Article : Yao, \og{} Some Complexity Questions Related to Distributive Computing \fg{}, STOC 1979
 \item Lecture : Kushilevitz \& Nisan, \textit{Communication Complexity}, ch. 1--3
 \item Lecture : Arora \& Barak, \textit{Computational Complexity}, chapitre sur la complexité de la communication
 \end{refs}
@@ -1013,7 +1013,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Complexité de Kolmogorov --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Complexit%C3%A9_de_Kolmogorov})
-\item Article : Kolmogorov, ``Three approaches to the quantitative definition of information'', Problems of Information Transmission 1 (1965)
+\item Article : Kolmogorov, \og{} Three approaches to the quantitative definition of information \fg{}, Problems of Information Transmission 1 (1965)
 \item Lecture : Li \& Vitányi, \textit{An Introduction to Kolmogorov Complexity and Its Applications}, ch. 1--2
 \end{refs}
 
@@ -1063,7 +1063,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Union-find (structure d'ensembles disjoints) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Union-find})
 \item Contexte : Fonction d'Ackermann --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fonction_d%27Ackermann})
-\item Article : Tarjan, ``Efficiency of a good but not linear set union algorithm'', Journal of the ACM 22 (1975)
+\item Article : Tarjan, \og{} Efficiency of a good but not linear set union algorithm \fg{}, Journal of the ACM 22 (1975)
 \item Lecture : Cormen, Leiserson, Rivest \& Stein, \textit{Introduction to Algorithms}, ch. 19 (3e éd. : ch. 21)
 \end{refs}
 
@@ -1086,7 +1086,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \item Contexte : Problème de couverture par ensembles --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_couverture_par_ensembles})
 \item Contexte : Arrondi aléatoire --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Randomized_rounding})
 \item Lecture : Williamson \& Shmoys, \textit{The Design of Approximation Algorithms}, ch. 1
-\item Article : Dinur \& Steurer, ``Analytical approach to parallel repetition'', STOC 2014
+\item Article : Dinur \& Steurer, \og{} Analytical approach to parallel repetition \fg{}, STOC 2014
 \end{refs}
 
 \bigskip
@@ -1100,7 +1100,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Théorème PCP --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_PCP})
 \item Contexte : Difficulté d'approximation --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Hardness_of_approximation})
-\item Article : Dinur, ``The PCP theorem by gap amplification'', Journal of the ACM 54 (2007)
+\item Article : Dinur, \og{} The PCP theorem by gap amplification \fg{}, Journal of the ACM 54 (2007)
 \item Lecture : Arora \& Barak, \textit{Computational Complexity: A Modern Approach}, ch. 11
 \end{refs}
 
@@ -1111,7 +1111,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{enumerate}
 \item[(a)] Soit $ X $ la plus petite valeur de hachage rencontrée. Démontrez que $ \mathbb{E}[X] = 1/(D+1) $, et expliquez pourquoi $ 1/X - 1 $ est un estimateur naturel mais désespérément bruité de $ D $.
 \item[(b)] Conservez plutôt les $ k $ plus petites valeurs de hachage et rendez $ (k-1)/X_{(k)} $, où $ X_{(k)} $ est la $ k $-ième plus petite et $ D \ge k $. Démontrez que l'erreur relative est $ O(1/\sqrt{k}) $ avec probabilité constante, de sorte que $ O(\varepsilon^{-2}) $ valeurs stockées suffisent.
-\item[(c)] Analysez plutôt l'estimateur de Flajolet--Martin : suivez le plus grand nombre $ R $ de zéros terminaux dans l'écriture binaire d'une valeur de hachage rencontrée, et démontrez que $ 2^{R} $ est à un facteur constant près de $ D $ avec probabilité constante. Expliquez ensuite pourquoi découper le flux en $ m $ seaux d'après les premiers bits de hachage puis combiner les maxima par seau à l'aide d'une moyenne harmonique est ce qui transforme cela en HyperLogLog, d'erreur relative environ $ 1.04/\sqrt{m} $.
+\item[(c)] Analysez plutôt l'estimateur de Flajolet--Martin : suivez le plus grand nombre $ R $ de zéros terminaux dans l'écriture binaire d'une valeur de hachage rencontrée, et démontrez que $ 2^{R} $ est à un facteur constant près de $ D $ avec probabilité constante. Expliquez ensuite pourquoi découper le flux en $ m $ seaux d'après les premiers bits de hachage puis combiner les maxima par seau à l'aide d'une moyenne harmonique est ce qui transforme cela en HyperLogLog, d'erreur relative environ $ 1{,}04/\sqrt{m} $.
 \item[(d)] Démontrez une borne inférieure : tout algorithme déterministe décidant exactement si $ D = n $ ou $ D < n $ doit utiliser $ \Omega(n) $ bits de mémoire, par une réduction depuis le problème de communication de DCS-22.
 \end{enumerate}
 
@@ -1122,8 +1122,8 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Problème du comptage d'éléments distincts --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Count-distinct_problem})
 \item Contexte : HyperLogLog --- Wikipédia (\url{https://fr.wikipedia.org/wiki/HyperLogLog})
-\item Article : Flajolet \& Martin, ``Probabilistic counting algorithms for data base applications'', Journal of Computer and System Sciences 31 (1985)
-\item Article : Alon, Matias \& Szegedy, ``The space complexity of approximating the frequency moments'', Journal of Computer and System Sciences 58 (1999)
+\item Article : Flajolet \& Martin, \og{} Probabilistic counting algorithms for data base applications \fg{}, Journal of Computer and System Sciences 31 (1985)
+\item Article : Alon, Matias \& Szegedy, \og{} The space complexity of approximating the frequency moments \fg{}, Journal of Computer and System Sciences 58 (1999)
 \end{refs}
 
 \bigskip
@@ -1145,8 +1145,8 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Problème P ≟ NP --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_P_%E2%89%9F_NP})
 \item Lecture : Arora \& Barak, \textit{Computational Complexity}, ch. 2--3
-\item Article : Baker, Gill \& Solovay, ``Relativizations of the P =? NP Question'', SIAM Journal on Computing 4 (1975)
-\item Lecture : Aaronson, ``P =? NP'', dans \textit{Open Problems in Mathematics} (Springer, 2016)
+\item Article : Baker, Gill \& Solovay, \og{} Relativizations of the P =? NP Question \fg{}, SIAM Journal on Computing 4 (1975)
+\item Lecture : Aaronson, \og{} P =? NP \fg{}, dans \textit{Open Problems in Mathematics} (Springer, 2016)
 \end{refs}
 
 \bigskip
@@ -1165,8 +1165,8 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Hypothèse du temps exponentiel --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Exponential_time_hypothesis})
-\item Article : Impagliazzo \& Paturi, ``On the Complexity of k-SAT'', Journal of Computer and System Sciences 62 (2001)
-\item Article : Backurs \& Indyk, ``Edit Distance Cannot Be Computed in Strongly Subquadratic Time (unless SETH is false)'', STOC 2015
+\item Article : Impagliazzo \& Paturi, \og{} On the Complexity of k-SAT \fg{}, Journal of Computer and System Sciences 62 (2001)
+\item Article : Backurs \& Indyk, \og{} Edit Distance Cannot Be Computed in Strongly Subquadratic Time (unless SETH is false) \fg{}, STOC 2015
 \item Lecture : Arora \& Barak, \textit{Computational Complexity}, ch. 2 (prérequis)
 \end{refs}
 
@@ -1186,7 +1186,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : BPP (complexité) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/BPP_(complexit%C3%A9)})
-\item Article : Impagliazzo \& Wigderson, ``P = BPP if E Requires Exponential Circuits: Derandomizing the XOR Lemma'', STOC 1997
+\item Article : Impagliazzo \& Wigderson, \og{} P = BPP if E Requires Exponential Circuits: Derandomizing the XOR Lemma \fg{}, STOC 1997
 \item Lecture : Arora \& Barak, \textit{Computational Complexity}, ch. 7 et 20
 \end{refs}
 
@@ -1206,7 +1206,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Problème de l'isomorphisme de graphes --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_l%27isomorphisme_de_graphes})
-\item Article : Babai, ``Graph Isomorphism in Quasipolynomial Time'' (2015), arXiv:1512.03547 (\url{https://arxiv.org/abs/1512.03547})
+\item Article : Babai, \og{} Graph Isomorphism in Quasipolynomial Time \fg{} (2015), arXiv:1512.03547 (\url{https://arxiv.org/abs/1512.03547})
 \item Article : Helfgott, \og{} Isomorphismes de graphes en temps quasi-polynomial \fg{} (séminaire Bourbaki, 2017), arXiv:1701.04372 (\url{https://arxiv.org/abs/1701.04372})
 \item Lecture : Arora \& Barak, \textit{Computational Complexity}, ch. 8 (démonstrations interactives, protocoles pour GI)
 \end{refs}
@@ -1214,7 +1214,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \bigskip
 
 \begin{problem}[{L'exposant $\omega$ de la multiplication de matrices --- Recherche}]
-\textbf{DCS-28.} \textbf{Problème.} Soit $\omega$ la borne inférieure des exposants $c$ tels que deux matrices $n \times n$ puissent être multipliées en $O(n^c)$ opérations arithmétiques. \textbf{Statut : ouvert ; la conjecture $\omega$ = 2 n'est pas tranchée, et le record a bougé plusieurs fois depuis 2020.} On sait : $2 \le \omega < 2.372$. Jalons : Strassen 1969 ($2.81$), Coppersmith--Winograd 1990 ($2.376$), puis, après 2020, une course de raffinements de la méthode laser --- Alman--Williams 2020 ($2.37286$), Duan--Wu--Zhou 2022 ($2.37188$), Williams--Xu--Xu--Zhou, SODA 2024 ($2.371552$), avec d'autres raffinements en 2024--2026 (certains assistés par ordinateur) portant le record aux environs de $2.3712$. Points d'entrée :
+\textbf{DCS-28.} \textbf{Problème.} Soit $\omega$ la borne inférieure des exposants $c$ tels que deux matrices $n \times n$ puissent être multipliées en $O(n^c)$ opérations arithmétiques. \textbf{Statut : ouvert ; la conjecture $\omega$ = 2 n'est pas tranchée, et le record a bougé plusieurs fois depuis 2020.} On sait : $2 \le \omega < 2{,}372$. Jalons : Strassen 1969 ($2{,}81$), Coppersmith--Winograd 1990 ($2{,}376$), puis, après 2020, une course de raffinements de la méthode laser --- Alman--Williams 2020 ($2{,}37286$), Duan--Wu--Zhou 2022 ($2{,}37188$), Williams--Xu--Xu--Zhou, SODA 2024 ($2{,}371552$), avec d'autres raffinements en 2024--2026 (certains assistés par ordinateur) portant le record aux environs de $2{,}3712$. Points d'entrée :
 \begin{enumerate}
 \item[(a)] vérifiez l'identité à sept produits de Strassen pour des matrices par blocs $2 \times 2$ et démontrez qu'elle donne $O(n^{\log_2 7})$ ;
 \item[(b)] démontrez la borne inférieure facile $\omega$ $\ge$ 2 ;
@@ -1227,8 +1227,8 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Complexité de la multiplication de matrices --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Complexit%C3%A9_de_la_multiplication_de_matrices})
-\item Article : Vassilevska Williams, Xu, Xu \& Zhou, ``New Bounds for Matrix Multiplication: from Alpha to Omega'', SODA 2024, arXiv:2307.07970 (\url{https://arxiv.org/abs/2307.07970})
-\item Article : Strassen, ``Gaussian elimination is not optimal'', Numerische Mathematik 13 (1969)
+\item Article : Vassilevska Williams, Xu, Xu \& Zhou, \og{} New Bounds for Matrix Multiplication: from Alpha to Omega \fg{}, SODA 2024, arXiv:2307.07970 (\url{https://arxiv.org/abs/2307.07970})
+\item Article : Strassen, \og{} Gaussian elimination is not optimal \fg{}, Numerische Mathematik 13 (1969)
 \item Lecture : Bürgisser, Clausen \& Shokrollahi, \textit{Algebraic Complexity Theory}
 \end{refs}
 
@@ -1242,8 +1242,8 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : 3SUM --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/3SUM})
-\item Article : Gajentaan \& Overmars, ``On a class of $O(n^2)$ problems in computational geometry'', Computational Geometry 5 (1995)
-\item Article : Grønlund \& Pettie, ``Threesomes, Degenerates, and Love Triangles'', FOCS 2014 / Journal of the ACM 65 (2018)
+\item Article : Gajentaan \& Overmars, \og{} On a class of $O(n^2)$ problems in computational geometry \fg{}, Computational Geometry 5 (1995)
+\item Article : Grønlund \& Pettie, \og{} Threesomes, Degenerates, and Love Triangles \fg{}, FOCS 2014 / Journal of the ACM 65 (2018)
 \end{refs}
 
 \bigskip
@@ -1256,7 +1256,7 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Conjecture du log-rang --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Log-rank_conjecture})
-\item Article : Lovett, ``Communication is bounded by root of rank'', Journal of the ACM 63 (2016)
+\item Article : Lovett, \og{} Communication is bounded by root of rank \fg{}, Journal of the ACM 63 (2016)
 \item Lecture : Kushilevitz \& Nisan, \textit{Communication Complexity}, ch. 1--2
 \end{refs}
 
@@ -1277,9 +1277,9 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 
 \begin{refs}
 \item Contexte : Arbre splay --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Arbre_splay})
-\item Article : Sleator \& Tarjan, ``Self-adjusting binary search trees'', Journal of the ACM 32 (1985)
-\item Article : Demaine, Harmon, Iacono \& Pătraşcu, ``Dynamic optimality --- almost'', SIAM Journal on Computing 37 (2007)
-\item Article : Chmel, Haeupler, Hladík, Koucký, Roeyskoe, Rozhoň, Sladký \& Tarjan, ``Splay trees are almost dynamically optimal'' (2026), arXiv:2607.18498 (\url{https://arxiv.org/abs/2607.18498})
+\item Article : Sleator \& Tarjan, \og{} Self-adjusting binary search trees \fg{}, Journal of the ACM 32 (1985)
+\item Article : Demaine, Harmon, Iacono \& Pătraşcu, \og{} Dynamic optimality --- almost \fg{}, SIAM Journal on Computing 37 (2007)
+\item Article : Chmel, Haeupler, Hladík, Koucký, Roeyskoe, Rozhoň, Sladký \& Tarjan, \og{} Splay trees are almost dynamically optimal \fg{} (2026), arXiv:2607.18498 (\url{https://arxiv.org/abs/2607.18498})
 \end{refs}
 
 \bigskip
@@ -1300,8 +1300,8 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \begin{refs}
 \item Contexte : Problème des k serveurs --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/K-server_problem})
 \item Contexte : Algorithme de remplacement de pages --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Page_replacement_algorithm})
-\item Article : Sleator \& Tarjan, ``Amortized efficiency of list update and paging rules'', Communications of the ACM 28 (1985)
-\item Article : Bubeck, Coester \& Rabani, ``The randomized k-server conjecture is false!'' (2022), arXiv:2211.05753 (\url{https://arxiv.org/abs/2211.05753})
+\item Article : Sleator \& Tarjan, \og{} Amortized efficiency of list update and paging rules \fg{}, Communications of the ACM 28 (1985)
+\item Article : Bubeck, Coester \& Rabani, \og{} The randomized k-server conjecture is false! \fg{} (2022), arXiv:2211.05753 (\url{https://arxiv.org/abs/2211.05753})
 \end{refs}
 
 \bigskip
@@ -1310,12 +1310,12 @@ avec les bonnes conditions au bord, en prenant garde à la seule étape non triv
 \textbf{DCS-50.} \textbf{Problème.} Dans le modèle cell-probe, la mémoire est découpée en cellules de $ w $ bits et seuls les accès mémoire sont facturés, tout calcul étant gratuit ; une structure dynamique de sommes préfixes maintient $ a_1, \dots, a_n $ sous les mises à jour $ a_i \gets a_i + \delta $ et les requêtes $ \sum_{j \le i} a_j $. Démontrez la borne supérieure $ O(\log n) $ à l'aide d'un arbre équilibré de sommes partielles, puis énoncez la borne inférieure cell-probe correspondante $ \Omega(\log n) $ de Pătraşcu et Demaine et rapportez honnêtement jusqu'où l'on est parvenu vers une borne inférieure polynomiale pour un problème dynamique explicite.
 \end{problem}
 
-\noindent Statut, honnêtement énoncé : les bornes polylogarithmiques constituent le record, et une borne polynomiale pour un quelconque problème dynamique explicite est grande ouverte. Andrew Yao a introduit ce modèle en 1981, dans un article demandant si les tables doivent être triées, précisément pour démontrer des bornes inférieures valables contre tout algorithme, si habile soit-il --- en ne facturant que les accès mémoire on concède tout le reste et l'on peut malgré tout dire quelque chose, ce qui est plus que n'ont réussi les modèles de circuits ou de machines de Turing. La méthode du chronogramme de Fredman et Saks (1989) a donné les premières bornes $ \Omega(\log n / \log\log n) $ pour les sommes partielles et pour le problème union-find de DCS-37 ; Pătraşcu et Demaine ont affiné les sommes partielles jusqu'à un $ \Theta(\log n) $ serré. Depuis, le plafond n'a presque pas bougé : Larsen a démontré $ \Omega\big((\log n/\log\log n)^2\big) $ pour le comptage pondéré sur intervalles en 2012 et, pour les problèmes dont la réponse tient en un bit, où $ \Omega(\log n) $ faisait barrage, Larsen, Weinstein et Yu ont atteint $ \Omega(\log^{1.5} n) $ en 2018. Que le modèle ne parvienne toujours pas à livrer une borne $ n^{\varepsilon} $ pour un problème explicite est, avec les bornes inférieures de circuits, l'une des gênes les plus vives de la théorie de la complexité.
+\noindent Statut, honnêtement énoncé : les bornes polylogarithmiques constituent le record, et une borne polynomiale pour un quelconque problème dynamique explicite est grande ouverte. Andrew Yao a introduit ce modèle en 1981, dans un article demandant si les tables doivent être triées, précisément pour démontrer des bornes inférieures valables contre tout algorithme, si habile soit-il --- en ne facturant que les accès mémoire on concède tout le reste et l'on peut malgré tout dire quelque chose, ce qui est plus que n'ont réussi les modèles de circuits ou de machines de Turing. La méthode du chronogramme de Fredman et Saks (1989) a donné les premières bornes $ \Omega(\log n / \log\log n) $ pour les sommes partielles et pour le problème union-find de DCS-37 ; Pătraşcu et Demaine ont affiné les sommes partielles jusqu'à un $ \Theta(\log n) $ serré. Depuis, le plafond n'a presque pas bougé : Larsen a démontré $ \Omega\big((\log n/\log\log n)^2\big) $ pour le comptage pondéré sur intervalles en 2012 et, pour les problèmes dont la réponse tient en un bit, où $ \Omega(\log n) $ faisait barrage, Larsen, Weinstein et Yu ont atteint $ \Omega(\log^{1{,}5} n) $ en 2018. Que le modèle ne parvienne toujours pas à livrer une borne $ n^{\varepsilon} $ pour un problème explicite est, avec les bornes inférieures de circuits, l'une des gênes les plus vives de la théorie de la complexité.
 
 \begin{refs}
 \item Contexte : Modèle cell-probe --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Cell-probe_model})
-\item Article : Fredman \& Saks, ``The cell probe complexity of dynamic data structures'', STOC 1989
-\item Article : Pătraşcu \& Demaine, ``Logarithmic lower bounds in the cell-probe model'', SIAM Journal on Computing 35 (2006)
+\item Article : Fredman \& Saks, \og{} The cell probe complexity of dynamic data structures \fg{}, STOC 1989
+\item Article : Pătraşcu \& Demaine, \og{} Logarithmic lower bounds in the cell-probe model \fg{}, SIAM Journal on Computing 35 (2006)
 \end{refs}
 
 \bigskip
