@@ -4,14 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La salle des lycéens — Hors de la Caverne</title>
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="Tous les problèmes du site marqués [Lycée], rassemblés en un seul endroit — 234 au total. Aucune connaissance au-delà des mathématiques du lycée n&#x27;est…">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="katex/katex.min.css">
+<link rel="stylesheet" href="style.css">
 <script src="theme.js"></script>
 <script defer src="katex/katex.min.js"></script>
 <script defer src="katex/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="mathfit.js"></script>
+<script defer src="site.js"></script>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
 <a href="college.html">Collège</a> ·
@@ -26,42 +31,46 @@
 <button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
 </nav>
 <hr>
+<main id="contenu">
 
 <h1>La salle des lycéens</h1>
 <p class="lede">Tous les problèmes du site marqués [Lycée], rassemblés en un seul endroit — 234 au total. Aucune connaissance au-delà des mathématiques du lycée n'est supposée ; en revanche, une démonstration complète est attendue partout. Choisissez les domaines qui vous appellent, ou parcourez-les tous. Chaque problème renvoie à sa page d'origine, où les niveaux plus difficiles du même sujet vous attendent. Vous débutez ? Passez d'abord par la <a href="college.html">salle des collégiens</a>.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/highschool.tex" download>source LaTeX</a> · <a href="tex/highschool.pdf" download>PDF compilé</a></p>
 
 <div class="filterbar" id="areabar">
 <span>Domaines : </span>
-<button data-area="all" class="active">Tous les domaines (234)</button>
-<button data-area="area-logique-th-orie-des-ensembles-et-fondements">Logique, théorie des ensembles et fondements (9)</button>
-<button data-area="area-alg-bre-abstraite">Algèbre abstraite (8)</button>
-<button data-area="area-alg-bre-lin-aire">Algèbre linéaire (8)</button>
-<button data-area="area-th-orie-des-nombres">Théorie des nombres (12)</button>
-<button data-area="area-analyse-r-elle-et-th-orie-de-la-mesure">Analyse réelle et théorie de la mesure (8)</button>
-<button data-area="area-analyse-complexe">Analyse complexe (7)</button>
-<button data-area="area-topologie">Topologie (9)</button>
-<button data-area="area-g-om-trie">Géométrie (9)</button>
-<button data-area="area-combinatoire-et-th-orie-des-graphes">Combinatoire et théorie des graphes (10)</button>
-<button data-area="area-calcul-diff-rentiel-et-int-gral">Calcul différentiel et intégral (21)</button>
-<button data-area="area-probabilit-s">Probabilités (11)</button>
-<button data-area="area-statistique">Statistique (8)</button>
-<button data-area="area-quations-diff-rentielles-et-syst-mes-dynamiques">Équations différentielles et systèmes dynamiques (8)</button>
-<button data-area="area-analyse-num-rique">Analyse numérique (8)</button>
-<button data-area="area-optimisation-et-th-orie-des-jeux">Optimisation et théorie des jeux (9)</button>
-<button data-area="area-math-matiques-discr-tes-et-informatique">Mathématiques discrètes et informatique (9)</button>
-<button data-area="area-cryptographie-et-th-orie-de-l-information">Cryptographie et théorie de l&#x27;information (10)</button>
-<button data-area="area-physique-math-matique">Physique mathématique (9)</button>
-<button data-area="area-casse-t-te">Casse-tête (38)</button>
-<button data-area="area-probl-mes-ouverts">Problèmes ouverts (5)</button>
-<button data-area="area-l-art-de-la-d-monstration">L&#x27;art de la démonstration (18)</button>
-<input type="search" id="hssearch" placeholder="rechercher parmi ces problèmes…">
-<span class="count" id="hscount"></span>
+<button type="button" data-area="all" class="active" aria-pressed="true">Tous les domaines (234)</button>
+<button type="button" data-area="area-logique-th-orie-des-ensembles-et-fondements" aria-pressed="false">Logique, théorie des ensembles et fondements (9)</button>
+<button type="button" data-area="area-alg-bre-abstraite" aria-pressed="false">Algèbre abstraite (8)</button>
+<button type="button" data-area="area-alg-bre-lin-aire" aria-pressed="false">Algèbre linéaire (8)</button>
+<button type="button" data-area="area-th-orie-des-nombres" aria-pressed="false">Théorie des nombres (12)</button>
+<button type="button" data-area="area-analyse-r-elle-et-th-orie-de-la-mesure" aria-pressed="false">Analyse réelle et théorie de la mesure (8)</button>
+<button type="button" data-area="area-analyse-complexe" aria-pressed="false">Analyse complexe (7)</button>
+<button type="button" data-area="area-topologie" aria-pressed="false">Topologie (9)</button>
+<button type="button" data-area="area-g-om-trie" aria-pressed="false">Géométrie (9)</button>
+<button type="button" data-area="area-combinatoire-et-th-orie-des-graphes" aria-pressed="false">Combinatoire et théorie des graphes (10)</button>
+<button type="button" data-area="area-calcul-diff-rentiel-et-int-gral" aria-pressed="false">Calcul différentiel et intégral (21)</button>
+<button type="button" data-area="area-probabilit-s" aria-pressed="false">Probabilités (11)</button>
+<button type="button" data-area="area-statistique" aria-pressed="false">Statistique (8)</button>
+<button type="button" data-area="area-quations-diff-rentielles-et-syst-mes-dynamiques" aria-pressed="false">Équations différentielles et systèmes dynamiques (8)</button>
+<button type="button" data-area="area-analyse-num-rique" aria-pressed="false">Analyse numérique (8)</button>
+<button type="button" data-area="area-optimisation-et-th-orie-des-jeux" aria-pressed="false">Optimisation et théorie des jeux (9)</button>
+<button type="button" data-area="area-math-matiques-discr-tes-et-informatique" aria-pressed="false">Mathématiques discrètes et informatique (9)</button>
+<button type="button" data-area="area-cryptographie-et-th-orie-de-l-information" aria-pressed="false">Cryptographie et théorie de l&#x27;information (10)</button>
+<button type="button" data-area="area-physique-math-matique" aria-pressed="false">Physique mathématique (9)</button>
+<button type="button" data-area="area-casse-t-te" aria-pressed="false">Casse-tête (38)</button>
+<button type="button" data-area="area-probl-mes-ouverts" aria-pressed="false">Problèmes ouverts (5)</button>
+<button type="button" data-area="area-l-art-de-la-d-monstration" aria-pressed="false">L&#x27;art de la démonstration (18)</button>
+<input type="search" id="hssearch" aria-label="Rechercher parmi ces problèmes"
+  placeholder="rechercher parmi ces problèmes…">
+<span class="count" id="hscount" aria-live="polite"></span>
 </div>
 <hr>
 
 <div class="area" id="area-logique-th-orie-des-ensembles-et-fondements">
 <h2>Logique, théorie des ensembles et fondements</h2>
-<section class="problem" id="FND-01" data-level="Lycée">
+<section class="problem" id="FND-01" data-level="Lycée" data-page="pure-foundations.html">
 <h3>FND-01 · Chevaliers et valets <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Sur une certaine île, tout habitant est un <i>chevalier</i>,
@@ -91,7 +100,7 @@ premier pas vers la démonstration.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-foundations.html#FND-01">Logique, théorie des ensembles et fondements</a>.</p>
 </section>
-<section class="problem" id="FND-02" data-level="Lycée">
+<section class="problem" id="FND-02" data-level="Lycée" data-page="pure-foundations.html">
 <h3>FND-02 · Seize fonctions de vérité <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -121,7 +130,7 @@ d'ordinateur.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-foundations.html#FND-02">Logique, théorie des ensembles et fondements</a>.</p>
 </section>
-<section class="problem" id="FND-03" data-level="Lycée">
+<section class="problem" id="FND-03" data-level="Lycée" data-page="pure-foundations.html">
 <h3>FND-03 · Le jeu de la négation des quantificateurs <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Toutes les variables parcourent les entiers relatifs ℤ.</p>
@@ -151,7 +160,7 @@ alternés comme un jeu entre un vérificateur et un falsificateur.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-foundations.html#FND-03">Logique, théorie des ensembles et fondements</a>.</p>
 </section>
-<section class="problem" id="FND-04" data-level="Lycée">
+<section class="problem" id="FND-04" data-level="Lycée" data-page="pure-foundations.html">
 <h3>FND-04 · La récurrence, et une démonstration qui démontre trop <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -183,7 +192,7 @@ fois.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-foundations.html#FND-04">Logique, théorie des ensembles et fondements</a>.</p>
 </section>
-<section class="problem" id="FND-05" data-level="Lycée">
+<section class="problem" id="FND-05" data-level="Lycée" data-page="pure-foundations.html">
 <h3>FND-05 · Le barbier, et l'ensemble de tous les ensembles <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -213,7 +222,7 @@ ensembles (ZFC) dans laquelle on fait des mathématiques aujourd'hui.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-foundations.html#FND-05">Logique, théorie des ensembles et fondements</a>.</p>
 </section>
-<section class="problem" id="FND-24" data-level="Lycée" data-kind="court">
+<section class="problem" id="FND-24" data-level="Lycée" data-kind="court" data-page="pure-foundations.html">
 <h3>FND-24 · Une phrase qu'aucun insulaire ne peut prononcer <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Sur l'île des chevaliers et des valets de FND-01, démontrez
 qu'aucun habitant — chevalier ou valet — ne peut jamais dire « Je suis un valet ».</p>
@@ -228,7 +237,7 @@ ce sont les hypothèses elles-mêmes qui doivent céder.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-foundations.html#FND-24">Logique, théorie des ensembles et fondements</a>.</p>
 </section>
-<section class="problem" id="FND-25" data-level="Lycée" data-kind="court">
+<section class="problem" id="FND-25" data-level="Lycée" data-kind="court" data-page="pure-foundations.html">
 <h3>FND-25 · Compter les parties <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez qu'un ensemble à \( n \) éléments possède
 exactement \( 2^n \) parties, en comptant l'ensemble vide et l'ensemble tout entier.</p>
@@ -243,7 +252,7 @@ des parties dépasse l'ensemble, à jamais.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-foundations.html#FND-25">Logique, théorie des ensembles et fondements</a>.</p>
 </section>
-<section class="problem" id="FND-36" data-level="Lycée">
+<section class="problem" id="FND-36" data-level="Lycée" data-page="pure-foundations.html">
 <h3>FND-36 · L'hôtel de Hilbert <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un hôtel a des chambres numérotées \( 1, 2, 3, \ldots \) — une par entier
@@ -279,7 +288,7 @@ ensemble infini est infini au sens de Dedekind exige une forme faible de l'axiom
 </ul>
 <p class="source-note">Extrait de <a href="pure-foundations.html#FND-36">Logique, théorie des ensembles et fondements</a>.</p>
 </section>
-<section class="problem" id="FND-37" data-level="Lycée" data-kind="court">
+<section class="problem" id="FND-37" data-level="Lycée" data-kind="court" data-page="pure-foundations.html">
 <h3>FND-37 · La récurrence et le principe du plus petit élément <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Le <i>principe du plus petit élément</i> dit que toute partie
 non vide de l'ensemble des entiers naturels contient un plus petit élément. Démontrez qu'il est
@@ -302,7 +311,7 @@ l'arithmétique.</p>
 </div>
 <div class="area" id="area-alg-bre-abstraite">
 <h2>Algèbre abstraite</h2>
-<section class="problem" id="ALG-01" data-level="Lycée">
+<section class="problem" id="ALG-01" data-level="Lycée" data-page="pure-algebra.html">
 <h3>ALG-01 · La preuve par neuf et l'horloge des puissances <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux entiers \(a\) et \(b\) sont dits <i>congrus
@@ -329,7 +338,7 @@ recueil : les résidus modulo 10 qui possèdent un inverse multiplicatif, tourna
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-01">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-02" data-level="Lycée">
+<section class="problem" id="ALG-02" data-level="Lycée" data-page="pure-algebra.html">
 <h3>ALG-02 · Les vingt-quatre rotations du cube <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -355,7 +364,7 @@ Le programme d'Erlangen, énoncé par Klein en 1872, proposait de définir la g�
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-02">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-03" data-level="Lycée">
+<section class="problem" id="ALG-03" data-level="Lycée" data-page="pure-algebra.html">
 <h3>ALG-03 · Quand \(n^4 + 4\) est-il premier ? <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Déterminez, en le démontrant, tous les entiers strictement positifs \(n\) pour lesquels
 \(n^4 + 4\) est un nombre premier. Plus généralement, montrez que \(n^4 + 4m^4\) est composé pour tous les
@@ -373,7 +382,7 @@ dernier théorème de Fermat.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-03">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-04" data-level="Lycée">
+<section class="problem" id="ALG-04" data-level="Lycée" data-page="pure-algebra.html">
 <h3>ALG-04 · Le théorème de la racine rationnelle, et pourquoi \(\sqrt[3]{2}\) est irrationnel <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -400,7 +409,7 @@ notion bien plus profonde d'<i>irréductibilité</i>, le concept-atome de la th�
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-04">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-26" data-level="Lycée" data-kind="court">
+<section class="problem" id="ALG-26" data-level="Lycée" data-kind="court" data-page="pure-algebra.html">
 <h3>ALG-26 · Les symétries d'un rectangle <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Énumérez les quatre symétries d'un rectangle non carré, dressez leur table de composition, et démontrez que tout élément autre que l'identité est son propre inverse.</p>
 <p class="context">C'est le groupe de Klein, le plus petit groupe qui ne soit pas cyclique, et on peut le découvrir avec un morceau de carton avant même que le mot « groupe » ait été défini. Construire la table à la main, puis en remarquer le motif, c'est exactement ainsi que les axiomes abstraits ont été dégagés historiquement — les exemples sont venus d'abord.</p>
@@ -409,7 +418,7 @@ notion bien plus profonde d'<i>irréductibilité</i>, le concept-atome de la th�
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-26">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-27" data-level="Lycée" data-kind="court">
+<section class="problem" id="ALG-27" data-level="Lycée" data-kind="court" data-page="pure-algebra.html">
 <h3>ALG-27 · Une horloge qui perd des nombres <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Dans l'arithmétique modulo \( 12 \), déterminez exactement quels résidus possèdent un inverse multiplicatif, et démontrez que votre critère est correct pour un module \( n \) quelconque.</p>
 <p class="context">L'arithmétique modulaire ressemble à l'arithmétique ordinaire jusqu'au moment où la division échoue, et déterminer précisément quand elle échoue — exactement lorsque le résidu partage un facteur avec le module — est le premier véritable théorème que la plupart des gens démontrent sur les anneaux. C'est aussi la raison pour laquelle les modules premiers se comportent tellement mieux, et donc celle pour laquelle la cryptographie les préfère.</p>
@@ -418,7 +427,7 @@ notion bien plus profonde d'<i>irréductibilité</i>, le concept-atome de la th�
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-27">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-34" data-level="Lycée">
+<section class="problem" id="ALG-34" data-level="Lycée" data-page="pure-algebra.html">
 <h3>ALG-34 · La parité, et le 14-15 qui ne sort jamais <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une <i>transposition</i> est une permutation qui échange deux éléments et fixe
@@ -460,7 +469,7 @@ l'équation du cinquième degré.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-34">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-35" data-level="Lycée" data-kind="court">
+<section class="problem" id="ALG-35" data-level="Lycée" data-kind="court" data-page="pure-algebra.html">
 <h3>ALG-35 · Toute table de groupe est un carré latin <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que dans la table de multiplication d'un groupe fini,
 chaque élément du groupe apparaît exactement une fois dans chaque ligne et exactement une fois dans chaque
@@ -482,7 +491,7 @@ la condition sur les lignes et les colonnes (les quasi-groupes) forment un sujet
 </div>
 <div class="area" id="area-alg-bre-lin-aire">
 <h2>Algèbre linéaire</h2>
-<section class="problem" id="LIN-01" data-level="Lycée">
+<section class="problem" id="LIN-01" data-level="Lycée" data-page="pure-linear-algebra.html">
 <h3>LIN-01 · Deux droites, une réponse — le plus souvent <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Considérons le système de deux équations
@@ -509,7 +518,7 @@ déterminant, dont cette page suit la longue carrière.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-linear-algebra.html#LIN-01">Algèbre linéaire</a>.</p>
 </section>
-<section class="problem" id="LIN-02" data-level="Lycée">
+<section class="problem" id="LIN-02" data-level="Lycée" data-page="pure-linear-algebra.html">
 <h3>LIN-02 · Les rotations vues comme des matrices <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -539,7 +548,7 @@ est, pour bien des étudiants, le premier indice qu'une notation peut penser à 
 </ul>
 <p class="source-note">Extrait de <a href="pure-linear-algebra.html#LIN-02">Algèbre linéaire</a>.</p>
 </section>
-<section class="problem" id="LIN-03" data-level="Lycée">
+<section class="problem" id="LIN-03" data-level="Lycée" data-page="pure-linear-algebra.html">
 <h3>LIN-03 · Le déterminant est une aire <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soient \(u = (a, b)\) et \(v = (c, d)\) deux vecteurs du
@@ -568,7 +577,7 @@ faisant honnêtement du travail de plein air.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-linear-algebra.html#LIN-03">Algèbre linéaire</a>.</p>
 </section>
-<section class="problem" id="LIN-22" data-level="Lycée" data-kind="court">
+<section class="problem" id="LIN-22" data-level="Lycée" data-kind="court" data-page="pure-linear-algebra.html">
 <h3>LIN-22 · Trace et déterminant cachés dans un polynôme <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Pour la matrice
 \(A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\), démontrer que
@@ -588,7 +597,7 @@ dimension \(n\), le même polynôme a \(n\) coefficients, et ce sont les fonctio
 </ul>
 <p class="source-note">Extrait de <a href="pure-linear-algebra.html#LIN-22">Algèbre linéaire</a>.</p>
 </section>
-<section class="problem" id="LIN-23" data-level="Lycée" data-kind="court">
+<section class="problem" id="LIN-23" data-level="Lycée" data-kind="court" data-page="pure-linear-algebra.html">
 <h3>LIN-23 · Des matrices dont le carré est nul <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Déterminer, avec démonstration, toutes les matrices réelles
 \(2 \times 2\) \(N\) vérifiant \(N^2 = 0\). Montrer qu'une telle matrice \(N\) non nulle écrase le
@@ -604,7 +613,7 @@ côté, et c'est l'unique brique élémentaire dont est assemblée la réduction
 </ul>
 <p class="source-note">Extrait de <a href="pure-linear-algebra.html#LIN-23">Algèbre linéaire</a>.</p>
 </section>
-<section class="problem" id="LIN-24" data-level="Lycée">
+<section class="problem" id="LIN-24" data-level="Lycée" data-page="pure-linear-algebra.html">
 <h3>LIN-24 · Combien y a-t-il de carrés magiques, vraiment ? <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Appelons <i>carré magique</i> un tableau \(3 \times 3\) de nombres réels dont les
@@ -639,7 +648,7 @@ plutôt que huit mille.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-linear-algebra.html#LIN-24">Algèbre linéaire</a>.</p>
 </section>
-<section class="problem" id="LIN-34" data-level="Lycée">
+<section class="problem" id="LIN-34" data-level="Lycée" data-page="pure-linear-algebra.html">
 <h3>LIN-34 · Le produit vectoriel, et le volume qu'il mesure <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Pour des vecteurs \(u = (u_1, u_2, u_3)\) et \(v = (v_1, v_2, v_3)\) de l'espace, on pose
@@ -681,7 +690,7 @@ celui de dimension sept provenant des octonions.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-linear-algebra.html#LIN-34">Algèbre linéaire</a>.</p>
 </section>
-<section class="problem" id="LIN-35" data-level="Lycée" data-kind="court">
+<section class="problem" id="LIN-35" data-level="Lycée" data-kind="court" data-page="pure-linear-algebra.html">
 <h3>LIN-35 · Des lignes dont la somme vaut un <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soit \(P\) une matrice \(n \times n\) à coefficients positifs
 ou nuls dont chaque ligne a pour somme \(1\). Démontrer que le vecteur dont toutes les coordonnées
@@ -703,7 +712,7 @@ version renforcée de cet énoncé — Perron–Frobenius — est ce qui classe 
 </div>
 <div class="area" id="area-th-orie-des-nombres">
 <h2>Théorie des nombres</h2>
-<section class="problem" id="NT-01" data-level="Lycée">
+<section class="problem" id="NT-01" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-01 · Irrationalité de √2 <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Démontrer que \(\sqrt{2}\) est irrationnel : il n'existe pas
 d'entiers strictement positifs \(p, q\) tels que \(p^2 = 2q^2\). Déterminer ensuite, avec
@@ -723,7 +732,7 @@ la théorie des nombres.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-01">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-02" data-level="Lycée">
+<section class="problem" id="NT-02" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-02 · Euclide : une infinité de nombres premiers <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Démontrer qu'il existe une infinité de nombres premiers.
 Examiner ensuite les nombres \(N_k = p_1 p_2 \cdots p_k + 1\), où
@@ -745,7 +754,7 @@ leçon sur le nombre de portes que peut avoir une seule vérité.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-02">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-03" data-level="Lycée">
+<section class="problem" id="NT-03" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-03 · L'algorithme d'Euclide et le théorème de Bachet-Bézout <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Démontrer que l'algorithme d'Euclide — qui remplace
 répétitivement le couple \((a, b)\) par \((b,\ a \bmod b)\) — termine et calcule \(\gcd(a, b)\).
@@ -768,7 +777,7 @@ la rigueur voulue que par Gauss dans les <i>Disquisitiones Arithmeticae</i> (180
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-03">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-04" data-level="Lycée">
+<section class="problem" id="NT-04" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-04 · Congruences et preuve par neuf <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Pour des entiers \(a, b\) et \(m \ge 1\), on écrit
 \(a \equiv b \pmod{m}\) lorsque \(m\) divise \(a - b\). Démontrer que la congruence respecte
@@ -790,7 +799,7 @@ Presque tout ce qui figure sur cette page parle cette langue.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-04">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-05" data-level="Lycée">
+<section class="problem" id="NT-05" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-05 · Les premiers ≡ 3 (mod 4), et pourquoi 1 (mod 4) est plus difficile <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Démontrer que tout entier \(n \equiv 3 \pmod 4\) possède un
 facteur premier \(\equiv 3 \pmod 4\). En déduire une adaptation de l'argument d'Euclide — considérer
@@ -812,7 +821,7 @@ théorie analytique des nombres.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-05">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-06" data-level="Lycée">
+<section class="problem" id="NT-06" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-06 · Le petit théorème de Fermat <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Soit \(p\) un nombre premier. Démontrer que
 \(a^p \equiv a \pmod p\) pour tout entier \(a\), et donc que
@@ -833,7 +842,7 @@ fonde le cryptosystème RSA. Une petite congruence à très longue portée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-06">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-07" data-level="Lycée">
+<section class="problem" id="NT-07" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-07 · Les triplets pythagoriciens <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Un triplet pythagoricien \((a, b, c)\) d'entiers strictement
 positifs vérifie \(a^2 + b^2 = c^2\), et il est primitif si \(\gcd(a, b, c) = 1\).
@@ -856,7 +865,7 @@ triangles rationnels construits à partir de ces triplets.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-07">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-08" data-level="Lycée">
+<section class="problem" id="NT-08" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-08 · La fraction continue de √2 <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Montrer que
 \[ \sqrt{2} \;=\; 1 + \cfrac{1}{2 + \cfrac{1}{2 + \cfrac{1}{2 + \cdots}}}, \]
@@ -879,7 +888,7 @@ transcendance (NT-25).</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-08">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-36" data-level="Lycée" data-kind="court">
+<section class="problem" id="NT-36" data-level="Lycée" data-kind="court" data-page="pure-number-theory.html">
 <h3>NT-36 · Le dernier chiffre d'une tour <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Déterminer le dernier chiffre de \( 7^{100} \), et démontrer votre réponse sans calculer le nombre.</p>
 <p class="context">Le dernier chiffre d'une puissance est son résidu modulo \( 10 \), et les puissances de \( 7 \) sont cycliques de période quatre — toute la question se ramène donc à \( 100 \bmod 4 \). C'est le plus petit avant-goût possible de l'ordre d'un élément dans un groupe, une idée qui deviendra plus tard le théorème de Lagrange et le théorème d'Euler.</p>
@@ -888,7 +897,7 @@ transcendance (NT-25).</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-36">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-37" data-level="Lycée" data-kind="court">
+<section class="problem" id="NT-37" data-level="Lycée" data-kind="court" data-page="pure-number-theory.html">
 <h3>NT-37 · Pourquoi la preuve par neuf fonctionne <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrer qu'un entier strictement positif est divisible par \( 9 \) si et seulement si la somme de ses chiffres décimaux est divisible par \( 9 \). Énoncer et démontrer ensuite la règle analogue pour \( 11 \).</p>
 <p class="context">On enseigne cette règle à tous les écoliers et on n'en montre presque à aucun la raison ; la démonstration tient en trois lignes dès qu'on écrit le nombre sous la forme \( \sum d_k 10^k \) et qu'on remarque que \( 10 \equiv 1 \pmod 9 \). Le cas \( 11 \) oblige à traiter \( 10 \equiv -1 \), ce qui explique l'alternance des signes des chiffres — une petite mais authentique surprise.</p>
@@ -897,7 +906,7 @@ transcendance (NT-25).</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-37">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-44" data-level="Lycée" data-kind="court">
+<section class="problem" id="NT-44" data-level="Lycée" data-kind="court" data-page="pure-number-theory.html">
 <h3>NT-44 · Une infinité de premiers ≡ 5 (mod 6) <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrer que tout entier \( n \equiv 5 \pmod 6 \) possède un
 facteur premier \( \equiv 5 \pmod 6 \). En déduire, à la manière d'Euclide, qu'il existe une infinité
@@ -914,7 +923,7 @@ et NT-50 plus bas montre ce qu'il en coûte de le démontrer.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-44">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-45" data-level="Lycée">
+<section class="problem" id="NT-45" data-level="Lycée" data-page="pure-number-theory.html">
 <h3>NT-45 · La conjecture de Catalan, et ce qui l'a suivie <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Appelons \( m \) une <i>puissance parfaite</i> si \( m = a^k \) pour des entiers
@@ -958,7 +967,7 @@ entre puissances parfaites consécutives croissent, et personne ne sait le démo
 </div>
 <div class="area" id="area-analyse-r-elle-et-th-orie-de-la-mesure">
 <h2>Analyse réelle et théorie de la mesure</h2>
-<section class="problem" id="RA-01" data-level="Lycée">
+<section class="problem" id="RA-01" data-level="Lycée" data-page="pure-real-analysis.html">
 <h3>RA-01 · Bornes supérieures <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Pour un ensemble \( S \) de nombres réels, un <i>majorant</i>
@@ -987,7 +996,7 @@ Zurich, mécontent du flou géométrique entretenu autour de la droite numériqu
 </ul>
 <p class="source-note">Extrait de <a href="pure-real-analysis.html#RA-01">Analyse réelle et théorie de la mesure</a>.</p>
 </section>
-<section class="problem" id="RA-02" data-level="Lycée">
+<section class="problem" id="RA-02" data-level="Lycée" data-page="pure-real-analysis.html">
 <h3>RA-02 · Pourquoi 0,999… = 1 <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Le symbole \( 0{,}999\ldots \) désigne, par définition, la
 limite de la suite \( 0{,}9,\ 0{,}99,\ 0{,}999,\ \dots \) — autrement dit la somme de la série
@@ -1009,7 +1018,7 @@ première rencontre avec le fait qu'un nombre réel peut avoir deux écritures d
 </ul>
 <p class="source-note">Extrait de <a href="pure-real-analysis.html#RA-02">Analyse réelle et théorie de la mesure</a>.</p>
 </section>
-<section class="problem" id="RA-03" data-level="Lycée">
+<section class="problem" id="RA-03" data-level="Lycée" data-page="pure-real-analysis.html">
 <h3>RA-03 · La série harmonique diverge <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que la série harmonique
 \( 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \cdots \) diverge : les sommes partielles
@@ -1029,7 +1038,7 @@ Bâle, traité dans <a href="proofs.html">L'art de la démonstration</a>.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-real-analysis.html#RA-03">Analyse réelle et théorie de la mesure</a>.</p>
 </section>
-<section class="problem" id="RA-24" data-level="Lycée" data-kind="court">
+<section class="problem" id="RA-24" data-level="Lycée" data-kind="court" data-page="pure-real-analysis.html">
 <h3>RA-24 · Les deux limites qu'une suite possède toujours <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Pour la suite \( a_n = (-1)^n \left( 1 + \frac{1}{n}
 \right) \), déterminez \( \limsup_{n \to \infty} a_n \) et \( \liminf_{n \to \infty} a_n \), avec
@@ -1046,7 +1055,7 @@ théorèmes (la règle de Cauchy, le lemme de Fatou) valables sans aucune hypoth
 </ul>
 <p class="source-note">Extrait de <a href="pure-real-analysis.html#RA-24">Analyse réelle et théorie de la mesure</a>.</p>
 </section>
-<section class="problem" id="RA-25" data-level="Lycée" data-kind="court">
+<section class="problem" id="RA-25" data-level="Lycée" data-kind="court" data-page="pure-real-analysis.html">
 <h3>RA-25 · D'où vient e <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que la suite
 \( a_n = \left( 1 + \frac{1}{n} \right)^{n} \) est strictement croissante et majorée par
@@ -1064,7 +1073,7 @@ une limite au lieu d'être écrit.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-real-analysis.html#RA-25">Analyse réelle et théorie de la mesure</a>.</p>
 </section>
-<section class="problem" id="RA-26" data-level="Lycée">
+<section class="problem" id="RA-26" data-level="Lycée" data-page="pure-real-analysis.html">
 <h3>RA-26 · Segments emboîtés, et comment Cantor a dénombré la droite <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Ne supposez de \( \mathbb{R} \) rien d'autre que d'être un corps totalement
@@ -1101,7 +1110,7 @@ complétude : c'est elle qui distingue \( \mathbb{R} \) de \( \mathbb{Q} \).</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-real-analysis.html#RA-26">Analyse réelle et théorie de la mesure</a>.</p>
 </section>
-<section class="problem" id="RA-36" data-level="Lycée">
+<section class="problem" id="RA-36" data-level="Lycée" data-page="pure-real-analysis.html">
 <h3>RA-36 · La propriété d'Archimède, et comment ℚ remplit ℝ <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Ne supposez de \( \mathbb{R} \) rien d'autre que d'être un corps totalement
@@ -1142,7 +1151,7 @@ localisé comme borne supérieure devient enfin un nombre.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-real-analysis.html#RA-36">Analyse réelle et théorie de la mesure</a>.</p>
 </section>
-<section class="problem" id="RA-37" data-level="Lycée" data-kind="court">
+<section class="problem" id="RA-37" data-level="Lycée" data-kind="court" data-page="pure-real-analysis.html">
 <h3>RA-37 · Une récurrence qui monte vers une limite <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soient \( a_1 = \sqrt{2} \) et \( a_{n+1} = \sqrt{2 + a_n} \)
 pour \( n \ge 1 \). Démontrez que la suite est strictement croissante et majorée par \( 2 \), donc
@@ -1164,7 +1173,7 @@ expressions apparaissent comme cosinus d'angles divisés en deux encore et encor
 </div>
 <div class="area" id="area-analyse-complexe">
 <h2>Analyse complexe</h2>
-<section class="problem" id="CA-01" data-level="Lycée">
+<section class="problem" id="CA-01" data-level="Lycée" data-page="pure-complex-analysis.html">
 <h3>CA-01 · De Moivre et les racines de l'unité <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -1193,7 +1202,7 @@ question (c) poussée jusqu'à \( n = 17 \).</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-complex-analysis.html#CA-01">Analyse complexe</a>.</p>
 </section>
-<section class="problem" id="CA-02" data-level="Lycée">
+<section class="problem" id="CA-02" data-level="Lycée" data-page="pure-complex-analysis.html">
 <h3>CA-02 · Multiplier, c'est faire tourner <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Représentez \( z = a + bi \) par le point \( (a, b) \) du
@@ -1222,7 +1231,7 @@ mille ans avant que quiconque ne dessine un nombre complexe.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-complex-analysis.html#CA-02">Analyse complexe</a>.</p>
 </section>
-<section class="problem" id="CA-20" data-level="Lycée" data-kind="court">
+<section class="problem" id="CA-20" data-level="Lycée" data-kind="court" data-page="pure-complex-analysis.html">
 <h3>CA-20 · La règle du parallélogramme <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que pour tous nombres complexes \( z \) et \( w \),
 \[ |z + w|^2 + |z - w|^2 = 2|z|^2 + 2|w|^2, \]
@@ -1239,7 +1248,7 @@ de Jordan–von Neumann de 1935.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-complex-analysis.html#CA-20">Analyse complexe</a>.</p>
 </section>
-<section class="problem" id="CA-21" data-level="Lycée" data-kind="court">
+<section class="problem" id="CA-21" data-level="Lycée" data-kind="court" data-page="pure-complex-analysis.html">
 <h3>CA-21 · Racines carrées sans trigonométrie <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Trouvez les deux racines carrées complexes de \( 3 + 4i \) en
 résolvant \( (x + iy)^2 = 3 + 4i \) avec \( x, y \) réels, sans utiliser la trigonométrie. Démontrez
@@ -1258,7 +1267,7 @@ l'algèbre (CA-07), et la raison pour laquelle les mathématiciens ont cessé de
 </ul>
 <p class="source-note">Extrait de <a href="pure-complex-analysis.html#CA-21">Analyse complexe</a>.</p>
 </section>
-<section class="problem" id="CA-22" data-level="Lycée">
+<section class="problem" id="CA-22" data-level="Lycée" data-page="pure-complex-analysis.html">
 <h3>CA-22 · Les nombres complexes comme moteur de géométrie <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Identifiez le plan à \( \mathbb{C} \), et notez \( \omega = e^{2\pi i/3} \)
@@ -1293,7 +1302,7 @@ machine.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-complex-analysis.html#CA-22">Analyse complexe</a>.</p>
 </section>
-<section class="problem" id="CA-32" data-level="Lycée" data-kind="court">
+<section class="problem" id="CA-32" data-level="Lycée" data-kind="court" data-page="pure-complex-analysis.html">
 <h3>CA-32 · Sommer des cosinus avec une série géométrique <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Pour \( \theta \) non multiple de \( 2\pi \), sommez la série
 géométrique \( \sum_{k=0}^{n-1} e^{ik\theta} \) et prenez parties réelle et imaginaire pour obtenir
@@ -1314,7 +1323,7 @@ dans l'analyse fonctionnelle de ce site.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-complex-analysis.html#CA-32">Analyse complexe</a>.</p>
 </section>
-<section class="problem" id="CA-33" data-level="Lycée">
+<section class="problem" id="CA-33" data-level="Lycée" data-page="pure-complex-analysis.html">
 <h3>CA-33 · Le théorème de Ptolémée en une identité <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soient \( a, b, c, d \) quatre nombres complexes quelconques, vus comme les
@@ -1356,7 +1365,7 @@ configuration ; le cercle est exactement le cas d'égalité.</p>
 </div>
 <div class="area" id="area-topologie">
 <h2>Topologie</h2>
-<section class="problem" id="TOP-01" data-level="Lycée">
+<section class="problem" id="TOP-01" data-level="Lycée" data-page="pure-topology.html">
 <h3>TOP-01 · Les ponts de Königsberg <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> La ville de Königsberg comptait sept ponts reliant deux îles fluviales aux deux
@@ -1385,7 +1394,7 @@ topologie récompense toujours : trouver la seule quantité qui ne peut pas chan
 </ul>
 <p class="source-note">Extrait de <a href="pure-topology.html#TOP-01">Topologie</a>.</p>
 </section>
-<section class="problem" id="TOP-02" data-level="Lycée">
+<section class="problem" id="TOP-02" data-level="Lycée" data-page="pure-topology.html">
 <h3>TOP-02 · La formule des polyèdres d'Euler et les cinq solides de Platon <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soit un polyèdre convexe à \( V \) sommets, \( E \) arêtes et \( F \)
@@ -1415,7 +1424,7 @@ TOP-20.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-topology.html#TOP-02">Topologie</a>.</p>
 </section>
-<section class="problem" id="TOP-03" data-level="Lycée">
+<section class="problem" id="TOP-03" data-level="Lycée" data-page="pure-topology.html">
 <h3>TOP-03 · Expériences avec un ruban de Möbius, rendues rigoureuses <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Fabriquez un ruban de Möbius : donnez un demi-tour à une bande de papier et collez
@@ -1447,7 +1456,7 @@ première fois, est l'un des deux invariants qui classifient toutes les surfaces
 </ul>
 <p class="source-note">Extrait de <a href="pure-topology.html#TOP-03">Topologie</a>.</p>
 </section>
-<section class="problem" id="TOP-04" data-level="Lycée">
+<section class="problem" id="TOP-04" data-level="Lycée" data-page="pure-topology.html">
 <h3>TOP-04 · Antipodes sur l'équateur <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Supposez que la température varie continûment le long de
 l'équateur terrestre. Démontrez qu'à tout instant donné il existe deux points diamétralement opposés
@@ -1469,7 +1478,7 @@ ensembliste.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-topology.html#TOP-04">Topologie</a>.</p>
 </section>
-<section class="problem" id="TOP-25" data-level="Lycée" data-kind="court">
+<section class="problem" id="TOP-25" data-level="Lycée" data-kind="court" data-page="pure-topology.html">
 <h3>TOP-25 · Un point fixe sur l'intervalle <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soit \( f : [0,1] \to [0,1] \) continue. Démontrez qu'il existe
 \( x \in [0,1] \) tel que \( f(x) = x \).</p>
@@ -1485,7 +1494,7 @@ exister.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-topology.html#TOP-25">Topologie</a>.</p>
 </section>
-<section class="problem" id="TOP-26" data-level="Lycée" data-kind="court">
+<section class="problem" id="TOP-26" data-level="Lycée" data-kind="court" data-page="pure-topology.html">
 <h3>TOP-26 · Dedans et dehors, comptés par parité <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soit \( P \) un polygone simple fermé du plan (un nombre fini de
 segments, se rencontrant seulement en des extrémités communes, sans auto-intersection) et soit \( q \)
@@ -1504,7 +1513,7 @@ fois qu'il décide si votre curseur est à l'intérieur d'une forme.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-topology.html#TOP-26">Topologie</a>.</p>
 </section>
-<section class="problem" id="TOP-27" data-level="Lycée">
+<section class="problem" id="TOP-27" data-level="Lycée" data-page="pure-topology.html">
 <h3>TOP-27 · Eau, gaz, électricité <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Trois maisons doivent chacune être reliées à trois services — eau, gaz,
@@ -1538,7 +1547,7 @@ caractéristique d'Euler (TOP-02) fait le vrai travail.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-topology.html#TOP-27">Topologie</a>.</p>
 </section>
-<section class="problem" id="TOP-37" data-level="Lycée">
+<section class="problem" id="TOP-37" data-level="Lycée" data-page="pure-topology.html">
 <h3>TOP-37 · Deux alpinistes, une seule altitude <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux profils de montagne sont donnés par des fonctions continues
@@ -1581,7 +1590,7 @@ l'ensemble de toutes les positions licites.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-topology.html#TOP-37">Topologie</a>.</p>
 </section>
-<section class="problem" id="TOP-38" data-level="Lycée" data-kind="court">
+<section class="problem" id="TOP-38" data-level="Lycée" data-kind="court" data-page="pure-topology.html">
 <h3>TOP-38 · Le polyèdre qui casse la formule d'Euler <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Construisez un cadre de tableau polyédrique — un bloc
 rectangulaire percé de part en part d'un trou rectangulaire — découpé de sorte que chaque face soit un
@@ -1607,7 +1616,7 @@ au dix-neuvième siècle.</p>
 </div>
 <div class="area" id="area-g-om-trie">
 <h2>Géométrie</h2>
-<section class="problem" id="GEO-01" data-level="Lycée">
+<section class="problem" id="GEO-01" data-level="Lycée" data-page="pure-geometry.html">
 <h3>GEO-01 · Le théorème de l'angle inscrit <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soient \( A \) et \( B \) deux points d'un cercle de centre \( O \),
@@ -1632,7 +1641,7 @@ disjonction de cas ; trouver la bonne décomposition, c'est tout l'enjeu.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-01">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-02" data-level="Lycée">
+<section class="problem" id="GEO-02" data-level="Lycée" data-page="pure-geometry.html">
 <h3>GEO-02 · Le théorème de Ptolémée <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soit \( ABCD \) un quadrilatère inscrit dans un cercle.</p>
@@ -1657,7 +1666,7 @@ auxiliaire ; le trouver est un rite de passage.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-02">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-03" data-level="Lycée">
+<section class="problem" id="GEO-03" data-level="Lycée" data-page="pure-geometry.html">
 <h3>GEO-03 · La droite d'Euler <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Dans un triangle non équilatéral quelconque, soient \( O \) le centre du
@@ -1680,7 +1689,7 @@ porte aujourd'hui le nom d'Euler et passe par plusieurs autres centres remarquab
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-03">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-04" data-level="Lycée">
+<section class="problem" id="GEO-04" data-level="Lycée" data-page="pure-geometry.html">
 <h3>GEO-04 · Le cercle des neuf points <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Considérez un triangle quelconque, d'orthocentre \( H \) et de centre du
@@ -1705,7 +1714,7 @@ précédents.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-04">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-05" data-level="Lycée">
+<section class="problem" id="GEO-05" data-level="Lycée" data-page="pure-geometry.html">
 <h3>GEO-05 · Isopérimétrie, premiers pas <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le but à l'horizon est le théorème isopérimétrique : parmi toutes les
@@ -1736,7 +1745,7 @@ d'existence.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-05">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-23" data-level="Lycée" data-kind="court">
+<section class="problem" id="GEO-23" data-level="Lycée" data-kind="court" data-page="pure-geometry.html">
 <h3>GEO-23 · La puissance d'un point <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soit \( P \) un point extérieur à un cercle, et soit une droite passant par \( P \) qui coupe le cercle en \( A \) et \( B \). Démontrez que le produit \( PA \cdot PB \) est le même pour toute droite de ce type passant par \( P \).</p>
 <p class="context">Cet invariant est la puissance du point, et il transforme une famille de configurations apparemment sans lien en un seul nombre attaché à \( P \) seul. C'est le moteur de l'axe radical et de la plupart des problèmes d'olympiade mettant en jeu deux cercles, et la démonstration se réduit à une application des triangles semblables.</p>
@@ -1745,7 +1754,7 @@ d'existence.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-23">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-24" data-level="Lycée" data-kind="court">
+<section class="problem" id="GEO-24" data-level="Lycée" data-kind="court" data-page="pure-geometry.html">
 <h3>GEO-24 · Compter les points entiers dans un polygone <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Vérifiez le théorème de Pick — un polygone simple dont les sommets sont sur le réseau des points entiers a pour aire \( I + B/2 - 1 \), où \( I \) est le nombre de points entiers intérieurs et \( B \) le nombre de ceux du bord — sur cinq polygones de votre invention, dont un non convexe. Démontrez-le ensuite pour les rectangles à côtés parallèles aux axes.</p>
 <p class="context">Le théorème de Pick, démontré en 1899, relie une quantité continue (l'aire) à un dénombrement purement discret : c'est le genre de pont qui donnera plus tard toute la géométrie des points d'un réseau. Le vérifier sur un exemple non convexe est important : l'intuition de la plupart des gens suppose discrètement la convexité, alors que le théorème n'en a pas besoin.</p>
@@ -1754,7 +1763,7 @@ d'existence.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-24">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-31" data-level="Lycée">
+<section class="problem" id="GEO-31" data-level="Lycée" data-page="pure-geometry.html">
 <h3>GEO-31 · Le théorème des trisectrices de Morley <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Dans un triangle \( ABC \), partagez chacun des trois angles intérieurs en trois
@@ -1791,7 +1800,7 @@ vaut sur tout corps de caractéristique différente de deux et de trois.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-31">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-32" data-level="Lycée" data-kind="court">
+<section class="problem" id="GEO-32" data-level="Lycée" data-kind="court" data-page="pure-geometry.html">
 <h3>GEO-32 · Deux bissectrices de même longueur <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez le théorème de Steiner–Lehmus : si les bissectrices
 intérieures issues de deux sommets d'un triangle ont la même longueur, alors le triangle est
@@ -1815,7 +1824,7 @@ machine.</p>
 </div>
 <div class="area" id="area-combinatoire-et-th-orie-des-graphes">
 <h2>Combinatoire et théorie des graphes</h2>
-<section class="problem" id="CMB-01" data-level="Lycée">
+<section class="problem" id="CMB-01" data-level="Lycée" data-page="pure-combinatorics.html">
 <h3>CMB-01 · Classiques du principe des tiroirs <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le principe des tiroirs dit : si l'on range plus de \( n \) objets dans
@@ -1843,7 +1852,7 @@ peut lui faire porter est une première leçon de levier mathématique.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-01">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-02" data-level="Lycée">
+<section class="problem" id="CMB-02" data-level="Lycée" data-page="pure-combinatorics.html">
 <h3>CMB-02 · Dénombrer les sous-ensembles, avec démonstration <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -1872,7 +1881,7 @@ gestes — le double comptage et la bijection — sont le pain quotidien du doma
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-02">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-03" data-level="Lycée">
+<section class="problem" id="CMB-03" data-level="Lycée" data-page="pure-combinatorics.html">
 <h3>CMB-03 · Le lemme des poignées de main <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un graphe est un ensemble de sommets dont certaines paires sont jointes par
@@ -1899,7 +1908,7 @@ manières, comme en (a), ne cesse jamais d'être utile.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-03">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-04" data-level="Lycée">
+<section class="problem" id="CMB-04" data-level="Lycée" data-page="pure-combinatorics.html">
 <h3>CMB-04 · L'échiquier mutilé <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Retirez deux cases d'angle diagonalement opposées d'un
 échiquier ordinaire \( 8 \times 8 \). Démontrez que les 62 cases restantes ne peuvent pas être
@@ -1918,7 +1927,7 @@ démonstration humaine tient en une phrase et que la recherche exhaustive est as
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-04">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-05" data-level="Lycée">
+<section class="problem" id="CMB-05" data-level="Lycée" data-page="pure-combinatorics.html">
 <h3>CMB-05 · Pavages par triominos <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Un triomino en L est la forme faite de trois carrés unités
 disposés en L. Démontrez que pour tout \( n \ge 1 \), un plateau \( 2^n \times 2^n \) privé d'une
@@ -1938,7 +1947,7 @@ astucieuses il faut des arguments de coloration (CMB-04) pour démontrer une imp
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-05">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-06" data-level="Lycée">
+<section class="problem" id="CMB-06" data-level="Lycée" data-page="pure-combinatorics.html">
 <h3>CMB-06 · Chemins dans un réseau, étoiles et barres <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -1967,7 +1976,7 @@ mécanique statistique.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-06">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-27" data-level="Lycée" data-kind="court">
+<section class="problem" id="CMB-27" data-level="Lycée" data-kind="court" data-page="pure-combinatorics.html">
 <h3>CMB-27 · Deux personnes ayant le même nombre d'amis <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que dans tout groupe de \( n \geq 2 \) personnes, au moins deux d'entre elles ont le même nombre d'amis au sein du groupe (l'amitié étant réciproque).</p>
 <p class="context">Le principe des tiroirs marche presque immédiatement — il y a \( n \) personnes et \( n \) nombres d'amis possibles, de \( 0 \) à \( n-1 \) — et tout le problème consiste à remarquer que \( 0 \) et \( n-1 \) ne peuvent pas coexister. Cette observation, et non le principe des tiroirs lui-même, est le contenu mathématique.</p>
@@ -1976,7 +1985,7 @@ mécanique statistique.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-27">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-28" data-level="Lycée" data-kind="court">
+<section class="problem" id="CMB-28" data-level="Lycée" data-kind="court" data-page="pure-combinatorics.html">
 <h3>CMB-28 · Une poignée de main qui doit être paire <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que dans tout graphe fini le nombre de sommets de degré impair est pair. Servez-vous-en ensuite pour montrer qu'il est impossible qu'exactement neuf personnes à une soirée serrent chacune la main d'exactement trois autres.</p>
 <p class="context">Le lemme des poignées de main est le premier théorème de la théorie des graphes et découle du décompte des extrémités d'arêtes de deux façons, technique — le double comptage — qui continuera de rapporter des années durant. L'application illustre l'habitude utile : une démonstration d'impossibilité obtenue en trouvant un invariant que la configuration souhaitée devrait violer.</p>
@@ -1985,7 +1994,7 @@ mécanique statistique.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-28">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-35" data-level="Lycée" data-kind="court">
+<section class="problem" id="CMB-35" data-level="Lycée" data-kind="court" data-page="pure-combinatorics.html">
 <h3>CMB-35 · Des poignées de main qui ne se croisent jamais <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Placez \( 2n \) personnes en des points distincts d'un cercle et appariez-les, chacune serrant la main d'exactement une autre ; tracez chaque poignée de main comme une corde rectiligne. Démontrez que le nombre de tels appariements où deux cordes ne se croisent jamais est le nombre de Catalan \( C_n = \frac{1}{n+1}\binom{2n}{n} \).</p>
 <p class="context">Les diagrammes de cordes non croisées sont un membre de plus de l'énorme famille dénombrée par les nombres de Catalan — le livre que Richard Stanley leur a consacré recense 214 interprétations combinatoires, et celle-ci ne figure pas parmi les trois de CMB-09, si bien qu'il vous faut la relier aux autres par un argument que vous trouverez vous-même. Les deux voies fonctionnent : construire une bijection avec les parenthésages équilibrés, ou découvrir la récurrence en se demandant ce que la corde d'une personne donnée fait au reste du cercle. Les structures non croisées ne sont pas une curiosité : le treillis des partitions non croisées, dégagé par Germain Kreweras en 1972, s'est révélé des décennies plus tard être l'ossature combinatoire des probabilités libres.</p>
@@ -1996,7 +2005,7 @@ mécanique statistique.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-35">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-36" data-level="Lycée">
+<section class="problem" id="CMB-36" data-level="Lycée" data-page="pure-combinatorics.html">
 <h3>CMB-36 · Dénombrer les colorations : chemins, cycles, arbres <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Pour un graphe fini \( G \) à \( n \) sommets et un entier strictement positif \( k \), soit \( P_G(k) \) le nombre de façons de donner à chaque sommet l'une de \( k \) couleurs de sorte que deux sommets adjacents reçoivent toujours des couleurs différentes.</p>
@@ -2021,7 +2030,7 @@ où \( G-e \) est \( G \) privé de \( e \) et \( G/e \) est \( G \) dont les de
 </div>
 <div class="area" id="area-calcul-diff-rentiel-et-int-gral">
 <h2>Calcul différentiel et intégral</h2>
-<section class="problem" id="CAL-01" data-level="Lycée">
+<section class="problem" id="CAL-01" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-01 · La limite, à partir des premiers principes <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Calculez
@@ -2051,7 +2060,7 @@ des limites une fois pour toutes est le droit d'entrée à tout ce qui suit.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-01">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-02" data-level="Lycée">
+<section class="problem" id="CAL-02" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-02 · La dérivée est une limite <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Posez
@@ -2079,7 +2088,7 @@ ces calculs honnêtement, une fois, est ce qui sépare le fait de savoir l'analy
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-02">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-03" data-level="Lycée">
+<section class="problem" id="CAL-03" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-03 · Les tangentes avant l'analyse <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Travaillez uniquement avec de l'algèbre — ni limites, ni dérivées.</p>
@@ -2106,7 +2115,7 @@ l'invention.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-03">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-04" data-level="Lycée">
+<section class="problem" id="CAL-04" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-04 · Le plus grand champ qu'une clôture puisse enfermer <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Vous disposez de \( L \) mètres de clôture.</p>
@@ -2135,7 +2144,7 @@ La partie (iii) est l'âme du problème : un point critique est un suspect, pas 
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-04">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-05" data-level="Lycée">
+<section class="problem" id="CAL-05" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-05 · La boîte de conserve la plus économique <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Une boîte cylindrique fermée doit contenir un volume fixé
 \( V \). Démontrez que l'aire totale de sa surface (le côté plus les deux couvercles) est minimale exactement lorsque
@@ -2156,7 +2165,7 @@ distincte.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-05">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-06" data-level="Lycée">
+<section class="problem" id="CAL-06" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-06 · Les taux liés, honnêtement <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une échelle de 5&nbsp;m est appuyée contre un mur ; son pied
@@ -2186,7 +2195,7 @@ où elle doit céder.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-06">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-07" data-level="Lycée">
+<section class="problem" id="CAL-07" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-07 · Le théorème du compteur de vitesse <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Une voiture passe un premier péage à midi et un second,
 90&nbsp;km plus loin, à 13&nbsp;h. Démontrez qu'à un certain instant son compteur indiquait
@@ -2209,7 +2218,7 @@ a fait sur tout l'intervalle). Presque tous les théorèmes de cette bande trave
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-07">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-08" data-level="Lycée">
+<section class="problem" id="CAL-08" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-08 · L'aire à partir des premiers principes <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> En utilisant la définition de l'intégrale comme limite de
 sommes de Riemann, calculez \( \int_0^1 x^2\,dx \) directement : découpez \( [0,1] \) en \( n \)
@@ -2231,7 +2240,7 @@ une fois à la dure est ce qui vous fait sentir ce que le théorème fondamental
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-08">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-09" data-level="Lycée">
+<section class="problem" id="CAL-09" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-09 · Pourquoi le théorème fondamental est un théorème <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Énoncez précisément les deux parties du théorème fondamental
@@ -2265,7 +2274,7 @@ Newton et Leibniz ; la première démonstration rigoureuse pour des intégrandes
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-09">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-10" data-level="Lycée">
+<section class="problem" id="CAL-10" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-10 · La longueur d'arc, avec sa mise en place démontrée <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Définissez la longueur d'une courbe comme la borne supérieure des
@@ -2296,7 +2305,7 @@ le cœur du problème : la formule est habituellement affirmée avec un geste de
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-10">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-11" data-level="Lycée">
+<section class="problem" id="CAL-11" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-11 · La série harmonique diverge <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Démontrez que
@@ -2326,7 +2335,7 @@ pu en révéler la vérité — un pur triomphe de la démonstration sur l'évid
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-11">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-12" data-level="Lycée">
+<section class="problem" id="CAL-12" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-12 · Les critères de convergence sont des théorèmes <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Énoncez et démontrez :</p>
@@ -2357,7 +2366,7 @@ Chaque critère est une petite machine ; ici vous ouvrez le boîtier et voyez l'
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-12">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-13" data-level="Lycée">
+<section class="problem" id="CAL-13" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-13 · Approcher e, avec un certificat <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Énoncez le théorème de Taylor avec le reste sous forme de
 Lagrange :
@@ -2382,7 +2391,7 @@ le trouver est le problème.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-13">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-14" data-level="Lycée">
+<section class="problem" id="CAL-14" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-14 · L'Hôpital, justifié <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -2416,7 +2425,7 @@ problème est le point (i) : le théorème des accroissements finis de Cauchy es
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-14">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-15" data-level="Lycée">
+<section class="problem" id="CAL-15" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-15 · L'aire sous la courbe en cloche — un défi <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que
 \[ \int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}. \]
@@ -2439,7 +2448,7 @@ en revanche trouvable — et inoubliable une fois trouvée. Sa signification pro
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-15">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-25" data-level="Lycée" data-kind="court">
+<section class="problem" id="CAL-25" data-level="Lycée" data-kind="court" data-page="applied-calculus.html">
 <h3>CAL-25 · Une limite sans rien à simplifier <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez, directement à partir de la définition de la dérivée, que la dérivée de \( f(x) = \sqrt{x} \) en un point \( a > 0 \) vaut \( 1/(2\sqrt{a}) \). Précisez exactement où vous utilisez que \( a \neq 0 \).</p>
 <p class="context">Le taux d'accroissement d'une racine carrée ne se simplifie pas par factorisation ; il faut multiplier par la quantité conjuguée, une astuce qui revient constamment en analyse. La seconde phrase est le véritable contenu — une formule de dérivée qui échoue silencieusement en une extrémité est le genre de chose qui devient plus tard une erreur sérieuse.</p>
@@ -2448,7 +2457,7 @@ en revanche trouvable — et inoubliable une fois trouvée. Sa signification pro
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-25">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-26" data-level="Lycée" data-kind="court">
+<section class="problem" id="CAL-26" data-level="Lycée" data-kind="court" data-page="applied-calculus.html">
 <h3>CAL-26 · Une série qui se télescope <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que
 \[ \sum_{n=1}^{\infty} \frac{1}{n(n+1)} = 1 \]
@@ -2459,7 +2468,7 @@ en trouvant une formule pour la somme partielle \( \sum_{n=1}^{N} \frac{1}{n(n+1
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-26">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-27" data-level="Lycée" data-kind="court">
+<section class="problem" id="CAL-27" data-level="Lycée" data-kind="court" data-page="applied-calculus.html">
 <h3>CAL-27 · La boîte de conserve la plus économe <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une boîte cylindrique doit contenir un volume fixé \( V \). Déterminez, en démontrant que votre réponse est bien un minimum et non un simple point critique, le rayon et la hauteur qui minimisent l'aire totale de sa surface.</p>
 <p class="context">C'est le problème d'optimisation classique, et presque tous ceux qui le résolvent s'arrêtent après avoir annulé la dérivée. L'obligation de démonstration est justement le cœur du sujet : une dérivée qui s'annule repère des candidats, et il faut quelque chose de plus — la dérivée seconde, une étude de signe, ou un argument de compacité — avant que le mot « minimum » soit honnête.</p>
@@ -2469,7 +2478,7 @@ en trouvant une formule pour la somme partielle \( \sum_{n=1}^{N} \frac{1}{n(n+1
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-27">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-34" data-level="Lycée">
+<section class="problem" id="CAL-34" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-34 · Le changement de variable, démontré <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> La règle de substitution dit que si \( g \) est continûment dérivable sur
@@ -2506,7 +2515,7 @@ jamais su documenter ; elle apparaît chez Euler.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-34">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-35" data-level="Lycée">
+<section class="problem" id="CAL-35" data-level="Lycée" data-page="applied-calculus.html">
 <h3>CAL-35 · Aires en polaires et arche de la cycloïde <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une courbe peut être donnée sous forme polaire \( r = r(\theta) \), ou paramétriquement par
@@ -2549,7 +2558,7 @@ avec la machinerie que vous démontrez ici, ou avec moins.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-calculus.html#CAL-35">Calcul différentiel et intégral</a>.</p>
 </section>
-<section class="problem" id="CAL-36" data-level="Lycée" data-kind="court">
+<section class="problem" id="CAL-36" data-level="Lycée" data-kind="court" data-page="applied-calculus.html">
 <h3>CAL-36 · Les fonctions qui mesurent une chaîne suspendue <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Posez
 \( \cosh x = \frac{e^x + e^{-x}}{2} \) et \( \sinh x = \frac{e^x - e^{-x}}{2} \). Démontrez que
@@ -2570,7 +2579,7 @@ l'unique courbe dont l'intégrale de longueur d'arc s'effondre est celle selon l
 </div>
 <div class="area" id="area-probabilit-s">
 <h2>Probabilités</h2>
-<section class="problem" id="PRB-01" data-level="Lycée">
+<section class="problem" id="PRB-01" data-level="Lycée" data-page="applied-probability.html">
 <h3>PRB-01 · Les dés de Galilée <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> On lance trois dés équilibrés. Les sommes 9 et 10 s'écrivent
 chacune comme somme de trois valeurs de dés d'exactement six façons
@@ -2595,7 +2604,7 @@ l'expliquer.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-01">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-02" data-level="Lycée">
+<section class="problem" id="PRB-02" data-level="Lycée" data-page="applied-probability.html">
 <h3>PRB-02 · Les deux paris du Chevalier <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le chevalier de Méré gagnait de l'argent en pariant qu'il
@@ -2629,7 +2638,7 @@ discipline.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-02">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-03" data-level="Lycée">
+<section class="problem" id="PRB-03" data-level="Lycée" data-page="applied-probability.html">
 <h3>PRB-03 · Le paradoxe des anniversaires <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On suppose les anniversaires indépendants et uniformes sur
@@ -2659,7 +2668,7 @@ astronomiquement grand et où 1,18√N reste le budget dont un attaquant a besoi
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-03">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-04" data-level="Lycée">
+<section class="problem" id="PRB-04" data-level="Lycée" data-page="applied-probability.html">
 <h3>PRB-04 · Monty Hall, démontré — et non plaidé <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une voiture est cachée uniformément au hasard derrière
@@ -2693,7 +2702,7 @@ probabilités : seuls le modèle et le calcul tranchent.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-04">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-05" data-level="Lycée">
+<section class="problem" id="PRB-05" data-level="Lycée" data-page="applied-probability.html">
 <h3>PRB-05 · L'erreur du parieur et la longueur des séries <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On lance indéfiniment une pièce équilibrée, les lancers étant indépendants.</p>
@@ -2725,7 +2734,7 @@ déforme.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-05">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-06" data-level="Lycée">
+<section class="problem" id="PRB-06" data-level="Lycée" data-page="applied-probability.html">
 <h3>PRB-06 · Bayes au cabinet médical <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une maladie touche 1 personne sur 1000. Un test la
@@ -2759,7 +2768,7 @@ paraissait.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-06">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-23" data-level="Lycée" data-kind="court">
+<section class="problem" id="PRB-23" data-level="Lycée" data-kind="court" data-page="applied-probability.html">
 <h3>PRB-23 · Deux enfants, deux protocoles <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une famille a deux enfants, chacun étant indépendamment
 garçon ou fille avec probabilité \( 1/2 \). Démontrez que si tout ce qu'on vous dit est qu'au moins
@@ -2778,7 +2787,7 @@ problème.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-23">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-24" data-level="Lycée" data-kind="court">
+<section class="problem" id="PRB-24" data-level="Lycée" data-kind="court" data-page="applied-probability.html">
 <h3>PRB-24 · Des dés qui se battent en rond <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Quatre dés équilibrés à six faces portent les valeurs
 \( A = (4,4,4,4,0,0) \), \( B = (3,3,3,3,3,3) \), \( C = (6,6,2,2,2,2) \),
@@ -2799,7 +2808,7 @@ nécessairement.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-24">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-25" data-level="Lycée">
+<section class="problem" id="PRB-25" data-level="Lycée" data-page="applied-probability.html">
 <h3>PRB-25 · Le problème des chapeaux <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> À une soirée, \( n \) invités déposent leur chapeau au vestiaire, et un
@@ -2836,7 +2845,7 @@ mesure.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-25">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-35" data-level="Lycée" data-kind="court">
+<section class="problem" id="PRB-35" data-level="Lycée" data-kind="court" data-page="applied-probability.html">
 <h3>PRB-35 · Ce que trois axiomes imposent déjà <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Les axiomes de Kolmogorov disent seulement ceci : tout
 événement \( A \) reçoit un nombre \( P(A) \ge 0 \), l'événement certain vérifie
@@ -2868,7 +2877,7 @@ ensembles sans exception.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-35">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-36" data-level="Lycée">
+<section class="problem" id="PRB-36" data-level="Lycée" data-page="applied-probability.html">
 <h3>PRB-36 · Le problème du scrutin <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Lors d'une élection, le candidat A recueille \( p \) voix et le candidat B en
@@ -2916,7 +2925,7 @@ de PRB-38 et des apparitions des nombres de Catalan dans toute la combinatoire.<
 </div>
 <div class="area" id="area-statistique">
 <h2>Statistique</h2>
-<section class="problem" id="STA-01" data-level="Lycée">
+<section class="problem" id="STA-01" data-level="Lycée" data-page="applied-statistics.html">
 <h3>STA-01 · Moyenne contre médiane <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Pour des réels \( x_1, \dots, x_n \), on pose
@@ -2944,7 +2953,7 @@ exactement pourquoi elle mérite d'être rédigée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-01">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-02" data-level="Lycée">
+<section class="problem" id="STA-02" data-level="Lycée" data-page="applied-statistics.html">
 <h3>STA-02 · Construisez votre propre paradoxe de Simpson <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux hôpitaux, A et B, traitent chacun exactement 1000 patients, chaque
@@ -2972,7 +2981,7 @@ exactement d'où vient la liberté d'inverser.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-02">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-03" data-level="Lycée">
+<section class="problem" id="STA-03" data-level="Lycée" data-page="applied-statistics.html">
 <h3>STA-03 · Corrélation n'est pas causalité — sous forme de théorème <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> La corrélation empirique \( r \) de données appariées mesure l'association
@@ -3004,7 +3013,7 @@ statistique d'aujourd'hui.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-03">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-19" data-level="Lycée" data-kind="court">
+<section class="problem" id="STA-19" data-level="Lycée" data-kind="court" data-page="applied-statistics.html">
 <h3>STA-19 · Pourquoi les fils des pères grands sont plus petits <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soient \( X \) et \( Y \) les tailles standardisées du père
 et du fils (chacune d'espérance 0 et d'écart type 1), de corrélation \( r \), et supposons la
@@ -3028,7 +3037,7 @@ seuls, et quelque chose d'autre en récolte toujours le crédit.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-19">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-20" data-level="Lycée" data-kind="court">
+<section class="problem" id="STA-20" data-level="Lycée" data-kind="court" data-page="applied-statistics.html">
 <h3>STA-20 · Une garantie qui n'a besoin d'aucune courbe en cloche <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soit \( x_1, \dots, x_n \) une liste quelconque de nombres,
 de moyenne \( \bar{x} \) et d'écart type
@@ -3050,7 +3059,7 @@ loi.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-20">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-21" data-level="Lycée">
+<section class="problem" id="STA-21" data-level="Lycée" data-page="applied-statistics.html">
 <h3>STA-21 · Compter des poissons que l'on ne peut pas compter <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un lac contient un nombre inconnu \( N \) de poissons. Vous en capturez
@@ -3091,7 +3100,7 @@ taille d'une chose que l'on ne pourra jamais voir en entier.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-21">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-31" data-level="Lycée" data-kind="court">
+<section class="problem" id="STA-31" data-level="Lycée" data-kind="court" data-page="applied-statistics.html">
 <h3>STA-31 · La dame qui déguste du thé <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On prépare huit tasses de thé, quatre où le lait a été versé
 en premier et quatre où c'est le thé ; on informe la dégustatrice qu'il y en a quatre de chaque
@@ -3119,7 +3128,7 @@ statisticien avant l'expérience plutôt qu'après.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-31">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-32" data-level="Lycée">
+<section class="problem" id="STA-32" data-level="Lycée" data-page="applied-statistics.html">
 <h3>STA-32 · Deux millions de mauvaises réponses <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une population comporte une fraction \( p \) d'électeurs favorables au candidat
@@ -3175,7 +3184,7 @@ est STA-32(a) réécrit pour le XXI<sup>e</sup> siècle.</p>
 </div>
 <div class="area" id="area-quations-diff-rentielles-et-syst-mes-dynamiques">
 <h2>Équations différentielles et systèmes dynamiques</h2>
-<section class="problem" id="ODE-01" data-level="Lycée">
+<section class="problem" id="ODE-01" data-level="Lycée" data-page="applied-ode.html">
 <h3>ODE-01 · La croissance exponentielle à partir des principes premiers <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> (a) Démontrer que les <i>seules</i> fonctions dérivables
 vérifiant \( y' = k y \) sur la droite réelle sont \( y(x) = C e^{kx} \) avec \( C \) constante.
@@ -3200,7 +3209,7 @@ de (c) un instrument d'archéologie.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-ode.html#ODE-01">Équations différentielles et systèmes dynamiques</a>.</p>
 </section>
-<section class="problem" id="ODE-02" data-level="Lycée">
+<section class="problem" id="ODE-02" data-level="Lycée" data-page="applied-ode.html">
 <h3>ODE-02 · La loi de refroidissement de Newton, à partir de données <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> La loi de refroidissement de Newton affirme que la température \( T \) d'un
@@ -3229,7 +3238,7 @@ la bonne façon de lire une approche exponentielle de l'équilibre.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-ode.html#ODE-02">Équations différentielles et systèmes dynamiques</a>.</p>
 </section>
-<section class="problem" id="ODE-03" data-level="Lycée">
+<section class="problem" id="ODE-03" data-level="Lycée" data-page="applied-ode.html">
 <h3>ODE-03 · La courbe logistique <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une population limitée par les ressources est modélisée par l'équation
@@ -3259,7 +3268,7 @@ prédire un plafond à la population belge — un rappel que les paramètres du 
 </ul>
 <p class="source-note">Extrait de <a href="applied-ode.html#ODE-03">Équations différentielles et systèmes dynamiques</a>.</p>
 </section>
-<section class="problem" id="ODE-22" data-level="Lycée" data-kind="court">
+<section class="problem" id="ODE-22" data-level="Lycée" data-kind="court" data-page="applied-ode.html">
 <h3>ODE-22 · La vitesse limite <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un corps de masse \( m \) tombe sans vitesse initiale sous
 l'effet de la pesanteur, contre une résistance de l'air proportionnelle à la vitesse, de sorte
@@ -3278,7 +3287,7 @@ toute la théorie qualitative vers laquelle cette page tend.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-ode.html#ODE-22">Équations différentielles et systèmes dynamiques</a>.</p>
 </section>
-<section class="problem" id="ODE-23" data-level="Lycée" data-kind="court">
+<section class="problem" id="ODE-23" data-level="Lycée" data-kind="court" data-page="applied-ode.html">
 <h3>ODE-23 · Le réservoir qui se vide en temps fini <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> De l'eau s'écoule par un petit trou percé au fond d'un
 réservoir cylindrique ; la loi de Torricelli impose à la hauteur \( h(t) \) d'obéir à
@@ -3298,7 +3307,7 @@ qui détruit l'unicité en ODE-08.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-ode.html#ODE-23">Équations différentielles et systèmes dynamiques</a>.</p>
 </section>
-<section class="problem" id="ODE-24" data-level="Lycée">
+<section class="problem" id="ODE-24" data-level="Lycée" data-page="applied-ode.html">
 <h3>ODE-24 · Champs de tangentes et méthode d'Euler <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On considère le problème de Cauchy
@@ -3333,7 +3342,7 @@ moitié de la leçon — une équation qu'on ne sait pas résoudre peut tout de 
 </ul>
 <p class="source-note">Extrait de <a href="applied-ode.html#ODE-24">Équations différentielles et systèmes dynamiques</a>.</p>
 </section>
-<section class="problem" id="ODE-34" data-level="Lycée">
+<section class="problem" id="ODE-34" data-level="Lycée" data-page="applied-ode.html">
 <h3>ODE-34 · La chaîne suspendue <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une chaîne souple homogène de poids \( w \) par unité de longueur pend au
@@ -3380,7 +3389,7 @@ courbe, qui diffère.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-ode.html#ODE-34">Équations différentielles et systèmes dynamiques</a>.</p>
 </section>
-<section class="problem" id="ODE-35" data-level="Lycée" data-kind="court">
+<section class="problem" id="ODE-35" data-level="Lycée" data-kind="court" data-page="applied-ode.html">
 <h3>ODE-35 · La vitesse de libération <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un projectile est tiré verticalement depuis la surface
 d'une planète sans atmosphère, de masse \( M \) et de rayon \( R \), à la vitesse
@@ -3407,7 +3416,7 @@ explique en grande partie pourquoi la Lune n'a pas d'atmosphère à perdre.</p>
 </div>
 <div class="area" id="area-analyse-num-rique">
 <h2>Analyse numérique</h2>
-<section class="problem" id="NUM-01" data-level="Lycée">
+<section class="problem" id="NUM-01" data-level="Lycée" data-page="applied-numerical.html">
 <h3>NUM-01 · Pourquoi 0,1 + 0,2 ≠ 0,3 sur un ordinateur <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Les ordinateurs stockent les nombres réels en virgule
@@ -3445,7 +3454,7 @@ numérique.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-numerical.html#NUM-01">Analyse numérique</a>.</p>
 </section>
-<section class="problem" id="NUM-02" data-level="Lycée">
+<section class="problem" id="NUM-02" data-level="Lycée" data-page="applied-numerical.html">
 <h3>NUM-02 · Annulation catastrophique dans la formule du second degré <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Considérez \(x^2 - 10^8 x + 1 = 0\).</p>
@@ -3483,7 +3492,7 @@ calculées de façon inexacte.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-numerical.html#NUM-02">Analyse numérique</a>.</p>
 </section>
-<section class="problem" id="NUM-03" data-level="Lycée">
+<section class="problem" id="NUM-03" data-level="Lycée" data-page="applied-numerical.html">
 <h3>NUM-03 · La racine carrée babylonienne <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Pour calculer \(\sqrt{a}\) avec \(a &gt; 0\),
 itérez la règle antique : faites la moyenne de votre estimation et de \(a\) divisé par
@@ -3511,7 +3520,7 @@ appliquée à \(x^2 - a\).</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-numerical.html#NUM-03">Analyse numérique</a>.</p>
 </section>
-<section class="problem" id="NUM-20" data-level="Lycée" data-kind="court">
+<section class="problem" id="NUM-20" data-level="Lycée" data-kind="court" data-page="applied-numerical.html">
 <h3>NUM-20 · La garantie de la dichotomie <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soit \(f\) continue sur \([a,b]\) avec \(f(a)f(b) &lt; 0\) ; remplacez répétitivement l'intervalle par celle de ses deux moitiés qui présente encore un changement de signe aux extrémités. Démontrez qu'après \(n\) étapes l'intervalle survivant a pour longueur \((b-a)/2^n\) et contient toujours une racine de \(f\), et déterminez combien d'étapes garantissent six décimales correctes pour \(f(x) = x^3 - x - 1\) sur \([1,2]\).</p>
 <p class="context">Bernard Bolzano a employé exactement cet argument de bissection en 1817 pour donner la première démonstration du théorème des valeurs intermédiaires qui ne fasse pas appel à l'intuition géométrique — la méthode est plus ancienne comme calcul que comme théorème. C'est le chercheur de racines le plus lent en usage courant, qui gagne un chiffre binaire par étape là où la méthode de Newton (NUM-04) double les chiffres, et c'est aussi le seul qui ne puisse pas échouer : il ne demande à \(f\) que la continuité et un changement de signe. C'est pourquoi les routines sérieuses des bibliothèques, comme la méthode de Brent, gardent une étape de dichotomie en réserve derrière leurs itérations rapides.</p>
@@ -3522,7 +3531,7 @@ appliquée à \(x^2 - a\).</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-numerical.html#NUM-20">Analyse numérique</a>.</p>
 </section>
-<section class="problem" id="NUM-21" data-level="Lycée" data-kind="court">
+<section class="problem" id="NUM-21" data-level="Lycée" data-kind="court" data-page="applied-numerical.html">
 <h3>NUM-21 · L'emboîtement de Horner <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Le schéma de Horner évalue \(p(x) = a_n x^n + \cdots + a_1 x + a_0\) par l'emboîtement
 \[ \big( \cdots ((a_n x + a_{n-1})x + a_{n-2})x + \cdots \big) x + a_0 . \]
@@ -3534,7 +3543,7 @@ Démontrez par récurrence sur \(n\) qu'il rend bien \(p(x)\), et comptez ses mu
 </ul>
 <p class="source-note">Extrait de <a href="applied-numerical.html#NUM-21">Analyse numérique</a>.</p>
 </section>
-<section class="problem" id="NUM-22" data-level="Lycée">
+<section class="problem" id="NUM-22" data-level="Lycée" data-page="applied-numerical.html">
 <h3>NUM-22 · Quelle taille doit avoir \(h\) ? <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un ordinateur stocke les nombres avec une erreur relative d'au plus \(\varepsilon \approx 1{,}1 \times 10^{-16}\) (double précision), de sorte que les valeurs de \(f\) qu'il renvoie ne sont correctes qu'à cette précision relative. Estimez \(f'(x)\) par le quotient de différences
@@ -3556,7 +3565,7 @@ Démontrez par récurrence sur \(n\) qu'il rend bien \(p(x)\), et comptez ses mu
 </ul>
 <p class="source-note">Extrait de <a href="applied-numerical.html#NUM-22">Analyse numérique</a>.</p>
 </section>
-<section class="problem" id="NUM-32" data-level="Lycée" data-kind="court">
+<section class="problem" id="NUM-32" data-level="Lycée" data-kind="court" data-page="applied-numerical.html">
 <h3>NUM-32 · La variance que l'ordinateur calcule de travers <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> La formule en une passe des manuels pour la variance empirique de \(x_1, \ldots, x_n\),
 \[ s^2 = \frac{1}{n-1}\left( \sum_{i=1}^{n} x_i^2 \;-\; \frac{1}{n}\Big(\sum_{i=1}^{n} x_i\Big)^{\!2} \right), \]
@@ -3572,7 +3581,7 @@ issues de \(M_0 = S_0 = 0\), vérifient \(M_k = \tfrac{1}{k}\sum_{i \le k} x_i\)
 </ul>
 <p class="source-note">Extrait de <a href="applied-numerical.html#NUM-32">Analyse numérique</a>.</p>
 </section>
-<section class="problem" id="NUM-33" data-level="Lycée">
+<section class="problem" id="NUM-33" data-level="Lycée" data-page="applied-numerical.html">
 <h3>NUM-33 · La sommation compensée de Kahan <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Additionner une liste de nombres est l'opération la plus courante du calcul scientifique, et la boucle naïve n'est pas la meilleure façon de le faire. Travaillez en virgule flottante binaire avec une unité d'arrondi \(\varepsilon\) (pour les doubles IEEE, \(\varepsilon = 2^{-53} \approx 1{,}1 \times 10^{-16}\)), où chaque opération obéit à
@@ -3601,7 +3610,7 @@ chaque ligne étant arrondie. Déroulez-le à la main sur les trois nombres \(1,
 </div>
 <div class="area" id="area-optimisation-et-th-orie-des-jeux">
 <h2>Optimisation et théorie des jeux</h2>
-<section class="problem" id="OPT-01" data-level="Lycée">
+<section class="problem" id="OPT-01" data-level="Lycée" data-page="applied-optimization.html">
 <h3>OPT-01 · Le meilleur rectangle, sans le calcul différentiel <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Aucune dérivée n'est autorisée dans ce problème.</p>
@@ -3621,7 +3630,7 @@ avec égalité exactement lorsque \(a = b\).</li>
 </ul>
 <p class="source-note">Extrait de <a href="applied-optimization.html#OPT-01">Optimisation et théorie des jeux</a>.</p>
 </section>
-<section class="problem" id="OPT-02" data-level="Lycée">
+<section class="problem" id="OPT-02" data-level="Lycée" data-page="applied-optimization.html">
 <h3>OPT-02 · Une boîte ouverte et l'inégalité arithmético-géométrique à trois variables <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une boîte à base carrée et sans couvercle doit contenir exactement \(32\,000\) cm³.</p>
@@ -3640,7 +3649,7 @@ avec égalité exactement lorsque \(x = y = z\). (La récurrence en avant puis e
 </ul>
 <p class="source-note">Extrait de <a href="applied-optimization.html#OPT-02">Optimisation et théorie des jeux</a>.</p>
 </section>
-<section class="problem" id="OPT-03" data-level="Lycée">
+<section class="problem" id="OPT-03" data-level="Lycée" data-page="applied-optimization.html">
 <h3>OPT-03 · Le problème du régime alimentaire, concrètement <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> L'aliment A coûte 50 centimes les 100 g et fournit 20 g de protéines et 200 kcal ; l'aliment B coûte 20 centimes les 100 g et fournit 2 g de protéines et 250 kcal. Le régime d'une journée doit apporter au moins 60 g de protéines et au moins 2000 kcal.</p>
@@ -3659,7 +3668,7 @@ avec égalité exactement lorsque \(x = y = z\). (La récurrence en avant puis e
 </ul>
 <p class="source-note">Extrait de <a href="applied-optimization.html#OPT-03">Optimisation et théorie des jeux</a>.</p>
 </section>
-<section class="problem" id="OPT-04" data-level="Lycée">
+<section class="problem" id="OPT-04" data-level="Lycée" data-page="applied-optimization.html">
 <h3>OPT-04 · Le problème des transports, concrètement <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> L'entrepôt 1 détient 30 caisses, l'entrepôt 2 en détient 25 ; les magasins X, Y, Z ont besoin de 20, 20 et 15 caisses. Expédier une caisse coûte, en dollars : de E1 vers (X, Y, Z) : 4, 6, 9 ; de E2 : 5, 3, 8.</p>
@@ -3677,7 +3686,7 @@ avec égalité exactement lorsque \(x = y = z\). (La récurrence en avant puis e
 </ul>
 <p class="source-note">Extrait de <a href="applied-optimization.html#OPT-04">Optimisation et théorie des jeux</a>.</p>
 </section>
-<section class="problem" id="OPT-24" data-level="Lycée" data-kind="court">
+<section class="problem" id="OPT-24" data-level="Lycée" data-kind="court" data-page="applied-optimization.html">
 <h3>OPT-24 · Le plus court chemin de Héron <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Les points \(A\) et \(B\) sont du même côté d'une droite
 \(\ell\). Démontrez que parmi tous les chemins qui vont de \(A\) à un point \(P\) de \(\ell\) puis
@@ -3695,7 +3704,7 @@ qu'il est, là où une dérivée ne fait que le confirmer.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-optimization.html#OPT-24">Optimisation et théorie des jeux</a>.</p>
 </section>
-<section class="problem" id="OPT-25" data-level="Lycée" data-kind="court">
+<section class="problem" id="OPT-25" data-level="Lycée" data-kind="court" data-page="applied-optimization.html">
 <h3>OPT-25 · Quand la gourmandise a raison, et quand elle a tort <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Avec des pièces de 1, 5, 10 et 25 centimes, démontrez que la règle
 gloutonne — prendre répétitivement la plus grosse pièce ne dépassant pas ce qui reste — règle tout
@@ -3714,7 +3723,7 @@ réponse : c'est OPT-30.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-optimization.html#OPT-25">Optimisation et théorie des jeux</a>.</p>
 </section>
-<section class="problem" id="OPT-26" data-level="Lycée">
+<section class="problem" id="OPT-26" data-level="Lycée" data-page="applied-optimization.html">
 <h3>OPT-26 · Le paradoxe de Braess et le prix de l'anarchie <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Quatre mille automobilistes vont de \(S\) à \(T\). Il y a deux itinéraires,
@@ -3754,7 +3763,7 @@ gratuit.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-optimization.html#OPT-26">Optimisation et théorie des jeux</a>.</p>
 </section>
-<section class="problem" id="OPT-36" data-level="Lycée" data-kind="court">
+<section class="problem" id="OPT-36" data-level="Lycée" data-kind="court" data-page="applied-optimization.html">
 <h3>OPT-36 · Appariez le plus grand avec le plus grand <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soient \(a_1 \le a_2 \le \cdots \le a_n\) et \(b_1 \le b_2 \le \cdots \le b_n\) des nombres réels et soit \(\sigma\) une permutation quelconque de \(\{1, \ldots, n\}\). Démontrez l'inégalité de réarrangement
 \[ \sum_{i=1}^{n} a_i b_{n+1-i} \;\le\; \sum_{i=1}^{n} a_i b_{\sigma(i)} \;\le\; \sum_{i=1}^{n} a_i b_i , \]
@@ -3767,7 +3776,7 @@ et déduisez-en que si \(n\) tâches de durées connues doivent être exécutée
 </ul>
 <p class="source-note">Extrait de <a href="applied-optimization.html#OPT-36">Optimisation et théorie des jeux</a>.</p>
 </section>
-<section class="problem" id="OPT-37" data-level="Lycée">
+<section class="problem" id="OPT-37" data-level="Lycée" data-page="applied-optimization.html">
 <h3>OPT-37 · Le point de Fermat, et la forme d'une lame de savon <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Étant donné trois points distincts \(A, B, C\) du plan, trouvez le point \(P\) qui minimise la distance totale
@@ -3792,7 +3801,7 @@ et déduisez-en que si \(n\) tâches de durées connues doivent être exécutée
 </div>
 <div class="area" id="area-math-matiques-discr-tes-et-informatique">
 <h2>Mathématiques discrètes et informatique</h2>
-<section class="problem" id="DCS-01" data-level="Lycée">
+<section class="problem" id="DCS-01" data-level="Lycée" data-page="applied-discrete-cs.html">
 <h3>DCS-01 · La parité : l'échiquier mutilé <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b></p>
@@ -3810,7 +3819,7 @@ et déduisez-en que si \(n\) tâches de durées connues doivent être exécutée
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-01">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-02" data-level="Lycée">
+<section class="problem" id="DCS-02" data-level="Lycée" data-page="applied-discrete-cs.html">
 <h3>DCS-02 · Pourquoi la recherche dichotomique est correcte <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> La recherche dichotomique cherche une valeur \(t\) dans un tableau trié \(a_1 \le a_2 \le \dots \le a_n\) en maintenant deux indices \(\ell \le r\), en comparant \(t\) à l'élément du milieu, puis en écartant la moitié qui ne peut pas contenir \(t\).</p>
@@ -3830,7 +3839,7 @@ et déduisez-en que si \(n\) tâches de durées connues doivent être exécutée
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-02">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-03" data-level="Lycée">
+<section class="problem" id="DCS-03" data-level="Lycée" data-page="applied-discrete-cs.html">
 <h3>DCS-03 · Dénombrer les chaînes de bits <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une chaîne de bits est une suite finie de 0 et de 1.</p>
@@ -3848,7 +3857,7 @@ et déduisez-en que si \(n\) tâches de durées connues doivent être exécutée
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-03">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-04" data-level="Lycée">
+<section class="problem" id="DCS-04" data-level="Lycée" data-page="applied-discrete-cs.html">
 <h3>DCS-04 · Chevaliers et valets, formalisés <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Sur une île, chaque habitant est un chevalier (qui dit toujours la vérité) ou un valet (qui ment toujours). Vous rencontrez A et B. A dit : « B est un valet. » B dit : « A et moi sommes de la même espèce. » (a) Introduisez des variables propositionnelles (\(p\) = « A est un chevalier », \(q\) = « B est un chevalier »), traduisez chaque déclaration en une formule qui doit être vraie exactement lorsque celui qui la prononce est un chevalier, et résolvez le système obtenu par table de vérité. (b) Démontrez que votre réponse est la <i>seule</i> qui soit cohérente. (c) Vous rencontrez maintenant C, qui dit « Je suis un valet. » Démontrez qu'aucune affectation n'est cohérente, et expliquez soigneusement le rapport avec la phrase « cette phrase est fausse ».</p>
 <p class="context">Raymond Smullyan a bâti tout un genre littéraire sur ces énigmes dans <i>What Is the Name of This Book?</i> (1978), et il s'en est servi comme d'un escalier doux menant jusqu'au théorème d'incomplétude de Gödel — la question (c) en est la première marche. Le contenu sérieux, c'est la traduction elle-même : transformer une parole en formules dont la vérité se calcule est exactement ce que fait un compilateur, un vérificateur ou un solveur SAT, et c'est un savoir-faire qu'il vaut mieux acquérir sur des énigmes avant qu'il ne compte vraiment.</p>
@@ -3860,7 +3869,7 @@ et déduisez-en que si \(n\) tâches de durées connues doivent être exécutée
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-04">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-29" data-level="Lycée" data-kind="court">
+<section class="problem" id="DCS-29" data-level="Lycée" data-kind="court" data-page="applied-discrete-cs.html">
 <h3>DCS-29 · Combien de comparaisons pour trouver le plus grand ? <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On vous donne \( n \) nombres distincts et vous ne pouvez
 comparer que deux à la fois. Démontrez que \( n - 1 \) comparaisons suffisent pour trouver le
@@ -3879,7 +3888,7 @@ grand <i>et</i> le deuxième plus grand demande environ \( n + \log_2 n \) compa
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-29">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-30" data-level="Lycée" data-kind="court">
+<section class="problem" id="DCS-30" data-level="Lycée" data-kind="court" data-page="applied-discrete-cs.html">
 <h3>DCS-30 · Un PGCD sans division <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Pour des entiers strictement positifs \(a, b\), démontrez les trois identités
 \[ \gcd(2a, 2b) = 2\gcd(a,b), \qquad \gcd(2a, b) = \gcd(a,b) \ \text{ pour } b \text{ impair}, \qquad \gcd(a,b) = \gcd(a-b, b) \ \text{ pour } a &gt; b. \]
@@ -3891,7 +3900,7 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-30">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-31" data-level="Lycée">
+<section class="problem" id="DCS-31" data-level="Lycée" data-page="applied-discrete-cs.html">
 <h3>DCS-31 · Le vote majoritaire en un seul passage <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Appelons <i>élément majoritaire</i> de la liste \(a_1, \dots, a_n\) une valeur qui y apparaît plus de \(n/2\) fois. Parcourez la liste en ne conservant qu'un candidat \(c\) et un compteur \(k\), en partant de \(k = 0\) : à la lecture de \(a_i\), si \(k = 0\) posez \(c = a_i\) et \(k = 1\) ; sinon, si \(a_i = c\) augmentez \(k\) de un ; sinon diminuez \(k\) de un.</p>
@@ -3910,7 +3919,7 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-31">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-41" data-level="Lycée">
+<section class="problem" id="DCS-41" data-level="Lycée" data-page="applied-discrete-cs.html">
 <h3>DCS-41 · La location de skis : décider sans connaître l'avenir <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Vous skiez pendant un nombre de jours que vous ne connaîtrez qu'à la fin de la saison, laquelle s'achèvera sans prévenir. Louer des skis coûte 1 par jour ; les acheter coûte \( b \) une fois pour toutes, après quoi skier est gratuit. Chaque matin vous devez décider, en sachant seulement combien de jours vous avez déjà skié. Appelons une stratégie \( c \)-<i>compétitive</i> si, sur toute saison possible, son coût total vaut au plus \( c \) fois le coût de la meilleure stratégie qui aurait connu d'avance la durée de la saison.</p>
@@ -3930,7 +3939,7 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-41">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-42" data-level="Lycée" data-kind="court">
+<section class="problem" id="DCS-42" data-level="Lycée" data-kind="court" data-page="applied-discrete-cs.html">
 <h3>DCS-42 · Les rotations se cachent dans une chaîne doublée <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soient \( x \) et \( y \) deux chaînes de même longueur \( n \) sur un alphabet quelconque. Démontrez que \( x \) est une rotation circulaire de \( y \) si et seulement si \( x \) apparaît comme facteur contigu de la concaténation \( yy \), et déduisez-en que la rotation se teste en temps \( O(n) \) dès qu'on dispose d'une recherche de facteur en temps linéaire.</p>
 <p class="context">Un sens est un calcul d'indices qui tient en une ligne ; l'autre demande du soin, et le faire honnêtement, c'est dire exactement quelles positions d'occurrence dans \( yy \) sont possibles et pourquoi. Au-delà de l'astuce, la leçon est celle de la réduction : plutôt que d'inventer un algorithme pour un problème nouveau, on transforme l'entrée de sorte qu'un algorithme auquel on fait déjà confiance — ici la recherche de Knuth–Morris–Pratt de DCS-44 — y réponde à notre place. C'est le même geste, à une échelle infiniment plus petite, qui transforme un problème NP-complet en mille autres dans DCS-20.</p>
@@ -3943,7 +3952,7 @@ Déduisez-en que ces seules règles calculent n'importe quel PGCD à l'aide de r
 </div>
 <div class="area" id="area-cryptographie-et-th-orie-de-l-information">
 <h2>Cryptographie et théorie de l&#x27;information</h2>
-<section class="problem" id="CRY-01" data-level="Lycée">
+<section class="problem" id="CRY-01" data-level="Lycée" data-page="applied-crypto.html">
 <h3>CRY-01 · Cassez ce chiffre de César <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le message suivant a été chiffré par un chiffre
@@ -3976,7 +3985,7 @@ fuite statistique ne peut pas se produire.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-01">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-02" data-level="Lycée">
+<section class="problem" id="CRY-02" data-level="Lycée" data-page="applied-crypto.html">
 <h3>CRY-02 · Échauffements d'arithmétique modulaire <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Écrivons \(a \equiv b \pmod{n}\) pour signifier que
@@ -4005,7 +4014,7 @@ avant sur la page <a href="pure-number-theory.html">Théorie des nombres</a>.</p
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-02">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-03" data-level="Lycée">
+<section class="problem" id="CRY-03" data-level="Lycée" data-page="applied-crypto.html">
 <h3>CRY-03 · Quels chiffres affines sont vraiment des chiffres ? <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Numérotons les lettres \(A=0,\dots,Z=25\). Un
@@ -4033,7 +4042,7 @@ exposants sont des clés RSA légales.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-03">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-04" data-level="Lycée">
+<section class="problem" id="CRY-04" data-level="Lycée" data-page="applied-crypto.html">
 <h3>CRY-04 · Un espace de clés immense n'est pas la sécurité <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un chiffre par substitution général remplace chaque
@@ -4065,7 +4074,7 @@ qui font la monnaie du domaine.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-04">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-24" data-level="Lycée">
+<section class="problem" id="CRY-24" data-level="Lycée" data-page="applied-crypto.html">
 <h3>CRY-24 · Le chiffre de Vigenère et l'examen de Kasiski <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le chiffre de Vigenère fixe un mot-clé, disons <code>LEMON</code>, et
@@ -4104,7 +4113,7 @@ limite dans laquelle le « mot-clé » ne se répète jamais.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-24">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-25" data-level="Lycée" data-kind="court">
+<section class="problem" id="CRY-25" data-level="Lycée" data-kind="court" data-page="applied-crypto.html">
 <h3>CRY-25 · Le double chiffrement n'apporte rien <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que chiffrer par un décalage de César de
 \(a\) puis chiffrer le résultat par un décalage de \(b\) revient exactement au décalage de
@@ -4122,7 +4131,7 @@ question ouverte sérieuse jusqu'à ce que Campbell et Wiener démontrent en 199
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-25">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-26" data-level="Lycée" data-kind="court">
+<section class="problem" id="CRY-26" data-level="Lycée" data-kind="court" data-page="applied-crypto.html">
 <h3>CRY-26 · Quelle est la force d'une phrase secrète ? <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On construit une phrase secrète en choisissant quatre
 mots indépendamment et uniformément au hasard dans une liste publique de \(7776 = 6^5\) mots.
@@ -4141,7 +4150,7 @@ caractère public de la procédure ne coûte rien.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-26">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-36" data-level="Lycée">
+<section class="problem" id="CRY-36" data-level="Lycée" data-page="applied-crypto.html">
 <h3>CRY-36 · Clés de contrôle : attraper les erreurs que les gens font vraiment <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un ISBN-10 est une suite de chiffres \(d_1 d_2 \dots d_{10}\), dont le
@@ -4183,7 +4192,7 @@ sur les transpositions.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-36">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-41" data-level="Lycée">
+<section class="problem" id="CRY-41" data-level="Lycée" data-page="applied-crypto.html">
 <h3>CRY-41 · Arbres de Merkle : un reçu de la taille d'un logarithme <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un journal public contient \(n = 2^k\) enregistrements \(x_1, \dots, x_n\).
@@ -4234,7 +4243,7 @@ exactement pour cette raison.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-crypto.html#CRY-41">Cryptographie et théorie de l'information</a>.</p>
 </section>
-<section class="problem" id="CRY-42" data-level="Lycée" data-kind="court">
+<section class="problem" id="CRY-42" data-level="Lycée" data-kind="court" data-page="applied-crypto.html">
 <h3>CRY-42 · Pourquoi le mode ECB dessine le manchot <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un chiffrement par bloc chiffre des blocs de 16 octets
 sous une clé \(K\) par une bijection \(E_K\) de l'ensemble de tous les blocs de 16 octets ; le
@@ -4260,7 +4269,7 @@ définition moderne de la sécurité, si incassable que soit le chiffrement sous
 </div>
 <div class="area" id="area-physique-math-matique">
 <h2>Physique mathématique</h2>
-<section class="problem" id="PHY-30" data-level="Lycée">
+<section class="problem" id="PHY-30" data-level="Lycée" data-page="applied-physics.html">
 <h3>PHY-30 · Les nombres impairs de Galilée <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un corps part du repos et tombe avec une accélération constante \( g \).</p>
@@ -4293,7 +4302,7 @@ morceau d'arithmétique grecque antique qui tombe d'une expérience du dix-septi
 </ul>
 <p class="source-note">Extrait de <a href="applied-physics.html#PHY-30">Physique mathématique</a>.</p>
 </section>
-<section class="problem" id="PHY-31" data-level="Lycée" data-kind="court">
+<section class="problem" id="PHY-31" data-level="Lycée" data-kind="court" data-page="applied-physics.html">
 <h3>PHY-31 · Le boulet de canon de Newton <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un boulet de canon est tiré horizontalement du sommet d'une
 montagne, assez vite pour faire le tour de la Terre au ras du sol. En n'utilisant que
@@ -4312,7 +4321,7 @@ lignes d'algèbre est l'un des meilleurs rapports effort/résultat de toute la p
 </ul>
 <p class="source-note">Extrait de <a href="applied-physics.html#PHY-31">Physique mathématique</a>.</p>
 </section>
-<section class="problem" id="PHY-32" data-level="Lycée">
+<section class="problem" id="PHY-32" data-level="Lycée" data-page="applied-physics.html">
 <h3>PHY-32 · La portée d'un projectile, et la parabole de sûreté <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un projectile est lancé depuis un sol horizontal avec la vitesse \( v \) sous
@@ -4360,7 +4369,7 @@ un mot pour dire la chose.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-physics.html#PHY-32">Physique mathématique</a>.</p>
 </section>
-<section class="problem" id="PHY-33" data-level="Lycée">
+<section class="problem" id="PHY-33" data-level="Lycée" data-page="applied-physics.html">
 <h3>PHY-33 · Archimède à partir de la pression sur une face <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un liquide de masse volumique uniforme \( \rho \) repose sous la gravité
@@ -4412,7 +4421,7 @@ qui surprend le plus sûrement ceux qui croient savoir ce qu'est la pression.</p
 </ul>
 <p class="source-note">Extrait de <a href="applied-physics.html#PHY-33">Physique mathématique</a>.</p>
 </section>
-<section class="problem" id="PHY-34" data-level="Lycée" data-kind="court">
+<section class="problem" id="PHY-34" data-level="Lycée" data-kind="court" data-page="applied-physics.html">
 <h3>PHY-34 · Pourquoi le Soleil soulève la plus petite marée <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une lune de masse \( M \) se trouve à la distance \( d \) du
 centre d'une planète de rayon \( R \ll d \) ; en travaillant dans le référentiel en chute libre,
@@ -4444,7 +4453,7 @@ seule formule ci-dessus, et aucune ne l'a jamais été sans elle.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-physics.html#PHY-34">Physique mathématique</a>.</p>
 </section>
-<section class="problem" id="PHY-35" data-level="Lycée">
+<section class="problem" id="PHY-35" data-level="Lycée" data-page="applied-physics.html">
 <h3>PHY-35 · L'effet Doppler, démontré deux fois <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une source émet un son de fréquence \( f \) dans de l'air immobile, où le son
@@ -4496,7 +4505,7 @@ de Lorentz de PHY-09.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-physics.html#PHY-35">Physique mathématique</a>.</p>
 </section>
-<section class="problem" id="PHY-36" data-level="Lycée" data-kind="court">
+<section class="problem" id="PHY-36" data-level="Lycée" data-kind="court" data-page="applied-physics.html">
 <h3>PHY-36 · Pourquoi les harmoniques sont des nombres entiers <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une corde de longueur \( L \), fixée à ses deux extrémités,
 porte des ondes transversales de vitesse \( c = \sqrt{T/\mu} \), où \( T \) est la tension et
@@ -4525,7 +4534,7 @@ le chemin inverse, comme limite d'un chapelet de billes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-physics.html#PHY-36">Physique mathématique</a>.</p>
 </section>
-<section class="problem" id="PHY-56" data-level="Lycée">
+<section class="problem" id="PHY-56" data-level="Lycée" data-page="applied-physics.html">
 <h3>PHY-56 · Archimède et la loi du levier <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une barre rigide de poids négligeable repose sur un point d'appui, avec les poids
@@ -4587,7 +4596,7 @@ et rien d'autre. En décider par vous-même vaut mieux que la formule, que vous 
 </ul>
 <p class="source-note">Extrait de <a href="applied-physics.html#PHY-56">Physique mathématique</a>.</p>
 </section>
-<section class="problem" id="PHY-57" data-level="Lycée" data-kind="court">
+<section class="problem" id="PHY-57" data-level="Lycée" data-kind="court" data-page="applied-physics.html">
 <h3>PHY-57 · Pourquoi le ciel est bleu <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une molécule bien plus petite que la longueur d'onde de la
 lumière qui la traverse est polarisée par le champ électrique de cette lumière et rayonne de nouveau
@@ -4626,7 +4635,7 @@ du Soleil et la réponse de l'œil humain.</p>
 </div>
 <div class="area" id="area-casse-t-te">
 <h2>Casse-tête</h2>
-<section class="problem" id="PUZ-01" data-level="Lycée">
+<section class="problem" id="PUZ-01" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-01 · Neuf boules et une balance <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Vous disposez de neuf boules d'apparence identique. Huit pèsent
@@ -4667,7 +4676,7 @@ pendant la Seconde Guerre mondiale qu'on plaisantait en y voyant une arme secrè
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-01">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-02" data-level="Lycée">
+<section class="problem" id="PUZ-02" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-02 · Douze pièces, sens inconnu <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Douze pièces sont identiques, à ceci près qu'exactement l'une d'elles
@@ -4704,7 +4713,7 @@ travaillait à la recherche opérationnelle du temps de guerre.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-02">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-03" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-03" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-03 · Deux mèches, quarante-cinq minutes <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Vous avez deux mèches et un briquet. Chaque mèche
 brûle exactement une heure d'un bout à l'autre, mais aucune ne brûle à vitesse uniforme,
@@ -4723,7 +4732,7 @@ casse-tête.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-03">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-04" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-04" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-04 · Les cent casiers <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un couloir compte \( 100 \) casiers fermés. L'élève
 \( 1 \) bascule l'état de tous les casiers, l'élève \( 2 \) celui d'un casier sur deux,
@@ -4743,7 +4752,7 @@ nombres respecte encore.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-04">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-05" data-level="Lycée">
+<section class="problem" id="PUZ-05" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-05 · Le pont et la lampe <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Quatre personnes doivent traverser de nuit un pont branlant. Le pont
@@ -4776,7 +4785,7 @@ d'algorithmique.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-05">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-06" data-level="Lycée">
+<section class="problem" id="PUZ-06" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-06 · Le loup, la chèvre et le chou <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un fermier doit faire traverser une rivière à un loup, une chèvre et
@@ -4808,7 +4817,7 @@ recherche, et elle vaut d'être effectuée à la main au moins une fois.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-06">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-07" data-level="Lycée">
+<section class="problem" id="PUZ-07" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-07 · Chevaliers, valets et une seule question <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Sur une île, chaque habitant est soit un chevalier, qui dit toujours
@@ -4842,7 +4851,7 @@ répondent dans une langue inconnue.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-07">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-08" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-08" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-08 · Paver un damier avec des pièces 1×4 <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On veut paver un plateau \( 10 \times 10 \) par des
 pièces \( 1 \times 4 \) placées horizontalement ou verticalement. Démontrez que c'est
@@ -4860,7 +4869,7 @@ problèmes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-08">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-17" data-level="Lycée">
+<section class="problem" id="PUZ-17" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-17 · Deux brocs et aucune graduation <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Vous disposez de deux brocs sans graduation, de capacités entières \( a \) et \( b \) litres, d'un robinet fournissant de l'eau sans limite, et d'un évier. Les seules opérations autorisées sont : remplir un broc à ras bord, vider complètement un broc, et verser d'un broc dans l'autre jusqu'à ce que la source soit vide ou que la destination soit pleine.</p>
@@ -4879,7 +4888,7 @@ problèmes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-17">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-18" data-level="Lycée">
+<section class="problem" id="PUZ-18" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-18 · Les missionnaires et les cannibales <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Trois missionnaires et trois cannibales se tiennent sur une rive de rivière. Une barque porte au plus deux personnes et ne peut pas traverser à vide : quelqu'un doit ramer dans chaque sens. Si, à un instant quelconque, les cannibales sont plus nombreux que les missionnaires sur l'une des rives où se trouve au moins un missionnaire, les missionnaires sont mangés.</p>
@@ -4898,7 +4907,7 @@ problèmes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-18">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-19" data-level="Lycée">
+<section class="problem" id="PUZ-19" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-19 · Une seule lecture sur une balance numérique <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Dix sacs contiennent chacun un grand nombre de pièces. Les pièces authentiques pèsent exactement \( 10 \) grammes ; toutes les pièces d'exactement un sac sont fausses et pèsent \( 9 \) grammes. Votre instrument est une balance numérique qui affiche le poids total exact de ce que vous y posez, et vous ne pouvez l'utiliser qu'une fois.</p>
@@ -4917,7 +4926,7 @@ problèmes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-19">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-20" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-20" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-20 · Cent pièces dans le noir <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Cent pièces sont posées sur une table dans une pièce entièrement obscure ; exactement dix d'entre elles sont côté pile visible, et vous ne pouvez déterminer par le toucher ni par aucun autre moyen dans quel sens une pièce est tournée, bien que vous puissiez déplacer les pièces et les retourner. Séparez-les en deux groupes, pas nécessairement de même taille, de sorte que les deux groupes contiennent le même nombre de piles, et démontrez que votre procédure fonctionne pour toute disposition initiale possible.</p>
 <p class="context">Le difficile n'est pas de trouver une manœuvre astucieuse, mais de remarquer quel genre d'objet on vous demande : puisque vous n'apprenez jamais rien sur la disposition, votre procédure est une recette fixe qui doit réussir simultanément pour les \( \binom{100}{10} \) dispositions. Cela vous force à chercher une quantité dont le comportement sous vos coups est le même quoi que vous ne puissiez voir — un argument d'invariance mené à l'envers, et une bonne première rencontre avec l'idée qu'une démonstration peut maîtriser tous les cas à la fois sans en examiner aucun.</p>
@@ -4927,7 +4936,7 @@ problèmes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-20">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-21" data-level="Lycée">
+<section class="problem" id="PUZ-21" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-21 · Le traiteur paresseux et le pâtissier négligent <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une crêpe est un disque. Une coupe est une droite entière qui la traverse, et les morceaux sont les régions connexes qui restent ; les morceaux ne sont jamais réarrangés entre deux coupes.</p>
@@ -4946,7 +4955,7 @@ problèmes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-21">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-22" data-level="Lycée">
+<section class="problem" id="PUZ-22" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-22 · Des tétrominos en T sur un plateau <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un tétromino en T est le polyomino à quatre cases formé d'une rangée de trois cases avec une quatrième case accolée au milieu de l'un des longs côtés. Les tuiles peuvent être tournées, ne peuvent pas se chevaucher, et doivent recouvrir le plateau exactement, sans laisser de case découverte.</p>
@@ -4965,7 +4974,7 @@ problèmes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-22">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-31" data-level="Lycée">
+<section class="problem" id="PUZ-31" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-31 · L'anniversaire de Cheryl <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Albert et Bernard veulent connaître la date d'anniversaire de Cheryl.
@@ -5010,7 +5019,7 @@ raisonnement sur ce que les autres savent.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-31">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-32" data-level="Lycée">
+<section class="problem" id="PUZ-32" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-32 · L'énigme du zèbre <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Cinq maisons s'alignent. Chacune est d'une couleur différente,
@@ -5064,7 +5073,7 @@ zèbres.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-32">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-33" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-33" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-33 · Les vingt questions <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un joueur choisit secrètement un élément d'un
 ensemble fini \( S \) connu des deux ; l'autre doit l'identifier en posant des questions de
@@ -5088,7 +5097,7 @@ pas seulement les évidentes.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-33">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-34" data-level="Lycée">
+<section class="problem" id="PUZ-34" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-34 · Le problème de Josèphe <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Numérotez \( n \) personnes \( 1, 2, \ldots, n \) dans le sens des
@@ -5127,7 +5136,7 @@ contrepoids honnête : le cas général \( k \) est calculable mais obstinément
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-34">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-45" data-level="Lycée">
+<section class="problem" id="PUZ-45" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-45 · Les deux enveloppes, scellées <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux enveloppes scellées contiennent de l'argent ; l'une en contient
@@ -5175,7 +5184,7 @@ mots.</p>
 <li>Voir aussi : <a href="#PUZ-41">PUZ-41</a>, la version dans laquelle vous ouvrez d'abord l'enveloppe — là où le paradoxe devient réellement subtil.</li></ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-45">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-46" data-level="Lycée">
+<section class="problem" id="PUZ-46" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-46 · Le jeu de Penney <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le joueur A annonce une suite de trois résultats de pile ou face — disons
@@ -5226,7 +5235,7 @@ différentes, et une suite peut gagner l'une et perdre l'autre.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-46">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-47" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-47" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-47 · Quatorze, quinze, et le coup qui ne vient jamais <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Le taquin contient des tuiles numérotées de \( 1 \) à
 \( 15 \) dans un cadre \( 4 \times 4 \) comportant une case vide, et un coup fait glisser
@@ -5252,7 +5261,7 @@ case vide autant qu'à la permutation.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-47">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-48" data-level="Lycée">
+<section class="problem" id="PUZ-48" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-48 · Le jeu de Nim, premier jeu jamais résolu <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le Nim se joue avec plusieurs tas de jetons. Un coup retire un nombre
@@ -5295,7 +5304,7 @@ jouer jamais construites.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-48">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-59" data-level="Lycée">
+<section class="problem" id="PUZ-59" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-59 · La barque, l'ancre et le niveau du bassin <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une petite barque flotte dans un bassin fermé de section horizontale
@@ -5339,7 +5348,7 @@ du climat.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-59">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-60" data-level="Lycée">
+<section class="problem" id="PUZ-60" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-60 · Le singe et le chasseur <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une sarbacane est pointée <i>directement</i> sur un singe suspendu à une
@@ -5387,7 +5396,7 @@ de physique de la faire, et prédisez le résultat par écrit d'abord.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-60">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-61" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-61" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-61 · La bicyclette tirée en arrière par sa pédale basse <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une bicyclette est debout, maintenue verticale mais
 libre de rouler, une pédale au point le plus bas de son cercle ; une corde attachée à cette
@@ -5417,7 +5426,7 @@ discuter de rien.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-61">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-62" data-level="Lycée">
+<section class="problem" id="PUZ-62" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-62 · Le slinky qui tombe <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un slinky de masse totale \( M \) et de constante de raideur \( k \) pend
@@ -5465,7 +5474,7 @@ l'expérience prend un après-midi.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-62">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-63" data-level="Lycée">
+<section class="problem" id="PUZ-63" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-63 · L'oiseau buveur, ou comment encadrer une estimation <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> L'oiseau buveur est un jouet de verre scellé : une tête recouverte de
@@ -5515,7 +5524,7 @@ ensuite respecté.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-63">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-73" data-level="Lycée">
+<section class="problem" id="PUZ-73" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-73 · Le cube peint <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un cube plein de côté \( n \ge 2 \) est construit à partir de
@@ -5562,7 +5571,7 @@ la seconde qui a fait de l'optimisation combinatoire une discipline.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-73">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-74" data-level="Lycée">
+<section class="problem" id="PUZ-74" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-74 · Les poignées de main, et ce qu'une soirée ne peut pas faire <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Lors d'une réunion, certaines paires de personnes se serrent la main.
@@ -5606,7 +5615,7 @@ découvrez laquelle des conditions est porteuse.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-74">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-75" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-75" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-75 · Les zéros à la fin d'une factorielle <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Déterminez, avec démonstration, combien de zéros
 figurent à la fin du développement décimal de \( 100! \), et donnez une formule pour le
@@ -5633,7 +5642,7 @@ invisible tant qu'on n'écrit pas la factorielle de la seconde façon.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-75">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-76" data-level="Lycée">
+<section class="problem" id="PUZ-76" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-76 · L'araignée et la mouche <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une pièce rectangulaire mesure \( 30 \) pieds de long, \( 12 \) pieds de
@@ -5683,7 +5692,7 @@ l'innocente affaire d'aplatir une boîte résiste aux mathématiciens depuis cin
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-76">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-77" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-77" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-77 · Quand les aiguilles d'une horloge se superposent <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Sur une horloge analogique ordinaire, les deux
 aiguilles tournent régulièrement, la grande aiguille exactement douze fois plus vite que la
@@ -5710,7 +5719,7 @@ plutôt qu'à quoi que ce soit d'horloger.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-77">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-78" data-level="Lycée">
+<section class="problem" id="PUZ-78" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-78 · Le plateau amputé et le triomino en L <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un <i>triomino en L</i> est la forme de trois carrés unités joints en L ;
@@ -5756,7 +5765,7 @@ invisible au coloriage ordinaire du damier. Comparez <a href="#PUZ-08">PUZ-08</a
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-78">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-87" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-87" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-87 · Trois interrupteurs, une seule visite <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Trois interrupteurs situés au rez-de-chaussée sont
 reliés un à un à trois lampes à incandescence identiques dans un grenier sans fenêtre ; vous
@@ -5786,7 +5795,7 @@ auxiliaire en cryptographie, où l'on a lu des secrets dans la durée, la consom
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-87">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-88" data-level="Lycée">
+<section class="problem" id="PUZ-88" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-88 · Les pirates se partagent le butin <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Cinq pirates, hiérarchisés par ancienneté et se connaissant les uns les
@@ -5835,7 +5844,7 @@ plutôt que d'allonger le tableau.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-88">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-89" data-level="Lycée">
+<section class="problem" id="PUZ-89" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-89 · Les deux tiers de la moyenne <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Chacun de \( n \ge 3 \) joueurs écrit simultanément et indépendamment un
@@ -5884,7 +5893,7 @@ mesure.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-89">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-90" data-level="Lycée">
+<section class="problem" id="PUZ-90" data-level="Lycée" data-page="puzzles.html">
 <h3>PUZ-90 · Le jeu de Sim <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Six points sont tracés en position générale, et les \( 15 \) segments
@@ -5934,7 +5943,7 @@ divorce entre existence et construction traverse PUZ-56 et PUZ-92 sur cette page
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-90">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-91" data-level="Lycée" data-kind="court">
+<section class="problem" id="PUZ-91" data-level="Lycée" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-91 · La majorité qui tourne en rond <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Trois électeurs classent trois candidats : le premier
 préfère \( A \succ B \succ C \), le deuxième \( B \succ C \succ A \), le troisième
@@ -5966,7 +5975,7 @@ candidats. Tout ce qui est dans PUZ-98 naît de cet unique exemple.</p>
 </div>
 <div class="area" id="area-probl-mes-ouverts">
 <h2>Problèmes ouverts</h2>
-<section class="problem" id="OPEN-43" data-level="Lycée" data-kind="court">
+<section class="problem" id="OPEN-43" data-level="Lycée" data-kind="court" data-page="open-problems.html">
 <h3>OPEN-43 · Les trois premiers zéros, à partir d'une table <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Dans une table publiée des zéros de la fonction zêta
 de Riemann (Andrew Odlyzko tient en ligne les tables de référence), relevez les parties
@@ -5986,7 +5995,7 @@ ne saurait le faire.</p>
 </ul>
 <p class="source-note">Extrait de <a href="open-problems.html#OPEN-43">Problèmes ouverts</a>.</p>
 </section>
-<section class="problem" id="OPEN-17" data-level="Lycée">
+<section class="problem" id="OPEN-17" data-level="Lycée" data-page="open-problems.html">
 <h3>OPEN-17 · L'application \( 3n+1 \) : calculez, et voyez le problème <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Définissez l'application de Collatz sur les entiers strictement
@@ -6019,7 +6028,7 @@ vérification ne nous dit rien sur le nombre suivant.</p>
 </ul>
 <p class="source-note">Extrait de <a href="open-problems.html#OPEN-17">Problèmes ouverts</a>.</p>
 </section>
-<section class="problem" id="OPEN-18" data-level="Lycée">
+<section class="problem" id="OPEN-18" data-level="Lycée" data-page="open-problems.html">
 <h3>OPEN-18 · L'application \( 3n-1 \) a des cycles — trouvez-les <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Changez un signe. Définissez
@@ -6049,7 +6058,7 @@ négatifs fait partie du tableau standard.</p>
 </ul>
 <p class="source-note">Extrait de <a href="open-problems.html#OPEN-18">Problèmes ouverts</a>.</p>
 </section>
-<section class="problem" id="OPEN-47" data-level="Lycée" data-kind="court">
+<section class="problem" id="OPEN-47" data-level="Lycée" data-kind="court" data-page="open-problems.html">
 <h3>OPEN-47 · Le temps d'arrêt total de 97 <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> À l'aide de l'application de Collatz \( T \)
 d'OPEN-17, calculez le temps d'arrêt total de \( n = 97 \) — le nombre de pas nécessaires
@@ -6072,7 +6081,7 @@ peut-être pas prêtes pour ce problème.</p>
 </ul>
 <p class="source-note">Extrait de <a href="open-problems.html#OPEN-47">Problèmes ouverts</a>.</p>
 </section>
-<section class="problem" id="OPEN-48" data-level="Lycée" data-kind="court">
+<section class="problem" id="OPEN-48" data-level="Lycée" data-kind="court" data-page="open-problems.html">
 <h3>OPEN-48 · Goldbach à la main, de 4 à 60 <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Pour tout nombre pair \( n \) avec
 \( 4 \leq n \leq 60 \), écrivez \( n \) comme somme de deux nombres premiers et notez
@@ -6096,7 +6105,7 @@ qu'un nombre pair isolé soit malchanceux.</p>
 </div>
 <div class="area" id="area-l-art-de-la-d-monstration">
 <h2>L&#x27;art de la démonstration</h2>
-<section class="problem" id="PRF-01" data-level="Lycée">
+<section class="problem" id="PRF-01" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-01 · Démonstration directe ou contraposée ? <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une implication « si P alors Q » peut se démontrer directement
@@ -6127,7 +6136,7 @@ Toute introduction à la démonstration commence ici.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-01">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-02" data-level="Lycée">
+<section class="problem" id="PRF-02" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-02 · La racine carrée de 2 est irrationnelle <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que \( \sqrt{2} \) est irrationnel : il
 n'existe pas d'entiers strictement positifs p et q tels que \( \sqrt{2} = p/q \). (Forme
@@ -6147,7 +6156,7 @@ l'absurde, et le problème suivant demande de quoi ce modèle est réellement fa
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-02">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-03" data-level="Lycée">
+<section class="problem" id="PRF-03" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-03 · Deux autres irrationnels, et la forme du canevas <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> PRF-02 a démontré que \( \sqrt{2} \) est irrationnel ; l'argument
@@ -6176,7 +6185,7 @@ conflit de parités entre puissances de 2 et puissances de 3.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-03">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-04" data-level="Lycée">
+<section class="problem" id="PRF-04" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-04 · Récurrence : les n premiers nombres impairs <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Pour tout entier strictement positif n,
@@ -6202,7 +6211,7 @@ traditionnel.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-04">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-05" data-level="Lycée">
+<section class="problem" id="PRF-05" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-05 · Trouvez la faille : tous les chevaux sont de la même couleur <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Voici une « démonstration » par récurrence du fait que tous les
@@ -6233,7 +6242,7 @@ des arguments conçus pour échouer.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-05">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-06" data-level="Lycée">
+<section class="problem" id="PRF-06" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-06 · Trouvez la faille : une démonstration que 1 = 2 <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Considérez la « démonstration » classique suivante. <i>Soient
@@ -6262,7 +6271,7 @@ assuré y faire entrer un mensonge en fraude.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-06">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-07" data-level="Lycée">
+<section class="problem" id="PRF-07" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-07 · Principe des tiroirs : cinq points entiers <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un point entier du plan est un point dont les coordonnées sont
@@ -6288,7 +6297,7 @@ possible.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-07">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-08" data-level="Lycée">
+<section class="problem" id="PRF-08" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-08 · Double dénombrement : le lemme des poignées de main <span class="level">[Lycée]</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que, dans toute assemblée, le nombre de
 personnes ayant serré un nombre impair de mains est pair. (De façon équivalente : dans tout
@@ -6309,7 +6318,7 @@ exactement trois sommets de degré 3 et aucun autre).</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-08">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-09" data-level="Lycée">
+<section class="problem" id="PRF-09" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-09 · Invariants : l'échiquier mutilé <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Retirez deux cases d'angle diagonalement opposées d'un échiquier
@@ -6336,7 +6345,7 @@ exhaustive y est immense alors qu'une seule idée clôt l'affaire à l'instant.<
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-09">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-10" data-level="Lycée">
+<section class="problem" id="PRF-10" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-10 · Ce que la démonstration par l'exemple ne peut pas faire <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Trois exercices sur ce que la vérification d'exemples peut et ne peut
@@ -6366,7 +6375,7 @@ démonstration : les exemples suggèrent ; seul l'argument établit.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-10">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-11" data-level="Lycée">
+<section class="problem" id="PRF-11" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-11 · Quand une figure est-elle une démonstration ? <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> La figure classique de réarrangement pour le théorème de Pythagore
@@ -6400,7 +6409,7 @@ centaine de beaux spécimens sur lesquels s'exercer.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-11">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-37" data-level="Lycée">
+<section class="problem" id="PRF-37" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-37 · La symétrie comme stratégie : des pièces sur une table ronde <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux joueurs posent tour à tour des pièces circulaires identiques sur
@@ -6435,7 +6444,7 @@ perte de généralité » en géométrie jusqu'au dénombrement par involution d
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-37">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-38" data-level="Lycée" data-kind="court">
+<section class="problem" id="PRF-38" data-level="Lycée" data-kind="court" data-page="proofs.html">
 <h3>PRF-38 · Démontrez ou réfutez : irrationnel + irrationnel <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez ou réfutez : la somme de deux nombres
 irrationnels est irrationnelle. Faites ensuite de même pour le produit de deux nombres
@@ -6451,7 +6460,7 @@ affirmation universelle meurt d'un seul exemple.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-38">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-39" data-level="Lycée" data-kind="court">
+<section class="problem" id="PRF-39" data-level="Lycée" data-kind="court" data-page="proofs.html">
 <h3>PRF-39 · Trois démonstrations que 6 divise n³ − n <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que \( n^3 - n \) est divisible par 6 pour
 tout entier n — trois fois, par trois arguments véritablement différents (candidats : la
@@ -6468,7 +6477,7 @@ problème fait pour \( n^3 - n \) (PRF-18).</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-39">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-40" data-level="Lycée" data-kind="court">
+<section class="problem" id="PRF-40" data-level="Lycée" data-kind="court" data-page="proofs.html">
 <h3>PRF-40 · Six personnes à une soirée, en dix phrases <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que parmi six personnes quelconques, il en
 existe trois qui se connaissent deux à deux, ou trois qui sont deux à deux étrangères l'une
@@ -6486,7 +6495,7 @@ frontière est étonnamment proche : la valeur de R(5,5) est toujours inconnue.<
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-40">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-46" data-level="Lycée">
+<section class="problem" id="PRF-46" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-46 · La réciproque n'est pas gratuite <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une affirmation de la forme « P si et seulement si Q » énonce deux
@@ -6528,7 +6537,7 @@ tôt.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-46">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-54" data-level="Lycée" data-kind="court">
+<section class="problem" id="PRF-54" data-level="Lycée" data-kind="court" data-page="proofs.html">
 <h3>PRF-54 · Deux quantificateurs, deux sens <span class="level">[Lycée]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Décidez, avec démonstration, si les deux phrases de
 chacune des paires ci-dessous disent la même chose : (i) « pour tout entier x il existe un
@@ -6553,7 +6562,7 @@ savoir-faire au travail sur la négation d'un énoncé en ε–δ.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-54">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-55" data-level="Lycée">
+<section class="problem" id="PRF-55" data-level="Lycée" data-page="proofs.html">
 <h3>PRF-55 · Le principe des tiroirs déguisé : inventer les tiroirs <span class="level">[Lycée]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le principe des tiroirs est trivial à énoncer et difficile à employer,
@@ -6595,46 +6604,12 @@ d'eux — une partie impaire, un reste, un couple de longueurs, une partie fract
 </section>
 </div>
 
+</main>
 <hr>
 <footer>
 <p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
 Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
 marcher. <a href="index.html">Accueil</a></p>
 </footer>
-<script>
-(function () {
-  var pick = "all", query = "";
-  var probs = Array.prototype.slice.call(document.querySelectorAll("section.problem"));
-  var count = document.getElementById("hscount");
-  function apply() {
-    var shown = 0;
-    document.querySelectorAll("div.area").forEach(function (d) {
-      var areaOk = (pick === "all" || d.id === pick), any = false;
-      d.querySelectorAll("section.problem").forEach(function (p) {
-        var ok = areaOk &&
-          (query === "" || p.textContent.toLowerCase().indexOf(query) !== -1);
-        p.classList.toggle("hidden", !ok);
-        if (ok) { any = true; shown++; }
-      });
-      d.classList.toggle("hidden", !any);
-    });
-    count.textContent = shown + " problème(s) sur " + probs.length;
-  }
-  document.querySelectorAll("#areabar button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      document.querySelectorAll("#areabar button").forEach(function (x) {
-        x.className = x === b ? "active" : "";
-      });
-      pick = b.dataset.area;
-      apply();
-    });
-  });
-  document.getElementById("hssearch").addEventListener("input", function (e) {
-    query = e.target.value.toLowerCase();
-    apply();
-  });
-  apply();
-})();
-</script>
 </body>
 </html>

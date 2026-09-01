@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Generate tex/<page>.tex from each Out of the Cave HTML problem page.
 
+Les deux salles (college.html, highschool.html) en font partie : leurs problèmes
+sont imbriqués dans des <div class="area">, dont le <h2> devient une \\section*
+comme les bandes de niveau des pages de domaine. Elles doivent donc être
+régénérées par assemble.py avant de passer ici.
+
 The HTML already carries real LaTeX inside \\( ... \\) and \\[ ... \\], so this is a
 faithful structural conversion: same problems, same numbering, same references.
 """
@@ -10,7 +15,8 @@ import os
 import re
 import sys
 
-ROOT = "/Users/bellum/claude-dir/hors-de-la-caverne"
+ROOT = os.environ.get("HDLC_ROOT",
+                     os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TEX = os.path.join(ROOT, "tex")
 
 # Unicode that may appear in prose -> LaTeX (text mode).
@@ -269,8 +275,8 @@ if __name__ == "__main__":
     names = sys.argv[1:] or sorted(
         f for f in os.listdir(ROOT)
         if f.endswith(".html") and f not in
-        ("index.html", "resources.html", "TEMPLATE.html", "highschool.html",
-         "college.html", "worksheet.html", "404.html"))
+        ("index.html", "resources.html", "TEMPLATE.html",
+         "worksheet.html", "404.html"))
     total = 0
     for f in names:
         n, left = convert_page(f)

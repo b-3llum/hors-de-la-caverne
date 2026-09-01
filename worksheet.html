@@ -4,15 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Composer une feuille d'exercices — Hors de la Caverne</title>
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="Composez votre feuille d'exercices : choisissez niveau, domaine et longueur, puis emportez-la en PDF ou en LaTeX.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="katex/katex.min.css">
+<link rel="stylesheet" href="style.css">
 <script src="theme.js"></script>
 <script defer src="katex/katex.min.js"></script>
 <script defer src="katex/contrib/auto-render.min.js"></script>
+<script defer src="mathfit.js"></script>
 <script defer src="problems-data.js"></script>
 <script defer src="worksheet.js"></script>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
 <a href="college.html">Collège</a> ·
@@ -27,6 +31,7 @@
 <button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
 </nav>
 <hr>
+<main id="contenu">
 
 <h1>Composer une feuille d'exercices</h1>
 <p class="lede">Choisissez combien de problèmes vous voulez et d'où ils doivent venir,
@@ -78,6 +83,8 @@ fichier LaTeX se compile avec pdflatex, xelatex ou tectonic.</span>
 
 <hr>
 <div id="out"></div>
+
+</main>
 
 <hr>
 <footer>

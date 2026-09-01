@@ -69,6 +69,9 @@
         throwOnError: false
       });
     }
+    // La feuille est écrite après le chargement : c'est ici qu'il faut remesurer
+    // les formules trop larges pour la colonne.
+    if (window.hdlcFlagWideMath) hdlcFlagWideMath();
   }
 
   function draw() {
@@ -118,13 +121,35 @@
     ""
   ].join("\n");
 
+  // Un titre sur quatre contient des mathématiques : \( D_4 \), \( S_3 \),
+  // \( \aleph_\omega \). Échapper le « _ » qui s'y trouve donnerait \_, qui
+  // n'existe pas en mode mathématique : la feuille exportée ne compilerait pas.
+  // On découpe donc le titre sur ses formules et on n'échappe que la prose.
+  var MATH_SPAN = /(\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\])/;
+
   function texEscape(s) {
-    return String(s).replace(/([%&#_])/g, "\\$1");
+    return String(s).split(MATH_SPAN).map(function (part, i) {
+      return i % 2 ? part : part.replace(/([%&#_])/g, "\\$1");
+    }).join("");
+  }
+
+  // Garde-fou : rien d'échappé ne doit subsister dans une formule.
+  function badMath(s) {
+    var parts = String(s).split(MATH_SPAN);
+    for (var i = 1; i < parts.length; i += 2) {
+      if (/\\[%&#_]/.test(parts[i])) return true;
+    }
+    return false;
   }
 
   function downloadTex() {
     if (!chosen.length) { alert("Sélectionnez d'abord des problèmes."); return; }
     var parts = [PREAMBLE];
+    var broken = chosen.filter(function (p) { return badMath(texEscape(p.title)); });
+    if (broken.length) {
+      console.warn("titres dont les maths sont mal échappées :",
+                   broken.map(function (p) { return p.id; }).join(" "));
+    }
     chosen.forEach(function (p) {
       parts.push("\\begin{problem}[{" + texEscape(p.title) + " --- " +
                  texEscape(p.level) + "}]\n" + (p.tex || "") + "\n\\end{problem}");

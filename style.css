@@ -1,19 +1,23 @@
 /* Out of the Cave — deliberately plain, old-web style. */
 :root {
+  color-scheme: light;
   --bg: #ffffff;
   --fg: #1a1a1a;
   --muted: #555555;
   --link: #0000cc;
   --visited: #551a8b;
   --rule: #aaaaaa;
+  --focus: #0044cc;
 }
 html[data-theme="dark"] {
+  color-scheme: dark;
   --bg: #14161a;
   --fg: #d8d8d8;
   --muted: #9a9a9a;
   --link: #8ab4f8;
   --visited: #c58af9;
   --rule: #555555;
+  --focus: #ffd166;
 }
 html { background: var(--bg); }
 body {
@@ -26,6 +30,19 @@ body {
   line-height: 1.55;
 }
 a { color: var(--link); }
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.skip {
+  position: absolute; left: -9999px;
+  width: 1px; height: 1px; overflow: hidden;
+}
+.skip:focus {
+  position: static; width: auto; height: auto;
+  display: inline-block; margin: 0.25rem 0; padding: 0.2em 0.6em;
+  background: var(--bg); color: var(--fg); border: 1px solid var(--rule);
+}
 a:visited { color: var(--visited); }
 hr { border: 0; border-top: 1px solid var(--rule); margin: 1.25rem 0; }
 h1, h2, h3 { line-height: 1.25; }
@@ -47,6 +64,27 @@ div.statement p { margin: 0.4rem 0; }
   border: 1px solid var(--rule); color: var(--muted);
   padding: 0 0.4em; margin-left: 0.4em; vertical-align: middle;
 }
+/* Une formule plus large que la colonne défile ; elle ne pousse pas la page.
+   « safe center » garde la formule centrée quand elle tient, et repart de la
+   marge gauche quand elle déborde — sinon son début serait inatteignable. */
+.katex-display {
+  display: flex;
+  justify-content: safe center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.25em;
+}
+.katex-display > .katex { flex: 0 0 auto; }
+/* En ligne, seules les formules que site.js a mesurées comme trop larges pour
+   leur colonne défilent : voir hdlcFlagWideMath(). */
+.katex.wide-math {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.problem, .statement, .context, .refs, .lede, footer { overflow-wrap: break-word; }
+
 .filterbar { margin: 1rem 0; }
 .filterbar button {
   font: inherit; font-size: 0.9em; cursor: pointer;
@@ -61,6 +99,7 @@ div.statement p { margin: 0.4rem 0; }
 }
 .filterbar .count { font-size: 0.85em; color: var(--muted); margin-left: 0.5em; }
 .hidden { display: none; }
+.noresult { color: var(--muted); font-style: italic; }
 .bigbutton {
   font: inherit; cursor: pointer;
   background: var(--bg); color: var(--fg);
@@ -82,7 +121,10 @@ div.statement p { margin: 0.4rem 0; }
 }
 .selbar input[type="number"] { width: 4em; cursor: text; }
 .selbar .n { font-weight: bold; }
-#builder label { margin-right: 1em; white-space: nowrap; }
+#builder label {
+  display: inline-block; max-width: 100%;
+  margin-right: 1em;
+}
 #builder input[type="number"] {
   font: inherit; width: 4.5em;
   background: var(--bg); color: var(--fg); border: 1px solid var(--rule);
@@ -102,11 +144,16 @@ div.statement p { margin: 0.4rem 0; }
   a { color: #000; text-decoration: none; }
   .refs a::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #444;
                    word-break: break-all; }
+  /* Le papier n'a pas de barre de défilement : ce qui dépasse doit sortir dans la
+     marge, comme avant, plutôt que d'être tronqué sans le dire. */
+  .katex-display, .katex.wide-math { overflow: visible !important; }
   .printhead { display: block !important; margin-bottom: 12pt; }
   #builder, .screen-only, .source-note a { display: none !important; }
   .source-note { color: #444; font-size: 0.85em; }
-  /* When printing a selection, hide everything not chosen. */
-  body.print-selection > *:not(.problem):not(.printhead) { display: none !important; }
+  /* Impression d'une sélection. site.js marque .print-hide sur tout ce qui
+     n'est pas sur le chemin d'un problème coché : la règle vaut donc aussi
+     bien pour <main> que pour les div.area imbriquées des deux salles. */
+  body.print-selection .print-hide { display: none !important; }
   body.print-selection .problem:not(.selected) { display: none !important; }
   body.print-selection .problem.selected { outline: none; }
 }

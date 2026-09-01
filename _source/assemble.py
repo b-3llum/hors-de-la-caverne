@@ -12,7 +12,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import html2tex  # noqa: E402  — reused for per-problem LaTeX export
 
-ROOT = "/Users/bellum/claude-dir/hors-de-la-caverne"
+ROOT = os.environ.get("HDLC_ROOT",
+                     os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 PAGES = [
     ("pure-foundations.html", "Logique, théorie des ensembles et fondements"),
@@ -48,6 +49,24 @@ H3_RE = re.compile(r"<h3>.*?·\s*(.*?)\s*<span", re.S)
 STMT_RE = re.compile(
     r'<p class="statement">(.*?)</p>|<div class="statement">(.*?)</div>', re.S)
 
+def validate(src):
+    """Everything every page of the site must carry. Applied to the hand-written
+    content pages *and* to the two rooms this script generates, so that a gap in
+    the generator is caught the same way a gap in a page would be."""
+    issues = []
+    if "katex/katex.min.css" not in src: issues.append("no-katex")
+    if "site.js" not in src: issues.append("no-sitejs")
+    if "mathfit.js" not in src: issues.append("no-mathfit")
+    if "highschool.html" not in src: issues.append("no-hs-nav")
+    if 'name="description"' not in src: issues.append("no-description")
+    if 'rel="icon"' not in src: issues.append("no-favicon")
+    if "<main" not in src: issues.append("no-main")
+    if 'class="skip"' not in src: issues.append("no-skip-link")
+    if re.search(r'src="https?://', src) or re.search(r'href="https?://[^"]*\.(css)"', src):
+        issues.append("external-asset?")
+    return issues
+
+
 catalogue = []   # one record per problem, for the worksheet builder
 
 problems = []          # manifest entries
@@ -60,12 +79,7 @@ for fname, area in PAGES:
         report.append(f"MISSING PAGE: {fname}")
         continue
     src = open(path, encoding="utf-8").read()
-    issues = []
-    if 'katex/katex.min.css' not in src: issues.append("no-katex")
-    if 'site.js' not in src: issues.append("no-sitejs")
-    if 'highschool.html' not in src: issues.append("no-hs-nav")
-    if re.search(r'src="https?://', src) or re.search(r'href="https?://[^"]*\.(css)"', src):
-        issues.append("external-asset?")
+    issues = validate(src)
     secs = [(m.group(1), m.group(2), m.group(3), m.group(0)) for m in SEC_RE.finditer(src)]
     plain = len(re.findall(r'<section class="problem"', src))
     if plain != len(secs): issues.append(f"sections-without-data-level:{plain - len(secs)}")
@@ -102,9 +116,40 @@ for fname, area in PAGES:
             note = (f'<p class="source-note">Extrait de '
                     f'<a href="{fname}#{pid}">{area}</a>.</p>')
             block = block.replace("</section>", note + "\n</section>")
+            # La salle doit dire d'où vient chaque problème : c'est cette clé-là
+            # (page d'origine, pas la salle) que worksheet.html sait retrouver
+            # dans PROBLEM_DATA. L'attribut est posé en fin de balise ouvrante
+            # pour que les motifs `id="..." ... data-level="..."` continuent de
+            # s'appliquer aux salles comme aux pages.
+            block = block.replace(">", f' data-page="{fname}">', 1)
             school[level].setdefault(fname, []).append(block)
     report.append(f"OK {fname}: {len(secs)} problems {levels}"
                   + (f"  ISSUES: {issues}" if issues else ""))
+
+# ---- les titres exportés en LaTeX ne doivent pas être échappés dans les maths ----
+MATH_SPAN_RE = re.compile(r"\\\(.*?\\\)|\\\[.*?\\\]", re.S)
+
+
+def tex_escape_title(title):
+    """Copie fidèle de texEscape() dans worksheet.js : n'échappe que la prose."""
+    def esc(t):
+        return re.sub(r"([%&#_])", r"\\\1", t)
+    out, pos = [], 0
+    for m in MATH_SPAN_RE.finditer(title):
+        out.append(esc(title[pos:m.start()]))
+        out.append(m.group(0))
+        pos = m.end()
+    out.append(esc(title[pos:]))
+    return "".join(out)
+
+
+# `\_` (et `\%`, `\&`, `\#`) en mode mathématique ne compile pas : une feuille
+# contenant un tel titre casserait tectonic. On le vérifie sur tout le site.
+bad_titles = [r["id"] for r in catalogue
+              if any(re.search(r"\\[%&#_]", m.group(0))
+                     for m in MATH_SPAN_RE.finditer(tex_escape_title(r["title"])))]
+if bad_titles:
+    report.append("TEX-TITLE-ESCAPE (\\_ etc. inside math): " + " ".join(bad_titles))
 
 # ---- manifest.js ----
 with open(os.path.join(ROOT, "manifest.js"), "w", encoding="utf-8") as f:
@@ -124,21 +169,36 @@ def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
-# %-formatted so the page's own JavaScript braces need no escaping.
+def meta_description(lede_html, limit=155):
+    """A <meta name="description"> drawn from the page's own lede."""
+    text = htmllib.unescape(re.sub(r"<[^>]+>", "", lede_html))
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) > limit:
+        text = text[:limit - 1].rsplit(" ", 1)[0] + "\u2026"
+    return htmllib.escape(text, quote=True)
+
+
+# %-formatted; the page carries no inline script of its own — site.js does the
+# filtering here exactly as it does on a domain page.
 HUB_SHELL = """<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(h1)s — Hors de la Caverne</title>
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="%(desc)s">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="katex/katex.min.css">
+<link rel="stylesheet" href="style.css">
 <script src="theme.js"></script>
 <script defer src="katex/katex.min.js"></script>
 <script defer src="katex/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body,{delimiters:[{left:'\\\\[',right:'\\\\]',display:true},{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false});"></script>
+<script defer src="mathfit.js"></script>
+<script defer src="site.js"></script>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
 <a href="college.html">Collège</a> ·
@@ -153,62 +213,32 @@ HUB_SHELL = """<!DOCTYPE html>
 <button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
 </nav>
 <hr>
+<main id="contenu">
 
 <h1>%(h1)s</h1>
 <p class="lede">%(lede)s</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/%(base)s.tex" download>source LaTeX</a></p>
 
 <div class="filterbar" id="areabar">
 <span>Domaines : </span>
-<button data-area="all" class="active">Tous les domaines (%(total)d)</button>
+<button type="button" data-area="all" class="active" aria-pressed="true">Tous les domaines (%(total)d)</button>
 %(buttons)s
-<input type="search" id="hssearch" placeholder="rechercher parmi ces problèmes…">
-<span class="count" id="hscount"></span>
+<input type="search" id="hssearch" aria-label="Rechercher parmi ces problèmes"
+  placeholder="rechercher parmi ces problèmes…">
+<span class="count" id="hscount" aria-live="polite"></span>
 </div>
 <hr>
 
 %(sections)s
 
+</main>
 <hr>
 <footer>
 <p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
 Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
 marcher. <a href="index.html">Accueil</a></p>
 </footer>
-<script>
-(function () {
-  var pick = "all", query = "";
-  var probs = Array.prototype.slice.call(document.querySelectorAll("section.problem"));
-  var count = document.getElementById("hscount");
-  function apply() {
-    var shown = 0;
-    document.querySelectorAll("div.area").forEach(function (d) {
-      var areaOk = (pick === "all" || d.id === pick), any = false;
-      d.querySelectorAll("section.problem").forEach(function (p) {
-        var ok = areaOk &&
-          (query === "" || p.textContent.toLowerCase().indexOf(query) !== -1);
-        p.classList.toggle("hidden", !ok);
-        if (ok) { any = true; shown++; }
-      });
-      d.classList.toggle("hidden", !any);
-    });
-    count.textContent = shown + " problème(s) sur " + probs.length;
-  }
-  document.querySelectorAll("#areabar button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      document.querySelectorAll("#areabar button").forEach(function (x) {
-        x.className = x === b ? "active" : "";
-      });
-      pick = b.dataset.area;
-      apply();
-    });
-  });
-  document.getElementById("hssearch").addEventListener("input", function (e) {
-    query = e.target.value.toLowerCase();
-    apply();
-  });
-  apply();
-})();
-</script>
 </body>
 </html>
 """
@@ -241,19 +271,32 @@ for _level, _outfile, _h1, _lede_tpl in ROOMS:
     if not total:
         continue
     buttons = "\n".join(
-        '<button data-area="area-%s">%s (%d)</button>'
+        '<button type="button" data-area="area-%s" aria-pressed="false">%s (%d)</button>'
         % (slug(a), htmllib.escape(a), len(by_page[f])) for f, a in areas)
     sections = "\n".join(
         '<div class="area" id="area-%s">\n<h2>%s</h2>\n%s\n</div>'
         % (slug(a), htmllib.escape(a), "\n".join(by_page[f])) for f, a in areas)
-    hub = HUB_SHELL % dict(h1=_h1, lede=_lede_tpl % dict(n=total), total=total,
-                           buttons=buttons, sections=sections)
+    lede = _lede_tpl % dict(n=total)
+    hub = HUB_SHELL % dict(h1=_h1, lede=lede, desc=meta_description(lede),
+                           total=total, buttons=buttons, sections=sections,
+                           base=_outfile[:-5])
+    # Le lien vers le PDF compilé, s'il a déjà été produit — sinon la boucle de
+    # rattrapage plus bas le rajouterait à chaque exécution.
+    if os.path.exists(os.path.join(ROOT, "tex", _outfile[:-5] + ".pdf")):
+        tex_link = '<a href="tex/%s.tex" download>source LaTeX</a>' % _outfile[:-5]
+        hub = hub.replace(
+            tex_link,
+            tex_link + ' · <a href="tex/%s.pdf" download>PDF compilé</a>' % _outfile[:-5], 1)
     with open(os.path.join(ROOT, _outfile), "w", encoding="utf-8") as f:
         f.write(hub)
+    room_issues = validate(hub)
+    report.append("OK %s: %d problems"
+                  % (_outfile, len(re.findall(r'<section class="problem"', hub)))
+                  + (f"  ISSUES: {room_issues}" if room_issues else ""))
 
 # ---- PDF links for compiled tex ----
 patched = 0
-for fname, _ in PAGES:
+for fname in [p for p, _ in PAGES] + [r[1] for r in ROOMS]:
     path = os.path.join(ROOT, fname)
     if not os.path.exists(path): continue
     base = fname[:-5]

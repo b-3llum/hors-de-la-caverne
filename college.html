@@ -4,14 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La salle des collégiens — Hors de la Caverne</title>
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="Tous les problèmes du site marqués [Collège], rassemblés en un seul endroit — 110 au total. Rien n&#x27;y dépasse le programme du collège : fractions,…">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="katex/katex.min.css">
+<link rel="stylesheet" href="style.css">
 <script src="theme.js"></script>
 <script defer src="katex/katex.min.js"></script>
 <script defer src="katex/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="mathfit.js"></script>
+<script defer src="site.js"></script>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
 <a href="college.html">Collège</a> ·
@@ -26,30 +31,34 @@
 <button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
 </nav>
 <hr>
+<main id="contenu">
 
 <h1>La salle des collégiens</h1>
 <p class="lede">Tous les problèmes du site marqués [Collège], rassemblés en un seul endroit — 110 au total. Rien n'y dépasse le programme du collège : fractions, divisibilité, aires, angles, dénombrement, hasard. En revanche, on y demande toujours de <b>justifier</b> — expliquer pourquoi c'est vrai, et pas seulement donner le résultat. C'est exactement ce que font les mathématiciens, en plus petit. Quand ceux-ci deviendront faciles, la <a href="highschool.html">salle des lycéens</a> vous attend.</p>
+<p class="downloads">Télécharger cette feuille de problèmes :
+<a href="tex/college.tex" download>source LaTeX</a> · <a href="tex/college.pdf" download>PDF compilé</a></p>
 
 <div class="filterbar" id="areabar">
 <span>Domaines : </span>
-<button data-area="all" class="active">Tous les domaines (110)</button>
-<button data-area="area-alg-bre-abstraite">Algèbre abstraite (12)</button>
-<button data-area="area-th-orie-des-nombres">Théorie des nombres (12)</button>
-<button data-area="area-g-om-trie">Géométrie (12)</button>
-<button data-area="area-combinatoire-et-th-orie-des-graphes">Combinatoire et théorie des graphes (12)</button>
-<button data-area="area-probabilit-s">Probabilités (12)</button>
-<button data-area="area-statistique">Statistique (12)</button>
-<button data-area="area-math-matiques-discr-tes-et-informatique">Mathématiques discrètes et informatique (10)</button>
-<button data-area="area-casse-t-te">Casse-tête (16)</button>
-<button data-area="area-l-art-de-la-d-monstration">L&#x27;art de la démonstration (12)</button>
-<input type="search" id="hssearch" placeholder="rechercher parmi ces problèmes…">
-<span class="count" id="hscount"></span>
+<button type="button" data-area="all" class="active" aria-pressed="true">Tous les domaines (110)</button>
+<button type="button" data-area="area-alg-bre-abstraite" aria-pressed="false">Algèbre abstraite (12)</button>
+<button type="button" data-area="area-th-orie-des-nombres" aria-pressed="false">Théorie des nombres (12)</button>
+<button type="button" data-area="area-g-om-trie" aria-pressed="false">Géométrie (12)</button>
+<button type="button" data-area="area-combinatoire-et-th-orie-des-graphes" aria-pressed="false">Combinatoire et théorie des graphes (12)</button>
+<button type="button" data-area="area-probabilit-s" aria-pressed="false">Probabilités (12)</button>
+<button type="button" data-area="area-statistique" aria-pressed="false">Statistique (12)</button>
+<button type="button" data-area="area-math-matiques-discr-tes-et-informatique" aria-pressed="false">Mathématiques discrètes et informatique (10)</button>
+<button type="button" data-area="area-casse-t-te" aria-pressed="false">Casse-tête (16)</button>
+<button type="button" data-area="area-l-art-de-la-d-monstration" aria-pressed="false">L&#x27;art de la démonstration (12)</button>
+<input type="search" id="hssearch" aria-label="Rechercher parmi ces problèmes"
+  placeholder="rechercher parmi ces problèmes…">
+<span class="count" id="hscount" aria-live="polite"></span>
 </div>
 <hr>
 
 <div class="area" id="area-alg-bre-abstraite">
 <h2>Algèbre abstraite</h2>
-<section class="problem" id="ALG-44" data-level="Collège">
+<section class="problem" id="ALG-44" data-level="Collège" data-page="pure-algebra.html">
 <h3>ALG-44 · Trois entiers consécutifs <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Des entiers consécutifs sont des entiers qui se suivent, comme 7, 8, 9. Dans
@@ -79,7 +88,7 @@ instructif que la règle elle-même.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-44">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-45" data-level="Collège">
+<section class="problem" id="ALG-45" data-level="Collège" data-page="pure-algebra.html">
 <h3>ALG-45 · « Pense à un nombre… » <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Voici un tour de magie numérique. Pensez à un nombre ; ajoutez 5 ; multipliez
@@ -109,7 +118,7 @@ faire qu'en comprenant le mécanisme.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-45">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-46" data-level="Collège">
+<section class="problem" id="ALG-46" data-level="Collège" data-page="pure-algebra.html">
 <h3>ALG-46 · Les identités remarquables démontrées par des aires <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Dans tout ce problème, \( a \) et \( b \) désignent des longueurs, donc des
@@ -140,7 +149,7 @@ comme des recettes à retenir change durablement la façon dont on les manipule.
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-46">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-47" data-level="Collège" data-kind="court">
+<section class="problem" id="ALG-47" data-level="Collège" data-kind="court" data-page="pure-algebra.html">
 <h3>ALG-47 · Une hausse puis une baisse <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un prix \( p \) subit une hausse de 20 %, puis le nouveau prix
 subit une baisse de 20 % ; démontrez que l'on ne retrouve jamais le prix de départ, sauf si
@@ -158,7 +167,7 @@ de vue qui fait tout le travail.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-47">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-48" data-level="Collège" data-kind="court">
+<section class="problem" id="ALG-48" data-level="Collège" data-kind="court" data-page="pure-algebra.html">
 <h3>ALG-48 · Le carré des nombres qui finissent par 5 <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On observe que \( 25^2 = 625 \), \( 35^2 = 1225 \) et
 \( 45^2 = 2025 \) : chaque résultat se termine par 25, et ce qui précède ces deux chiffres est le
@@ -176,7 +185,7 @@ entre savoir un tour et savoir pourquoi il ne peut pas échouer.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-48">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-49" data-level="Collège">
+<section class="problem" id="ALG-49" data-level="Collège" data-page="pure-algebra.html">
 <h3>ALG-49 · Le partage, posé en équation <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Poser une équation, c'est nommer d'une lettre la quantité cherchée, puis
@@ -207,7 +216,7 @@ est linéaire.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-49">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-50" data-level="Collège">
+<section class="problem" id="ALG-50" data-level="Collège" data-page="pure-algebra.html">
 <h3>ALG-50 · L'épitaphe de Diophante <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une épigramme de l'<i>Anthologie grecque</i> décrit ainsi la vie de Diophante :
@@ -238,7 +247,7 @@ ne cherche que les solutions entières.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-50">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-51" data-level="Collège">
+<section class="problem" id="ALG-51" data-level="Collège" data-page="pure-algebra.html">
 <h3>ALG-51 · Les poules et les lapins <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Dans une basse-cour on ne compte que des poules, à deux pattes, et des lapins,
@@ -267,7 +276,7 @@ ne saura jamais faire.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-51">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-52" data-level="Collège">
+<section class="problem" id="ALG-52" data-level="Collège" data-page="pure-algebra.html">
 <h3>ALG-52 · La somme de Gauss <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On s'intéresse aux sommes d'entiers qui se suivent, et à la façon de les
@@ -301,7 +310,7 @@ toutes les mathématiques.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-52">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-53" data-level="Collège">
+<section class="problem" id="ALG-53" data-level="Collège" data-page="pure-algebra.html">
 <h3>ALG-53 · Échelles, agrandissements et vitesses <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Trois situations où l'on croit reconnaître de la proportionnalité, et où il faut
@@ -332,7 +341,7 @@ deux grandeurs liées varient forcément dans le même sens et dans le même rap
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-53">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-54" data-level="Collège" data-kind="court">
+<section class="problem" id="ALG-54" data-level="Collège" data-kind="court" data-page="pure-algebra.html">
 <h3>ALG-54 · Multiplier autour d'un carré <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Pour calculer \( 19 \times 21 \) de tête on remarque que les
 deux facteurs encadrent 20 ; démontrez que \( (n-1)(n+1) = n^2 - 1 \) pour tout nombre \( n \), puis
@@ -351,7 +360,7 @@ nombres impairs.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-algebra.html#ALG-54">Algèbre abstraite</a>.</p>
 </section>
-<section class="problem" id="ALG-55" data-level="Collège" data-kind="court">
+<section class="problem" id="ALG-55" data-level="Collège" data-kind="court" data-page="pure-algebra.html">
 <h3>ALG-55 · Le nombre retourné <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Prenez un nombre entier de deux chiffres, retournez-le, et
 soustrayez le plus petit des deux nombres du plus grand ; démontrez que le résultat est toujours un
@@ -373,7 +382,7 @@ démonstration.</p>
 </div>
 <div class="area" id="area-th-orie-des-nombres">
 <h2>Théorie des nombres</h2>
-<section class="problem" id="NT-54" data-level="Collège">
+<section class="problem" id="NT-54" data-level="Collège" data-page="pure-number-theory.html">
 <h3>NT-54 · Les nombres 9, 99, 999 et la règle de trois <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Tout entier à quatre chiffres s'écrit \( n = 1000a + 100b + 10c + d \), où
@@ -408,7 +417,7 @@ même chose dans la langue des congruences — comparez les deux rédactions.</p
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-54">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-55" data-level="Collège">
+<section class="problem" id="NT-55" data-level="Collège" data-page="pure-number-theory.html">
 <h3>NT-55 · Le crible d'Ératosthène jusqu'à 100 <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Écrivez les entiers de \( 2 \) à \( 100 \). Barrez les multiples de \( 2 \) autres
@@ -444,7 +453,7 @@ ouverte aujourd'hui.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-55">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-56" data-level="Collège" data-kind="court">
+<section class="problem" id="NT-56" data-level="Collège" data-kind="court" data-page="pure-number-theory.html">
 <h3>NT-56 · Pair, impair <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que la somme de deux nombres impairs est toujours
 paire, et que leur produit est toujours impair. Votre rédaction doit utiliser l'écriture
@@ -460,7 +469,7 @@ entier, on comprend pourquoi.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-56">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-57" data-level="Collège">
+<section class="problem" id="NT-57" data-level="Collège" data-page="pure-number-theory.html">
 <h3>NT-57 · La somme du petit Gauss <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On veut calculer \( 1 + 2 + 3 + \cdots + n \) sans poser l'addition.</p>
@@ -494,7 +503,7 @@ non par le calcul mais par la figure, ce qu'on appelle une preuve sans mots. Les
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-57">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-58" data-level="Collège">
+<section class="problem" id="NT-58" data-level="Collège" data-page="pure-number-theory.html">
 <h3>NT-58 · L'algorithme d'Euclide par soustractions <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soient \( a \) et \( b \) deux entiers strictement positifs avec
@@ -526,7 +535,7 @@ calculerait rien.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-58">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-59" data-level="Collège" data-kind="court">
+<section class="problem" id="NT-59" data-level="Collège" data-kind="court" data-page="pure-number-theory.html">
 <h3>NT-59 · Deux phares <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un phare s'allume toutes les \( 12 \) secondes, un autre toutes
 les \( 18 \) secondes ; à l'instant \( 0 \), ils s'allument ensemble. Démontrez qu'ils se rallument
@@ -542,7 +551,7 @@ groupe.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-59">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-60" data-level="Collège" data-kind="court">
+<section class="problem" id="NT-60" data-level="Collège" data-kind="court" data-page="pure-number-theory.html">
 <h3>NT-60 · Le dernier chiffre des puissances de 2 <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez que le dernier chiffre de \( 2^n \), pour
 \( n \ge 1 \), ne prend que quatre valeurs et qu'il se répète avec une période de quatre — en
@@ -560,7 +569,7 @@ lycée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-60">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-61" data-level="Collège">
+<section class="problem" id="NT-61" data-level="Collège" data-page="pure-number-theory.html">
 <h3>NT-61 · 6 et 28, les nombres parfaits <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un entier strictement positif est dit <i>parfait</i> lorsqu'il est égal à la somme
@@ -595,7 +604,7 @@ depuis plus de deux mille ans.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-61">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-62" data-level="Collège">
+<section class="problem" id="NT-62" data-level="Collège" data-page="pure-number-theory.html">
 <h3>NT-62 · Autant de nombres pairs que d'entiers <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> L'intuition dit qu'il y a « deux fois moins » de nombres pairs que d'entiers,
@@ -633,7 +642,7 @@ mathématiciens pendant trente ans.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-62">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-63" data-level="Collège">
+<section class="problem" id="NT-63" data-level="Collège" data-page="pure-number-theory.html">
 <h3>NT-63 · Les fractions des scribes égyptiens <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Les scribes égyptiens n'écrivaient que des fractions de numérateur \( 1 \), et
@@ -668,7 +677,7 @@ est un joli théorème ; qu'il donne la décomposition la plus courte est faux.<
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-63">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-64" data-level="Collège">
+<section class="problem" id="NT-64" data-level="Collège" data-page="pure-number-theory.html">
 <h3>NT-64 · Les lapins de Fibonacci <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On pose \( F_1 = 1 \), \( F_2 = 1 \), et chaque terme suivant est la somme des
@@ -704,7 +713,7 @@ verrez démontré plus tard ; la vraie leçon de cette question est ailleurs, da
 </ul>
 <p class="source-note">Extrait de <a href="pure-number-theory.html#NT-64">Théorie des nombres</a>.</p>
 </section>
-<section class="problem" id="NT-65" data-level="Collège" data-kind="court">
+<section class="problem" id="NT-65" data-level="Collège" data-kind="court" data-page="pure-number-theory.html">
 <h3>NT-65 · La divisibilité par 11 <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez qu'un entier à quatre chiffres
 \( n = 1000a + 100b + 10c + d \) est divisible par \( 11 \) exactement lorsque \( d - c + b - a \)
@@ -723,7 +732,7 @@ accepte de diviser.</p>
 </div>
 <div class="area" id="area-g-om-trie">
 <h2>Géométrie</h2>
-<section class="problem" id="GEO-41" data-level="Collège">
+<section class="problem" id="GEO-41" data-level="Collège" data-page="pure-geometry.html">
 <h3>GEO-41 · Pourquoi les angles d'un triangle font 180° <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soit \( ABC \) un triangle. Tracez la droite passant par \( A \) et parallèle à
@@ -758,7 +767,7 @@ reprend l'affaire.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-41">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-42" data-level="Collège">
+<section class="problem" id="GEO-42" data-level="Collège" data-page="pure-geometry.html">
 <h3>GEO-42 · Pythagore par découpage <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soit un triangle rectangle de côtés de l'angle droit \( a \) et \( b \), et
@@ -798,7 +807,7 @@ triangle est rectangle.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-42">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-43" data-level="Collège">
+<section class="problem" id="GEO-43" data-level="Collège" data-page="pure-geometry.html">
 <h3>GEO-43 · La médiatrice, ensemble des points équidistants <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Soient \( A \) et \( B \) deux points distincts, \( I \) le milieu de
@@ -829,7 +838,7 @@ part à l'infini — un cas dégénéré qu'une bonne rédaction n'a pas le droi
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-43">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-44" data-level="Collège">
+<section class="problem" id="GEO-44" data-level="Collège" data-page="pure-geometry.html">
 <h3>GEO-44 · Encadrer π, puis l'aire du disque <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On considère un cercle de rayon \( 1 \), donc de périmètre \( 2\pi \).</p>
@@ -866,7 +875,7 @@ définir proprement — deux mille ans après Archimède.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-44">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-45" data-level="Collège">
+<section class="problem" id="GEO-45" data-level="Collège" data-page="pure-geometry.html">
 <h3>GEO-45 · Thalès, l'ombre et la pyramide <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un piquet vertical de \( 1{,}50 \) m projette une ombre de \( 2{,}40 \) m. Au même
@@ -901,7 +910,7 @@ déforme.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-45">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-46" data-level="Collège">
+<section class="problem" id="GEO-46" data-level="Collège" data-page="pure-geometry.html">
 <h3>GEO-46 · Le patron d'un cube et les faces d'un dé <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un patron de cube est une figure faite de six carrés reliés par des côtés, qui se
@@ -935,7 +944,7 @@ des boulets de canon, ait posé un problème resté ouvert jusqu'en 1998.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-46">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-47" data-level="Collège">
+<section class="problem" id="GEO-47" data-level="Collège" data-page="pure-geometry.html">
 <h3>GEO-47 · Le plus court chemin jusqu'à la rivière <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une droite \( (d) \) représente la berge d'une rivière. Deux points \( A \) et
@@ -968,7 +977,7 @@ qui remplace un problème d'optimisation par une ligne droite.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-47">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-48" data-level="Collège" data-kind="court">
+<section class="problem" id="GEO-48" data-level="Collège" data-kind="court" data-page="pure-geometry.html">
 <h3>GEO-48 · Des triangles de même aire <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soient \( A \) et \( B \) deux points d'une droite \( (d) \), et
 \( (d') \) une droite parallèle à \( (d) \). Démontrez que tous les triangles \( ABM \), lorsque
@@ -984,7 +993,7 @@ rien d'autre que deux cisaillements bien choisis.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-48">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-49" data-level="Collège">
+<section class="problem" id="GEO-49" data-level="Collège" data-page="pure-geometry.html">
 <h3>GEO-49 · Quels polygones pavent le plan <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On veut recouvrir le plan, sans trou ni chevauchement, avec des copies d'un même
@@ -1020,7 +1029,7 @@ par Michaël Rao.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-49">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-50" data-level="Collège" data-kind="court">
+<section class="problem" id="GEO-50" data-level="Collège" data-kind="court" data-page="pure-geometry.html">
 <h3>GEO-50 · Deux miroirs parallèles <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Soient \( (d_1) \) et \( (d_2) \) deux droites parallèles
 distinctes. Démontrez que la composée des deux symétries axiales d'axes \( (d_1) \) puis \( (d_2) \)
@@ -1038,7 +1047,7 @@ qui classe les frises et les pavages de GEO-49.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-50">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-51" data-level="Collège" data-kind="court">
+<section class="problem" id="GEO-51" data-level="Collège" data-kind="court" data-page="pure-geometry.html">
 <h3>GEO-51 · Voir n'est pas démontrer <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Tracez très soigneusement, sur cinq triangles quelconques et
 franchement différents, le point de concours des médianes \( G \), celui des médiatrices \( O \) et
@@ -1057,7 +1066,7 @@ Mertens aussi. Une figure vous dit où chercher, elle ne vous dit jamais que vou
 </ul>
 <p class="source-note">Extrait de <a href="pure-geometry.html#GEO-51">Géométrie</a>.</p>
 </section>
-<section class="problem" id="GEO-52" data-level="Collège" data-kind="court">
+<section class="problem" id="GEO-52" data-level="Collège" data-kind="court" data-page="pure-geometry.html">
 <h3>GEO-52 · Reconnaître deux droites parallèles <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Deux droites \( (d) \) et \( (d') \) sont coupées par une
 sécante \( (s) \), et deux angles alternes-internes ainsi formés sont égaux. Démontrez que \( (d) \)
@@ -1077,7 +1086,7 @@ logique ; savoir dans quel sens on raisonne est ici la seule chose qui compte.</
 </div>
 <div class="area" id="area-combinatoire-et-th-orie-des-graphes">
 <h2>Combinatoire et théorie des graphes</h2>
-<section class="problem" id="CMB-45" data-level="Collège">
+<section class="problem" id="CMB-45" data-level="Collège" data-page="pure-combinatorics.html">
 <h3>CMB-45 · Les poignées de main d'une classe <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Dans une salle, chaque personne présente serre la main de chaque autre personne
@@ -1106,7 +1115,7 @@ serrées.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-45">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-46" data-level="Collège">
+<section class="problem" id="CMB-46" data-level="Collège" data-page="pure-combinatorics.html">
 <h3>CMB-46 · Les diagonales d'un polygone <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Dans un polygone convexe, une diagonale est un segment qui joint deux sommets
@@ -1135,7 +1144,7 @@ jamais d'avoir cherché sans trouver.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-46">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-47" data-level="Collège">
+<section class="problem" id="CMB-47" data-level="Collège" data-page="pure-combinatorics.html">
 <h3>CMB-47 · Chemins sur un quadrillage <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une fourmi part du coin inférieur gauche d'un quadrillage et se rend au coin
@@ -1168,7 +1177,7 @@ d'exclusion.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-47">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-48" data-level="Collège" data-kind="court">
+<section class="problem" id="CMB-48" data-level="Collège" data-kind="court" data-page="pure-combinatorics.html">
 <h3>CMB-48 · L'arbre des menus <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un restaurant propose 3 entrées, 4 plats et 2 desserts, et un
 menu se compose d'une entrée, d'un plat et d'un dessert. Dessinez l'arbre des choix, dénombrez les
@@ -1184,7 +1193,7 @@ par exemple — et où l'arbre, lui, continue de dire la vérité que la multipl
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-48">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-49" data-level="Collège" data-kind="court">
+<section class="problem" id="CMB-49" data-level="Collège" data-kind="court" data-page="pure-combinatorics.html">
 <h3>CMB-49 · Des chaussettes dans le noir <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un tiroir contient 10 chaussettes noires, 10 bleues et 10
 rouges, toutes mêlées, et l'on y pioche des chaussettes sans allumer la lumière. Déterminez, en le
@@ -1200,7 +1209,7 @@ malchanceux montrant qu'un de moins ne suffirait pas.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-49">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-50" data-level="Collège">
+<section class="problem" id="CMB-50" data-level="Collège" data-page="pure-combinatorics.html">
 <h3>CMB-50 · Les sept ponts de Königsberg <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> La ville de Königsberg était bâtie sur deux rives et deux îles de la rivière
@@ -1232,7 +1241,7 @@ Guerre mondiale ; la question, elle, se repose à l'identique sur la carte d'auj
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-50">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-51" data-level="Collège">
+<section class="problem" id="CMB-51" data-level="Collège" data-page="pure-combinatorics.html">
 <h3>CMB-51 · Combien de matchs dans le tournoi ? <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux formats de compétition se disputent le monde du sport : l'élimination
@@ -1261,7 +1270,7 @@ et elle vaut aussi bien pour 64 équipes que pour 4 096.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-51">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-52" data-level="Collège">
+<section class="problem" id="CMB-52" data-level="Collège" data-page="pure-combinatorics.html">
 <h3>CMB-52 · Colorier une carte avec peu de couleurs <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Colorier une carte, c'est attribuer une couleur à chaque région de sorte que
@@ -1292,7 +1301,7 @@ démontrent au crayon.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-52">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-53" data-level="Collège">
+<section class="problem" id="CMB-53" data-level="Collège" data-page="pure-combinatorics.html">
 <h3>CMB-53 · Combien de carrés sur un damier ? <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On considère un damier \( 8 \times 8 \) et l'on ne s'intéresse qu'aux carrés
@@ -1319,7 +1328,7 @@ objet par les choix qui le déterminent entièrement.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-53">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-54" data-level="Collège">
+<section class="problem" id="CMB-54" data-level="Collège" data-page="pure-combinatorics.html">
 <h3>CMB-54 · Le damier et les dominos <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un domino recouvre exactement deux cases voisines d'un damier, côte à côte ou
@@ -1349,7 +1358,7 @@ pavage possible — est plus fine et se traite au lycée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-54">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-55" data-level="Collège" data-kind="court">
+<section class="problem" id="CMB-55" data-level="Collège" data-kind="court" data-page="pure-combinatorics.html">
 <h3>CMB-55 · Le motif d'allumettes <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On aligne des carrés en les collant côte à côte : un carré
 demande 4 allumettes, deux carrés en demandent 7, trois carrés en demandent 10. Déterminez, en le
@@ -1366,7 +1375,7 @@ l'on démontre en regardant la marche, pas les marches.</p>
 </ul>
 <p class="source-note">Extrait de <a href="pure-combinatorics.html#CMB-55">Combinatoire et théorie des graphes</a>.</p>
 </section>
-<section class="problem" id="CMB-56" data-level="Collège" data-kind="court">
+<section class="problem" id="CMB-56" data-level="Collège" data-kind="court" data-page="pure-combinatorics.html">
 <h3>CMB-56 · Deux langues et un diagramme <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Dans une classe de 30 élèves, 18 étudient l'anglais, 15
 étudient l'espagnol et 7 étudient les deux langues. Déterminez combien d'élèves n'étudient aucune
@@ -1387,7 +1396,7 @@ de deviner lequel avant de le lire.</p>
 </div>
 <div class="area" id="area-probabilit-s">
 <h2>Probabilités</h2>
-<section class="problem" id="PRB-45" data-level="Collège">
+<section class="problem" id="PRB-45" data-level="Collège" data-page="applied-probability.html">
 <h3>PRB-45 · Sept contre douze <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On lance deux dés équilibrés à six faces, l'un rouge et l'un vert, et on
@@ -1418,7 +1427,7 @@ PRB-01, sur cette même page.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-45">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-46" data-level="Collège">
+<section class="problem" id="PRB-46" data-level="Collège" data-page="applied-probability.html">
 <h3>PRB-46 · La suite qui n'a pas l'air au hasard <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux élèves devaient produire une suite de 30 résultats de pile ou face. L'un a
@@ -1451,7 +1460,7 @@ bande Lycée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-46">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-47" data-level="Collège" data-kind="court">
+<section class="problem" id="PRB-47" data-level="Collège" data-kind="court" data-page="applied-probability.html">
 <h3>PRB-47 · Deux chaussettes dans le noir <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un tiroir contient six chaussettes noires et quatre
 chaussettes bleues mélangées, et vous en tirez deux au hasard dans l'obscurité, sans remettre la
@@ -1471,7 +1480,7 @@ mathématicien.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-47">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-48" data-level="Collège">
+<section class="problem" id="PRB-48" data-level="Collège" data-page="applied-probability.html">
 <h3>PRB-48 · La roue du forain <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> À la fête foraine, une roue est partagée en huit secteurs de même taille,
@@ -1507,7 +1516,7 @@ forain.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-48">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-49" data-level="Collège">
+<section class="problem" id="PRB-49" data-level="Collège" data-page="applied-probability.html">
 <h3>PRB-49 · Le jeu est-il équitable ? <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Alice et Bruno lancent ensemble deux dés équilibrés à six faces. Dans chacune
@@ -1538,7 +1547,7 @@ dire comment on la calcule.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-49">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-50" data-level="Collège">
+<section class="problem" id="PRB-50" data-level="Collège" data-page="applied-probability.html">
 <h3>PRB-50 · Un anniversaire commun dans votre classe <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un élève d'une classe de 30 affirme : « nous sommes 30 et l'année compte 365
@@ -1570,7 +1579,7 @@ faire.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-50">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-51" data-level="Collège">
+<section class="problem" id="PRB-51" data-level="Collège" data-page="applied-probability.html">
 <h3>PRB-51 · Deux enfants, dont une fille <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On admet qu'à chaque naissance, garçon et fille sont également probables, et
@@ -1603,7 +1612,7 @@ dans la bande Lycée ; ici, l'arbre suffit, et il rend la morale plus visible en
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-51">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-52" data-level="Collège">
+<section class="problem" id="PRB-52" data-level="Collège" data-page="applied-probability.html">
 <h3>PRB-52 · Trois dés qui tournent en rond <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Trois dés équilibrés à six faces portent les valeurs
@@ -1632,7 +1641,7 @@ quatre dés est PRB-24, dans la bande Lycée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-52">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-53" data-level="Collège" data-kind="court">
+<section class="problem" id="PRB-53" data-level="Collège" data-kind="court" data-page="applied-probability.html">
 <h3>PRB-53 · « Deux issues, donc une chance sur deux » <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un élève affirme : « quand je joue au loto, soit je gagne,
 soit je perds ; il n'y a que deux issues, donc j'ai une chance sur deux de gagner ». Débusquez
@@ -1653,7 +1662,7 @@ justifie ou elle se démontre, jamais elle ne se suppose au vu du nombre de case
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-53">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-54" data-level="Collège">
+<section class="problem" id="PRB-54" data-level="Collège" data-page="applied-probability.html">
 <h3>PRB-54 · Deux urnes et un dé <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> L'urne n° 1 contient 3 boules rouges et 2 boules vertes ; l'urne n° 2 contient
@@ -1684,7 +1693,7 @@ inégales ne se laissent pas verser dans un même sac.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-54">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-55" data-level="Collège" data-kind="court">
+<section class="problem" id="PRB-55" data-level="Collège" data-kind="court" data-page="applied-probability.html">
 <h3>PRB-55 · Au moins un six <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un élève raisonne ainsi sur le lancer de deux dés
 équilibrés : « la probabilité d'obtenir un six sur un dé vaut \( 1/6 \), donc avec deux dés elle
@@ -1704,7 +1713,7 @@ de calcul.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-probability.html#PRB-55">Probabilités</a>.</p>
 </section>
-<section class="problem" id="PRB-56" data-level="Collège" data-kind="court">
+<section class="problem" id="PRB-56" data-level="Collège" data-kind="court" data-page="applied-probability.html">
 <h3>PRB-56 · La pièce qui « doit » tomber sur pile <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une pièce équilibrée vient de tomber cinq fois de suite sur
 face, et un joueur en conclut : « pile est en retard, il a maintenant plus d'une chance sur deux de
@@ -1729,7 +1738,7 @@ bande Lycée.</p>
 </div>
 <div class="area" id="area-statistique">
 <h2>Statistique</h2>
-<section class="problem" id="STA-41" data-level="Collège">
+<section class="problem" id="STA-41" data-level="Collège" data-page="applied-statistics.html">
 <h3>STA-41 · Le salaire moyen chez Duval <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> L'entreprise Duval emploie dix personnes : huit ouvriers payés 1 500 € par
@@ -1760,7 +1769,7 @@ démonstration de cette propriété est STA-01, dans la bande Lycée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-41">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-42" data-level="Collège">
+<section class="problem" id="STA-42" data-level="Collège" data-page="applied-statistics.html">
 <h3>STA-42 · L'axe qui ne part pas de zéro <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un journal local publie un diagramme en barres du nombre de cambriolages
@@ -1793,7 +1802,7 @@ l'accord entre ce que le graphique fait voir et ce que le texte affirme.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-42">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-43" data-level="Collège">
+<section class="problem" id="STA-43" data-level="Collège" data-page="applied-statistics.html">
 <h3>STA-43 · Le sondage de la cour de récréation <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Camille veut connaître le sport préféré des 600 élèves de son collège. Un
@@ -1825,7 +1834,7 @@ que la manière de choisir les personnes interrogées compte davantage que leur 
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-43">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-44" data-level="Collège">
+<section class="problem" id="STA-44" data-level="Collège" data-page="applied-statistics.html">
 <h3>STA-44 · Deux classes, une seule moyenne <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux classes de neuf élèves ont passé le même contrôle, noté sur 20. Voici les
@@ -1857,7 +1866,7 @@ laisse encore passer.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-44">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-45" data-level="Collège">
+<section class="problem" id="STA-45" data-level="Collège" data-page="applied-statistics.html">
 <h3>STA-45 · La moyenne des moyennes <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Au dernier contrôle de mathématiques, la classe de 4<sup>e</sup> A, qui compte
@@ -1885,7 +1894,7 @@ affiché, les effectifs jouent déjà ce rôle.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-45">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-46" data-level="Collège">
+<section class="problem" id="STA-46" data-level="Collège" data-page="applied-statistics.html">
 <h3>STA-46 · Le diagramme circulaire du foyer <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le foyer socio-éducatif d'un collège publie un diagramme circulaire des
@@ -1917,7 +1926,7 @@ côte. La question (c) explique la moitié de cette mauvaise réputation.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-46">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-47" data-level="Collège" data-kind="court">
+<section class="problem" id="STA-47" data-level="Collège" data-kind="court" data-page="applied-statistics.html">
 <h3>STA-47 · Effectif ou fréquence ? <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Dans un collège de 800 élèves, 200 sont demi-pensionnaires ;
 dans le collège voisin, 300 élèves sur 1 500 le sont. Un journaliste écrit : « le second collège
@@ -1936,7 +1945,7 @@ dans une population qui augmente ne dit rien tant qu'on n'a pas divisé. Sépare
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-47">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-48" data-level="Collège" data-kind="court">
+<section class="problem" id="STA-48" data-level="Collège" data-kind="court" data-page="applied-statistics.html">
 <h3>STA-48 · Un pourcentage d'un pourcentage <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Dans un collège, 40 % des élèves sont en cycle 4 et, parmi
 ces derniers, 30 % apprennent l'allemand ; un délégué en conclut que « 70 % des élèves du collège
@@ -1955,7 +1964,7 @@ phénomène.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-48">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-49" data-level="Collège" data-kind="court">
+<section class="problem" id="STA-49" data-level="Collège" data-kind="court" data-page="applied-statistics.html">
 <h3>STA-49 · La médiane d'un tableau d'effectifs <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Dans une classe de 27 élèves, on a relevé le nombre de frères
 et sœurs de chacun : 4 élèves en ont 0, 9 en ont 1, 7 en ont 2, 4 en ont 3, 2 en ont 4 et 1 en a 6.
@@ -1976,7 +1985,7 @@ données.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-49">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-50" data-level="Collège" data-kind="court">
+<section class="problem" id="STA-50" data-level="Collège" data-kind="court" data-page="applied-statistics.html">
 <h3>STA-50 · Le pictogramme qui double <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Pour illustrer que le budget du club de sport a doublé, un
 graphiste dessine deux ballons dont le second a un diamètre deux fois plus grand que le premier.
@@ -1998,7 +2007,7 @@ et ce qui est vu.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-50">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-51" data-level="Collège">
+<section class="problem" id="STA-51" data-level="Collège" data-page="applied-statistics.html">
 <h3>STA-51 · Combien d'élèves peuvent être au-dessus de la moyenne ? <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On considère les notes d'un contrôle dans une classe de 25 élèves.</p>
@@ -2029,7 +2038,7 @@ arithmétique en scandale de presse.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-statistics.html#STA-51">Statistique</a>.</p>
 </section>
-<section class="problem" id="STA-52" data-level="Collège">
+<section class="problem" id="STA-52" data-level="Collège" data-page="applied-statistics.html">
 <h3>STA-52 · Trois pourcentages dans la même case <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On a interrogé 400 élèves d'un collège, dont 240 filles et 160 garçons, en
@@ -2065,7 +2074,7 @@ médicaux mal lus jusqu'au paradoxe de Simpson (STA-02, bande Lycée). Apprendre
 </div>
 <div class="area" id="area-math-matiques-discr-tes-et-informatique">
 <h2>Mathématiques discrètes et informatique</h2>
-<section class="problem" id="DCS-51" data-level="Collège">
+<section class="problem" id="DCS-51" data-level="Collège" data-page="applied-discrete-cs.html">
 <h3>DCS-51 · Trier un jeu de cartes, et démontrer que ça marche <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Posez devant vous sept cartes de valeurs toutes différentes, faces
@@ -2102,7 +2111,7 @@ lycée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-51">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-52" data-level="Collège">
+<section class="problem" id="DCS-52" data-level="Collège" data-page="applied-discrete-cs.html">
 <h3>DCS-52 · Devine mon nombre en sept questions <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Votre adversaire choisit en secret un entier compris entre 1 et 100. Vous
@@ -2135,7 +2144,7 @@ méthode dans un geste que vous faites depuis toujours.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-52">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-53" data-level="Collège" data-kind="court">
+<section class="problem" id="DCS-53" data-level="Collège" data-kind="court" data-page="applied-discrete-cs.html">
 <h3>DCS-53 · Chercher un mot dans le dictionnaire <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Décrivez, assez précisément pour qu'un autre puisse
 l'appliquer sans vous, la méthode que vous employez réellement pour trouver un mot dans un
@@ -2155,7 +2164,7 @@ débordement à la clé.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-53">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-54" data-level="Collège">
+<section class="problem" id="DCS-54" data-level="Collège" data-page="applied-discrete-cs.html">
 <h3>DCS-54 · Une consigne qu'un robot peut suivre <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un exécutant ne comprend que quatre ordres : « avance d'un pas »,
@@ -2190,7 +2199,7 @@ que dix leçons.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-54">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-55" data-level="Collège">
+<section class="problem" id="DCS-55" data-level="Collège" data-page="applied-discrete-cs.html">
 <h3>DCS-55 · Les cinq cartes qui devinent votre nombre <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On fabrique cinq cartes portant chacune une liste de nombres entre 1
@@ -2228,7 +2237,7 @@ masses entières avec le moins de poids possible.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-55">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-56" data-level="Collège">
+<section class="problem" id="DCS-56" data-level="Collège" data-page="applied-discrete-cs.html">
 <h3>DCS-56 · L'algorithme d'Euclide, déroulé à la main <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Pour trouver le plus grand diviseur commun de deux entiers strictement
@@ -2265,7 +2274,7 @@ qui se passe entièrement de divisions.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-56">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-57" data-level="Collège">
+<section class="problem" id="DCS-57" data-level="Collège" data-page="applied-discrete-cs.html">
 <h3>DCS-57 · Le bit qui rattrape une erreur <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Disposez 36 cartes en carré \( 6 \times 6 \), chacune montrant au hasard
@@ -2302,7 +2311,7 @@ sondes spatiales.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-57">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-58" data-level="Collège" data-kind="court">
+<section class="problem" id="DCS-58" data-level="Collège" data-kind="court" data-page="applied-discrete-cs.html">
 <h3>DCS-58 · Deux exécutions de la même consigne <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Appliquez à la liste 4, 7, 1 la consigne « prends le
 premier nombre, ajoute 2 et multiplie par 3, écris le résultat, puis recommence avec le
@@ -2324,7 +2333,7 @@ ne peut plus être lu de deux manières est beaucoup plus dur que de le croire c
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-58">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-59" data-level="Collège">
+<section class="problem" id="DCS-59" data-level="Collège" data-page="applied-discrete-cs.html">
 <h3>DCS-59 · Sortir du labyrinthe <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Vous êtes dans un labyrinthe, sans plan et sans vue d'ensemble. La
@@ -2363,7 +2372,7 @@ vers la bonne démonstration.</p>
 </ul>
 <p class="source-note">Extrait de <a href="applied-discrete-cs.html#DCS-59">Mathématiques discrètes et informatique</a>.</p>
 </section>
-<section class="problem" id="DCS-60" data-level="Collège" data-kind="court">
+<section class="problem" id="DCS-60" data-level="Collège" data-kind="court" data-page="applied-discrete-cs.html">
 <h3>DCS-60 · Trois cartes, combien de comparaisons ? <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On vous donne trois cartes de valeurs différentes, face
 cachée, et vous n'avez le droit que de comparer deux cartes à la fois. Démontrez que trois
@@ -2384,7 +2393,7 @@ grand » et DCS-51 la version « ranger sept cartes ».</p>
 </div>
 <div class="area" id="area-casse-t-te">
 <h2>Casse-tête</h2>
-<section class="problem" id="PUZ-101" data-level="Collège">
+<section class="problem" id="PUZ-101" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-101 · Les trois boîtes mal étiquetées <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Trois boîtes fermées portent les étiquettes « pommes », « oranges » et
@@ -2422,7 +2431,7 @@ informaticiens pour minorer le nombre de questions nécessaires à un algorithme
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-101">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-102" data-level="Collège" data-kind="court">
+<section class="problem" id="PUZ-102" data-level="Collège" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-102 · L'escargot au fond du puits <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un escargot part du fond d'un puits de \( 10 \) mètres :
 chaque jour il grimpe de \( 3 \) mètres, chaque nuit il en redescend \( 2 \). Déterminez le
@@ -2443,7 +2452,7 @@ savoir diviser.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-102">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-103" data-level="Collège">
+<section class="problem" id="PUZ-103" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-103 · Le carré magique de Luo Shu <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un carré magique d'ordre \( 3 \) est un tableau de \( 3 \times 3 \) cases
@@ -2480,7 +2489,7 @@ tous.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-103">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-104" data-level="Collège">
+<section class="problem" id="PUZ-104" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-104 · Les quatre poids de Bachet <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Une balance à deux plateaux ne fait que comparer : elle dit quel côté
@@ -2520,7 +2529,7 @@ sur tous les jeux à la fois.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-104">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-105" data-level="Collège" data-kind="court">
+<section class="problem" id="PUZ-105" data-level="Collège" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-105 · Casser la tablette de chocolat <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une tablette de chocolat est un rectangle de
 \( m \times n \) carrés séparés par des rainures, et un coup consiste à prendre un morceau et
@@ -2542,7 +2551,7 @@ comptage direct, et comparer les deux rédactions est instructif.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-105">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-106" data-level="Collège">
+<section class="problem" id="PUZ-106" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-106 · L'héritage des dix-sept chameaux <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un homme laisse dix-sept chameaux à ses trois fils : la moitié à l'aîné,
@@ -2579,7 +2588,7 @@ cessé d'occuper les mathématiciens.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-106">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-107" data-level="Collège" data-kind="court">
+<section class="problem" id="PUZ-107" data-level="Collège" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-107 · Le verre d'eau et le verre de vin <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Un verre contient un décilitre d'eau, un autre un
 décilitre de vin ; on prend une cuillerée d'eau qu'on verse dans le vin, on remue autant qu'on
@@ -2600,7 +2609,7 @@ raisonnement, transposé, sert en chimie et en comptabilité en partie double.</
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-107">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-108" data-level="Collège">
+<section class="problem" id="PUZ-108" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-108 · L'éléphant de Cao Chong <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On veut connaître la masse d'un éléphant. On dispose d'une rivière, d'une
@@ -2640,7 +2649,7 @@ balances de laboratoire.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-108">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-109" data-level="Collège" data-kind="court">
+<section class="problem" id="PUZ-109" data-level="Collège" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-109 · La corde autour de la Terre <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Une corde tendue fait exactement le tour de l'équateur
 d'une planète parfaitement sphérique, en épousant le sol. On l'allonge d'un mètre et on la
@@ -2663,7 +2672,7 @@ détermination sort de l'arithmétique élémentaire.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-109">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-110" data-level="Collège">
+<section class="problem" id="PUZ-110" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-110 · Le champ de Didon <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Vous disposez d'une corde de longueur \( L \) et vous voulez enclore le
@@ -2700,7 +2709,7 @@ démonstration tant que la parenthèse n'est pas refermée.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-110">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-111" data-level="Collège">
+<section class="problem" id="PUZ-111" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-111 · Le carré qui gagne un carreau <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Sur du papier quadrillé, prenez le carré \( 8 \times 8 \) dont les coins
@@ -2747,7 +2756,7 @@ une identité algébrique sur la suite de Fibonacci, et c'est pourquoi le même 
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-111">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-112" data-level="Collège">
+<section class="problem" id="PUZ-112" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-112 · La mouche entre les deux trains <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux trains roulent l'un vers l'autre sur la même voie, chacun à
@@ -2785,7 +2794,7 @@ plus profonde qu'elle n'en a l'air.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-112">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-113" data-level="Collège">
+<section class="problem" id="PUZ-113" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-113 · Le tournoi et le deuxième meilleur <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Huit joueurs disputent un tournoi à élimination directe : quatre matchs au
@@ -2823,7 +2832,7 @@ saurez — technique dite de l'adversaire, aujourd'hui centrale en complexité a
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-113">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-114" data-level="Collège">
+<section class="problem" id="PUZ-114" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-114 · Le treize tombe-t-il souvent un vendredi ? <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On travaille dans le calendrier grégorien, celui qui est en usage
@@ -2861,7 +2870,7 @@ sert à remplacer un calcul infini par un tableau fini.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-114">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-115" data-level="Collège">
+<section class="problem" id="PUZ-115" data-level="Collège" data-page="puzzles.html">
 <h3>PUZ-115 · Les allumettes à déplacer <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On écrit des nombres en chiffres romains avec des allumettes : le
@@ -2903,7 +2912,7 @@ qu'une allumette peut rapporter.</p>
 </ul>
 <p class="source-note">Extrait de <a href="puzzles.html#PUZ-115">Casse-tête</a>.</p>
 </section>
-<section class="problem" id="PUZ-116" data-level="Collège" data-kind="court">
+<section class="problem" id="PUZ-116" data-level="Collège" data-kind="court" data-page="puzzles.html">
 <h3>PUZ-116 · La côte et la vitesse moyenne <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Vous montez une côte de deux kilomètres à la vitesse
 moyenne de \( 15 \) km/h. À quelle vitesse devez-vous la redescendre pour que votre vitesse
@@ -2927,7 +2936,7 @@ respectable et demande, elle aussi, une démonstration.</p>
 </div>
 <div class="area" id="area-l-art-de-la-d-monstration">
 <h2>L&#x27;art de la démonstration</h2>
-<section class="problem" id="PRF-64" data-level="Collège">
+<section class="problem" id="PRF-64" data-level="Collège" data-page="proofs.html">
 <h3>PRF-64 · « J'ai essayé avec 3, 5 et 7, donc c'est vrai » <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un camarade affirme : « J'ai essayé avec 3, 5 et 7, ça marche à chaque
@@ -2965,7 +2974,7 @@ l'autre donne la certitude, et rien ne transforme la première en la seconde.</p
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-64">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-65" data-level="Collège">
+<section class="problem" id="PRF-65" data-level="Collège" data-page="proofs.html">
 <h3>PRF-65 · Deux impairs font un pair — démontrez-le <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un entier est pair s'il s'écrit \( 2k \) pour un certain entier k, et
@@ -3002,7 +3011,7 @@ revenir sur le texte que vous aurez écrit ici.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-65">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-66" data-level="Collège" data-kind="court">
+<section class="problem" id="PRF-66" data-level="Collège" data-kind="court" data-page="proofs.html">
 <h3>PRF-66 · Un nombre et son double <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Démontrez ou réfutez : un entier et son double n'ont
 jamais la même parité. Si l'affirmation est fausse, énoncez à sa place la règle exacte qui
@@ -3020,7 +3029,7 @@ nombres irrationnels.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-66">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-67" data-level="Collège" data-kind="court">
+<section class="problem" id="PRF-67" data-level="Collège" data-kind="court" data-page="proofs.html">
 <h3>PRF-67 · Où se cache l'erreur : une « démonstration » que 1 = 2 <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> On part de deux nombres égaux, \( a = b \), et on
 enchaîne :
@@ -3042,7 +3051,7 @@ sont des indices, jamais des preuves.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-67">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-68" data-level="Collège">
+<section class="problem" id="PRF-68" data-level="Collège" data-page="proofs.html">
 <h3>PRF-68 · Le principe des tiroirs, raconté puis employé <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Le principe des tiroirs dit ceci : si l'on range plus d'objets qu'on n'a
@@ -3079,7 +3088,7 @@ fabriquer soi-même.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-68">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-69" data-level="Collège" data-kind="court">
+<section class="problem" id="PRF-69" data-level="Collège" data-kind="court" data-page="proofs.html">
 <h3>PRF-69 · Deux personnes ont le même nombre d'amis <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Dans un groupe d'au moins deux personnes, où l'amitié
 est toujours réciproque, démontrez qu'il existe deux personnes ayant exactement le même
@@ -3101,7 +3110,7 @@ Königsberg (1736).</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-69">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-70" data-level="Collège">
+<section class="problem" id="PRF-70" data-level="Collège" data-page="proofs.html">
 <h3>PRF-70 · Ce qui ne change jamais <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Un invariant est une quantité qui ne bouge pas alors que la situation,
@@ -3140,7 +3149,7 @@ droit.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-70">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-71" data-level="Collège">
+<section class="problem" id="PRF-71" data-level="Collège" data-page="proofs.html">
 <h3>PRF-71 · Une case en moins, et le coloriage qui décide <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> On colorie un carré \( 5 \times 5 \) comme un damier, les quatre coins
@@ -3178,7 +3187,7 @@ argument — d'une élégance rare — a été popularisé par Ross Honsberger e
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-71">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-72" data-level="Collège">
+<section class="problem" id="PRF-72" data-level="Collège" data-page="proofs.html">
 <h3>PRF-72 · La réciproque n'est pas l'énoncé <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> La réciproque de « si P alors Q » est « si Q alors P ». Ce sont deux
@@ -3216,7 +3225,7 @@ coriaces.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-72">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-73" data-level="Collège">
+<section class="problem" id="PRF-73" data-level="Collège" data-page="proofs.html">
 <h3>PRF-73 · Thalès, et la réciproque de Thalès <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Deux droites se coupent en A. Sur la première on place B, puis M, du même
@@ -3255,7 +3264,7 @@ pas au même travail : l'un mesure, l'autre prouve.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-73">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-74" data-level="Collège">
+<section class="problem" id="PRF-74" data-level="Collège" data-page="proofs.html">
 <h3>PRF-74 · Rédiger : ce qu'un lecteur a le droit d'exiger <span class="level">[Collège]</span></h3>
 <div class="statement">
 <p><b>Problème.</b> Trouver un argument et l'écrire sont deux travaux distincts, et le second
@@ -3291,7 +3300,7 @@ qu'on est seul à comprendre n'a encore convaincu personne.</p>
 </ul>
 <p class="source-note">Extrait de <a href="proofs.html#PRF-74">L'art de la démonstration</a>.</p>
 </section>
-<section class="problem" id="PRF-75" data-level="Collège" data-kind="court">
+<section class="problem" id="PRF-75" data-level="Collège" data-kind="court" data-page="proofs.html">
 <h3>PRF-75 · Toujours vrai, ou seulement souvent vrai <span class="level">[Collège]</span> <span class="kind">court</span></h3>
 <p class="statement"><b>Problème.</b> Décidez, avec démonstration, si l'affirmation « la
 somme de deux nombres premiers est un nombre pair » est toujours vraie ; si elle ne l'est
@@ -3315,46 +3324,12 @@ non démontrée, et donc toujours pas un théorème.</p>
 </section>
 </div>
 
+</main>
 <hr>
 <footer>
 <p><i>Hors de la Caverne</i> — des problèmes, pas de réponses.
 Les références vous disent où se trouve la lumière ; la sortie, c'est à vous de la
 marcher. <a href="index.html">Accueil</a></p>
 </footer>
-<script>
-(function () {
-  var pick = "all", query = "";
-  var probs = Array.prototype.slice.call(document.querySelectorAll("section.problem"));
-  var count = document.getElementById("hscount");
-  function apply() {
-    var shown = 0;
-    document.querySelectorAll("div.area").forEach(function (d) {
-      var areaOk = (pick === "all" || d.id === pick), any = false;
-      d.querySelectorAll("section.problem").forEach(function (p) {
-        var ok = areaOk &&
-          (query === "" || p.textContent.toLowerCase().indexOf(query) !== -1);
-        p.classList.toggle("hidden", !ok);
-        if (ok) { any = true; shown++; }
-      });
-      d.classList.toggle("hidden", !any);
-    });
-    count.textContent = shown + " problème(s) sur " + probs.length;
-  }
-  document.querySelectorAll("#areabar button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      document.querySelectorAll("#areabar button").forEach(function (x) {
-        x.className = x === b ? "active" : "";
-      });
-      pick = b.dataset.area;
-      apply();
-    });
-  });
-  document.getElementById("hssearch").addEventListener("input", function (e) {
-    query = e.target.value.toLowerCase();
-    apply();
-  });
-  apply();
-})();
-</script>
 </body>
 </html>

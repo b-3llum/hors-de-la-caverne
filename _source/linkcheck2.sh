@@ -2,7 +2,7 @@
 # Parallel external-link checker for the whole site.
 # Null-delimited so URLs containing quotes or apostrophes (common in French
 # Wikipedia titles) cannot break the pipeline.
-cd /Users/bellum/claude-dir/hors-de-la-caverne || exit 1
+cd "$(dirname "$0")/.." || exit 1
 grep -oh 'href="https\?://[^"]*"' ./*.html | sed 's/^href="//; s/"$//' | sort -u > /tmp/hdlc_urls.txt
 echo "unique external URLs: $(wc -l < /tmp/hdlc_urls.txt)"
 check() {

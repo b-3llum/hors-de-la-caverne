@@ -9,7 +9,8 @@ import os
 import re
 import sys
 
-ROOT = "/Users/bellum/claude-dir/hors-de-la-caverne"
+ROOT = os.environ.get("HDLC_ROOT",
+                     os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "_source"))
 from insert import insert, parse  # noqa: E402
 

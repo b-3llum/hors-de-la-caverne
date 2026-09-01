@@ -4,15 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Optimisation et théorie des jeux — Hors de la Caverne</title>
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="L'optimisation pose la plus ancienne question appliquée des mathématiques — quel est le mieux que nous puissions faire, et comment démontrer que rien de…">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="katex/katex.min.css">
+<link rel="stylesheet" href="style.css">
 <script src="theme.js"></script>
 <script defer src="katex/katex.min.js"></script>
 <script defer src="katex/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<script defer src="mathfit.js"></script>
 <script defer src="site.js"></script>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
 <a href="college.html">Collège</a> ·
@@ -27,6 +31,7 @@
 <button id="theme-toggle" onclick="toggleTheme()" title="Basculer le thème clair/sombre">☀ / ☾</button>
 </nav>
 <hr>
+<main id="contenu">
 
 <h1>Optimisation et théorie des jeux</h1>
 <p class="lede">L'optimisation pose la plus ancienne question appliquée des mathématiques — quel est le mieux que nous puissions faire, et comment démontrer que rien de meilleur n'existe ? — tandis que la théorie des jeux la pose quand la réponse dépend de ce que font tous les autres. Les deux domaines sont nés deux fois : une fois dans l'Antiquité (le problème isopérimétrique de Didon, le principe de Fermat) et une fois dans les années 1940, quand George Dantzig inventa la méthode du simplexe pour la planification de l'armée de l'air américaine et que John von Neumann et Oskar Morgenstern bâtirent une théorie du comportement stratégique ; les deux hommes découvrirent dans l'heure qui suivit leur rencontre que la programmation linéaire et les jeux à somme nulle sont le même sujet déguisé. Travailler ici, c'est assister à un dialogue entre la géométrie et l'économie : tout maximum cache un certificat, tout prix cache un dual, et la démonstration que vous avez terminé est souvent plus belle que la réponse elle-même.</p>
@@ -1044,6 +1049,8 @@ ainsi que sa relaxation duale sur les suites de moments. Démontrez que chaque n
 <li>Articles et essais : Dantzig, « Reminiscences about the origins of linear programming », Operations Research Letters 1 (1982) ; Nash, « Non-Cooperative Games », Annals of Mathematics 54 (1951) ; Spielman et Teng, « Smoothed analysis of algorithms », Journal of the ACM 51(3) (2004).</li>
 </ul>
 <p>Voir aussi : <a href="applied-discrete-cs.html">Mathématiques discrètes et informatique</a>, <a href="pure-topology.html">Topologie</a> (le théorème de Brouwer derrière Nash), <a href="open-problems.html">Problèmes ouverts</a>.</p>
+
+</main>
 
 <hr>
 <footer>

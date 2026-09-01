@@ -50,9 +50,10 @@ ainsi que trois collections spéciales :
   forme courte).
 - **Deux salles.** La [salle des collégiens](college.html) rassemble les 110
   problèmes de niveau collège et la [salle des lycéens](highschool.html) les 234 de
-  niveau lycée, dans les deux cas regroupés par domaine. Le niveau collège est propre
-  à l'édition française : rien n'y dépasse le programme du collège, mais on y demande
-  toujours de justifier, jamais seulement de calculer.
+  niveau lycée, dans les deux cas regroupés par domaine, avec le filtre par domaine,
+  la recherche, « Courts seulement » et le composeur de feuilles des autres pages.
+  Le niveau collège est propre à l'édition française : rien n'y dépasse le programme
+  du collège, mais on y demande toujours de justifier, jamais seulement de calculer.
 - **Composeur de feuilles d'exercices.** Cochez des problèmes en parcourant le site,
   ou tirez un ensemble au hasard par niveau et par domaine, puis enregistrez-les
   seuls en PDF ou téléchargez-les en LaTeX compilable.
@@ -79,6 +80,12 @@ Le répertoire `_source/` contient la chaîne de production :
 | `linkcheck2.sh` | Vérificateur de liens externes en parallèle. |
 | `wikifr.py` | Bascule les liens Wikipédia vers l'article français lorsqu'il existe, et signale « (en anglais) » sinon. |
 
+Aucun de ces scripts n'est lié à une machine : ceux qui ont besoin de la racine du
+site la déduisent de leur propre emplacement — la variable d'environnement
+`HDLC_ROOT` permet d'en forcer une autre — et les autres travaillent sur les
+fichiers qu'on leur passe. La construction tourne donc depuis n'importe quel clone,
+sans configuration.
+
 `BRIEF.md` est le brief de rédaction (style de la maison, structure HTML d'un
 problème, règles de référencement) ; `BRIEF-FR.md` est le brief de traduction.
 
@@ -89,6 +96,18 @@ python3 _source/html2tex.py <page>.html      # régénérer le LaTeX
 cd tex && tectonic -X compile --outfmt pdf <page>.tex && cd ..
 python3 _source/assemble.py                  # reconstruire les salles, le manifeste, les données
 ./_source/linkcheck2.sh                      # vérifier tous les liens externes
+```
+
+Les deux salles sont engendrées, et leur LaTeX en dérive : il faut donc passer
+`assemble.py` **avant** `html2tex.py`, puis y repasser pour que le lien vers le PDF
+compilé soit posé.
+
+```sh
+python3 _source/assemble.py                  # (re)construire college.html et highschool.html
+python3 _source/html2tex.py college.html highschool.html
+cd tex && tectonic -X compile --outfmt pdf college.tex \
+       && tectonic -X compile --outfmt pdf highschool.tex && cd ..
+python3 _source/assemble.py                  # pose le lien « PDF compilé »
 ```
 
 Les PDF se compilent avec [tectonic](https://tectonic-typesetting.github.io/) ;
