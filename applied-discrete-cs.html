@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -33,6 +34,324 @@
 <a href="tex/applied-discrete-cs.tex" download>source LaTeX</a> · <a href="tex/applied-discrete-cs.pdf" download>PDF compilé</a></p>
 <!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="DCS-51" data-level="Collège">
+<h3>DCS-51 · Trier un jeu de cartes, et démontrer que ça marche <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Posez devant vous sept cartes de valeurs toutes différentes, faces
+visibles, dans un ordre quelconque. Voici une méthode pour les ranger : parcourez toutes les
+cartes non encore rangées, repérez la plus petite, échangez-la avec la première carte non
+rangée ; puis recommencez sur ce qui reste.</p>
+<ol class="parts" type="a">
+<li>Déroulez la méthode à la main sur les valeurs 5, 3, 9, 1, 7, 2, 8, en écrivant l'état
+complet de la rangée après chaque échange.</li>
+<li>Écrivez la phrase qui décrit ce que contient le début de la rangée et qui reste vraie
+après chaque échange. Démontrez qu'elle est encore vraie après l'échange suivant, et qu'à la
+fin elle dit exactement « la rangée est triée ».</li>
+<li>Comptez le nombre de comparaisons faites sur sept cartes, puis sur n cartes. Donnez la
+formule et démontrez-la.</li>
+<li>Voici une seconde méthode : prenez les cartes une par une et glissez chacune à sa place
+parmi celles déjà tenues en main. Déroulez-la sur la même liste, puis comparez les deux
+méthodes sur une liste déjà triée, et sur une liste triée à l'envers.</li>
+</ol>
+</div>
+<p class="context">La seconde méthode est celle que tout joueur de cartes exécute sans y
+penser depuis des siècles ; la première est celle qu'un débutant réinvente au tableau. Elles
+portent aujourd'hui les noms de tri par insertion et de tri par sélection, et elles étaient
+déjà l'objet des tout premiers programmes écrits : le tri par fusion figure dans un
+manuscrit de John von Neumann de 1945 pour l'EDVAC, et Donald Knuth a consacré au seul
+problème du tri la moitié d'un volume de <i>The Art of Computer Programming</i>. Ce que ce
+problème demande n'est pas de trier — vous savez trier — mais de <i>démontrer</i> que la
+méthode trie, et la différence entre les deux est exactement le sujet de cette page. La
+question (b) est le premier invariant de boucle de votre vie ; DCS-02 en donne la version
+lycée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Tri_par_s%C3%A9lection">Tri par sélection — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Tri_par_insertion">Tri par insertion — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Invariant_de_boucle">Invariant de boucle — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-52" data-level="Collège">
+<h3>DCS-52 · Devine mon nombre en sept questions <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Votre adversaire choisit en secret un entier compris entre 1 et 100. Vous
+lui posez des questions auxquelles il ne répond que par « oui » ou par « non », et il ne ment
+jamais.</p>
+<ol class="parts" type="a">
+<li>Décrivez une méthode qui trouve son nombre à coup sûr en sept questions au plus. Elle
+doit être assez précise pour qu'une autre personne puisse l'appliquer sans vous.</li>
+<li>Démontrez qu'elle réussit toujours — pour les cent nombres possibles, et pas seulement
+pour ceux que vous avez essayés.</li>
+<li>Démontrez qu'aucune méthode, si maligne soit-elle, ne peut garantir la victoire en six
+questions. (Forme suggérée : comptez ce que six réponses peuvent au plus distinguer.)</li>
+<li>Jusqu'à quel nombre pourriez-vous aller avec sept questions ? avec dix ? Démontrez vos
+réponses. Puis dites ce qui change si l'adversaire a le droit de mentir une fois.</li>
+</ol>
+</div>
+<p class="context">La question (c) est le cœur de l'affaire, et elle est d'une nature
+entièrement différente de la (a) : elle ne parle pas de votre méthode, elle parle de toutes
+les méthodes possibles, y compris celles que personne n'a encore imaginées. C'est ce qu'on
+appelle une borne inférieure, et savoir en démontrer une est ce qui sépare celui qui
+programme de celui qui comprend. La variante avec mensonge de la question (d) est un vrai
+sujet de recherche, posé indépendamment par Alfréd Rényi (1961) et Stanisław Ulam (1976) ;
+c'est le point de départ des codes correcteurs d'erreurs, où l'on cherche justement à
+retrouver la vérité malgré des réponses fausses. DCS-53 vous fera reconnaître la même
+méthode dans un geste que vous faites depuis toujours.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Recherche_dichotomique">Recherche dichotomique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Puissance_de_deux">Puissance de deux — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Twenty_questions">Le jeu des vingt questions — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-53" data-level="Collège" data-kind="court">
+<h3>DCS-53 · Chercher un mot dans le dictionnaire <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Décrivez, assez précisément pour qu'un autre puisse
+l'appliquer sans vous, la méthode que vous employez réellement pour trouver un mot dans un
+dictionnaire de papier. Démontrez ensuite qu'elle s'arrête toujours — soit en trouvant le
+mot, soit en établissant qu'il n'y figure pas — et majorez le nombre de fois qu'elle vous
+fait ouvrir le volume dans un dictionnaire de 60 000 entrées.</p>
+<p class="context">Presque personne ne feuillette un dictionnaire page à page, et presque
+personne n'a jamais formulé la méthode qu'il emploie à la place : c'est un algorithme que
+l'on exécute des années durant sans l'avoir écrit une seule fois. Le mettre en mots est
+l'exercice, et la majoration demandée est la surprise — le nombre est ridiculement petit,
+et c'est cette petitesse qui explique pourquoi la même idée fait fonctionner les moteurs de
+recherche. DCS-02 en donne la version formelle, avec invariant de boucle et bogue de
+débordement à la clé.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Recherche_dichotomique">Recherche dichotomique — Wikipédia</a></li>
+<li>Voir aussi : <a href="#DCS-02">DCS-02, la correction de la recherche dichotomique</a></li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-54" data-level="Collège">
+<h3>DCS-54 · Une consigne qu'un robot peut suivre <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un exécutant ne comprend que quatre ordres : « avance d'un pas »,
+« tourne d'un quart de tour vers la droite », « pose un jeton », et « répète N fois : … ».
+Il n'a aucun bon sens : il fait exactement ce qui est écrit, et rien d'autre.</p>
+<ol class="parts" type="a">
+<li>Écrivez la suite d'ordres qui lui fait parcourir le contour d'un carré de côté quatre
+pas. Démontrez qu'il revient à sa position de départ <i>et</i> à son orientation de
+départ.</li>
+<li>Écrivez la suite d'ordres qui lui fait poser un jeton à chaque marche d'un escalier de
+cinq marches, chaque marche mesurant deux pas en avant puis deux pas de côté.</li>
+<li>Faites exécuter vos deux textes à la lettre par quelqu'un d'autre, qui a le droit — le
+devoir — de choisir la lecture la plus bête chaque fois qu'il hésite. Notez chaque endroit
+où il a pu choisir, et corrigez le texte jusqu'à ce qu'aucun choix ne subsiste.</li>
+<li>Une consigne peut être parfaitement claire et fausse quand même. Donnez un exemple de
+chacun des quatre cas : claire et juste, claire et fausse, ambiguë mais juste par chance,
+ambiguë et fausse. Dites lequel des quatre est le plus difficile à repérer.</li>
+</ol>
+</div>
+<p class="context">Seymour Papert a bâti le langage Logo autour de cette idée en 1967 : une
+tortue qui n'obéit qu'à quelques ordres, et l'enfant qui découvre que « faire un carré » et
+« dire comment faire un carré » sont deux compétences différentes. Scratch, aujourd'hui, en
+est l'héritier direct. Le point sérieux, c'est que l'ordinateur est exactement cet exécutant
+sans bon sens : il ne devine rien, ne corrige rien, et n'a jamais l'intention que vous aviez.
+La question (c) est la véritable expérience — presque tout le monde écrit d'abord une
+consigne que seul quelqu'un qui sait déjà pourrait suivre, et la découvrir est plus utile
+que dix leçons.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme">Algorithme — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Logo_(langage)">Logo (langage) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Seymour_Papert">Seymour Papert — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-55" data-level="Collège">
+<h3>DCS-55 · Les cinq cartes qui devinent votre nombre <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On fabrique cinq cartes portant chacune une liste de nombres entre 1
+et 31 : sur la première figurent tous les nombres dont l'écriture comme somme de nombres
+choisis parmi 1, 2, 4, 8, 16 utilise le 1 ; sur la deuxième, tous ceux dont l'écriture
+utilise le 2 ; et ainsi de suite. Vous pensez à un nombre, on vous montre les cartes une à
+une, vous dites seulement sur lesquelles il figure — et l'on annonce votre nombre.</p>
+<ol class="parts" type="a">
+<li>Démontrez que tout entier de 1 à 31 s'écrit d'exactement une façon comme somme de
+nombres choisis parmi 1, 2, 4, 8 et 16. Il y a deux choses à établir : qu'une telle écriture
+existe, et qu'il n'y en a pas deux.</li>
+<li>Déduisez-en pourquoi le tour fonctionne, et dites précisément quel calcul il faut faire
+une fois connue la liste des cartes où le nombre figure.</li>
+<li>Écrivez la première carte en entier. Combien de nombres porte-t-elle ? Démontrez-le sans
+les compter un à un.</li>
+<li>Combien de cartes faudrait-il pour aller jusqu'à 1000 ? Démontrez votre réponse. Et si
+chaque carte pouvait recevoir trois réponses au lieu de deux, quels nombres écririez-vous à
+la place de 1, 2, 4, 8, 16 ?</li>
+</ol>
+</div>
+<p class="context">Leibniz a publié en 1703, dans les mémoires de l'Académie royale des
+sciences de Paris, une <i>Explication de l'arithmétique binaire</i> où il montre que deux
+chiffres suffisent à écrire tous les nombres ; il y voyait une élégance presque théologique,
+et n'imaginait évidemment pas les machines qui en vivraient trois siècles plus tard. Le tour
+de cartes est aujourd'hui l'une des activités les plus répandues de l'informatique
+« débranchée », qui enseigne les idées de la discipline sans le moindre ordinateur — et il
+est honnête, en ceci qu'il ne cache aucun truc : le tour marche parce que le théorème de la
+question (a) est vrai. La variante à trois réponses de la question (d) est un très vieux
+problème, celui des poids de Bachet de Méziriac (1612), où il s'agit de peser toutes les
+masses entières avec le moins de poids possible.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_binaire">Système binaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Claude-Gaspard_Bachet_de_M%C3%A9ziriac">Claude-Gaspard Bachet de Méziriac — Wikipédia</a></li>
+<li>Cours : <a href="https://www.csunplugged.org/">CS Unplugged — activités d'informatique sans ordinateur (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-56" data-level="Collège">
+<h3>DCS-56 · L'algorithme d'Euclide, déroulé à la main <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Pour trouver le plus grand diviseur commun de deux entiers strictement
+positifs a et b, avec \( a > b \), on remplace le couple \( (a, b) \) par le couple
+\( (b, r) \), où r est le reste de la division euclidienne de a par b ; on recommence
+jusqu'à obtenir un reste nul.</p>
+<ol class="parts" type="a">
+<li>Déroulez-le à la main sur 1071 et 462, puis sur 2024 et 748, en écrivant chaque division
+sur une ligne.</li>
+<li>Démontrez le fait sur lequel tout repose : les diviseurs communs de a et de b sont
+exactement les diviseurs communs de b et de r. Commencez par le cas plus simple où
+\( r = a - b \).</li>
+<li>Démontrez que le procédé s'arrête toujours, quel que soit le couple de départ.</li>
+<li>Rassemblez (b) et (c) en une seule démonstration complète : le dernier reste non nul est
+bien le plus grand diviseur commun cherché. C'est ce qu'on appelle démontrer la correction
+d'un algorithme.</li>
+<li>Cherchez, parmi les couples d'entiers inférieurs à 100, celui qui fait faire le plus
+d'étapes à l'algorithme. Regardez la suite des nombres qui apparaissent au fil du calcul :
+la reconnaissez-vous ?</li>
+</ol>
+</div>
+<p class="context">C'est le plus vieil algorithme non trivial encore en service : il figure
+aux propositions 1 et 2 du livre VII des <i>Éléments</i> d'Euclide, vers 300 av. J.-C., sous
+forme de soustractions répétées de longueurs, et il tourne aujourd'hui dans chaque
+transaction chiffrée que fait votre téléphone. La question (e) touche à un moment
+historique : en 1844, Gabriel Lamé a démontré que le pire cas de l'algorithme d'Euclide est
+lié à la suite de Fibonacci — l'un des tout premiers résultats jamais obtenus sur le
+<i>temps de calcul</i> d'une méthode, et non sur son résultat. DCS-30 propose une variante
+qui se passe entièrement de divisions.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide">Algorithme d'Euclide — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Plus_grand_commun_diviseur">Plus grand commun diviseur — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Gabriel_Lam%C3%A9">Gabriel Lamé — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-57" data-level="Collège">
+<h3>DCS-57 · Le bit qui rattrape une erreur <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Disposez 36 cartes en carré \( 6 \times 6 \), chacune montrant au hasard
+sa face noire ou sa face blanche. Ajoutez une septième carte au bout de chaque ligne, de
+sorte que chaque ligne de sept cartes contienne un nombre pair de faces noires ; puis, de la
+même façon, une septième carte au bas de chaque colonne. La case du coin est alors réclamée
+deux fois, une fois par sa ligne et une fois par sa colonne.</p>
+<ol class="parts" type="a">
+<li>Démontrez que ces deux exigences ne se contredisent jamais : la couleur que réclame la
+ligne du coin est toujours celle que réclame sa colonne. (Comptez de deux façons le nombre
+total de faces noires.)</li>
+<li>Pendant que vous avez le dos tourné, quelqu'un retourne exactement une carte. Démontrez
+que vous pouvez toujours dire laquelle.</li>
+<li>Il en retourne maintenant exactement deux. Démontrez que vous vous apercevez toujours
+que quelque chose a changé, puis donnez un exemple où vous ne pouvez pas dire lesquelles.</li>
+<li>Et s'il en retournait quatre, bien choisies ? Décidez, avec démonstration, si vous êtes
+encore certain de vous apercevoir de quelque chose.</li>
+</ol>
+</div>
+<p class="context">À la fin des années 1940, Richard Hamming disposait des Bell Labs le
+week-end pour faire tourner ses calculs sur une machine à relais ; au moindre défaut de
+lecture, la machine s'arrêtait et le week-end était perdu. « Si elle sait qu'il y a une
+erreur, pourquoi ne saurait-elle pas où ? » — de cette exaspération est sorti le code de
+Hamming (1950) et, avec lui, toute la théorie des codes correcteurs. Les cartes de ce
+problème en sont la version la plus simple, et elles vous font traverser en quatre questions
+tout le sujet : détecter une erreur, la localiser, découvrir la limite du procédé, et voir
+exactement quelles configurations d'erreurs passent au travers. Le même principe protège
+vos numéros de carte bancaire, les codes ISBN des livres et les données envoyées par les
+sondes spatiales.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Somme_de_contr%C3%B4le">Somme de contrôle — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Code_de_Hamming">Code de Hamming — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Richard_Hamming">Richard Hamming — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-58" data-level="Collège" data-kind="court">
+<h3>DCS-58 · Deux exécutions de la même consigne <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Appliquez à la liste 4, 7, 1 la consigne « prends le
+premier nombre, ajoute 2 et multiplie par 3, écris le résultat, puis recommence avec le
+nombre suivant » de deux façons toutes deux défendables et qui ne donnent pas la même sortie.
+Réécrivez ensuite la consigne pour qu'aucune autre lecture ne soit possible, et démontrez que
+votre version ne laisse plus le choix.</p>
+<p class="context">Le 23 septembre 1999, la sonde Mars Climate Orbiter s'est perdue parce que
+deux équipes avaient lu la même grandeur dans deux unités différentes, l'une en newtons,
+l'autre en livres-force : une mission de plusieurs centaines de millions de dollars détruite
+par une consigne que l'on pouvait lire de deux façons. Un ordinateur ne
+demande jamais « tu veux dire quoi ? » — il choisit une lecture, la vôtre ou l'autre, et
+continue. Écrire sans ambiguïté n'est donc pas une élégance de rédaction mais une exigence
+technique, et la question difficile de ce problème est la dernière : démontrer qu'un texte
+ne peut plus être lu de deux manières est beaucoup plus dur que de le croire clair.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ambigu%C3%AFt%C3%A9">Ambiguïté — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Mars_Climate_Orbiter">Mars Climate Orbiter — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sp%C3%A9cification_(informatique)">Spécification (informatique) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-59" data-level="Collège">
+<h3>DCS-59 · Sortir du labyrinthe <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Vous êtes dans un labyrinthe, sans plan et sans vue d'ensemble. La
+« règle de la main droite » dit : posez la main droite sur un mur et avancez sans jamais la
+décoller.</p>
+<ol class="parts" type="a">
+<li>Dessinez un labyrinthe dont tous les murs forment un seul bloc rattaché au bord
+extérieur, et suivez-y la règle. Décrivez ce qui se passe, et expliquez pourquoi vous
+finissez par ressortir.</li>
+<li>Dessinez maintenant un labyrinthe où la règle échoue — où l'on tourne indéfiniment sans
+jamais atteindre le but. Dites ce que votre labyrinthe a que celui de (a) n'avait pas.</li>
+<li>Voici une méthode qui, elle, ne se laisse pas piéger. En entrant dans un couloir, tracez
+un trait à son entrée ; en en sortant, tracez un trait à sa sortie. N'empruntez jamais un
+couloir portant déjà deux traits ; à un carrefour où vous n'êtes jamais venu, prenez
+n'importe quel couloir vierge ; à un carrefour déjà visité, revenez sur vos pas si le couloir
+d'où vous venez ne porte qu'un trait, et sinon prenez un couloir en portant le moins.
+Démontrez que chaque couloir est parcouru au plus deux fois, une fois dans chaque sens.</li>
+<li>Expliquez, avec le plus de précision que vous pourrez, pourquoi cette méthode finit par
+visiter tout carrefour accessible depuis votre point de départ. Puis désignez l'endroit de
+votre explication qui s'appuie sur quelque chose que vous n'avez pas démontré.</li>
+</ol>
+</div>
+<p class="context">La méthode de la question (c) est due à Trémaux, ingénieur français du
+XIX<sup>e</sup> siècle, dont Édouard Lucas rapporte le procédé dans le premier tome de ses
+<i>Récréations mathématiques</i> (1882), où il occupe le chapitre sur les labyrinthes. On la
+reconnaît aujourd'hui comme le parcours en profondeur, l'un des deux ou trois algorithmes de
+graphes dont tout le reste dépend — et c'est un fait remarquable qu'un problème posé par un
+promeneur perdu et un problème posé par un compilateur reçoivent la même réponse. La question
+(d) est délibérément honnête sur son niveau : elle vous demande de repérer le trou de votre
+propre démonstration, ce qui est un savoir-faire à part entière et souvent le premier pas
+vers la bonne démonstration.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Parcours_en_profondeur">Parcours en profondeur — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Maze-solving_algorithm">Algorithmes de résolution de labyrinthe — Wikipédia (en anglais)</a></li>
+<li>Lecture : É. Lucas, <i>Récréations mathématiques</i>, tome I (1882), le chapitre sur les labyrinthes</li>
+</ul>
+</section>
+
+<section class="problem" id="DCS-60" data-level="Collège" data-kind="court">
+<h3>DCS-60 · Trois cartes, combien de comparaisons ? <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> On vous donne trois cartes de valeurs différentes, face
+cachée, et vous n'avez le droit que de comparer deux cartes à la fois. Démontrez que trois
+comparaisons suffisent toujours à les ranger dans l'ordre, et qu'aucune méthode n'y parvient
+à coup sûr en deux.</p>
+<p class="context">La première moitié se règle en exhibant une méthode ; la seconde parle de
+toutes les méthodes possibles, et se règle en comptant ce que deux réponses peuvent au plus
+distinguer. C'est la plus petite borne inférieure honnête qui existe, et c'est le même
+argument qui, poussé jusqu'au bout, démontre qu'aucun tri par comparaisons ne peut être
+sensiblement plus rapide que ceux qu'on connaît. DCS-29 en donne la version « trouver le plus
+grand » et DCS-51 la version « ranger sept cartes ».</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Tri_par_comparaison">Tri par comparaison — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_tri">Algorithme de tri — Wikipédia</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 

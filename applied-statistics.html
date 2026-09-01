@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -42,6 +43,341 @@ modernes de la notion de preuve empirique.</p>
 <a href="tex/applied-statistics.tex" download>source LaTeX</a> · <a href="tex/applied-statistics.pdf" download>PDF compilé</a></p>
 <!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="STA-41" data-level="Collège">
+<h3>STA-41 · Le salaire moyen chez Duval <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'entreprise Duval emploie dix personnes : huit ouvriers payés 1 500 € par
+mois, un chef d'atelier payé 2 400 € et le patron, qui se verse 21 600 €.</p>
+<ol class="parts" type="a">
+<li>Calculez la moyenne et la médiane de ces dix salaires. Justifiez chaque calcul, et en
+particulier la façon dont vous déterminez la médiane d'une série de dix valeurs.</li>
+<li>L'entreprise affiche sur son site le salaire moyen de ses employés. Expliquez pourquoi cette
+information, bien qu'exacte, donne une image fausse de l'entreprise. Dites quel indicateur vous
+publieriez à sa place et défendez votre choix.</li>
+<li>Le patron double son propre salaire, les neuf autres restant inchangés. Dites ce que
+deviennent la moyenne, la médiane et l'étendue, en justifiant les trois réponses. Énoncez ensuite,
+en une phrase précise, ce que cet exemple révèle sur la sensibilité de chacun de ces trois
+indicateurs aux valeurs extrêmes.</li>
+</ol>
+</div>
+<p class="context">Le désaccord entre moyenne et médiane n'est pas un artifice de manuel : c'est la
+raison pour laquelle l'INSEE publie systématiquement les deux quand il décrit les salaires en
+France, le salaire médian y étant nettement inférieur au salaire moyen. L'écart entre les deux
+nombres est lui-même une information — il mesure à quel point la distribution est tirée vers le
+haut par une minorité. La moyenne appartient à la tradition des moindres carrés de Legendre et
+Gauss ; la médiane fut défendue par Laplace, qui démontra qu'elle minimise l'erreur absolue. La
+démonstration de cette propriété est STA-01, dans la bande Lycée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Moyenne_arithm%C3%A9tique">Moyenne arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9diane_(statistiques)">Médiane (statistiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Statistique_descriptive">Statistique descriptive — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-42" data-level="Collège">
+<h3>STA-42 · L'axe qui ne part pas de zéro <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un journal local publie un diagramme en barres du nombre de cambriolages
+enregistrés dans la ville sur cinq années consécutives : 1 010, 1 025, 1 040, 1 030 et 1 060.
+L'axe vertical du graphique commence à 1 000 et s'arrête à 1 070. Le titre de l'article est « La
+délinquance flambe ».</p>
+<ol class="parts" type="a">
+<li>Calculez l'augmentation entre la première et la dernière année, en nombre de cambriolages puis
+en pourcentage. Justifiez vos deux calculs et dites lequel des deux vous paraît le plus honnête à
+publier.</li>
+<li>Tracez le même diagramme avec un axe vertical partant de 0. Décrivez précisément ce qui change
+dans l'impression visuelle, et expliquez pourquoi les deux graphiques sont pourtant tous les deux
+exacts.</li>
+<li>Un axe tronqué n'est pas toujours malhonnête. Donnez un exemple de série de données pour
+laquelle partir de zéro serait au contraire une mauvaise idée, puis rédigez la règle que vous
+proposeriez à ce journal pour distinguer les deux situations.</li>
+</ol>
+</div>
+<p class="context">Darrell Huff a consacré à ce procédé un chapitre entier de <i>How to Lie with
+Statistics</i> (1954), l'un des livres de statistique les plus vendus de l'histoire ; il l'appelait
+le graphique « gee-whiz », du nom de l'exclamation qu'il cherche à provoquer. Le point délicat, et
+c'est celui de la question (c), est qu'aucune règle mécanique ne fonctionne : un axe partant de
+zéro rendrait illisible une courbe de températures corporelles, et personne ne songerait à le
+reprocher. Ce qui distingue l'honnêteté du mensonge n'est donc pas la position de l'axe mais
+l'accord entre ce que le graphique fait voir et ce que le texte affirme.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Visualisation_de_donn%C3%A9es">Visualisation de données — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Diagramme_%C3%A0_barres">Diagramme à barres — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Misleading_graph">Graphique trompeur — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-43" data-level="Collège">
+<h3>STA-43 · Le sondage de la cour de récréation <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Camille veut connaître le sport préféré des 600 élèves de son collège. Un
+mercredi à midi, elle interroge les 40 élèves présents sur le terrain de basket, dont 28 répondent
+« le basket », et elle conclut : « 70 % des élèves du collège préfèrent le basket ».</p>
+<ol class="parts" type="a">
+<li>Énoncez au moins trois raisons distinctes pour lesquelles cette conclusion n'est pas fondée.
+Pour chacune, dites exactement quelle étape du raisonnement de Camille elle attaque.</li>
+<li>Camille répond : « j'ai interrogé 40 élèves, c'est beaucoup ». Expliquez pourquoi interroger
+400 élèves au même endroit et au même moment ne corrigerait pas le défaut principal de son
+enquête. Votre explication doit porter sur la façon dont les élèves interrogés ont été choisis.</li>
+<li>Concevez un protocole de sondage réellement applicable dans votre collège. Décrivez-le en cinq
+lignes, justifiez chacun de vos choix, et terminez en indiquant ce que votre protocole ne garantit
+toujours pas.</li>
+</ol>
+</div>
+<p class="context">L'histoire des sondages est une suite d'échecs instructifs. En 1948, tous les
+grands instituts américains annoncèrent la défaite de Harry Truman face à Thomas Dewey ; le
+<i>Chicago Tribune</i> imprima même sa une « Dewey Defeats Truman » avant le dépouillement, et la
+photographie de Truman brandissant le journal est restée célèbre. Les instituts avaient cessé de
+sonder trop tôt et travaillaient sur des échantillons construits par quotas mal actualisés. Le cas
+plus ancien et plus spectaculaire du <i>Literary Digest</i>, qui recueillit deux millions de
+réponses et se trompa quand même, est traité en STA-32 dans la bande Lycée : la leçon commune est
+que la manière de choisir les personnes interrogées compte davantage que leur nombre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sondage_d%27opinion">Sondage d'opinion — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Biais_de_s%C3%A9lection">Biais de sélection — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Dewey_Defeats_Truman">Dewey Defeats Truman — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-44" data-level="Collège">
+<h3>STA-44 · Deux classes, une seule moyenne <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Deux classes de neuf élèves ont passé le même contrôle, noté sur 20. Voici les
+notes obtenues.</p>
+<p>Classe A : 9, 10, 10, 11, 11, 11, 12, 12, 13<br>
+Classe B : 3, 4, 5, 11, 13, 15, 16, 16, 16</p>
+<ol class="parts" type="a">
+<li>Vérifiez que les deux classes ont exactement la même moyenne, puis calculez pour chacune la
+médiane et l'étendue. Justifiez chaque calcul.</li>
+<li>Le professeur doit dire laquelle des deux classes « a mieux réussi ». Construisez d'abord
+l'argument le plus solide en faveur de la classe A, puis l'argument le plus solide en faveur de la
+classe B, chaque fois chiffres à l'appui. Concluez sur ce que la question posée a d'incomplet.</li>
+<li>Proposez un indicateur simple, calculable au collège, qui distinguerait ces deux séries mieux
+que la moyenne. Justifiez qu'il les distingue effectivement, puis donnez un exemple de deux séries
+que votre indicateur ne distingue pas non plus.</li>
+</ol>
+</div>
+<p class="context">Une moyenne seule ne décrit jamais une série : c'est la première leçon de la
+statistique descriptive, et elle a mis un siècle à se formaliser. On a longtemps mesuré la
+dispersion par l'écart moyen ; c'est Karl Pearson qui, en 1893, a introduit le terme d'écart type
+et imposé peu à peu la mesure que vous rencontrerez au lycée. Le choix entre plusieurs mesures de
+dispersion n'a rien d'évident et fut sérieusement débattu — la question (c) vous fait refaire ce
+débat en miniature, y compris sa partie la plus honnête : reconnaître ce que votre indicateur
+laisse encore passer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/S%C3%A9rie_statistique">Série statistique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9diane_(statistiques)">Médiane (statistiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Karl_Pearson">Karl Pearson — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-45" data-level="Collège">
+<h3>STA-45 · La moyenne des moyennes <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Au dernier contrôle de mathématiques, la classe de 4<sup>e</sup> A, qui compte
+28 élèves, a obtenu 12 de moyenne ; la classe de 4<sup>e</sup> B, qui en compte 12, a obtenu 16.</p>
+<ol class="parts" type="a">
+<li>Le principal annonce que « la moyenne des deux classes réunies est 14 ». Montrez que c'est
+faux, calculez la valeur correcte et justifiez votre méthode.</li>
+<li>Énoncez précisément la condition sous laquelle la moyenne des moyennes coïncide avec la
+moyenne de l'ensemble. Démontrez-la dans le cas de deux groupes d'effectifs quelconques.</li>
+<li>Un élève a obtenu 8 de moyenne au premier trimestre, où il avait trois notes, et 16 au
+deuxième, où il n'en avait qu'une. Il annonce 12 de moyenne sur les deux trimestres. Dites ce qui
+est vrai et ce qui est faux dans son calcul, et déterminez en justifiant la valeur correcte.</li>
+</ol>
+</div>
+<p class="context">Confondre la moyenne des moyennes et la moyenne globale est l'erreur
+arithmétique la plus fréquemment publiée, et ce n'est pas une simple étourderie : c'est le
+mécanisme même du paradoxe de Simpson, où deux groupes peuvent chacun avoir un meilleur taux de
+réussite qu'un concurrent tout en ayant, réunis, un taux inférieur. La démonstration complète est
+STA-02, dans la bande Lycée. Le système français des coefficients sur les bulletins scolaires est
+d'ailleurs une moyenne pondérée déguisée : la question (c) montre que même sans coefficient
+affiché, les effectifs jouent déjà ce rôle.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Moyenne_pond%C3%A9r%C3%A9e">Moyenne pondérée — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_de_Simpson">Paradoxe de Simpson — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-46" data-level="Collège">
+<h3>STA-46 · Le diagramme circulaire du foyer <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le foyer socio-éducatif d'un collège publie un diagramme circulaire des
+activités choisies par ses 240 inscrits. Les angles au centre des secteurs sont : théâtre 90°,
+échecs 60°, journal 45°, robotique 120°, autres activités 45°.</p>
+<ol class="parts" type="a">
+<li>Retrouvez l'effectif de chaque activité et justifiez la méthode de conversion que vous
+employez pour passer d'un angle à un effectif. Vérifiez votre résultat.</li>
+<li>L'année suivante, le foyer compte 300 inscrits et le secteur « robotique » occupe toujours
+120°. Le président en conclut que la robotique n'a pas progressé. Réfutez-le en distinguant
+soigneusement effectif et fréquence, et dites ce que le diagramme permet malgré tout
+d'affirmer.</li>
+<li>Le président souhaite mettre en valeur le journal du collège et propose de dessiner le
+diagramme en perspective, le disque étant incliné. Expliquez géométriquement pourquoi cette
+présentation fausse la lecture, et déterminez quels secteurs elle avantage.</li>
+</ol>
+</div>
+<p class="context">Le diagramme circulaire est une invention de l'Écossais William Playfair, qui en
+publia le premier exemple connu dans son <i>Statistical Breviary</i> de 1801 ; on lui doit aussi le
+diagramme en barres et la courbe chronologique, c'est-à-dire l'essentiel du vocabulaire graphique
+que l'on emploie encore. Il a mauvaise réputation chez les spécialistes : Edward Tufte, dans
+<i>The Visual Display of Quantitative Information</i>, soutient que l'œil compare mal les angles et
+que la seule chose pire qu'un diagramme circulaire est plusieurs diagrammes circulaires côte à
+côte. La question (c) explique la moitié de cette mauvaise réputation.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Diagramme_circulaire">Diagramme circulaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/William_Playfair">William Playfair — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Edward_Tufte">Edward Tufte — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-47" data-level="Collège" data-kind="court">
+<h3>STA-47 · Effectif ou fréquence ? <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans un collège de 800 élèves, 200 sont demi-pensionnaires ;
+dans le collège voisin, 300 élèves sur 1 500 le sont. Un journaliste écrit : « le second collège
+compte plus de demi-pensionnaires, la demi-pension y est donc plus populaire » — dites, en
+justifiant par les effectifs puis par les fréquences, ce que cette phrase confond, et rédigez la
+comparaison correcte.</p>
+<p class="context">C'est pour cette raison que les statistiques officielles ne publient presque
+jamais un effectif seul : l'INSEE et les agences sanitaires donnent des taux — pour mille
+habitants, pour cent mille — précisément parce qu'un nombre brut mélange deux informations, la
+grandeur du phénomène et la taille de la population où on le mesure. Un nombre de cas qui augmente
+dans une population qui augmente ne dit rien tant qu'on n'a pas divisé. Séparer « combien » de
+« quelle part » est le premier réflexe de lecture statistique, et l'un des plus souvent oubliés.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fr%C3%A9quence_(statistiques)">Fréquence (statistiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pourcentage">Pourcentage — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-48" data-level="Collège" data-kind="court">
+<h3>STA-48 · Un pourcentage d'un pourcentage <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans un collège, 40 % des élèves sont en cycle 4 et, parmi
+ces derniers, 30 % apprennent l'allemand ; un délégué en conclut que « 70 % des élèves du collège
+apprennent l'allemand en cycle 4 ». Débusquez l'erreur, déterminez en le justifiant le pourcentage
+correct, et expliquez pourquoi la réponse ne dépend pas de l'effectif total du collège.</p>
+<p class="context">Prendre un pourcentage d'un pourcentage, c'est multiplier des proportions, et
+non les additionner — une règle que l'arithmétique commerciale maîtrisait déjà bien avant la
+statistique. Fibonacci l'applique aux intérêts et aux changes dans le <i>Liber abaci</i> (1202), et
+les écoles d'abaque de Toscane l'enseignaient aux futurs marchands du XIV<sup>e</sup> siècle. La
+même erreur produit son cousin le plus célèbre : une hausse de 20 % suivie d'une baisse de 20 % ne
+ramène pas au point de départ, et la question ci-dessus contient déjà la raison de ce
+phénomène.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pourcentage">Pourcentage — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fr%C3%A9quence_(statistiques)">Fréquence (statistiques) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-49" data-level="Collège" data-kind="court">
+<h3>STA-49 · La médiane d'un tableau d'effectifs <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans une classe de 27 élèves, on a relevé le nombre de frères
+et sœurs de chacun : 4 élèves en ont 0, 9 en ont 1, 7 en ont 2, 4 en ont 3, 2 en ont 4 et 1 en a 6.
+Déterminez la médiane et la moyenne de cette série en justifiant votre méthode directement sur le
+tableau d'effectifs, sans réécrire les 27 valeurs une à une, puis expliquez pourquoi la moyenne
+n'est pas un nombre entier alors qu'aucun élève ne peut avoir un nombre non entier de frères et
+sœurs.</p>
+<p class="context">Le tableau d'effectifs est la forme sous laquelle les données arrivent
+réellement — un recensement ne vous remet pas une liste de soixante-sept millions de lignes, il
+vous remet des comptages. Savoir lire une médiane et une moyenne directement dans un tableau
+d'effectifs cumulés est donc une compétence de praticien avant d'être un exercice. Quant à la
+dernière question, elle touche à quelque chose de profond : une moyenne n'est pas un individu de la
+série, c'est un point d'équilibre, et rien n'oblige un point d'équilibre à exister parmi les
+données.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9diane_(statistiques)">Médiane (statistiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/S%C3%A9rie_statistique">Série statistique — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-50" data-level="Collège" data-kind="court">
+<h3>STA-50 · Le pictogramme qui double <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour illustrer que le budget du club de sport a doublé, un
+graphiste dessine deux ballons dont le second a un diamètre deux fois plus grand que le premier.
+Déterminez, calculs à l'appui, par quel facteur l'image exagère la hausse — en distinguant le cas
+où le lecteur compare des aires de disque et celui où il compare des volumes de ballon — puis
+proposez une construction correcte et justifiez-la.</p>
+<p class="context">Darrell Huff consacre un chapitre de <i>How to Lie with Statistics</i> (1954) à
+ce procédé, qu'il tenait pour l'un des plus efficaces parce que le graphique reste, au sens strict,
+véridique : le second dessin est bien deux fois plus grand que le premier <i>dans une dimension</i>.
+Le lecteur, lui, ne mesure pas des diamètres, il perçoit des surfaces ou des volumes, et l'écart
+entre les deux est précisément ce que la question vous demande de chiffrer. C'est le seul exercice
+de cette page où la géométrie et la statistique se rencontrent — et ce n'est pas un hasard :
+tromper avec un graphique, c'est presque toujours exploiter une différence entre ce qui est mesuré
+et ce qui est vu.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pictogramme">Pictogramme — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/How_to_Lie_with_Statistics">How to Lie with Statistics — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Misleading_graph">Graphique trompeur — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="STA-51" data-level="Collège">
+<h3>STA-51 · Combien d'élèves peuvent être au-dessus de la moyenne ? <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère les notes d'un contrôle dans une classe de 25 élèves.</p>
+<ol class="parts" type="a">
+<li>Est-il possible que 24 des 25 élèves aient une note strictement supérieure à la moyenne de la
+classe ? Construisez un exemple explicite, ou démontrez que c'est impossible.</li>
+<li>Démontrez qu'il est en revanche impossible que les 25 élèves soient tous strictement au-dessus
+de la moyenne de la classe. Votre démonstration doit porter sur la somme des notes, et rester
+valable pour un nombre quelconque d'élèves.</li>
+<li>Un journal titre : « la moitié des collèges français sont en dessous de la moyenne nationale ».
+Expliquez ce que ce titre a de vide, dites ce qu'il faudrait mesurer à la place pour que
+l'information ait un contenu, et distinguez soigneusement le rôle de la moyenne et celui de la
+médiane dans votre réponse.</li>
+</ol>
+</div>
+<p class="context">L'idée que presque tout le monde peut être au-dessus de la moyenne porte un nom
+en anglais, l'effet Lake Wobegon, d'après la ville imaginaire de l'humoriste Garrison Keillor « où
+tous les enfants sont au-dessus de la moyenne ». Elle n'est pas seulement drôle : le psychologue Ola
+Svenson a publié en 1981 une enquête devenue classique où une large majorité d'automobilistes se
+jugeaient plus prudents et plus habiles que la moyenne des conducteurs. La question (a) montre que
+cela n'a rien d'impossible arithmétiquement, la question (b) dit où se trouve la vraie limite, et
+la question (c) explique pourquoi confondre moyenne et médiane transforme une banalité
+arithmétique en scandale de presse.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Moyenne_arithm%C3%A9tique">Moyenne arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sup%C3%A9riorit%C3%A9_illusoire">Supériorité illusoire — Wikipédia</a></li>
+<li>Article : O. Svenson, « Are we all less risky and more skillful than our fellow drivers? », <i>Acta Psychologica</i> 47 (1981), 143–148</li>
+</ul>
+</section>
+
+<section class="problem" id="STA-52" data-level="Collège">
+<h3>STA-52 · Trois pourcentages dans la même case <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On a interrogé 400 élèves d'un collège, dont 240 filles et 160 garçons, en
+leur demandant s'ils pratiquent un sport en club. Parmi les filles, 156 répondent oui ; parmi les
+garçons, 112.</p>
+<ol class="parts" type="a">
+<li>Recopiez et complétez le tableau à double entrée croisant le sexe et la pratique d'un sport en
+club, marges comprises. Justifiez chaque case que vous ajoutez.</li>
+<li>À partir de la seule case « filles pratiquant un sport en club », on peut former les trois
+quotients 156 sur 240, 156 sur 268 et 156 sur 400. Énoncez, pour chacun, la question précise à
+laquelle il répond. Expliquez ensuite pourquoi confondre ces trois nombres est l'erreur la plus
+courante dans la lecture d'un tel tableau.</li>
+<li>Le journal du collège titre : « les filles font moins de sport que les garçons ». Dites ce que
+les données permettent d'affirmer et ce qu'elles ne permettent pas, en distinguant explicitement
+effectif et fréquence, puis nommez au moins une information manquante qui pourrait changer votre
+jugement.</li>
+</ol>
+</div>
+<p class="context">Le tableau à double entrée est le plus vieil instrument de la statistique
+appliquée : John Graunt s'en sert déjà dans ses <i>Natural and Political Observations Made upon the
+Bills of Mortality</i> (1662), le premier travail de statistique démographique, pour croiser causes
+de décès et années. Sa simplicité est trompeuse — la confusion entre les trois quotients de la
+question (b) est la racine commune de la plupart des erreurs d'interprétation, depuis les tests
+médicaux mal lus jusqu'au paradoxe de Simpson (STA-02, bande Lycée). Apprendre à dire à voix haute
+« sur quoi je divise, et pourquoi » règle une bonne partie de ces malentendus.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Tableau_de_contingence">Tableau de contingence — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/John_Graunt">John Graunt — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fr%C3%A9quence_(statistiques)">Fréquence (statistiques) — Wikipédia</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 

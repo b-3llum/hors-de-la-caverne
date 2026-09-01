@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("section.problem[data-level]"));
   if (problems.length < 2) return;
 
-  var LEVELS = ["Lycée", "Licence", "Master", "Recherche"];
+  var LEVELS = ["Collège", "Lycée", "Licence", "Master", "Recherche"];
   var activeLevel = "Tout";
   var query = "";
   var shortOnly = false;

@@ -51,7 +51,7 @@ STMT_RE = re.compile(
 catalogue = []   # one record per problem, for the worksheet builder
 
 problems = []          # manifest entries
-hs_by_page = {}        # filename -> list of full section html
+school = {"Collège": {}, "Lycée": {}}   # level -> filename -> sections
 report = []
 
 for fname, area in PAGES:
@@ -95,13 +95,14 @@ for fname, area in PAGES:
         if short:
             rec["kind"] = "court"
         catalogue.append(rec)
-        if level == "Lycée":
+        if level in ("Collège", "Lycée"):
             block = re.search(
                 r'<section class="problem" id="' + re.escape(pid) + r'".*?</section>',
                 src, re.S).group(0)
-            note = (f'<p class="source-note">From <a href="{fname}#{pid}">{area}</a>.</p>')
+            note = (f'<p class="source-note">Extrait de '
+                    f'<a href="{fname}#{pid}">{area}</a>.</p>')
             block = block.replace("</section>", note + "\n</section>")
-            hs_by_page.setdefault(fname, []).append(block)
+            school[level].setdefault(fname, []).append(block)
     report.append(f"OK {fname}: {len(secs)} problems {levels}"
                   + (f"  ISSUES: {issues}" if issues else ""))
 
@@ -118,35 +119,29 @@ with open(os.path.join(ROOT, "problems-data.js"), "w", encoding="utf-8") as f:
     f.write(json.dumps(catalogue, ensure_ascii=False))
     f.write(";\n")
 
-# ---- highschool.html ----
+# ---- les deux salles : college.html et highschool.html ----
 def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
-areas = [(f, a) for f, a in PAGES if f in hs_by_page]
-buttons = "\n".join(
-    f'<button data-area="area-{slug(a)}">{htmllib.escape(a)} '
-    f'({len(hs_by_page[f])})</button>' for f, a in areas)
-sections = "\n".join(
-    f'<div class="area" id="area-{slug(a)}">\n<h2>{htmllib.escape(a)}</h2>\n'
-    + "\n".join(hs_by_page[f]) + "\n</div>" for f, a in areas)
-total = sum(len(v) for v in hs_by_page.values())
 
-hub = f"""<!DOCTYPE html>
+# %-formatted so the page's own JavaScript braces need no escaping.
+HUB_SHELL = """<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La salle des lycéens — Hors de la Caverne</title>
+<title>%(h1)s — Hors de la Caverne</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="katex/katex.min.css">
 <script src="theme.js"></script>
 <script defer src="katex/katex.min.js"></script>
 <script defer src="katex/contrib/auto-render.min.js"
-  onload="renderMathInElement(document.body,{{delimiters:[{{left:'\\\\[',right:'\\\\]',display:true}},{{left:'\\\\(',right:'\\\\)',display:false}}],throwOnError:false}});"></script>
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\\\[',right:'\\\\]',display:true},{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -159,24 +154,19 @@ hub = f"""<!DOCTYPE html>
 </nav>
 <hr>
 
-<h1>La salle des lycéens</h1>
-<p class="lede">Tous les problèmes du site marqués [Lycée], rassemblés en un seul
-endroit — {total} au total. Aucune connaissance au-delà des mathématiques du lycée
-n'est supposée ; en revanche, une démonstration complète est attendue partout.
-Choisissez les domaines qui vous appellent, ou parcourez-les tous. Chaque problème
-renvoie à sa page d'origine, où les niveaux plus difficiles du même sujet vous
-attendent.</p>
+<h1>%(h1)s</h1>
+<p class="lede">%(lede)s</p>
 
 <div class="filterbar" id="areabar">
 <span>Domaines : </span>
-<button data-area="all" class="active">Tous les domaines ({total})</button>
-{buttons}
+<button data-area="all" class="active">Tous les domaines (%(total)d)</button>
+%(buttons)s
 <input type="search" id="hssearch" placeholder="rechercher parmi ces problèmes…">
 <span class="count" id="hscount"></span>
 </div>
 <hr>
 
-{sections}
+%(sections)s
 
 <hr>
 <footer>
@@ -185,45 +175,81 @@ Les références vous disent où se trouve la lumière ; la sortie, c'est à vou
 marcher. <a href="index.html">Accueil</a></p>
 </footer>
 <script>
-(function () {{
+(function () {
   var pick = "all", query = "";
   var probs = Array.prototype.slice.call(document.querySelectorAll("section.problem"));
   var count = document.getElementById("hscount");
-  function apply() {{
+  function apply() {
     var shown = 0;
-    document.querySelectorAll("div.area").forEach(function (d) {{
+    document.querySelectorAll("div.area").forEach(function (d) {
       var areaOk = (pick === "all" || d.id === pick), any = false;
-      d.querySelectorAll("section.problem").forEach(function (p) {{
+      d.querySelectorAll("section.problem").forEach(function (p) {
         var ok = areaOk &&
           (query === "" || p.textContent.toLowerCase().indexOf(query) !== -1);
         p.classList.toggle("hidden", !ok);
-        if (ok) {{ any = true; shown++; }}
-      }});
+        if (ok) { any = true; shown++; }
+      });
       d.classList.toggle("hidden", !any);
-    }});
+    });
     count.textContent = shown + " problème(s) sur " + probs.length;
-  }}
-  document.querySelectorAll("#areabar button").forEach(function (b) {{
-    b.addEventListener("click", function () {{
-      document.querySelectorAll("#areabar button").forEach(function (x) {{
+  }
+  document.querySelectorAll("#areabar button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll("#areabar button").forEach(function (x) {
         x.className = x === b ? "active" : "";
-      }});
+      });
       pick = b.dataset.area;
       apply();
-    }});
-  }});
-  document.getElementById("hssearch").addEventListener("input", function (e) {{
+    });
+  });
+  document.getElementById("hssearch").addEventListener("input", function (e) {
     query = e.target.value.toLowerCase();
     apply();
-  }});
+  });
   apply();
-}})();
+})();
 </script>
 </body>
 </html>
 """
-with open(os.path.join(ROOT, "highschool.html"), "w", encoding="utf-8") as f:
-    f.write(hub)
+
+ROOMS = [
+    ("Collège", "college.html", "La salle des collégiens",
+     "Tous les problèmes du site marqués [Collège], rassemblés en un seul endroit — "
+     "%(n)d au total. Rien n'y dépasse le programme du collège : fractions, "
+     "divisibilité, aires, angles, dénombrement, hasard. En revanche, on y demande "
+     "toujours de <b>justifier</b> — expliquer pourquoi c'est vrai, et pas seulement "
+     "donner le résultat. C'est exactement ce que font les mathématiciens, en plus "
+     "petit. Quand ceux-ci deviendront faciles, la "
+     "<a href=\"highschool.html\">salle des lycéens</a> vous attend."),
+    ("Lycée", "highschool.html", "La salle des lycéens",
+     "Tous les problèmes du site marqués [Lycée], rassemblés en un seul endroit — "
+     "%(n)d au total. Aucune connaissance au-delà des mathématiques du lycée n'est "
+     "supposée ; en revanche, une démonstration complète est attendue partout. "
+     "Choisissez les domaines qui vous appellent, ou parcourez-les tous. Chaque "
+     "problème renvoie à sa page d'origine, où les niveaux plus difficiles du même "
+     "sujet vous attendent. Vous débutez ? Passez d'abord par la "
+     "<a href=\"college.html\">salle des collégiens</a>."),
+]
+
+room_totals = {}
+for _level, _outfile, _h1, _lede_tpl in ROOMS:
+    by_page = school[_level]
+    areas = [(f, a) for f, a in PAGES if f in by_page]
+    total = sum(len(v) for v in by_page.values())
+    room_totals[_level] = total
+    if not total:
+        continue
+    buttons = "\n".join(
+        '<button data-area="area-%s">%s (%d)</button>'
+        % (slug(a), htmllib.escape(a), len(by_page[f])) for f, a in areas)
+    sections = "\n".join(
+        '<div class="area" id="area-%s">\n<h2>%s</h2>\n%s\n</div>'
+        % (slug(a), htmllib.escape(a), "\n".join(by_page[f])) for f, a in areas)
+    hub = HUB_SHELL % dict(h1=_h1, lede=_lede_tpl % dict(n=total), total=total,
+                           buttons=buttons, sections=sections)
+    with open(os.path.join(ROOT, _outfile), "w", encoding="utf-8") as f:
+        f.write(hub)
 
 # ---- PDF links for compiled tex ----
 patched = 0
@@ -244,4 +270,6 @@ for fname, _ in PAGES:
         report.append(f"NO-TEX-LINK: {fname}")
 
 print("\n".join(report))
-print(f"TOTAL problems: {len(problems)}  HS: {total}  PDF links patched: {patched}")
+print("TOTAL problems: %d  College: %d  Lycee: %d  PDF links patched: %d"
+      % (len(problems), room_totals.get("Coll\u00e8ge", 0),
+         room_totals.get("Lyc\u00e9e", 0), patched))

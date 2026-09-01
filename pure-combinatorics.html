@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -41,6 +42,315 @@ chaque outil est petit, et tout l'art est de savoir lequel le problème réclame
 <a href="tex/pure-combinatorics.tex" download>source LaTeX</a> · <a href="tex/pure-combinatorics.pdf" download>PDF compilé</a></p>
 <!-- site.js insère automatiquement la barre de filtre par niveau / recherche ici. N'en construisez pas. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="CMB-45" data-level="Collège">
+<h3>CMB-45 · Les poignées de main d'une classe <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans une salle, chaque personne présente serre la main de chaque autre personne
+exactement une fois.</p>
+<ol class="parts" type="a">
+<li>Six personnes sont présentes. Dressez la liste complète des poignées de main et dénombrez-les,
+puis expliquez pourquoi votre liste n'en oublie aucune et n'en compte aucune deux fois.</li>
+<li>Démontrez que pour \( n \) personnes le nombre de poignées de main vaut \( \frac{n(n-1)}{2} \).
+On pourra compter d'abord les poignées de main « vues » par chacun, puis corriger le double
+comptage — et il faudra justifier que la correction est bien une division par 2.</li>
+<li>Un soir, 66 poignées de main ont été échangées et chacun a bien serré la main de tous les
+autres. Déterminez, en le justifiant, combien de personnes étaient présentes, et expliquez pourquoi
+il ne peut pas y avoir deux réponses.</li>
+</ol>
+</div>
+<p class="context">C'est le premier dénombrement que l'on rencontre en général, et il cache déjà la
+technique la plus rentable de toute la combinatoire : compter la même collection de deux manières,
+puis identifier les deux résultats. Le nombre obtenu est aussi le nombre de segments joignant
+\( n \) points, le nombre d'arêtes du graphe complet à \( n \) sommets et le \( (n-1) \)-ième nombre
+triangulaire — trois questions qui n'ont l'air de rien avoir en commun jusqu'à ce qu'on les compte.
+Euler, en 1736, comptait des ponts ; la même façon de raisonner sert ici à compter des mains
+serrées.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Graphe_complet">Graphe complet — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_triangulaire">Nombre triangulaire — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-46" data-level="Collège">
+<h3>CMB-46 · Les diagonales d'un polygone <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans un polygone convexe, une diagonale est un segment qui joint deux sommets
+non voisins.</p>
+<ol class="parts" type="a">
+<li>Tracez toutes les diagonales d'un pentagone convexe, puis celles d'un hexagone convexe, et
+dénombrez-les. Expliquez la méthode qui vous garantit de n'en oublier aucune.</li>
+<li>Démontrez qu'un polygone convexe à \( n \) côtés possède exactement
+\( \frac{n(n-3)}{2} \) diagonales. Justifiez séparément d'où vient le \( -3 \) et d'où vient la
+division par 2.</li>
+<li>Déterminez, en le démontrant, s'il existe un polygone convexe ayant exactement 100 diagonales.
+Un décompte pour quelques valeurs de \( n \) ne suffit pas : il faut expliquer pourquoi les valeurs
+non testées sont écartées elles aussi.</li>
+</ol>
+</div>
+<p class="context">La question a l'air d'un exercice de dessin et elle est en réalité le même
+problème que celui des poignées de main, à trois exceptions près par sommet : chaque sommet est
+relié à tous les autres sauf lui-même et ses deux voisins. Reconnaître qu'un problème est un
+ancien problème déguisé est une compétence à part entière, et c'est précisément ce que fait la
+combinatoire quand elle appelle « bijection » le fait de traduire une question en une autre. La
+partie (c) apprend autre chose encore : pour démontrer qu'une chose n'existe pas, il ne suffit
+jamais d'avoir cherché sans trouver.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Diagonale">Diagonale — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polygone">Polygone — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-47" data-level="Collège">
+<h3>CMB-47 · Chemins sur un quadrillage <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une fourmi part du coin inférieur gauche d'un quadrillage et se rend au coin
+supérieur droit en se déplaçant uniquement le long des traits, d'un carreau vers la droite ou d'un
+carreau vers le haut.</p>
+<ol class="parts" type="a">
+<li>Sur un quadrillage carré de 4 carreaux de côté, qui compte donc 25 nœuds, inscrivez à chaque
+nœud le nombre de chemins qui y mènent depuis le départ, en additionnant à chaque fois le nombre
+écrit à gauche et le nombre écrit en dessous. Démontrez que cette règle d'addition est légitime,
+c'est-à-dire que tout chemin arrivant en un nœud y arrive nécessairement par l'une des deux
+directions et jamais par les deux.</li>
+<li>Comparez le tableau de nombres obtenu au triangle de Pascal et expliquez précisément pourquoi
+les deux constructions produisent les mêmes nombres.</li>
+<li>On interdit maintenant le passage par le nœud central du quadrillage, celui qui se trouve à
+2 carreaux de chacun des quatre bords. Dénombrez les chemins restants et justifiez votre méthode :
+si vous soustrayez, démontrez que vous soustrayez exactement les chemins interdits, chacun une
+seule fois.</li>
+</ol>
+</div>
+<p class="context">Le triangle apparaît dans la prosodie indienne de Pingala (vers 200 av. J.-C.),
+chez le mathématicien persan al-Karaji vers l'an mille et chez le Chinois Yang Hui au
+XIII<sup>e</sup> siècle, bien avant le traité de Pascal de 1654 ; il porte donc, comme souvent en
+mathématiques, le nom du dernier arrivé. Le dénombrement des chemins en est la lecture la plus
+parlante : chaque case du triangle compte les façons d'y descendre depuis le sommet. La partie (c)
+introduit le raisonnement par soustraction, qui deviendra plus tard le principe d'inclusion et
+d'exclusion.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Triangle_de_Pascal">Triangle de Pascal — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9nombrement">Dénombrement — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-48" data-level="Collège" data-kind="court">
+<h3>CMB-48 · L'arbre des menus <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un restaurant propose 3 entrées, 4 plats et 2 desserts, et un
+menu se compose d'une entrée, d'un plat et d'un dessert. Dessinez l'arbre des choix, dénombrez les
+menus possibles, puis démontrez la règle générale qui donne ce nombre sans qu'il soit nécessaire de
+dessiner l'arbre.</p>
+<p class="context">On appelle cette règle le principe multiplicatif, et l'arbre en est la
+démonstration dessinée : chaque niveau de branches multiplie le nombre de feuilles. Elle paraît
+évidente jusqu'au jour où les choix cessent d'être indépendants — un plat interdit avec une entrée,
+par exemple — et où l'arbre, lui, continue de dire la vérité que la multiplication ne dit plus.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9nombrement">Dénombrement — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Produit_cart%C3%A9sien">Produit cartésien — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-49" data-level="Collège" data-kind="court">
+<h3>CMB-49 · Des chaussettes dans le noir <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un tiroir contient 10 chaussettes noires, 10 bleues et 10
+rouges, toutes mêlées, et l'on y pioche des chaussettes sans allumer la lumière. Déterminez, en le
+démontrant, le plus petit nombre de chaussettes à tirer pour être certain d'avoir une paire de la
+même couleur, puis le plus petit nombre garantissant une paire noire.</p>
+<p class="context">C'est le principe des tiroirs sous sa forme la plus domestique : Dirichlet
+l'énonçait dans les années 1830 sous le nom de <i>Schubfachprinzip</i> pour démontrer des résultats
+d'approximation des irrationnels. Une démonstration complète comporte toujours deux moitiés qu'on
+oublie souvent de distinguer : montrer que le nombre annoncé suffit, et exhiber un tirage
+malchanceux montrant qu'un de moins ne suffirait pas.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_des_tiroirs">Principe des tiroirs — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-50" data-level="Collège">
+<h3>CMB-50 · Les sept ponts de Königsberg <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La ville de Königsberg était bâtie sur deux rives et deux îles de la rivière
+Pregel, reliées par sept ponts ; ses habitants se demandaient s'il existait une promenade
+empruntant chaque pont une fois et une seule. La rive nord touche 3 ponts, la rive sud 3 ponts, la
+grande île 5 ponts et la petite île 3 ponts.</p>
+<ol class="parts" type="a">
+<li>Redessinez la ville en remplaçant chaque morceau de terre par un point et chaque pont par un
+trait joignant deux points. Expliquez pourquoi la forme des rives, les distances et la longueur des
+ponts ne changent rien à la question.</li>
+<li>Démontrez qu'une telle promenade est impossible. On raisonnera sur un morceau de terre qui
+n'est ni le départ ni l'arrivée : à chaque fois que la promenade y entre, elle doit en ressortir
+par un autre pont.</li>
+<li>Déterminez, en le justifiant, le nombre minimal de ponts qu'il faudrait ajouter pour qu'une
+telle promenade devienne possible, et dites si elle pourrait alors revenir à son point de
+départ.</li>
+</ol>
+</div>
+<p class="context">Leonhard Euler règle la question en 1736 dans un mémoire pour
+l'Académie de Saint-Pétersbourg, et il commence par écarter la géométrie : ni les longueurs ni les
+angles n'interviennent, seule compte la façon dont les choses sont reliées. Il crée du même coup
+deux disciplines, la théorie des graphes et la topologie, à partir d'une promenade dominicale. La
+ville s'appelle aujourd'hui Kaliningrad et deux des sept ponts ont disparu pendant la Seconde
+Guerre mondiale ; la question, elle, se repose à l'identique sur la carte d'aujourd'hui.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_des_sept_ponts_de_K%C3%B6nigsberg">Problème des sept ponts de Königsberg — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_des_graphes">Théorie des graphes — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-51" data-level="Collège">
+<h3>CMB-51 · Combien de matchs dans le tournoi ? <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Deux formats de compétition se disputent le monde du sport : l'élimination
+directe, où le perdant d'un match quitte le tournoi, et le championnat toutes rondes, où chaque
+équipe rencontre chaque autre.</p>
+<ol class="parts" type="a">
+<li>Un tournoi à élimination directe réunit 64 équipes et se termine par un unique vainqueur.
+Déterminez le nombre total de matchs joués et démontrez-le sans additionner les tours un par un.
+On pourra compter ce que chaque match produit d'irréversible.</li>
+<li>Démontrez que votre raisonnement vaut encore pour \( n \) équipes lorsque \( n \) n'est pas une
+puissance de 2 et que certaines équipes sont exemptées au premier tour.</li>
+<li>Dans un championnat où chaque équipe rencontre chaque autre deux fois, à l'aller et au retour,
+182 matchs ont été joués. Déterminez le nombre d'équipes engagées, en justifiant que c'est le
+seul possible.</li>
+</ol>
+</div>
+<p class="context">Les deux formats donnent des décomptes de natures opposées : l'un croît
+proportionnellement au nombre d'équipes, l'autre bien plus vite, et c'est la raison pratique pour
+laquelle les grandes compétitions mélangent poules et tableau final. L'argument attendu en (a) est
+un modèle du genre — on ne compte pas les matchs, on compte les éliminations, et l'on remarque que
+la correspondance entre les deux est exacte. C'est ce qu'on appelle une démonstration par bijection,
+et elle vaut aussi bien pour 64 équipes que pour 4 096.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Tournoi_toutes_rondes">Tournoi toutes rondes — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Single-elimination_tournament">Tournoi à élimination directe — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-52" data-level="Collège">
+<h3>CMB-52 · Colorier une carte avec peu de couleurs <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Colorier une carte, c'est attribuer une couleur à chaque région de sorte que
+deux régions partageant une frontière — un morceau de ligne, pas seulement un point — reçoivent
+des couleurs différentes.</p>
+<ol class="parts" type="a">
+<li>Dessinez une carte de quatre régions qui exige réellement quatre couleurs, et démontrez que
+trois ne suffisent pas pour votre carte.</li>
+<li>On trace sur une feuille plusieurs droites qui la traversent entièrement ; elles la découpent
+en régions. Démontrez que deux couleurs suffisent toujours à colorier cette carte, en examinant ce
+qui se passe lorsqu'on ajoute les droites une par une.</li>
+<li>Le théorème des quatre couleurs affirme que quatre couleurs suffisent pour toute carte tracée
+sur une feuille. Construisez une carte de six régions qui se colorie avec trois couleurs et une
+autre carte de six régions qui en exige quatre, et démontrez ces deux affirmations.</li>
+</ol>
+</div>
+<p class="context">La question est posée en 1852 par Francis Guthrie, qui coloriait les comtés
+d'Angleterre, transmise par son frère à De Morgan, et elle résiste ensuite plus d'un siècle : la
+démonstration d'Alfred Kempe, publiée en 1879 et acclamée, s'effondre en 1890 sous l'examen de
+Percy Heawood, qui sauve tout de même le résultat pour cinq couleurs. Kenneth Appel et Wolfgang
+Haken concluent en 1976 à l'aide d'un ordinateur, en vérifiant à la machine près de 1 500
+configurations — première grande démonstration qu'aucun être humain ne peut lire en entier, et
+première dispute sérieuse sur ce qu'est une démonstration. Les parties (a) et (b), elles, se
+démontrent au crayon.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_quatre_couleurs">Théorème des quatre couleurs — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Coloration_de_graphe">Coloration de graphe — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-53" data-level="Collège">
+<h3>CMB-53 · Combien de carrés sur un damier ? <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère un damier \( 8 \times 8 \) et l'on ne s'intéresse qu'aux carrés
+et rectangles dont les côtés suivent les lignes de la grille.</p>
+<ol class="parts" type="a">
+<li>Dénombrez les carrés de côté 1, puis ceux de côté 2, puis ceux de côté 3. Justifiez chaque
+décompte en décrivant précisément ce qui détermine un carré une fois sa taille fixée.</li>
+<li>Démontrez que le nombre total de carrés de toutes tailles d'un damier \( n \times n \) vaut
+\[ 1^2 + 2^2 + 3^2 + \cdots + n^2 . \]</li>
+<li>Dénombrez maintenant tous les rectangles du damier \( 8 \times 8 \), carrés compris, et
+démontrez que votre décompte est complet et sans répétition.</li>
+</ol>
+</div>
+<p class="context">Le damier est le laboratoire préféré des dénombreurs parce qu'il est fini,
+familier, et qu'il punit immédiatement les décomptes bâclés : la réponse « soixante-quatre » à la
+question du titre est fausse et tout le monde la donne d'abord. La somme des carrés de la partie
+(b) était connue d'Archimède, qui s'en servait dans <i>Sur les spirales</i> pour évaluer une aire, et les
+nombres qu'elle produit s'appellent nombres pyramidaux carrés — ils comptent les boulets empilés en
+pyramide à base carrée. La partie (c) demande le geste décisif de la combinatoire : décrire un
+objet par les choix qui le déterminent entièrement.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_pyramidal_carr%C3%A9">Nombre pyramidal carré — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89chiquier">Échiquier — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-54" data-level="Collège">
+<h3>CMB-54 · Le damier et les dominos <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un domino recouvre exactement deux cases voisines d'un damier, côte à côte ou
+l'une au-dessus de l'autre. Recouvrir un damier signifie le couvrir entièrement, sans chevauchement
+ni débordement.</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'un damier \( 5 \times 5 \) ne peut pas être recouvert par des dominos.</li>
+<li>On colorie le damier \( 8 \times 8 \) en noir et blanc comme un échiquier. Démontrez que tout
+domino posé couvre exactement une case noire et une case blanche, puis qu'après avoir retiré deux
+cases de la même couleur le reste ne peut plus être recouvert.</li>
+<li>Une case a été retirée en haut à gauche et une autre en bas à droite. Expliquez, à partir de
+(b), pourquoi 31 dominos ne peuvent pas recouvrir les 62 cases restantes, et dites ce que devient
+la conclusion si les deux cases retirées sont de couleurs différentes.</li>
+</ol>
+</div>
+<p class="context">Popularisé par le philosophe Max Black en 1946 puis par les chroniques de Martin
+Gardner dans <i>Scientific American</i>, ce petit problème est le modèle de l'argument par
+invariant : au lieu d'essayer les pavages un à un — il y en a beaucoup trop — on repère une
+quantité que chaque coup légal laisse inchangée, et l'on constate qu'elle interdit l'arrivée.
+L'idée sert bien au-delà du damier : c'est elle qui décide du taquin, des jeux de jetons et de
+quantité de problèmes d'olympiades. La question réciproque — quels retraits de cases laissent un
+pavage possible — est plus fine et se traite au lycée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Mutilated_chessboard_problem">Problème du damier mutilé — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Damier">Damier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Martin_Gardner">Martin Gardner — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-55" data-level="Collège" data-kind="court">
+<h3>CMB-55 · Le motif d'allumettes <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> On aligne des carrés en les collant côte à côte : un carré
+demande 4 allumettes, deux carrés en demandent 7, trois carrés en demandent 10. Déterminez, en le
+démontrant, le nombre d'allumettes nécessaires pour \( n \) carrés alignés, puis le nombre de carrés
+que l'on peut construire avec exactement 2026 allumettes.</p>
+<p class="context">Poursuivre un motif est facile ; démontrer que la règle devinée est la bonne est
+un autre métier, et c'est celui-là que le problème demande. La bonne démonstration ne recalcule pas
+les premiers cas : elle explique ce que coûte le passage d'un carré au suivant, et pourquoi ce coût
+ne change jamais. C'est le premier contact avec les suites arithmétiques, et déjà avec l'idée que
+l'on démontre en regardant la marche, pas les marches.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Suite_arithm%C3%A9tique">Suite arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Suite_(math%C3%A9matiques)">Suite (mathématiques) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="CMB-56" data-level="Collège" data-kind="court">
+<h3>CMB-56 · Deux langues et un diagramme <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans une classe de 30 élèves, 18 étudient l'anglais, 15
+étudient l'espagnol et 7 étudient les deux langues. Déterminez combien d'élèves n'étudient aucune
+de ces deux langues, en justifiant votre décompte par un diagramme et par une phrase, puis démontrez
+la règle générale que vous avez employée.</p>
+<p class="context">Additionner 18 et 15 compte deux fois les élèves qui font les deux langues :
+c'est l'erreur que le principe d'inclusion et d'exclusion existe pour réparer. Les diagrammes qui
+portent le nom de John Venn datent de 1880, mais l'idée de corriger un décompte en retranchant les
+recouvrements est bien plus ancienne — on la trouve chez de Moivre au XVIII<sup>e</sup> siècle. Avec
+trois langues au lieu de deux, la règle se complique d'un terme supplémentaire, et il vaut la peine
+de deviner lequel avant de le lire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_d%27inclusion-exclusion">Principe d'inclusion-exclusion — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Diagramme_de_Venn">Diagramme de Venn — Wikipédia</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 

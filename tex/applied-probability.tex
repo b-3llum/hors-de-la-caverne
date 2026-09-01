@@ -17,6 +17,377 @@ sans solution. Les références indiquent où trouver les connaissances nécessa
 \medskip
 
 
+\section*{Collège}
+
+\begin{problem}[{Sept contre douze --- Collège}]
+\textbf{PRB-45.} \textbf{Problème.} On lance deux dés équilibrés à six faces, l'un rouge et l'un vert, et on
+additionne les deux résultats. Un joueur affirme : \og{} il y a onze sommes possibles, de 2 à 12, donc
+chacune a une chance sur onze de sortir \fg{}.
+\begin{enumerate}
+\item[(a)] Expliquez pourquoi ce sont les $ 36 $ couples (dé rouge, dé vert) qui forment les cas
+également possibles, et non les onze sommes. Votre argument doit dire précisément ce qui distingue
+les deux façons de compter.
+\item[(b)] Dressez le tableau des 36 issues, puis comparez la probabilité d'obtenir 7 et celle d'obtenir
+12. Justifiez l'écart que vous trouvez en décrivant, en français et sans formule, ce que la somme 7
+a de particulier parmi toutes les sommes.
+\item[(c)] Le joueur se défend : \og{} j'ai lancé les dés 36 fois et je n'ai obtenu 7 que quatre fois ; votre
+calcul est donc faux \fg{}. Rédigez une réponse qui dit ce qu'une probabilité promet et ce qu'elle ne
+promet pas.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le grand-duc de Toscane posa à Galilée, vers 1620, la même question pour trois
+dés : les joueurs savaient d'expérience que 10 sortait plus souvent que 9, alors que les deux
+sommes s'écrivent chacune de six façons. Galilée trancha en quelques lignes, en comptant les issues
+ordonnées plutôt que les descriptions d'issues --- c'est le premier raisonnement de probabilité qui
+mérite ce nom, et c'est exactement le geste demandé à la question (a). La version à trois dés est
+PRB-01, sur cette même page.
+
+\begin{refs}
+\item Contexte : Probabilité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probabilit%C3%A9})
+\item Contexte : Dé --- Wikipédia (\url{https://fr.wikipedia.org/wiki/D%C3%A9})
+\item Contexte : Galilée --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Galil%C3%A9e_(savant)})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La suite qui n'a pas l'air au hasard --- Collège}]
+\textbf{PRB-46.} \textbf{Problème.} Deux élèves devaient produire une suite de 30 résultats de pile ou face. L'un a
+réellement lancé une pièce et noté ce qu'il obtenait ; l'autre a inventé sa suite de tête. Voici
+les deux copies, où P désigne pile et F face.
+
+\noindent Suite 1 : P F P F F P F P P F P F F P F P F P P F P F P F F P F P F P 
+Suite 2 : P P F F F F P F P P P F F P F F F F F P P F P P P P F P F F
+\begin{enumerate}
+\item[(a)] Pour chacune des deux suites, calculez la fréquence de \og{} pile \fg{} et relevez la plus longue série
+de résultats identiques consécutifs. Présentez vos résultats dans un tableau.
+\item[(b)] Dites laquelle des deux suites vous croyez inventée et défendez votre choix. On attend un
+argument appuyé sur les nombres de la question (a), pas une impression visuelle.
+\item[(c)] Justifiez qu'une suite précise de 30 lancers a exactement la même probabilité qu'une autre
+suite précise de 30 lancers --- y compris celle qui donne trente fois \og{} pile \fg{}. Expliquez ensuite,
+en un paragraphe rédigé, pourquoi cela ne contredit pas votre réponse à la question (b).
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cette expérience est une démonstration de cours devenue classique --- souvent
+attribuée au mathématicien américain Ted Hill : le professeur sort de la salle, une moitié de la
+classe lance vraiment une pièce cent fois, l'autre moitié invente sa suite, et il retrouve les
+tricheurs en quelques secondes. Les êtres humains alternent trop et produisent presque toujours
+des séries trop courtes, parce que nous confondons \og{} au hasard \fg{} et \og{} bien mélangé \fg{}. La question
+(c) est le cœur de l'affaire : le hasard ne rend pas certaines suites impossibles, il rend rares
+certaines \textit{propriétés} des suites --- la version chiffrée de cet argument est PRB-05, dans la
+bande Lycée.
+
+\begin{refs}
+\item Contexte : Pile ou face --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Pile_ou_face})
+\item Contexte : Hasard --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Hasard})
+\item Contexte : Ted Hill --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Ted_Hill_(mathematician)})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Deux chaussettes dans le noir --- Collège, short}]
+\textbf{PRB-47.} \textbf{Problème.} Un tiroir contient six chaussettes noires et quatre
+chaussettes bleues mélangées, et vous en tirez deux au hasard dans l'obscurité, sans remettre la
+première avant de tirer la seconde. Déterminez la probabilité d'obtenir deux chaussettes de la même
+couleur en justifiant chaque branche de votre arbre, puis expliquez précisément ce qui changerait
+si vous remettiez la première chaussette dans le tiroir.
+\end{problem}
+
+\noindent Le tiroir de chaussettes est un exercice de manuel depuis au moins les années
+1950, et il circule sous deux formes que tout oppose. La forme \og{} combien faut-il en tirer pour être
+\textit{certain} d'avoir une paire ? \fg{} ne demande aucune probabilité : elle relève du principe des
+tiroirs et se règle par un décompte. La forme posée ici demande un arbre et donne un nombre entre 0
+et 1. Savoir laquelle des deux questions on est en train de résoudre est déjà une compétence de
+mathématicien.
+
+\begin{refs}
+\item Contexte : Problème d'urne --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_d%27urne})
+\item Contexte : Arbre de probabilité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Arbre_de_probabilit%C3%A9})
+\item Contexte : Principe des tiroirs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Principe_des_tiroirs})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La roue du forain --- Collège}]
+\textbf{PRB-48.} \textbf{Problème.} À la fête foraine, une roue est partagée en huit secteurs de même taille,
+numérotés de 1 à 8 ; le forain jure qu'elle est parfaitement équilibrée. Vous restez une heure à
+noter les résultats. Sur 400 tours, les secteurs 1 à 8 sont sortis respectivement 62, 54, 47, 51,
+58, 49, 66 et 13 fois.
+\begin{enumerate}
+\item[(a)] Calculez la fréquence de sortie de chaque secteur et l'effectif que l'on attendrait pour
+chacun si la roue était équilibrée. Rassemblez le tout dans un tableau et commentez ligne par
+ligne.
+\item[(b)] Le forain répond : \og{} le hasard fait ce qu'il veut, vos écarts ne prouvent rien \fg{}. Il a raison
+sur le principe. Construisez malgré tout l'argument le plus solide que vous puissiez écrire au
+collège pour soutenir que la roue est truquée --- puis dites honnêtement ce qui manque à votre
+argument pour être une preuve.
+\item[(c)] Le secteur 8 est celui qui fait gagner le gros lot. Expliquez pourquoi un forain malhonnête a
+intérêt à truquer précisément ce secteur-là, et pourquoi un joueur qui ne regarde qu'une dizaine de
+tours n'a pratiquement aucune chance de s'en apercevoir.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Cette méthode a réellement fait fortune. En 1873, l'ingénieur anglais Joseph
+Jagger paya des employés pour relever pendant des semaines les numéros sortis aux roulettes du
+casino de Monte-Carlo ; l'une des roues était légèrement déséquilibrée, certains numéros sortaient
+trop souvent, et Jagger repartit avec une somme considérable. Les casinos rééquilibrent depuis
+leurs roues et changent leur emplacement, précisément pour empêcher ce genre de relevé. L'idée que
+la fréquence observée finit par ressembler à la probabilité porte un nom --- la loi des grands
+nombres --- et se démontre au lycée ; ce qui vous manque ici, et que la question (b) vous demande de
+nommer, est justement l'outil qui dit à partir de quel écart on peut cesser de croire au
+forain.
+
+\begin{refs}
+\item Contexte : Fréquence (statistiques) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Fr%C3%A9quence_(statistiques)})
+\item Contexte : Loi des grands nombres --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_des_grands_nombres})
+\item Contexte : Joseph Jagger --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Joseph_Jagger})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Le jeu est-il équitable ? --- Collège}]
+\textbf{PRB-49.} \textbf{Problème.} Alice et Bruno lancent ensemble deux dés équilibrés à six faces. Dans chacune
+des règles ci-dessous, il n'y a ni match nul ni relance.
+\begin{enumerate}
+\item[(a)] Règle 1 : Alice gagne si la somme des deux dés est paire, Bruno si elle est impaire. Le jeu
+est-il équitable ? Justifiez à partir du tableau des 36 issues.
+\item[(b)] Règle 2 : Alice gagne si le produit des deux dés est pair, Bruno s'il est impair. Justifiez
+que ce jeu n'est pas équitable, et dites de combien exactement il penche.
+\item[(c)] Pour compenser la règle 2, Bruno propose de recevoir $ k $ euros chaque fois qu'il gagne et
+de payer 1 euro chaque fois qu'il perd. Déterminez, en raisonnant sur un grand nombre de parties,
+la valeur de $ k $ qui rend ce jeu équitable, et justifiez-la. Expliquez ensuite pourquoi
+\og{} équitable \fg{} ne veut pas dire la même chose à la question (a) et à la question (c).
+\end{enumerate}
+
+\end{problem}
+
+\noindent La notion de jeu équitable est le berceau de toute la théorie : en 1654, le
+chevalier de Méré --- de son vrai nom Antoine Gombaud --- apporta à Blaise Pascal des questions de ce
+type, et la correspondance entre Pascal et Fermat qui s'ensuivit fonda la discipline. Huygens en
+tira en 1657 le premier traité imprimé, où il définit la valeur d'un jeu comme la mise qu'un joueur
+devrait accepter de payer pour y entrer : c'est l'ancêtre direct de votre question (c). L'outil qui
+la formalise s'appelle l'espérance et se rencontre au lycée ; au collège, le raisonnement \og{} sur un
+grand nombre de parties \fg{} suffit, et il a l'avantage de dire ce que l'espérance signifie avant de
+dire comment on la calcule.
+
+\begin{refs}
+\item Contexte : Antoine Gombaud, chevalier de Méré --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Antoine_Gombaud})
+\item Contexte : Christian Huygens --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Christian_Huygens})
+\item Contexte : Espérance mathématique --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Esp%C3%A9rance_math%C3%A9matique})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Un anniversaire commun dans votre classe --- Collège}]
+\textbf{PRB-50.} \textbf{Problème.} Un élève d'une classe de 30 affirme : \og{} nous sommes 30 et l'année compte 365
+jours, donc il n'y a presque aucune chance que deux d'entre nous soient nés le même jour \fg{}.
+\begin{enumerate}
+\item[(a)] Comptez le nombre de paires d'élèves que l'on peut former dans cette classe. Expliquez
+pourquoi c'est ce nombre-là, et non 30, qu'il faut comparer à 365, et pourquoi le raisonnement de
+l'élève passe à côté du problème.
+\item[(b)] Distinguez soigneusement deux questions : \og{} un autre élève est-il né le même jour que
+\textit{moi} ? \fg{} et \og{} deux élèves quelconques de la classe sont-ils nés le même jour ? \fg{}. Justifiez
+que la seconde a beaucoup plus de chances d'être vraie que la première, sans calculer aucune des
+deux probabilités.
+\item[(c)] Menez l'expérience. Relevez les dates de naissance de votre classe et de trois classes
+voisines, comptez combien de ces quatre classes contiennent au moins un anniversaire commun, et
+confrontez le résultat à votre raisonnement de la question (a). Discutez enfin ce que quatre
+classes permettent --- et ne permettent pas --- de conclure.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Le paradoxe des anniversaires fut posé sous cette forme par Richard von Mises en
+1939 et rendu célèbre par le manuel de William Feller. Il n'a rien d'un paradoxe logique : c'est
+une contradiction entre un calcul juste et une intuition fausse, et l'intuition se trompe parce
+qu'elle compte les personnes là où il faut compter les paires. Le calcul exact, avec le seuil
+fameux de 23 personnes, est PRB-03 dans la bande Lycée ; la question (a) ci-dessus en contient déjà
+toute l'idée, et la question (c) vous fait faire ce que von Mises n'a jamais pris la peine de
+faire.
+
+\begin{refs}
+\item Contexte : Paradoxe des anniversaires --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Paradoxe_des_anniversaires})
+\item Contexte : Probabilité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probabilit%C3%A9})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Deux enfants, dont une fille --- Collège}]
+\textbf{PRB-51.} \textbf{Problème.} On admet qu'à chaque naissance, garçon et fille sont également probables, et
+on considère une famille de deux enfants.
+\begin{enumerate}
+\item[(a)] Dressez l'arbre des quatre familles possibles, en distinguant l'aîné du cadet, et justifiez
+que ces quatre issues sont également probables.
+\item[(b)] On vous dit seulement : \og{} cette famille a au moins une fille \fg{}. Déterminez la probabilité que
+les deux enfants soient des filles, en justifiant à partir de votre arbre quelles branches vous
+gardez et lesquelles vous éliminez.
+\item[(c)] Situation différente : vous croisez dans la rue un enfant de cette famille, choisi au hasard
+parmi les deux, et c'est une fille. Reprenez l'arbre --- il faut maintenant y faire figurer le choix
+de l'enfant que vous rencontrez --- et déterminez à nouveau la probabilité que les deux soient des
+filles.
+\item[(d)] Les deux réponses ne sont pas les mêmes. Expliquez, dans un paragraphe rédigé, ce qui a changé
+entre (b) et (c), et pourquoi une énigme de probabilité n'est pas encore un problème tant qu'on n'a
+pas dit \textit{comment} l'information a été obtenue.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Martin Gardner posa l'énigme dans sa chronique de \textit{Scientific American} en
+1959, publia une réponse, puis fit machine arrière : la question, telle qu'il l'avait écrite, ne
+déterminait pas la réponse. Ce n'est pas une faiblesse de l'énoncé, c'est le contenu même du
+problème --- en probabilité, ce qui compte n'est pas le fait que vous apprenez mais la procédure qui
+vous l'a fait apprendre. La version calculée avec des probabilités conditionnelles est PRB-23,
+dans la bande Lycée ; ici, l'arbre suffit, et il rend la morale plus visible encore.
+
+\begin{refs}
+\item Contexte : Paradoxe des deux enfants --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Paradoxe_des_deux_enfants})
+\item Contexte : Arbre de probabilité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Arbre_de_probabilit%C3%A9})
+\item Contexte : Martin Gardner --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Martin_Gardner})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Trois dés qui tournent en rond --- Collège}]
+\textbf{PRB-52.} \textbf{Problème.} Trois dés équilibrés à six faces portent les valeurs
+$ A = (2,2,4,4,9,9) $, $ B = (1,1,6,6,8,8) $ et $ C = (3,3,5,5,7,7) $. Deux joueurs choisissent
+chacun un dé, les lancent, et celui qui obtient le plus grand nombre gagne la partie.
+\begin{enumerate}
+\item[(a)] Pour chacun des trois duels --- A contre B, B contre C, puis C contre A --- dressez le tableau des
+36 issues et déterminez, en justifiant, quel dé a le plus de chances de l'emporter.
+\item[(b)] Comparez vos trois réponses. Énoncez avec précision l'idée reçue qu'elles mettent en défaut,
+et expliquez en français pourquoi cette idée reçue semblait pourtant évidente.
+\item[(c)] Vous proposez ce jeu à un camarade en le laissant choisir son dé le premier. Expliquez
+pourquoi vous avez alors l'avantage, et dites ce qui change si c'est vous qui devez choisir en
+premier.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Ces dés sont dus au statisticien Bradley Efron et furent rendus célèbres par
+Martin Gardner dans \textit{Scientific American} en 1970. Leur intérêt n'est pas l'arithmétique mais
+ce qu'ils détruisent : presque tout le monde suppose en silence que \og{} a plus de chances de gagner
+contre \fg{} se transmet de proche en proche, comme \og{} est plus grand que \fg{} se transmet chez les
+nombres. Cette hypothèse tacite sous-tend les classements sportifs, les comparatifs de produits et
+certains modes de scrutin --- et voici un contre-exemple qui tient dans trois tableaux. La version à
+quatre dés est PRB-24, dans la bande Lycée.
+
+\begin{refs}
+\item Contexte : Dés non transitifs --- Wikipédia (\url{https://fr.wikipedia.org/wiki/D%C3%A9s_non_transitifs})
+\item Contexte : Martin Gardner --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Martin_Gardner})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{\og{} Deux issues, donc une chance sur deux \fg{} --- Collège, short}]
+\textbf{PRB-53.} \textbf{Problème.} Un élève affirme : \og{} quand je joue au loto, soit je gagne,
+soit je perds ; il n'y a que deux issues, donc j'ai une chance sur deux de gagner \fg{}. Débusquez
+l'erreur en énonçant précisément l'hypothèse qui manque, puis construisez deux expériences n'ayant
+chacune que deux issues, l'une où \og{} une chance sur deux \fg{} est juste et l'autre où c'est faux, et
+justifiez les deux cas.
+\end{problem}
+
+\noindent L'erreur a une lettre de noblesse. Dans l'article \og{} Croix ou pile \fg{} de
+l'\textit{Encyclopédie} (1754), d'Alembert soutient qu'en deux lancers d'une pièce la probabilité
+d'obtenir au moins une fois croix vaut $ 2/3 $, parce qu'il ne voit que trois cas : croix au
+premier coup, pile puis croix, pile puis pile. Il compte des descriptions d'issues au lieu de
+compter des issues également probables --- la faute même de l'élève ci-dessus, commise par l'un des
+plus grands mathématiciens du siècle. L'hypothèse d'équiprobabilité n'est jamais gratuite : elle se
+justifie ou elle se démontre, jamais elle ne se suppose au vu du nombre de cases.
+
+\begin{refs}
+\item Contexte : Équiprobabilité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89quiprobabilit%C3%A9})
+\item Contexte : Jean Le Rond d'Alembert --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Jean_Le_Rond_d%27Alembert})
+\item Contexte : Loterie --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loterie})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Deux urnes et un dé --- Collège}]
+\textbf{PRB-54.} \textbf{Problème.} L'urne n$^\circ$ 1 contient 3 boules rouges et 2 boules vertes ; l'urne n$^\circ$ 2 contient
+1 boule rouge et 4 boules vertes. On lance un dé équilibré : si l'on obtient 5 ou 6, on tire une
+boule dans l'urne n$^\circ$ 1, sinon on tire une boule dans l'urne n$^\circ$ 2.
+\begin{enumerate}
+\item[(a)] Dressez l'arbre de cette expérience en portant sur chaque branche la probabilité
+correspondante, et justifiez que la somme des probabilités des branches issues d'un même nœud vaut
+toujours 1.
+\item[(b)] Déterminez la probabilité de tirer une boule rouge, en justifiant chaque étape de votre
+calcul sur l'arbre.
+\item[(c)] Un camarade objecte : \og{} il y a en tout 4 boules rouges parmi les 10 boules des deux urnes,
+donc la probabilité de tirer une rouge vaut $ 4/10 $ \fg{}. Expliquez pourquoi ce raisonnement est
+faux ici, puis décrivez précisément une règle de tirage --- différente de celle de l'énoncé --- pour
+laquelle il serait juste.
+\end{enumerate}
+
+\end{problem}
+
+\noindent Les urnes remplies de boules de couleur sont le laboratoire de la théorie des
+probabilités depuis Jacques Bernoulli, dont l'\textit{Ars conjectandi} (publié en 1713) en fait
+l'instrument de base du raisonnement sur le hasard. Leur intérêt est d'être totalement
+transparentes : on voit ce qu'il y a dedans, il ne reste donc rien à deviner et tout à démontrer.
+La question (c) contient la seule difficulté véritable --- une probabilité n'est une fraction de cas
+favorables que lorsque les cas sont également probables, et deux urnes tirées avec des chances
+inégales ne se laissent pas verser dans un même sac.
+
+\begin{refs}
+\item Contexte : Problème d'urne --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Probl%C3%A8me_d%27urne})
+\item Contexte : Arbre de probabilité --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Arbre_de_probabilit%C3%A9})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{Au moins un six --- Collège, short}]
+\textbf{PRB-55.} \textbf{Problème.} Un élève raisonne ainsi sur le lancer de deux dés
+équilibrés : \og{} la probabilité d'obtenir un six sur un dé vaut $ 1/6 $, donc avec deux dés elle
+vaut $ 1/6 + 1/6 = 1/3 $ \fg{}. Déterminez la probabilité d'obtenir au moins un six en la justifiant
+sur le tableau des 36 issues, puis énoncez la condition sous laquelle additionner deux probabilités
+est légitime et montrez qu'elle n'est pas remplie ici.
+\end{problem}
+
+\noindent L'addition naïve des probabilités est l'erreur la plus répandue de tout
+l'enseignement de la discipline, et elle a résisté longtemps : les premiers auteurs --- Cardan au
+XVIe siècle dans son \textit{Liber de ludo aleae}, Galilée vers 1620 --- ont dû forger la
+notion de \og{} cas également possibles \fg{} précisément pour se donner un garde-fou contre ce genre de
+glissement. Le point à retenir dépasse les dés : additionner des probabilités revient à supposer
+que deux choses ne peuvent pas arriver ensemble, et c'est une hypothèse sur le monde, pas une règle
+de calcul.
+
+\begin{refs}
+\item Contexte : Événement (probabilités) --- Wikipédia (\url{https://fr.wikipedia.org/wiki/%C3%89v%C3%A9nement_(probabilit%C3%A9s)})
+\item Contexte : Jérôme Cardan --- Wikipédia (\url{https://fr.wikipedia.org/wiki/J%C3%A9r%C3%B4me_Cardan})
+\end{refs}
+
+\bigskip
+
+\begin{problem}[{La pièce qui \og{} doit \fg{} tomber sur pile --- Collège, short}]
+\textbf{PRB-56.} \textbf{Problème.} Une pièce équilibrée vient de tomber cinq fois de suite sur
+face, et un joueur en conclut : \og{} pile est en retard, il a maintenant plus d'une chance sur deux de
+sortir au prochain lancer \fg{}. Réfutez ce raisonnement, puis expliquez comment il peut être faux
+alors même qu'il est vrai que, sur un très grand nombre de lancers, la fréquence de \og{} pile \fg{} se
+rapproche de $ 1/2 $.
+\end{problem}
+
+\noindent Laplace décrit déjà cette illusion dans son \textit{Essai philosophique sur les
+probabilités} (1814) : il y raconte des joueurs de loterie qui misent sur les numéros non sortis
+depuis longtemps, persuadés qu'ils sont \og{} dus \fg{}, et il en fait l'exemple type des erreurs de
+jugement sur le hasard. Deux siècles plus tard, les sites de loterie publient encore la liste des
+numéros \og{} en retard \fg{}, et les joueurs les jouent. La seconde partie de la question est la vraie :
+la fréquence se rapproche bien de $ 1/2 $, mais elle y arrive en \textit{diluant} les écarts
+passés, jamais en les corrigeant --- la version chiffrée de cette distinction est PRB-05, dans la
+bande Lycée.
+
+\begin{refs}
+\item Contexte : Erreur du parieur --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Erreur_du_parieur})
+\item Contexte : Pierre-Simon de Laplace --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Pierre-Simon_de_Laplace})
+\item Contexte : Loi des grands nombres --- Wikipédia (\url{https://fr.wikipedia.org/wiki/Loi_des_grands_nombres})
+\end{refs}
+
+\bigskip
+
+
 \section*{Lycée}
 
 \begin{problem}[{Les dés de Galilée --- Lycée}]

@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -45,6 +46,548 @@ par leurs petits cas.</p>
 <a href="tex/puzzles.tex" download>source LaTeX</a> · <a href="tex/puzzles.pdf" download>PDF compilé</a></p>
 <!-- site.js insère automatiquement ici la barre de filtre par niveau / de recherche. NE PAS en construire une. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="PUZ-101" data-level="Collège">
+<h3>PUZ-101 · Les trois boîtes mal étiquetées <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Trois boîtes fermées portent les étiquettes « pommes », « oranges » et
+« mélange ». L'une ne contient que des pommes, une autre que des oranges, la troisième un
+mélange des deux — mais les étiquettes ont été posées n'importe comment et, par malchance,
+aucune des trois n'est correcte. Vous pouvez sortir un fruit de la boîte de votre choix, sans
+regarder à l'intérieur.</p>
+<ol class="parts" type="a">
+<li>Déterminez le contenu des trois boîtes en ne sortant qu'un seul fruit, et démontrez que
+votre procédé aboutit quel que soit le fruit que vous obtenez.</li>
+<li>Démontrez qu'après ce tirage la réponse est réellement forcée : il n'existe pas deux
+répartitions différentes des contenus qui soient compatibles à la fois avec « aucune
+étiquette n'est correcte » et avec le fruit que vous avez vu.</li>
+<li>On affaiblit l'hypothèse : on vous garantit seulement qu'<i>au moins</i> une étiquette est
+fausse. Une boîte mixte peut vous donner l'un ou l'autre fruit, et c'est elle qui décide,
+pas vous. Déterminez s'il existe encore une procédure qui garantisse la réponse en un nombre
+fini de tirages, et démontrez ce que vous affirmez.</li>
+</ol>
+</div>
+<p class="context">Ce casse-tête circule depuis des décennies dans les colonnes de jeux et
+dans les entretiens d'embauche, et il doit sa longévité à un détail que la plupart des gens
+lisent sans le voir : la phrase « aucune étiquette n'est correcte » n'est pas une décoration
+de l'histoire, c'est la donnée qui rend un tirage unique suffisant. Traduisez-la en langage de
+permutations — quelles répartitions des trois contenus sur les trois étiquettes restent
+debout ? — et le casse-tête devient un exercice de comptage plutôt qu'un exercice de chance.
+La question (c) est là pour montrer ce que coûte l'affaiblissement d'une hypothèse : un énoncé
+soluble en une observation peut devenir insoluble en un million, et la démonstration de cette
+impossibilité se mène en imaginant un adversaire qui choisit les fruits au fur et à mesure,
+uniquement pour vous garder dans le doute. C'est exactement la technique qu'emploient les
+informaticiens pour minorer le nombre de questions nécessaires à un algorithme.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Martin_Gardner">Martin Gardner — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Raisonnement_par_l%27absurde">Raisonnement par l'absurde — Wikipédia</a></li>
+<li>Voir aussi : <a href="#PUZ-01">PUZ-01</a> ci-dessous, pour la même façon de compter ce qu'une seule observation peut trancher</li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-102" data-level="Collège" data-kind="court">
+<h3>PUZ-102 · L'escargot au fond du puits <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un escargot part du fond d'un puits de \( 10 \) mètres :
+chaque jour il grimpe de \( 3 \) mètres, chaque nuit il en redescend \( 2 \). Déterminez le
+jour où il atteint le bord, et démontrez que votre compte est exact — c'est-à-dire que ni la
+veille ni le lendemain ne conviennent.</p>
+<p class="context">Les puits, les fosses et les murs rongés par les rats peuplent les recueils
+d'arithmétique du Moyen Âge : le <i>Liber abaci</i> de Leonardo Fibonacci, en 1202, contient
+la version du lion tombé au fond d'une fosse, qui remonte d'une certaine fraction le jour et
+reglisse d'une autre la nuit. Ce qui a fait traverser huit siècles à ce problème, ce n'est pas
+la soustraction \( 3 - 2 \) mais le fait que le dernier jour ne ressemble pas aux autres : le
+régime régulier cesse de s'appliquer au moment précis où l'on en a besoin. C'est la même
+erreur d'une unité que l'on commet en comptant les piquets d'une clôture, en numérotant les
+pages d'un livre ou en écrivant une boucle informatique, et savoir la traquer vaut mieux que
+savoir diviser.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Liber_abaci">Liber abaci — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Leonardo_Fibonacci">Leonardo Fibonacci — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-103" data-level="Collège">
+<h3>PUZ-103 · Le carré magique de Luo Shu <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un carré magique d'ordre \( 3 \) est un tableau de \( 3 \times 3 \) cases
+rempli avec les entiers de \( 1 \) à \( 9 \), chacun employé une fois et une seule, de sorte
+que les trois lignes, les trois colonnes et les deux diagonales aient toutes la même
+somme.</p>
+<ol class="parts" type="a">
+<li>Déterminez, avec démonstration, la valeur de cette somme commune, puis celle que porte
+nécessairement la case centrale.</li>
+<li>Complétez le carré ci-dessous et démontrez qu'il n'admet qu'une seule complétion :
+\[ \begin{array}{ccc} 8 & 1 & ? \\ ? & ? & ? \\ ? & ? & 2 \end{array} \]</li>
+<li>Démontrez qu'il existe exactement huit carrés magiques d'ordre \( 3 \), et qu'ils se
+déduisent tous d'un même carré par rotations et symétries.</li>
+<li>On remplace \( 1, \dots, 9 \) par neuf entiers distincts quelconques, la définition étant
+inchangée. Démontrez que la case centrale vaut toujours le tiers de la somme magique, et
+construisez une infinité de tels carrés.</li>
+</ol>
+</div>
+<p class="context">Le carré de Luo Shu est le plus ancien carré magique connu : la tradition
+chinoise le fait apparaître sur la carapace d'une tortue sortie de la rivière Luo, et il
+figure dans les textes cosmologiques bien avant d'être vu comme un objet mathématique. On le
+retrouve ensuite partout — dans le monde arabe, dans l'Inde médiévale, puis en Europe, où
+Albrecht Dürer place un carré magique d'ordre \( 4 \) dans sa gravure <i>Melencolia I</i> de
+\( 1514 \), daté par les deux cases centrales de sa dernière ligne. La beauté de l'ordre
+\( 3 \) est qu'il ne laisse aucune place au hasard : les huit alignements se recoupent
+tellement que presque tout est forcé dès les premières lignes de raisonnement, et la question
+(c) demande de transformer cette impression en démonstration. C'est un excellent premier
+contact avec l'idée de classification — non pas exhiber un objet, mais prouver qu'on les a
+tous.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Carr%C3%A9_de_Luo_Shu">Carré de Luo Shu — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques)">Carré magique (mathématiques) — Wikipédia</a></li>
+<li>Voir aussi : <a href="#PUZ-16">PUZ-16</a> ci-dessous, la variante avec des carrés parfaits, toujours ouverte</li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-104" data-level="Collège">
+<h3>PUZ-104 · Les quatre poids de Bachet <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une balance à deux plateaux ne fait que comparer : elle dit quel côté
+descend, ou que les deux s'équilibrent. Vous cherchez un jeu de quatre poids, de masses
+entières en kilogrammes, qui permette de peser n'importe quelle masse entière de \( 1 \) à
+\( 40 \) kg : la marchandise est posée sur un plateau, et vous avez le droit de répartir vos
+poids sur les <i>deux</i> plateaux à votre guise.</p>
+<ol class="parts" type="a">
+<li>Trouvez un tel jeu de quatre poids, et démontrez qu'il pèse effectivement toutes les
+masses entières de \( 1 \) à \( 40 \).</li>
+<li>Démontrez qu'aucun jeu de quatre poids ne peut faire mieux : quelles que soient les quatre
+masses choisies, il est impossible de peser toutes les masses entières de \( 1 \) à
+\( 41 \).</li>
+<li>Reprenez tout avec la règle du marchand : les poids ne peuvent aller que sur le plateau
+opposé à la marchandise. Déterminez le meilleur jeu de quatre poids et démontrez la borne
+correspondante.</li>
+<li>Généralisez les deux régimes à \( n \) poids : donnez dans chaque cas la plus grande masse
+\( M(n) \) telle que toutes les masses entières de \( 1 \) à \( M(n) \) soient pesables, et
+démontrez vos deux formules.</li>
+</ol>
+</div>
+<p class="context">Claude-Gaspard Bachet de Méziriac pose ce problème dans ses <i>Problèmes
+plaisants et délectables qui se font par les nombres</i>, en \( 1612 \), le premier recueil
+imprimé de mathématiques récréatives digne de ce nom — c'est aussi l'homme qui traduisit
+Diophante en latin, dans la marge duquel Fermat écrira sa fameuse note. Des versions du
+problème des poids circulaient déjà chez les marchands médiévaux, mais Bachet en fait une
+question de principe, et la réponse est l'une des plus jolies rencontres entre le commerce et
+la numération : autoriser un poids à changer de plateau, c'est lui donner trois emplois
+possibles au lieu de deux, et compter le nombre de résultats accessibles revient à écrire les
+nombres dans une base. La question (b) est la vraie question du site : trouver un jeu qui
+marche est affaire de tâtonnement, démontrer qu'aucun jeu ne fait mieux demande de raisonner
+sur tous les jeux à la fois.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Claude-Gaspard_Bachet_de_M%C3%A9ziriac">Claude-Gaspard Bachet de Méziriac — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_ternaire">Système ternaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_pes%C3%A9e">Problème de pesée — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-105" data-level="Collège" data-kind="court">
+<h3>PUZ-105 · Casser la tablette de chocolat <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Une tablette de chocolat est un rectangle de
+\( m \times n \) carrés séparés par des rainures, et un coup consiste à prendre un morceau et
+à le casser en deux en suivant une rainure, d'un bord à l'autre. Déterminez le nombre de
+cassures nécessaires pour réduire la tablette en \( mn \) carrés isolés, et démontrez que ce
+nombre ne dépend jamais de l'ordre dans lequel on casse.</p>
+<p class="context">Voilà le premier exemple d'invariant qu'on donne aux élèves dans les cercles
+mathématiques russes, et il est difficile d'en trouver un meilleur : la stratégie ne sert à
+rien, l'ingéniosité ne sert à rien, parce qu'une certaine quantité varie de la même façon à
+chaque coup quel que soit le coup. Le jour où l'on comprend qu'il faut suivre cette
+quantité-là plutôt que la forme des morceaux, on a appris un réflexe qui resservira devant
+des problèmes autrement plus sérieux — un invariant transforme une infinité de scénarios en
+une seule ligne de calcul. Le raisonnement se rédige aussi bien par récurrence que par
+comptage direct, et comparer les deux rédactions est instructif.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Invariant">Invariant — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Raisonnement_par_r%C3%A9currence">Raisonnement par récurrence — Wikipédia</a></li>
+<li>Lecture : Dmitri Fomin, Sergey Genkin &amp; Ilia Itenberg, <i>Mathematical Circles (Russian Experience)</i>, chapitre sur les invariants</li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-106" data-level="Collège">
+<h3>PUZ-106 · L'héritage des dix-sept chameaux <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un homme laisse dix-sept chameaux à ses trois fils : la moitié à l'aîné,
+le tiers au deuxième, le neuvième au cadet. Comme dix-sept n'est divisible ni par deux, ni par
+trois, ni par neuf, les fils se querellent. Un voisin prête alors un chameau : le partage se
+fait sur dix-huit bêtes, chacun emporte sa part entière, et le voisin repart avec son
+chameau.</p>
+<ol class="parts" type="a">
+<li>Effectuez le partage sur dix-huit bêtes, et vérifiez que chaque fils reçoit un nombre
+entier de chameaux et qu'il en reste exactement un à rendre.</li>
+<li>Chaque fils a-t-il reçu exactement la part que le testament lui promettait ? Comparez et
+expliquez précisément d'où vient l'écart.</li>
+<li>Formalisez ce qui fait marcher le tour : on cherche trois fractions \( \frac{1}{a} \),
+\( \frac{1}{b} \), \( \frac{1}{c} \) avec \( 2 \leq a \leq b \leq c \) et un troupeau de
+\( N \) bêtes tels que l'emprunt d'une seule bête donne à chacun un nombre entier de bêtes et
+laisse exactement une bête à rendre. Écrivez cette condition sous forme d'équation.</li>
+<li>Trouvez tous les testaments possibles, et démontrez que votre liste est complète. Traitez
+ensuite le cas de deux héritiers, puis de quatre.</li>
+</ol>
+</div>
+<p class="context">L'histoire se raconte de l'Iran au Maghreb comme un conte de sagesse, avec
+un cadi ou un vieillard à la place du voisin ; la plus ancienne trace imprimée qu'on lui
+connaisse en Europe se trouve chez Niccolò Fontana Tartaglia, au milieu du seizième siècle,
+dans son <i>General trattato di numeri et misure</i>. Le tour n'est pas un tour de magie mais
+une identité entre fractions unitaires, du genre de celles que les scribes de l'Égypte
+ancienne manipulaient déjà : dire laquelle, et pourquoi elle permet au chameau emprunté de
+revenir, c'est exactement le travail des questions (b) et (c). La question (d) est un vrai
+petit problème de théorie des nombres — chercher toutes les décompositions d'un nombre en
+somme de fractions unitaires est une activité qui remonte au papyrus Rhind et qui n'a jamais
+cessé d'occuper les mathématiciens.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fraction_%C3%A9gyptienne">Fraction égyptienne — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Niccol%C3%B2_Fontana_Tartaglia">Niccolò Fontana Tartaglia — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-107" data-level="Collège" data-kind="court">
+<h3>PUZ-107 · Le verre d'eau et le verre de vin <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un verre contient un décilitre d'eau, un autre un
+décilitre de vin ; on prend une cuillerée d'eau qu'on verse dans le vin, on remue autant qu'on
+veut, puis on reprend une cuillerée du mélange qu'on reverse dans l'eau. Y a-t-il alors plus
+de vin dans l'eau que d'eau dans le vin, et pouvez-vous le démontrer sans rien supposer sur
+l'homogénéité du mélange ?</p>
+<p class="context">C'est un classique des recueils de récréations anglais de la fin du dix-neuvième
+siècle, et sa réputation vient de ce que les calculs de proportions, qui semblent la voie
+naturelle, sont à la fois pénibles et inutiles : la bonne démonstration est une comptabilité,
+pas un calcul de concentrations, et elle tient en deux lignes qui ne supposent rien du tout
+sur la façon dont on a remué. On peut même laisser la cuillerée entièrement non mélangée, ou
+la mélanger parfaitement, ou n'importe quoi entre les deux, sans changer la réponse — c'est
+ce genre de robustesse qui signale qu'une quantité se conserve quelque part. Le même
+raisonnement, transposé, sert en chimie et en comptabilité en partie double.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Wine/water_mixing_problem">Problème du mélange eau-vin — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conservation_de_la_masse">Conservation de la masse — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-108" data-level="Collège">
+<h3>PUZ-108 · L'éléphant de Cao Chong <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On veut connaître la masse d'un éléphant. On dispose d'une rivière, d'une
+barque assez grande pour le porter, d'un tas de pierres, d'un morceau de craie et d'une
+balance ordinaire qui ne pèse que de petites charges — une pierre à la fois.</p>
+<ol class="parts" type="a">
+<li>Décrivez une méthode qui donne la masse de l'éléphant, et justifiez chaque étape : énoncez
+en particulier, avec précision, le principe physique qui autorise la comparaison que vous
+faites.</li>
+<li>Démontrez ce principe dans le cas dont vous vous servez : deux chargements qui font
+flotter la même barque exactement à la même ligne d'eau ont la même masse. Vous ne supposerez
+que ceci — la barque flotte à l'équilibre, et l'eau a partout la même masse volumique.</li>
+<li>Version chiffrée. À la ligne de flottaison, la barque a une section horizontale constante
+de \( 6 \) m², et chargée de l'éléphant elle s'enfonce de \( 40 \) cm de plus qu'à vide.
+Calculez la masse de l'éléphant, dites où exactement vous avez utilisé l'hypothèse « section
+constante », et expliquez ce que devient le calcul si la coque s'évase vers le haut.</li>
+<li>On opère maintenant dans un bassin étroit, dont le niveau monte sensiblement quand la
+barque s'enfonce. La méthode de la question (a) reste-t-elle exacte ? Démontrez votre
+réponse.</li>
+</ol>
+</div>
+<p class="context">Cao Chong, fils de Cao Cao, est mort à douze ans en l'an \( 208 \), au début
+de la période des Trois Royaumes ; les <i>Chroniques des Trois Royaumes</i> de Chen Shou
+racontent que, tout enfant, il résolut le problème de la pesée d'un éléphant offert à son père
+en le faisant monter dans une barque, en marquant la ligne d'eau, puis en remplaçant l'animal
+par des pierres jusqu'à retrouver la même marque. L'histoire est aujourd'hui encore l'une des
+plus connues des écoliers chinois, et rien n'indique que la Chine de cette époque connaissait
+Archimède, mort quatre siècles plus tôt à Syracuse : la même idée physique a été trouvée deux
+fois. Ce qu'il y a de mathématique ici, c'est le procédé de substitution — on ne mesure pas
+l'objet, on lui substitue quelque chose de mesurable qui lui est égal pour la seule propriété
+qui compte —, et c'est le geste de base de toute la métrologie, des étalons du kilogramme aux
+balances de laboratoire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cao_Chong">Cao Chong — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pouss%C3%A9e_d%27Archim%C3%A8de">Poussée d'Archimède — Wikipédia</a></li>
+<li>Voir aussi : <a href="#PUZ-59">PUZ-59</a> ci-dessous, où la même poussée décide du niveau d'un bassin</li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-109" data-level="Collège" data-kind="court">
+<h3>PUZ-109 · La corde autour de la Terre <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Une corde tendue fait exactement le tour de l'équateur
+d'une planète parfaitement sphérique, en épousant le sol. On l'allonge d'un mètre et on la
+dispose en cercle à hauteur constante au-dessus du sol : calculez cette hauteur, puis
+démontrez qu'elle est la même pour la Terre, pour un ballon de football et pour le Soleil.</p>
+<p class="context">On fait remonter ce casse-tête à William Whiston, successeur de Newton à
+Cambridge, qui le glisse dans un ouvrage du tout début du dix-huitième siècle ; depuis, il
+n'a jamais cessé d'être posé, parce qu'il ne se démode pas — l'écart entre ce que la formule
+donne et ce que l'intuition annonce reste violent même quand on connaît la réponse. Le calcul
+est à la portée d'un élève de cinquième, et c'est bien là ce qui rend le problème
+philosophique : vous devez arbitrer entre une formule que vous savez par cœur et une
+conviction qui hurle le contraire, et l'un des deux se trompe. Une variante bien plus
+difficile consiste à ne pas soulever la corde partout, mais à la tirer en un seul point pour
+la décoller du sol : la hauteur obtenue est alors surprenante en sens inverse, et sa
+détermination sort de l'arithmétique élémentaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Circonf%C3%A9rence">Circonférence — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/William_Whiston">William Whiston — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pi">Pi — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-110" data-level="Collège">
+<h3>PUZ-110 · Le champ de Didon <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Vous disposez d'une corde de longueur \( L \) et vous voulez enclore le
+champ d'aire la plus grande possible.</p>
+<ol class="parts" type="a">
+<li>Parmi tous les rectangles de périmètre \( L \), déterminez celui dont l'aire est maximale,
+et démontrez qu'aucun autre rectangle ne fait mieux.</li>
+<li>Le champ borde maintenant une rivière rectiligne, et l'on n'a pas besoin de clôturer ce
+côté-là. Déterminez le meilleur rectangle, démontrez-le, et comparez son aire à celle
+obtenue en (a).</li>
+<li>Démontrez que le disque de périmètre \( L \) est plus grand que tous les rectangles de
+périmètre \( L \) — la valeur \( \pi \approx 3{,}14 \) suffit. Traitez de même le cas de la
+rivière, en comparant le demi-disque au meilleur rectangle de (b).</li>
+<li>Le théorème isopérimétrique affirme que le disque bat toute autre figure de même
+périmètre. Énoncez-le proprement, puis expliquez ce qui manquait à la démonstration de Jakob
+Steiner en \( 1838 \) et ce qu'il a fallu lui ajouter.</li>
+</ol>
+</div>
+<p class="context">Virgile raconte dans l'<i>Énéide</i> que Didon, fuyant Tyr, obtint sur la
+côte d'Afrique autant de terre qu'une peau de bœuf pouvait en couvrir ; elle fit découper la
+peau en lanières très fines, les mit bout à bout, et enferma dans cette corde la colline qui
+devint Carthage. Les mathématiciens ont gardé le nom : le « problème de Didon » est le premier
+problème d'optimisation de forme de l'histoire, et Zénodore, vers le deuxième siècle avant
+notre ère, démontrait déjà que le cercle l'emporte sur les polygones. La question (d) est une
+leçon d'honnêteté mathématique : Steiner produit en \( 1838 \) de superbes arguments de
+symétrisation montrant que toute figure autre que le disque peut être améliorée, mais cela ne
+démontre pas que l'optimum existe — Weierstrass devra fournir plus tard l'argument
+d'existence. Un raisonnement qui prouve « si un maximum existe, c'est celui-là » n'est pas une
+démonstration tant que la parenthèse n'est pas refermée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Isop%C3%A9rim%C3%A9trie">Isopérimétrie — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Didon">Didon — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Jakob_Steiner">Jakob Steiner — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-111" data-level="Collège">
+<h3>PUZ-111 · Le carré qui gagne un carreau <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Sur du papier quadrillé, prenez le carré \( 8 \times 8 \) dont les coins
+opposés sont \( (0,0) \) et \( (8,8) \), et découpez-le ainsi : une coupe verticale en
+\( x = 5 \) sur toute la hauteur ; dans la bande de gauche, la coupe droite qui joint
+\( (0,3) \) à \( (5,5) \) ; dans la bande de droite, la coupe droite qui joint \( (5,0) \) à
+\( (8,8) \). Vous obtenez deux trapèzes et deux triangles. Rangez maintenant ces quatre pièces
+dans un rectangle \( 13 \times 5 \) de coins \( (0,0) \) et \( (13,5) \) : un triangle en
+\( (0,0), (8,0), (8,3) \), un trapèze en \( (0,0), (0,5), (5,5), (5,2) \), le second triangle
+en \( (5,2), (5,5), (13,5) \) et le second trapèze en \( (8,0), (13,0), (13,5), (8,3) \).</p>
+<ol class="parts" type="a">
+<li>Vérifiez que les quatre pièces découpent exactement le carré — ni trou, ni recouvrement —
+et calculez leur aire totale. Vérifiez ensuite qu'aucune des quatre ne dépasse du rectangle et
+qu'elles ne se recouvrent pas.</li>
+<li>Le rectangle a pour aire \( 65 \). D'où vient le carreau supplémentaire ? Démontrez que
+les points \( (0,0) \), \( (8,3) \) et \( (13,5) \) ne sont pas alignés, puis calculez
+exactement l'aire de la partie du rectangle que les quatre pièces laissent découverte.</li>
+<li>Recommencez avec le carré \( 13 \times 13 \) et le rectangle \( 8 \times 21 \) : coupe
+verticale en \( x = 8 \), coupe de \( (0,5) \) à \( (8,8) \) à gauche, coupe de \( (8,0) \) à
+\( (13,13) \) à droite. Cette fois l'écart change de signe : dites lequel, expliquez ce que
+cela signifie concrètement pour les pièces, et démontrez que dans les deux cas l'écart vaut
+exactement une unité d'aire.</li>
+<li>Démontrez l'identité de Cassini \( F_{n-1}F_{n+1} - F_n^2 = (-1)^n \) pour la suite de
+Fibonacci \( 1, 1, 2, 3, 5, 8, 13, 21, \dots \), et déduisez-en que le tour se refait
+indéfiniment. Expliquez enfin, en comparant les pentes \( F_{n-2}/F_{n-1} \) et
+\( F_{n-1}/F_n \), pourquoi l'illusion devient de plus en plus convaincante quand \( n \)
+grandit.</li>
+</ol>
+</div>
+<p class="context">Le paradoxe est publié par Oskar Schlömilch en \( 1868 \) ; Sam Loyd s'en
+attribuera plus tard la paternité, comme de beaucoup d'autres, et Lewis Carroll, qui était
+professeur de mathématiques à Oxford, s'y est intéressé de près. Sa version en triangle, due à
+Paul Curry vers \( 1953 \), a fait le tour du monde sous le nom de triangle de Curry. Ce qu'il
+y a d'instructif ici, c'est que la démonstration ne consiste pas à trouver l'erreur du
+découpage — le découpage du carré est parfaitement exact — mais à découvrir que l'assemblage
+en rectangle est <i>presque</i> exact, et que le « presque » a une aire mesurable : une
+lamelle si allongée que l'œil la prend pour un trait de crayon. Derrière l'illusion se cache
+une identité algébrique sur la suite de Fibonacci, et c'est pourquoi le même truc marche avec
+\( 3, 5, 8 \), avec \( 5, 8, 13 \), avec \( 8, 13, 21 \), toujours à une unité près.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_du_carr%C3%A9_manquant">Paradoxe du carré manquant — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Identit%C3%A9s_de_Cassini,_de_Catalan_et_de_Vajda">Identités de Cassini, de Catalan et de Vajda — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Suite_de_Fibonacci">Suite de Fibonacci — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-112" data-level="Collège">
+<h3>PUZ-112 · La mouche entre les deux trains <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Deux trains roulent l'un vers l'autre sur la même voie, chacun à
+\( 50 \) km/h, séparés au départ par \( 100 \) km. Une mouche quitte au même instant le
+pare-brise du premier à \( 75 \) km/h, atteint le second, fait aussitôt demi-tour, revient au
+premier, repart, et ainsi de suite jusqu'à être écrasée entre les deux.</p>
+<ol class="parts" type="a">
+<li>Calculez la distance totale parcourue par la mouche, en justifiant chaque étape — à
+commencer par l'instant de la collision.</li>
+<li>Calculez la longueur du premier trajet de la mouche, puis celle du deuxième. Démontrez que
+ces longueurs forment une suite géométrique dont vous déterminerez la raison, et expliquez
+comment une somme d'une infinité de longueurs toutes strictement positives peut être
+finie.</li>
+<li>Démontrez que la mouche fait une infinité de demi-tours avant la collision, alors que la
+durée totale du vol est finie.</li>
+<li>Renversez le temps. Montrez que, connaissant le lieu et l'instant de la collision ainsi que
+la vitesse de la mouche, on ne peut pas reconstituer son point de départ : plusieurs histoires
+différentes aboutissent exactement au même écrasement.</li>
+</ol>
+</div>
+<p class="context">L'anecdote est la plus célèbre des mathématiques du vingtième siècle : on
+pose le problème à John von Neumann, qui donne la réponse presque immédiatement ; son
+interlocuteur, un peu déçu, remarque que la plupart des gens essaient de sommer la série au
+lieu de voir l'astuce, et von Neumann répond qu'il a justement sommé la série. Les deux voies
+sont légitimes et le problème vaut par leur confrontation : l'une regarde le temps, l'autre
+regarde la distance, et la question (b) vous demande de vérifier qu'elles donnent bien le même
+nombre. La question (c) est un authentique paradoxe de Zénon apprivoisé — une infinité
+d'événements logés dans un intervalle fini —, et la question (d) montre qu'une équation du
+mouvement peut se laisser remonter dans un sens et pas dans l'autre, ce qui est une remarque
+plus profonde qu'elle n'en a l'air.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/John_von_Neumann">John von Neumann — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/S%C3%A9rie_g%C3%A9om%C3%A9trique">Série géométrique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxes_de_Z%C3%A9non">Paradoxes de Zénon — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-113" data-level="Collège">
+<h3>PUZ-113 · Le tournoi et le deuxième meilleur <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Huit joueurs disputent un tournoi à élimination directe : quatre matchs au
+premier tour, deux au deuxième, une finale. On suppose qu'il existe un classement strict des
+huit joueurs, que le meilleur des deux gagne toujours, et qu'il n'y a pas de match nul.</p>
+<ol class="parts" type="a">
+<li>Démontrez que le vainqueur du tournoi est bien le meilleur des huit. Montrez en revanche
+que le finaliste malheureux n'est pas nécessairement le deuxième, en exhibant un classement et
+un tableau où le vrai deuxième est éliminé dès le premier tour.</li>
+<li>Le tournoi a coûté sept matchs. Organisez des matchs supplémentaires qui désignent à coup
+sûr le deuxième meilleur joueur, pour un total de neuf matchs, et démontrez que votre méthode
+ne se trompe jamais.</li>
+<li>Démontrez que huit matchs ne suffisent pas : aucune organisation, même adaptative — chaque
+match étant choisi en fonction des résultats précédents —, ne peut garantir de désigner à la
+fois le premier et le deuxième en huit matchs. C'est la moitié difficile du problème.</li>
+<li>Généralisez à \( n \) joueurs : donnez une méthode en \( n - 2 + \lceil \log_2 n \rceil \)
+matchs, et démontrez qu'on ne peut pas faire mieux.</li>
+</ol>
+</div>
+<p class="context">En \( 1883 \), Charles Dodgson — que le monde connaît sous le nom de Lewis
+Carroll — publie une brochure sur les tournois de tennis pour dénoncer une injustice bien
+réelle : la méthode d'attribution du deuxième prix est fausse, et le joueur qui la reçoit n'est
+en général pas le deuxième meilleur. Le problème a été repris sous forme mathématique par Hugo
+Steinhaus, et le nombre exact de matchs nécessaires a été établi par S. S. Kislitsyn en
+\( 1964 \) ; Donald Knuth en donne le traitement de référence dans le troisième volume de
+<i>The Art of Computer Programming</i>, où le tournoi devient un algorithme de sélection et le
+match une comparaison. La question (c) est le cœur du sujet : pour minorer le nombre de matchs,
+on ne raisonne pas sur les tournois possibles mais on imagine un adversaire qui, à chaque
+match, choisit le vainqueur de façon à retarder le plus longtemps possible le moment où vous
+saurez — technique dite de l'adversaire, aujourd'hui centrale en complexité algorithmique.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Tournoi_%C3%A0_%C3%A9limination_directe">Tournoi à élimination directe — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Lewis_Carroll">Lewis Carroll — Wikipédia</a></li>
+<li>Lecture : Donald E. Knuth, <i>The Art of Computer Programming</i>, vol. 3, § 5.3.3 (sélection par comparaisons)</li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-114" data-level="Collège">
+<h3>PUZ-114 · Le treize tombe-t-il souvent un vendredi ? <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On travaille dans le calendrier grégorien, celui qui est en usage
+aujourd'hui : une année est bissextile si elle est multiple de \( 4 \), sauf si elle est
+multiple de \( 100 \), sauf si elle est multiple de \( 400 \).</p>
+<ol class="parts" type="a">
+<li>Démontrez qu'un mois contient un vendredi \( 13 \) si et seulement si son premier jour est
+un dimanche.</li>
+<li>Démontrez que toute année, commune ou bissextile, contient au moins un vendredi \( 13 \).
+Déterminez ensuite le nombre maximal de vendredis \( 13 \) que peut compter une même année, et
+démontrez votre réponse.</li>
+<li>Démontrez que \( 400 \) années grégoriennes comptent un nombre entier de semaines.
+Déduisez-en que le calendrier se répète à l'identique tous les \( 400 \) ans, et donc que la
+question « quel jour de la semaine le \( 13 \) tombe-t-il le plus souvent ? » a bien un
+sens.</li>
+<li>Répondez-y : déterminez, avec démonstration, le jour de la semaine le plus fréquent pour un
+\( 13 \), et le moins fréquent. Le comptage est long mais fini — organisez-le pour qu'il tienne
+en une page.</li>
+</ol>
+</div>
+<p class="context">La peur du vendredi \( 13 \) est récente : elle ne se répand en Europe et en
+Amérique qu'au dix-neuvième siècle, en soudant deux superstitions plus anciennes et
+indépendantes, celle du vendredi et celle du nombre treize. Le fait mathématique, lui, est
+attesté depuis les années \( 1930 \), quand quelqu'un a pris la peine de compter : dans le
+cycle grégorien de \( 400 \) ans, le \( 13 \) tombe un vendredi un peu plus souvent que
+n'importe quel autre jour de la semaine. Rien dans la réforme de \( 1582 \) ne visait cet
+effet ; il résulte du hasard heureux — la question (c) — qui fait que la longueur du cycle
+grégorien est un multiple de sept, ce qui n'était nullement obligé et qui rend toute la
+question calculable à la main. C'est un bel exemple de problème où l'arithmétique modulaire
+sert à remplacer un calcul infini par un tableau fini.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Vendredi_treize">Vendredi treize — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Calendrier_gr%C3%A9gorien">Calendrier grégorien — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Congruence_sur_les_entiers">Congruence sur les entiers — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-115" data-level="Collège">
+<h3>PUZ-115 · Les allumettes à déplacer <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On écrit des nombres en chiffres romains avec des allumettes : le
+\( \mathrm{I} \) coûte une allumette, le \( \mathrm{V} \) et le \( \mathrm{X} \) en coûtent
+deux chacun, le signe \( + \) en coûte deux, le signe \( - \) une seule, et le signe \( = \)
+deux. Sur la table on lit l'égalité fausse
+\[ \mathrm{XI} + \mathrm{I} = \mathrm{X}. \]
+Un coup consiste à retirer une allumette de la figure et à la reposer ailleurs : le nombre
+total d'allumettes ne change donc pas, il est interdit d'en ajouter, d'en retirer ou d'en
+laisser une qui ne serve à rien, et ce qui reste sur la table doit être une égalité bien
+formée — un nombre, un signe d'opération, un nombre, le signe \( = \), un nombre.</p>
+<ol class="parts" type="a">
+<li>Rendez l'égalité vraie en déplaçant une seule allumette.</li>
+<li>Dressez la liste de toutes les égalités vraies que l'on peut obtenir à partir de cette
+figure en un seul déplacement, et démontrez que votre liste est complète. C'est ici que
+l'invariant « le nombre d'allumettes ne change pas » fait le gros du travail, en réduisant une
+recherche vague à une vérification finie.</li>
+<li>On n'utilise plus que les chiffres \( \mathrm{I} \), \( \mathrm{V} \), \( \mathrm{X} \),
+écrits selon les règles habituelles de la numération romaine, ce qui donne les nombres de
+\( 1 \) à \( 39 \). Déterminez le plus grand nombre que l'on puisse écrire avec six
+allumettes, et démontrez qu'aucun autre ne fait mieux.</li>
+<li>Même question avec sept, puis huit, puis neuf allumettes. Déterminez à partir de combien
+d'allumettes on peut écrire le plus grand nombre disponible, et démontrez-le.</li>
+</ol>
+</div>
+<p class="context">Les casse-tête d'allumettes envahissent la presse populaire européenne à la
+fin du dix-neuvième siècle, à l'époque où l'allumette devient l'objet le plus banal d'une
+poche, et Henry Dudeney comme Sam Loyd en publient par centaines. On les prend pour de simples
+jeux d'observation, à tort : la méthode qui les résout proprement est celle-là même qu'on
+emploie en combinatoire sérieuse — d'abord un invariant qui élimine d'un coup l'immense
+majorité des figures imaginables, ensuite un examen exhaustif du petit nombre de cas qui
+survivent. La question (c) ajoute une optimisation authentique, où l'on doit non seulement
+exhiber une écriture économique mais démontrer qu'aucune autre ne fait mieux, en majorant ce
+qu'une allumette peut rapporter.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ration_romaine">Numération romaine — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Matchstick_puzzle">Casse-tête d'allumettes — Wikipédia (en anglais)</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sam_Loyd">Sam Loyd — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PUZ-116" data-level="Collège" data-kind="court">
+<h3>PUZ-116 · La côte et la vitesse moyenne <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Vous montez une côte de deux kilomètres à la vitesse
+moyenne de \( 15 \) km/h. À quelle vitesse devez-vous la redescendre pour que votre vitesse
+moyenne sur l'aller-retour atteigne \( 30 \) km/h — et si aucune vitesse ne convient,
+démontrez-le.</p>
+<p class="context">Le psychologue Max Wertheimer, fondateur de la théorie de la forme, aimait
+soumettre des énigmes à ses amis pour observer comment ils pensaient ; il posa celle-ci à
+Albert Einstein, et l'anecdote, qu'il rapporte dans <i>Productive Thinking</i>, veut
+qu'Einstein soit d'abord tombé dans le piège. Le piège est le mot « moyenne » : une vitesse
+moyenne n'est pas la moyenne des vitesses, c'est la distance totale divisée par le temps
+total, et ces deux quantités ne se comportent pas du tout de la même façon quand on les
+combine. Une fois l'énoncé traduit en temps plutôt qu'en vitesses, tout devient limpide — y
+compris le fait qu'une réponse puisse ne pas exister, ce qui est une conclusion parfaitement
+respectable et demande, elle aussi, une démonstration.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Moyenne_harmonique">Moyenne harmonique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Max_Wertheimer">Max Wertheimer — Wikipédia</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 

@@ -79,7 +79,7 @@
     }
     var n = Math.min(parseInt($("count").value, 10) || 10, p.length);
     chosen = p.slice(0, n).sort(function (a, b) {
-      var order = ["Lycée", "Licence", "Master", "Recherche"];
+      var order = ["Collège", "Lycée", "Licence", "Master", "Recherche"];
       return order.indexOf(a.level) - order.indexOf(b.level) ||
              a.area.localeCompare(b.area);
     });

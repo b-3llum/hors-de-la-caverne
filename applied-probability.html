@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -43,6 +44,347 @@ calcul.</p>
 <a href="tex/applied-probability.tex" download>source LaTeX</a> · <a href="tex/applied-probability.pdf" download>PDF compilé</a></p>
 <!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="PRB-45" data-level="Collège">
+<h3>PRB-45 · Sept contre douze <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On lance deux dés équilibrés à six faces, l'un rouge et l'un vert, et on
+additionne les deux résultats. Un joueur affirme : « il y a onze sommes possibles, de 2 à 12, donc
+chacune a une chance sur onze de sortir ».</p>
+<ol class="parts" type="a">
+<li>Expliquez pourquoi ce sont les \( 36 \) couples (dé rouge, dé vert) qui forment les cas
+également possibles, et non les onze sommes. Votre argument doit dire précisément ce qui distingue
+les deux façons de compter.</li>
+<li>Dressez le tableau des 36 issues, puis comparez la probabilité d'obtenir 7 et celle d'obtenir
+12. Justifiez l'écart que vous trouvez en décrivant, en français et sans formule, ce que la somme 7
+a de particulier parmi toutes les sommes.</li>
+<li>Le joueur se défend : « j'ai lancé les dés 36 fois et je n'ai obtenu 7 que quatre fois ; votre
+calcul est donc faux ». Rédigez une réponse qui dit ce qu'une probabilité promet et ce qu'elle ne
+promet pas.</li>
+</ol>
+</div>
+<p class="context">Le grand-duc de Toscane posa à Galilée, vers 1620, la même question pour trois
+dés : les joueurs savaient d'expérience que 10 sortait plus souvent que 9, alors que les deux
+sommes s'écrivent chacune de six façons. Galilée trancha en quelques lignes, en comptant les issues
+ordonnées plutôt que les descriptions d'issues — c'est le premier raisonnement de probabilité qui
+mérite ce nom, et c'est exactement le geste demandé à la question (a). La version à trois dés est
+PRB-01, sur cette même page.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probabilit%C3%A9">Probabilité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9">Dé — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Galil%C3%A9e_(savant)">Galilée — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-46" data-level="Collège">
+<h3>PRB-46 · La suite qui n'a pas l'air au hasard <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Deux élèves devaient produire une suite de 30 résultats de pile ou face. L'un a
+réellement lancé une pièce et noté ce qu'il obtenait ; l'autre a inventé sa suite de tête. Voici
+les deux copies, où P désigne pile et F face.</p>
+<p>Suite 1 : P F P F F P F P P F P F F P F P F P P F P F P F F P F P F P<br>
+Suite 2 : P P F F F F P F P P P F F P F F F F F P P F P P P P F P F F</p>
+<ol class="parts" type="a">
+<li>Pour chacune des deux suites, calculez la fréquence de « pile » et relevez la plus longue série
+de résultats identiques consécutifs. Présentez vos résultats dans un tableau.</li>
+<li>Dites laquelle des deux suites vous croyez inventée et défendez votre choix. On attend un
+argument appuyé sur les nombres de la question (a), pas une impression visuelle.</li>
+<li>Justifiez qu'une suite précise de 30 lancers a exactement la même probabilité qu'une autre
+suite précise de 30 lancers — y compris celle qui donne trente fois « pile ». Expliquez ensuite,
+en un paragraphe rédigé, pourquoi cela ne contredit pas votre réponse à la question (b).</li>
+</ol>
+</div>
+<p class="context">Cette expérience est une démonstration de cours devenue classique — souvent
+attribuée au mathématicien américain Ted Hill : le professeur sort de la salle, une moitié de la
+classe lance vraiment une pièce cent fois, l'autre moitié invente sa suite, et il retrouve les
+tricheurs en quelques secondes. Les êtres humains alternent trop et produisent presque toujours
+des séries trop courtes, parce que nous confondons « au hasard » et « bien mélangé ». La question
+(c) est le cœur de l'affaire : le hasard ne rend pas certaines suites impossibles, il rend rares
+certaines <i>propriétés</i> des suites — la version chiffrée de cet argument est PRB-05, dans la
+bande Lycée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pile_ou_face">Pile ou face — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Hasard">Hasard — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Ted_Hill_(mathematician)">Ted Hill — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-47" data-level="Collège" data-kind="court">
+<h3>PRB-47 · Deux chaussettes dans le noir <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un tiroir contient six chaussettes noires et quatre
+chaussettes bleues mélangées, et vous en tirez deux au hasard dans l'obscurité, sans remettre la
+première avant de tirer la seconde. Déterminez la probabilité d'obtenir deux chaussettes de la même
+couleur en justifiant chaque branche de votre arbre, puis expliquez précisément ce qui changerait
+si vous remettiez la première chaussette dans le tiroir.</p>
+<p class="context">Le tiroir de chaussettes est un exercice de manuel depuis au moins les années
+1950, et il circule sous deux formes que tout oppose. La forme « combien faut-il en tirer pour être
+<i>certain</i> d'avoir une paire ? » ne demande aucune probabilité : elle relève du principe des
+tiroirs et se règle par un décompte. La forme posée ici demande un arbre et donne un nombre entre 0
+et 1. Savoir laquelle des deux questions on est en train de résoudre est déjà une compétence de
+mathématicien.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_d%27urne">Problème d'urne — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arbre_de_probabilit%C3%A9">Arbre de probabilité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_des_tiroirs">Principe des tiroirs — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-48" data-level="Collège">
+<h3>PRB-48 · La roue du forain <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> À la fête foraine, une roue est partagée en huit secteurs de même taille,
+numérotés de 1 à 8 ; le forain jure qu'elle est parfaitement équilibrée. Vous restez une heure à
+noter les résultats. Sur 400 tours, les secteurs 1 à 8 sont sortis respectivement 62, 54, 47, 51,
+58, 49, 66 et 13 fois.</p>
+<ol class="parts" type="a">
+<li>Calculez la fréquence de sortie de chaque secteur et l'effectif que l'on attendrait pour
+chacun si la roue était équilibrée. Rassemblez le tout dans un tableau et commentez ligne par
+ligne.</li>
+<li>Le forain répond : « le hasard fait ce qu'il veut, vos écarts ne prouvent rien ». Il a raison
+sur le principe. Construisez malgré tout l'argument le plus solide que vous puissiez écrire au
+collège pour soutenir que la roue est truquée — puis dites honnêtement ce qui manque à votre
+argument pour être une preuve.</li>
+<li>Le secteur 8 est celui qui fait gagner le gros lot. Expliquez pourquoi un forain malhonnête a
+intérêt à truquer précisément ce secteur-là, et pourquoi un joueur qui ne regarde qu'une dizaine de
+tours n'a pratiquement aucune chance de s'en apercevoir.</li>
+</ol>
+</div>
+<p class="context">Cette méthode a réellement fait fortune. En 1873, l'ingénieur anglais Joseph
+Jagger paya des employés pour relever pendant des semaines les numéros sortis aux roulettes du
+casino de Monte-Carlo ; l'une des roues était légèrement déséquilibrée, certains numéros sortaient
+trop souvent, et Jagger repartit avec une somme considérable. Les casinos rééquilibrent depuis
+leurs roues et changent leur emplacement, précisément pour empêcher ce genre de relevé. L'idée que
+la fréquence observée finit par ressembler à la probabilité porte un nom — la loi des grands
+nombres — et se démontre au lycée ; ce qui vous manque ici, et que la question (b) vous demande de
+nommer, est justement l'outil qui dit à partir de quel écart on peut cesser de croire au
+forain.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fr%C3%A9quence_(statistiques)">Fréquence (statistiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Loi_des_grands_nombres">Loi des grands nombres — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Joseph_Jagger">Joseph Jagger — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-49" data-level="Collège">
+<h3>PRB-49 · Le jeu est-il équitable ? <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Alice et Bruno lancent ensemble deux dés équilibrés à six faces. Dans chacune
+des règles ci-dessous, il n'y a ni match nul ni relance.</p>
+<ol class="parts" type="a">
+<li>Règle 1 : Alice gagne si la somme des deux dés est paire, Bruno si elle est impaire. Le jeu
+est-il équitable ? Justifiez à partir du tableau des 36 issues.</li>
+<li>Règle 2 : Alice gagne si le produit des deux dés est pair, Bruno s'il est impair. Justifiez
+que ce jeu n'est pas équitable, et dites de combien exactement il penche.</li>
+<li>Pour compenser la règle 2, Bruno propose de recevoir \( k \) euros chaque fois qu'il gagne et
+de payer 1 euro chaque fois qu'il perd. Déterminez, en raisonnant sur un grand nombre de parties,
+la valeur de \( k \) qui rend ce jeu équitable, et justifiez-la. Expliquez ensuite pourquoi
+« équitable » ne veut pas dire la même chose à la question (a) et à la question (c).</li>
+</ol>
+</div>
+<p class="context">La notion de jeu équitable est le berceau de toute la théorie : en 1654, le
+chevalier de Méré — de son vrai nom Antoine Gombaud — apporta à Blaise Pascal des questions de ce
+type, et la correspondance entre Pascal et Fermat qui s'ensuivit fonda la discipline. Huygens en
+tira en 1657 le premier traité imprimé, où il définit la valeur d'un jeu comme la mise qu'un joueur
+devrait accepter de payer pour y entrer : c'est l'ancêtre direct de votre question (c). L'outil qui
+la formalise s'appelle l'espérance et se rencontre au lycée ; au collège, le raisonnement « sur un
+grand nombre de parties » suffit, et il a l'avantage de dire ce que l'espérance signifie avant de
+dire comment on la calcule.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Antoine_Gombaud">Antoine Gombaud, chevalier de Méré — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Christian_Huygens">Christian Huygens — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Esp%C3%A9rance_math%C3%A9matique">Espérance mathématique — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-50" data-level="Collège">
+<h3>PRB-50 · Un anniversaire commun dans votre classe <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un élève d'une classe de 30 affirme : « nous sommes 30 et l'année compte 365
+jours, donc il n'y a presque aucune chance que deux d'entre nous soient nés le même jour ».</p>
+<ol class="parts" type="a">
+<li>Comptez le nombre de paires d'élèves que l'on peut former dans cette classe. Expliquez
+pourquoi c'est ce nombre-là, et non 30, qu'il faut comparer à 365, et pourquoi le raisonnement de
+l'élève passe à côté du problème.</li>
+<li>Distinguez soigneusement deux questions : « un autre élève est-il né le même jour que
+<i>moi</i> ? » et « deux élèves quelconques de la classe sont-ils nés le même jour ? ». Justifiez
+que la seconde a beaucoup plus de chances d'être vraie que la première, sans calculer aucune des
+deux probabilités.</li>
+<li>Menez l'expérience. Relevez les dates de naissance de votre classe et de trois classes
+voisines, comptez combien de ces quatre classes contiennent au moins un anniversaire commun, et
+confrontez le résultat à votre raisonnement de la question (a). Discutez enfin ce que quatre
+classes permettent — et ne permettent pas — de conclure.</li>
+</ol>
+</div>
+<p class="context">Le paradoxe des anniversaires fut posé sous cette forme par Richard von Mises en
+1939 et rendu célèbre par le manuel de William Feller. Il n'a rien d'un paradoxe logique : c'est
+une contradiction entre un calcul juste et une intuition fausse, et l'intuition se trompe parce
+qu'elle compte les personnes là où il faut compter les paires. Le calcul exact, avec le seuil
+fameux de 23 personnes, est PRB-03 dans la bande Lycée ; la question (a) ci-dessus en contient déjà
+toute l'idée, et la question (c) vous fait faire ce que von Mises n'a jamais pris la peine de
+faire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_des_anniversaires">Paradoxe des anniversaires — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probabilit%C3%A9">Probabilité — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-51" data-level="Collège">
+<h3>PRB-51 · Deux enfants, dont une fille <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On admet qu'à chaque naissance, garçon et fille sont également probables, et
+on considère une famille de deux enfants.</p>
+<ol class="parts" type="a">
+<li>Dressez l'arbre des quatre familles possibles, en distinguant l'aîné du cadet, et justifiez
+que ces quatre issues sont également probables.</li>
+<li>On vous dit seulement : « cette famille a au moins une fille ». Déterminez la probabilité que
+les deux enfants soient des filles, en justifiant à partir de votre arbre quelles branches vous
+gardez et lesquelles vous éliminez.</li>
+<li>Situation différente : vous croisez dans la rue un enfant de cette famille, choisi au hasard
+parmi les deux, et c'est une fille. Reprenez l'arbre — il faut maintenant y faire figurer le choix
+de l'enfant que vous rencontrez — et déterminez à nouveau la probabilité que les deux soient des
+filles.</li>
+<li>Les deux réponses ne sont pas les mêmes. Expliquez, dans un paragraphe rédigé, ce qui a changé
+entre (b) et (c), et pourquoi une énigme de probabilité n'est pas encore un problème tant qu'on n'a
+pas dit <i>comment</i> l'information a été obtenue.</li>
+</ol>
+</div>
+<p class="context">Martin Gardner posa l'énigme dans sa chronique de <i>Scientific American</i> en
+1959, publia une réponse, puis fit machine arrière : la question, telle qu'il l'avait écrite, ne
+déterminait pas la réponse. Ce n'est pas une faiblesse de l'énoncé, c'est le contenu même du
+problème — en probabilité, ce qui compte n'est pas le fait que vous apprenez mais la procédure qui
+vous l'a fait apprendre. La version calculée avec des probabilités conditionnelles est PRB-23,
+dans la bande Lycée ; ici, l'arbre suffit, et il rend la morale plus visible encore.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_des_deux_enfants">Paradoxe des deux enfants — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arbre_de_probabilit%C3%A9">Arbre de probabilité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Martin_Gardner">Martin Gardner — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-52" data-level="Collège">
+<h3>PRB-52 · Trois dés qui tournent en rond <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Trois dés équilibrés à six faces portent les valeurs
+\( A = (2,2,4,4,9,9) \), \( B = (1,1,6,6,8,8) \) et \( C = (3,3,5,5,7,7) \). Deux joueurs choisissent
+chacun un dé, les lancent, et celui qui obtient le plus grand nombre gagne la partie.</p>
+<ol class="parts" type="a">
+<li>Pour chacun des trois duels — A contre B, B contre C, puis C contre A — dressez le tableau des
+36 issues et déterminez, en justifiant, quel dé a le plus de chances de l'emporter.</li>
+<li>Comparez vos trois réponses. Énoncez avec précision l'idée reçue qu'elles mettent en défaut,
+et expliquez en français pourquoi cette idée reçue semblait pourtant évidente.</li>
+<li>Vous proposez ce jeu à un camarade en le laissant choisir son dé le premier. Expliquez
+pourquoi vous avez alors l'avantage, et dites ce qui change si c'est vous qui devez choisir en
+premier.</li>
+</ol>
+</div>
+<p class="context">Ces dés sont dus au statisticien Bradley Efron et furent rendus célèbres par
+Martin Gardner dans <i>Scientific American</i> en 1970. Leur intérêt n'est pas l'arithmétique mais
+ce qu'ils détruisent : presque tout le monde suppose en silence que « a plus de chances de gagner
+contre » se transmet de proche en proche, comme « est plus grand que » se transmet chez les
+nombres. Cette hypothèse tacite sous-tend les classements sportifs, les comparatifs de produits et
+certains modes de scrutin — et voici un contre-exemple qui tient dans trois tableaux. La version à
+quatre dés est PRB-24, dans la bande Lycée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9s_non_transitifs">Dés non transitifs — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Martin_Gardner">Martin Gardner — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-53" data-level="Collège" data-kind="court">
+<h3>PRB-53 · « Deux issues, donc une chance sur deux » <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un élève affirme : « quand je joue au loto, soit je gagne,
+soit je perds ; il n'y a que deux issues, donc j'ai une chance sur deux de gagner ». Débusquez
+l'erreur en énonçant précisément l'hypothèse qui manque, puis construisez deux expériences n'ayant
+chacune que deux issues, l'une où « une chance sur deux » est juste et l'autre où c'est faux, et
+justifiez les deux cas.</p>
+<p class="context">L'erreur a une lettre de noblesse. Dans l'article « Croix ou pile » de
+l'<i>Encyclopédie</i> (1754), d'Alembert soutient qu'en deux lancers d'une pièce la probabilité
+d'obtenir au moins une fois croix vaut \( 2/3 \), parce qu'il ne voit que trois cas : croix au
+premier coup, pile puis croix, pile puis pile. Il compte des descriptions d'issues au lieu de
+compter des issues également probables — la faute même de l'élève ci-dessus, commise par l'un des
+plus grands mathématiciens du siècle. L'hypothèse d'équiprobabilité n'est jamais gratuite : elle se
+justifie ou elle se démontre, jamais elle ne se suppose au vu du nombre de cases.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quiprobabilit%C3%A9">Équiprobabilité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Jean_Le_Rond_d%27Alembert">Jean Le Rond d'Alembert — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Loterie">Loterie — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-54" data-level="Collège">
+<h3>PRB-54 · Deux urnes et un dé <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'urne n° 1 contient 3 boules rouges et 2 boules vertes ; l'urne n° 2 contient
+1 boule rouge et 4 boules vertes. On lance un dé équilibré : si l'on obtient 5 ou 6, on tire une
+boule dans l'urne n° 1, sinon on tire une boule dans l'urne n° 2.</p>
+<ol class="parts" type="a">
+<li>Dressez l'arbre de cette expérience en portant sur chaque branche la probabilité
+correspondante, et justifiez que la somme des probabilités des branches issues d'un même nœud vaut
+toujours 1.</li>
+<li>Déterminez la probabilité de tirer une boule rouge, en justifiant chaque étape de votre
+calcul sur l'arbre.</li>
+<li>Un camarade objecte : « il y a en tout 4 boules rouges parmi les 10 boules des deux urnes,
+donc la probabilité de tirer une rouge vaut \( 4/10 \) ». Expliquez pourquoi ce raisonnement est
+faux ici, puis décrivez précisément une règle de tirage — différente de celle de l'énoncé — pour
+laquelle il serait juste.</li>
+</ol>
+</div>
+<p class="context">Les urnes remplies de boules de couleur sont le laboratoire de la théorie des
+probabilités depuis Jacques Bernoulli, dont l'<i>Ars conjectandi</i> (publié en 1713) en fait
+l'instrument de base du raisonnement sur le hasard. Leur intérêt est d'être totalement
+transparentes : on voit ce qu'il y a dedans, il ne reste donc rien à deviner et tout à démontrer.
+La question (c) contient la seule difficulté véritable — une probabilité n'est une fraction de cas
+favorables que lorsque les cas sont également probables, et deux urnes tirées avec des chances
+inégales ne se laissent pas verser dans un même sac.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_d%27urne">Problème d'urne — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Arbre_de_probabilit%C3%A9">Arbre de probabilité — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-55" data-level="Collège" data-kind="court">
+<h3>PRB-55 · Au moins un six <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un élève raisonne ainsi sur le lancer de deux dés
+équilibrés : « la probabilité d'obtenir un six sur un dé vaut \( 1/6 \), donc avec deux dés elle
+vaut \( 1/6 + 1/6 = 1/3 \) ». Déterminez la probabilité d'obtenir au moins un six en la justifiant
+sur le tableau des 36 issues, puis énoncez la condition sous laquelle additionner deux probabilités
+est légitime et montrez qu'elle n'est pas remplie ici.</p>
+<p class="context">L'addition naïve des probabilités est l'erreur la plus répandue de tout
+l'enseignement de la discipline, et elle a résisté longtemps : les premiers auteurs — Cardan au
+XVI<sup>e</sup> siècle dans son <i>Liber de ludo aleae</i>, Galilée vers 1620 — ont dû forger la
+notion de « cas également possibles » précisément pour se donner un garde-fou contre ce genre de
+glissement. Le point à retenir dépasse les dés : additionner des probabilités revient à supposer
+que deux choses ne peuvent pas arriver ensemble, et c'est une hypothèse sur le monde, pas une règle
+de calcul.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89v%C3%A9nement_(probabilit%C3%A9s)">Événement (probabilités) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/J%C3%A9r%C3%B4me_Cardan">Jérôme Cardan — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRB-56" data-level="Collège" data-kind="court">
+<h3>PRB-56 · La pièce qui « doit » tomber sur pile <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Une pièce équilibrée vient de tomber cinq fois de suite sur
+face, et un joueur en conclut : « pile est en retard, il a maintenant plus d'une chance sur deux de
+sortir au prochain lancer ». Réfutez ce raisonnement, puis expliquez comment il peut être faux
+alors même qu'il est vrai que, sur un très grand nombre de lancers, la fréquence de « pile » se
+rapproche de \( 1/2 \).</p>
+<p class="context">Laplace décrit déjà cette illusion dans son <i>Essai philosophique sur les
+probabilités</i> (1814) : il y raconte des joueurs de loterie qui misent sur les numéros non sortis
+depuis longtemps, persuadés qu'ils sont « dus », et il en fait l'exemple type des erreurs de
+jugement sur le hasard. Deux siècles plus tard, les sites de loterie publient encore la liste des
+numéros « en retard », et les joueurs les jouent. La seconde partie de la question est la vraie :
+la fréquence se rapproche bien de \( 1/2 \), mais elle y arrive en <i>diluant</i> les écarts
+passés, jamais en les corrigeant — la version chiffrée de cette distinction est PRB-05, dans la
+bande Lycée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Erreur_du_parieur">Erreur du parieur — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pierre-Simon_de_Laplace">Pierre-Simon de Laplace — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Loi_des_grands_nombres">Loi des grands nombres — Wikipédia</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 

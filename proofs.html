@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -55,6 +56,394 @@ démonstration reste un sujet vivant, avec ses propres questions ouvertes.</p>
 <a href="tex/proofs.tex" download>source LaTeX</a> · <a href="tex/proofs.pdf" download>PDF compilé</a></p>
 <!-- site.js automatically inserts the level-filter / search bar here. Do NOT build one. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="PRF-64" data-level="Collège">
+<h3>PRF-64 · « J'ai essayé avec 3, 5 et 7, donc c'est vrai » <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un camarade affirme : « J'ai essayé avec 3, 5 et 7, ça marche à chaque
+fois, donc c'est vrai. » Ce problème demande ce qui manque exactement à cette phrase.</p>
+<ol class="parts" type="a">
+<li>Calculez \( n^2 + n + 11 \) pour n = 0, 1, 2, …, 9, et constatez que vous obtenez chaque
+fois un nombre premier. Décidez ensuite si l'affirmation « \( n^2 + n + 11 \) est un nombre
+premier pour tout entier naturel n » est vraie, et démontrez votre réponse.</li>
+<li>Placez 2 points sur un cercle et tracez la corde qui les joint : le disque est coupé en
+2 morceaux. Recommencez avec 3, puis 4, puis 5, puis 6 points, en traçant toutes les cordes
+et en plaçant les points de sorte que jamais trois cordes ne se croisent au même endroit ;
+comptez les morceaux à chaque fois. Écrivez la suite de nombres obtenue, dites quelle règle
+elle vous suggère, puis dites si vos comptages la démontrent.</li>
+<li>Un seul contre-exemple suffit-il à réfuter une affirmation qui commence par « pour
+tout » ? Suffit-il à réfuter une affirmation qui commence par « il existe » ? Justifiez les
+deux réponses.</li>
+<li>Rédigez en trois ou quatre phrases ce qu'il faudrait ajouter à « j'ai essayé avec 3, 5
+et 7 » pour en faire une démonstration — et pourquoi mille essais de plus n'y suffiraient
+toujours pas.</li>
+</ol>
+</div>
+<p class="context">Les deux pièges de ce problème sont célèbres et ils ont piégé de vrais
+mathématiciens. Euler remarqua en 1772 que \( n^2 + n + 41 \) donne un nombre premier pour
+quarante valeurs consécutives de n avant de céder ; 11 appartient à la même petite famille
+de nombres, dits nombres chanceux d'Euler, et c'est pour cela qu'il tient si longtemps.
+Le compte des morceaux du disque est le piège inverse : la suite commence si franchement
+qu'on croit la connaître, et le sixième terme n'est pas celui qu'on annonce — Leo Moser en
+a fait un classique de la mise en garde. La leçon est la même dans les deux cas et elle est
+au fondement de tout ce site : vérifier n'est pas démontrer, l'un donne de la confiance,
+l'autre donne la certitude, et rien ne transforme la première en la seconde.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Contre-exemple">Contre-exemple — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_chanceux_d%27Euler">Nombre chanceux d'Euler — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Dividing_a_circle_into_areas">Partage d'un disque par des cordes — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-65" data-level="Collège">
+<h3>PRF-65 · Deux impairs font un pair — démontrez-le <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un entier est pair s'il s'écrit \( 2k \) pour un certain entier k, et
+impair s'il s'écrit \( 2k+1 \) pour un certain entier k. Tout ce qui suit ne doit se servir
+que de ces deux écritures.</p>
+<ol class="parts" type="a">
+<li>Vérifiez sur cinq couples de votre choix que la somme de deux entiers impairs est
+paire, puis dites en une phrase pourquoi ces cinq vérifications ne démontrent rien.</li>
+<li>Démontrez que la somme de deux entiers impairs est paire. Votre argument doit valoir
+pour tous les couples d'entiers impairs d'un seul coup ; montrez du doigt l'endroit précis
+où il cesse de parler d'exemples.</li>
+<li>Justifiez le point sur lequel repose (b) et qu'on oublie toujours de justifier : tout
+entier impair s'écrit bien \( 2k+1 \) pour un certain entier k, et tout nombre de cette
+forme est bien impair.</li>
+<li>Démontrez de la même façon que le produit de deux entiers impairs est impair, que la
+somme de trois entiers impairs est impaire, et que la somme de trois entiers consécutifs est
+divisible par 3. Décidez enfin si la somme de quatre entiers consécutifs est divisible
+par 4.</li>
+</ol>
+</div>
+<p class="context">C'est presque toujours la première vraie démonstration qu'un élève écrit,
+et elle contient déjà tout le mécanisme : une lettre remplace un nombre, et la ligne de
+calcul qui suit parle de tous les cas à la fois. Les Grecs travaillaient ces énoncés bien
+avant qu'on sache écrire une lettre pour un nombre — le livre IX des <i>Éléments</i>
+d'Euclide démontre en propositions séparées que la somme de nombres pairs est paire, que la
+somme d'un nombre pair de nombres impairs est paire, et ainsi de suite, entièrement en
+langue et en longueurs. Comparer leur rédaction à la vôtre est instructif : le calcul
+littéral n'a pas rendu la démonstration possible, il l'a rendue courte. PRF-74 vous fera
+revenir sur le texte que vous aurez écrit ici.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Parit%C3%A9_(arithm%C3%A9tique)">Parité (arithmétique) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89l%C3%A9ments_d%27Euclide">Éléments d'Euclide — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Calcul_alg%C3%A9brique">Calcul algébrique — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-66" data-level="Collège" data-kind="court">
+<h3>PRF-66 · Un nombre et son double <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez ou réfutez : un entier et son double n'ont
+jamais la même parité. Si l'affirmation est fausse, énoncez à sa place la règle exacte qui
+dit quand un entier n et son double \( 2n \) ont la même parité, et démontrez cette
+règle.</p>
+<p class="context">« Démontrez ou réfutez » est un genre à part : la moitié du travail
+consiste à décider de quel côté on se range, et la première chose à faire est d'essayer de
+casser l'énoncé plutôt que de le croire. Beaucoup d'affirmations fausses en mathématiques
+sont presque vraies — vraies sur la moitié des cas, ou sur tous sauf un — et c'est
+précisément ce qui les rend dangereuses. PRF-38 pose la même question au lycée, sur les
+nombres irrationnels.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Parit%C3%A9_(arithm%C3%A9tique)">Parité (arithmétique) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Contre-exemple">Contre-exemple — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-67" data-level="Collège" data-kind="court">
+<h3>PRF-67 · Où se cache l'erreur : une « démonstration » que 1 = 2 <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> On part de deux nombres égaux, \( a = b \), et on
+enchaîne :
+\[ a^2 = ab, \qquad a^2 - b^2 = ab - b^2, \qquad (a-b)(a+b) = b(a-b), \qquad a+b = b, \qquad 2b = b, \qquad 2 = 1. \]
+Désignez la ligne exactement fausse — pas « quelque part par là », la ligne — et écrivez en
+une phrase la règle qu'elle enfreint.</p>
+<p class="context">Toutes les lignes sont correctement calculées, et pourtant la conclusion
+est fausse : c'est le meilleur argument qui soit contre l'idée qu'une démonstration serait
+un calcul juste. Une démonstration est un enchaînement dont chaque pas est <i>autorisé</i>,
+et une seule autorisation manquante suffit à tout ruiner. Ce faux raisonnement circule
+depuis des siècles et il a un cousin géométrique tout aussi instructif, le paradoxe du carré
+manquant, où un découpage semble faire apparaître une case de plus : là, ce qui triche n'est
+pas un calcul mais un dessin. Retenez la morale des deux — une figure et une ligne de calcul
+sont des indices, jamais des preuves.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Division_par_z%C3%A9ro">Division par zéro — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Raisonnement_fallacieux">Raisonnement fallacieux — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Paradoxe_du_carr%C3%A9_manquant">Paradoxe du carré manquant — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-68" data-level="Collège">
+<h3>PRF-68 · Le principe des tiroirs, raconté puis employé <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Le principe des tiroirs dit ceci : si l'on range plus d'objets qu'on n'a
+de tiroirs, alors un tiroir au moins contient au moins deux objets. Il tient en une ligne et
+il a l'air de ne rien dire — pourtant tout ce qui suit en découle.</p>
+<ol class="parts" type="a">
+<li>Démontrez le principe lui-même, en deux phrases, par l'absurde : supposez que chaque
+tiroir contienne au plus un objet, et comptez.</li>
+<li>Démontrez que parmi 13 personnes quelconques, deux au moins sont nées le même mois.</li>
+<li>On choisit six nombres différents parmi 1, 2, …, 10. Démontrez que deux d'entre eux ont
+pour somme 11.</li>
+<li>Une tête humaine porte au plus 150 000 cheveux. Démontrez que dans une ville de
+200 000 habitants, deux personnes au moins ont exactement le même nombre de cheveux.</li>
+<li>Voici le véritable exercice. Pour chacune des questions (b), (c) et (d), écrivez
+explicitement ce qui jouait le rôle des objets, ce qui jouait celui des tiroirs, et combien
+il y en avait de chaque — puis dites, en une phrase par question, lequel des deux était le
+plus difficile à voir.</li>
+</ol>
+</div>
+<p class="context">Le principe porte le nom de Dirichlet, qui s'en est servi comme d'un outil
+en 1834 sous le nom de <i>Schubfachprinzip</i>, « principe des tiroirs », mais l'exemple des
+cheveux est bien plus ancien : un recueil français de 1622, la <i>Récréation
+mathématique</i> publiée sous le nom de Jean Leurechon, remarque déjà qu'il est nécessaire
+que deux hommes aient le même nombre de cheveux. Ce qui frappe, c'est le contraste entre la
+banalité de l'énoncé et la force de ses conséquences : il produit des affirmations qu'aucune
+observation ne pourrait établir, sur des gens qu'on n'a jamais vus. Toute la difficulté, à
+chaque emploi, tient dans la question « quels sont les tiroirs ? » — car ils ne sont jamais
+donnés. PRF-07 et PRF-55 reprennent la question au lycée, avec des tiroirs qu'il faut
+fabriquer soi-même.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_des_tiroirs">Principe des tiroirs — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet">Peter Gustav Lejeune Dirichlet — Wikipédia</a></li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 4 (le principe des tiroirs)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-69" data-level="Collège" data-kind="court">
+<h3>PRF-69 · Deux personnes ont le même nombre d'amis <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Dans un groupe d'au moins deux personnes, où l'amitié
+est toujours réciproque, démontrez qu'il existe deux personnes ayant exactement le même
+nombre d'amis à l'intérieur du groupe. Rédigez-le comme un raisonnement par l'absurde :
+supposez que ces nombres soient tous différents, et poussez cette supposition jusqu'à une
+impossibilité.</p>
+<p class="context">Le raisonnement par l'absurde est la manœuvre la plus étrange de la
+logique — on affirme le contraire de ce qu'on veut établir, on travaille consciencieusement
+sur une hypothèse dont on espère qu'elle est fausse, et l'effondrement final est la
+démonstration. Ce problème-ci en est une version où l'on ne calcule rien du tout : il n'y a
+ni formule, ni figure, et l'énoncé ne dit même pas combien de personnes il y a. Traduit en
+langage de graphes — un point par personne, un trait par amitié — c'est l'un des premiers
+résultats qu'on rencontre dans la théorie née de l'article d'Euler sur les ponts de
+Königsberg (1736).</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Raisonnement_par_l%27absurde">Raisonnement par l'absurde — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9orie_des_graphes">Théorie des graphes — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_des_tiroirs">Principe des tiroirs — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-70" data-level="Collège">
+<h3>PRF-70 · Ce qui ne change jamais <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un invariant est une quantité qui ne bouge pas alors que la situation,
+elle, bouge. Chacune des questions ci-dessous demande de démontrer qu'une chose est
+<i>impossible</i> — et aucun essai raté, si nombreux soient-ils, ne peut établir cela.</p>
+<ol class="parts" type="a">
+<li>Sept verres sont posés à l'envers sur une table. Un coup consiste à retourner exactement
+deux verres, lesquels que vous voulez. Démontrez qu'aucune suite de coups ne mettra les sept
+verres à l'endroit.</li>
+<li>On écrit au tableau les nombres 1, 2, …, 10. Un coup consiste à effacer deux nombres et
+à écrire à la place leur différence positive (ou 0 s'ils sont égaux). Après neuf coups il ne
+reste qu'un nombre : démontrez que sa parité est fixée d'avance, quels qu'aient été vos
+choix.</li>
+<li>Un jeton est posé sur une case d'un quadrillage colorié comme un damier. À chaque coup
+il se déplace en diagonale, d'une case exactement. Démontrez qu'il ne pourra jamais atteindre
+une case de l'autre couleur, et dites ce que cela raconte du fou aux échecs.</li>
+<li>Pour chacune des trois questions, nommez l'invariant en une phrase. Expliquez ensuite
+pourquoi exhiber un invariant démontre une impossibilité, alors que cent tentatives ratées
+ne démontrent rien du tout.</li>
+</ol>
+</div>
+<p class="context">L'argument d'invariance est peut-être la plus belle idée élémentaire des
+mathématiques : au lieu de suivre un processus qui part dans toutes les directions, on
+trouve la seule chose qu'il ne peut pas modifier, et l'on regarde si le but demandé la
+respecte. S'il ne la respecte pas, le but est hors d'atteinte — définitivement, pour toutes
+les suites de coups possibles, y compris celles que personne n'essaiera jamais. C'est la
+première technique du livre d'Arthur Engel pour les olympiades, et ce n'est pas un hasard :
+c'est aussi la manière dont on démontre qu'un programme informatique fait bien ce qu'il
+prétend (DCS-01 en donne la version échiquier). Le mot « impossible » est l'un des rares que
+les mathématiques prononcent sans trembler ; l'invariant est ce qui leur en donne le
+droit.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Invariant">Invariant — Wikipédia</a></li>
+<li>Lecture : A. Engel, <i>Problem-Solving Strategies</i>, ch. 1 (le principe d'invariance)</li>
+<li>Voir aussi : <a href="applied-discrete-cs.html#DCS-01">DCS-01, l'échiquier mutilé</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-71" data-level="Collège">
+<h3>PRF-71 · Une case en moins, et le coloriage qui décide <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On colorie un carré \( 5 \times 5 \) comme un damier, les quatre coins
+recevant la même couleur. On retire une case, puis on essaie de recouvrir les 24 cases
+restantes par 12 dominos, chaque domino couvrant exactement deux cases voisines par un
+côté.</p>
+<ol class="parts" type="a">
+<li>Comptez les cases de chaque couleur. Démontrez ensuite qu'aucun pavage n'existe dès que
+la case retirée est de la couleur la moins nombreuse.</li>
+<li>Cherchez maintenant, parmi les cases de l'autre couleur, celles pour lesquelles un
+pavage existe réellement. Chaque réponse demande sa justification : une construction dans un
+sens, une démonstration d'impossibilité dans l'autre.</li>
+<li>Le coloriage ne figure nulle part dans l'énoncé du problème : c'est vous qui l'ajoutez.
+Expliquez en quelques phrases ce qu'il rend visible et que le quadrillage nu ne montrait
+pas.</li>
+<li>Reprenez (a) en supposant qu'un domino ait aussi le droit de couvrir deux cases voisines
+<i>en diagonale</i>. Dites ce que devient l'argument, et à quelle ligne exactement il
+cesse de fonctionner.</li>
+</ol>
+</div>
+<p class="context">Colorier une figure pour démontrer qu'un découpage est impossible est un
+tour de main que Solomon Golomb a installé au cœur d'un domaine entier lorsqu'il a inventé
+le mot « polyomino » en 1954 et publié ses premiers résultats de pavage. La force du procédé
+tient à ce qu'il ajoute au problème une information qui n'y était pas : le damier n'existe
+que dans votre tête, et pourtant c'est lui qui tranche. Remarquez aussi ce que la question
+(b) demande de plus que la (a) — une impossibilité se démontre par un argument, mais une
+possibilité se démontre en montrant la chose, et les deux moitiés d'un « pour quelles cases
+est-ce faisable ? » n'ont jamais la même allure. Le résultat frère sur l'échiquier
+\( 8 \times 8 \) privé de deux cases de couleurs différentes est dû à Ralph Gomory, et son
+argument — d'une élégance rare — a été popularisé par Ross Honsberger en 1973.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polyomino">Polyomino — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_l%27%C3%A9chiquier_mutil%C3%A9">Problème de l'échiquier mutilé — Wikipédia</a></li>
+<li>Lecture : S. W. Golomb, <i>Polyominoes</i> (2ᵉ éd., 1994), ch. 1</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-72" data-level="Collège">
+<h3>PRF-72 · La réciproque n'est pas l'énoncé <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> La réciproque de « si P alors Q » est « si Q alors P ». Ce sont deux
+affirmations différentes : démontrer l'une ne démontre pas l'autre, et il arrive
+constamment que l'une soit vraie et l'autre fausse.</p>
+<ol class="parts" type="a">
+<li>Pour chacun des énoncés suivants, écrivez la réciproque, puis décidez si cette
+réciproque est vraie — par une démonstration si oui, par un contre-exemple si non. (i) Si un
+entier se termine par 0, alors il est divisible par 5. (ii) Si un triangle est équilatéral,
+alors il est isocèle. (iii) Si un entier est divisible par 6, alors il est divisible par 2
+et par 3. (iv) S'il pleut, le sol est mouillé.</li>
+<li>Ceux des énoncés dont la réciproque est vraie méritent la forme « si et seulement si ».
+Réécrivez-les ainsi, et rédigez pour l'un d'eux les deux sens comme deux démonstrations
+clairement séparées et étiquetées.</li>
+<li>Un critère de divisibilité dit : si la somme des chiffres d'un entier est divisible par
+3, alors l'entier l'est aussi. Écrivez sa réciproque, et dites laquelle des deux vous
+employez réellement quand vous testez 1 234 567.</li>
+<li>Expliquez en trois phrases pourquoi « la réciproque est évidente » est l'une des phrases
+les plus dangereuses qu'on puisse écrire dans une copie de mathématiques.</li>
+</ol>
+</div>
+<p class="context">Confondre un énoncé et sa réciproque est l'erreur de raisonnement la plus
+répandue, et pas seulement en mathématiques : « tous les menteurs se contredisent » ne dit
+rien de celui qui vient de se contredire, et un tribunal qui l'oublie condamne un innocent.
+Aristote la traitait déjà comme une faute nommée, et la logique médiévale l'appelait
+l'affirmation du conséquent. En classe, l'occasion la plus fréquente de rencontrer la
+distinction est géométrique : le théorème de Thalès sert à calculer des longueurs, sa
+réciproque sert à démontrer que des droites sont parallèles, et ce sont deux outils
+différents (PRF-73). PRF-46 reprend la question au lycée, sur des équivalences plus
+coriaces.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Implication_r%C3%A9ciproque">Implication réciproque — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Implication_(logique)">Implication (logique) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8res_de_divisibilit%C3%A9">Critères de divisibilité — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-73" data-level="Collège">
+<h3>PRF-73 · Thalès, et la réciproque de Thalès <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Deux droites se coupent en A. Sur la première on place B, puis M, du même
+côté de A ; sur la seconde on place C, puis N, du même côté de A. Le théorème de Thalès
+affirme que si les droites \( (BC) \) et \( (MN) \) sont parallèles, alors
+\[ \frac{AB}{AM} \;=\; \frac{AC}{AN} \;=\; \frac{BC}{MN}. \]</p>
+<ol class="parts" type="a">
+<li>On donne \( AB = 3 \), \( AM = 5 \), \( AC = 6 \), et \( (BC) \) parallèle à
+\( (MN) \). Calculez AN en écrivant, à côté de chaque égalité, l'hypothèse qui l'autorise.
+Une seule de vos lignes se sert du parallélisme : entourez-la.</li>
+<li>La réciproque du théorème sert à démontrer qu'une chose est parallèle. Énoncez-la
+précisément, hypothèses comprises, puis servez-vous-en pour démontrer que deux droites d'une
+figure de votre construction sont parallèles.</li>
+<li>La réciproque exige que les points soient placés « dans le même ordre » sur les deux
+droites. Construisez une figure où les rapports de longueurs sont bien égaux mais où cette
+condition n'est pas remplie, et décidez, avec justification, si les droites y sont
+parallèles.</li>
+<li>Dites en deux phrases ce que (c) enseigne : ce qui arrive à une démonstration quand on
+applique un théorème sans vérifier l'une de ses hypothèses.</li>
+</ol>
+</div>
+<p class="context">La tradition fait de Thalès de Milet, vers 600 av. J.-C., le premier
+à avoir <i>démontré</i> plutôt que constaté, et la plus jolie des légendes le montre mesurant
+la hauteur de la grande pyramide par la longueur de son ombre — c'est-à-dire employant très
+exactement le théorème qui porte aujourd'hui son nom. Une curiosité mérite d'être connue :
+l'appellation « théorème de Thalès » pour cet énoncé de proportions est une convention
+française, quand l'anglais l'appelle le théorème des intercepts et réserve le nom de Thalès
+à un tout autre résultat, celui de l'angle inscrit dans un demi-cercle. Ce théorème est
+souvent le premier dont un élève français utilise la réciproque comme un outil de
+démonstration à part entière, et il vaut la peine de bien voir que les deux sens ne servent
+pas au même travail : l'un mesure, l'autre prouve.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Thal%C3%A8s">Théorème de Thalès — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Thal%C3%A8s">Thalès — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89l%C3%A9ments_d%27Euclide">Éléments d'Euclide — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-74" data-level="Collège">
+<h3>PRF-74 · Rédiger : ce qu'un lecteur a le droit d'exiger <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Trouver un argument et l'écrire sont deux travaux distincts, et le second
+s'apprend. Reprenez la démonstration que vous avez trouvée en PRF-65 (b) — la somme de deux
+entiers impairs est paire — et travaillez-la comme on travaille un texte.</p>
+<ol class="parts" type="a">
+<li>Rédigez-la pour un camarade absent ce jour-là : chaque fait employé doit être nommé, et
+aucune étape ne doit lui demander de deviner. Comptez ensuite vos phrases.</li>
+<li>Soulignez les mots qui portent la logique — « soit », « supposons », « donc », « or »,
+« il existe », « pour tout » — et vérifiez qu'aucune phrase n'en est privée par accident.
+Une phrase sans mot de liaison est souvent une phrase qui ne démontre rien.</li>
+<li>Donnez votre texte à quelqu'un qui n'a pas cherché le problème, en lui demandant de
+s'arrêter à la première ligne qu'il ne croit pas. Réécrivez à partir de cette ligne, puis
+recommencez l'opération avec un autre lecteur.</li>
+<li>Faites le même travail sur votre démonstration de PRF-68 (c), qui est d'une autre
+nature : une phrase y remplace un calcul. Dites enfin, en deux phrases, ce que change le
+passage de « je vois pourquoi c'est vrai » à « j'ai écrit pourquoi c'est vrai ».</li>
+</ol>
+</div>
+<p class="context">La quatrième et dernière étape de la méthode de George Pólya, dans
+<i>How to Solve It</i> (1945), traduit en français sous le titre <i>Comment poser et
+résoudre un problème</i>, s'appelle « revenir en arrière » : le problème n'est pas fini quand
+la réponse est trouvée, il est fini quand l'argument tient debout tout seul, sans son auteur
+à côté pour l'expliquer. C'est exactement le service que rend, dans la vie d'un
+mathématicien, le rapporteur d'un article : quelqu'un qui n'est pas dans votre tête et qui
+s'arrête à la première ligne qu'il ne croit pas. La question (c) vous fait fabriquer ce
+lecteur, et c'est de loin l'exercice le plus utile de cette page — parce qu'une démonstration
+qu'on est seul à comprendre n'a encore convaincu personne.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9monstration_(logique_et_math%C3%A9matiques)">Démonstration (logique et mathématiques) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/George_P%C3%B3lya">George Pólya — Wikipédia</a></li>
+<li>Lecture : G. Pólya, <i>Comment poser et résoudre un problème</i> (trad. fr. de <i>How to Solve It</i>)</li>
+</ul>
+</section>
+
+<section class="problem" id="PRF-75" data-level="Collège" data-kind="court">
+<h3>PRF-75 · Toujours vrai, ou seulement souvent vrai <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Décidez, avec démonstration, si l'affirmation « la
+somme de deux nombres premiers est un nombre pair » est toujours vraie ; si elle ne l'est
+pas, énoncez et démontrez la règle exacte qui dit quand elle l'est. Dites ensuite en une
+phrase ce que change, pour un mathématicien, le passage de « je n'ai trouvé aucune
+exception » à « il ne peut pas y en avoir ».</p>
+<p class="context">La distinction entre « toujours vrai » et « vrai dans tous les cas que
+j'ai regardés » est la frontière même des mathématiques, et il existe un exemple magnifique
+juste à côté de celui-ci : la conjecture de Goldbach affirme que tout entier pair supérieur
+à 2 est la somme de deux nombres premiers. Elle a été vérifiée par ordinateur pour tous les
+entiers pairs jusqu'à plus de quatre milliards de milliards, sans la moindre exception, et
+personne ne l'a démontrée depuis qu'Euler et Goldbach en ont discuté par lettres en 1742.
+Voilà à quoi ressemble une affirmation « souvent vraie » : indéfiniment vérifiée, toujours
+non démontrée, et donc toujours pas un théorème.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_premier">Nombre premier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Goldbach">Conjecture de Goldbach — Wikipédia</a></li>
+<li>Voir aussi : <a href="open-problems.html">Problèmes ouverts</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 

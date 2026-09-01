@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -41,6 +42,359 @@ consiste à apprendre à le dire de sorte qu'il survive à n'importe quelle figu
 <a href="tex/pure-geometry.tex" download>source LaTeX</a> · <a href="tex/pure-geometry.pdf" download>PDF compilé</a></p>
 <!-- site.js insère automatiquement la barre de filtre par niveau / recherche ici. N'en construisez pas. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="GEO-41" data-level="Collège">
+<h3>GEO-41 · Pourquoi les angles d'un triangle font 180° <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit \( ABC \) un triangle. Tracez la droite passant par \( A \) et parallèle à
+\( (BC) \).</p>
+<ol class="parts" type="a">
+<li>En utilisant les angles alternes-internes formés par cette parallèle avec \( (AB) \) puis avec
+\( (AC) \), démontrez que
+\[ \widehat{A} + \widehat{B} + \widehat{C} = 180^\circ . \]
+Nommez explicitement, à chaque étape, la propriété du cours que vous employez.</li>
+<li>Déduisez-en que la somme des angles d'un quadrilatère non croisé vaut \( 360^\circ \), puis que
+celle d'un polygone convexe à \( n \) côtés vaut \( (n-2) \times 180^\circ \). Justifiez le découpage
+que vous utilisez.</li>
+<li>Sur une sphère, on peut tracer un triangle dont les trois angles sont droits : partez du pôle
+Nord, descendez jusqu'à l'équateur, parcourez un quart d'équateur, remontez. Sa somme d'angles vaut
+\( 270^\circ \). Expliquez précisément quelle étape de votre démonstration de (a) devient fausse dans
+ce cas.</li>
+</ol>
+</div>
+<p class="context">C'est la proposition 32 du livre I des <i>Éléments</i> d'Euclide, et la question (c)
+en désigne le point sensible : la démonstration ne tient que parce qu'on a pu tracer <i>une seule</i>
+parallèle à \( (BC) \) passant par \( A \). Cet énoncé est le cinquième postulat d'Euclide, qu'il
+avait lui-même isolé comme suspect et que vingt siècles de mathématiciens ont tenté en vain de
+déduire des quatre autres. Gauss, Bolyai et Lobatchevski ont fini par comprendre, dans les années
+1820-1830, qu'on ne le pouvait pas : il existe des géométries cohérentes où il est faux, et où la
+somme des angles d'un triangle n'est jamais \( 180^\circ \). Autrement dit, ce résultat de sixième est
+équivalent au postulat le plus discuté de l'histoire des mathématiques — le problème GEO-06, plus bas,
+reprend l'affaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Somme_des_angles_d%27un_triangle">Somme des angles d'un triangle — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Angles_alternes-internes">Angles alternes-internes — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/G%C3%A9om%C3%A9trie_sph%C3%A9rique">Géométrie sphérique — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-42" data-level="Collège">
+<h3>GEO-42 · Pythagore par découpage <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soit un triangle rectangle de côtés de l'angle droit \( a \) et \( b \), et
+d'hypoténuse \( c \). Prenez deux carrés identiques de côté \( a + b \). Dans le premier, placez
+quatre copies du triangle dans les quatre coins de façon à laisser au centre un quadrilatère de côté
+\( c \) ; dans le second, placez les quatre mêmes copies de façon à laisser deux carrés vides, de
+côtés \( a \) et \( b \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que le quadrilatère central de la première figure est bien un carré. C'est le point que
+tout le monde saute : il faut prouver que ses angles sont droits, en utilisant que les angles aigus du
+triangle rectangle ont pour somme \( 90^\circ \).</li>
+<li>En comparant les aires des deux grands carrés, démontrez que
+\[ a^2 + b^2 = c^2 . \]</li>
+<li>Le triangle de côtés \( 3, 4, 5 \) est rectangle. Cela découle-t-il du théorème que vous venez de
+démontrer, ou d'un autre énoncé ? Formulez précisément l'énoncé nécessaire et dites en quoi il diffère
+du précédent.</li>
+<li>Un camarade affirme : « j'ai vérifié sur vingt triangles rectangles dessinés et mesurés, donc le
+théorème est vrai. » Expliquez pourquoi ce n'est pas une démonstration, et ce que ses mesures
+établissent réellement.</li>
+</ol>
+</div>
+<p class="context">Le résultat était connu et utilisé bien avant Pythagore : la tablette babylonienne
+Plimpton 322, vers 1800 av. J.-C., aligne des triplets d'entiers vérifiant la relation, et les cordes
+à nœuds des arpenteurs égyptiens s'en servaient pour tracer des angles droits. La démonstration par
+découpage demandée ici est essentiellement celle qui accompagne le <i>Zhoubi Suanjing</i> chinois, où
+la figure porte le nom de <i>xian tu</i>, et on la retrouve chez Bhāskara II au XII<sup>e</sup> siècle
+en Inde, accompagnée, dit la tradition, du seul mot « Regarde ! ». C'est le théorème qui compte le
+plus de démonstrations différentes — plusieurs centaines recensées, dont une due à un futur président
+des États-Unis, James Garfield, en 1876. La question (c) sépare deux énoncés qu'on confond presque
+toujours : le théorème et sa réciproque, et seule la réciproque permet de <i>conclure</i> qu'un
+triangle est rectangle.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Pythagore">Théorème de Pythagore — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Plimpton_322">Plimpton 322 — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Zhoubi_Suanjing">Zhoubi Suanjing — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Preuve_sans_mots">Preuve sans mots — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-43" data-level="Collège">
+<h3>GEO-43 · La médiatrice, ensemble des points équidistants <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soient \( A \) et \( B \) deux points distincts, \( I \) le milieu de
+\( [AB] \), et \( (d) \) la perpendiculaire à \( (AB) \) passant par \( I \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que tout point \( M \) de \( (d) \) vérifie \( MA = MB \).</li>
+<li>Démontrez la réciproque : tout point \( M \) du plan vérifiant \( MA = MB \) appartient à
+\( (d) \). C'est cette moitié-là qui justifie qu'on parle de <i>l'</i>ensemble des points
+équidistants et non seulement d'une famille de points équidistants.</li>
+<li>Soient \( A \), \( B \), \( C \) trois points non alignés. En appliquant (a) et (b) aux
+médiatrices de \( [AB] \) et de \( [BC] \), démontrez que les trois médiatrices du triangle
+\( ABC \) se coupent en un même point, et qu'il existe un cercle passant par les trois sommets.</li>
+<li>Trois villages veulent creuser un puits à égale distance des trois. Démontrez qu'un tel puits
+existe toujours, sauf dans un cas que vous préciserez, et expliquez géométriquement ce qui se passe
+dans ce cas.</li>
+</ol>
+</div>
+<p class="context">La double implication de (a) et (b) est le premier exemple, dans une scolarité, d'un
+<i>ensemble caractérisé par une propriété</i> — un lieu géométrique. Le mot est ancien : les Grecs
+appelaient <i>topos</i> une figure définie par une condition, et la plus grande partie de la géométrie
+classique consiste à reconnaître qu'une condition apparemment compliquée décrit en réalité une droite
+ou un cercle. Euclide construit le cercle circonscrit à la proposition 5 du livre IV. La question (d)
+est là pour l'exception : les trois médiatrices d'un triangle aplati sont parallèles, et le puits
+part à l'infini — un cas dégénéré qu'une bonne rédaction n'a pas le droit de passer sous silence.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9diatrice">Médiatrice — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cercle_circonscrit">Cercle circonscrit — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-44" data-level="Collège">
+<h3>GEO-44 · Encadrer π, puis l'aire du disque <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On considère un cercle de rayon \( 1 \), donc de périmètre \( 2\pi \).</p>
+<ol class="parts" type="a">
+<li>Inscrivez dans ce cercle un carré, et circonscrivez-lui un autre carré. Calculez les deux
+périmètres et démontrez l'encadrement \( 2\sqrt{2} \le \pi \le 4 \), en énonçant clairement
+l'hypothèse géométrique que vous admettez sur les longueurs.</li>
+<li>Remplacez le carré inscrit par un hexagone régulier. Démontrez que son côté vaut exactement
+\( 1 \) — décomposez l'hexagone en six triangles et montrez qu'ils sont équilatéraux — puis
+déduisez-en que \( \pi \ge 3 \).</li>
+<li>Découpez maintenant le disque en un grand nombre de secteurs égaux très fins, et rangez-les tête
+bêche pour former une figure proche d'un rectangle. Expliquez pourquoi les dimensions de ce
+« rectangle » sont proches de \( \pi \) et de \( 1 \), et pourquoi cela rend plausible que l'aire du
+disque vaille \( \pi \).</li>
+<li>Dites précisément ce que l'argument de (c) ne démontre pas. Quel mot, absent du programme du
+collège, faudrait-il définir pour qu'il devienne une démonstration ?</li>
+</ol>
+</div>
+<p class="context">Archimède écrit vers 250 av. J.-C. un petit traité, <i>De la mesure du cercle</i>,
+qui fait exactement cela : en partant de l'hexagone et en doublant quatre fois le nombre de côtés
+jusqu'au polygone à 96 côtés, inscrit puis circonscrit, il obtient \( 223/71 &lt; \pi &lt; 22/7 \).
+C'est le premier encadrement de l'histoire assorti d'une démonstration, et le procédé — la méthode
+d'exhaustion héritée d'Eudoxe — est l'ancêtre direct du calcul intégral. Archimède démontre aussi, dans
+le même traité, que l'aire du disque est celle d'un triangle de base le périmètre et de hauteur le
+rayon, ce qui est précisément l'énoncé que le découpage de (c) fait deviner. La question (d) doit vous
+mener au mot manquant : <i>limite</i>. Vous le rencontrerez au lycée, et la page
+<a href="pure-real-analysis.html">Analyse réelle et théorie de la mesure</a> montre ce qu'il a fallu de travail pour le
+définir proprement — deux mille ans après Archimède.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pi">Pi — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27exhaustion">Méthode d'exhaustion — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Archim%C3%A8de">Archimède — Wikipédia</a></li>
+<li>Voir aussi : <a href="pure-real-analysis.html">Analyse réelle et théorie de la mesure</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-45" data-level="Collège">
+<h3>GEO-45 · Thalès, l'ombre et la pyramide <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un piquet vertical de \( 1{,}50 \) m projette une ombre de \( 2{,}40 \) m. Au même
+instant, l'ombre d'un arbre voisin mesure \( 18 \) m.</p>
+<ol class="parts" type="a">
+<li>Faites une figure faisant apparaître la configuration de Thalès, et calculez la hauteur de
+l'arbre. Justifiez chaque étape par le théorème, énoncé en entier.</li>
+<li>Cette méthode repose sur une hypothèse physique que la figure ne montre pas. Laquelle ? Expliquez
+pourquoi la conclusion serait fausse si les rayons du Soleil n'étaient pas sensiblement parallèles, et
+si le piquet et l'arbre n'étaient pas tous deux verticaux.</li>
+<li>La tradition rapporte que Thalès mesura ainsi la hauteur de la grande pyramide de Khéops. Le
+problème est en réalité plus difficile que celui de l'arbre : le pied de la pyramide n'est pas
+accessible. Expliquez quelle longueur supplémentaire il faut mesurer et pourquoi.</li>
+<li>Construisez une figure où deux triangles partagent un sommet et où les longueurs sont dans le même
+rapport, mais où la conclusion du théorème est fausse parce que les droites ne sont pas parallèles.
+Dites ce que cela prouve sur l'usage du théorème.</li>
+</ol>
+</div>
+<p class="context">Thalès de Milet, au VI<sup>e</sup> siècle av. J.-C., est le premier personnage à qui
+la tradition grecque attribue des démonstrations plutôt que des recettes — le passage, décisif, de
+« cela marche » à « voici pourquoi ». L'histoire de la pyramide nous vient de Diogène Laërce et de
+Plutarque, huit siècles plus tard, et deux versions circulent : l'une où Thalès attend l'heure à
+laquelle son ombre égale sa taille, l'autre où il utilise le rapport général, celle du présent
+problème. On ne peut pas trancher, et il faut le dire ainsi. Ce qui n'est pas légendaire, c'est le
+contenu du théorème : il exprime que la géométrie euclidienne est invariante par changement d'échelle,
+propriété que la géométrie sphérique de GEO-41 ne possède pas — sur une sphère, agrandir une figure la
+déforme.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Thal%C3%A8s">Théorème de Thalès — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Thal%C3%A8s">Thalès — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pyramide_de_Kh%C3%A9ops">Pyramide de Khéops — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-46" data-level="Collège">
+<h3>GEO-46 · Le patron d'un cube et les faces d'un dé <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un patron de cube est une figure faite de six carrés reliés par des côtés, qui se
+plie en un cube sans recouvrement.</p>
+<ol class="parts" type="a">
+<li>Trouvez le plus grand nombre possible de patrons de cube, deux patrons superposables par rotation
+ou retournement étant considérés comme identiques. Il y en a exactement onze : décrivez la méthode qui
+vous garantit de n'en oublier aucun.</li>
+<li>Démontrez que deux carrés d'un patron qui partagent un côté ne deviennent jamais des faces
+opposées du cube.</li>
+<li>Sur un dé usuel, deux faces opposées portent des nombres dont la somme vaut \( 7 \). Prenez un
+patron en croix, numérotez-en une face \( 1 \) et une face voisine \( 2 \) : montrez qu'il reste
+exactement deux façons de compléter le dé, et que ces deux dés ne sont pas superposables.</li>
+<li>On double l'arête d'un cube. Démontrez que son aire est multipliée par \( 4 \) et son volume par
+\( 8 \), et expliquez pourquoi les exposants \( 2 \) et \( 3 \) apparaissent ici.</li>
+</ol>
+</div>
+<p class="context">Le dénombrement des onze patrons est l'un des rares problèmes de collège où l'on
+doit démontrer qu'une liste est <i>complète</i> — non pas trouver des exemples, mais fermer la porte.
+La bonne méthode consiste à classer les patrons par la longueur de leur plus longue bande de carrés
+alignés, ce qui transforme une recherche tâtonnante en un raisonnement fini. Les deux dés de la
+question (c) sont symétriques l'un de l'autre sans être superposables : les dés occidentaux et
+certains dés asiatiques anciens n'ont pas la même chiralité, et un joueur attentif peut le voir. La
+question (d) contient en germe toute la théorie des dimensions — pourquoi une fourmi peut tomber sans
+dommage et pas un éléphant — et c'est le même exposant \( 3 \) qui explique que Kepler, en empilant
+des boulets de canon, ait posé un problème resté ouvert jusqu'en 1998.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Patron_(g%C3%A9om%C3%A9trie)">Patron (géométrie) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Cube">Cube — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/D%C3%A9">Dé — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-47" data-level="Collège">
+<h3>GEO-47 · Le plus court chemin jusqu'à la rivière <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une droite \( (d) \) représente la berge d'une rivière. Deux points \( A \) et
+\( B \) sont situés du même côté de \( (d) \). Un promeneur part de \( A \), doit toucher la berge en
+un point \( M \), puis rejoindre \( B \) ; il cherche à rendre \( AM + MB \) le plus petit possible.</p>
+<ol class="parts" type="a">
+<li>Soit \( A' \) le symétrique de \( A \) par rapport à \( (d) \). Démontrez que pour tout point
+\( M \) de \( (d) \), on a \( AM = A'M \), donc \( AM + MB = A'M + MB \).</li>
+<li>Démontrez, à l'aide de l'inégalité triangulaire, que \( A'M + MB \) est minimal lorsque \( M \)
+est le point d'intersection de \( [A'B] \) avec \( (d) \), et que ce point existe et est unique.</li>
+<li>Démontrez qu'en ce point l'angle entre \( [AM] \) et \( (d) \) est égal à l'angle entre
+\( [MB] \) et \( (d) \).</li>
+<li>Reprenez le problème lorsque \( A \) et \( B \) sont de part et d'autre de \( (d) \). Que devient
+la solution, et pourquoi le détour par le symétrique n'est-il alors plus nécessaire ?</li>
+</ol>
+</div>
+<p class="context">Héron d'Alexandrie, au I<sup>er</sup> siècle, pose et résout ce problème dans sa
+<i>Catoptrique</i>, et en tire une conclusion audacieuse : puisque la lumière réfléchie suit un chemin
+dont l'angle d'incidence égale l'angle de réflexion, c'est que <i>la lumière prend le chemin le plus
+court</i>. C'est le premier principe de minimalité de la physique. Fermat le reprend en 1662, corrige
+« le plus court » en « le plus rapide » et en déduit la loi de la réfraction ; de là descend toute la
+mécanique de Maupertuis, d'Euler et de Lagrange, et l'idée que les lois de la nature s'écrivent comme
+des minimisations. Tout cela tient dans la symétrie axiale de la question (a) : un pliage de feuille
+qui remplace un problème d'optimisation par une ligne droite.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sym%C3%A9trie_axiale">Symétrie axiale — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/In%C3%A9galit%C3%A9_triangulaire">Inégalité triangulaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/H%C3%A9ron_d%27Alexandrie">Héron d'Alexandrie — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Principe_de_Fermat">Principe de Fermat — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-48" data-level="Collège" data-kind="court">
+<h3>GEO-48 · Des triangles de même aire <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \( A \) et \( B \) deux points d'une droite \( (d) \), et
+\( (d') \) une droite parallèle à \( (d) \). Démontrez que tous les triangles \( ABM \), lorsque
+\( M \) parcourt \( (d') \), ont la même aire, et expliquez pourquoi cette aire ne dépend pas de la
+position de \( M \) alors que la forme du triangle, elle, change du tout au tout.</p>
+<p class="context">C'est le lemme du « cisaillement » : on peut faire glisser le sommet d'un triangle
+le long d'une parallèle à la base sans rien changer à l'aire, et cette seule remarque démontre en trois
+lignes la moitié des formules d'aire du collège. Euclide s'en sert aux propositions 37 et 38 du livre
+I, juste avant d'attaquer Pythagore, et la démonstration célèbre de la proposition 47 n'est presque
+rien d'autre que deux cisaillements bien choisis.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Aire_d%27un_triangle">Aire d'un triangle — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-49" data-level="Collège">
+<h3>GEO-49 · Quels polygones pavent le plan <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On veut recouvrir le plan, sans trou ni chevauchement, avec des copies d'un même
+polygone régulier, les carreaux se joignant côté contre côté et sommet contre sommet.</p>
+<ol class="parts" type="a">
+<li>En utilisant le résultat de GEO-41, démontrez que l'angle intérieur d'un polygone régulier à
+\( n \) côtés vaut
+\[ \frac{(n-2) \times 180^\circ}{n} . \]</li>
+<li>Autour de chaque sommet du pavage, les angles des carreaux doivent totaliser exactement
+\( 360^\circ \). Démontrez que l'angle intérieur doit donc diviser \( 360^\circ \), et déduisez-en que
+seuls le triangle équilatéral, le carré et l'hexagone régulier conviennent.</li>
+<li>Traitez explicitement le cas du pentagone régulier : calculez son angle et montrez où le calcul
+échoue. Dessinez trois pentagones autour d'un point et mesurez le trou qui reste.</li>
+<li>Parmi les trois pavages possibles, l'hexagone est celui qui, à aire donnée, utilise la plus petite
+longueur de cloisons. Cherchez ce que les abeilles en font, et énoncez en une phrase le théorème du
+nid d'abeilles en précisant qui l'a démontré et quand.</li>
+</ol>
+</div>
+<p class="context">La restriction aux trois pavages réguliers est déjà chez Pappus d'Alexandrie
+(IV<sup>e</sup> siècle), qui remarque au passage que les abeilles ont « choisi » l'hexagone et y voit
+un signe de sagesse géométrique. L'intuition qu'il exprime — l'hexagone minimise la cloison — est
+restée une conjecture pendant seize siècles, jusqu'à ce que Thomas Hales la démontre en 1999 : c'est
+le théorème du nid d'abeilles. Levez ensuite la contrainte de régularité et le sujet explose : les
+pavages du plan par des figures quelconques sont classés en dix-sept groupes de symétrie, dont les
+mosaïques de l'Alhambra de Grenade illustrent une bonne part six siècles avant qu'on ne sache les
+compter, et la question de savoir quels pentagones convexes pavent le plan n'a été close qu'en 2017,
+par Michaël Rao.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pavage_du_plan">Pavage du plan — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Polygone_r%C3%A9gulier">Polygone régulier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pavage_hexagonal">Pavage hexagonal — Wikipédia</a></li>
+<li>Contexte : <a href="https://en.wikipedia.org/wiki/Honeycomb_theorem">Théorème du nid d'abeilles — Wikipédia (en anglais)</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-50" data-level="Collège" data-kind="court">
+<h3>GEO-50 · Deux miroirs parallèles <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Soient \( (d_1) \) et \( (d_2) \) deux droites parallèles
+distinctes. Démontrez que la composée des deux symétries axiales d'axes \( (d_1) \) puis \( (d_2) \)
+est une translation, et déterminez sa direction, son sens et sa longueur en fonction de la distance
+entre les deux droites.</p>
+<p class="context">C'est le premier théorème de composition de transformations qu'on puisse démontrer
+sans machinerie, et il ouvre une porte : les symétries axiales engendrent toutes les isométries du
+plan, si bien que translations et rotations ne sont pas des objets nouveaux mais des produits de
+réflexions. Remplacez « parallèles » par « sécantes » et vous obtiendrez une rotation d'angle double
+— la même démonstration, une figure différente — et vous serez à la porte de la théorie des groupes,
+qui classe les frises et les pavages de GEO-49.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sym%C3%A9trie_axiale">Symétrie axiale — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Groupe_de_frise">Groupe de frise — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-51" data-level="Collège" data-kind="court">
+<h3>GEO-51 · Voir n'est pas démontrer <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Tracez très soigneusement, sur cinq triangles quelconques et
+franchement différents, le point de concours des médianes \( G \), celui des médiatrices \( O \) et
+celui des hauteurs \( H \) ; constatez à la règle que ces trois points paraissent toujours alignés.
+Rédigez ensuite, en une demi-page, pourquoi ces cinq figures — et cent de plus — ne démontrent rien,
+et ce qu'il faudrait produire à la place.</p>
+<p class="context">L'alignement est réel : c'est la droite d'Euler, publiée en 1765, deux mille ans
+après Euclide — rappel que la géométrie du triangle n'était pas close. Sa démonstration est au-dessus
+du collège et vous attend en GEO-03, plus bas sur cette page. Ce qui est à votre portée aujourd'hui,
+et qui compte davantage, c'est de savoir nommer l'écart entre une régularité observée et un théorème :
+la conjecture de Pólya, vérifiée sur des centaines de millions de cas, s'est révélée fausse ; celle de
+Mertens aussi. Une figure vous dit où chercher, elle ne vous dit jamais que vous avez trouvé.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Droite_d%27Euler">Droite d'Euler — Wikipédia</a></li>
+<li>Voir aussi : <a href="proofs.html">L'art de la démonstration</a></li>
+</ul>
+</section>
+
+<section class="problem" id="GEO-52" data-level="Collège" data-kind="court">
+<h3>GEO-52 · Reconnaître deux droites parallèles <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Deux droites \( (d) \) et \( (d') \) sont coupées par une
+sécante \( (s) \), et deux angles alternes-internes ainsi formés sont égaux. Démontrez que \( (d) \)
+et \( (d') \) sont parallèles, en nommant précisément l'axiome ou le théorème du cours qui autorise
+chacun de vos pas.</p>
+<p class="context">C'est la proposition 27 du livre I d'Euclide, et sa place dans les <i>Éléments</i>
+est remarquable : elle est démontrée <i>sans</i> le cinquième postulat, alors que sa réciproque — si
+les droites sont parallèles alors les angles alternes-internes sont égaux, proposition 29 — en a
+besoin. Les deux énoncés se ressemblent comme deux gouttes d'eau et n'ont pas du tout le même statut
+logique ; savoir dans quel sens on raisonne est ici la seule chose qui compte.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Angles_alternes-internes">Angles alternes-internes — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Axiome_des_parall%C3%A8les">Axiome des parallèles — Wikipédia</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 

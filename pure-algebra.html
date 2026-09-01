@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -43,6 +44,329 @@ une démonstration ; les références disent d'où viennent les idées.</p>
 <a href="tex/pure-algebra.tex" download>source LaTeX</a> · <a href="tex/pure-algebra.pdf" download>PDF compilé</a></p>
 <!-- site.js insere automatiquement la barre de filtre par niveau / recherche ici. NE PAS en construire une. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="ALG-44" data-level="Collège">
+<h3>ALG-44 · Trois entiers consécutifs <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Des entiers consécutifs sont des entiers qui se suivent, comme 7, 8, 9. Dans
+tout ce problème, il s'agit de démontrer, pas de vérifier sur des exemples.</p>
+<ol class="parts" type="a">
+<li>Démontrez que la somme de trois entiers consécutifs est toujours divisible par 3. On appellera
+\( n \) le premier des trois, et l'on prendra soin de dire pourquoi le raisonnement vaut aussi
+lorsque \( n \) est négatif.</li>
+<li>Démontrez que la somme de cinq entiers consécutifs est toujours divisible par 5, puis que la
+somme de quatre entiers consécutifs n'est jamais divisible par 4.</li>
+<li>Déterminez, en le démontrant, tous les entiers \( k \ge 2 \) tels que la somme de \( k \)
+entiers consécutifs quelconques soit toujours divisible par \( k \).</li>
+</ol>
+</div>
+<p class="context">Le passage de « ça marche sur mes exemples » à « ça marche toujours, et voici
+pourquoi » est exactement ce que la lettre \( n \) rend possible : une seule ligne de calcul
+littéral remplace une infinité de vérifications. C'est le geste fondateur de l'algèbre, et il est
+plus ancien qu'on ne croit — al-Khwârizmî, à Bagdad vers 820, écrit encore ses inconnues en toutes
+lettres dans le traité dont le titre a donné le mot <i>algèbre</i>, et il faudra attendre Viète à
+la fin du XVI<sup>e</sup> siècle pour que les lettres deviennent le langage ordinaire du calcul.
+La partie (c) montre qu'une belle règle a souvent une frontière nette, et que la trouver est plus
+instructif que la règle elle-même.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Calcul_alg%C3%A9brique">Calcul algébrique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Parit%C3%A9_(arithm%C3%A9tique)">Parité (arithmétique) — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Al-Khw%C3%A2rizm%C3%AE">Al-Khwârizmî — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-45" data-level="Collège">
+<h3>ALG-45 · « Pense à un nombre… » <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Voici un tour de magie numérique. Pensez à un nombre ; ajoutez 5 ; multipliez
+le résultat par 2 ; retirez 4 ; divisez par 2 ; enfin, retirez le nombre auquel vous aviez pensé.
+Le magicien annonce alors que le résultat est 3, quel que soit le nombre choisi au départ.</p>
+<ol class="parts" type="a">
+<li>Vérifiez le tour sur trois nombres de départ différents, dont un nombre négatif et un nombre
+décimal.</li>
+<li>En appelant \( x \) le nombre pensé, écrivez l'expression obtenue après chaque étape, puis
+démontrez que le résultat final ne dépend pas de \( x \). Précisez à quel moment exactement le
+\( x \) disparaît, et par quelle propriété du calcul.</li>
+<li>Inventez un tour du même genre dont la réponse annoncée est toujours 7, et démontrez qu'il
+fonctionne. Inventez-en ensuite un dont la réponse est le double du nombre pensé, et démontrez-le
+aussi.</li>
+</ol>
+</div>
+<p class="context">Ces tours circulent dans les cours de récréation depuis des siècles, et ils sont
+de l'algèbre déguisée : le magicien ne devine rien, il a construit une expression qui se simplifie
+en une constante. Martin Gardner, qui a tenu la chronique de récréations mathématiques du
+<i>Scientific American</i> de 1956 à 1981, en a recueilli et analysé des centaines, précisément
+parce qu'expliquer le truc et démontrer une identité sont le même travail. La partie (c) est la
+plus formatrice : construire un tour, c'est résoudre le problème à l'envers, et l'on ne peut le
+faire qu'en comprenant le mécanisme.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Calcul_alg%C3%A9brique">Calcul algébrique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Martin_Gardner">Martin Gardner — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-46" data-level="Collège">
+<h3>ALG-46 · Les identités remarquables démontrées par des aires <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans tout ce problème, \( a \) et \( b \) désignent des longueurs, donc des
+nombres strictement positifs, et chaque égalité doit être établie par un découpage de figure et un
+calcul d'aires — pas par un développement algébrique.</p>
+<ol class="parts" type="a">
+<li>Un carré de côté \( a+b \) est découpé en quatre morceaux par deux traits. Démontrez, en
+calculant l'aire totale de deux façons, que
+\[ (a+b)^2 = a^2 + 2ab + b^2 . \]</li>
+<li>On suppose \( 0 &lt; b &lt; a \). Démontrez de même que \( (a-b)^2 = a^2 - 2ab + b^2 \) en
+retirant deux bandes à un carré de côté \( a \), et expliquez pourquoi le petit carré de côté
+\( b \) est d'abord retiré deux fois, puis rendu une fois.</li>
+<li>Démontrez que \( a^2 - b^2 = (a-b)(a+b) \) en découpant en deux morceaux la figure obtenue en
+ôtant d'un carré de côté \( a \) un carré de côté \( b \) placé dans un coin, puis en recollant ces
+deux morceaux pour former un rectangle. Précisez les dimensions du rectangle obtenu.</li>
+</ol>
+</div>
+<p class="context">Le livre II des <i>Éléments</i> d'Euclide, écrit vers 300 av. J.-C., ne contient
+aucune formule : ses propositions 4 et 5 sont exactement les identités ci-dessus, énoncées comme
+des théorèmes sur des rectangles et des carrés, et démontrées par découpage. Les historiens
+appellent cela l'algèbre géométrique des Grecs — ils n'avaient pas de notation littérale, mais ils
+avaient les figures, et les figures suffisaient. La méthode de complétion du carré d'al-Khwârizmî,
+neuf siècles plus tard, est encore un dessin ; comprendre ces identités comme des aires plutôt que
+comme des recettes à retenir change durablement la façon dont on les manipule.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Identit%C3%A9_remarquable">Identité remarquable — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89l%C3%A9ments_(Euclide)">Éléments (Euclide) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-47" data-level="Collège" data-kind="court">
+<h3>ALG-47 · Une hausse puis une baisse <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un prix \( p \) subit une hausse de 20 %, puis le nouveau prix
+subit une baisse de 20 % ; démontrez que l'on ne retrouve jamais le prix de départ, sauf si
+\( p = 0 \), et déterminez la variation totale exprimée en pourcentage. Déterminez ensuite, en le
+justifiant, le pourcentage de baisse qui annulerait exactement une hausse de 20 %.</p>
+<p class="context">C'est l'un des rares résultats de collège que l'on peut utiliser toute sa vie :
+les pourcentages successifs se multiplient et ne s'additionnent pas, ce qui explique pourquoi une
+remise sur une remise n'est pas la somme des deux, et pourquoi un placement qui perd 50 % puis
+gagne 50 % a bel et bien perdu. La démonstration tient en une ligne dès qu'on écrit la hausse comme
+une multiplication par un coefficient plutôt que comme une addition — c'est le changement de point
+de vue qui fait tout le travail.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Pourcentage">Pourcentage — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Proportionnalit%C3%A9">Proportionnalité — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-48" data-level="Collège" data-kind="court">
+<h3>ALG-48 · Le carré des nombres qui finissent par 5 <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> On observe que \( 25^2 = 625 \), \( 35^2 = 1225 \) et
+\( 45^2 = 2025 \) : chaque résultat se termine par 25, et ce qui précède ces deux chiffres est le
+produit du chiffre des dizaines par l'entier suivant. Démontrez cette règle pour tout entier de la
+forme \( 10a + 5 \) avec \( a \) entier naturel, et déterminez si elle vaut encore quand \( a \) a
+lui-même plusieurs chiffres, comme dans \( 115^2 \).</p>
+<p class="context">Les calculateurs mentaux professionnels du XIX<sup>e</sup> siècle vivaient de
+règles de ce genre, et les manuels de calcul rapide en sont pleins ; ce qui les distingue d'un
+simple truc, c'est qu'une identité remarquable les démontre en deux lignes. Une fois la
+démonstration écrite, la règle cesse d'être à retenir : on la reconstruit. C'est la différence
+entre savoir un tour et savoir pourquoi il ne peut pas échouer.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Identit%C3%A9_remarquable">Identité remarquable — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Calcul_mental">Calcul mental — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-49" data-level="Collège">
+<h3>ALG-49 · Le partage, posé en équation <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Poser une équation, c'est nommer d'une lettre la quantité cherchée, puis
+traduire chaque phrase de l'énoncé en une écriture mathématique.</p>
+<ol class="parts" type="a">
+<li>Trois personnes se partagent 120 euros : la deuxième reçoit le double de la première, et la
+troisième reçoit 15 euros de plus que la deuxième. Déterminez les trois parts en posant une
+équation d'inconnue la part de la première, et démontrez que la solution est unique.</li>
+<li>Problème 40 du papyrus Rhind, copié en Égypte vers 1650 av. J.-C. : partager 100 pains entre
+cinq hommes de telle sorte que les cinq parts se suivent avec un écart constant, et que le septième
+de la somme des trois plus grandes parts soit égal à la somme des deux plus petites. Traduisez
+l'énoncé en calcul littéral et résolvez-le en justifiant chaque étape.</li>
+<li>Construisez un énoncé de partage du même type qui n'admet aucune solution acceptable, et
+démontrez qu'il n'en admet aucune. Expliquez ensuite ce que le passage par une inconnue apporte de
+plus qu'un tâtonnement, même bien organisé.</li>
+</ol>
+</div>
+<p class="context">Le papyrus Rhind, copié par le scribe Ahmès d'après un original plus ancien
+encore et conservé aujourd'hui au British Museum, est l'un des plus vieux textes mathématiques que
+nous ayons ; ses problèmes de partage de pains et de bière sont des problèmes d'équation avant que
+le mot n'existe. Les Égyptiens les résolvaient par la méthode dite de fausse position — on essaie
+une valeur commode, on regarde de combien on se trompe, puis on corrige proportionnellement — et
+comparer cette méthode à la vôtre est instructif : elle fonctionne exactement parce que la relation
+est linéaire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Papyrus_Rhind">Papyrus Rhind — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89quation_du_premier_degr%C3%A9">Équation du premier degré — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-50" data-level="Collège">
+<h3>ALG-50 · L'épitaphe de Diophante <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Une épigramme de l'<i>Anthologie grecque</i> décrit ainsi la vie de Diophante :
+son enfance occupa le sixième de sa vie ; un douzième de plus, et sa joue se couvrit de barbe ;
+après un septième de plus il se maria ; cinq ans plus tard naquit un fils, qui vécut la moitié de
+la vie de son père ; le père survécut quatre ans à son enfant, puis mourut.</p>
+<ol class="parts" type="a">
+<li>En appelant \( x \) l'âge de Diophante à sa mort, traduisez chacune des six indications de
+l'épigramme en une expression littérale.</li>
+<li>Écrivez l'équation que traduit la phrase « ces durées mises bout à bout composent toute sa
+vie », puis résolvez-la en justifiant chaque étape.</li>
+<li>Vérifiez que toutes les durées obtenues sont bien des nombres entiers d'années, et expliquez
+pourquoi l'auteur de l'épigramme ne pouvait pas choisir les fractions au hasard. Remplacez ensuite
+le sixième par un cinquième et déterminez, en le justifiant, si l'énigme modifiée admet encore une
+solution entière.</li>
+</ol>
+</div>
+<p class="context">Diophante d'Alexandrie, auteur des <i>Arithmétiques</i>, a vécu au
+III<sup>e</sup> siècle de notre ère — les dates ne sont pas sûres, et c'est en partie pourquoi
+cette épigramme, transmise par l'<i>Anthologie grecque</i> et probablement composée bien après sa
+mort, a tant circulé. Le charme du problème tient à ce que la poésie et l'algèbre y coïncident : la
+narration impose sa contrainte à chaque vers, et l'équation est le poème traduit. C'est aussi
+l'ancêtre direct de tous les problèmes d'âges, et Diophante a donné son nom aux équations dont on
+ne cherche que les solutions entières.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Diophante_d%27Alexandrie">Diophante d'Alexandrie — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Anthologie_grecque">Anthologie grecque — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-51" data-level="Collège">
+<h3>ALG-51 · Les poules et les lapins <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Dans une basse-cour on ne compte que des poules, à deux pattes, et des lapins,
+à quatre pattes. On dénombre 35 têtes et 94 pattes.</p>
+<ol class="parts" type="a">
+<li>Déterminez le nombre de poules et le nombre de lapins par un tâtonnement organisé dans un
+tableau, et démontrez que votre tableau ne peut pas avoir laissé échapper une autre solution.</li>
+<li>Reprenez la question en n'introduisant qu'une seule inconnue et une seule équation du premier
+degré, et démontrez que la solution est unique.</li>
+<li>On compte maintenant 35 têtes et 95 pattes. Démontrez qu'aucune basse-cour ne peut donner ce
+résultat. Déterminez ensuite, en le justifiant, tous les nombres de pattes possibles pour 35
+têtes.</li>
+</ol>
+</div>
+<p class="context">Le problème apparaît sous cette forme exacte — 35 têtes, 94 pattes — dans le
+<i>Sunzi Suanjing</i>, manuel chinois du III<sup>e</sup> au V<sup>e</sup> siècle, avec des faisans
+et des lapins ; il a voyagé jusqu'au Japon, où on l'appelle le calcul des grues et des tortues, et
+il figure encore aujourd'hui dans les manuels du monde entier. Sa longévité vient de ce qu'il se
+laisse attaquer de trois façons également honnêtes : par tableau, par une inconnue, ou par
+l'astuce dite « faites lever les lapins sur leurs pattes arrière ». La partie (c) est la plus
+mathématique des trois, car elle demande de démontrer une impossibilité, ce qu'aucun tâtonnement
+ne saura jamais faire.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Sunzi_Suanjing">Sunzi Suanjing — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27%C3%A9quations_lin%C3%A9aires">Système d'équations linéaires — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-52" data-level="Collège">
+<h3>ALG-52 · La somme de Gauss <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On s'intéresse aux sommes d'entiers qui se suivent, et à la façon de les
+calculer sans les additionner un par un.</p>
+<ol class="parts" type="a">
+<li>Calculez \( 1 + 2 + 3 + \cdots + 100 \) en appariant le premier terme avec le dernier, le
+deuxième avec l'avant-dernier, et ainsi de suite. Démontrez que tous les couples ainsi formés ont
+la même somme, et justifiez le nombre de couples obtenus.</li>
+<li>Démontrez que pour tout entier \( n \ge 1 \),
+\[ 1 + 2 + 3 + \cdots + n = \frac{n(n+1)}{2} , \]
+en écrivant la somme deux fois, une fois à l'endroit et une fois à l'envers, puis en ajoutant les
+deux lignes colonne par colonne. Expliquez pourquoi cette démonstration évite d'avoir à distinguer
+le cas où \( n \) est pair de celui où \( n \) est impair.</li>
+<li>Démontrez que la somme des \( n \) premiers nombres impairs vaut \( n^2 \), et illustrez le
+résultat par un dessin de carrés emboîtés en expliquant ce que représente chaque équerre
+ajoutée.</li>
+</ol>
+</div>
+<p class="context">L'anecdote est célèbre : le jeune Gauss, à l'école primaire de Brunswick, aurait
+mis quelques secondes à additionner une longue suite d'entiers que le maître croyait bonne à
+occuper la classe une heure. Elle nous vient du mémorial que son ami Sartorius von Waltershausen
+publie en 1856, l'année suivant la mort de Gauss ; la version précise « de 1 à 100 » est un
+embellissement plus tardif, et l'anecdote a probablement été polie par le temps. Le procédé, lui,
+est bien plus vieux que Gauss — on le trouve chez les pythagoriciens sous forme de cailloux
+disposés en triangle — et la partie (c) donne l'une des plus belles démonstrations sans mots de
+toutes les mathématiques.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Suite_arithm%C3%A9tique">Suite arithmétique — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_triangulaire">Nombre triangulaire — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-53" data-level="Collège">
+<h3>ALG-53 · Échelles, agrandissements et vitesses <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Trois situations où l'on croit reconnaître de la proportionnalité, et où il faut
+regarder de près.</p>
+<ol class="parts" type="a">
+<li>Sur une carte à l'échelle \( 1 : 25\,000 \), deux villages sont distants de 8,4 cm. Déterminez
+la distance réelle en kilomètres et justifiez le calcul par un tableau de proportionnalité, en
+disant ce que représente le coefficient employé.</li>
+<li>Une maquette de bateau est construite à l'échelle \( 1 : 50 \). Démontrez que l'aire de sa
+voilure est 2 500 fois plus petite que celle du bateau réel, et son volume 125 000 fois plus petit.
+Expliquez pourquoi les trois facteurs de réduction sont différents alors que l'échelle est
+unique.</li>
+<li>Un cycliste parcourt 27 km en 1 h 12 min. Un second roule 20 % plus vite que le premier.
+Déterminez le temps mis par le second, en le justifiant, puis démontrez que le temps de parcours
+n'est pas proportionnel à la vitesse mais lui est inversement proportionnel.</li>
+</ol>
+</div>
+<p class="context">La partie (b) est la raison pour laquelle on ne peut pas fabriquer un insecte
+géant ni un éléphant miniature : quand une longueur est multipliée par \( k \), les aires le sont
+par \( k^2 \) et les volumes par \( k^3 \), si bien que la masse croît beaucoup plus vite que la
+section des os qui doit la porter. Galilée l'expose dès 1638 dans les <i>Discours concernant deux
+sciences nouvelles</i>, et J. B. S. Haldane en tire en 1926 un essai resté fameux, <i>On Being the
+Right Size</i>. La partie (c) traque l'erreur la plus répandue en proportionnalité : croire que
+deux grandeurs liées varient forcément dans le même sens et dans le même rapport.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Proportionnalit%C3%A9">Proportionnalité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/%C3%89chelle_(proportion)">Échelle (proportion) — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-54" data-level="Collège" data-kind="court">
+<h3>ALG-54 · Multiplier autour d'un carré <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Pour calculer \( 19 \times 21 \) de tête on remarque que les
+deux facteurs encadrent 20 ; démontrez que \( (n-1)(n+1) = n^2 - 1 \) pour tout nombre \( n \), puis
+établissez la règle plus générale donnant \( (n-k)(n+k) \). Servez-vous-en pour justifier un calcul
+mental de \( 97 \times 103 \), puis déterminez si tout produit de deux entiers peut se ramener de
+cette façon à une différence de deux carrés.</p>
+<p class="context">Cette identité est la plus utile des trois identités remarquables, et elle est
+aussi la clef d'une méthode de factorisation que Fermat employait au XVII<sup>e</sup> siècle pour
+casser les grands nombres : chercher à écrire \( N \) comme une différence de deux carrés, ce qui
+le factorise aussitôt. La dernière question du problème est donc historiquement chargée — la
+réponse dépend de la parité, et elle explique pourquoi la méthode de Fermat s'applique bien aux
+nombres impairs.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Identit%C3%A9_remarquable">Identité remarquable — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Factorisation">Factorisation — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="ALG-55" data-level="Collège" data-kind="court">
+<h3>ALG-55 · Le nombre retourné <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Prenez un nombre entier de deux chiffres, retournez-le, et
+soustrayez le plus petit des deux nombres du plus grand ; démontrez que le résultat est toujours un
+multiple de 9, et déterminez exactement quels multiples de 9 peuvent être obtenus. Reprenez ensuite
+la question avec un nombre de trois chiffres et son retourné.</p>
+<p class="context">L'écriture décimale est une convention, et l'algèbre sert ici à la rendre
+visible : dès qu'on écrit un nombre de deux chiffres sous la forme \( 10a + b \), le résultat
+devient une évidence de calcul là où il paraissait un tour de passe-passe. Le même déguisement
+explique le critère de divisibilité par 9, la preuve par neuf des comptables médiévaux, et une
+bonne moitié des tours de cartes numériques. Il vaut la peine d'essayer aussi en base autre que
+dix : le 9 y est remplacé par un autre nombre, et savoir lequel, c'est avoir compris la
+démonstration.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8re_de_divisibilit%C3%A9">Critère de divisibilité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%C3%A9cimal">Système décimal — Wikipédia</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 

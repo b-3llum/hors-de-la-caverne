@@ -15,6 +15,7 @@
 <body>
 <nav>
 <a href="index.html"><b>Hors de la Caverne</b></a> ·
+<a href="college.html">Collège</a> ·
 <a href="highschool.html">Lycée</a> ·
 <a href="index.html#pure">Pures</a> ·
 <a href="index.html#applied">Appliquées</a> ·
@@ -46,6 +47,355 @@ enfant, et c'est en creusant qu'on traverse les siècles d'idées nécessaires p
 <a href="tex/pure-number-theory.tex" download>source LaTeX</a> · <a href="tex/pure-number-theory.pdf" download>PDF compilé</a></p>
 <!-- site.js insère automatiquement ici la barre de filtre par niveau et de recherche. Ne pas en construire une. -->
 <hr>
+
+<h2>Collège</h2>
+
+<section class="problem" id="NT-54" data-level="Collège">
+<h3>NT-54 · Les nombres 9, 99, 999 et la règle de trois <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Tout entier à quatre chiffres s'écrit \( n = 1000a + 100b + 10c + d \), où
+\( a, b, c, d \) sont ses chiffres.</p>
+<ol class="parts" type="a">
+<li>Démontrez que \( 9 \), \( 99 \) et \( 999 \) sont tous les trois divisibles par \( 3 \) et par
+\( 9 \).</li>
+<li>Vérifiez l'égalité
+\[ n = (999a + 99b + 9c) + (a + b + c + d) , \]
+puis démontrez que \( n \) est divisible par \( 3 \) exactement lorsque \( a + b + c + d \) l'est.
+Démontrez de même le critère par \( 9 \).</li>
+<li>Expliquez comment votre argument s'adapte à un nombre ayant un nombre quelconque de chiffres, et
+dites clairement quelle propriété des nombres \( 9, 99, 999, 9999, \ldots \) le fait fonctionner.</li>
+<li>Le même raisonnement donnerait-il un critère de divisibilité par \( 7 \) fondé sur la somme des
+chiffres ? Exhibez deux entiers ayant la même somme de chiffres dont l'un est divisible par \( 7 \) et
+l'autre non, puis dites précisément à quel endroit l'argument de (b) cesse de fonctionner.</li>
+</ol>
+</div>
+<p class="context">La règle est enseignée à tous les écoliers et sa raison n'est presque jamais
+montrée, alors qu'elle tient en une ligne dès qu'on regarde \( 999 \) au lieu de \( 1000 \). Le
+procédé est très ancien : les arithméticiens indiens puis les mathématiciens de langue arabe s'en
+servaient comme contrôle de comptable sous le nom de « preuve par neuf », et il voyage vers l'Europe
+avec la numération décimale de position, celle-là même qu'al-Khwârizmî expose au IX<sup>e</sup> siècle
+et que Fibonacci fait connaître en 1202. La partie (d) est là pour une raison de fond : un critère
+n'est pas un fait sur les nombres, c'est un fait sur <i>l'écriture</i> des nombres en base dix, et il
+s'effondre dès que le diviseur ne divise pas \( 10 - 1 \). Le problème NT-37, plus bas, redémontre la
+même chose dans la langue des congruences — comparez les deux rédactions.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8re_de_divisibilit%C3%A9">Critère de divisibilité — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%C3%A9cimal">Système décimal — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Al-Khw%C3%A2rizm%C3%AE">Al-Khwârizmî — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-55" data-level="Collège">
+<h3>NT-55 · Le crible d'Ératosthène jusqu'à 100 <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Écrivez les entiers de \( 2 \) à \( 100 \). Barrez les multiples de \( 2 \) autres
+que \( 2 \), puis les multiples de \( 3 \) autres que \( 3 \), et ainsi de suite ; ce qui reste est la
+liste des nombres premiers inférieurs à \( 100 \).</p>
+<ol class="parts" type="a">
+<li>Menez le crible à son terme et donnez la liste obtenue.</li>
+<li>Démontrez que tout entier \( n \ge 2 \) qui n'est pas premier possède un diviseur premier
+\( p \) vérifiant \( p \times p \le n \). En déduire, avec démonstration, qu'il suffit de barrer les
+multiples de \( 2, 3, 5 \) et \( 7 \) pour que tout ce qui survit jusqu'à \( 100 \) soit premier.</li>
+<li>Quand on barre les multiples de \( p \), on peut commencer directement à \( p \times p \).
+Démontrez que rien n'est perdu, c'est-à-dire que tout multiple de \( p \) strictement compris entre
+\( p \) et \( p \times p \) a déjà été barré à une étape précédente.</li>
+<li>Dans votre liste, \( 3, 5, 7 \) sont trois nombres premiers en progression de deux en deux.
+Démontrez qu'il n'y en a pas d'autre : si \( p, p+2, p+4 \) sont tous premiers, alors \( p = 3 \).
+(Regardez les restes de \( p \) dans la division par \( 3 \).)</li>
+</ol>
+</div>
+<p class="context">Ératosthène de Cyrène, qui dirigeait la bibliothèque d'Alexandrie au
+III<sup>e</sup> siècle av. J.-C. et qui mesura la circonférence de la Terre à partir de deux ombres,
+a laissé son nom à ce procédé de tri — le mot « crible » dit bien ce qu'il fait : il laisse tomber les
+composés et retient les premiers. Ce qui mérite l'attention n'est pas la mécanique, que n'importe
+quel élève exécute, mais les deux justifications demandées en (b) et (c) : elles expliquent pourquoi
+on peut s'arrêter, et c'est exactement ce qui sépare une recette d'un théorème. La question (d) est un
+premier contact avec une idée qui traverse toute la théorie des nombres : parmi trois entiers espacés
+de deux, l'un est toujours multiple de \( 3 \), qu'on le veuille ou non. Les couples \( (p, p+2) \),
+eux, semblent se poursuivre indéfiniment — c'est la conjecture des nombres premiers jumeaux, toujours
+ouverte aujourd'hui.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crible_d%27%C3%89ratosth%C3%A8ne">Crible d'Ératosthène — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_premier">Nombre premier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombres_premiers_jumeaux">Nombres premiers jumeaux — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-56" data-level="Collège" data-kind="court">
+<h3>NT-56 · Pair, impair <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que la somme de deux nombres impairs est toujours
+paire, et que leur produit est toujours impair. Votre rédaction doit utiliser l'écriture
+\( 2k + 1 \) d'un nombre impair et ne s'appuyer sur aucun exemple.</p>
+<p class="context">C'est probablement la première vraie démonstration qu'on puisse écrire en entier,
+et elle contient déjà tout : on remplace « j'ai essayé beaucoup de nombres » par une lettre qui les
+désigne tous à la fois. La contrainte de ne citer aucun exemple n'est pas une coquetterie — vérifier
+mille cas ne démontre rien, et le jour où l'on rencontre un énoncé faux à partir du millionième
+entier, on comprend pourquoi.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Parit%C3%A9_(arithm%C3%A9tique)">Parité (arithmétique) — Wikipédia</a></li>
+<li>Voir aussi : <a href="proofs.html">L'art de la démonstration</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-57" data-level="Collège">
+<h3>NT-57 · La somme du petit Gauss <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On veut calculer \( 1 + 2 + 3 + \cdots + n \) sans poser l'addition.</p>
+<ol class="parts" type="a">
+<li>Pour \( n = 100 \), groupez les termes deux par deux en partant des extrémités : \( 1 + 100 \),
+\( 2 + 99 \), et ainsi de suite. Expliquez pourquoi toutes ces sommes sont égales, combien il y a de
+groupes, et concluez.</li>
+<li>Démontrez la formule générale
+\[ 1 + 2 + \cdots + n = \frac{n(n+1)}{2} \]
+en écrivant la somme deux fois, la seconde à l'envers, et en additionnant les deux lignes terme à
+terme. Traitez aussi le cas où \( n \) est impair, où le groupement de (a) laisse un terme seul.</li>
+<li>Démontrez que \( \frac{n(n+1)}{2} \) est toujours un entier, c'est-à-dire que le produit de deux
+entiers consécutifs est toujours pair.</li>
+<li>Démontrez que la somme des \( n \) premiers nombres impairs vaut \( n \times n \). Une figure
+faite de carrés emboîtés suffit, à condition que vous expliquiez précisément ce que chaque équerre de
+la figure représente.</li>
+</ol>
+</div>
+<p class="context">L'anecdote est célèbre et sa forme exacte est incertaine : un maître d'école de
+Brunswick aurait donné à sa classe l'addition des cent premiers entiers pour avoir la paix, et Carl
+Friedrich Gauss, âgé de sept ou huit ans, aurait posé son ardoise presque aussitôt. Ce qui est sûr,
+c'est que le procédé lui est bien antérieur — les nombres de la forme \( n(n+1)/2 \) sont les
+<i>nombres triangulaires</i> des Grecs, comptés en disposant des cailloux en triangle, et Nicomaque de
+Gérase les décrit vers l'an 100. La partie (d) montre l'autre manière de démontrer en arithmétique :
+non par le calcul mais par la figure, ce qu'on appelle une preuve sans mots. Les deux voies sont
+également rigoureuses — à condition qu'on sache dire ce que la figure démontre.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_triangulaire">Nombre triangulaire — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Preuve_sans_mots">Preuve sans mots — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-58" data-level="Collège">
+<h3>NT-58 · L'algorithme d'Euclide par soustractions <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Soient \( a \) et \( b \) deux entiers strictement positifs avec
+\( a \ge b \). On admet que \( a \) et \( b \) possèdent un plus grand diviseur commun, noté
+\( \mathrm{PGCD}(a, b) \).</p>
+<ol class="parts" type="a">
+<li>Démontrez que tout diviseur commun de \( a \) et \( b \) est aussi un diviseur commun de \( b \)
+et \( a - b \), et réciproquement. En déduire l'égalité
+\[ \mathrm{PGCD}(a, b) = \mathrm{PGCD}(b,\ a - b) . \]</li>
+<li>Appliquez cette égalité à répétition, en remplaçant chaque fois le plus grand des deux nombres
+par leur différence, pour calculer \( \mathrm{PGCD}(1071, 462) \). Écrivez toutes les étapes.</li>
+<li>Expliquez pourquoi ce procédé s'arrête toujours, quels que soient les entiers de départ.</li>
+<li>Rendez la fraction \( \dfrac{1071}{462} \) irréductible, puis démontrez que la fraction obtenue ne
+peut plus être simplifiée.</li>
+</ol>
+</div>
+<p class="context">C'est le plus ancien algorithme non trivial encore en usage quotidien : il occupe
+les propositions 1 et 2 du livre VII des <i>Éléments</i> d'Euclide, vers 300 av. J.-C., où il est
+énoncé pour des longueurs et non pour des nombres — on retranche la plus courte de la plus longue
+jusqu'à ce que les deux coïncident, et l'on obtient ainsi leur commune mesure. La version par
+soustractions demandée ici est exactement celle d'Euclide ; la version par restes, plus rapide, est
+la même idée abrégée, et le problème NT-03 en tire l'identité de Bézout puis toute l'arithmétique
+élémentaire. Notez que la question (c) est la vraie : un procédé qui ne s'arrêterait pas ne
+calculerait rien.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide">Algorithme d'Euclide — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Plus_grand_commun_diviseur">Plus grand commun diviseur — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombres_premiers_entre_eux">Nombres premiers entre eux — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-59" data-level="Collège" data-kind="court">
+<h3>NT-59 · Deux phares <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Un phare s'allume toutes les \( 12 \) secondes, un autre toutes
+les \( 18 \) secondes ; à l'instant \( 0 \), ils s'allument ensemble. Démontrez qu'ils se rallument
+ensemble exactement toutes les \( 36 \) secondes — c'est-à-dire que \( 36 \) convient, et qu'aucune
+durée strictement plus courte ne convient.</p>
+<p class="context">Le nombre \( 36 \) est le plus petit commun multiple de \( 12 \) et de \( 18 \), et
+l'énoncé demande les deux moitiés qu'on oublie toujours : qu'il marche, et qu'il soit le plus petit.
+La seconde moitié se démontre en divisant un éventuel instant commun par \( 36 \) et en regardant le
+reste — un raisonnement qu'on retrouvera identique, mot pour mot, pour l'ordre d'un élément dans un
+groupe.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Plus_petit_commun_multiple">Plus petit commun multiple — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-60" data-level="Collège" data-kind="court">
+<h3>NT-60 · Le dernier chiffre des puissances de 2 <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez que le dernier chiffre de \( 2^n \), pour
+\( n \ge 1 \), ne prend que quatre valeurs et qu'il se répète avec une période de quatre — en
+justifiant que le dernier chiffre de \( 2^{n+1} \) ne dépend que du dernier chiffre de \( 2^n \). Déterminez
+alors le dernier chiffre de \( 2^{2026} \) sans calculer ce nombre.</p>
+<p class="context">Le dernier chiffre d'un nombre est son reste dans la division par \( 10 \), et
+l'observation décisive est que ce reste se propage : pour connaître le chiffre suivant, il suffit du
+chiffre courant, jamais du nombre entier. Une quantité qui ne dépend que d'elle-même à l'étape
+précédente finit forcément par se répéter, puisqu'il n'y a que dix chiffres possibles — c'est le
+premier exemple de périodicité de toute l'arithmétique, et le problème NT-36 en donne la version
+lycée.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Puissance_d%27un_nombre">Puissance d'un nombre — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%C3%A9cimal">Système décimal — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-61" data-level="Collège">
+<h3>NT-61 · 6 et 28, les nombres parfaits <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Un entier strictement positif est dit <i>parfait</i> lorsqu'il est égal à la somme
+de ses diviseurs autres que lui-même. Ainsi \( 6 = 1 + 2 + 3 \).</p>
+<ol class="parts" type="a">
+<li>Dressez la liste complète des diviseurs de \( 28 \), justifiez que votre liste ne peut en oublier
+aucun, et vérifiez que \( 28 \) est parfait.</li>
+<li>Démontrez de même que \( 496 = 2^4 \times 31 \) est parfait. (Commencez par démontrer que ses seuls
+diviseurs sont les \( 2^k \) pour \( 0 \le k \le 4 \) et leurs produits par \( 31 \).)</li>
+<li>Démontrez qu'un nombre premier n'est jamais parfait. Démontrez également qu'aucune puissance de
+\( 2 \) n'est parfaite.</li>
+<li>Les quatre nombres parfaits connus des Grecs sont \( 6, 28, 496, 8128 \). Écrivez chacun sous la
+forme \( 2^{k-1} \times (2^k - 1) \), constatez que le second facteur est premier à chaque fois, et
+énoncez la règle de fabrication qu'Euclide en a tirée. Vous n'avez pas à la démontrer : dites
+seulement, avec précision, ce qu'elle affirme et ce qu'elle n'affirme pas.</li>
+</ol>
+</div>
+<p class="context">La proposition 36 du livre IX des <i>Éléments</i> donne la recette : si
+\( 2^k - 1 \) est premier, alors \( 2^{k-1}(2^k - 1) \) est parfait. Euler démontrera vingt siècles
+plus tard que <i>tout</i> nombre parfait pair est de cette forme — la réciproque exacte, et l'un des
+plus beaux allers-retours de l'histoire des mathématiques. Ces nombres ont porté une lourde charge
+symbolique : saint Augustin écrit que Dieu créa le monde en six jours parce que six est parfait, et
+Nicomaque de Gérase les rangeait déjà parmi les nombres « ni excessifs ni défectueux ». Ce que la
+question (d) doit vous faire sentir, c'est la place d'un trou : personne n'a jamais trouvé de nombre
+parfait <i>impair</i>, et personne n'a jamais démontré qu'il n'en existe pas. La question est ouverte
+depuis plus de deux mille ans.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_parfait">Nombre parfait — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_de_Mersenne_premier">Nombre de Mersenne premier — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nicomaque_de_G%C3%A9rase">Nicomaque de Gérase — Wikipédia</a></li>
+<li>Voir aussi : <a href="open-problems.html">Problèmes ouverts</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-62" data-level="Collège">
+<h3>NT-62 · Autant de nombres pairs que d'entiers <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> L'intuition dit qu'il y a « deux fois moins » de nombres pairs que d'entiers,
+puisqu'un entier sur deux est pair. On va voir que cette phrase n'a pas de sens tant qu'on n'a pas
+dit ce que compter veut dire.</p>
+<ol class="parts" type="a">
+<li>À chaque entier \( n \ge 1 \) on associe le nombre pair \( 2n \). Démontrez que deux entiers
+différents reçoivent des nombres pairs différents, et que tout nombre pair strictement positif est
+atteint par exactement un entier.</li>
+<li>Un hôtel possède une infinité de chambres numérotées \( 1, 2, 3, \ldots \), toutes occupées. Un
+voyageur se présente. Expliquez comment le loger sans mettre personne dehors, et démontrez que dans
+votre solution aucun client ne se retrouve sans chambre et qu'aucune chambre n'accueille deux
+clients.</li>
+<li>Reprenez la question (b) avec une infinité de nouveaux voyageurs arrivant en même temps, et
+justifiez votre réponse avec la même rigueur.</li>
+<li>Expliquez avec vos propres mots pourquoi la phrase « il y a moins de nombres pairs que d'entiers »
+et la phrase « il y en a autant » peuvent être vraies toutes les deux, selon ce que l'on décide
+d'appeler « autant ».</li>
+</ol>
+</div>
+<p class="context">Galilée avait déjà buté sur ce paradoxe en 1638, en remarquant qu'il y a autant de
+carrés parfaits que d'entiers alors que les carrés se raréfient : il en concluait qu'il ne faut pas
+appliquer aux collections infinies les mots « plus », « moins » et « autant ». Georg Cantor a tranché
+autrement à partir de 1874 : il a gardé les mots et changé leur définition — deux collections ont
+autant d'éléments lorsqu'on peut les apparier une à une, sans reste ni répétition. C'est exactement ce
+que vous démontrez en (a). L'hôtel est une image due à David Hilbert, qui s'en servait vers 1924 dans
+ses cours pour faire sentir que l'infini n'obéit pas aux habitudes du fini. Rien ici ne dépasse le
+programme du collège, et pourtant vous êtes en train de manipuler l'objet qui a divisé les
+mathématiciens pendant trente ans.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/H%C3%B4tel_de_Hilbert">Hôtel de Hilbert — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ensemble_d%C3%A9nombrable">Ensemble dénombrable — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Georg_Cantor">Georg Cantor — Wikipédia</a></li>
+<li>Voir aussi : <a href="pure-foundations.html">Logique, théorie des ensembles et fondements</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-63" data-level="Collège">
+<h3>NT-63 · Les fractions des scribes égyptiens <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> Les scribes égyptiens n'écrivaient que des fractions de numérateur \( 1 \), et
+exprimaient toute autre fraction comme une somme de telles fractions, toutes différentes. Par exemple
+\( \frac{3}{4} = \frac{1}{2} + \frac{1}{4} \).</p>
+<ol class="parts" type="a">
+<li>Écrivez \( \frac{2}{5} \) et \( \frac{3}{7} \) comme sommes de fractions de numérateur \( 1 \)
+deux à deux distinctes, et vérifiez vos égalités par le calcul.</li>
+<li>Démontrez que pour tout entier \( n \ge 1 \),
+\[ \frac{1}{n} = \frac{1}{n+1} + \frac{1}{n(n+1)} . \]</li>
+<li>Déduisez de (b) qu'une même fraction admet une infinité d'écritures égyptiennes différentes, en
+expliquant précisément comment on passe de l'une à la suivante.</li>
+<li>Un scribe doit partager \( 5 \) pains entre \( 8 \) personnes, chaque personne devant recevoir la
+même chose et aucun pain ne devant être coupé en plus de morceaux que nécessaire. Proposez un partage,
+et démontrez que chacun reçoit bien \( \frac{5}{8} \) de pain.</li>
+</ol>
+</div>
+<p class="context">Le papyrus Rhind, copié vers 1550 av. J.-C. par le scribe Ahmès d'après un original
+plus ancien de deux siècles, s'ouvre sur une table donnant \( 2/n \) comme somme de fractions
+unitaires pour tous les \( n \) impairs de \( 3 \) à \( 101 \) : c'est le plus vieux document
+mathématique substantiel qui nous soit parvenu, et il est essentiellement fait de ce problème. On
+ignore encore pourquoi les Égyptiens s'astreignaient à cette contrainte ; l'explication la plus
+souvent avancée est celle du partage effectif — couper des pains en parts égales visibles est plus
+simple avec des moitiés et des quarts qu'avec des cinq-huitièmes. L'identité de la question (b) est
+aussi la clé de l'algorithme glouton que Fibonacci décrit en 1202 : prendre
+à chaque étape la plus grande fraction unitaire qui tient, et recommencer. Qu'il se termine toujours
+est un joli théorème ; qu'il donne la décomposition la plus courte est faux.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Fraction_%C3%A9gyptienne">Fraction égyptienne — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Papyrus_Rhind">Papyrus Rhind — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Ahm%C3%A8s">Ahmès — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-64" data-level="Collège">
+<h3>NT-64 · Les lapins de Fibonacci <span class="level">[Collège]</span></h3>
+<div class="statement">
+<p><b>Problème.</b> On pose \( F_1 = 1 \), \( F_2 = 1 \), et chaque terme suivant est la somme des
+deux précédents : \( F_{n+2} = F_{n+1} + F_n \).</p>
+<ol class="parts" type="a">
+<li>Calculez \( F_1 \) jusqu'à \( F_{12} \). Expliquez ensuite en quoi cette règle traduit exactement
+l'énoncé de Fibonacci : un couple de lapins devient fécond au bout d'un mois et engendre ensuite un
+couple par mois, aucun ne meurt.</li>
+<li>Écrivez la suite des parités (pair ou impair) des douze premiers termes. Démontrez que \( F_n \)
+est pair exactement lorsque \( n \) est un multiple de \( 3 \) — il suffit de raisonner sur les
+parités, jamais sur les valeurs.</li>
+<li>Vérifiez sur plusieurs valeurs de \( n \), puis démontrez, l'égalité
+\[ F_1 + F_2 + \cdots + F_n = F_{n+2} - 1 . \]
+(Remarquez que \( F_k = F_{k+2} - F_{k+1} \) et additionnez ces égalités : presque tout se
+simplifie.)</li>
+<li>Calculez les quotients \( F_{n+1} / F_n \) pour \( n \) allant de \( 1 \) à \( 11 \). Décrivez ce
+que vous observez et expliquez pourquoi cette observation, si nette soit-elle, ne constitue pas une
+démonstration.</li>
+</ol>
+</div>
+<p class="context">Leonardo de Pise, dit Fibonacci, pose le problème des lapins dans le <i>Liber
+abaci</i> de 1202 — un livre écrit d'abord pour convaincre les marchands italiens d'abandonner les
+chiffres romains, et dont la postérité a surtout retenu un seul exercice. La suite lui est
+pourtant bien antérieure : les prosodistes indiens Pingala, Virahanka et Hemachandra la connaissaient
+en comptant les manières de composer un vers avec des syllabes brèves et longues, plusieurs siècles
+plus tôt. Le quotient de la question (d) s'approche du nombre d'or \( (1 + \sqrt{5})/2 \), ce que vous
+verrez démontré plus tard ; la vraie leçon de cette question est ailleurs, dans l'écart entre
+« je vois que » et « je démontre que ». Aucun élève n'y échappe et aucun mathématicien non plus.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Suite_de_Fibonacci">Suite de Fibonacci — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Liber_abaci">Liber abaci — Wikipédia</a></li>
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Nombre_d%27or">Nombre d'or — Wikipédia</a></li>
+</ul>
+</section>
+
+<section class="problem" id="NT-65" data-level="Collège" data-kind="court">
+<h3>NT-65 · La divisibilité par 11 <span class="level">[Collège]</span> <span class="kind">court</span></h3>
+<p class="statement"><b>Problème.</b> Démontrez qu'un entier à quatre chiffres
+\( n = 1000a + 100b + 10c + d \) est divisible par \( 11 \) exactement lorsque \( d - c + b - a \)
+l'est. (Partez de \( 11 \times 91 = 1001 \), \( 11 \times 9 = 99 \) et \( 11 \times 1 = 11 \).)</p>
+<p class="context">Le critère par \( 3 \) marchait parce que \( 9, 99, 999 \) sont des multiples de
+\( 3 \) ; celui-ci marche parce que \( 11, 1001, 100001 \) le sont de \( 11 \), tandis que
+\( 99, 9999 \) le sont aussi — d'où l'alternance des signes, qui est la petite surprise de l'affaire.
+C'est l'occasion de voir qu'un critère de divisibilité n'est jamais gratuit : il dépend de la base
+d'écriture, et il faut à chaque fois trouver quels nombres formés de \( 9 \) et de \( 1 \) le diviseur
+accepte de diviser.</p>
+<ul class="refs">
+<li>Contexte : <a href="https://fr.wikipedia.org/wiki/Crit%C3%A8re_de_divisibilit%C3%A9">Critère de divisibilité — Wikipédia</a></li>
+</ul>
+</section>
 
 <h2>Lycée</h2>
 
