@@ -109,6 +109,18 @@ MATH_RE = re.compile(r"(\\\(.*?\\\)|\\\[.*?\\\])", re.S)
 
 def convert_inline(frag):
     """Convert an HTML fragment (prose + markup + LaTeX math) to LaTeX."""
+    # Mettre les formules de côté AVANT de toucher au balisage. Une formule
+    # contient couramment un `<` nu — \( 2^{\aleph_n} < \aleph_\omega \) — et le
+    # nettoyage des balises plus bas y lirait le début d'une balise : il
+    # supprimerait tout jusqu'au `>` suivant, emportant mathématiques et prose.
+    maths = []
+
+    def stash(m):
+        maths.append(m.group(0))
+        return "\x06%d\x07" % (len(maths) - 1)
+
+    frag = MATH_RE.sub(stash, frag)
+
     # Markup -> placeholders that survive escaping.
     frag = re.sub(r"<b>(.*?)</b>", lambda m: "\x01textbf\x02" + m.group(1) + "\x03", frag, flags=re.S)
     frag = re.sub(r"<strong>(.*?)</strong>", lambda m: "\x01textbf\x02" + m.group(1) + "\x03", frag, flags=re.S)
@@ -125,13 +137,16 @@ def convert_inline(frag):
     frag = re.sub(r"<[^>]+>", "", frag)          # drop any remaining tags
     frag = htmllib.unescape(frag)
 
-    # Escape prose but leave math intact.
-    parts = MATH_RE.split(frag)
+    # Échapper la prose, et remettre les formules telles quelles. Elles n'ont pas
+    # traversé htmllib.unescape ci-dessus, donc on les déséchappe ici : une
+    # formule peut porter `&lt;` aussi bien qu'un `<` nu.
+    parts = re.split(r"\x06(\d+)\x07", frag)
     out = []
     for i, p in enumerate(parts):
         if i % 2 == 1:
-            inner = p[2:-2]
-            out.append("$" + inner + "$" if p.startswith("\\(") else "\\[" + inner + "\\]")
+            span = htmllib.unescape(maths[int(p)])
+            inner = span[2:-2]
+            out.append("$" + inner + "$" if span.startswith("\\(") else "\\[" + inner + "\\]")
         else:
             out.append(esc_text(p))
     s = "".join(out)
@@ -156,14 +171,18 @@ STMT_RE = re.compile(
     r'<p class="statement">(.*?)</p>|<div class="statement">(.*?)</div>', re.S)
 
 
-LIST_RE = re.compile(r"<(ol|ul)[^>]*>(.*?)</\1>", re.S)
+LIST_RE = re.compile(r"<(ol|ul)(?:\s[^>]*)?>(.*?)</\1>", re.S)
 LI_ITEM_RE = re.compile(r"<li>(.*?)</li>", re.S)
 
 
 def convert_block(frag):
     """Convert an HTML fragment that may contain <p> paragraphs and lists."""
-    frag = re.sub(r"</p>\s*<p[^>]*>", "\x05", frag)      # paragraph break
-    frag = re.sub(r"</?p[^>]*>", "", frag)
+    # Un vrai <p>, c'est « <p » suivi d'un espace ou de « > ». L'exiger évite
+    # qu'un « < » nu collé à un p dans une formule — \(1<p<\infty\) — soit lu
+    # comme une balise de paragraphe avant que convert_inline ait pu la mettre
+    # de côté.
+    frag = re.sub(r"</p>\s*<p(?:\s[^>]*)?>", "\x05", frag)      # paragraph break
+    frag = re.sub(r"</?p(?:\s[^>]*)?>", "", frag)
     out, pos = [], 0
     for m in LIST_RE.finditer(frag):
         out.append(convert_inline(frag[pos:m.start()]))

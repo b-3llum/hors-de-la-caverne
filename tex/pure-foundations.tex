@@ -555,7 +555,8 @@ pour l'inclusion.
 déduisez-en qu'il existe un ultrafiltre non principal sur $\mathbb{N}$ --- c'est-à-dire ne contenant aucune
 partie finie.
 \item[(c)] Soit $ U $ un ultrafiltre sur $\mathbb{N}$ et $ (x_n) $ une suite réelle bornée. Démontrez qu'il
-existe exactement un $ L \in \mathbb{R} $ tel que $ \{ n : |x_n - L| 0 $. Démontrez que cette $ U $-limite est linéaire et monotone en la
+existe exactement un $ L \in \mathbb{R} $ tel que $ \{ n : |x_n - L| < \varepsilon \} \in U $
+pour tout $ \varepsilon > 0 $. Démontrez que cette $ U $-limite est linéaire et monotone en la
 suite, et qu'elle coïncide avec $ \lim x_n $ chaque fois que la limite ordinaire existe.
 \item[(d)] Démontrez que l'énoncé \og{} tout filtre s'étend en un ultrafiltre \fg{} implique le théorème de
 compacité pour la logique propositionnelle (FND-12), et précisez --- références à l'appui --- où se
@@ -1370,7 +1371,9 @@ reste ouvert.
 
 \begin{problem}[{Quelle taille le continu en $ \aleph_\omega $ peut-il atteindre ? --- Recherche, short}]
 \textbf{FND-34.} \textbf{Problème.} (Ouvert.) Supposons $ \aleph_\omega $ cardinal limite fort,
-c'est-à-dire $ 2^{\aleph_n} \aleph_{\omega_1} $ --- de façon
+c'est-à-dire $ 2^{\aleph_n} < \aleph_\omega $ pour tout $ n < \omega $ ; Shelah a démontré dans
+ZFC qu'alors $ 2^{\aleph_\omega} < \aleph_{\omega_4} $. Déterminez s'il est cohérent
+avec ZFC que, sous la même hypothèse, $ 2^{\aleph_\omega} > \aleph_{\omega_1} $ --- de façon
 équivalente, si $ \mathrm{pcf}\{\aleph_n : n < \omega\} $ peut être non dénombrable.
 \end{problem}
 
