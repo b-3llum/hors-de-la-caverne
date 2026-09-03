@@ -8,8 +8,10 @@
 // ---- recherche : accents pliés, source LaTeX ignorée ----
 function hdlcFold(s) {
   s = String(s);
-  return (s.normalize ? s.normalize("NFD").replace(/[̀-ͯ]/g, "") : s)
-    .toLowerCase();
+  s = s.normalize ? s.normalize("NFD").replace(/[̀-ͯ]/g, "") : s;
+  // Les noms composés s'écrivent avec un tiret demi-cadratin — Perron–Frobenius,
+  // Cauchy–Schwarz — là où le clavier donne un trait d'union. On les confond.
+  return s.replace(/[‐-―]/g, "-").toLowerCase();
 }
 
 function hdlcSearchText(p) {
@@ -169,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
                  document.querySelector("p.lede");
     if (anchor) anchor.parentNode.insertBefore(bar, anchor.nextSibling);
   }
+  if (!bar.parentNode) return;      // ni chapô ni téléchargements : rien où ancrer
   bar.parentNode.insertBefore(none, bar.nextSibling);
 
   buildSelector(problems, bar, function () {
@@ -322,7 +325,15 @@ function printSelection(problems) {
     head.className = "printhead";
     document.body.insertBefore(head, document.body.firstChild);
   }
-  var title = (document.querySelector("h1") || {}).textContent || "Problèmes";
+  // Le bandeau d'impression est réutilisé d'une impression à l'autre et ouvre le
+  // corps de page : son propre <h1> serait repris, et le nom du site préfixé une
+  // deuxième fois.
+  var title = "Problèmes";
+  Array.prototype.some.call(document.querySelectorAll("h1"), function (h) {
+    if (h.closest(".printhead")) return false;
+    title = h.textContent;
+    return true;
+  });
   head.innerHTML = "<h1>Hors de la Caverne — " + title + "</h1>" +
     "<p>" + chosen.length + " problème" + (chosen.length > 1 ? "s" : "") +
     " sélectionné" + (chosen.length > 1 ? "s" : "") +

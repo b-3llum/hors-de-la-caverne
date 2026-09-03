@@ -20,7 +20,7 @@ sans solution. Les références indiquent où trouver les connaissances nécessa
 \section*{Lycée}
 
 \begin{problem}[{Cassez ce chiffre de César --- Lycée}]
-\textbf{CRY-01.} \textbf{Problème.} Le message suivant a été chiffré par un chiffre
+\textbf{CRY-01.} Le message suivant a été chiffré par un chiffre
 de César : chaque lettre du texte clair, rédigé en anglais, a été décalée vers l'avant dans
 l'alphabet d'une même quantité secrète (Z revenant à A), les espaces restant intacts.
  \texttt{DRO ZBSCYXOBC WSCDKUO DRO CRKNYGC YX DRO GKVV PYB DRO DRSXQC
@@ -39,7 +39,7 @@ compliquée que soit la règle de remplacement.
 
 \noindent Suétone rapporte que Jules César utilisait la version à décalage de trois
 de ce chiffre pour sa correspondance militaire. L'attaque systématique --- l'analyse
-fréquentielle --- a d'abord été décrite par le philosophe arabe al-Kindī dans le Bagdad du
+fréquentielle --- a d'abord été décrite par le philosophe arabe al-Kind\={\i} dans le Bagdad du
 neuvième siècle, dans un manuscrit sur le déchiffrement des messages cryptographiques ;
 c'est sans doute la naissance de la cryptanalyse, et elle a tué la substitution simple pour
 toujours. Toute définition moderne de sécurité est, au fond, la promesse que ce genre de
@@ -55,7 +55,7 @@ fuite statistique ne peut pas se produire.
 \bigskip
 
 \begin{problem}[{Échauffements d'arithmétique modulaire --- Lycée}]
-\textbf{CRY-02.} \textbf{Problème.} Écrivons $a \equiv b \pmod{n}$ pour signifier que
+\textbf{CRY-02.} Écrivons $a \equiv b \pmod{n}$ pour signifier que
 $n$ divise $a-b$.
 \begin{enumerate}
 \item[(a)] Démontrez que les congruences s'additionnent et se multiplient : si
@@ -86,7 +86,7 @@ avant sur la page Théorie des nombres (\url{pure-number-theory.html}).
 \bigskip
 
 \begin{problem}[{Quels chiffres affines sont vraiment des chiffres ? --- Lycée}]
-\textbf{CRY-03.} \textbf{Problème.} Numérotons les lettres $A=0,\dots,Z=25$. Un
+\textbf{CRY-03.} Numérotons les lettres $A=0,\dots,Z=25$. Un
 \textit{chiffre affine} de clé $(a,b)$ chiffre la lettre $x$ en
 $ax+b \pmod{26}$.
 \begin{enumerate}
@@ -116,7 +116,7 @@ exposants sont des clés RSA légales.
 \bigskip
 
 \begin{problem}[{Un espace de clés immense n'est pas la sécurité --- Lycée}]
-\textbf{CRY-04.} \textbf{Problème.} Un chiffre par substitution général remplace chaque
+\textbf{CRY-04.} Un chiffre par substitution général remplace chaque
 lettre par une autre selon une permutation arbitraire de l'alphabet de 26 lettres : il y a
 donc $26!$ clés.
 \begin{enumerate}
@@ -135,7 +135,7 @@ exploite, et formulez une leçon de la forme \og{} un grand espace de clés est 
 
 \noindent C'est la plus ancienne leçon chèrement acquise du domaine : la recherche
 exhaustive n'est pas la seule attaque. Edgar Allan Poe a mis en scène le cassage à la main
-de chiffres par substitution dans \og{} Le Scarabée d'or \fg{} (1843), et al-Kindī possédait la
+de chiffres par substitution dans \og{} Le Scarabée d'or \fg{} (1843), et al-Kind\={\i} possédait la
 méthode un millénaire plus tôt. La cryptographie moderne répond par des définitions : un
 schéma doit résister à \textit{toute} attaque efficace, et non seulement à l'attaque évidente ---
 raison pour laquelle ce sont les démonstrations de sécurité, et non les décomptes de clés,
@@ -150,7 +150,7 @@ qui font la monnaie du domaine.
 \bigskip
 
 \begin{problem}[{Le chiffre de Vigenère et l'examen de Kasiski --- Lycée}]
-\textbf{CRY-24.} \textbf{Problème.} Le chiffre de Vigenère fixe un mot-clé, disons \texttt{LEMON}, et
+\textbf{CRY-24.} Le chiffre de Vigenère fixe un mot-clé, disons \texttt{LEMON}, et
 chiffre un message en décalant ses 1re, 2e, 3e, \dots{} lettres
 par les 1re, 2e, 3e, \dots{} lettres du mot-clé, en répétant
 celui-ci autant de fois qu'il le faut (avec $A = 0, \dots, Z = 25$ comme quantités de
@@ -191,7 +191,7 @@ limite dans laquelle le \og{} mot-clé \fg{} ne se répète jamais.
 \bigskip
 
 \begin{problem}[{Le double chiffrement n'apporte rien --- Lycée, short}]
-\textbf{CRY-25.} \textbf{Problème.} Démontrez que chiffrer par un décalage de César de
+\textbf{CRY-25.} Démontrez que chiffrer par un décalage de César de
 $a$ puis chiffrer le résultat par un décalage de $b$ revient exactement au décalage de
 César unique de $a + b \bmod 26$ --- de sorte que le double chiffrement de César (ou le
 centuple) n'est pas plus fort que le simple. Concluez que les 26 décalages forment un groupe
@@ -212,7 +212,7 @@ question ouverte sérieuse jusqu'à ce que Campbell et Wiener démontrent en 199
 \bigskip
 
 \begin{problem}[{Quelle est la force d'une phrase secrète ? --- Lycée, short}]
-\textbf{CRY-26.} \textbf{Problème.} On construit une phrase secrète en choisissant quatre
+\textbf{CRY-26.} On construit une phrase secrète en choisissant quatre
 mots indépendamment et uniformément au hasard dans une liste publique de $7776 = 6^5$ mots.
 Montrez que le nombre de phrases secrètes possibles vaut environ $3{,}7 \times 10^{15}$ ---
 soit à peu près $4\log_2 7776 \approx 51{,}7$ bits d'entropie --- et comparez-le à un mot de
@@ -234,7 +234,7 @@ caractère public de la procédure ne coûte rien.
 \bigskip
 
 \begin{problem}[{Clés de contrôle : attraper les erreurs que les gens font vraiment --- Lycée}]
-\textbf{CRY-36.} \textbf{Problème.} Un ISBN-10 est une suite de chiffres $d_1 d_2 \dots d_{10}$, dont le
+\textbf{CRY-36.} Un ISBN-10 est une suite de chiffres $d_1 d_2 \dots d_{10}$, dont le
 dernier peut aussi être le symbole X valant 10, vérifiant
 \[ \sum_{i=1}^{10} i \, d_i \;\equiv\; 0 \pmod{11}. \]
 Le dernier chiffre est choisi pour que cela soit vérifié.
@@ -278,7 +278,7 @@ sur les transpositions.
 \bigskip
 
 \begin{problem}[{Arbres de Merkle : un reçu de la taille d'un logarithme --- Lycée}]
-\textbf{CRY-41.} \textbf{Problème.} Un journal public contient $n = 2^k$ enregistrements $x_1, \dots, x_n$.
+\textbf{CRY-41.} Un journal public contient $n = 2^k$ enregistrements $x_1, \dots, x_n$.
 Hachez chaque enregistrement pour obtenir les feuilles d'un arbre binaire, puis hachez à
 répétition les paires voisines --- en remplaçant deux valeurs $u, v$ par $h(u \,\|\, v)$,
 où $\|$ désigne la concaténation --- jusqu'à ce qu'il ne reste qu'une valeur : la
@@ -290,7 +290,7 @@ sortie.
 comptez le nombre total de calculs de hachage nécessaires pour construire l'arbre entier.
 Remarquez que la racine publiée est une unique valeur de hachage, si grand que soit $n$.
 \item[(b)] Une \textit{preuve d'inclusion} pour l'enregistrement $x_i$ est la liste des valeurs
-sœurs rencontrées sur le chemin de la feuille $i$ jusqu'à la racine. Montrez que cette
+s\oe{}urs rencontrées sur le chemin de la feuille $i$ jusqu'à la racine. Montrez que cette
 liste compte exactement $k$ entrées, et décrivez précisément le calcul par lequel un
 vérificateur qui ne connaît que la racine et $x_i$ la contrôle.
 \item[(c)] Démontrez la propriété de sécurité : si un exploitant de journal malhonnête convainc le
@@ -301,8 +301,8 @@ chemins niveau par niveau et considérez le niveau le plus bas où les valeurs c
 \item[(d)] Des chiffres, puis une subtilité. Avec $n = 2^{30}$ enregistrements et des valeurs de
 hachage de 32 octets, calculez la taille en octets d'une preuve d'inclusion et comparez-la au
 coût de l'envoi du journal entier. Expliquez ensuite ce qui se gâte si les feuilles et les
-nœuds internes sont hachés par exactement la même règle : montrez qu'un attaquant pourrait
-présenter un nœud interne comme s'il s'agissait d'un enregistrement, et dites ce qu'il faut
+n\oe{}uds internes sont hachés par exactement la même règle : montrez qu'un attaquant pourrait
+présenter un n\oe{}ud interne comme s'il s'agissait d'un enregistrement, et dites ce qu'il faut
 intégrer à l'entrée de $h$ pour l'empêcher.
 \end{enumerate}
 
@@ -331,7 +331,7 @@ exactement pour cette raison.
 \bigskip
 
 \begin{problem}[{Pourquoi le mode ECB dessine le manchot --- Lycée, short}]
-\textbf{CRY-42.} \textbf{Problème.} Un chiffrement par bloc chiffre des blocs de 16 octets
+\textbf{CRY-42.} Un chiffrement par bloc chiffre des blocs de 16 octets
 sous une clé $K$ par une bijection $E_K$ de l'ensemble de tous les blocs de 16 octets ; le
 mode \textit{dictionnaire de codes électronique} (ECB) chiffre un long message en le découpant
 en blocs $P_1, P_2, \dots$ et en envoyant $E_K(P_1), E_K(P_2), \dots$. Démontrez que
@@ -360,7 +360,7 @@ définition moderne de la sécurité, si incassable que soit le chiffrement sous
 \section*{Licence}
 
 \begin{problem}[{Le masque jetable a le secret parfait --- Licence}]
-\textbf{CRY-05.} \textbf{Problème.} Messages, clés et textes chiffrés sont des chaînes
+\textbf{CRY-05.} Messages, clés et textes chiffrés sont des chaînes
 de $n$ bits ; la clé $K$ est tirée uniformément au hasard et utilisée une seule fois ; le
 chiffrement est le OU exclusif bit à bit, $C = M \oplus K$. Shannon a appelé un schéma de
 chiffrement \textit{parfaitement secret} si, pour toute loi a priori sur les messages, tout
@@ -396,14 +396,14 @@ démontrée.
 \bigskip
 
 \begin{problem}[{Le masque utilisé deux fois : réemploi et ruine --- Licence}]
-\textbf{CRY-06.} \textbf{Problème.} Deux messages ont été chiffrés avec le
+\textbf{CRY-06.} Deux messages ont été chiffrés avec le
 \textit{même} masque jetable : $c_1 = m_1 \oplus k$ et $c_2 = m_2 \oplus k$.
 \begin{enumerate}
 \item[(a)] Démontrez que $c_1 \oplus c_2 = m_1 \oplus m_2$ : la clé disparaît entièrement.
 \item[(b)] Expliquez pourquoi $m_1 \oplus m_2$, pour deux messages en langue naturelle, est loin
 d'être aléatoire, et décrivez une méthode pour en récupérer les deux messages.
 \item[(c)] Mettez votre
-méthode à l'œuvre. Les deux textes clairs ci-dessous sont des phrases anglaises en
+méthode à l'\oe{}uvre. Les deux textes clairs ci-dessous sont des phrases anglaises en
 majuscules et espaces (octets ASCII), chiffrées avec le même masque de 33 octets ; textes
 chiffrés en hexadécimal : 
 \texttt{c1 = 6dc1c864836e81da216d2b5af91cd46c12d1c6578a41f1c8b52428baebbe9f304b} 
@@ -432,7 +432,7 @@ matière à clé \fg{}.
 \bigskip
 
 \begin{problem}[{Exponentiation modulaire rapide --- Licence}]
-\textbf{CRY-07.} \textbf{Problème.} La cryptographie à clé publique calcule sans cesse
+\textbf{CRY-07.} La cryptographie à clé publique calcule sans cesse
 $a^e \bmod n$ pour des nombres de plusieurs centaines de chiffres.
 \begin{enumerate}
 \item[(a)] Décrivez la
@@ -466,7 +466,7 @@ cache un algorithme logarithmique.
 \bigskip
 
 \begin{problem}[{Diffie--Hellman : correction et hypothèse exacte --- Licence}]
-\textbf{CRY-08.} \textbf{Problème.} Fixez un grand nombre premier $p$ et un générateur $g$
+\textbf{CRY-08.} Fixez un grand nombre premier $p$ et un générateur $g$
 du groupe multiplicatif modulo $p$. Alice choisit un secret $a$ et envoie
 $A = g^a \bmod p$ ; Bob choisit un secret $b$ et envoie $B = g^b \bmod p$ ; chacun
 élève ce qu'il a reçu à la puissance de son propre secret.
@@ -506,7 +506,7 @@ l'adversaire est supposé incapable de résoudre.
 \bigskip
 
 \begin{problem}[{RSA : démontrez que le déchiffrement marche --- et que la version scolaire est cassée --- Licence}]
-\textbf{CRY-09.} \textbf{Problème.} Soit $n = pq$ avec $p, q$ premiers distincts,
+\textbf{CRY-09.} Soit $n = pq$ avec $p, q$ premiers distincts,
 et choisissez $e$ avec $\gcd(e,(p-1)(q-1)) = 1$ et $d$ avec
 $ed \equiv 1 \pmod{(p-1)(q-1)}$. Le chiffrement est $m \mapsto m^e \bmod n$, le
 déchiffrement $c \mapsto c^d \bmod n$.
@@ -527,7 +527,7 @@ en un paragraphe à quoi sert un remplissage aléatoire.
 \end{problem}
 
 \noindent Rivest, Shamir et Adleman ont trouvé le schéma en 1977, un an après que
-Diffie--Hellman eut appelé de ses vœux une telle fonction \og{} à trappe \fg{} (Clifford Cocks
+Diffie--Hellman eut appelé de ses v\oe{}ux une telle fonction \og{} à trappe \fg{} (Clifford Cocks
 l'avait secrètement au GCHQ en 1973). La question (a) est un joyau de théorie des nombres
 appliquée --- les pièces qui travaillent sont Fermat, Euler et le théorème des restes chinois,
 développés comme mathématiques pures dans le groupe de problèmes sur la primalité de la page
@@ -546,7 +546,7 @@ travail.
 \bigskip
 
 \begin{problem}[{L'attaque des anniversaires : établissez la borne en $\surd$N --- Licence}]
-\textbf{CRY-10.} \textbf{Problème.} Une fonction de hachage rend des valeurs dans un ensemble de taille
+\textbf{CRY-10.} Une fonction de hachage rend des valeurs dans un ensemble de taille
 $N$ ; modélisez ses sorties sur des entrées distinctes comme des tirages uniformes
 indépendants.
 \begin{enumerate}
@@ -585,7 +585,7 @@ nature. Le même $\sqrt N$ resurgit en CRY-13 et dans la recherche quantique de 
 \bigskip
 
 \begin{problem}[{L'entropie à partir des premiers principes --- Licence}]
-\textbf{CRY-11.} \textbf{Problème.} Pour une variable aléatoire $X$ prenant la valeur $i$
+\textbf{CRY-11.} Pour une variable aléatoire $X$ prenant la valeur $i$
 avec probabilité $p_i$, Shannon a défini l'entropie
 \[ H(X) = -\sum_i p_i \log_2 p_i \qquad (\text{avec } 0\log 0 = 0). \]
 Démontrez-en les propriétés de base à partir de rien.
@@ -624,7 +624,7 @@ la page Physique mathématique (\url{applied-physics.html}).
 \bigskip
 
 \begin{problem}[{L'inégalité de Kraft --- Licence}]
-\textbf{CRY-12.} \textbf{Problème.} Un code binaire attribue à chacun de $n$ symboles
+\textbf{CRY-12.} Un code binaire attribue à chacun de $n$ symboles
 un mot de code, chaîne finie de bits ; c'est un \textit{code préfixe} si aucun mot de code
 n'est préfixe d'un autre (le décodage n'a alors jamais besoin de regarder en avant).
 \begin{enumerate}
@@ -658,7 +658,7 @@ démonstrations.
 \bigskip
 
 \begin{problem}[{Le chiffrement d'ElGamal : correction, malléabilité et hypothèse exacte --- Licence}]
-\textbf{CRY-27.} \textbf{Problème.} Fixez un groupe cyclique $G$ d'ordre $q$ de générateur $g$.
+\textbf{CRY-27.} Fixez un groupe cyclique $G$ d'ordre $q$ de générateur $g$.
 La clé secrète d'Alice est $x$, sa clé publique $h = g^x$. Pour chiffrer
 $m \in G$, Bob tire un $r$ uniforme frais et envoie le couple
 \[ (c_1, c_2) = (g^r,\ m \cdot h^r). \]
@@ -695,7 +695,7 @@ est la graine homomorphe des schémas de vote électronique.
 \bigskip
 
 \begin{problem}[{RSA avec le théorème des restes chinois --- et l'attaque par faute qu'il invite --- Licence}]
-\textbf{CRY-28.} \textbf{Problème.} Soit $n = pq$ un module RSA d'exposant privé $d$ comme
+\textbf{CRY-28.} Soit $n = pq$ un module RSA d'exposant privé $d$ comme
 en CRY-09. Les implémentations pratiques ne calculent jamais $c^d \bmod n$ directement.
 \begin{enumerate}
 \item[(a)] Démontrez le théorème des restes chinois pour deux modules premiers entre eux :
@@ -736,7 +736,7 @@ les mathématiques du schéma.
 \bigskip
 
 \begin{problem}[{La borne de Hamming et le code parfait (7,4) --- Licence}]
-\textbf{CRY-29.} \textbf{Problème.} Un code binaire de longueur $n$ est une partie
+\textbf{CRY-29.} Un code binaire de longueur $n$ est une partie
 $C \subseteq \{0,1\}^n$ ; sa distance minimale est la plus petite distance de Hamming
 (nombre de coordonnées qui diffèrent) entre mots de code distincts. Un code de distance
 minimale $2e+1$ corrige $e$ erreurs de bits quelconques par décodage au mot de code le
@@ -781,7 +781,7 @@ exacte de la limite de capacité de canal de Shannon (CRY-20).
 \bigskip
 
 \begin{problem}[{Compter les générateurs --- Licence, short}]
-\textbf{CRY-30.} \textbf{Problème.} En admettant que le groupe multiplicatif
+\textbf{CRY-30.} En admettant que le groupe multiplicatif
 $(\mathbb{Z}/p\mathbb{Z})^\times$ est cyclique pour tout nombre premier $p$, démontrez
 qu'il possède exactement $\varphi(p-1)$ générateurs, où $\varphi$ est l'indicatrice
 d'Euler.
@@ -801,7 +801,7 @@ sur la page Théorie des nombres (\url{pure-number-theory.html}).
 \bigskip
 
 \begin{problem}[{Les fonctions ne peuvent pas créer d'entropie --- Licence, short}]
-\textbf{CRY-31.} \textbf{Problème.} Avec l'entropie de CRY-11, démontrez que pour toute
+\textbf{CRY-31.} Avec l'entropie de CRY-11, démontrez que pour toute
 fonction $f$ et toute variable aléatoire $X$,
 $ H(f(X)) \le H(X) $,
 avec égalité si et seulement si $f$ est injective sur le support de $X$.
@@ -821,7 +821,7 @@ l'information.
 \bigskip
 
 \begin{problem}[{L'horloge comme oracle : les attaques temporelles comme modèle mathématique --- Licence}]
-\textbf{CRY-37.} \textbf{Problème.} Un chiffre est une fonction ; une \textit{implémentation} est une fonction
+\textbf{CRY-37.} Un chiffre est une fonction ; une \textit{implémentation} est une fonction
 plus un temps d'exécution, et ce temps d'exécution est une sortie supplémentaire que le
 concepteur n'a jamais voulu publier. Modélisez l'exponentiation \og{} carré et multiplie \fg{}
 (CRY-07) calculant $g^{d} \bmod N$ : en traitant les bits de $d$ depuis le haut, chaque
@@ -884,7 +884,7 @@ constant \fg{} est désormais une propriété que l'on démontre.
 \bigskip
 
 \begin{problem}[{Registres à décalage à rétroaction linéaire : pourquoi la linéarité est fatale --- Licence}]
-\textbf{CRY-43.} \textbf{Problème.} Un LFSR binaire de longueur $L$ détient un état
+\textbf{CRY-43.} Un LFSR binaire de longueur $L$ détient un état
 $(s_0, \dots, s_{L-1}) \in \mathbb{F}_2^L$ et le prolonge indéfiniment par la récurrence
 \[ s_{j+L} \;=\; c_1 s_{j+L-1} + c_2 s_{j+L-2} + \cdots + c_L s_j \pmod 2 , \]
 en produisant $s_0, s_1, s_2, \dots$. Un chiffrement de flux peut utiliser cette suite comme
@@ -944,7 +944,7 @@ LFSR, et tous sont tombés.
 \bigskip
 
 \begin{problem}[{Le mode CBC et l'oracle de remplissage --- Licence}]
-\textbf{CRY-44.} \textbf{Problème.} Le chaînage de blocs chiffrés répare le défaut de CRY-42. Avec des blocs
+\textbf{CRY-44.} Le chaînage de blocs chiffrés répare le défaut de CRY-42. Avec des blocs
 de $b$ octets, un chiffrement par bloc $E_K$ et un vecteur d'initialisation aléatoire
 frais $C_0 = IV$, le chiffrement s'écrit
 \[ C_i \;=\; E_K\bigl(P_i \oplus C_{i-1}\bigr), \qquad i = 1, \dots, m . \]
@@ -998,7 +998,7 @@ apprend tout \fg{} peuvent être la même phrase.
 \bigskip
 
 \begin{problem}[{La distance d'unicité --- Licence, short}]
-\textbf{CRY-45.} \textbf{Problème.} Shannon a défini la \textit{distance d'unicité} d'un chiffre
+\textbf{CRY-45.} Shannon a défini la \textit{distance d'unicité} d'un chiffre
 comme $n_0 = H(K)/D$, où $H(K)$ est l'entropie de la clé et
 $D = \log_2 26 - H_{\mathrm{Eng}}$ la redondance par lettre de la langue du texte clair ;
 au-delà de $n_0$ lettres de texte chiffré, on s'attend à ce qu'une seule clé donne un
@@ -1031,7 +1031,7 @@ redondance est nulle, ce qui fait de la compression avant chiffrement plus qu'un
 \section*{Master}
 
 \begin{problem}[{Baby-step giant-step --- Master}]
-\textbf{CRY-13.} \textbf{Problème.} Soit $G$ un groupe cyclique d'ordre connu
+\textbf{CRY-13.} Soit $G$ un groupe cyclique d'ordre connu
 $n$ et de générateur $g$, et supposons $h = g^x$ pour un $x$ inconnu. L'algorithme de
 Shanks pose $m = \lceil \sqrt n\, \rceil$, tabule les \og{} petits pas \fg{} $g^j$
 pour $0 \le j < m$, puis calcule les \og{} grands pas \fg{} $h \cdot (g^{-m})^i$ pour
@@ -1072,7 +1072,7 @@ des clés bien plus courtes.
 \bigskip
 
 \begin{problem}[{La loi de groupe des courbes elliptiques --- l'associativité est le point difficile --- Master}]
-\textbf{CRY-14.} \textbf{Problème.} Soit $E$ la courbe $y^2 = x^3 + ax + b$
+\textbf{CRY-14.} Soit $E$ la courbe $y^2 = x^3 + ax + b$
 sur un corps de caractéristique $\ne 2, 3$, avec $4a^3 + 27b^2 \ne 0$, munie
 d'un point $O$ \og{} à l'infini \fg{}. Définissez $P+Q$ par la règle de la corde et de la
 tangente : la droite passant par $P$ et $Q$ rencontre $E$ en un troisième point ;
@@ -1112,10 +1112,10 @@ question (c) ne prend plus jamais \og{} ceci est un groupe \fg{} sur parole.
 \bigskip
 
 \begin{problem}[{L'algorithme de Shor : que calcule-t-il exactement ? --- Master}]
-\textbf{CRY-15.} \textbf{Problème.} Ceci est un problème de compréhension avec un vrai
+\textbf{CRY-15.} Ceci est un problème de compréhension avec un vrai
 théorème à l'intérieur.
 \begin{enumerate}
-\item[(a)] Démontrez la réduction classique au cœur de l'algorithme de Shor :
+\item[(a)] Démontrez la réduction classique au c\oe{}ur de l'algorithme de Shor :
 soit $N$ impair ayant au moins deux facteurs premiers distincts, tirez un $a$ au hasard
 premier avec $N$, et soit $r$ l'ordre multiplicatif de $a \bmod N$. Montrez
 que si $r$ est pair et $a^{r/2} \not\equiv -1 \pmod N$, alors
@@ -1153,7 +1153,7 @@ ignorance autant que sur notre savoir (voir CRY-23).
 \bigskip
 
 \begin{problem}[{Réseaux et apprentissage avec erreurs : la porte d'entrée --- Master}]
-\textbf{CRY-16.} \textbf{Problème.} Fixez un module $q$ et un vecteur secret
+\textbf{CRY-16.} Fixez un module $q$ et un vecteur secret
 $s \in (\mathbb{Z}/q\mathbb{Z})^n$. Un échantillon LWE est un couple
 $(a,\ \langle a, s\rangle + e \bmod q)$ où $a$ est uniforme et $e$ une petite erreur
 aléatoire.
@@ -1178,7 +1178,7 @@ preuve fondamentalement plus forte que tout ce que l'on connaît pour la factori
 \noindent Oded Regev a introduit LWE en 2005 ; en quinze ans, c'était devenu le
 fondement des schémas que le NIST a normalisés contre l'attaque quantique (CRY-21) et du
 premier chiffrement complètement homomorphe (Gentry 2009). Le lien pire cas / cas moyen de la
-question (d), qui descend de la découverte d'Ajtai en 1996, en est le cœur conceptuel : la
+question (d), qui descend de la découverte d'Ajtai en 1996, en est le c\oe{}ur conceptuel : la
 cryptographie a besoin d'instances \textit{aléatoires} difficiles, et les réseaux sont le seul
 endroit où les mathématiques en fournissent actuellement à la demande.
 
@@ -1192,7 +1192,7 @@ endroit où les mathématiques en fournissent actuellement à la demande.
 \bigskip
 
 \begin{problem}[{Divulgation nulle de connaissance : le protocole de l'isomorphisme de graphes --- Master}]
-\textbf{CRY-17.} \textbf{Problème.} Peggy affirme que deux graphes publics $G_0, G_1$
+\textbf{CRY-17.} Peggy affirme que deux graphes publics $G_0, G_1$
 sont isomorphes et connaît un isomorphisme $\varphi$. Protocole, répété $t$
 fois : Peggy choisit une permutation $\pi$ uniformément aléatoire et envoie
 $H = \pi(G_0)$ ; Victor tire à pile ou face un bit $b \in \{0,1\}$ ; Peggy répond par une
@@ -1236,7 +1236,7 @@ déployés ; la définition, elle, n'a pas changé.
 \bigskip
 
 \begin{problem}[{Le partage de secret de Shamir : la sécurité à seuil, exactement --- Master}]
-\textbf{CRY-18.} \textbf{Problème.} Pour partager un secret $s \in \mathbb{F}_p$
+\textbf{CRY-18.} Pour partager un secret $s \in \mathbb{F}_p$
 ($p$ premier, $p > n$) entre $n$ participants de sorte que $t$ quelconques
 puissent le reconstituer mais que $t-1$ quelconques n'apprennent rien : tirez un polynôme
 $f$ uniformément aléatoire de degré $\le t-1$ avec $f(0) = s$, et donnez au participant
@@ -1275,7 +1275,7 @@ qu'aucune partie ne détient.
 \bigskip
 
 \begin{problem}[{Le théorème du codage de source --- Master}]
-\textbf{CRY-19.} \textbf{Problème.} Soit $X$ un symbole aléatoire d'entropie
+\textbf{CRY-19.} Soit $X$ un symbole aléatoire d'entropie
 $H(X)$, et considérons les codes préfixes binaires pour $X$ de longueur moyenne
 $L = \sum_i p_i \ell_i$.
 \begin{enumerate}
@@ -1314,7 +1314,7 @@ problème construit.
 \bigskip
 
 \begin{problem}[{Capacité du canal binaire symétrique --- Master}]
-\textbf{CRY-20.} \textbf{Problème.} Le canal binaire symétrique $\mathrm{BSC}(p)$
+\textbf{CRY-20.} Le canal binaire symétrique $\mathrm{BSC}(p)$
 transmet un bit et le bascule avec probabilité $p < 1/2$, indépendamment d'un usage à
 l'autre. Shannon a défini la capacité d'un canal comme $C = \max I(X;Y)$, le maximum sur
 les lois d'entrée de l'information mutuelle entre entrée et sortie.
@@ -1340,7 +1340,7 @@ le théorème est fameusement non constructif.
 l'âge numérique : le bruit ne plafonne pas la fiabilité, seulement le débit. L'écart de la
 question (c) --- Shannon démontre que de bons codes existent sans en exhiber un seul --- a
 alimenté soixante-dix ans de théorie des codes, de Hamming et Reed--Solomon aux turbocodes,
-aux codes LDPC et aux codes polaires d'Arıkan (2009), la première famille explicite dont on
+aux codes LDPC et aux codes polaires d'Ar\i{}kan (2009), la première famille explicite dont on
 ait démontré qu'elle atteint la capacité du canal binaire symétrique.
 
 \begin{refs}
@@ -1353,7 +1353,7 @@ ait démontré qu'elle atteint la capacité du canal binaire symétrique.
 \bigskip
 
 \begin{problem}[{Le rho de Pollard pour les logarithmes discrets --- Master}]
-\textbf{CRY-32.} \textbf{Problème.} Soit $G$ un groupe cyclique d'ordre premier $n$ et de générateur
+\textbf{CRY-32.} Soit $G$ un groupe cyclique d'ordre premier $n$ et de générateur
 $g$, et $h = g^x$ avec $x$ inconnu. La méthode rho de Pollard itère une
 application $f: G \to G$ \og{} d'allure aléatoire \fg{} : on partitionne $G$ en trois classes à
 peu près égales et l'on pose $f(y) = gy$, $hy$ ou $y^2$ selon la classe de
@@ -1398,7 +1398,7 @@ les travaux de Miller, Venkatesan et d'autres, des décennies plus tard.
 \bigskip
 
 \begin{problem}[{Codage arithmétique : comprimer jusqu'à l'entropie, deux bits de surcoût en tout --- Master}]
-\textbf{CRY-33.} \textbf{Problème.} Le codage de Huffman (CRY-19) gaspille jusqu'à un bit \textit{par symbole},
+\textbf{CRY-33.} Le codage de Huffman (CRY-19) gaspille jusqu'à un bit \textit{par symbole},
 ce qui est ruineux quand un symbole a une probabilité proche de 1. Le codage arithmétique ne
 dépense son surcoût qu'une fois par \textit{message}. Codez une chaîne $x_1 x_2 \cdots x_n$
 sur un alphabet fini de probabilités de symboles connues par subdivisions emboîtées : partez
@@ -1444,7 +1444,7 @@ rétrécit.
 \bigskip
 
 \begin{problem}[{Conditionner diminue l'entropie --- Master, short}]
-\textbf{CRY-34.} \textbf{Problème.} Définissez l'entropie conditionnelle
+\textbf{CRY-34.} Définissez l'entropie conditionnelle
 $H(Y \mid X) = \sum_x p(x)\, H(Y \mid X = x)$ et démontrez que
 $H(Y \mid X) \le H(Y)$, avec égalité si et seulement si $X$ et $Y$ sont
 indépendantes.
@@ -1464,7 +1464,7 @@ réciproque de cette page.
 \bigskip
 
 \begin{problem}[{Aucune mise en gage n'est à la fois parfaitement cachante et parfaitement liante --- Master, short}]
-\textbf{CRY-35.} \textbf{Problème.} Un schéma de mise en gage permet à un émetteur de publier
+\textbf{CRY-35.} Un schéma de mise en gage permet à un émetteur de publier
 $c = \mathrm{Com}(m, r)$ (message $m$, aléa $r$) puis de l'ouvrir plus tard ; il est
 \textit{parfaitement cachant} si la loi de $c$ est identique pour tout $m$, et
 \textit{parfaitement liant} si aucun $c$ ne peut être ouvert sur deux messages différents.
@@ -1486,7 +1486,7 @@ arguments d'impossibilité à la Shannon de CRY-05.
 \bigskip
 
 \begin{problem}[{IND-CPA, écrit en toutes lettres --- Master}]
-\textbf{CRY-38.} \textbf{Problème.} Fixez un schéma de chiffrement symétrique
+\textbf{CRY-38.} Fixez un schéma de chiffrement symétrique
 $\Pi = (\mathrm{Gen}, \mathrm{Enc}, \mathrm{Dec})$ de paramètre de sécurité
 $\lambda$. Dans l'expérience IND-CPA, le challenger tire
 $k \leftarrow \mathrm{Gen}(1^{\lambda})$ et un bit $b$ ; l'adversaire $A$ interroge
@@ -1541,7 +1541,7 @@ réels sont attaqués.
 \bigskip
 
 \begin{problem}[{Réseaux de Feistel et le théorème de Luby--Rackoff --- Master}]
-\textbf{CRY-46.} \textbf{Problème.} Fixez $n$ et des fonctions $f_1, \dots, f_r \colon \{0,1\}^n \to
+\textbf{CRY-46.} Fixez $n$ et des fonctions $f_1, \dots, f_r \colon \{0,1\}^n \to
 \{0,1\}^n$. Le réseau de Feistel à $r$ tours $\Psi(f_1, \dots, f_r)$ agit sur
 $\{0,1\}^{2n}$ en itérant
 \[ (L_{i-1},\, R_{i-1}) \;\longmapsto\; (L_i,\, R_i) \;=\; \bigl(R_{i-1},\;\; L_{i-1}
@@ -1593,7 +1593,7 @@ indépendantes.
 \bigskip
 
 \begin{problem}[{Cryptanalyse linéaire et différentielle d'un chiffre jouet --- Master}]
-\textbf{CRY-47.} \textbf{Problème.} Soit $S \colon \{0,1\}^4 \to \{0,1\}^4$ une bijection (une boîte S) et
+\textbf{CRY-47.} Soit $S \colon \{0,1\}^4 \to \{0,1\}^4$ une bijection (une boîte S) et
 construisez un petit réseau de substitution-permutation sur des blocs de 16 bits : chaque tour
 ajoute par OU exclusif une clé de tour, applique $S$ à chacun des quatre quartets, puis
 permute les seize positions de bits par un câblage fixe. Faites quatre tours.
@@ -1655,7 +1655,7 @@ des bornes contre les deux.
 \bigskip
 
 \begin{problem}[{Le protocole de Schnorr : extraire le témoin --- Master, short}]
-\textbf{CRY-48.} \textbf{Problème.} Dans un groupe cyclique $G = \langle g \rangle$ d'ordre
+\textbf{CRY-48.} Dans un groupe cyclique $G = \langle g \rangle$ d'ordre
 premier $q$, un prouveur qui connaît $x$ tel que $h = g^x$ envoie $a = g^r$ pour un
 $r$ uniforme frais, reçoit un défi $c \in \mathbb{Z}/q\mathbb{Z}$, et répond par
 $s = r + cx \bmod q$ ; le vérificateur accepte lorsque $g^s = a\,h^c$. Démontrez la
@@ -1689,7 +1689,7 @@ dans EdDSA et, en 2021, dans Bitcoin.
 \section*{Recherche}
 
 \begin{problem}[{Quelle est la sécurité des schémas post-quantiques à réseaux ? --- Recherche}]
-\textbf{CRY-21.} \textbf{Problème.} En août 2024, le NIST a finalisé ses premières
+\textbf{CRY-21.} En août 2024, le NIST a finalisé ses premières
 normes post-quantiques : FIPS 203 (ML-KEM, issu de CRYSTALS-Kyber, encapsulation de clé),
 FIPS 204 (ML-DSA, issu de CRYSTALS-Dilithium, signatures) --- tous deux fondés sur des réseaux
 de modules et sur le problème Module-LWE --- et FIPS 205 (SLH-DSA, issu de SPHINCS+,
@@ -1734,7 +1734,7 @@ retenu.
 \bigskip
 
 \begin{problem}[{Obfuscation indistinguable : de l'impossible à l'impraticable --- Recherche}]
-\textbf{CRY-22.} \textbf{Problème.} Un obfuscateur indistinguable (iO)
+\textbf{CRY-22.} Un obfuscateur indistinguable (iO)
 compile les programmes de sorte que les obfuscations de deux circuits quelconques de même
 taille calculant la même fonction soient calculatoirement indistinguables. iO est
 \og{} crypto-complet \fg{} : avec lui (plus quelques hypothèses légères) on peut construire presque
@@ -1773,7 +1773,7 @@ désormais la frontière.
 \bigskip
 
 \begin{problem}[{Quelle est la finesse des accélérations quantiques ? --- Recherche}]
-\textbf{CRY-23.} \textbf{Problème.} L'algorithme de Grover fouille un espace non
+\textbf{CRY-23.} L'algorithme de Grover fouille un espace non
 structuré de $N$ objets en $O(\sqrt N)$ requêtes quantiques, et le théorème BBBV
 (Bennett, Bernstein, Brassard, Vazirani, 1997) démontre que c'est optimal : l'accélération
 quadratique est \textit{exactement} la limite pour la recherche en boîte noire, ce qui explique
@@ -1818,7 +1818,7 @@ Problèmes ouverts (\url{open-problems.html}).
 \bigskip
 
 \begin{problem}[{Les fonctions à sens unique existent-elles ? --- Recherche, short}]
-\textbf{CRY-39.} \textbf{Problème.} Démontrez que si des fonctions à sens unique existent
+\textbf{CRY-39.} Démontrez que si des fonctions à sens unique existent
 alors $\mathrm{P} \ne \mathrm{NP}$, et expliquez précisément pourquoi l'implication
 réciproque n'est pas connue. Énoncez ensuite, avec toutes les hypothèses exactes, le théorème
 de Liu et Pass (2020) selon lequel des fonctions à sens unique existent si et seulement si la
@@ -1843,7 +1843,7 @@ produit une chaîne donnée dans une limite de temps.
 \bigskip
 
 \begin{problem}[{L'écart d'approximation des réseaux --- Recherche, short}]
-\textbf{CRY-40.} \textbf{Problème.} L'algorithme LLL (1982) produit, en temps polynomial,
+\textbf{CRY-40.} L'algorithme LLL (1982) produit, en temps polynomial,
 un vecteur non nul du réseau qui n'est pas plus long que $2^{(n-1)/2}$ fois le plus court,
 tandis que le problème du plus court vecteur est NP-difficile sous réductions aléatoires pour
 tout facteur d'approximation constant, et qu'une approximation à $\sqrt{n}$ près appartient
@@ -1872,7 +1872,7 @@ l'instrument standard de la cryptanalyse des réseaux.
 \bigskip
 
 \begin{problem}[{La transformation de Fiat--Shamir est-elle solide hors du modèle de l'oracle aléatoire ? --- Recherche}]
-\textbf{CRY-49.} \textbf{Problème.} La transformation de Fiat--Shamir rend non interactive une preuve
+\textbf{CRY-49.} La transformation de Fiat--Shamir rend non interactive une preuve
 interactive à pièces publiques en remplaçant le défi aléatoire du vérificateur par un haché de
 tout ce qui a été envoyé jusque-là : $c = H(x, a)$. Si $H$ est modélisée par un \textit{oracle
 aléatoire} --- une fonction uniformément aléatoire que toute partie, honnête ou non, ne peut
@@ -1928,7 +1928,7 @@ navigateurs \fg{} est la plus grosse dette impayée de la cryptographie appliqu�
 \bigskip
 
 \begin{problem}[{Le transfert inconscient peut-il se construire à partir de fonctions à sens unique ? --- Recherche, short}]
-\textbf{CRY-50.} \textbf{Problème.} Dans le \textit{transfert inconscient} 1 parmi 2, un émetteur
+\textbf{CRY-50.} Dans le \textit{transfert inconscient} 1 parmi 2, un émetteur
 détient deux chaînes $m_0, m_1$ et un récepteur détient un bit $b$ ; à la fin du protocole
 le récepteur connaît $m_b$ et rien de $m_{1-b}$, tandis que l'émetteur n'a rien appris
 sur $b$. Démontrez que le transfert inconscient implique la mise en accord de clé, puis
@@ -1959,9 +1959,6 @@ communication classique, non sur la cryptographie.
 \end{refs}
 
 \bigskip
-
-
-\section*{Pour aller plus loin}
 
 
 \vfill

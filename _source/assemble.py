@@ -104,8 +104,16 @@ for fname, area in PAGES:
             tex = re.sub(r"^\s*(\\noindent )?\\textbf\{Problem\.\}\s*", "", tex)
         except Exception:
             tex = ""
+        # Le titre passe lui aussi par html2tex : worksheet.js n'a pas de table
+        # Unicode, et bien des titres portent des lettres grecques ou un « $ ».
+        try:
+            tex_title = html2tex.convert_inline(
+                re.sub(r"<span.*?</span>", "", m.group(1), flags=re.S)) if m else pid
+        except Exception:
+            tex_title = ""
         rec = {"id": pid, "page": fname, "area": area, "level": level,
-               "title": title, "html": stmt_html, "tex": tex}
+               "title": title, "tex_title": tex_title,
+               "html": stmt_html, "tex": tex}
         if short:
             rec["kind"] = "court"
         catalogue.append(rec)
@@ -122,7 +130,7 @@ for fname, area in PAGES:
             # pour que les motifs `id="..." ... data-level="..."` continuent de
             # s'appliquer aux salles comme aux pages.
             block = block.replace(">", f' data-page="{fname}">', 1)
-            school[level].setdefault(fname, []).append(block)
+            school[level].setdefault(fname, []).append((pid, fname, block))
     report.append(f"OK {fname}: {len(secs)} problems {levels}"
                   + (f"  ISSUES: {issues}" if issues else ""))
 
@@ -133,7 +141,7 @@ MATH_SPAN_RE = re.compile(r"\\\(.*?\\\)|\\\[.*?\\\]", re.S)
 def tex_escape_title(title):
     """Copie fidèle de texEscape() dans worksheet.js : n'échappe que la prose."""
     def esc(t):
-        return re.sub(r"([%&#_])", r"\\\1", t)
+        return re.sub(r"([%&#_$])", r"\\\1", t)
     out, pos = [], 0
     for m in MATH_SPAN_RE.finditer(title):
         out.append(esc(title[pos:m.start()]))
@@ -146,8 +154,9 @@ def tex_escape_title(title):
 # `\_` (et `\%`, `\&`, `\#`) en mode mathématique ne compile pas : une feuille
 # contenant un tel titre casserait tectonic. On le vérifie sur tout le site.
 bad_titles = [r["id"] for r in catalogue
-              if any(re.search(r"\\[%&#_]", m.group(0))
-                     for m in MATH_SPAN_RE.finditer(tex_escape_title(r["title"])))]
+              if any(re.search(r"\\[%&#_$]", m.group(0))
+                     for m in MATH_SPAN_RE.finditer(
+                         r.get("tex_title") or tex_escape_title(r["title"])))]
 if bad_titles:
     report.append("TEX-TITLE-ESCAPE (\\_ etc. inside math): " + " ".join(bad_titles))
 
@@ -262,11 +271,32 @@ ROOMS = [
      "<a href=\"college.html\">salle des collégiens</a>."),
 ]
 
+ANCHOR_RE = re.compile(r'href="#([A-Za-z]+-\d+)"')
+
 room_totals = {}
+rehomed = 0
 for _level, _outfile, _h1, _lede_tpl in ROOMS:
     by_page = school[_level]
     areas = [(f, a) for f, a in PAGES if f in by_page]
     total = sum(len(v) for v in by_page.values())
+    # Un problème emporte ses renvois, écrits pour sa page d'origine. Dans la
+    # salle la cible est le plus souvent absente et le lien ne mène nulle part :
+    # on le fait pointer vers la page d'origine.
+    in_room = {pid for v in by_page.values() for pid, _f, _b in v}
+
+    def _rehome(block, home):
+        global rehomed
+
+        def one(m):
+            global rehomed
+            if m.group(1) in in_room:
+                return m.group(0)
+            rehomed += 1
+            return f'href="{home}#{m.group(1)}"'
+
+        return ANCHOR_RE.sub(one, block)
+
+    by_page = {f: [_rehome(b, home) for _pid, home, b in v] for f, v in by_page.items()}
     room_totals[_level] = total
     if not total:
         continue

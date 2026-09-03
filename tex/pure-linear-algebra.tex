@@ -20,14 +20,14 @@ sans solution. Les références indiquent où trouver les connaissances nécessa
 \section*{Lycée}
 
 \begin{problem}[{Deux droites, une réponse --- le plus souvent --- Lycée}]
-\textbf{LIN-01.} \textbf{Problème.} Considérons le système de deux équations
+\textbf{LIN-01.} Considérons le système de deux équations
 $ax + by = e$, $cx + dy = f$, où $a, b, c, d, e, f$ sont des nombres réels donnés.
 \begin{enumerate}
-\item[(a)] Démontrer que le système possède exactement une solution $(x, y)$ si et seulement si
+\item[(i)] Démontrer que le système possède exactement une solution $(x, y)$ si et seulement si
 $ad - bc \ne 0$.
-\item[(b)] Lorsque $ad - bc = 0$, déterminer --- avec démonstration --- précisément quand le système
+\item[(ii)] Lorsque $ad - bc = 0$, déterminer --- avec démonstration --- précisément quand le système
 n'a aucune solution et quand il en a une infinité.
-\item[(c)] Interpréter géométriquement chaque cas comme un
+\item[(iii)] Interpréter géométriquement chaque cas comme un
 énoncé portant sur deux droites du plan.
 \end{enumerate}
 
@@ -49,15 +49,14 @@ déterminant, dont cette page suit la longue carrière.
 \bigskip
 
 \begin{problem}[{Les rotations vues comme des matrices --- Lycée}]
-\textbf{LIN-02.} \textbf{Problème.}
-\begin{enumerate}
-\item[(a)] Montrer que la rotation du plan autour de l'origine d'un angle
+\textbf{LIN-02.} \begin{enumerate}
+\item[(i)] Montrer que la rotation du plan autour de l'origine d'un angle
 $\theta$ envoie le point $(x, y)$ sur
 $(x \cos\theta - y \sin\theta, \; x \sin\theta + y \cos\theta)$.
-\item[(b)] Démontrer qu'effectuer
+\item[(ii)] Démontrer qu'effectuer
 la rotation d'angle $\alpha$ puis la rotation d'angle $\beta$ donne la rotation d'angle
 $\alpha + \beta$, et en déduire les formules d'addition du sinus et du cosinus.
-\item[(c)] Une réflexion
+\item[(iii)] Une réflexion
 du plan par rapport à une droite passant par l'origine déplace elle aussi les points linéairement.
 Trouver sa formule en fonction de l'angle de la droite, et démontrer que la composée de deux
 réflexions est une rotation.
@@ -81,14 +80,14 @@ est, pour bien des étudiants, le premier indice qu'une notation peut penser à 
 \bigskip
 
 \begin{problem}[{Le déterminant est une aire --- Lycée}]
-\textbf{LIN-03.} \textbf{Problème.} Soient $u = (a, b)$ et $v = (c, d)$ deux vecteurs du
+\textbf{LIN-03.} Soient $u = (a, b)$ et $v = (c, d)$ deux vecteurs du
 plan.
 \begin{enumerate}
-\item[(a)] Démontrer que l'aire du parallélogramme de côtés $u$ et $v$ vaut
+\item[(i)] Démontrer que l'aire du parallélogramme de côtés $u$ et $v$ vaut
 $|ad - bc|$.
-\item[(b)] Montrer que le signe de $ad - bc$ enregistre l'orientation : il est positif
+\item[(ii)] Montrer que le signe de $ad - bc$ enregistre l'orientation : il est positif
 exactement lorsque le plus court tour de $u$ vers $v$ se fait dans le sens direct.
-\item[(c)] Utiliser (i) et (ii)
+\item[(iii)] Utiliser (i) et (ii)
 pour démontrer la \og{} formule du lacet \fg{} : l'aire d'un polygone de sommets
 $(x_1, y_1), \dots, (x_n, y_n)$, énumérés dans le sens direct, vaut
 $\frac{1}{2} \sum_{i=1}^{n} (x_i y_{i+1} - x_{i+1} y_i)$, les indices étant pris modulo $n$.
@@ -112,7 +111,7 @@ faisant honnêtement du travail de plein air.
 \bigskip
 
 \begin{problem}[{Trace et déterminant cachés dans un polynôme --- Lycée, short}]
-\textbf{LIN-22.} \textbf{Problème.} Pour la matrice
+\textbf{LIN-22.} Pour la matrice
 $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$, démontrer que
 \[ \det(A - \lambda I) = \lambda^2 - (a + d)\lambda + (ad - bc). \]
 En déduire que si $A$ possède deux valeurs propres réelles, leur somme est la trace $a + d$ et
@@ -135,7 +134,7 @@ dimension $n$, le même polynôme a $n$ coefficients, et ce sont les fonctions s
 \bigskip
 
 \begin{problem}[{Des matrices dont le carré est nul --- Lycée, short}]
-\textbf{LIN-23.} \textbf{Problème.} Déterminer, avec démonstration, toutes les matrices réelles
+\textbf{LIN-23.} Déterminer, avec démonstration, toutes les matrices réelles
 $2 \times 2$ $N$ vérifiant $N^2 = 0$. Montrer qu'une telle matrice $N$ non nulle écrase le
 plan tout entier sur une droite passant par l'origine, puis écrase cette droite sur l'origine.
 \end{problem}
@@ -154,18 +153,18 @@ côté, et c'est l'unique brique élémentaire dont est assemblée la réduction
 \bigskip
 
 \begin{problem}[{Combien y a-t-il de carrés magiques, vraiment ? --- Lycée}]
-\textbf{LIN-24.} \textbf{Problème.} Appelons \textit{carré magique} un tableau $3 \times 3$ de nombres réels dont les
+\textbf{LIN-24.} Appelons \textit{carré magique} un tableau $3 \times 3$ de nombres réels dont les
 trois sommes par ligne, les trois sommes par colonne et les deux sommes diagonales sont toutes égales
 à un même nombre $S$, la somme magique. Les coefficients peuvent être des réels quelconques,
 positifs ou non.
 \begin{enumerate}
-\item[(a)] Démontrer que l'ensemble $M$ de tous les carrés magiques $3 \times 3$ est un espace
+\item[(i)] Démontrer que l'ensemble $M$ de tous les carrés magiques $3 \times 3$ est un espace
 vectoriel : une somme de carrés magiques est magique, et tout multiple scalaire aussi.
-\item[(b)] Démontrer que le coefficient central d'un carré magique vaut toujours $S/3$.
-\item[(c)] Déterminer $\dim M$, avec démonstration, et écrire explicitement une base. (De façon
+\item[(ii)] Démontrer que le coefficient central d'un carré magique vaut toujours $S/3$.
+\item[(iii)] Déterminer $\dim M$, avec démonstration, et écrire explicitement une base. (De façon
 équivalente : combien de coefficients peut-on choisir librement avant que les autres soient
 imposés ?)
-\item[(d)] Démontrer que tout carré magique dont les neuf coefficients sont exactement les entiers
+\item[(iv)] Démontrer que tout carré magique dont les neuf coefficients sont exactement les entiers
 $1, 2, \dots, 9$ s'obtient à partir du carré Lo Shu
 $\begin{pmatrix} 4 & 9 & 2 \\ 3 & 5 & 7 \\ 8 & 1 & 6 \end{pmatrix}$
 par rotation ou réflexion de la grille --- il y en a donc exactement huit.
@@ -191,7 +190,7 @@ plutôt que huit mille.
 \bigskip
 
 \begin{problem}[{Le produit vectoriel, et le volume qu'il mesure --- Lycée}]
-\textbf{LIN-34.} \textbf{Problème.} Pour des vecteurs $u = (u_1, u_2, u_3)$ et $v = (v_1, v_2, v_3)$ de l'espace, on pose
+\textbf{LIN-34.} Pour des vecteurs $u = (u_1, u_2, u_3)$ et $v = (v_1, v_2, v_3)$ de l'espace, on pose
 \[ u \times v = (u_2 v_3 - u_3 v_2,\; u_3 v_1 - u_1 v_3,\; u_1 v_2 - u_2 v_1). \]
 \begin{enumerate}
 \item[(a)] Démontrer que $u \times v$ est orthogonal à la fois à $u$ et à $v$, et démontrer l'identité
@@ -235,7 +234,7 @@ celui de dimension sept provenant des octonions.
 \bigskip
 
 \begin{problem}[{Des lignes dont la somme vaut un --- Lycée, short}]
-\textbf{LIN-35.} \textbf{Problème.} Soit $P$ une matrice $n \times n$ à coefficients positifs
+\textbf{LIN-35.} Soit $P$ une matrice $n \times n$ à coefficients positifs
 ou nuls dont chaque ligne a pour somme $1$. Démontrer que le vecteur dont toutes les coordonnées
 valent un est vecteur propre de $P$ pour la valeur propre $1$, et démontrer que toute valeur
 propre réelle $\lambda$ de $P$ vérifie $|\lambda| \le 1$.
@@ -260,19 +259,19 @@ version renforcée de cet énoncé --- Perron--Frobenius --- est ce qui classe l
 \section*{Licence}
 
 \begin{problem}[{Pourquoi la dimension a un sens --- Licence}]
-\textbf{LIN-04.} \textbf{Problème.} Des vecteurs $v_1, \dots, v_k$ d'un espace vectoriel sont
+\textbf{LIN-04.} Des vecteurs $v_1, \dots, v_k$ d'un espace vectoriel sont
 \textit{linéairement indépendants} si $c_1 v_1 + \cdots + c_k v_k = 0$ force tous les $c_i = 0$ ;
 ils sont \textit{générateurs} si tout vecteur est une telle combinaison ; une \textit{base} est les
 deux à la fois.
 \begin{enumerate}
-\item[(a)] Démontrer le
+\item[(i)] Démontrer le
 lemme d'échange de Steinitz : si $v_1, \dots, v_m$ sont indépendants et si $w_1, \dots, w_n$
 engendrent, alors $m \le n$.
-\item[(b)] En conclure que deux bases quelconques d'un espace vectoriel
+\item[(ii)] En conclure que deux bases quelconques d'un espace vectoriel
 de type fini ont le même cardinal --- la \textit{dimension} est donc bien définie.
-\item[(c)] Démontrer que toute famille libre
+\item[(iii)] Démontrer que toute famille libre
 s'étend en une base, et que toute famille génératrice en contient une.
-\item[(d)] Montrer que les nombres réels forment
+\item[(iv)] Montrer que les nombres réels forment
 un espace vectoriel de dimension infinie sur $\mathbb{Q}$.
 \end{enumerate}
 
@@ -294,16 +293,16 @@ axiomatique lui-même est dû à Peano (1888).
 \bigskip
 
 \begin{problem}[{Le théorème du rang --- Licence}]
-\textbf{LIN-05.} \textbf{Problème.} Soit $T : V \to W$ une application linéaire entre
+\textbf{LIN-05.} Soit $T : V \to W$ une application linéaire entre
 espaces vectoriels de dimension finie.
 \begin{enumerate}
-\item[(a)] Démontrer le théorème du rang :
+\item[(i)] Démontrer le théorème du rang :
 $\dim V = \dim \ker T + \dim \operatorname{im} T$.
-\item[(b)] En déduire qu'un système homogène de
+\item[(ii)] En déduire qu'un système homogène de
 $m$ équations linéaires à $n > m$ inconnues admet toujours une solution non nulle.
-\item[(c)] En déduire
+\item[(iii)] En déduire
 que, pour une matrice carrée, injectivité, surjectivité et inversibilité sont équivalentes.
-\item[(d)] Démontrer que le rang par lignes est égal au rang par colonnes, pour toute matrice.
+\item[(iv)] Démontrer que le rang par lignes est égal au rang par colonnes, pour toute matrice.
 \end{enumerate}
 
 \end{problem}
@@ -326,17 +325,16 @@ linéaire \fg{}.
 \bigskip
 
 \begin{problem}[{Le déterminant, axiomatiquement --- Licence}]
-\textbf{LIN-06.} \textbf{Problème.}
-\begin{enumerate}
-\item[(a)] Démontrer qu'il existe exactement une fonction $\det$ sur les
+\textbf{LIN-06.} \begin{enumerate}
+\item[(i)] Démontrer qu'il existe exactement une fonction $\det$ sur les
 matrices réelles $n \times n$ qui soit linéaire en chaque ligne séparément, change de signe
 lorsqu'on échange deux lignes, et vérifie $\det I = 1$.
-\item[(b)] À partir de ces seuls axiomes, démontrer
+\item[(ii)] À partir de ces seuls axiomes, démontrer
 $\det(AB) = \det A \cdot \det B$ et $\det A^{\mathsf{T}} = \det A$.
-\item[(c)] Démontrer la
+\item[(iii)] Démontrer la
 signification géométrique : une application linéaire $T$ de $\mathbb{R}^n$ multiplie le volume de
 tout pavé par $|\det T|$.
-\item[(d)] Expliquer, avec démonstration, pourquoi une matrice est inversible exactement lorsque son
+\item[(iv)] Expliquer, avec démonstration, pourquoi une matrice est inversible exactement lorsque son
 déterminant est non nul.
 \end{enumerate}
 
@@ -361,15 +359,15 @@ l'argument inverse.
 \bigskip
 
 \begin{problem}[{Valeurs propres, vecteurs propres et Fibonacci --- Licence}]
-\textbf{LIN-07.} \textbf{Problème.} Un vecteur non nul $v$ est \textit{vecteur propre} de la
+\textbf{LIN-07.} Un vecteur non nul $v$ est \textit{vecteur propre} de la
 matrice carrée $A$ pour la \textit{valeur propre} $\lambda$ si $Av = \lambda v$.
 \begin{enumerate}
-\item[(a)] Démontrer que
+\item[(i)] Démontrer que
 les valeurs propres de $A$ sont exactement les racines du polynôme caractéristique
 $\det(A - \lambda I)$.
-\item[(b)] Démontrer que des vecteurs propres associés à des valeurs propres distinctes sont
+\item[(ii)] Démontrer que des vecteurs propres associés à des valeurs propres distinctes sont
 linéairement indépendants.
-\item[(c)] Les nombres de Fibonacci vérifient
+\item[(iii)] Les nombres de Fibonacci vérifient
 $\begin{pmatrix} F_{n+1} \\ F_n \end{pmatrix} = A \begin{pmatrix} F_n \\ F_{n-1} \end{pmatrix}$
 pour la matrice $A = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$. Diagonaliser $A$
 et en déduire une formule close pour $F_n$ en fonction du nombre d'or.
@@ -394,18 +392,18 @@ des premières démonstrations que la diagonalisation transforme une dynamique e
 \bigskip
 
 \begin{problem}[{Quand une matrice est-elle diagonalisable ? --- Licence}]
-\textbf{LIN-08.} \textbf{Problème.} Une matrice carrée est \textit{diagonalisable} si elle est semblable
+\textbf{LIN-08.} Une matrice carrée est \textit{diagonalisable} si elle est semblable
 à une matrice diagonale, c'est-à-dire $A = PDP^{-1}$.
 \begin{enumerate}
-\item[(a)] Démontrer que $A$ (sur $\mathbb{C}$) est
+\item[(i)] Démontrer que $A$ (sur $\mathbb{C}$) est
 diagonalisable si et seulement si son polynôme minimal --- le polynôme unitaire de plus bas degré
 $m$ tel que $m(A) = 0$ --- n'a pas de racine multiple.
-\item[(b)] Montrer que
+\item[(ii)] Montrer que
 $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ n'est pas diagonalisable, et décrire
 géométriquement ce qu'elle fait à la place.
-\item[(c)] Démontrer que toute famille commutative de matrices
+\item[(iii)] Démontrer que toute famille commutative de matrices
 diagonalisables est \textit{simultanément} diagonalisable.
-\item[(d)] Montrer que les matrices diagonalisables sont
+\item[(iv)] Montrer que les matrices diagonalisables sont
 denses : toute matrice carrée complexe est limite de matrices diagonalisables.
 \end{enumerate}
 
@@ -428,18 +426,18 @@ l'analyste pour démontrer des identités matricielles \og{} d'abord dans le cas
 \bigskip
 
 \begin{problem}[{Cayley--Hamilton, honnêtement --- Licence}]
-\textbf{LIN-09.} \textbf{Problème.} Soit $p(\lambda) = \det(\lambda I - A)$ le
+\textbf{LIN-09.} Soit $p(\lambda) = \det(\lambda I - A)$ le
 polynôme caractéristique d'une matrice $n \times n$ $A$.
 \begin{enumerate}
-\item[(a)] Le théorème de Cayley--Hamilton
+\item[(i)] Le théorème de Cayley--Hamilton
 affirme que $p(A) = 0$. Expliquer précisément pourquoi la tentante \og{} démonstration \fg{} en une ligne
 --- substituer $\lambda = A$ dans $\det(\lambda I - A)$ pour obtenir $\det(A - A) = 0$ --- n'a
 aucun sens.
-\item[(b)] Donner une démonstration correcte, sur $\mathbb{C}$. (Une voie : la démontrer pour les matrices
+\item[(ii)] Donner une démonstration correcte, sur $\mathbb{C}$. (Une voie : la démontrer pour les matrices
 diagonalisables et utiliser leur densité, LIN-08(iv) ; une autre : l'identité de la comatrice.)
-\item[(c)] En déduire que, pour $A$ inversible, l'inverse $A^{-1}$ est un polynôme en $A$ de degré au
+\item[(iii)] En déduire que, pour $A$ inversible, l'inverse $A^{-1}$ est un polynôme en $A$ de degré au
 plus $n - 1$.
-\item[(d)] Le théorème vaut-il sur un anneau commutatif quelconque ? Démontrer ou
+\item[(iv)] Le théorème vaut-il sur un anneau commutatif quelconque ? Démontrer ou
 réfuter.
 \end{enumerate}
 
@@ -462,16 +460,16 @@ comprendre pourquoi il échoue apprend ce qu'est vraiment un polynôme d'une mat
 \bigskip
 
 \begin{problem}[{Le théorème spectral pour les matrices symétriques --- Licence}]
-\textbf{LIN-10.} \textbf{Problème.} Soit $A$ une matrice réelle symétrique $n \times n$
+\textbf{LIN-10.} Soit $A$ une matrice réelle symétrique $n \times n$
 ($A = A^{\mathsf{T}}$). Démontrer :
 \begin{enumerate}
-\item[(a)] toute valeur propre de $A$ est réelle ;
-\item[(b)] des vecteurs propres associés à des
+\item[(i)] toute valeur propre de $A$ est réelle ;
+\item[(ii)] des vecteurs propres associés à des
 valeurs propres distinctes sont orthogonaux ;
-\item[(c)] $\mathbb{R}^n$ admet une base orthonormée de
+\item[(iii)] $\mathbb{R}^n$ admet une base orthonormée de
 vecteurs propres de $A$, c'est-à-dire $A = Q \Lambda Q^{\mathsf{T}}$ avec $Q$ orthogonale et
 $\Lambda$ diagonale.
-\item[(d)] En déduire le théorème des axes principaux : toute forme quadratique
+\item[(iv)] En déduire le théorème des axes principaux : toute forme quadratique
 $q(x) = x^{\mathsf{T}} A x$ devient une somme pondérée de carrés
 $\lambda_1 y_1^2 + \cdots + \lambda_n y_n^2$ dans des coordonnées convenablement tournées, et toute
 ellipse ou hyperbole $q(x) = 1$ a des axes perpendiculaires.
@@ -497,7 +495,7 @@ l'exercice.
 \bigskip
 
 \begin{problem}[{Quatre visages de la définie-positivité --- Licence}]
-\textbf{LIN-11.} \textbf{Problème.} Une matrice réelle symétrique $A$ est \textit{définie positive}
+\textbf{LIN-11.} Une matrice réelle symétrique $A$ est \textit{définie positive}
 si $x^{\mathsf{T}} A x > 0$ pour tout vecteur non nul $x$. Démontrer que les assertions
 suivantes sont équivalentes :
 \begin{enumerate}
@@ -533,14 +531,14 @@ seconde \fg{} en dimension $n$.
 \bigskip
 
 \begin{problem}[{L'exponentielle d'une matrice --- Licence}]
-\textbf{LIN-12.} \textbf{Problème.} Pour une matrice carrée $A$, on pose
+\textbf{LIN-12.} Pour une matrice carrée $A$, on pose
 $e^{A} = \sum_{k=0}^{\infty} A^k / k!$.
 \begin{enumerate}
-\item[(a)] Démontrer que la série converge pour toute $A$.
-\item[(b)] Démontrer que si $AB = BA$ alors $e^{A+B} = e^A e^B$, et trouver deux matrices pour lesquelles
+\item[(i)] Démontrer que la série converge pour toute $A$.
+\item[(ii)] Démontrer que si $AB = BA$ alors $e^{A+B} = e^A e^B$, et trouver deux matrices pour lesquelles
 $e^{A+B} \ne e^A e^B$.
-\item[(c)] Démontrer $\det e^A = e^{\operatorname{tr} A}$.
-\item[(d)] Montrer que
+\item[(iii)] Démontrer $\det e^A = e^{\operatorname{tr} A}$.
+\item[(iv)] Montrer que
 $x(t) = e^{tA} x_0$ est l'unique solution de l'équation différentielle $x' = Ax$ avec
 $x(0) = x_0$, et calculer explicitement $e^{tA}$ lorsque $A = \begin{pmatrix} 0 & -1 \\
 1 & 0 \end{pmatrix}$. Quelles fonctions familières apparaissent, et pourquoi le devaient-elles ?
@@ -565,7 +563,7 @@ précisément parce que les dix-neuf méthodes peuvent toutes échouer.
 \bigskip
 
 \begin{problem}[{La décomposition en valeurs singulières --- Licence}]
-\textbf{LIN-13.} \textbf{Problème.} (i) Démontrer que toute matrice réelle $m \times n$ $A$ peut
+\textbf{LIN-13.} (i) Démontrer que toute matrice réelle $m \times n$ $A$ peut
 s'écrire $A = U \Sigma V^{\mathsf{T}}$, où $U$ et $V$ sont orthogonales et $\Sigma$
 est diagonale à coefficients positifs ou nuls $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$ (les
 \textit{valeurs singulières}). (Indication pour l'existence : appliquer le théorème spectral, LIN-10, à
@@ -595,7 +593,7 @@ non par le déterminant.
 \bigskip
 
 \begin{problem}[{Gram--Schmidt est une factorisation --- Licence, short}]
-\textbf{LIN-25.} \textbf{Problème.} Soit $A$ une matrice réelle $m \times n$ avec $m \ge n$
+\textbf{LIN-25.} Soit $A$ une matrice réelle $m \times n$ avec $m \ge n$
 dont les colonnes sont linéairement indépendantes. Démontrer que $A = QR$ où $Q$ est
 $m \times n$ à colonnes orthonormées et $R$ est $n \times n$ triangulaire supérieure à
 coefficients diagonaux strictement positifs, et démontrer que $Q$ et $R$ sont uniquement
@@ -620,7 +618,7 @@ propres.
 \bigskip
 
 \begin{problem}[{Le quotient de Rayleigh est pris au piège --- Licence, short}]
-\textbf{LIN-26.} \textbf{Problème.} Soit $A$ une matrice réelle symétrique $n \times n$ de plus
+\textbf{LIN-26.} Soit $A$ une matrice réelle symétrique $n \times n$ de plus
 grande valeur propre $\lambda_{\max}$ et de plus petite valeur propre $\lambda_{\min}$. Démontrer
 que, pour tout $x \in \mathbb{R}^n$ non nul,
 \[ \lambda_{\min} \;\le\; \frac{x^{\mathsf{T}} A x}{x^{\mathsf{T}} x} \;\le\; \lambda_{\max}, \]
@@ -643,22 +641,22 @@ est le théorème de Courant--Fischer de LIN-16.
 \bigskip
 
 \begin{problem}[{Les moindres carrés sont une ombre --- Licence}]
-\textbf{LIN-27.} \textbf{Problème.} Soient $A$ une matrice réelle $m \times n$ et $b \in \mathbb{R}^m$. Le
+\textbf{LIN-27.} Soient $A$ une matrice réelle $m \times n$ et $b \in \mathbb{R}^m$. Le
 problème des moindres carrés consiste à minimiser $\|Ax - b\|$ sur tous les $x \in \mathbb{R}^n$,
 où $\|\cdot\|$ est la norme euclidienne.
 \begin{enumerate}
-\item[(a)] Démontrer que $x$ minimise $\|Ax - b\|$ si et seulement si $Ax$ est la projection orthogonale
+\item[(i)] Démontrer que $x$ minimise $\|Ax - b\|$ si et seulement si $Ax$ est la projection orthogonale
 de $b$ sur l'espace des colonnes de $A$, et que cela a lieu si et seulement si $x$ résout les
 équations normales
 \[ A^{\mathsf{T}} A x = A^{\mathsf{T}} b. \]
 En conclure qu'un minimiseur existe toujours, quels que soient $A$ et $b$.
-\item[(b)] Démontrer que le minimiseur est unique exactement lorsque les colonnes de $A$ sont indépendantes,
+\item[(ii)] Démontrer que le minimiseur est unique exactement lorsque les colonnes de $A$ sont indépendantes,
 et que dans ce cas la projection sur l'espace des colonnes est
 $P = A (A^{\mathsf{T}} A)^{-1} A^{\mathsf{T}}$. Vérifier $P^{\mathsf{T}} = P$ et $P^2 = P$,
 et montrer que $I - P$ est la projection orthogonale sur $\ker A^{\mathsf{T}}$.
-\item[(c)] Démontrer la réciproque de (ii) : toute matrice symétrique idempotente est la projection orthogonale
+\item[(iii)] Démontrer la réciproque de (ii) : toute matrice symétrique idempotente est la projection orthogonale
 sur son propre espace des colonnes.
-\item[(d)] À l'aide de la factorisation $A = QR$ de LIN-25, montrer que les équations normales deviennent
+\item[(iv)] À l'aide de la factorisation $A = QR$ de LIN-25, montrer que les équations normales deviennent
 $Rx = Q^{\mathsf{T}} b$, un système triangulaire. Expliquer pourquoi former $A^{\mathsf{T}} A$
 élève au carré le conditionnement de $A$, et donc pourquoi c'est cette voie-ci que les analystes
 numériciens empruntent réellement.
@@ -671,7 +669,7 @@ détermination des orbites cométaires, et lui donna son nom ; Gauss répliqua q
 1795 et qu'il s'en était servi en 1801 pour prédire où reparaîtrait l'astéroïde perdu Cérès --- ce
 qu'il fit. La querelle de priorité qui s'ensuivit fut âpre, et les mathématiques lui ont survécu : le
 théorème de Gauss--Markov fait des moindres carrés le meilleur estimateur linéaire sans biais, et
-aujourd'hui les mêmes équations normales siègent au cœur de la régression, du positionnement GPS et
+aujourd'hui les mêmes équations normales siègent au c\oe{}ur de la régression, du positionnement GPS et
 de l'ajustement de presque tout modèle empirique. Le contenu géométrique tient en une phrase --- la
 meilleure approximation est une ombre perpendiculaire --- et tout le reste est comptabilité.
 
@@ -685,7 +683,7 @@ meilleure approximation est une ombre perpendiculaire --- et tout le reste est c
 \bigskip
 
 \begin{problem}[{Quand a-t-on $A = LU$ ? --- Licence}]
-\textbf{LIN-36.} \textbf{Problème.} Exécuter le pivot de Gauss sur une matrice carrée $A$ sans échange de lignes,
+\textbf{LIN-36.} Exécuter le pivot de Gauss sur une matrice carrée $A$ sans échange de lignes,
 en enregistrant les multiplicateurs, revient à écrire $A = LU$ avec $L$ triangulaire inférieure
 unitaire (des uns sur la diagonale) et $U$ triangulaire supérieure.
 \begin{enumerate}
@@ -731,7 +729,7 @@ $O(n^3)$, et c'est pourquoi personne ne calcule $A^{-1}$.
 \bigskip
 
 \begin{problem}[{La pseudo-inverse et la plus petite solution --- Licence}]
-\textbf{LIN-37.} \textbf{Problème.} Soit $A$ une matrice réelle $m \times n$. On dit qu'une matrice
+\textbf{LIN-37.} Soit $A$ une matrice réelle $m \times n$. On dit qu'une matrice
 $n \times m$ $X$ est une \textit{inverse de Moore--Penrose} de $A$ si
 \[ AXA = A, \qquad XAX = X, \qquad (AX)^{\mathsf{T}} = AX, \qquad (XA)^{\mathsf{T}} = XA . \]
 \begin{enumerate}
@@ -773,7 +771,7 @@ les données bougent.
 \bigskip
 
 \begin{problem}[{Une matrice construite sur mesure --- Licence, short}]
-\textbf{LIN-38.} \textbf{Problème.} Pour un polynôme unitaire
+\textbf{LIN-38.} Pour un polynôme unitaire
 $p(x) = x^n + c_{n-1}x^{n-1} + \cdots + c_1 x + c_0$ sur un corps, soit $C(p)$ sa matrice
 compagnon : des uns sur la sous-diagonale, les coefficients $-c_0, -c_1, \dots, -c_{n-1}$ le long de
 la dernière colonne, et des zéros ailleurs. Démontrer que le polynôme caractéristique et le polynôme
@@ -804,20 +802,20 @@ LIN-14.
 \section*{Master}
 
 \begin{problem}[{Pourquoi la réduction de Jordan existe --- Master}]
-\textbf{LIN-14.} \textbf{Problème.} Soit $T$ un endomorphisme d'un espace vectoriel
+\textbf{LIN-14.} Soit $T$ un endomorphisme d'un espace vectoriel
 complexe de dimension finie $V$.
 \begin{enumerate}
-\item[(a)] Démontrer que $V$ est la somme directe des \textit{sous-espaces
+\item[(i)] Démontrer que $V$ est la somme directe des \textit{sous-espaces
 caractéristiques} $\ker (T - \lambda I)^n$, un pour chaque valeur propre $\lambda$.
-\item[(b)] Démontrer
+\item[(ii)] Démontrer
 que tout endomorphisme nilpotent $N$ (une de ses puissances est nulle) admet une base dans laquelle
 sa matrice est une somme directe de \og{} blocs de décalage \fg{} --- des zéros partout sauf des uns juste
 au-dessus de la diagonale --- et que le multiensemble des tailles de blocs est uniquement déterminé par
 $N$.
-\item[(c)] Combiner (i) et (ii) pour
+\item[(iii)] Combiner (i) et (ii) pour
 démontrer le théorème de la réduction de Jordan : $T$ admet une base dans laquelle sa matrice est
 une somme directe de blocs de Jordan $\lambda I + \text{décalage}$, unique à l'ordre près.
-\item[(d)] En conclure que deux matrices
+\item[(iv)] En conclure que deux matrices
 complexes sont semblables si et seulement si elles ont la même réduite de Jordan, et exhiber deux
 matrices ayant les mêmes polynômes caractéristique \textit{et} minimal qui ne sont pas semblables.
 \end{enumerate}
@@ -843,17 +841,16 @@ la similitude.
 \bigskip
 
 \begin{problem}[{Perron--Frobenius et le vecteur propre à 25 000 000 000 de dollars --- Master}]
-\textbf{LIN-15.} \textbf{Problème.}
-\begin{enumerate}
-\item[(a)] Démontrer le théorème de Perron : une matrice carrée à
+\textbf{LIN-15.} \begin{enumerate}
+\item[(i)] Démontrer le théorème de Perron : une matrice carrée à
 coefficients strictement positifs possède une valeur propre réelle $r > 0$ qui est simple,
 strictement plus grande en valeur absolue que toute autre valeur propre, et qui possède un vecteur
 propre à coefficients strictement positifs --- et aucune autre valeur propre n'a de vecteur propre à
 coefficients positifs ou nuls.
-\item[(b)] Expliquer par un exemple ce qui peut échouer
+\item[(ii)] Expliquer par un exemple ce qui peut échouer
 lorsque les coefficients sont seulement positifs ou nuls, et énoncer le raffinement de Frobenius pour
 les matrices irréductibles.
-\item[(c)] PageRank modélise un internaute qui, depuis une page, suit un lien sortant au hasard avec
+\item[(iii)] PageRank modélise un internaute qui, depuis une page, suit un lien sortant au hasard avec
 probabilité $\alpha$ (disons 0,85) et saute sinon vers une page uniformément aléatoire ; le vecteur
 de classement est la distribution stationnaire. Formuler la \og{} matrice de Google \fg{} $G$, démontrer via
 (i) que le classement existe et est unique, et démontrer que la méthode de la puissance itérée y
@@ -879,7 +876,7 @@ l'introduction en bourse de Google en 2004 ; l'estimation n'a vieilli que dans u
 \bigskip
 
 \begin{problem}[{Courant--Fischer et l'entrelacement des valeurs propres --- Master}]
-\textbf{LIN-16.} \textbf{Problème.} Soit $A$ une matrice réelle symétrique $n \times n$ de
+\textbf{LIN-16.} Soit $A$ une matrice réelle symétrique $n \times n$ de
 valeurs propres $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_n$. (i) Démontrer le théorème
 min--max de Courant--Fischer :
 \[ \lambda_k = \max_{\dim U = k} \; \min_{0 \ne x \in U} \; \frac{x^{\mathsf{T}} A x}{x^{\mathsf{T}} x}. \]
@@ -912,18 +909,17 @@ vieux de plusieurs décennies (Marcus, Spielman, Srivastava).
 \bigskip
 
 \begin{problem}[{Strassen : multiplier les matrices plus vite qu'on ne vous l'a appris --- Master}]
-\textbf{LIN-17.} \textbf{Problème.}
-\begin{enumerate}
-\item[(a)] Montrer que des matrices $2 \times 2$ sur un anneau commutatif
+\textbf{LIN-17.} \begin{enumerate}
+\item[(i)] Montrer que des matrices $2 \times 2$ sur un anneau commutatif
 quelconque peuvent être multipliées en n'utilisant que 7 multiplications d'éléments de l'anneau (au
 lieu des 8 évidentes), au prix d'additions supplémentaires.
-\item[(b)] Démontrer qu'appliquer cela récursivement à des matrices
+\item[(ii)] Démontrer qu'appliquer cela récursivement à des matrices
 par blocs multiplie deux matrices $n \times n$ en $O(n^{\log_2 7}) = O(n^{2{,}81})$ opérations
 élémentaires.
-\item[(c)] Démontrer que 7 est optimal pour le cas $2 \times 2$ : aucun algorithme bilinéaire n'emploie 6
+\item[(iii)] Démontrer que 7 est optimal pour le cas $2 \times 2$ : aucun algorithme bilinéaire n'emploie 6
 multiplications (Winograd, 1971 --- difficile ; a minima, lire une démonstration et en reconstruire le
 plan).
-\item[(d)] Montrer que tout algorithme demande au moins $cn^2$ étapes, de sorte que l'exposant de la
+\item[(iv)] Montrer que tout algorithme demande au moins $cn^2$ étapes, de sorte que l'exposant de la
 multiplication matricielle est compris entre 2 et $\log_2 7$.
 \end{enumerate}
 
@@ -946,21 +942,20 @@ multiplications matricielles rapides depuis lors.
 \bigskip
 
 \begin{problem}[{La porte des tenseurs --- Master}]
-\textbf{LIN-18.} \textbf{Problème.}
-\begin{enumerate}
-\item[(a)] Définir le produit tensoriel $V \otimes W$ de deux espaces
+\textbf{LIN-18.} \begin{enumerate}
+\item[(i)] Définir le produit tensoriel $V \otimes W$ de deux espaces
 vectoriels par sa propriété universelle : les applications bilinéaires issues de $V \times W$
 correspondent exactement aux applications linéaires issues de $V \otimes W$. Démontrer qu'il existe,
 qu'il est unique à isomorphisme canonique près, et qu'il vérifie
 $\dim(V \otimes W) = \dim V \cdot \dim W$.
-\item[(b)] Démontrer que tout élément de $V \otimes W$ n'est pas un tenseur \og{} pur \fg{} $v \otimes w$ ; le
+\item[(ii)] Démontrer que tout élément de $V \otimes W$ n'est pas un tenseur \og{} pur \fg{} $v \otimes w$ ; le
 nombre minimal de tenseurs purs nécessaires pour écrire $t$ est son \textit{rang}. Montrer que pour
 $t \in V \otimes W$, on retrouve ainsi le rang usuel d'une matrice.
-\item[(c)] Montrer que la multiplication des matrices $2 \times 2$
+\item[(iii)] Montrer que la multiplication des matrices $2 \times 2$
 \og{} est \fg{} un tenseur précis $T \in U \otimes V \otimes W$ avec $\dim U = \dim V = \dim W = 4$, et
 que l'algorithme de Strassen (LIN-17) est exactement une décomposition de ce tenseur en 7 tenseurs
 purs.
-\item[(d)] Contrairement au rang matriciel, le rang tensoriel à trois facteurs peut sauter \textit{vers le bas}
+\item[(iv)] Contrairement au rang matriciel, le rang tensoriel à trois facteurs peut sauter \textit{vers le bas}
 à la limite : exhiber une suite de tenseurs de rang 2 convergeant vers un tenseur de rang 3. (Ce
 phénomène --- le rang de bord --- est la raison pour laquelle la complexité de la multiplication
 matricielle est si difficile à cerner.)
@@ -986,7 +981,7 @@ centrale. Ce problème est la porte de l'algèbre linéaire vers l'algèbre \tex
 \bigskip
 
 \begin{problem}[{La nilpotence détectée par les traces --- Master, short}]
-\textbf{LIN-28.} \textbf{Problème.} Soit $N$ une matrice $n \times n$ sur $\mathbb{C}$.
+\textbf{LIN-28.} Soit $N$ une matrice $n \times n$ sur $\mathbb{C}$.
 Démontrer que les assertions suivantes sont équivalentes : $N^k = 0$ pour un certain $k$ ; toute
 valeur propre de $N$ est $0$ ; et $\operatorname{tr}(N^k) = 0$ pour $k = 1, 2, \dots, n$.
 \end{problem}
@@ -1008,7 +1003,7 @@ matricielle du théorème d'Engel en théorie de Lie.
 \bigskip
 
 \begin{problem}[{Une seule base pour deux matrices --- Master, short}]
-\textbf{LIN-29.} \textbf{Problème.} Soient $A$ et $B$ deux matrices complexes $n \times n$
+\textbf{LIN-29.} Soient $A$ et $B$ deux matrices complexes $n \times n$
 diagonalisables. Démontrer qu'il existe une seule et même matrice inversible $S$ rendant
 $S^{-1} A S$ et $S^{-1} B S$ toutes deux diagonales si et seulement si $AB = BA$, et montrer par un exemple que la
 conclusion tombe en défaut si l'on suppose seulement que les matrices commutent sans être
@@ -1031,24 +1026,24 @@ circulantes de LIN-30 sont l'exemple le plus net.
 \bigskip
 
 \begin{problem}[{Les matrices circulantes, et pourquoi la matrice de Fourier apparaît --- Master}]
-\textbf{LIN-30.} \textbf{Problème.} Une \textit{circulante} est une matrice $C$ dont les lignes sont les décalages
+\textbf{LIN-30.} Une \textit{circulante} est une matrice $C$ dont les lignes sont les décalages
 cycliques successifs de la première : son coefficient $(j,k)$ est $c_{k-j}$, les indices étant lus
 modulo $n$. Soit $S$ la circulante de première ligne $(0, 1, 0, \dots, 0)$ --- le décalage
 cyclique --- et posons $\omega = e^{2\pi i / n}$.
 \begin{enumerate}
-\item[(a)] Démontrer que $S^n = I$ et que toute circulante est égale à $p(S)$ pour le polynôme
+\item[(i)] Démontrer que $S^n = I$ et que toute circulante est égale à $p(S)$ pour le polynôme
 $p(z) = c_0 + c_1 z + \cdots + c_{n-1} z^{n-1}$. Démontrer réciproquement qu'une matrice est
 circulante si et seulement si elle commute avec $S$.
-\item[(b)] Démontrer que les vecteurs $v_k = (1, \omega^{k}, \omega^{2k}, \dots, \omega^{(n-1)k})^{\mathsf{T}}$,
+\item[(ii)] Démontrer que les vecteurs $v_k = (1, \omega^{k}, \omega^{2k}, \dots, \omega^{(n-1)k})^{\mathsf{T}}$,
 pour $k = 0, 1, \dots, n-1$, sont vecteurs propres de \textit{toute} circulante $n \times n$. En
 déduire que la matrice unitaire $F$ de coefficients $F_{jk} = n^{-1/2} \omega^{jk}$ --- la
 transformation de Fourier discrète --- diagonalise simultanément toutes les circulantes, avec
 \[ F^{*} C F = \operatorname{diag}\big(p(1), p(\omega), \dots, p(\omega^{n-1})\big). \]
-\item[(c)] En déduire que les circulantes forment une algèbre commutative isomorphe à
+\item[(iii)] En déduire que les circulantes forment une algèbre commutative isomorphe à
 $\mathbb{C}[z] / (z^n - 1)$, que $\det C = \prod_{k=0}^{n-1} p(\omega^{k})$, et que $Cx$ est la
 convolution cyclique de $c$ avec $x$ --- de sorte qu'elle se calcule en $O(n \log n)$ opérations
 par transformation de Fourier rapide.
-\item[(d)] Démontrer que toute circulante est une matrice normale, et donner une formule pour $C^{-1}$
+\item[(iv)] Démontrer que toute circulante est une matrice normale, et donner une formule pour $C^{-1}$
 lorsqu'elle existe. Expliquer ensuite pourquoi la partie (ii) est un cas particulier d'un principe
 général : une application linéaire commutant avec l'action d'un groupe abélien fini est diagonalisée
 par les caractères de ce groupe.
@@ -1076,7 +1071,7 @@ la même raison.
 \bigskip
 
 \begin{problem}[{Le triangle de Schur, et ce que \og{} normal \fg{} veut vraiment dire --- Master}]
-\textbf{LIN-39.} \textbf{Problème.} Soit $A$ une matrice complexe $n \times n$ et $A^{*}$ sa transconjuguée. On
+\textbf{LIN-39.} Soit $A$ une matrice complexe $n \times n$ et $A^{*}$ sa transconjuguée. On
 dit que $A$ est \textit{normale} si $A A^{*} = A^{*} A$, et l'on note $\|A\|_F$ la norme de
 Frobenius $\big(\sum_{i,j} |a_{ij}|^2\big)^{1/2}$.
 \begin{enumerate}
@@ -1120,7 +1115,7 @@ croissance transitoire, conjecture de Crouzeix (LIN-21) --- vit strictement de l
 \bigskip
 
 \begin{problem}[{Produits de Kronecker et équation de Sylvester --- Master}]
-\textbf{LIN-40.} \textbf{Problème.} Pour $A$ de taille $m \times m$ et $B$ de taille $n \times n$, le
+\textbf{LIN-40.} Pour $A$ de taille $m \times m$ et $B$ de taille $n \times n$, le
 \textit{produit de Kronecker} $A \otimes B$ est la matrice $mn \times mn$ formée des blocs
 $a_{ij}B$, et $\operatorname{vec}(X)$ désigne le long vecteur obtenu en empilant les colonnes de
 $X$.
@@ -1168,7 +1163,7 @@ différentielle.
 \bigskip
 
 \begin{problem}[{Le théorème de Birkhoff sur les matrices bistochastiques --- Master, short}]
-\textbf{LIN-41.} \textbf{Problème.} On dit qu'une matrice $n \times n$ est \textit{bistochastique}
+\textbf{LIN-41.} On dit qu'une matrice $n \times n$ est \textit{bistochastique}
 si ses coefficients sont positifs ou nuls et si la somme de chaque ligne et de chaque colonne vaut
 $1$. Démontrer le théorème de Birkhoff--von Neumann : ces matrices forment un convexe compact dont
 les points extrémaux sont exactement les $n!$ matrices de permutation, de sorte que toute matrice
@@ -1178,7 +1173,7 @@ bistochastique est une combinaison convexe de matrices de permutation.
 \noindent Birkhoff publia ce résultat en 1946, en trois brèves observations dans une revue de
 l'université de Tucumán ; von Neumann démontra un énoncé équivalent en 1953 en travaillant sur le
 problème d'affectation. Le théorème est en réalité le théorème des mariages de Hall en costume
-matriciel --- le nœud de toute démonstration consiste à extraire une permutation du motif des
+matriciel --- le n\oe{}ud de toute démonstration consiste à extraire une permutation du motif des
 coefficients strictement positifs --- et il dit que les \og{} permutations randomisées \fg{} sont le seul
 comportement bistochastique qui existe. Le polytope qu'il décrit est de dimension $(n-1)^2$ et
 possède $n!$ sommets, et son volume n'est connu que pour de petits $n$ ; la question naturelle
@@ -1198,7 +1193,7 @@ suivante, celle de savoir à quel point le permanent d'une matrice bistochastiqu
 \section*{Recherche}
 
 \begin{problem}[{L'exposant de la multiplication matricielle --- Recherche}]
-\textbf{LIN-19.} \textbf{Problème.} L'exposant $\omega$ est la borne inférieure de tous les $c$
+\textbf{LIN-19.} L'exposant $\omega$ est la borne inférieure de tous les $c$
 tels que deux matrices $n \times n$ puissent être multipliées en $O(n^c)$ opérations
 arithmétiques. A-t-on $\omega = 2$ ? \textbf{Statut : ouvert.} Ce que l'on sait :
 $2 \le \omega \le \log_2 7 \approx 2{,}807$ (Strassen 1969, LIN-17) ; $\omega < 2{,}376$
@@ -1233,16 +1228,16 @@ qui dissimulent des constantes astronomiques.
 \bigskip
 
 \begin{problem}[{La conjecture de Hadamard --- Recherche}]
-\textbf{LIN-20.} \textbf{Problème.} Une \textit{matrice de Hadamard} d'ordre $n$ est une
+\textbf{LIN-20.} Une \textit{matrice de Hadamard} d'ordre $n$ est une
 matrice $n \times n$ à coefficients $\pm 1$ dont les lignes sont deux à deux orthogonales. La
 conjecture de Hadamard : une telle matrice existe pour tout $n$ divisible par 4.
 \textbf{Statut : ouvert.} Pour entrer dans le sujet :
 \begin{enumerate}
-\item[(a)] démontrer qu'une matrice de Hadamard d'ordre $n > 2$ force $n \equiv 0 \pmod 4$ ;
-\item[(b)] démontrer l'inégalité de Hadamard --- une matrice $n \times n$ à coefficients dans $[-1, 1]$
+\item[(i)] démontrer qu'une matrice de Hadamard d'ordre $n > 2$ force $n \equiv 0 \pmod 4$ ;
+\item[(ii)] démontrer l'inégalité de Hadamard --- une matrice $n \times n$ à coefficients dans $[-1, 1]$
 vérifie $|\det| \le n^{n/2}$ --- et montrer que l'égalité a lieu exactement pour les matrices de
 Hadamard ;
-\item[(c)] construire des matrices de Hadamard de tous les ordres $2^k$ (Sylvester, 1867) et d'ordre 12
+\item[(iii)] construire des matrices de Hadamard de tous les ordres $2^k$ (Sylvester, 1867) et d'ordre 12
 (construction de Paley, 1933). Ce que l'on sait : les constructions couvrent la plupart des ordres ;
 le plus petit cas indécis se situait à 428 jusqu'à ce que Kharaghani et Tayfeh-Rezaie en trouvent une
 en 2004, puis à 668 pendant deux décennies --- jusqu'en août 2026, où une matrice d'ordre 668 a été
@@ -1270,7 +1265,7 @@ calcul sérieux.
 \bigskip
 
 \begin{problem}[{La conjecture de Crouzeix --- Recherche}]
-\textbf{LIN-21.} \textbf{Problème.} L'\textit{image numérique} d'une matrice carrée complexe
+\textbf{LIN-21.} L'\textit{image numérique} d'une matrice carrée complexe
 $A$ est l'ensemble $W(A) = \{ x^* A x : \|x\| = 1 \}$ du plan complexe --- un convexe compact
 contenant les valeurs propres. Conjecture de Crouzeix (2004) : pour toute matrice $A$ et tout
 polynôme $p$,
@@ -1280,11 +1275,11 @@ avec la constante 11,08 (Crouzeix, 2007) et avec la constante $1 + \sqrt{2}$ (Cr
 2017) ; la constante 2 serait optimale, et la conjecture est vérifiée pour les matrices
 $2 \times 2$ et diverses classes particulières. Pour entrer dans le sujet :
 \begin{enumerate}
-\item[(a)] démontrer que $W(A)$ est convexe (le
+\item[(i)] démontrer que $W(A)$ est convexe (le
 théorème de Toeplitz--Hausdorff) ;
-\item[(b)] démontrer la conjecture --- avec la constante 1 --- pour les matrices normales,
+\item[(ii)] démontrer la conjecture --- avec la constante 1 --- pour les matrices normales,
 en utilisant le théorème spectral ;
-\item[(c)] montrer par un exemple que pour $A$ non normale, $\|p(A)\|$ peut
+\item[(iii)] montrer par un exemple que pour $A$ non normale, $\|p(A)\|$ peut
 dépasser $\max_{W(A)} |p|$, de sorte qu'une constante strictement supérieure à 1 est réellement
 nécessaire.
 \end{enumerate}
@@ -1309,7 +1304,7 @@ tant des théoriciens des opérateurs que des analystes numériciens.
 \bigskip
 
 \begin{problem}[{La conjecture de Hadamard circulante --- Recherche, short}]
-\textbf{LIN-31.} \textbf{Problème.} Une matrice de Hadamard circulante est une circulante (LIN-30) à
+\textbf{LIN-31.} Une matrice de Hadamard circulante est une circulante (LIN-30) à
 coefficients $\pm 1$ dont les lignes sont deux à deux orthogonales (LIN-20) ; les seuls exemples
 connus sont d'ordre $1$ et $4$. Démontrer qu'il n'en existe pas d'autres, ou en exhiber une d'ordre
 strictement supérieur à $4$ --- \textbf{statut : ouvert.}
@@ -1334,7 +1329,7 @@ les ingénieurs du radar et des télécommunications s'y intéressent.
 \bigskip
 
 \begin{problem}[{Permanent contre déterminant --- Recherche, short}]
-\textbf{LIN-32.} \textbf{Problème.} Le permanent d'une matrice $n \times n$ est
+\textbf{LIN-32.} Le permanent d'une matrice $n \times n$ est
 $\operatorname{per}(X) = \sum_{\sigma \in S_n} \prod_{i=1}^{n} x_{i \sigma(i)}$ --- le déterminant
 privé de tous ses signes moins --- et sa \textit{complexité déterminantale} $\mathrm{dc}(n)$ est le plus
 petit $m$ pour lequel $\operatorname{per}(X) = \det(M)$ pour une certaine matrice $m \times m$
@@ -1361,20 +1356,20 @@ $n^2/2$ et $2^n$ n'a presque pas bougé en deux décennies.
 \bigskip
 
 \begin{problem}[{Combien de droites équiangulaires tiennent dans l'espace ? --- Recherche}]
-\textbf{LIN-33.} \textbf{Problème.} Une famille de droites passant par l'origine de $\mathbb{R}^d$ est
+\textbf{LIN-33.} Une famille de droites passant par l'origine de $\mathbb{R}^d$ est
 \textit{équiangulaire} si deux quelconques d'entre elles font le même angle. Notons $N(d)$ le plus
 grand nombre de telles droites, et $N_\alpha(d)$ le plus grand nombre lorsque l'angle commun
 $\theta$ est fixé avec $\alpha = \cos\theta$.
 \begin{enumerate}
-\item[(a)] Démontrer la borne de Gerzon $N(d) \le \tbinom{d+1}{2}$, en montrant que les projections
+\item[(i)] Démontrer la borne de Gerzon $N(d) \le \tbinom{d+1}{2}$, en montrant que les projections
 orthogonales sur les droites sont linéairement indépendantes à l'intérieur de l'espace de dimension
 $\tbinom{d+1}{2}$ des matrices symétriques $d \times d$.
-\item[(b)] Démontrer la borne relative : si les droites sont engendrées par des vecteurs unitaires $u_i$
+\item[(ii)] Démontrer la borne relative : si les droites sont engendrées par des vecteurs unitaires $u_i$
 vérifiant $|\langle u_i, u_j \rangle| = \alpha$ pour $i \ne j$, et si $d < 1/\alpha^2$, alors
 \[ N_\alpha(d) \;\le\; \frac{d\,(1 - \alpha^2)}{1 - d\,\alpha^2}. \]
-\item[(c)] Construire 6 droites équiangulaires dans $\mathbb{R}^3$ (les six diagonales d'un icosaèdre
+\item[(iii)] Construire 6 droites équiangulaires dans $\mathbb{R}^3$ (les six diagonales d'un icosaèdre
 régulier) et 28 dans $\mathbb{R}^7$, et démontrer que 6 est optimal dans $\mathbb{R}^3$.
-\item[(d)] Étudier le théorème de 2021 de Jiang, Tidor, Yao, Zhang et Zhao, qui détermine $N_\alpha(d)$
+\item[(iv)] Étudier le théorème de 2021 de Jiang, Tidor, Yao, Zhang et Zhao, qui détermine $N_\alpha(d)$
 pour tout $\alpha$ fixé et tout $d$ suffisamment grand, et rédiger un exposé de son ingrédient
 spectral clé : un graphe connexe de degré borné a une multiplicité sous-linéaire de sa deuxième valeur
 propre. \textbf{Statut :} le problème à angle fixé est réglé pour $d$ grand ; la valeur exacte de
@@ -1397,13 +1392,13 @@ est aujourd'hui activement attaqué.
 \begin{refs}
 \item Contexte : Droites équiangulaires --- Wikipédia (en anglais) (\url{https://en.wikipedia.org/wiki/Equiangular_lines})
 \item Article : Z. Jiang, J. Tidor, Y. Yao, S. Zhang, Y. Zhao, \og{} Equiangular lines with a fixed angle \fg{} (2021), Annals of Mathematics 194, 729--743, arXiv:1907.12466 (\url{https://arxiv.org/abs/1907.12466})
-\item Article : I. Balla \& M. Bucić, \og{} Equiangular lines via improved eigenvalue multiplicity \fg{} (2024), arXiv:2409.16219 (\url{https://arxiv.org/abs/2409.16219})
+\item Article : I. Balla \& M. Buci\'c, \og{} Equiangular lines via improved eigenvalue multiplicity \fg{} (2024), arXiv:2409.16219 (\url{https://arxiv.org/abs/2409.16219})
 \end{refs}
 
 \bigskip
 
 \begin{problem}[{À quelle vitesse un produit de matrices peut-il croître ? --- Recherche}]
-\textbf{LIN-42.} \textbf{Problème.} Pour un ensemble fini $\mathcal{M} = \{A_1, \dots, A_m\}$ de matrices réelles
+\textbf{LIN-42.} Pour un ensemble fini $\mathcal{M} = \{A_1, \dots, A_m\}$ de matrices réelles
 $n \times n$, le \textit{rayon spectral joint} est
 \[ \rho(\mathcal{M}) \;=\; \lim_{k \to \infty} \; \max \big\{ \|A_{i_1} A_{i_2} \cdots A_{i_k}\|^{1/k} \;:\; A_{i_j} \in \mathcal{M} \big\}, \]
 le taux de croissance asymptotique le plus rapide réalisable par des produits pris dans
@@ -1454,7 +1449,7 @@ calculabilité, qui récompense une lecture lente.
 \bigskip
 
 \begin{problem}[{La conjecture BMV, aujourd'hui théorème de Stahl --- Recherche, short}]
-\textbf{LIN-43.} \textbf{Problème.} Soient $A$ et $B$ des matrices hermitiennes
+\textbf{LIN-43.} Soient $A$ et $B$ des matrices hermitiennes
 $n \times n$ semi-définies positives et soit $m \ge 0$ un entier ; démontrer que tout coefficient
 du polynôme $t \mapsto \operatorname{tr}\big((A + tB)^{m}\big)$ est positif ou nul.
 \textbf{Statut : démontré} --- c'est la forme de Lieb--Seiringer de la conjecture de
@@ -1482,9 +1477,6 @@ hermitiennes. C'est une bonne étude de cas sur la durée pendant laquelle une i
 \end{refs}
 
 \bigskip
-
-
-\section*{Pour aller plus loin}
 
 
 \vfill

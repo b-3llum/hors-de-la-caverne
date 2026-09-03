@@ -72,13 +72,22 @@ UNI.update({
 SPECIAL = {"%": "\\%", "&": "\\&", "#": "\\#", "_": "\\_", "$": "\\$"}
 
 
-# Édition française : les lettres accentuées restent en UTF-8 (inputenc/XeTeX les
-# gèrent). Seuls les symboles mathématiques et typographiques passent en LaTeX.
+# Édition française : les lettres accentuées du français restent en UTF-8 —
+# inputenc les gère et la police T1 les couvre. Au-delà de Latin-1, en revanche,
+# ec-lmr10 n'a pas le glyphe : ł, š, ā, ě, ő, œ… disparaîtraient du PDF sans un
+# mot d'avertissement. Ces lettres-là gardent donc leur macro.
 for _k in [k for k in list(UNI)
-           if len(k) == 1 and _unicodedata.category(k).startswith("L")
+           if len(k) == 1 and 0x00C0 <= ord(k) <= 0x00FF
+           and _unicodedata.category(k).startswith("L")
            and "LATIN" in _unicodedata.name(k, "")
            and not UNI[k].startswith("$")]:
     del UNI[_k]
+# Absents de la table d'origine, et absents de la police.
+UNI["\u0153"] = "\\oe{}"          # œ
+UNI["\u0152"] = "\\OE{}"          # Œ
+UNI["\u20ac"] = "\\texteuro{}"    # €
+UNI["\u1d49"] = "\\textsuperscript{e}"   # ᵉ, comme dans « 2ᵉ »
+UNI["\u225f"] = "$\\stackrel{?}{=}$"     # ≟
 UNI["\u00ab"] = "\\og{}"
 UNI["\u00bb"] = "\\fg{}"
 UNI["\u202f"] = "~"
@@ -102,6 +111,16 @@ def esc_text(s):
         else:
             out.append(ch)
     return "".join(out)
+
+
+def _unescape_url(u):
+    """Undo esc_text inside \\url{}: a URL is verbatim, and \\textasciitilde{} in
+    one gives a dead hyperlink (several references live under /~name/)."""
+    for a, b in (("\\textasciitilde{}", "~"), ("\\textasciicircum{}", "^"),
+                 ("\\textbackslash{}", "\\"), ("\\%", "%"), ("\\#", "#"),
+                 ("\\_", "_"), ("\\&", "&"), ("\\$", "$")):
+        u = u.replace(a, b)
+    return u
 
 
 MATH_RE = re.compile(r"(\\\(.*?\\\)|\\\[.*?\\\])", re.S)
@@ -153,7 +172,7 @@ def convert_inline(frag):
 
     # Restore markup placeholders.
     s = re.sub(r"\x01href\x02(.*?)\x04(.*?)\x03",
-               lambda m: m.group(2) + " (\\url{" + m.group(1).replace("\\%", "%").replace("\\#", "#").replace("\\_", "_").replace("\\&", "&") + "})",
+               lambda m: m.group(2) + " (\\url{" + _unescape_url(m.group(1)) + "})",
                s, flags=re.S)
     s = re.sub(r"\x01(\w+)\x02(.*?)\x03", lambda m: "\\" + m.group(1) + "{" + m.group(2) + "}", s, flags=re.S)
     # KaTeX-only spellings that plain LaTeX does not define. Match the control
@@ -172,6 +191,14 @@ STMT_RE = re.compile(
 
 
 LIST_RE = re.compile(r"<(ol|ul)(?:\s[^>]*)?>(.*?)</\1>", re.S)
+
+_ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii"]
+
+
+def _marker(i, roman):
+    if roman:
+        return _ROMAN[i] if i < len(_ROMAN) else str(i + 1)
+    return chr(97 + i)
 LI_ITEM_RE = re.compile(r"<li>(.*?)</li>", re.S)
 
 
@@ -188,7 +215,10 @@ def convert_block(frag):
         out.append(convert_inline(frag[pos:m.start()]))
         items = LI_ITEM_RE.findall(m.group(2))
         if m.group(1) == "ol":
-            body = "\n".join("\\item[(%s)] %s" % (chr(97 + i), convert_inline(it))
+            # The page numbers its parts (a)(b)(c) or (i)(ii)(iii); a problem that
+            # says "as in part (ii)" must not find (b) here.
+            roman = 'type="i"' in m.group(0)
+            body = "\n".join("\\item[(%s)] %s" % (_marker(i, roman), convert_inline(it))
                              for i, it in enumerate(items))
             out.append("\n\\begin{enumerate}\n%s\n\\end{enumerate}\n" % body)
         else:
@@ -233,7 +263,8 @@ def convert_page(fname):
         chunk = m.group(0)
         if chunk.startswith("<h2"):
             h = htmllib.unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip()
-            if h.lower().startswith(("where to go", "see also")):
+            if h.lower().startswith(("where to go", "see also",
+                                     "pour aller plus loin", "voir aussi")):
                 continue
             tokens.append(("h2", h))
         else:
@@ -265,7 +296,10 @@ def convert_page(fname):
             continue
         count += 1
         s = convert_block(stmt.group(1) or stmt.group(2))
-        s = re.sub(r"^\s*(\\noindent )?\\textbf\{Probl\\`eme\.\}\s*", "", s)
+        # « è » reste en UTF-8 depuis la restriction de la purge à Latin-1 :
+        # le motif doit accepter les deux graphies, sans quoi chaque énoncé
+        # garde un « Problème. » redondant après son numéro.
+        s = re.sub(r"^\s*(\\noindent )?\\textbf\{Probl(\\`e|è)me\.\}\s*", "", s)
         out.append("\\begin{problem}[{%s --- %s}]\n\\textbf{%s.} %s\n\\end{problem}"
                    % (name, esc_text(level), esc_text(pid), s))
         if ctx:

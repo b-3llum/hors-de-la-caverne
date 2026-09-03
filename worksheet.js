@@ -129,7 +129,7 @@
 
   function texEscape(s) {
     return String(s).split(MATH_SPAN).map(function (part, i) {
-      return i % 2 ? part : part.replace(/([%&#_])/g, "\\$1");
+      return i % 2 ? part : part.replace(/([%&#_$])/g, "\\$1");
     }).join("");
   }
 
@@ -137,7 +137,7 @@
   function badMath(s) {
     var parts = String(s).split(MATH_SPAN);
     for (var i = 1; i < parts.length; i += 2) {
-      if (/\\[%&#_]/.test(parts[i])) return true;
+      if (/\\[%&#_$]/.test(parts[i])) return true;
     }
     return false;
   }
@@ -145,13 +145,16 @@
   function downloadTex() {
     if (!chosen.length) { alert("Sélectionnez d'abord des problèmes."); return; }
     var parts = [PREAMBLE];
-    var broken = chosen.filter(function (p) { return badMath(texEscape(p.title)); });
+    var broken = chosen.filter(function (p) {
+      return badMath(p.tex_title || texEscape(p.title));   // check what is exported
+    });
     if (broken.length) {
       console.warn("titres dont les maths sont mal échappées :",
                    broken.map(function (p) { return p.id; }).join(" "));
     }
     chosen.forEach(function (p) {
-      parts.push("\\begin{problem}[{" + texEscape(p.title) + " --- " +
+      // p.tex_title vient d'assemble.py, passé par la table Unicode de html2tex.
+      parts.push("\\begin{problem}[{" + (p.tex_title || texEscape(p.title)) + " --- " +
                  texEscape(p.level) + "}]\n" + (p.tex || "") + "\n\\end{problem}");
       parts.push("\\noindent\\footnotesize " + texEscape(p.id) +
                  " --- extrait de " + texEscape(p.area) +

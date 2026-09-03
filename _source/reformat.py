@@ -20,9 +20,11 @@ ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii"]
 MATH = re.compile(r"\\\(.*?\\\)|\\\[.*?\\\]", re.S)
 STMT = re.compile(r'<p class="statement">(.*?)</p>', re.S)
 
-# A marker must start a new clause: after sentence punctuation, a colon/dash,
-# the bold "Problem." lead-in, or the very start of the statement.
-LEAD = r"(?:^|(?<=</b>)|(?<=[.:;?!])|(?<=—)|(?<=—))\s*"
+# A marker must start a new clause: after sentence punctuation, a colon/dash, a
+# closing parenthesis (a clause that ended inside a parenthetical — "…all heads.)
+# (iii)" — which is what glued 17 markers into the previous item before), the bold
+# "Problem." lead-in, or the very start of the statement.
+LEAD = r"(?:^|(?<=</b>)|(?<=[.:;?!])|(?<=\))|(?<=—))\s*"
 
 
 def mask_math(text):

@@ -33,8 +33,8 @@
 <hr>
 <main id="contenu">
 
-<h1>Composer une feuille d'exercices</h1>
-<p class="lede">Choisissez combien de problèmes vous voulez et d'où ils doivent venir,
+<h1 class="screen-only">Composer une feuille d'exercices</h1>
+<p class="lede screen-only">Choisissez combien de problèmes vous voulez et d'où ils doivent venir,
 et n'emportez que ceux-là — en PDF, à imprimer ou à lire hors ligne, ou en source
 LaTeX que vous pouvez compiler et modifier vous-même. Vous pouvez aussi cocher des
 problèmes à la main en parcourant n'importe quelle page du site ; tout ce que vous
@@ -42,9 +42,9 @@ avez coché apparaît ici automatiquement. Aucune réponse n'est incluse, pour l
 raison qu'il n'y en a nulle part sur ce site.</p>
 
 <div id="builder">
-<h2>1. Choisissez vos problèmes</h2>
+<h2 class="screen-only">1. Choisissez vos problèmes</h2>
 
-<p><b>Niveau</b><br>
+<p class="screen-only"><b>Niveau</b><br>
 <label><input type="checkbox" class="lv" value="Collège" checked> Collège</label>
 <label><input type="checkbox" class="lv" value="Lycée" checked> Lycée</label>
 <label><input type="checkbox" class="lv" value="Licence" checked> Licence</label>
@@ -52,30 +52,30 @@ raison qu'il n'y en a nulle part sur ce site.</p>
 <label><input type="checkbox" class="lv" value="Recherche" checked> Recherche</label>
 </p>
 
-<p><b>Longueur</b><br>
+<p class="screen-only"><b>Longueur</b><br>
 <label><input type="radio" name="kind" value="any" checked> Toutes les longueurs</label>
 <label><input type="radio" name="kind" value="short"> Problèmes courts seulement</label>
 <label><input type="radio" name="kind" value="long"> Problèmes longs seulement</label>
 </p>
 
-<p><b>Domaines</b> — si vous n'en cochez aucun, tous les domaines sont retenus.<br>
+<p class="screen-only"><b>Domaines</b> — si vous n'en cochez aucun, tous les domaines sont retenus.<br>
 <span id="areas"></span></p>
 
-<p>
+<p class="screen-only">
 <b>Combien de problèmes ?</b>
 <input type="number" id="count" min="1" max="100" value="10">
-<button class="bigbutton" id="draw">Tirer un ensemble au hasard</button>
-<button class="bigbutton" id="loadticked">Utiliser les problèmes que j'ai cochés</button>
-<button class="bigbutton" id="clear">Effacer</button>
+<button class="bigbutton screen-only" id="draw">Tirer un ensemble au hasard</button>
+<button class="bigbutton screen-only" id="loadticked">Utiliser les problèmes que j'ai cochés</button>
+<button class="bigbutton screen-only" id="clear">Effacer</button>
 </p>
 <p class="source-note" id="pool"></p>
 </div>
 
 <hr>
-<h2>2. Emportez-la</h2>
-<p>
-<button class="bigbutton" id="pdf"><b>Enregistrer en PDF</b></button>
-<button class="bigbutton" id="tex">Télécharger la source LaTeX</button>
+<h2 class="screen-only">2. Emportez-la</h2>
+<p class="screen-only">
+<button class="bigbutton screen-only" id="pdf"><b>Enregistrer en PDF</b></button>
+<button class="bigbutton screen-only" id="tex">Télécharger la source LaTeX</button>
 <span class="source-note">Le bouton PDF ouvre la boîte de dialogue d'impression de
 votre navigateur — choisissez « Enregistrer au format PDF » comme destination. Le
 fichier LaTeX se compile avec pdflatex, xelatex ou tectonic.</span>
